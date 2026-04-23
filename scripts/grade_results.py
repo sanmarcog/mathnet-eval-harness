@@ -35,6 +35,8 @@ PRICING_USD_PER_MTOK: dict[str, dict[str, float]] = {
     "gpt-5.4":           {"input": 2.50, "output": 15.00},
     "gpt-5.4-mini":      {"input": 0.75, "output": 4.50},
     "gemini-3-pro":      {"input": 2.00, "output": 12.00},
+    "gemini-3-pro-preview":   {"input": 2.00, "output": 12.00},
+    "gemini-3.1-pro-preview": {"input": 2.00, "output": 12.00},
 }
 
 

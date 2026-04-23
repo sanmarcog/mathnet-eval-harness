@@ -35,8 +35,13 @@ MODELS: dict[str, tuple[str, str]] = {
     "gpt-5-4":            ("openai", "gpt-5.4"),
     "gpt-5.4-mini":       ("openai", "gpt-5.4-mini"),
     "gpt-5-4-mini":       ("openai", "gpt-5.4-mini"),
-    # Google (Day 2 pending Gemini key)
-    "gemini-3-pro":       ("google", "gemini-3-pro"),
+    # Google. The canonical 3.0-pro alias maps to the preview ID because
+    # that is the only `gemini-3-pro-*` currently served over generateContent.
+    # `gemini-3.1-pro-preview` is also available if we decide to switch up.
+    "gemini-3-pro":       ("google", "gemini-3-pro-preview"),
+    "gemini-3-pro-preview":   ("google", "gemini-3-pro-preview"),
+    "gemini-3.1-pro":     ("google", "gemini-3.1-pro-preview"),
+    "gemini-3.1-pro-preview": ("google", "gemini-3.1-pro-preview"),
     # Local HF (Day 3+)
     "qwen-base":          ("hf", "Qwen/Qwen2.5-1.5B-Instruct"),
 }
