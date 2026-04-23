@@ -30,9 +30,12 @@ MODELS: dict[str, tuple[str, str]] = {
     "claude-sonnet-4-6":  ("anthropic", "claude-sonnet-4-6"),
     "opus-4-7":           ("anthropic", "claude-opus-4-7"),
     "claude-opus-4-7":    ("anthropic", "claude-opus-4-7"),
-    # OpenAI (Day 2)
-    "gpt-5":              ("openai", "gpt-5"),
-    # Google (Day 2)
+    # OpenAI
+    "gpt-5.4":            ("openai", "gpt-5.4"),
+    "gpt-5-4":            ("openai", "gpt-5.4"),
+    "gpt-5.4-mini":       ("openai", "gpt-5.4-mini"),
+    "gpt-5-4-mini":       ("openai", "gpt-5.4-mini"),
+    # Google (Day 2 pending Gemini key)
     "gemini-3-pro":       ("google", "gemini-3-pro"),
     # Local HF (Day 3+)
     "qwen-base":          ("hf", "Qwen/Qwen2.5-1.5B-Instruct"),
@@ -122,7 +125,48 @@ def _generate_anthropic(provider_model_id: str, prompt: str, params: dict) -> Re
 
 
 def _generate_openai(provider_model_id: str, prompt: str, params: dict) -> Response:
-    raise NotImplementedError("OpenAI backend lands on Day 2.")
+    import openai  # lazy
+
+    client = openai.OpenAI()  # reads OPENAI_API_KEY from env
+    t0 = time.perf_counter()
+
+    # GPT-5.x reasoning models use `max_completion_tokens` (not `max_tokens`)
+    # and reject custom `temperature` — the SDK accepts `1.0` only. Skip it.
+    kwargs: dict = {
+        "model": provider_model_id,
+        "messages": [
+            {"role": "system", "content": params.get("system", "You are an expert mathematician solving olympiad problems.")},
+            {"role": "user", "content": prompt},
+        ],
+        "max_completion_tokens": params.get("max_tokens", 8192),
+    }
+    resp = client.chat.completions.create(**kwargs)
+    latency = time.perf_counter() - t0
+
+    choice = resp.choices[0]
+    text = choice.message.content or ""
+    usage = {
+        "input_tokens": resp.usage.prompt_tokens,
+        "output_tokens": resp.usage.completion_tokens,
+    }
+    # GPT-5 reasoning tokens are a sub-field of completion_tokens; surface
+    # them separately for cost analysis.
+    reasoning = getattr(resp.usage, "completion_tokens_details", None)
+    if reasoning is not None:
+        rt = getattr(reasoning, "reasoning_tokens", None)
+        if rt is not None:
+            usage["reasoning_tokens"] = rt
+
+    return Response(
+        model=provider_model_id,
+        provider_model_id=provider_model_id,
+        prompt=prompt,
+        text=text,
+        raw=resp.model_dump(),
+        usage=usage,
+        latency_s=latency,
+        params=params,
+    )
 
 
 def _generate_google(provider_model_id: str, prompt: str, params: dict) -> Response:

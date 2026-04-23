@@ -28,11 +28,13 @@ from pathlib import Path
 from mathnet_eval.grading import grade
 
 
-# USD per 1M tokens. Fill in as new backends land.
+# USD per 1M tokens. Verified April 2026.
 PRICING_USD_PER_MTOK: dict[str, dict[str, float]] = {
-    "claude-sonnet-4-6": {"input": 3.0, "output": 15.0},
-    "claude-opus-4-7":   {"input": 15.0, "output": 75.0},
-    # TODO: GPT-5, Gemini 3 Pro pricing once backends land.
+    "claude-sonnet-4-6": {"input": 3.00, "output": 15.00},
+    "claude-opus-4-7":   {"input": 5.00, "output": 25.00},
+    "gpt-5.4":           {"input": 2.50, "output": 15.00},
+    "gpt-5.4-mini":      {"input": 0.75, "output": 4.50},
+    "gemini-3-pro":      {"input": 2.00, "output": 12.00},
 }
 
 
