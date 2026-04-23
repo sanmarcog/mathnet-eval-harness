@@ -53,7 +53,11 @@ $PY -u scripts/run_eval.py --model gpt-5.4      --split eval --n 500 --out resul
 PID_GPT=$!
 $PY -u scripts/run_eval.py --model gpt-5.4-mini --split eval --n 500 --out results/full/gpt-5.4-mini > logs/gpt-5.4-mini.log 2>&1 &
 PID_GPT_MINI=$!
-$PY -u scripts/run_eval.py --model gemini-3-pro --split eval --n 500 --out results/full/gemini-3-pro > logs/gemini-3-pro.log 2>&1 &
+# Gemini capped at 300 (not 500) to fit budget under the $60 ceiling --
+# Gemini thoughts tokens are the dominant cost driver and the 10-problem
+# calibration showed mean 4,307 thoughts/problem despite a thinking_budget
+# of 4,096. See results/smoke/gemini-3-pro-cap4096/ and NOTES for details.
+$PY -u scripts/run_eval.py --model gemini-3-pro --split eval --n 300 --out results/full/gemini-3-pro > logs/gemini-3-pro.log 2>&1 &
 PID_GEMINI=$!
 $PY -u scripts/run_eval.py --model opus-4-7     --split eval --n 100 --out results/full/opus-4-7     > logs/opus-4-7.log     2>&1 &
 PID_OPUS=$!
