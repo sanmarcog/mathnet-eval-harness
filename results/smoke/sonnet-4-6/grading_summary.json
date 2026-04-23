@@ -1,0 +1,88 @@
+{
+  "dir": "results/smoke/sonnet-4-6",
+  "n_responses": 20,
+  "n_scored": 20,
+  "n_correct": 14,
+  "accuracy": 0.7,
+  "method_counts": {
+    "judge": 9,
+    "miss": 6,
+    "exact": 4,
+    "symbolic": 1
+  },
+  "per_competition": {
+    "AustriaMO2013": {
+      "n": 1,
+      "correct": 1
+    },
+    "SELECTION and TRAINING SESSION": {
+      "n": 1,
+      "correct": 1
+    },
+    "69th Belarusian Mathematical Olympiad": {
+      "n": 1,
+      "correct": 0
+    },
+    "Bulgarian National Mathematical Olympiad": {
+      "n": 1,
+      "correct": 1
+    },
+    "China Mathematical Competition": {
+      "n": 1,
+      "correct": 1
+    },
+    "Czech and Slovak Mathematical Olympiad": {
+      "n": 1,
+      "correct": 1
+    },
+    "First Round (take-home)": {
+      "n": 1,
+      "correct": 1
+    },
+    "Estonian Mathematical Olympiad": {
+      "n": 1,
+      "correct": 0
+    },
+    "33rd Hellenic Mathematical Olympiad": {
+      "n": 1,
+      "correct": 1
+    },
+    "MMO2025 Round 2": {
+      "n": 1,
+      "correct": 0
+    },
+    "SAMC": {
+      "n": 1,
+      "correct": 1
+    },
+    "Saudi Arabia Mathematical Competitions": {
+      "n": 2,
+      "correct": 2
+    },
+    "Team selection tests for JBMO 2018": {
+      "n": 1,
+      "correct": 1
+    },
+    "SAUDI ARABIAN MATHEMATICAL COMPETITIONS": {
+      "n": 2,
+      "correct": 1
+    },
+    "Saudi Arabian IMO Booklet": {
+      "n": 1,
+      "correct": 0
+    },
+    "SAUDI ARABIAN IMO Booklet 2023": {
+      "n": 1,
+      "correct": 1
+    },
+    "59th Ukrainian National Mathematical Olympiad": {
+      "n": 1,
+      "correct": 0
+    },
+    "62nd Ukrainian National Mathematical Olympiad": {
+      "n": 1,
+      "correct": 1
+    }
+  },
+  "used_judge": true
+}

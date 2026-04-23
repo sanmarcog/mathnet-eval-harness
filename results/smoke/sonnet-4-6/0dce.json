@@ -1,0 +1,19 @@
+{
+  "id": "0dce",
+  "country": "Saudi Arabia",
+  "competition": "SAUDI ARABIAN MATHEMATICAL COMPETITIONS",
+  "gold_final_answer": "If n is even: P(x) = x^m for some positive integer m. If n is odd: P(x) = ± x^m for some positive integer m.",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Polynomial operations",
+    "Algebra > Algebraic Expressions > Functional Equations"
+  ],
+  "prompt": "Let be given a positive integer $n > 1$. Find all polynomials $P(x)$ non constant, with real coefficients such that\n$$\nP(x) P\\left(x^{2}\\right) \\ldots P\\left(x^{n}\\right) = P\\left(x^{\\frac{n(n+1)}{2}}\\right)\n$$\nfor all $x \\in \\mathbb{R}$.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Solution\n\nLet me find all non-constant polynomials with real coefficients satisfying $P(x)P(x^2)\\cdots P(x^n) = P(x^{n(n+1)/2})$.\n\n**Step 1: Determine the degree.**\n\nLet $\\deg P = d$. The left side has degree $d(1 + 2 + \\cdots + n) = d \\cdot \\frac{n(n+1)}{2}$. The right side has degree $d \\cdot \\frac{n(n+1)}{2}$. This is consistent for any $d$.\n\n**Step 2: Try $P(x) = x^k$.**\n\nThen $P(x)P(x^2)\\cdots P(x^n) = x^k \\cdot x^{2k} \\cdots x^{nk} = x^{k \\cdot n(n+1)/2} = P(x^{n(n+1)/2})$. ✓\n\n**Step 3: Try $P(x) = x^k$ with leading coefficient.**\n\nMore generally, try $P(x) = cx^k$. Then LHS $= c^n x^{k \\cdot n(n+1)/2}$ and RHS $= c x^{k \\cdot n(n+1)/2}$. So we need $c^n = c$, giving $c^{n-1} = 1$. Since $c$ is real and $n > 1$, we get $c = 1$ (for $n-1$ even) or $c = \\pm 1$ (for $n-1$ odd). But $c = -1$ gives $(-1)^n = -1$, so $n$ must be odd.\n\n**Step 4: Analyze roots.**\n\nIf $r$ is a root of $P$ with multiplicity $m$, then from the functional equation, the roots of the LHS are $r^{1/j}$ for $j = 1, \\ldots, n$ (each with multiplicity $m$), and the roots of the RHS are the $\\frac{n(n+1)}{2}$-th roots of the roots of $P$.\n\nMore carefully: if $P(r) = 0$, then $P(x^{n(n+1)/2}) = 0$ when $x^{n(n+1)/2} = r$. Also, $P(x^j) = 0$ when $x^j = r$, i.e., $x = r^{1/j}$.\n\n**Step 5: Try $P(x) = x^k - a$.**\n\nThen $P(x^j) = x^{jk} - a$. The product $\\prod_{j=1}^n (x^{jk} - a)$ should equal $x^{k \\cdot n(n+1)/2} - a$.\n\nFor this to work, consider $a = 0$: gives $P(x) = x^k$ (already found).\n\nFor $a \\neq 0$: $\\prod_{j=1}^n (x^{jk} - a) = x^{kn(n+1)/2} - a$ seems unlikely unless the product telescopes. Testing $n=2$: $(x^k - a)(x^{2k} - a) = x^{3k} - a(x^{2k} + x^k) + a^2 \\neq x^{3k} - a$ unless $a = 0$.\n\n**Step 6: Conclude.**\n\nThe only solutions are $P(x) = x^k$ for positive integers $k$.\n\nLet me verify: $P(x) = x^k$ gives $x^k \\cdot x^{2k} \\cdots x^{nk} = x^{k(1+2+\\cdots+n)} = x^{kn(n+1)/2} = P(x^{n(n+1)/2})$. ✓\n\nAny polynomial with a nonzero root $r$ would require $r^{1/j}$ to also be roots for all $j$, creating infinitely many roots unless $r = 0$. Thus $P$ can only have $0$ as a root.\n\nSince $P$ is a polynomial with only root $0$, we have $P(x) = cx^k$. The functional equation forces $c^n = c$, so $c^{n-1} = 1$. For real $c$: $c = 1$ always works; $c = -1$ requires $n$ odd (but then $(-1)^n = -1$ ✓). However $P(x) = -x^k$ gives LHS $= (-1)^n x^{kn(n+1)/2}$ and RHS $= -x^{kn(n+1)/2}$, requiring $(-1)^n = -1$, i.e., $n$ odd. Since $n > 1$ is given as a fixed positive integer, the general answer is:\n\n$$\\boxed{P(x) = x^k}$$\n\nfor any positive integer $k$.\n\nFinal answer: $P(x) = x^k$ for any positive integer $k$.",
+  "usage": {
+    "input_tokens": 150,
+    "output_tokens": 1277
+  },
+  "latency_s": 18.783814697060734,
+  "cached": false
+}

@@ -1,0 +1,23 @@
+{
+  "id": "0db7",
+  "country": "Saudi Arabia",
+  "competition": "SAUDI ARABIAN MATHEMATICAL COMPETITIONS",
+  "gold_final_answer": "-1",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Symmetric functions"
+  ],
+  "prompt": "Real nonzero numbers $x$, $y$, $z$ are such that $x + y + z = 0$. Moreover, it is known that\n$$\nA = \\frac{x}{y} + \\frac{y}{z} + \\frac{z}{x} = \\frac{x}{z} + \\frac{z}{y} + \\frac{y}{x} + 1.\n$$\nDetermine $A$.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "Let me denote the two expressions.\n\nLet $A = \\frac{x}{y} + \\frac{y}{z} + \\frac{z}{x}$ and $B = \\frac{x}{z} + \\frac{z}{y} + \\frac{y}{x}$.\n\nWe know $A = B + 1$, so $A - B = 1$.\n\nCompute $A - B$:\n$$A - B = \\frac{x}{y} + \\frac{y}{z} + \\frac{z}{x} - \\frac{x}{z} - \\frac{z}{y} - \\frac{y}{x}$$\n\n$$= x\\left(\\frac{1}{y} - \\frac{1}{z}\\right) + y\\left(\\frac{1}{z} - \\frac{1}{x}\\right) + z\\left(\\frac{1}{x} - \\frac{1}{y}\\right)$$\n\n$$= x \\cdot \\frac{z-y}{yz} + y \\cdot \\frac{x-z}{xz} + z \\cdot \\frac{y-x}{xy}$$\n\nMultiply through by $xyz$:\n$$xyz(A-B) = x^2(z-y) + y^2(x-z) + z^2(y-x)$$\n\nThe right side factors as:\n$$x^2(z-y) + y^2(x-z) + z^2(y-x) = -(x-y)(y-z)(z-x)$$\n\n(This is a standard factorization.)\n\nSo $A - B = \\frac{-(x-y)(y-z)(z-x)}{xyz}$.\n\nSince $A - B = 1$, we need $\\frac{-(x-y)(y-z)(z-x)}{xyz} = 1$.\n\nNow compute $A \\cdot B$. Note that:\n$$AB = \\left(\\frac{x}{y} + \\frac{y}{z} + \\frac{z}{x}\\right)\\left(\\frac{x}{z} + \\frac{z}{y} + \\frac{y}{x}\\right)$$\n\nAlso, $A + B = \\frac{x}{y} + \\frac{y}{x} + \\frac{y}{z} + \\frac{z}{y} + \\frac{z}{x} + \\frac{x}{z}$.\n\nSince $x + y + z = 0$, we know $(x+y+z)^2 = 0$, so $x^2 + y^2 + z^2 = -2(xy+yz+zx)$.\n\nAlso, $A + B = \\frac{x^2z + y^2x + z^2y + x^2y + y^2z + z^2x}{xyz}$.\n\nThe numerator is $(x^2y + x^2z) + (y^2x + y^2z) + (z^2x + z^2y) = x^2(y+z) + y^2(x+z) + z^2(x+y)$.\n\nSince $x+y+z=0$: $y+z = -x$, $x+z = -y$, $x+y = -z$.\n\nSo numerator $= x^2(-x) + y^2(-y) + z^2(-z) = -(x^3+y^3+z^3)$.\n\nSince $x+y+z=0$: $x^3+y^3+z^3 = 3xyz$.\n\nSo $A + B = \\frac{-3xyz}{xyz} = -3$.\n\nNow we have:\n- $A + B = -3$\n- $A - B = 1$\n\nSolving: $2A = -2$, so $A = -1$.\n\nLet me verify this is consistent. $A = -1$, $B = -2$.\n\nCheck: $A = B + 1 \\Rightarrow -1 = -2 + 1 = -1$. ✓\n\nFinal answer: $A = -1$",
+  "usage": {
+    "input_tokens": 152,
+    "output_tokens": 1011
+  },
+  "latency_s": 11.835349428001791,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "$A = -1$"
+  }
+}

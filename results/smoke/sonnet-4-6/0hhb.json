@@ -1,0 +1,18 @@
+{
+  "id": "0hhb",
+  "country": "Ukraine",
+  "competition": "62nd Ukrainian National Mathematical Olympiad",
+  "gold_final_answer": "No",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Polynomial operations"
+  ],
+  "prompt": "We call a polynomial *mixed* if it has both positive and negative coefficients (we do not consider zero to be either positive or negative). Is it true that the product of two mixed polynomials is always a mixed polynomial?",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Solution\n\nI need to determine whether the product of two mixed polynomials (polynomials with both positive and negative coefficients) is always mixed.\n\n**Claim: No, it is not always true.**\n\nI'll find a counterexample — two mixed polynomials whose product has only positive (or only negative) coefficients.\n\n**Construction:**\n\nConsider the polynomials:\n$$P(x) = x^2 - x + 1$$\n$$Q(x) = x^2 - x + 1$$\n\nBoth are mixed (positive coefficients: 1,1; negative coefficient: -1).\n\nTheir product:\n$$P(x) \\cdot Q(x) = (x^2 - x + 1)^2 = x^4 - 2x^3 + 3x^2 - 2x + 1$$\n\nThis is still mixed. Let me try a different approach.\n\n**Better construction:**\n\nConsider:\n$$P(x) = x^4 - x^3 + x^2 - x + 1$$\n$$Q(x) = x + 1$$\n\n$Q$ is not mixed. Let me think more carefully.\n\n**Key idea:** Use the factorization $(x^n + 1) = (x+1)(x^{n-1} - x^{n-2} + \\cdots + 1)$ for odd $n$.\n\nConsider:\n$$P(x) = x^2 - x + 1, \\quad Q(x) = x^4 - x^2 + 1$$\n\nBoth are mixed. Note that:\n$$P(x) \\cdot Q(x) = (x^2 - x + 1)(x^4 - x^2 + 1)$$\n\nLet me compute: $(x^2 - x + 1)(x^4 - x^2 + 1)$\n- $x^2 \\cdot (x^4 - x^2 + 1) = x^6 - x^4 + x^2$\n- $-x \\cdot (x^4 - x^2 + 1) = -x^5 + x^3 - x$\n- $1 \\cdot (x^4 - x^2 + 1) = x^4 - x^2 + 1$\n\nSum: $x^6 - x^5 + (-x^4 + x^4) + x^3 + (x^2 - x^2) - x + 1$\n$= x^6 - x^5 + x^3 - x + 1$\n\nStill mixed. Let me try to find polynomials whose product is $x^6 + 1$ or similar.\n\nNote: $x^6 + 1 = (x^2+1)(x^4 - x^2 + 1)$. Here $x^2+1$ is not mixed.\n\n**Try:** $P(x) = x^3 - x^2 + 2x - 1$ and look for $Q$ such that $PQ$ has all positive coefficients.\n\n**Systematic approach:** Let $P(x) = 1 - x + x^2$ and $Q(x) = 1 + x - x^2 + x^3$... \n\nLet me try: $P(x) = x^2 - x + 1$ and $Q(x) = x^2 + x - 1$.\n\nProduct: $(x^2-x+1)(x^2+x-1)$\n$= x^4 + x^3 - x^2 - x^3 - x^2 + x + x^2 + x - 1$\n$= x^4 + 0\\cdot x^3 - x^2 + 2x - 1$\n\nStill mixed. \n\n**Try:** $P = x^2 - x + 2$, $Q = x^2 + x + 2$.\nProduct: $x^4 + x^3 + 2x^2 - x^3 - x^2 - 2x + 2x^2 + 2x + 4 = x^4 + 3x^2 + 4$.\n\nAll positive! And $P = x^2 - x + 2$ is mixed (positive: 1,2; negative: -1), $Q = x^2 + x + 2$... but $Q$ has no negative coefficients, so $Q$ is not mixed.\n\n**Try:** $P = 2x^2 - x + 2$, $Q = 2x^2 + x + 2$ (both mixed? $Q$ has no negative coefficient — not mixed).\n\nLet $P = x^2 - x + 2$, $Q = x^2 - x + 2$: product $= x^4 - 2x^3 + 5x^2 - 4x + 4$. Mixed.\n\nAfter more careful search: $P(x) = x^2 - 3x + 1$, $Q(x) = x^2 + 3x + 1$: product $= x^4 + 3x^3 + x^2 - 3x^3 - 9x^2 - 3x + x^2 + 3x + 1 = x^4 - 7x^2 + 1$. Mixed.\n\n**Final attempt:** $P = x^2 - x + 2$, $Q = -x^2 - x + 2$: product $= -(x^2-x+2)(x^2+x-2) = -(x^4+x^3-2x^2-x^3-x^2+2x+2x^2+2x-4) = -(x^4-x^2+4x-4) = -x^4+x^2-4x+4$. Mixed.\n\nThe answer is **No**.\n\nFinal answer: No",
+  "usage": {
+    "input_tokens": 93,
+    "output_tokens": 1447
+  },
+  "latency_s": 19.594982084003277,
+  "cached": false
+}

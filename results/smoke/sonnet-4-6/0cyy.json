@@ -1,0 +1,18 @@
+{
+  "id": "0cyy",
+  "country": "Saudi Arabia",
+  "competition": "Saudi Arabia Mathematical Competitions",
+  "gold_final_answer": "a1 = 2^{2010}, a2 = 3^{2010} − 1, a3 = 4^{2010} − 1, ..., a2010 = 2011^{2010} − 1",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Sequences and Series > Telescoping series"
+  ],
+  "prompt": "Find positive integers $a_{1} < a_{2} < \\ldots < a_{2010}$ such that\n$$\na_{1}(1!)^{2010} + a_{2}(2!)^{2010} + \\ldots + a_{2010}(2010!)^{2010} = (2011!)^{2010}.\n$$",
+  "model": "claude-sonnet-4-6",
+  "response_text": "We need to find positive integers $a_1 < a_2 < \\cdots < a_{2010}$ such that\n$$\\sum_{k=1}^{2010} a_k (k!)^{2010} = (2011!)^{2010}.$$\n\nNote that $(2011!)^{2010} = (2011 \\cdot 2010!)^{2010} = 2011^{2010} \\cdot (2010!)^{2010}$.\n\nMore generally, $(n+1)! = (n+1) \\cdot n!$, so $((n+1)!)^{2010} = (n+1)^{2010} \\cdot (n!)^{2010}$.\n\nLet me try to write $(2011!)^{2010}$ as a telescoping-type sum. Consider:\n\n$$((k+1)!)^{2010} - (k!)^{2010} = (k!)^{2010}\\left((k+1)^{2010} - 1\\right)$$\n\nSo if we sum from $k=1$ to $2010$:\n$$\\sum_{k=1}^{2010} \\left[((k+1)!)^{2010} - (k!)^{2010}\\right] = (2011!)^{2010} - (1!)^{2010}$$\n\nThis gives:\n$$(2011!)^{2010} = (1!)^{2010} + \\sum_{k=1}^{2010} \\left[((k+1)!)^{2010} - (k!)^{2010}\\right]$$\n\n$$= (1!)^{2010} + \\sum_{k=1}^{2010} (k!)^{2010}\\left((k+1)^{2010} - 1\\right)$$\n\nSo we can set $a_k = (k+1)^{2010} - 1$ for $k = 1, 2, \\ldots, 2010$, but we need to handle the extra $(1!)^{2010}$ term.\n\nWe have:\n$$(2011!)^{2010} = 1 + \\sum_{k=1}^{2010} ((k+1)^{2010}-1)(k!)^{2010}$$\n\nThe extra $1 = (1!)^{2010}$ can be absorbed into the $k=1$ term:\n$$a_1 (1!)^{2010} = \\left((2^{2010}-1) + 1\\right)(1!)^{2010} = 2^{2010}(1!)^{2010}$$\n\nSo set:\n- $a_1 = 2^{2010}$\n- $a_k = (k+1)^{2010} - 1$ for $k = 2, 3, \\ldots, 2010$\n\nCheck positivity: All values are positive. ✓\n\nCheck strictly increasing: We need $a_1 < a_2 < \\cdots < a_{2010}$.\n- $a_1 = 2^{2010}$\n- $a_2 = 3^{2010} - 1$\n\nSince $3^{2010} - 1 > 2^{2010}$ (as $3^{2010} > 2 \\cdot 2^{2010}$ for large exponents... actually $3^{2010} > 2^{2010}+1$ clearly), so $a_2 > a_1$. ✓\n\nFor $k \\geq 2$: $a_k = (k+1)^{2010} - 1 < (k+2)^{2010} - 1 = a_{k+1}$. ✓\n\nVerify the equation:\n$$a_1(1!)^{2010} + \\sum_{k=2}^{2010} a_k(k!)^{2010}$$\n$$= 2^{2010} + \\sum_{k=2}^{2010}((k+1)^{2010}-1)(k!)^{2010}$$\n$$= 1 + (2^{2010}-1) + \\sum_{k=2}^{2010}((k+1)^{2010}-1)(k!)^{2010}$$\n$$= 1 + \\sum_{k=1}^{2010}((k+1)^{2010}-1)(k!)^{2010} = (2011!)^{2010}. \\checkmark$$\n\n**The solution is:**\n$$a_1 = 2^{2010}, \\quad a_k = (k+1)^{2010} - 1 \\text{ for } k = 2, 3, \\ldots, 2010.$$\n\nFinal answer: $a_1 = 2^{2010}$ and $a_k = (k+1)^{2010}-1$ for $k=2,3,\\ldots,2010$.",
+  "usage": {
+    "input_tokens": 131,
+    "output_tokens": 1220
+  },
+  "latency_s": 15.197214712039568,
+  "cached": true
+}

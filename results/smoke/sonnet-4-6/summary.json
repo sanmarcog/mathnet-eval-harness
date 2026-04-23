@@ -1,0 +1,11 @@
+{
+  "model": "sonnet-4-6",
+  "split": "data/splits/eval.jsonl",
+  "n_problems": 20,
+  "n_errors": 0,
+  "cached_hits": 3,
+  "total_input_tokens": 2550,
+  "total_output_tokens": 27913,
+  "elapsed_s": 348.95795884693507,
+  "errors": []
+}

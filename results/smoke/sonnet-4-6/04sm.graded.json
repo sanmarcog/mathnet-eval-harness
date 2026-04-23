@@ -1,0 +1,23 @@
+{
+  "id": "04sm",
+  "country": "Czech Republic",
+  "competition": "Czech and Slovak Mathematical Olympiad",
+  "gold_final_answer": "all integers k ≥ 2",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization"
+  ],
+  "prompt": "Find all integers $k \\ge 2$ for which there exists $k$-element set $M$ of positive integers such that the product of all numbers in $M$ is divisible by the sum of any two (different) numbers from $M$.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Solution\n\nLet me find all integers $k \\geq 2$ for which there exists a $k$-element set $M$ of positive integers such that the product of all numbers in $M$ is divisible by the sum of any two different numbers from $M$.\n\n**Construction for all $k \\geq 2$:**\n\nConsider the set $M = \\{1, 2, 3, \\ldots, k-1, N\\}$ where $N$ is chosen appropriately, or try a simpler approach.\n\n**Try $M = \\{a, a, \\ldots\\}$ type sets:**\n\nLet me try $M = \\{1, 2, 3, \\ldots, k\\}$ and check if the product is divisible by all pairwise sums. This seems hard to guarantee.\n\n**Geometric-type construction:** Let $M = \\{d, 2d, 4d, \\ldots, 2^{k-1}d\\}$ for some $d$.\n\nThe product is $d^k \\cdot 2^{0+1+\\cdots+(k-1)} = d^k \\cdot 2^{k(k-1)/2}$.\n\nThe sum of $2^i d$ and $2^j d$ (with $i < j$) is $d \\cdot 2^i(1 + 2^{j-i})$. For this to divide the product, we need $d^k \\cdot 2^{k(k-1)/2}$ divisible by $d \\cdot 2^i(1+2^{j-i})$.\n\nThe factor $(1 + 2^{j-i})$ is odd (since $j > i$, so $2^{j-i}$ is even, making $1+2^{j-i}$ odd). We need $d^{k-1}$ divisible by $(1+2^{j-i})$.\n\nThe possible values of $1+2^{j-i}$ for $1 \\leq j-i \\leq k-1$ are $3, 5, 9, \\ldots, 1+2^{k-1}$.\n\nChoose $d = \\text{lcm}(3, 5, 9, \\ldots, 1+2^{k-1})^{1/(k-1)}$... this requires $d$ to be an integer.\n\n**Simpler construction:** Let all elements equal $n$: but elements must be distinct.\n\n**Try $M = \\{n, n, \\ldots\\}$ with $M = \\{t, 2t, 3t, \\ldots, kt\\}$:**\n\nProduct $= t^k \\cdot k!$. Sum of $it + jt = t(i+j)$. Need $t^k \\cdot k!$ divisible by $t(i+j)$, i.e., $t^{k-1} \\cdot k!$ divisible by $i+j$ for all $1 \\leq i < j \\leq k$.\n\nThe maximum value of $i+j$ is $(k-1)+k = 2k-1$. We need $t^{k-1} \\cdot k!$ divisible by all $i+j$. Choose $t = (2k-1)!$ (or $t = \\text{lcm of all } i+j$). This works for any $k$!\n\nWait, let me verify: with $M = \\{t, 2t, \\ldots, kt\\}$, the product is $t^k \\cdot k!$. For any two elements $it, jt$, their sum is $t(i+j)$. We need $t(i+j) \\mid t^k \\cdot k!$, i.e., $(i+j) \\mid t^{k-1} \\cdot k!$.\n\nSince $i+j \\leq 2k-1$, if we set $t = (2k-1)!!$ or simply $t = \\text{lcm}(3,4,\\ldots,2k-1)$, then $t^{k-1} \\cdot k!$ is divisible by all $i+j$. This works for **all** $k \\geq 2$.\n\n**Verification for $k=2$:** $M = \\{t, 2t\\}$. Product $= 2t^2$. Sum $= 3t$. Need $3t \\mid 2t^2$, i.e., $3 \\mid 2t$, so $3 \\mid t$. Take $t=3$: $M=\\{3,6\\}$, product $=18$, sum $=9$, and $9 \\mid 18$. ✓\n\nThis construction works for all $k \\geq 2$.\n\n**Conclusion:** All integers $k \\geq 2$ work.\n\nFinal answer: All integers $k \\geq 2$.",
+  "usage": {
+    "input_tokens": 100,
+    "output_tokens": 1195
+  },
+  "latency_s": 15.100081171956845,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "All integers $k \\geq 2$."
+  }
+}

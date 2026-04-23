@@ -1,0 +1,19 @@
+{
+  "id": "067y",
+  "country": "Greece",
+  "competition": "33rd Hellenic Mathematical Olympiad",
+  "gold_final_answer": "[(4, 8, 0), (35, 70, 1), (14, 77, 1)]",
+  "topics_flat": [
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities",
+    "Number Theory > Divisibility / Factorization > Factorization techniques"
+  ],
+  "prompt": "Find all possible triads of non negative integers $(x, y, z)$ with $x \\le y$, which satisfy the equation: $x^2 + y^2 = 3 \\cdot 2016^z + 77$",
+  "model": "claude-sonnet-4-6",
+  "response_text": "I need to find all non-negative integer triples (x, y, z) with x ≤ y satisfying x² + y² = 3·2016^z + 77.\n\n## Setting Up the Problem\n\nFirst, note that 2016 = 2^5 · 3^2 · 7, so 2016^z = 2^(5z) · 3^(2z) · 7^z.\n\n**Case z = 0:** x² + y² = 3·1 + 77 = 80\nFind x ≤ y with x² + y² = 80.\n- x=0: y²=80, not perfect square\n- x=2: y²=76, no\n- x=4: y²=64, y=8 ✓\n- x=6: y²=44, no\n\nSo (4, 8, 0) is a solution.\n\n**Case z = 1:** x² + y² = 3·2016 + 77 = 6048 + 77 = 6125\nFind x ≤ y with x² + y² = 6125.\n- Try: 6125 = 5^3 · 7^2. \n- x=7: y²=6076, not square\n- x=35: y²=6125-1225=4900=70² ✓ → (35, 70, 1)\n- x=49: y²=6125-2401=3724, not square\n- x=42: y²=6125-1764=4361, not square\n- x=14: y²=6125-196=5929=77² ✓ → (14, 77, 1)\n- x=0: y²=6125, not square\n- x=21: y²=6125-441=5684, no\n- x=28: y²=6125-784=5341, no\n- x=56: y²=6125-3136=2989, no\n- x=63: y²=6125-3969=2156, no\n- x=70: y²=6125-4900=1225=35² → same as (35,70)\n\nSo solutions: (14, 77, 1) and (35, 70, 1).\n\n**Case z = 2:** x² + y² = 3·2016² + 77 = 3·4064256 + 77 = 12192768 + 77 = 12192845\nCheck modulo 4: 2016 ≡ 0 (mod 4), so 3·2016² ≡ 0, and 77 ≡ 1 (mod 4).\nSo x² + y² ≡ 1 (mod 4). This means one of x,y is odd, one even.\n\nCheck modulo 7: 2016 ≡ 0 (mod 7), so x² + y² ≡ 77 ≡ 0 (mod 7).\nSo x² + y² ≡ 0 (mod 7). Squares mod 7: 0,1,2,4. Need pairs summing to 0 mod 7: (0,0),(1,6-no),(3,4),(4,3),(2,5-no). Valid: (0,0) or (3,4) or (4,3). So 7|x and 7|y, or x²≡3,y²≡4 mod 7 (impossible since 3 isn't a QR mod 7).\n\nThus 7|x and 7|y. Let x=7a, y=7b: 49(a²+b²) = 12192845. But 12192845/49 = 248833.57... not integer. So no solutions for z=2.\n\n**Case z ≥ 2:** Check mod 7: 2016^z ≡ 0 (mod 7) for z≥1, so x²+y² ≡ 77 ≡ 0 (mod 7), requiring 7|x, 7|y.\nLet x=7a, y=7b: 49(a²+b²) = 3·2016^z + 77 = 77(3·2016^z/77 + 1).\nActually: 3·2016^z + 77 must be divisible by 49.\n3·2016^z + 77 ≡ 0 (mod 49). 2016 = 49·41 + 7, so 2016 ≡ 7 (mod 49).\n2016^z ≡ 7^z (mod 49). So 3·7^z + 77 ≡ 0 (mod 49) → 3·7^z ≡ -77 ≡ -77+98=21 (mod 49) → 3·7^z ≡ 21 (mod 49) → 7^z ≡ 7 (mod 49) → 7^(z-1) ≡ 1 (mod 7), true for z≥1. But need 7^z ≡ 7 (mod 49): for z=1: 7≡7 ✓; for z=2: 49≡0 (mod 49) ✗.\n\nSo for z≥2, no solutions.\n\n## Final Solutions\n\nThe solutions are: **(4, 8, 0)**, **(14, 77, 1)**, **(35, 70, 1)**.\n\nFinal answer: (x, y, z) ∈ {(4, 8, 0), (14, 77, 1), (35, 70, 1)}",
+  "usage": {
+    "input_tokens": 102,
+    "output_tokens": 1424
+  },
+  "latency_s": 16.1226122060325,
+  "cached": false
+}

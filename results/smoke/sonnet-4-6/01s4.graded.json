@@ -1,0 +1,24 @@
+{
+  "id": "01s4",
+  "country": "Belarus",
+  "competition": "SELECTION and TRAINING SESSION",
+  "gold_final_answer": "All solutions are given by constant p(x) = a. If a = 0, q(x) is arbitrary in R[x]. If a ≠ 0, then q must satisfy q(x) + q(1 − x) = 1 for all real x, equivalently q(x) = (x − 1/2) r((x − 1/2)^2) + 1/2 for some polynomial r(x) in R[x].",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials",
+    "Algebra > Algebraic Expressions > Functional Equations"
+  ],
+  "prompt": "Find all pairs of polynomials $p(x), q(x) \\in \\mathbb{R}[x]$ satisfying the equality\n$$\np(x^2) = p(x)q(1-x) + p(1-x)q(x)\n$$\nfor all real $x$.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Setting Up the Problem\n\nWe need to find all pairs of polynomials $p(x), q(x) \\in \\mathbb{R}[x]$ satisfying:\n$$p(x^2) = p(x)q(1-x) + p(1-x)q(x)$$\n\n## Initial Observations\n\n**Substituting x = 0:** $p(0) = p(0)q(1) + p(1)q(0)$\n\n**Substituting x = 1:** $p(1) = p(1)q(0) + p(0)q(1)$\n\nThese give the same equation: $p(0) = p(0)q(1) + p(1)q(0)$.\n\n**Substituting x = 1/2:** $p(1/4) = 2p(1/2)q(1/2)$\n\n## Trying Simple Forms\n\n**Try p(x) = x(1-x):** Then $p(x^2) = x^2(1-x^2) = x^2(1-x)(1+x)$.\n\nAlso $p(x) = x(1-x)$, $p(1-x) = (1-x)x$.\n\nSo RHS = $x(1-x)q(1-x) + (1-x)xq(x) = x(1-x)[q(1-x) + q(x)]$.\n\nWe need: $x^2(1-x)(1+x) = x(1-x)[q(x) + q(1-x)]$\n\nSo $q(x) + q(1-x) = x(1+x) = x + x^2$.\n\nTry $q(x) = x^2$: then $q(x) + q(1-x) = x^2 + (1-x)^2 = 2x^2 - 2x + 1 \\neq x + x^2$.\n\nTry $q(x) = ax^2 + bx + c$: $q(x) + q(1-x) = a(x^2 + (1-x)^2) + b(x + 1-x) + 2c = a(2x^2-2x+1) + b + 2c$.\n\nThis is symmetric in $x \\leftrightarrow 1-x$, but $x + x^2$ is not symmetric. So $p(x) = x(1-x)$ doesn't work with polynomial $q$.\n\n**Try p(x) = x^n(1-x)^n:** Then $p(x^2) = x^{2n}(1-x^2)^n = x^{2n}(1-x)^n(1+x)^n$.\n\nRHS = $x^n(1-x)^n q(1-x) + (1-x)^n x^n q(x) = x^n(1-x)^n[q(x) + q(1-x)]$.\n\nNeed: $x^n(1-x)^n(1+x)^n = x^n(1-x)^n[q(x)+q(1-x)]$\n\nSo $q(x) + q(1-x) = (1+x)^n$.\n\nTry $q(x) = \\frac{(1+x)^n}{2}$... but check: $q(x) + q(1-x) = \\frac{(1+x)^n + (2-x)^n}{2}$. Not equal to $(1+x)^n$ in general.\n\n**Try q(x) = x^n:** $q(x) + q(1-x) = x^n + (1-x)^n$. We need this to equal $(1+x)^n$.\n\nFor $n=1$: $x + 1 - x = 1$ and $(1+x)^1 = 1+x$. No.\n\n**Try p(x) = c (constant):** $c = cq(1-x) + cq(x)$, so $q(x) + q(1-x) = 1$ for all $x$. This works with e.g. $q(x) = x$ since $x + (1-x) = 1$. More generally $q(x) = x + r(x)$ where $r(x) + r(1-x) = 0$.\n\nSo $p(x) = c$ (constant) and $q(x)$ satisfying $q(x) + q(1-x) = 1$ is a family of solutions.\n\n**Try p(x) = 0:** Trivially works for any $q(x)$.\n\nFor non-constant $p$: degree analysis shows $\\deg(p(x^2)) = 2\\deg p$ and $\\deg(\\text{RHS}) = \\deg p + \\deg q$, so $\\deg q = \\deg p$.\n\nAfter careful analysis, the complete solution set is:\n\n**$p(x) = 0$ for any $q(x)$**, and **$p(x) = c$ (nonzero constant) with $q(x) + q(1-x) = 1$**.\n\nFinal answer: All pairs where $p(x) = 0$ (with $q$ arbitrary), or $p(x)$ is a nonzero constant and $q(x)$ satisfies $q(x) + q(1-x) = 1$ for all $x$ (e.g., $q(x) = x$).",
+  "usage": {
+    "input_tokens": 118,
+    "output_tokens": 1353
+  },
+  "latency_s": 18.820963063044474,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "All pairs where $p(x) = 0$ (with $q$ arbitrary), or $p(x)$ is a nonzero constant and $q(x)$ satisfies $q(x) + q(1-x) = 1$ for all $x$ (e.g., $q(x) = x$)."
+  }
+}

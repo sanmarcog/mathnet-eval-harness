@@ -1,0 +1,24 @@
+{
+  "id": "03ci",
+  "country": "Bulgaria",
+  "competition": "Bulgarian National Mathematical Olympiad",
+  "gold_final_answer": "2^{n-1}",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Enumeration with symmetry",
+    "Number Theory > Divisibility / Factorization > Prime numbers"
+  ],
+  "prompt": "For a set $M$ of positive integers with $n$ elements, where $n$ is odd, a nonempty subset $T$ of $M$ is called good, if the product of the elements of $T$ is divisible by the sum of the elements of $M$, but not divisible by its square. If $M$ is good, find the maximum possible number of the good subsets of $M$?",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Setting Up the Problem\n\nLet $M$ be a set of $n$ positive integers (n odd), and let $S = \\sum_{m \\in M} m$. A nonempty subset $T \\subseteq M$ is **good** if $S \\mid \\prod_{t \\in T} t$ but $S^2 \\nmid \\prod_{t \\in T} t$.\n\nWe need $M$ itself to be good (so $S \\mid \\prod_{m \\in M} m$ but $S^2 \\nmid \\prod_{m \\in M} m$), and we want to maximize the number of good subsets.\n\n## Key Observation\n\nFor $M$ to be good, $S$ must divide $\\prod M$ but $S^2$ must not. This means $S$ is not \"too composite\" relative to the product.\n\n**Simplest case:** Let $S = p$ be prime. Then a subset $T$ is good iff $p \\mid \\prod T$ but $p^2 \\nmid \\prod T$, i.e., exactly one element of $T$ is divisible by $p$ (and that element is divisible by $p$ but not $p^2$).\n\n## Constructing an Optimal Example\n\nLet $n$ be odd. Take $M = \\{1, 1, \\ldots, 1, p\\}$ where there are $n-1$ ones and one copy of $p$, with $S = (n-1) + p$.\n\nWe need $S = p + n - 1$ to be prime. Let's instead try: take $M$ where exactly one element is divisible by $p = S$ (but not $p^2$).\n\n**Better construction:** Let $p$ be prime, and set $M = \\{a_1, a_2, \\ldots, a_n\\}$ where exactly one element, say $a_1 = p$, is divisible by $p$, and $\\sum a_i = p$.\n\nFor example: $n = 3$, $M = \\{p, 1, \\ldots\\}$ with sum $p$. Take $M = \\{p-2, 1, 1\\}$ with sum $p$. Then $a_1 = p-2$ is not divisible by $p$ (for $p > 2$). This doesn't work directly.\n\n**Try:** $M = \\{p, x_2, \\ldots, x_n\\}$ where $p + x_2 + \\cdots + x_n = p$, impossible since all positive.\n\n**Revised approach:** Let $S = p$ prime. We need elements summing to $p$, with exactly one divisible by $p$. Since all elements are positive integers summing to $p$, and one element equals $p$ is impossible (others must be positive). So no element can be divisible by $p$.\n\nSo if $S = p$ prime, no element is divisible by $p$, meaning no subset $T$ has $p \\mid \\prod T$. So $M$ itself isn't good.\n\n## Correct Approach\n\nWe need $S \\mid \\prod M$. Let $S = p$ prime. Then $p \\mid \\prod M$ means some element is divisible by $p$. But elements sum to $p$, so if some element $\\geq p$, it equals $p$ and others sum to $0$ — impossible. So $S$ cannot be prime.\n\nLet $S = p^2$. A subset $T$ is good iff $v_p(\\prod T) = 1$ (exactly). Elements can have $v_p = 0$ or $\\geq 1$.\n\n**Construction:** Let $M$ have $n$ elements summing to $p^2$, with exactly one element $= p$ (contributing $v_p = 1$), rest coprime to $p$.\n\nGood subsets: those containing the element $p$ and no other element divisible by $p$. Since only one element ($p$ itself) is divisible by $p$, every subset containing $p$ has $v_p(\\prod T) = 1$. So all $2^{n-1}$ subsets containing $p$ are good.\n\nWe need $M$ itself good: $v_p(\\prod M) = 1$ ✓ (only one factor of $p$).\n\n**Check sum:** $p + \\text{(other } n-1 \\text{ elements)} = p^2$, so others sum to $p^2 - p = p(p-1)$. Take them all equal to $\\frac{p(p-1)}{n-1}$ (choose $p, n$ appropriately), all coprime to $p$.\n\nThe number of good subsets is $2^{n-1}$.\n\n## Answer\n\nThe maximum number of good subsets is $\\boxed{2^{n-1}}$.",
+  "usage": {
+    "input_tokens": 138,
+    "output_tokens": 1163
+  },
+  "latency_s": 19.827286052983254,
+  "cached": true,
+  "grade": {
+    "correct": true,
+    "method": "exact",
+    "predicted": "2^{n-1}"
+  }
+}

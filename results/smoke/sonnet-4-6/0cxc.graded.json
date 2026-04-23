@@ -1,0 +1,24 @@
+{
+  "id": "0cxc",
+  "country": "Saudi Arabia",
+  "competition": "SAMC",
+  "gold_final_answer": "All pairs are (k, k^2) and (k^2, k) with k ≥ 2.",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization",
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities"
+  ],
+  "prompt": "Find all pairs ($m, n$) of integers, $m, n \\geq 2$ such that $m n - 1$ divides $n^{3} - 1$.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "We need to find all pairs $(m, n)$ of integers with $m, n \\geq 2$ such that $mn - 1 \\mid n^3 - 1$.\n\nSince $mn - 1 \\mid n^3 - 1$, and we can write:\n$$n^3 - 1 = n^2(mn - 1) - n^2 m + n^3 - 1 + n^2 - n^2$$\n\nLet me compute $n^3 - 1 \\pmod{mn-1}$.\n\nSince $mn \\equiv 1 \\pmod{mn-1}$, we have $m \\equiv n^{-1} \\pmod{mn-1}$ (when $\\gcd(n, mn-1) = 1$, which holds since $\\gcd(n, mn-1) = \\gcd(n, -1) = 1$).\n\nSo $mn - 1 \\mid n^3 - 1$ means $mn - 1 \\mid n^3 - 1$.\n\nNote $n^3 - 1 = n^2 \\cdot n - 1$. We have $mn \\equiv 1$, so $n \\equiv m^{-1}$... Let me try directly.\n\nSince $mn - 1 \\mid n^3 - 1$ and $mn - 1 \\mid m^3(mn-1) = m^3 \\cdot mn - m^3$, we get $mn - 1 \\mid m^3 n \\cdot n - m^3 \\cdot n^{-1}$... \n\nBetter approach: $mn - 1 \\mid n^3 - 1$ and $mn - 1 \\mid m^2(n^3 - 1) = m^2 n^3 - m^2$.\n\nNow $m^2 n^3 = mn \\cdot mn \\cdot n = (mn)^2 \\cdot n \\equiv 1 \\cdot n = n \\pmod{mn-1}$.\n\nSo $mn - 1 \\mid n - m^2$.\n\n**Case 1:** $n - m^2 = 0$, i.e., $n = m^2$. Then any $m \\geq 2$ gives the pair $(m, m^2)$.\n\nCheck: $mn - 1 = m \\cdot m^2 - 1 = m^3 - 1$ and $n^3 - 1 = m^6 - 1 = (m^3-1)(m^3+1)$. ✓\n\n**Case 2:** $n - m^2 \\neq 0$, so $mn - 1 \\mid |n - m^2|$.\n\nSince $mn - 1 \\geq 2 \\cdot 2 - 1 = 3 > 0$, we need $mn - 1 \\leq |n - m^2|$.\n\nIf $n > m^2$: $mn - 1 \\leq n - m^2$, so $n(m-1) \\leq 1 - m^2 < 0$, impossible for $m \\geq 2$.\n\nIf $n < m^2$: $mn - 1 \\leq m^2 - n$, so $n(m+1) \\leq m^2 + 1$, giving $n \\leq \\frac{m^2+1}{m+1} = m - 1 + \\frac{2}{m+1}$.\n\nFor $m \\geq 2$: $\\frac{2}{m+1} \\leq \\frac{2}{3} < 1$, so $n \\leq m - 1$.\n\nBut we need $n \\geq 2$, so $m - 1 \\geq 2$, meaning $m \\geq 3$.\n\nFor $m = 3$: $n \\leq 2$, so $n = 2$. Check: $mn - 1 = 5$, $n^3 - 1 = 7$. $5 \\nmid 7$. ✗\n\nFor $m \\geq 4$: $n \\leq m-1$. We need $mn - 1 \\mid n - m^2$ (negative), so $mn - 1 \\mid m^2 - n$.\nAlso $mn - 1 \\leq m^2 - n$ requires $n(m+1) \\leq m^2 + 1$.\n\nLet me check small cases with $n \\leq m-1$:\n- $m=3, n=2$: already failed.\n- $m=4, n=2$: $mn-1=7$, $n^3-1=7$. $7\\mid 7$ ✓. Check $n-m^2 = 2-16=-14$, $7\\mid 14$ ✓.\n- $m=4, n=3$: $mn-1=11$, $n^3-1=26$. $11\\nmid 26$. ✗\n\nSo $(4, 2)$ works. By symmetry check: is $(2, 4)$ covered by Case 1? $n = m^2 = 4$ when $m=2$. Yes! $(2,4)$ is in Case 1.\n\nFor $(4,2)$: this is a separate solution. Note $m=4=n^2$ when $n=2$, so pairs of the form $(n^2, n)$ also work!\n\nCheck $(n^2, n)$: $mn-1 = n^3-1$ and $n^3-1 \\mid n^3-1$ ✓.\n\nSo the complete set of solutions is: $(m, n) = (n^2, n)$ i.e., $m = n^2$, giving pairs $(m,m^2)$ and also $(m^2, m)$.\n\nThe solutions are all pairs $(m, n)$ where $m = n^2$ or $n = m^2$.\n\nFinal answer: All pairs $(m, n)$ with $m, n \\geq 2$ satisfying $n = m^2$ or $m = n^2$, i.e., $\\{(m, m^2) : m \\geq 2\\} \\cup \\{(m^2, m) : m \\geq 2\\}$.",
+  "usage": {
+    "input_tokens": 89,
+    "output_tokens": 1583
+  },
+  "latency_s": 22.190900824032724,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "All pairs $(m, n)$ with $m, n \\geq 2$ satisfying $n = m^2$ or $m = n^2$, i.e., $\\{(m, m^2) : m \\geq 2\\} \\cup \\{(m^2, m) : m \\geq 2\\}$."
+  }
+}
