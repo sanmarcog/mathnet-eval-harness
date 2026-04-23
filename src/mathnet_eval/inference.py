@@ -62,7 +62,15 @@ class Response:
     params: dict = field(default_factory=dict)
 
     def to_json(self) -> str:
-        return json.dumps(asdict(self), ensure_ascii=False)
+        def _default(o):
+            # Some SDKs (seen with google-genai) emit bytes in their raw
+            # payload (inline_data, safety metadata). Base64 them so the
+            # cache JSON survives round-trips.
+            if isinstance(o, (bytes, bytearray)):
+                import base64
+                return {"__bytes_b64__": base64.b64encode(bytes(o)).decode("ascii")}
+            raise TypeError(f"not JSON serializable: {type(o).__name__}")
+        return json.dumps(asdict(self), ensure_ascii=False, default=_default)
 
 
 # ---- Disk cache -------------------------------------------------------------
@@ -207,7 +215,10 @@ def _generate_google(provider_model_id: str, prompt: str, params: dict) -> Respo
         provider_model_id=provider_model_id,
         prompt=prompt,
         text=text,
-        raw=resp.model_dump() if hasattr(resp, "model_dump") else {},
+        # mode='json' tells pydantic to encode bytes etc. as JSON-safe types
+        # up front; avoids the bytes-in-safety-metadata failure we hit on the
+        # first Gemini smoke test.
+        raw=resp.model_dump(mode="json") if hasattr(resp, "model_dump") else {},
         usage=usage,
         latency_s=latency,
         params=params,
