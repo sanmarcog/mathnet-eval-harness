@@ -29,6 +29,9 @@ pandas>=2.2
 matplotlib>=3.9
 seaborn>=0.13
 
+# Symbolic math (used by grading.py for equivalence checks)
+sympy>=1.13
+
 # Utilities
 tqdm>=4.66
 tenacity>=9.0
