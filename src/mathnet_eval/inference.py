@@ -16,8 +16,50 @@ from dataclasses import dataclass, field, asdict
 from pathlib import Path
 
 from dotenv import load_dotenv
+from tenacity import (
+    retry,
+    stop_after_attempt,
+    wait_exponential,
+    retry_if_exception,
+)
 
 load_dotenv()  # pulls ANTHROPIC_API_KEY / OPENAI_API_KEY / GOOGLE_API_KEY from .env
+
+
+def _is_retryable(exc: BaseException) -> bool:
+    """Retry on rate-limit, timeout, and transient 5xx; fail fast on 4xx
+    auth/validation. Providers raise different exception classes; match by
+    class name and HTTP status to avoid importing every SDK at module load."""
+    cls = type(exc).__name__
+    # Common transient names across Anthropic / OpenAI / google-genai.
+    transient_names = {
+        "RateLimitError",
+        "APIConnectionError",
+        "APITimeoutError",
+        "APIStatusError",
+        "InternalServerError",
+        "ServiceUnavailableError",
+        "DeadlineExceeded",
+        "TooManyRequests",
+        "ResourceExhausted",
+        "ServerError",      # google-genai 5xx
+    }
+    if cls in transient_names:
+        return True
+    # Fallback: some SDKs raise a generic ClientError with .code or .status_code.
+    for attr in ("status_code", "code"):
+        sc = getattr(exc, attr, None)
+        if isinstance(sc, int) and (sc == 429 or 500 <= sc < 600):
+            return True
+    return False
+
+
+_api_retry = retry(
+    stop=stop_after_attempt(4),
+    wait=wait_exponential(multiplier=2, min=4, max=60),
+    retry=retry_if_exception(_is_retryable),
+    reraise=True,
+)
 
 
 # ---- Model registry ---------------------------------------------------------
@@ -108,6 +150,7 @@ def _save_cached(cache_dir: Path, key: str, resp: Response) -> None:
 
 # ---- Providers --------------------------------------------------------------
 
+@_api_retry
 def _generate_anthropic(provider_model_id: str, prompt: str, params: dict) -> Response:
     import anthropic  # lazy import so this module imports fine without the SDK
 
@@ -146,6 +189,7 @@ def _generate_anthropic(provider_model_id: str, prompt: str, params: dict) -> Re
     )
 
 
+@_api_retry
 def _generate_openai(provider_model_id: str, prompt: str, params: dict) -> Response:
     import openai  # lazy
 
@@ -191,6 +235,7 @@ def _generate_openai(provider_model_id: str, prompt: str, params: dict) -> Respo
     )
 
 
+@_api_retry
 def _generate_google(provider_model_id: str, prompt: str, params: dict) -> Response:
     from google import genai  # lazy
     from google.genai import types
