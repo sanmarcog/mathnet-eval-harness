@@ -170,7 +170,43 @@ def _generate_openai(provider_model_id: str, prompt: str, params: dict) -> Respo
 
 
 def _generate_google(provider_model_id: str, prompt: str, params: dict) -> Response:
-    raise NotImplementedError("Google Gemini backend lands on Day 2.")
+    from google import genai  # lazy
+    from google.genai import types
+
+    client = genai.Client()  # reads GOOGLE_API_KEY from env
+    cfg = types.GenerateContentConfig(
+        system_instruction=params.get("system", "You are an expert mathematician solving olympiad problems."),
+        max_output_tokens=params.get("max_tokens", 8192),
+        temperature=params.get("temperature", 0.0),
+    )
+    t0 = time.perf_counter()
+    resp = client.models.generate_content(
+        model=provider_model_id,
+        contents=prompt,
+        config=cfg,
+    )
+    latency = time.perf_counter() - t0
+
+    text = resp.text or ""
+    um = resp.usage_metadata
+    usage = {
+        "input_tokens": getattr(um, "prompt_token_count", 0) or 0,
+        "output_tokens": getattr(um, "candidates_token_count", 0) or 0,
+    }
+    thoughts = getattr(um, "thoughts_token_count", None)
+    if thoughts is not None:
+        usage["thoughts_tokens"] = thoughts
+
+    return Response(
+        model=provider_model_id,
+        provider_model_id=provider_model_id,
+        prompt=prompt,
+        text=text,
+        raw=resp.model_dump() if hasattr(resp, "model_dump") else {},
+        usage=usage,
+        latency_s=latency,
+        params=params,
+    )
 
 
 def _generate_hf(provider_model_id: str, prompt: str, params: dict) -> Response:
