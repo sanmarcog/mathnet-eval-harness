@@ -71,20 +71,47 @@ def normalize(s: str) -> str:
 
 # ---- Symbolic equality ------------------------------------------------------
 
+_LATEX_FRAC = re.compile(r"\\d?frac\s*\{([^{}]+)\}\s*\{([^{}]+)\}")
+_LATEX_SQRT = re.compile(r"\\sqrt\s*\{([^{}]+)\}")
+_LATEX_POW_BRACE = re.compile(r"\^\s*\{([^{}]+)\}")
+
+
+def _latex_to_sympy_str(s: str) -> str:
+    """Best-effort LaTeX -> Python/sympy-parseable string. Only handles the
+    patterns we actually see in MathNet `final_answer` values: \\frac, \\sqrt,
+    ^{...}, \\cdot / \\times, \\pi. Anything else passes through unchanged
+    and sympify will just reject it."""
+    s = normalize(s)
+    s = _LATEX_FRAC.sub(r"(\1)/(\2)", s)
+    s = _LATEX_SQRT.sub(r"sqrt(\1)", s)
+    s = _LATEX_POW_BRACE.sub(r"**(\1)", s)
+    s = s.replace("\\cdot", "*").replace("\\times", "*")
+    s = s.replace("\\pi", "pi")
+    return s
+
+
 def _to_sympy(s: str):
     """Try to parse `s` as a sympy expression. Returns the expression or None."""
     try:
-        # Lazy import — sympy is a heavy dep we don't want to force at module load.
-        from sympy import sympify
-        from sympy.parsing.latex import parse_latex
+        from sympy import sympify  # lazy; heavy import
     except Exception:
         return None
 
-    s = normalize(s)
-    # sympy's LaTeX parser handles \frac etc. Fall back to sympify for plain math.
-    for parser in (parse_latex, sympify):
+    candidates = [s, _latex_to_sympy_str(s)]
+    try:
+        from sympy.parsing.latex import parse_latex
+        # parse_latex needs antlr4; if missing this call raises at import-site.
+        for form in candidates:
+            try:
+                return parse_latex(form)
+            except Exception:
+                continue
+    except Exception:
+        pass
+
+    for form in candidates:
         try:
-            return parser(s)
+            return sympify(form)
         except Exception:
             continue
     return None
