@@ -4,10 +4,15 @@ Usage:
     python scripts/grade_results.py --dir results/smoke/sonnet-4-6
     python scripts/grade_results.py --dir results/smoke/sonnet-4-6 --use-judge
 
-Reads every `{id}.json` in `--dir`, calls `grade()` on the `response_text`
+Reads every `{id}.json` in `--dir`, calls `grade()` on `response_text`
 against `gold_final_answer`, and writes:
     - `{id}.graded.json` enriched with a `grade` field
-    - `grading_summary.json` with overall accuracy + per-method counts
+    - `summary.json` consolidating eval-run fields (from run_eval.py) with
+      grading results, cost estimate, and per-competition accuracy.
+
+Cost is computed from `provider_model_id` and the eval-side token totals;
+grading/judge API calls are *not* included (they currently go through the
+inference harness without flowing back to this summary — minor follow-up).
 
 Exit code 0 always (the grader never errors — a miss is a valid result).
 """
@@ -21,6 +26,21 @@ from dataclasses import asdict
 from pathlib import Path
 
 from mathnet_eval.grading import grade
+
+
+# USD per 1M tokens. Fill in as new backends land.
+PRICING_USD_PER_MTOK: dict[str, dict[str, float]] = {
+    "claude-sonnet-4-6": {"input": 3.0, "output": 15.0},
+    "claude-opus-4-7":   {"input": 15.0, "output": 75.0},
+    # TODO: GPT-5, Gemini 3 Pro pricing once backends land.
+}
+
+
+def estimate_cost_usd(provider_model_id: str | None, in_tokens: int, out_tokens: int) -> float | None:
+    p = PRICING_USD_PER_MTOK.get(provider_model_id or "")
+    if not p:
+        return None
+    return round(in_tokens * p["input"] / 1_000_000 + out_tokens * p["output"] / 1_000_000, 4)
 
 
 def parse_args() -> argparse.Namespace:
@@ -73,22 +93,48 @@ def main() -> int:
         gold_preview = gold[:60]
         print(f"  {status} id={rec['id']} method={g.method:>10s}  pred={pred!r}  gold={gold_preview!r}")
 
-    n = sum(method_counts.values()) or 1
+    # Merge with the eval-run summary written by run_eval.py, if present.
+    run_summary_path = args.dir / "summary.json"
+    base: dict = {}
+    if run_summary_path.exists():
+        try:
+            base = json.loads(run_summary_path.read_text())
+        except Exception:
+            base = {}
+
+    provider_model_id = None
+    sample = next(iter(response_files), None)
+    if sample is not None:
+        try:
+            provider_model_id = json.loads(sample.read_text()).get("model")
+        except Exception:
+            pass
+
+    in_tok = base.get("total_input_tokens", 0)
+    out_tok = base.get("total_output_tokens", 0)
+    eval_cost = estimate_cost_usd(provider_model_id, in_tok, out_tok)
+
+    n = sum(v for k, v in method_counts.items() if k != "no-gold") or 1
     summary = {
-        "dir": str(args.dir),
+        **base,
+        "provider_model_id": provider_model_id,
         "n_responses": len(response_files),
-        "n_scored": sum(v for k, v in method_counts.items() if k != "no-gold"),
+        "n_scored": n,
         "n_correct": n_correct,
-        "accuracy": n_correct / n if n else 0.0,
+        "accuracy": n_correct / n,
         "method_counts": dict(method_counts),
         "per_competition": per_competition,
         "used_judge": args.use_judge,
+        "estimated_eval_cost_usd": eval_cost,
+        "cost_notes": "excludes LLM-as-judge API spend (not yet tracked)",
     }
-    (args.dir / "grading_summary.json").write_text(json.dumps(summary, indent=2, ensure_ascii=False))
+    run_summary_path.write_text(json.dumps(summary, indent=2, ensure_ascii=False))
 
     print(f"\naccuracy: {n_correct}/{n} = {100*n_correct/n:.1f}%")
     print("by method:", dict(method_counts))
-    print(f"summary -> {args.dir}/grading_summary.json")
+    if eval_cost is not None:
+        print(f"eval-side cost: ${eval_cost:.4f} (model={provider_model_id})")
+    print(f"summary -> {run_summary_path}")
     return 0
 
 

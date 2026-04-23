@@ -56,16 +56,53 @@ _LATEX_LRIGHT = re.compile(r"\\left|\\right")
 _LATEX_SPACING = re.compile(r"\\[,;!>:]|~|\\quad|\\qquad")
 _WHITESPACE = re.compile(r"\s+")
 
+# Mappings applied only in the aggressive normalization path (not the sympy one),
+# because sympify can often handle the raw LaTeX macro whereas the unicode glyph
+# would confuse it.
+_LATEX_TO_UNICODE = {
+    r"\geq": "≥", r"\ge": "≥",
+    r"\leq": "≤", r"\le": "≤",
+    r"\neq": "≠", r"\ne": "≠",
+    r"\pm": "±", r"\mp": "∓",
+    r"\cdot": "·", r"\times": "×", r"\div": "÷",
+    r"\pi": "π", r"\infty": "∞",
+    r"\in": "∈", r"\cup": "∪", r"\cap": "∩",
+    r"\ldots": "...", r"\cdots": "...",
+}
+
+# Strip a leading `<name> = ` prefix so `A = -1` compares equal to `-1` and
+# `a_n = 2^n` compares equal to `2^n`. Matched conservatively — only single
+# identifiers (optionally with an `_{...}` subscript), not whole expressions.
+_VARNAME_PREFIX = re.compile(r"^\s*[A-Za-z][A-Za-z0-9]*(?:_\{[^{}]*\}|_[A-Za-z0-9]+)?\s*=\s*")
+_TRAILING_PUNCT = re.compile(r"[.,;:]+$")
+
 
 def normalize(s: str) -> str:
-    """Strip LaTeX delimiters/spacing, collapse whitespace, lowercase-agnostic
-    trimming. Not a substitute for symbolic equality — cheap preprocessing
-    to make direct string compare slightly more forgiving."""
+    """Strip LaTeX delimiters/spacing, collapse whitespace. Safe to pass
+    through sympy afterward. Used by the symbolic layer and as the first
+    pass in `normalize_for_exact`."""
     s = _LATEX_DELIM.sub("", s)
     s = _LATEX_LRIGHT.sub("", s)
     s = _LATEX_SPACING.sub(" ", s)
     s = s.replace("\\dfrac", "\\frac").replace("\\tfrac", "\\frac")
     s = _WHITESPACE.sub(" ", s).strip()
+    return s
+
+
+def normalize_for_exact(s: str) -> str:
+    """Aggressive normalization for the cheap string-equality layer. Maps
+    LaTeX inequality/operator macros to unicode, strips a leading
+    `<name> = ` prefix, strips trailing punctuation, and case-folds.
+
+    NOT safe to pipe through sympy afterward — case-folding clobbers
+    function names and unicode operators are not sympify tokens.
+    """
+    s = normalize(s)
+    for lx, uc in _LATEX_TO_UNICODE.items():
+        s = s.replace(lx, uc)
+    s = _VARNAME_PREFIX.sub("", s)
+    s = _TRAILING_PUNCT.sub("", s)
+    s = s.lower().strip()
     return s
 
 
@@ -209,8 +246,8 @@ def grade(
     if pred.strip() == gold_answer.strip():
         return Grade(True, "exact", pred)
 
-    # Layer 2: cheap normalization
-    if normalize(pred) == normalize(gold_answer):
+    # Layer 2: cheap normalization (aggressive — case fold, unicode ops, etc.)
+    if normalize_for_exact(pred) == normalize_for_exact(gold_answer):
         return Grade(True, "normalized", pred)
 
     # Layer 3: symbolic equality via sympy

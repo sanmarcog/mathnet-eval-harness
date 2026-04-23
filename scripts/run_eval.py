@@ -28,7 +28,11 @@ def parse_args() -> argparse.Namespace:
     )
     p.add_argument("--n", type=int, default=None, help="limit to first N problems; default = all")
     p.add_argument("--out", required=True, type=Path, help="output dir for per-problem JSONs")
-    p.add_argument("--max-tokens", type=int, default=4096)
+    p.add_argument(
+        "--max-tokens", type=int, default=8192,
+        help="Upper bound on completion length. Bumped from 4096 after a "
+             "smoke-test problem (05cj) got truncated at 4096.",
+    )
     p.add_argument("--temperature", type=float, default=0.0)
     p.add_argument(
         "--no-cache", action="store_true",

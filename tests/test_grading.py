@@ -10,6 +10,7 @@ from mathnet_eval.grading import (
     extract_answer,
     grade,
     normalize,
+    normalize_for_exact,
     symbolic_equal,
 )
 
@@ -44,6 +45,32 @@ class TestNormalize:
         assert normalize(r"\left( x \right)") == "( x )"
 
 
+class TestNormalizeForExact:
+    def test_case_fold(self):
+        assert normalize_for_exact("All integers k") == normalize_for_exact("all integers k")
+
+    def test_latex_geq_equals_unicode(self):
+        # The Day-1 judge-review case that should have been a cheap-layer catch.
+        assert normalize_for_exact(r"All integers $k \geq 2$.") == normalize_for_exact("all integers k ≥ 2")
+
+    def test_latex_leq_and_neq(self):
+        assert normalize_for_exact(r"$x \leq 5$") == normalize_for_exact("x ≤ 5")
+        assert normalize_for_exact(r"$x \neq 0$") == normalize_for_exact("x ≠ 0")
+
+    def test_varname_prefix_stripped(self):
+        # The Day-1 case `$A = -1$` vs `-1`.
+        assert normalize_for_exact("$A = -1$") == normalize_for_exact("-1")
+        assert normalize_for_exact("a_n = 2^n") == normalize_for_exact("2^n")
+
+    def test_trailing_punctuation_stripped(self):
+        assert normalize_for_exact("42.") == normalize_for_exact("42")
+        assert normalize_for_exact("42;") == normalize_for_exact("42")
+
+    def test_cdot_and_times(self):
+        assert normalize_for_exact(r"2 \cdot 3") == normalize_for_exact("2 · 3")
+        assert normalize_for_exact(r"2 \times 3") == normalize_for_exact("2 × 3")
+
+
 class TestSymbolicEqual:
     def test_numeric_fraction(self):
         assert symbolic_equal("1/4", "0.25")
@@ -62,6 +89,16 @@ class TestGrade:
 
     def test_normalize_catches_latex_delims(self):
         g = grade("Final answer: $42$", "42")
+        assert g.correct and g.method == "normalized"
+
+    def test_normalize_catches_varname_prefix(self):
+        # Day-1 case 0db7 — this should now be layer 2, not layer 4.
+        g = grade("Final answer: $A = -1$", "-1")
+        assert g.correct and g.method == "normalized"
+
+    def test_normalize_catches_latex_geq_and_case(self):
+        # Day-1 case 04sm.
+        g = grade(r"Final answer: All integers $k \geq 2$.", "all integers k ≥ 2")
         assert g.correct and g.method == "normalized"
 
     def test_sympy_catches_latex_frac(self):
