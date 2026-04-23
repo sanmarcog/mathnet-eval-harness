@@ -255,6 +255,17 @@ _DISPATCH = {
 }
 
 
+def _normalize_params(provider: str, params: dict) -> dict:
+    """Apply provider-specific defaults *before* the cache key is computed, so
+    two calls that resolve to the same effective request always share a cache
+    entry, and two calls with different effective requests (e.g. different
+    `thinking_budget`) never collide."""
+    out = dict(params)
+    if provider == "google":
+        out.setdefault("thinking_budget", 4096)
+    return out
+
+
 # ---- Public API -------------------------------------------------------------
 
 def generate(
@@ -275,6 +286,7 @@ def generate(
     provider, provider_model_id = MODELS[model]
     cache_dir = Path(cache_dir)
 
+    params = _normalize_params(provider, params)
     key = _cache_key(provider_model_id, prompt, params)
     if use_cache:
         cached = _load_cached(cache_dir, key)
