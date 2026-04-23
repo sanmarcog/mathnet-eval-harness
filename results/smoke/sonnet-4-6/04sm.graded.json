@@ -17,7 +17,7 @@
   "cached": false,
   "grade": {
     "correct": true,
-    "method": "judge",
+    "method": "normalized",
     "predicted": "All integers $k \\geq 2$."
   }
 }

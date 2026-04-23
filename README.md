@@ -4,16 +4,31 @@
 
 ## Headline results
 
-_TODO: once the Week-4 comparison table is in, drop it here — fine-tuned Qwen-2.5-1.5B vs. Claude Opus 4.7, Claude Sonnet 4.6, GPT-5, Gemini 3 Pro on MathNet._
+_Smoke-test row in; full 500-problem frontier comparison + QLoRA row land in Week 4._
 
-| Model | Params | MathNet accuracy | Cost / 1K problems |
-|---|---|---|---|
-| Qwen-2.5-1.5B-Instruct (base) | 1.5B | _TBD_ | _TBD_ |
-| Qwen-2.5-1.5B-Instruct + QLoRA (ours) | 1.5B | _TBD_ | _TBD_ |
-| Claude Sonnet 4.6 | — | _TBD_ | _TBD_ |
-| Claude Opus 4.7 | — | _TBD_ | _TBD_ |
-| GPT-5 | — | _TBD_ | _TBD_ |
-| Gemini 3 Pro | — | _TBD_ | _TBD_ |
+### Frontier model comparison (cumulative)
+
+| Model | Params | MathNet accuracy | Cost / 1K problems | Run |
+|---|---|---|---|---|
+| Claude Sonnet 4.6 *(smoke, n=20)* | — | 70.0% (14/20) | $0.50 total ($25/1K extrapolated) | [results/smoke/sonnet-4-6/](results/smoke/sonnet-4-6/) |
+| Claude Sonnet 4.6 *(n=500)* | — | _TBD_ | _TBD_ | _Day 2_ |
+| Claude Opus 4.7 *(n=500)* | — | _TBD_ | _TBD_ | _Day 2_ |
+| GPT-5 *(n=500)* | — | _TBD_ | _TBD_ | _Day 2_ |
+| Gemini 3 Pro *(n=500)* | — | _TBD_ | _TBD_ | _Day 2_ |
+| Qwen-2.5-1.5B-Instruct *(base)* | 1.5B | _TBD_ | — | _Day 3_ |
+| Qwen-2.5-1.5B-Instruct + QLoRA *(ours)* | 1.5B | _TBD_ | — | _Week 4_ |
+
+### Grader path breakdown (Sonnet smoke, n=20)
+
+| Path | Count | Share |
+|---|---|---|
+| `exact` | 4 | 20% |
+| `normalized` | 2 | 10% |
+| `symbolic` (sympy) | 1 | 5% |
+| `judge` (LLM) | 7 | 35% |
+| `miss` | 6 | 30% |
+
+7/14 = 50% of correct grades resolve on the objective layers (exact / normalized / sympy); the judge handles the rest. 1/6 misses was a `max_tokens` truncation (now fixed by bumping the default to 8192).
 
 ## Key findings
 
