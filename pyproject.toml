@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mathnet-eval"
+version = "0.1.0"
+description = "Evaluation harness + QLoRA fine-tuning pipeline for Qwen-2.5-1.5B-Instruct on MathNet."
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{ name = "sanmarcog" }]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"

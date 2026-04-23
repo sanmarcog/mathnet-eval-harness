@@ -1,0 +1,39 @@
+# Core ML / training stack — versions match the pre-built Hyak conda env `qlora`.
+# On Hyak, `module load conda && conda activate qlora` gives you these already;
+# this file is for fresh installs (e.g. local dev, fresh Hyak env, colab).
+torch==2.4.1
+transformers==4.46.0
+peft==0.13.0
+trl==0.11.0
+bitsandbytes==0.44.1
+datasets==3.0.0
+accelerate>=0.34,<1.0
+
+# Dataset / tokenization utilities
+huggingface-hub>=0.25
+sentencepiece
+protobuf
+
+# Frontier-model API clients (eval harness)
+anthropic>=0.39.0
+openai>=1.54.0
+google-genai>=0.3.0
+
+# Config / env
+python-dotenv>=1.0.1
+pydantic>=2.9
+
+# Analysis & plotting
+numpy>=1.26
+pandas>=2.2
+matplotlib>=3.9
+seaborn>=0.13
+
+# Utilities
+tqdm>=4.66
+tenacity>=9.0
+rich>=13.8
+
+# Dev / test
+pytest>=8.3
+jupyter>=1.1
