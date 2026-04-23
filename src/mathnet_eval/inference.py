@@ -150,19 +150,28 @@ def _save_cached(cache_dir: Path, key: str, resp: Response) -> None:
 
 # ---- Providers --------------------------------------------------------------
 
+# Opus 4.7 and future Anthropic reasoning-style models reject `temperature`
+# ("deprecated for this model"). Add other IDs here as we encounter them.
+_ANTHROPIC_NO_TEMPERATURE = {"claude-opus-4-7"}
+
+
 @_api_retry
 def _generate_anthropic(provider_model_id: str, prompt: str, params: dict) -> Response:
     import anthropic  # lazy import so this module imports fine without the SDK
 
     client = anthropic.Anthropic()  # reads ANTHROPIC_API_KEY from env
+
+    kwargs: dict = {
+        "model": provider_model_id,
+        "max_tokens": params.get("max_tokens", 4096),
+        "system": params.get("system", "You are an expert mathematician solving olympiad problems."),
+        "messages": [{"role": "user", "content": prompt}],
+    }
+    if provider_model_id not in _ANTHROPIC_NO_TEMPERATURE:
+        kwargs["temperature"] = params.get("temperature", 0.0)
+
     t0 = time.perf_counter()
-    msg = client.messages.create(
-        model=provider_model_id,
-        max_tokens=params.get("max_tokens", 4096),
-        temperature=params.get("temperature", 0.0),
-        system=params.get("system", "You are an expert mathematician solving olympiad problems."),
-        messages=[{"role": "user", "content": prompt}],
-    )
+    msg = client.messages.create(**kwargs)
     latency = time.perf_counter() - t0
 
     text = "".join(b.text for b in msg.content if getattr(b, "type", None) == "text")
