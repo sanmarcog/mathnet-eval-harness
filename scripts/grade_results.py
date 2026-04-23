@@ -119,6 +119,35 @@ def main() -> int:
     eval_cost = estimate_cost_usd(provider_model_id, in_tok, out_tok)
 
     n = sum(v for k, v in method_counts.items() if k != "no-gold") or 1
+
+    # Aggregate per-problem thinking tokens (covers Gemini thoughts_tokens,
+    # OpenAI reasoning_tokens, Anthropic thinking_tokens). Consistency
+    # matters for Week-4 cross-model analysis — see NOTES methodology.
+    import statistics
+    thinking_per_problem: list[int] = []
+    for f in response_files:
+        try:
+            r = json.loads(f.read_text())
+        except Exception:
+            continue
+        u = r.get("usage", {}) or {}
+        t = u.get("thoughts_tokens") or u.get("reasoning_tokens") or u.get("thinking_tokens") or 0
+        thinking_per_problem.append(int(t))
+
+    thinking_stats: dict = {"n": len(thinking_per_problem)}
+    if thinking_per_problem and max(thinking_per_problem) > 0:
+        tvs = thinking_per_problem
+        thinking_stats.update({
+            "total": sum(tvs),
+            "min": min(tvs),
+            "median": int(statistics.median(tvs)),
+            "mean": int(statistics.mean(tvs)),
+            "max": max(tvs),
+            "p95": int(statistics.quantiles(tvs, n=20)[18]) if len(tvs) >= 20 else None,
+        })
+    else:
+        thinking_stats["note"] = "no thinking/reasoning tokens reported by this backend"
+
     summary = {
         **base,
         "provider_model_id": provider_model_id,
@@ -131,6 +160,7 @@ def main() -> int:
         "used_judge": args.use_judge,
         "estimated_eval_cost_usd": eval_cost,
         "cost_notes": "excludes LLM-as-judge API spend (not yet tracked)",
+        "thinking_tokens_stats": thinking_stats,
     }
     run_summary_path.write_text(json.dumps(summary, indent=2, ensure_ascii=False))
 

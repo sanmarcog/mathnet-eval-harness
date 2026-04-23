@@ -124,6 +124,15 @@ def _generate_anthropic(provider_model_id: str, prompt: str, params: dict) -> Re
 
     text = "".join(b.text for b in msg.content if getattr(b, "type", None) == "text")
     usage = {"input_tokens": msg.usage.input_tokens, "output_tokens": msg.usage.output_tokens}
+    # Extended-thinking usage fields (appear when `thinking` is enabled in the
+    # request — we currently don't enable it, but keep the hook so future runs
+    # surface thinking tokens consistently with GPT-5 reasoning and Gemini
+    # thoughts.
+    thinking = getattr(msg.usage, "cache_creation_input_tokens", None)
+    if thinking is None:
+        thinking = getattr(msg.usage, "thinking_tokens", None)
+    if thinking is not None:
+        usage["thinking_tokens"] = thinking
 
     return Response(
         model=provider_model_id,
@@ -187,10 +196,19 @@ def _generate_google(provider_model_id: str, prompt: str, params: dict) -> Respo
     from google.genai import types
 
     client = genai.Client()  # reads GOOGLE_API_KEY from env
+
+    # Gemini 3 Pro thinks unboundedly by default. A 15-problem smoke showed
+    # median 5,500 thoughts/problem with a tail out to 15,730, which blows
+    # the per-model budget. Cap at 4,096 to bound both cost and wall time.
+    # Pass -1 via `thinking_budget` for the default (uncapped) behavior;
+    # pass 0 to disable thinking.
+    thinking_budget = params.get("thinking_budget", 4096)
+
     cfg = types.GenerateContentConfig(
         system_instruction=params.get("system", "You are an expert mathematician solving olympiad problems."),
         max_output_tokens=params.get("max_tokens", 8192),
         temperature=params.get("temperature", 0.0),
+        thinking_config=types.ThinkingConfig(thinking_budget=thinking_budget),
     )
     t0 = time.perf_counter()
     resp = client.models.generate_content(
