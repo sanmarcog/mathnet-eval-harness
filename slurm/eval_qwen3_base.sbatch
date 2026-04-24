@@ -42,7 +42,8 @@ $PY -u scripts/eval_qwen_hf.py \
     --enable-thinking \
     --sampling recommended \
     --seed 0 \
-    --max-new-tokens 4096 \
+    --precision bf16 \
+    --max-new-tokens 2048 \
     --skip-existing \
     2>&1 | tee "$LOG"
 

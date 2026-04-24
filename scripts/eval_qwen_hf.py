@@ -56,6 +56,9 @@ def parse_args() -> argparse.Namespace:
                    help="'greedy' = deterministic; 'recommended' = Qwen3 math-recommended "
                         "(temp=0.6, top_p=0.95, top_k=20, min_p=0).")
     p.add_argument("--seed", type=int, default=0, help="Manual seed for torch / sampling reproducibility.")
+    p.add_argument("--precision", choices=("4bit", "bf16"), default="4bit",
+                   help="4bit: bnb NF4 (memory-optimal; slow for small models where memory is not bottleneck). "
+                        "bf16: no quantization, full bf16 (much faster for <=2B on big GPUs).")
     p.add_argument("--skip-existing", action="store_true",
                    help="Skip problems that already have a {id}.json in --out dir (enables cheap restart).")
     return p.parse_args()
@@ -76,14 +79,21 @@ def main() -> int:
 
     torch.manual_seed(args.seed)
 
-    print(f">>> loading tokenizer + 4-bit base: {args.base_model}")
+    print(f">>> loading tokenizer + base ({args.precision}): {args.base_model}")
     tokenizer = AutoTokenizer.from_pretrained(args.base_model)
-    bnb = BitsAndBytesConfig(
-        load_in_4bit=True, bnb_4bit_quant_type="nf4", bnb_4bit_compute_dtype=torch.bfloat16,
-    )
-    model = AutoModelForCausalLM.from_pretrained(
-        args.base_model, quantization_config=bnb, device_map="auto", torch_dtype=torch.bfloat16,
-    )
+    if args.precision == "4bit":
+        bnb = BitsAndBytesConfig(
+            load_in_4bit=True, bnb_4bit_quant_type="nf4", bnb_4bit_compute_dtype=torch.bfloat16,
+        )
+        model = AutoModelForCausalLM.from_pretrained(
+            args.base_model, quantization_config=bnb, device_map="auto", torch_dtype=torch.bfloat16,
+        )
+    else:
+        # bf16 full precision -- avoids the 4-bit dequant overhead on small
+        # models where memory is not the bottleneck.
+        model = AutoModelForCausalLM.from_pretrained(
+            args.base_model, device_map="auto", torch_dtype=torch.bfloat16,
+        )
 
     if args.adapter:
         from peft import PeftModel
