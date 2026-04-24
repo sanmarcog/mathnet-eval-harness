@@ -1,0 +1,25 @@
+{
+  "id": "09p0",
+  "country": "Mongolia",
+  "competition": "MMO2025 Round 2",
+  "gold_final_answer": "157152",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Inclusion-exclusion",
+    "Discrete Mathematics > Combinatorics > Counting two ways"
+  ],
+  "prompt": "Problem:\n\nHow many ways can three distinct bishops be placed on an $8 \\times 8$ chessboard such that no two of them attack each other?",
+  "model": "gpt-5.4",
+  "response_text": "A bishop attacks along diagonals, so three bishops are nonattacking iff no two lie on the same diagonal of either slope.\n\nWe count all 3-square subsets, then subtract those with at least one attacking pair.\n\nTotal ways to place 3 distinct bishops on distinct squares:\n\\[\n\\binom{64}{3}=41664.\n\\]\n\nNow count placements where at least one pair attacks.\n\nA pair of squares attacks iff they lie on a common diagonal.  \nOn an \\(8\\times 8\\) board, diagonal lengths in one direction are\n\\[\n1,2,3,4,5,6,7,8,7,6,5,4,3,2,1.\n\\]\nSo the number of attacking pairs on one slope is\n\\[\n\\sum \\binom{\\ell}{2}\n=2\\left(\\binom12+\\binom22+\\cdots+\\binom72\\right)+\\binom82.\n\\]\nCompute:\n\\[\n\\binom22+\\binom32+\\cdots+\\binom72\n=1+3+6+10+15+21=56,\n\\]\nso\n\\[\n2(56)+28=140.\n\\]\nThere are two slopes, so total attacking pairs of squares:\n\\[\n280.\n\\]\n\nChoose an attacking pair, then choose the third square arbitrarily from the remaining \\(62\\) squares:\n\\[\n280\\cdot 62.\n\\]\nBut this overcounts configurations where all three bishops lie on the same diagonal, because then a placement has 3 attacking pairs.\n\nNumber of 3-square subsets on one slope lying on one diagonal:\n\\[\n2\\left(\\binom13+\\binom23+\\cdots+\\binom73\\right)+\\binom83.\n\\]\nOnly lengths \\(\\ge 3\\) matter:\n\\[\n\\binom33+\\binom43+\\binom53+\\binom63+\\binom73\n=1+4+10+20+35=70.\n\\]\nThus one slope gives\n\\[\n2(70)+56=196,\n\\]\nand both slopes give\n\\[\n392.\n\\]\n\nUsing inclusion-exclusion on attacking pairs:\n- placements counted once for each attacking pair,\n- if all 3 are on one diagonal, counted 3 times but should be excluded once.\n\nSo number of bad placements is\n\\[\n280\\cdot 62 - 2\\cdot 392\n=17360-784\n=16576.\n\\]\n\nTherefore the number of nonattacking placements is\n\\[\n41664-16576=25088.\n\\]\n\nFinal answer: 25088",
+  "usage": {
+    "input_tokens": 80,
+    "output_tokens": 552,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 9.25920586695429,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "25088"
+  }
+}

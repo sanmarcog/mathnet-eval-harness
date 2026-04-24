@@ -1,0 +1,25 @@
+{
+  "id": "03yz",
+  "country": "China",
+  "competition": "China Western Mathematical Olympiad",
+  "gold_final_answer": "0",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Induction / smoothing",
+    "Discrete Mathematics > Combinatorics > Algebraic properties of binomial coefficients"
+  ],
+  "prompt": "Let $n \\ge 2$ be a given integer.\n(1) Prove that one can arrange all the subsets of the set $\\{1, 2, \\dots, n\\}$ as a sequence of subsets $A_1, A_2, \\dots, A_{2^n}$, such that $|A_{i+1}| = |A_i| + 1$ or $|A_i| - 1$, where $i = 1, 2, \\dots, 2^n$ and $A_{2^n+1} = A_1$.\n(2) Determine, with proof, all possible values of the sum $\\sum_{i=1}^{2^n} (-1)^i S(A_i)$, where $S(A_i) = \\sum_{x \\in A_i} x$ and $S(\\emptyset) = 0$, for any subset sequence $A_1, A_2, \\dots, A_{2^n}$ satisfying the condition in (1). (posed by Liang Yingde)",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find all possible values of the sum, we analyze the conditions given in the problem.\n\n**Part (1):**\nWe can arrange all subsets of $\\{1, 2, \\dots, n\\}$ in a sequence such that the sizes of adjacent subsets differ by exactly 1. This is equivalent to finding a Hamiltonian cycle in the hypercube graph $Q_n$. The standard Binary Reflected Gray Code provides exactly such a sequence. In a Gray code, adjacent subsets differ by the addition or removal of exactly one element, which guarantees that $|A_{i+1}| = |A_i| \\pm 1$. Since the Gray code is cyclic for $n \\ge 2$, the condition $|A_{2^n+1}| = |A_1| \\pm 1$ is also satisfied.\n\n**Part (2):**\nWe are asked to evaluate the sum:\n$$ \\sum_{i=1}^{2^n} (-1)^i S(A_i) $$\nfor *any* sequence satisfying the condition in (1).\n\nThe condition $|A_{i+1}| = |A_i| \\pm 1$ implies that the parity of the size of the subsets must alternate. That is, if $|A_i|$ is even, then $|A_{i+1}|$ must be odd, and vice versa. \nBecause the sequence $A_1, A_2, \\dots, A_{2^n}$ contains all $2^n$ subsets exactly once, it must alternate perfectly between the $2^{n-1}$ subsets of even size and the $2^{n-1}$ subsets of odd size.\n\nTherefore, the alternating sum $\\sum_{i=1}^{2^n} (-1)^i S(A_i)$ groups all subsets of even size with one sign (either all positive or all negative) and all subsets of odd size with the opposite sign. Thus, the sum evaluates to either:\n$$ \\sum_{|A| \\text{ is even}} S(A) - \\sum_{|A| \\text{ is odd}} S(A) \\quad \\text{or} \\quad \\sum_{|A| \\text{ is odd}} S(A) - \\sum_{|A| \\text{ is even}} S(A) $$\n\nLet's calculate the sum of the elements in all even-sized subsets and all odd-sized subsets. \nFor any element $x \\in \\{1, 2, \\dots, n\\}$, we count how many even-sized subsets contain $x$. An even-sized subset containing $x$ is formed by choosing an odd number of elements from the remaining $n-1$ elements. The number of ways to do this is:\n$$ \\binom{n-1}{1} + \\binom{n-1}{3} + \\dots = 2^{n-2} $$\n(This relies on $n \\ge 2$).\n\nSimilarly, an odd-sized subset containing $x$ is formed by choosing an even number of elements from the remaining $n-1$ elements. The number of ways to do this is:\n$$ \\binom{n-1}{0} + \\binom{n-1}{2} + \\dots = 2^{n-2} $$\n\nSince every element $x \\in \\{1, 2, \\dots, n\\}$ appears in exactly $2^{n-2}$ even-sized subsets and exactly $2^{n-2}$ odd-sized subsets, the sum of the elements across all even-sized subsets is equal to the sum of the elements across all odd-sized subsets:\n$$ \\sum_{|A| \\text{ is even}} S(A) = \\sum_{x=1}^n x \\cdot 2^{n-2} = 2^{n-2} \\frac{n(n+1)}{2} $$\n$$ \\sum_{|A| \\text{ is odd}} S(A) = \\sum_{x=1}^n x \\cdot 2^{n-2} = 2^{n-2} \\frac{n(n+1)}{2} $$\n\nSubtracting the two yields exactly 0. Because this holds for any valid sequence, the sum is invariant.\n\nFinal answer: 0",
+  "usage": {
+    "input_tokens": 266,
+    "output_tokens": 916,
+    "thoughts_tokens": 2380
+  },
+  "latency_s": 26.459662156063132,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "exact",
+    "predicted": "0"
+  }
+}

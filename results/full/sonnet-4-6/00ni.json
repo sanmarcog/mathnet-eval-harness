@@ -1,0 +1,19 @@
+{
+  "id": "00ni",
+  "country": "Austria",
+  "competition": "Austrian Mathematical Olympiad",
+  "gold_final_answer": "All solutions are:\n- For α = 0: all constant functions f(x) = c for any real c, and f(x) = −x^2.\n- For α = 4: f(x) ≡ 0 and f(x) = x^2.\n- For all other α (α ≠ 0 and α ≠ 4): only f(x) ≡ 0.",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Functional Equations > Existential quantifiers"
+  ],
+  "prompt": "Let $\\alpha$ be a real number.\nDetermine all functions $f : \\mathbb{R} \\to \\mathbb{R}$ satisfying\n$$\nf(f(x) + y) = f(x^2 - y) + \\alpha f(x)y\n$$\nfor all $x, y \\in \\mathbb{R}$.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Setting Up the Problem\n\nLet me denote the functional equation as $f(f(x) + y) = f(x^2 - y) + \\alpha f(x)y$.\n\n**Step 1: Initial substitutions**\n\nLet $y = 0$: $f(f(x)) = f(x^2)$ for all $x$.\n\nLet $x = 0$: $f(f(0) + y) = f(-y) + \\alpha f(0)y$.\n\nLet $y = \\frac{x^2 - f(x)}{2}$: Then $f(x) + y = x^2 - y$, so both sides give $f\\left(\\frac{x^2 + f(x)}{2}\\right) = f\\left(\\frac{x^2 + f(x)}{2}\\right) + \\alpha f(x) \\cdot \\frac{x^2 - f(x)}{2}$.\n\nThis gives $\\alpha f(x)(x^2 - f(x)) = 0$ for all $x$.\n\n**Step 2: Analyzing $\\alpha f(x)(x^2 - f(x)) = 0$**\n\n**Case 1: $\\alpha = 0$**\n\nThe equation becomes $f(f(x) + y) = f(x^2 - y)$. Setting $y = 0$: $f(f(x)) = f(x^2)$.\n\nIf $f$ is injective, then $f(x) = x^2$ — but check: $f(f(x)+y) = (f(x)+y)^2$ and $f(x^2-y) = (x^2-y)^2$. These aren't equal in general. So $f$ need not be injective.\n\nTry $f$ constant: $f(x) = c$. Then $c = c + 0 \\cdot \\alpha c = c$. ✓ for $\\alpha = 0$. Actually $f(c+y) = f(x^2-y)$ requires $c = c$ always. ✓\n\nTry $f(x) = x^2$: fails as shown. Try $f(x) = 0$: works for any $\\alpha$.\n\n**Case 2: $\\alpha \\neq 0$**\n\nFor each $x$: either $f(x) = 0$ or $f(x) = x^2$.\n\n**Step 3: Determining $f$ when $\\alpha \\neq 0$**\n\nSuppose $f(a) = a^2 \\neq 0$ for some $a$. The original equation with this $x = a$:\n$f(a^2 + y) = f(a^2 - y) + \\alpha a^2 y$.\n\nFor any $t$, set $y = t - a^2$: $f(t) = f(2a^2 - t) + \\alpha a^2(t - a^2)$.\n\nAlso try $f(x) = x^2$ for all $x$: $f(x^2 + y) = (x^2+y)^2$ and $f(x^2-y) + \\alpha x^2 y = (x^2-y)^2 + \\alpha x^2 y = x^4 - 2x^2y + y^2 + \\alpha x^2 y$.\n\nFor equality: $(x^2+y)^2 = x^4 + 2x^2y + y^2$, so we need $\\alpha = 4$.\n\nCheck $f(x) = x^2$ with $\\alpha = 4$: LHS $= (x^2+y)^2$, RHS $= (x^2-y)^2 + 4x^2y = x^4 - 2x^2y + y^2 + 4x^2y = x^4 + 2x^2y + y^2$. ✓\n\n**Step 4: Checking $f(x) = 0$**\n\n$f(0+y) = f(x^2-y) + 0$ requires $0 = 0$. ✓ for any $\\alpha$.\n\n**Step 5: Summary**\n\n- For **any** $\\alpha$: $f(x) = 0$ works.\n- For $\\alpha = 4$: $f(x) = x^2$ works.\n\nFor $\\alpha \\neq 0, 4$: the mixed case (some $f(x)=0$, some $f(x)=x^2$) leads to contradictions when substituting back, so only $f \\equiv 0$ works.\n\n**Final Answer:**\n\n- If $\\alpha \\neq 4$: the only solution is $f(x) = 0$.\n- If $\\alpha = 4$: the solutions are $f(x) = 0$ and $f(x) = x^2$.\n\nFinal answer: $f(x)=0$ for all $\\alpha$, and additionally $f(x)=x^2$ when $\\alpha=4$.",
+  "usage": {
+    "input_tokens": 129,
+    "output_tokens": 1250,
+    "thinking_tokens": 0
+  },
+  "latency_s": 14.563937291037291,
+  "cached": false
+}

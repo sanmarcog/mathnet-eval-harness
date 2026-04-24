@@ -1,0 +1,19 @@
+{
+  "id": "0cyy",
+  "country": "Saudi Arabia",
+  "competition": "Saudi Arabia Mathematical Competitions",
+  "gold_final_answer": "a1 = 2^{2010}, a2 = 3^{2010} − 1, a3 = 4^{2010} − 1, ..., a2010 = 2011^{2010} − 1",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Sequences and Series > Telescoping series"
+  ],
+  "prompt": "Find positive integers $a_{1} < a_{2} < \\ldots < a_{2010}$ such that\n$$\na_{1}(1!)^{2010} + a_{2}(2!)^{2010} + \\ldots + a_{2010}(2010!)^{2010} = (2011!)^{2010}.\n$$",
+  "model": "claude-sonnet-4-6",
+  "response_text": "We need to find positive integers $a_1 < a_2 < \\cdots < a_{2010}$ such that\n$$\\sum_{k=1}^{2010} a_k (k!)^{2010} = (2011!)^{2010}.$$\n\nNote that $(2011!)^{2010} = (2011 \\cdot 2010!)^{2010} = 2011^{2010} (2010!)^{2010}$.\n\nMore generally, $(n+1)! = (n+1) \\cdot n!$, so $((n+1)!)^{2010} = (n+1)^{2010} (n!)^{2010}$.\n\nLet me try to write $(2011!)^{2010}$ as a telescoping-type sum. Consider:\n\n$$(n+1)^{2010}(n!)^{2010} = ((n+1)!)^{2010}$$\n\nWe want to express $(2011!)^{2010}$ as a sum $\\sum_{k=1}^{2010} a_k (k!)^{2010}$.\n\nLet's try: $(2011!)^{2010} = \\sum_{k=1}^{2010} c_k ((k+1)!)^{2010} - c_k (k!)^{2010}$... that's telescoping but gives $(2011!)^{2010} - (1!)^{2010}$ times something.\n\nActually, let's try a direct approach. We want:\n$$\\sum_{k=1}^{2010} a_k (k!)^{2010} = (2011!)^{2010}$$\n\nTry $a_k = (k+1)^{2010} - 1$ for $k = 1, \\ldots, 2009$ and find $a_{2010}$.\n\nNote: $\\sum_{k=1}^{2010} ((k+1)^{2010} - 1)(k!)^{2010} = \\sum_{k=1}^{2010} ((k+1)!)^{2010}/(k!)^{2010} \\cdot (k!)^{2010} - (k!)^{2010}$\n\n$= \\sum_{k=1}^{2010} ((k+1)!)^{2010} - (k!)^{2010} = (2011!)^{2010} - (1!)^{2010}$\n\nSo $\\sum_{k=1}^{2010} ((k+1)^{2010}-1)(k!)^{2010} = (2011!)^{2010} - 1$.\n\nWe need one more unit. So set $a_k = (k+1)^{2010} - 1$ for $k = 2, \\ldots, 2010$ and $a_1 = (2^{2010} - 1) + 1 = 2^{2010}$.\n\nCheck: $a_1(1!)^{2010} + \\sum_{k=2}^{2010} a_k(k!)^{2010} = 2^{2010} \\cdot 1 + \\sum_{k=2}^{2010}((k+1)^{2010}-1)(k!)^{2010}$\n\n$= (2^{2010}-1)\\cdot 1 + 1 + \\sum_{k=2}^{2010}((k+1)^{2010}-1)(k!)^{2010}$\n\n$= \\sum_{k=1}^{2010}((k+1)^{2010}-1)(k!)^{2010} + 1 = (2011!)^{2010} - 1 + 1 = (2011!)^{2010}$. ✓\n\nNow check $a_1 < a_2 < \\cdots < a_{2010}$:\n- $a_1 = 2^{2010}$\n- $a_k = (k+1)^{2010} - 1$ for $k = 2, \\ldots, 2010$\n\n$a_2 = 3^{2010} - 1 > 2^{2010} = a_1$ ✓\n\nFor $k \\geq 2$: $a_{k+1} = (k+2)^{2010} - 1 > (k+1)^{2010} - 1 = a_k$ ✓\n\nAll values are positive integers. ✓\n\n**Solution:**\n$$a_1 = 2^{2010}, \\quad a_k = (k+1)^{2010} - 1 \\text{ for } k = 2, 3, \\ldots, 2010.$$\n\nFinal answer: $a_1 = 2^{2010}$ and $a_k = (k+1)^{2010} - 1$ for $k = 2, 3, \\ldots, 2010$.",
+  "usage": {
+    "input_tokens": 131,
+    "output_tokens": 1222,
+    "thinking_tokens": 0
+  },
+  "latency_s": 15.944425901048817,
+  "cached": false
+}

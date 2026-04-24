@@ -1,0 +1,20 @@
+{
+  "id": "05c1",
+  "country": "Estonia",
+  "competition": "Estonian Mathematical Olympiad",
+  "gold_final_answer": "a: 675; b: 2025",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Factorization techniques",
+    "Number Theory > Divisibility / Factorization > Prime numbers"
+  ],
+  "prompt": "Find the least positive integer $n$ such that:\n\na. both $n$ and $n+1$ are divisible by the squares of two distinct prime numbers;\n\nb. both $n$ and $n+3$ are divisible by the squares of two distinct prime numbers.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Part a\n\nWe need consecutive integers n and n+1, each divisible by the square of two distinct primes (meaning each is divisible by p² and q² for distinct primes p, q — or equivalently, each has at least two distinct prime squares in its factorization).\n\nActually, let me re-read: \"divisible by the squares of two distinct prime numbers\" means divisible by p² · q² for two distinct primes p, q? Or divisible by p² for two distinct primes p?\n\nI'll interpret it as: n is divisible by p² for at least two distinct primes p. So n is divisible by p²q² for distinct primes p, q (at minimum).\n\nThe smallest numbers divisible by squares of two distinct primes:\n- 4·9 = 36, 4·25 = 100, 4·49 = 196, 9·25 = 225, 4·9·... \n- Numbers: 36, 72, 100, 108, 144, 196, 200, 225, 252, 288, 300, 324, 360, 392, 396, 400, 441, 450, 468, 484, 500, 504, ...\n\nWe need two consecutive such numbers.\n\nCheck pairs:\n- 36, 37: 37 is prime, no\n- 99 = 9·11, 100 = 4·25: 99 = 9·11 (divisible by 9 but 11 is not squared), so 99 is divisible by 3² but only one prime squared. No.\n- 100 = 4·25 ✓, 101 prime ✗\n- 196 = 4·49 ✓, 197 prime ✗\n- 225 = 9·25 ✓, 226 = 2·113 ✗\n- 324 = 4·81 = 4·3⁴ ✓, 325 = 25·13 ✓ (divisible by 5² and 13, but 13 not squared... wait 325 = 5²·13, only one prime squared) ✗\n- 441 = 9·49 ✓, 442 = 2·13·17 ✗\n- 484 = 4·121 ✓, 485 = 5·97 ✗\n- 500 = 4·125 = 2²·5³ ✓, 501 = 3·167 ✗\n- 196 = 4·49 ✓, 197 ✗\n- 900 = 4·225 = 4·9·25 ✓, 901 = 17·53 ✗\n- 844 = 4·211 ✗\n- 1444 = 4·361 = 4·19² ✓, 1445 = 5·17² ✓ → **n = 1444**\n\nCheck: 1444 = 4·361 = 2²·19² ✓, 1445 = 5·289 = 5·17² — only one prime squared ✗\n\n- 1521 = 9·169 = 3²·13² ✓, 1522 = 2·761 ✗\n- 3600 = 16·225 ✓, 3601 = 13·277 ✗\n- Let me try: n = 48: 48 = 16·3 = 2⁴·3, only 2 is squared (3 not squared). ✗\n- 1800 = 8·225 = 2³·3²·5² ✓, 1801 prime ✗\n- 7056 = 16·441 = 2⁴·3²·7² ✓, 7057 = ?  7057 = 7057... 7057/11=641.5, /13=542.8, /17=415.1, /19=371.4, /23=306.8, /29=243.3, /37=190.7, /41=172.1, /43=164.1, /47=150.1, /53=133.1, /59=119.6, /61=115.7, /67=105.3, /71=99.4, /73=96.7, /79=89.3, /83=85.0... 83·85=7055, no. 7057 prime? Likely.\n\nAfter more systematic search, **n = 48024** seems too large. Let me try n = 675: 675 = 27·25 = 3³·5² ✓, 676 = 4·169 = 2²·13² ✓. **n = 675!**\n\nCheck: 675 = 3³·5² divisible by 3² and 5² ✓; 676 = 2²·13² ✓\n\n**Part a answer: n = 675**\n\n## Part b\n\nNeed n and n+3 both with squares of two distinct primes.\n- 675 = 3³·5² ✓, 678 = 2·3·113 ✗\n- 98 = 2·49 ✗, 100 = 4·25 ✓, 97 ✗\n- 972 = 4·243 = 2²·3⁵ ✓, 975 = 25·39 = 3·5²·13 ✓ (5² and... only 5²) ✗\n- 225 = 9·25 ✓, 228 = 4·57 = 2²·3·19 ✗\n- 441 = 9·49 ✓, 444 = 4·111 = 4·3·37 ✗\n- 1225 = 25·49 ✓, 1228 = 4·307 ✗\n- 900 = 4·9·25 ✓, 903 = 3·301 = 3·7·43 ✗\n- 1296 = 6⁴ = 2⁴·3⁴ ✓, 1299 = 3·433 ✗\n- 2025 = 45² = 9·225 ✓, 2028 = 4·507 = 4·3·169 = 2²·3·13² ✓ **n = 2025**\n\nCheck: 2025 = 3⁴·5² ✓; 2028 = 4·3·169 = 2²·3·13² — divisible by 2² and 13² ✓\n\n**Part b answer: n = 2025**\n\nFinal answer: Part a: $n = 675$; Part b: $n = 2025$",
+  "usage": {
+    "input_tokens": 107,
+    "output_tokens": 1710,
+    "thinking_tokens": 0
+  },
+  "latency_s": 20.447098802076653,
+  "cached": false
+}

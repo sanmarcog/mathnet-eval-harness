@@ -1,0 +1,26 @@
+{
+  "id": "0kg4",
+  "country": "United States",
+  "competition": "USA TSTST",
+  "gold_final_answer": "m = p^a and n = p^b for some prime p and integers a ≥ b ≥ 1",
+  "topics_flat": [
+    "Number Theory > Number-Theoretic Functions > σ (sum of divisors)",
+    "Number Theory > Number-Theoretic Functions > τ (number of divisors)",
+    "Number Theory > Divisibility / Factorization > Prime numbers"
+  ],
+  "prompt": "For every positive integer $N$, let $\\sigma(N)$ denote the sum of the positive integer divisors of $N$. Find all integers $m \\ge n \\ge 2$ satisfying\n$$\n\\frac{\\sigma(m) - 1}{m - 1} = \\frac{\\sigma(n) - 1}{n - 1} = \\frac{\\sigma(mn) - 1}{mn - 1}.\n$$",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let\n\\[\nf(N)=\\frac{\\sigma(N)-1}{N-1}.\n\\]\nWe are given\n\\[\nf(m)=f(n)=f(mn), \\qquad m\\ge n\\ge 2.\n\\]\n\n## 1) A basic inequality\nFor every \\(N\\ge 2\\),\n\\[\n\\sigma(N)\\le N+\\frac N2+\\frac N3+\\cdots < 2N,\n\\]\nso\n\\[\nf(N)=\\frac{\\sigma(N)-1}{N-1}<\\frac{2N-1}{N-1}<2.\n\\]\nAlso, since \\(1,N\\) are divisors,\n\\[\n\\sigma(N)\\ge N+1 \\implies f(N)\\ge 1.\n\\]\n\nSo the common value\n\\[\nc:=f(m)=f(n)=f(mn)\n\\]\nsatisfies \\(1\\le c<2\\).\n\n## 2) Use multiplicativity of divisors\nWe have\n\\[\n\\sigma(mn)\\le \\sigma(m)\\sigma(n),\n\\]\nwith equality if \\(\\gcd(m,n)=1\\). Hence\n\\[\nc=\\frac{\\sigma(mn)-1}{mn-1}\\le \\frac{\\sigma(m)\\sigma(n)-1}{mn-1}.\n\\]\nNow write \\(\\sigma(m)=c(m-1)+1\\) and \\(\\sigma(n)=c(n-1)+1\\). Then\n\\[\n\\sigma(m)\\sigma(n)-1=(c(m-1)+1)(c(n-1)+1)-1.\n\\]\nBut the condition \\(f(mn)=c\\) means\n\\[\n\\sigma(mn)-1=c(mn-1).\n\\]\nSince \\(\\sigma(mn)\\le \\sigma(m)\\sigma(n)\\), we get\n\\[\nc(mn-1)\\le (c(m-1)+1)(c(n-1)+1)-1.\n\\]\nExpanding and simplifying yields\n\\[\nc(mn-1)\\le c^2(m-1)(n-1)+c(m+n-2),\n\\]\nand therefore\n\\[\nc(mn-1)-c(m+n-2)\\le c^2(m-1)(n-1).\n\\]\nThe left side is\n\\[\nc(mn-m-n+1)=c(m-1)(n-1),\n\\]\nso\n\\[\nc(m-1)(n-1)\\le c^2(m-1)(n-1).\n\\]\nSince \\(m,n\\ge2\\), we have \\((m-1)(n-1)>0\\), thus\n\\[\nc\\le c^2.\n\\]\nBecause \\(c\\ge1\\), this implies \\(c=1\\) or \\(c\\ge 1\\) is automatic; but more importantly, equality must hold throughout, forcing\n\\[\nc=1.\n\\]\n\nSo\n\\[\n\\sigma(m)=m,\\qquad \\sigma(n)=n.\n\\]\nBut \\(\\sigma(k)=k\\) is impossible for any \\(k\\ge2\\), since \\(\\sigma(k)\\ge k+1\\).\n\nHence there are no such integers.\n\n\\[\n\\boxed{\\text{No solutions}}\n\\]\n\nFinal answer: No pairs \\((m,n)\\) with \\(m\\ge n\\ge 2\\) satisfy the given equation.",
+  "usage": {
+    "input_tokens": 139,
+    "output_tokens": 723,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 4.394805874908343,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "No pairs \\((m,n)\\) with \\(m\\ge n\\ge 2\\) satisfy the given equation."
+  }
+}

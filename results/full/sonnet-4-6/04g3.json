@@ -1,0 +1,19 @@
+{
+  "id": "04g3",
+  "country": "Croatia",
+  "competition": "Mathematica competitions in Croatia",
+  "gold_final_answer": "1 + i, -1 - i",
+  "topics_flat": [
+    "Algebra > Intermediate Algebra > Complex numbers"
+  ],
+  "prompt": "Determine all complex numbers $z$ such that\n$$\n|z^2 - i| = 1 \\quad \\text{and} \\quad |z| = \\sqrt{2}.\n$$",
+  "model": "claude-sonnet-4-6",
+  "response_text": "Let z = a + bi where a, b are real. We have |z|² = a² + b² = 2.\n\nAlso, z² = a² - b² + 2abi, so z² - i = (a² - b²) + (2ab - 1)i.\n\nThe condition |z² - i| = 1 gives:\n(a² - b²)² + (2ab - 1)² = 1\n\nSince a² + b² = 2, we have a² - b² = 2a² - 2 (using b² = 2 - a²).\n\nLet me set s = a² - b² and p = 2ab.\n\nThen s² + (p-1)² = 1, so s² + p² - 2p + 1 = 1, giving s² + p² = 2p.\n\nNote: s² + p² = (a² - b²)² + 4a²b² = (a² + b²)² = 4.\n\nSo 4 = 2p, meaning p = 2, i.e., 2ab = 2, so ab = 1.\n\nFrom a² + b² = 2 and ab = 1:\n(a + b)² = a² + 2ab + b² = 2 + 2 = 4, so a + b = ±2.\n(a - b)² = a² - 2ab + b² = 2 - 2 = 0, so a = b.\n\nThus a = b, and a² + a² = 2 gives a² = 1, so a = ±1.\n\nThe solutions are z = 1 + i and z = -1 - i.\n\n**Verification:**\n- z = 1+i: z² = 2i, z² - i = i, |i| = 1 ✓, |z| = √2 ✓\n- z = -1-i: z² = 2i, same result ✓\n\nFinal answer: $z = 1+i$ and $z = -1-i$",
+  "usage": {
+    "input_tokens": 91,
+    "output_tokens": 509,
+    "thinking_tokens": 0
+  },
+  "latency_s": 6.713110434007831,
+  "cached": false
+}

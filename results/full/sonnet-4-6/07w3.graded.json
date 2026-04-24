@@ -1,0 +1,24 @@
+{
+  "id": "07w3",
+  "country": "Ireland",
+  "competition": "IRL_ABooklet_2023",
+  "gold_final_answer": "The bound |ad + bc + ca − db| ≤ 2 holds. Equality |ad + bc + ca − db| = 2 occurs exactly in the following cases:\n- a = b = ±1 and c = ±1 (with d arbitrary in [−1, 1]);\n- a = −b = ±1 and d = ±1 (with c arbitrary in [−1, 1]);\n- a = ±1, |b| < 1, and c = d = ±1;\n- b = ±1, |a| < 1, and c = −d = ±1.",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities"
+  ],
+  "prompt": "Suppose $a$, $b$, $c$, $d \\in [-1, 1]$. Prove that\n$$\n|ad + bc + ca - db| \\leq 2\n$$\nand determine the case of equality.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "We wish to prove that for $a,b,c,d\\in[-1,1]$,\n$$|ad+bc+ca-db|\\le 2,$$\nand find when equality holds.\n\n**Rewriting the expression.**\n\nNotice that\n$$ad+bc+ca-db = a(d+c)+b(c-d).$$\n\nLet $u = c+d$ and $v = c-d$. Since $c,d\\in[-1,1]$, we have $u,v\\in[-2,2]$ and also $|u|+|v|\\le 2$ (because $|c+d|+|c-d|=2\\max(|c|,|d|)\\le 2$).\n\nSo the expression becomes $au+bv$ with $a,b\\in[-1,1]$.\n\n**Proof of the inequality.**\n\nWe have\n$$|au+bv|\\le |a||u|+|b||v|\\le |u|+|v|.$$\n\nNow we use the key fact: for $c,d\\in[-1,1]$,\n$$|c+d|+|c-d|=2\\max(|c|,|d|)\\le 2.$$\n\nTherefore\n$$|ad+bc+ca-db|=|au+bv|\\le |u|+|v|=|c+d|+|c-d|\\le 2.$$\n\nThis completes the proof. $\\blacksquare$\n\n**Equality conditions.**\n\nEquality holds if and only if both steps are equalities simultaneously.\n\n*Step 1:* $|au+bv|=|a||u|+|b||v|$ requires that $au$ and $bv$ have the same sign (or one is zero). More precisely, we need $\\text{sgn}(au)=\\text{sgn}(bv)$ (when both are nonzero).\n\n*Step 2:* $|a|=|b|=1$ (so $a,b\\in\\{-1,1\\}$) and $|c+d|+|c-d|=2$, which means $\\max(|c|,|d|)=1$, i.e., $|c|=1$ or $|d|=1$.\n\n*Step 3:* $|u|+|v|=2$ requires $\\max(|c|,|d|)=1$.\n\nLet us describe all equality cases. We need $a,b\\in\\{-1,1\\}$, $\\max(|c|,|d|)=1$, and $au$ and $bv$ have the same sign.\n\n**Case A:** $|c|=1$. Then $|c+d|+|c-d|=2|c|=2$. We need $a(c+d)$ and $b(c-d)$ to have the same sign (or one is zero). For example, $a=b=c=d=1$ gives $ad+bc+ca-db=1+1+1-1=2$. ✓\n\n**Case B:** $|d|=1$. Similarly, $|c+d|+|c-d|=2|d|=2$. For example, $a=1,b=-1,c=0,d=1$ gives $1\\cdot1+(-1)\\cdot0+0\\cdot1-(-1)\\cdot1=1+0+0+1=2$. ✓\n\nMore explicitly, equality holds if and only if:\n- $a,b\\in\\{-1,1\\}$,\n- $\\max(|c|,|d|)=1$,\n- $a(c+d)$ and $b(c-d)$ are both nonneg or both nonpos (i.e., $\\text{sgn}(a(c+d))=\\text{sgn}(b(c-d))$ when both nonzero).\n\nA clean sufficient family: $a=b=1$, $c=1$, $d\\in[-1,1]$ arbitrary gives $d+c+c-d=2c=2$. ✓\n\n**Summary of equality:** Equality $|ad+bc+ca-db|=2$ holds if and only if $a,b\\in\\{-1,1\\}$, $\\max(|c|,|d|)=1$, and $a(c+d)$ and $b(c-d)$ have the same sign (with the convention that $0$ is compatible with either sign). $\\blacksquare$\n\nFinal answer: The inequality $|ad+bc+ca-db|\\le 2$ holds for all $a,b,c,d\\in[-1,1]$, with equality if and only if $a,b\\in\\{-1,1\\}$, $\\max(|c|,|d|)=1$, and $a(c+d)$ and $b(c-d)$ are of the same sign (both $\\ge0$ or both $\\le0$).",
+  "usage": {
+    "input_tokens": 102,
+    "output_tokens": 1218,
+    "thinking_tokens": 0
+  },
+  "latency_s": 15.069700489984825,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "The inequality $|ad+bc+ca-db|\\le 2$ holds for all $a,b,c,d\\in[-1,1]$, with equality if and only if $a,b\\in\\{-1,1\\}$, $\\max(|c|,|d|)=1$, and $a(c+d)$ and $b(c-d)$ are of the same sign (both $\\ge0$ or both $\\le0$)."
+  }
+}

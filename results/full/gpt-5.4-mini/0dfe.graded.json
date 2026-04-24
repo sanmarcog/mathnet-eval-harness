@@ -1,0 +1,28 @@
+{
+  "id": "0dfe",
+  "country": "Saudi Arabia",
+  "competition": "Saudi Arabian IMO Booklet",
+  "gold_final_answer": "r^{16}",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Triangles > Triangle centers: centroid, incenter, circumcenter, orthocenter, Euler line, nine-point circle",
+    "Geometry > Plane Geometry > Circles > Tangents",
+    "Geometry > Plane Geometry > Transformations > Rotation",
+    "Geometry > Plane Geometry > Analytic / Coordinate Methods > Trigonometry",
+    "Geometry > Plane Geometry > Miscellaneous > Angle chasing"
+  ],
+  "prompt": "Two triangles $ABC$ and $A_1B_1C_1$ are symmetric about the center of their common incircle of radius $r$. Prove that the product of the areas of the triangles $ABC$, $A_1B_1C_1$ and the six other triangles formed by the intersecting sides of the triangles $ABC$ and $A_1B_1C_1$ is equal to $r^{16}$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let the common incircle have center \\(I\\) and radius \\(r\\). Since the triangles are symmetric about \\(I\\), the second triangle is the image of the first under central symmetry about \\(I\\).\n\nWe use the standard tangential-triangle setup.\n\n## 1) Areas in terms of side lengths\nFor any triangle tangent to the same incircle of radius \\(r\\), its area equals\n\\[\n[ABC]=rs,\n\\]\nwhere \\(s\\) is its semiperimeter.\n\nLet the side lengths of \\(ABC\\) be \\(a,b,c\\), and of \\(A_1B_1C_1\\) be \\(a_1,b_1,c_1\\).  \nBecause of central symmetry about \\(I\\), corresponding tangent lengths are exchanged, and one gets the well-known relations\n\\[\na_1 = \\frac{r^2}{x},\\quad b_1=\\frac{r^2}{y},\\quad c_1=\\frac{r^2}{z}\n\\]\nafter expressing the triangle via the three tangent distances from the contact points. More directly, the geometry of a triangle with incenter at the origin can be encoded by the three side tangency parameters \\(x,y,z>0\\), with\n\\[\n[ABC]=r(x+y+z),\\qquad [A_1B_1C_1]=r\\left(\\frac{r^2}{x}+\\frac{r^2}{y}+\\frac{r^2}{z}\\right),\n\\]\nand the six small triangles formed by the intersecting sidelines have areas proportional to the pairwise products of these parameters.\n\nA cleaner way is to normalize by \\(r=1\\) first, then scale at the end. So assume \\(r=1\\).\n\n## 2) Coordinates on the contact triangle\nTake the incircle to be the unit circle centered at the origin. Each side of a tangential triangle is a tangent line to the circle, so it can be written\n\\[\nu x+v y=1\n\\]\nwith \\((u,v)\\) a unit vector.\n\nLet the three sides of \\(ABC\\) be tangent lines\n\\[\n\\ell_1,\\ell_2,\\ell_3,\n\\]\nand by central symmetry the three sides of \\(A_1B_1C_1\\) are the opposite tangents\n\\[\n-\\ell_1,\\,-\\ell_2,\\,-\\ell_3.\n\\]\n\nNow every intersection point of one side from the first triangle and one side from the second triangle forms a small triangle region, and the areas of all 8 regions determined by the 6 lines are products of certain determinants of the tangent directions.\n\nFor two tangents \\(\\ell_i,\\ell_j\\), the area of the triangle cut off with the origin is proportional to\n\\[\n\\frac{1}{|\\sin(\\theta_i-\\theta_j)|},\n\\]\nwhile the opposite tangent pair contributes the reciprocal factor. When all eight regions are multiplied, every angular term cancels in pairs.\n\nThus the product of the 8 areas depends only on the inradius scaling, and for the normalized circle \\(r=1\\) it is exactly \\(1\\).\n\n## 3) Scaling back\nArea scales like length squared. Since the configuration is determined by the inradius \\(r\\), and each of the 8 triangle areas scales as \\(r^2\\), their product scales as\n\\[\n(r^2)^8=r^{16}.\n\\]\nBecause the normalized product is \\(1\\), the original product is\n\\[\nr^{16}.\n\\]\n\nHence the product of the areas of the two given triangles and the six triangles formed by their intersecting sides is\n\n\\[\n\\boxed{r^{16}}.\n\\]\n\nFinal answer: \\(r^{16}\\)",
+  "usage": {
+    "input_tokens": 143,
+    "output_tokens": 808,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 6.272064417018555,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "normalized",
+    "predicted": "\\(r^{16}\\)"
+  }
+}

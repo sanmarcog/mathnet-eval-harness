@@ -1,0 +1,25 @@
+{
+  "id": "01og",
+  "country": "Belarus",
+  "competition": "Belorusija 2012",
+  "gold_final_answer": "Any integer from 0 to N−2 with the same parity as N.",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Invariants / monovariants",
+    "Discrete Mathematics > Combinatorics > Counting two ways"
+  ],
+  "prompt": "$N$ boys ($N \\ge 3$), no two of them having the same height, are arranged along a circle. A boy in the given arrangement is said to be *middle* if he is taller than one of his neighbors and shorter than the other one.\nFind all possible numbers of middle boys in the arrangement.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Solution\n\nLet me find all possible numbers of middle boys when $N$ boys are arranged in a circle.\n\n**Setting up the problem:**\n\nLabel the boys by their heights $1, 2, \\ldots, N$ (where $N$ is tallest) arranged in a circle. A boy is \"middle\" if he is between his two neighbors in height (one taller, one shorter).\n\n**Identifying non-middle boys:**\n\nA boy is NOT middle if he is either:\n- A **local maximum**: taller than both neighbors\n- A **local minimum**: shorter than both neighbors\n\n**Counting local maxima and minima:**\n\nAs we traverse the circle, the sequence of heights goes up and down. Each time we switch from increasing to decreasing, we get a local maximum; each switch from decreasing to increasing gives a local minimum. Since we're on a circle, the number of local maxima equals the number of local minima. If there are $k$ local maxima and $k$ local minima, then the number of non-middle boys is $2k$.\n\nThe minimum value of $k$ is $1$ (one peak, one valley), and the maximum is $\\lfloor N/2 \\rfloor$.\n\n**Number of middle boys:**\n\nNumber of middle boys $= N - 2k$ where $k \\in \\{1, 2, \\ldots, \\lfloor N/2 \\rfloor\\}$.\n\nThis gives middle boys $= N - 2, N - 4, N - 6, \\ldots$\n\n- When $k = 1$: $N - 2$ middle boys\n- When $k = \\lfloor N/2 \\rfloor$: \n  - If $N$ even: $N - N = 0$ middle boys\n  - If $N$ odd: $N - (N-1) = 1$ middle boy\n\n**Checking achievability:**\n\n- **$k=1$ (N-2 middle boys):** Arrange as $1, 2, 3, \\ldots, N-1, N$ going up then down: e.g., $1, 3, 5, \\ldots, N, \\ldots, 4, 2$ — one peak at $N$, one valley. This gives $N-2$ middle boys. ✓\n\n- **$k = \\lfloor N/2 \\rfloor$ (0 or 1 middle boys):** Alternate high-low values. For even $N$: arrange as $2, 4, 6, \\ldots, N, 1, 3, 5, \\ldots, N-1$ alternating — every boy is a local max or min, giving 0 middle boys. ✓  \n  For odd $N$: we can get at most $\\lfloor N/2 \\rfloor$ peaks, leaving 1 middle boy. ✓\n\n- **Intermediate values:** For any $k$ between $1$ and $\\lfloor N/2 \\rfloor$, we can construct arrangements with exactly $k$ peaks and $k$ valleys. ✓\n\n**Summary of possible values:**\n\n- If $N$ is **even**: middle boys $\\in \\{0, 2, 4, \\ldots, N-2\\}$ (all even numbers from 0 to $N-2$)\n- If $N$ is **odd**: middle boys $\\in \\{1, 3, 5, \\ldots, N-2\\}$ (all odd numbers from 1 to $N-2$)\n\nIn both cases, the possible numbers are all integers of the same parity as $N$ in the range $[N \\bmod 2,\\ N-2]$.\n\n**Unified answer:** The possible numbers of middle boys are all even numbers from $0$ to $N-2$ when $N$ is even, and all odd numbers from $1$ to $N-2$ when $N$ is odd.\n\nFinal answer: All even numbers in $\\{0, 2, 4, \\ldots, N-2\\}$ if $N$ is even, and all odd numbers in $\\{1, 3, 5, \\ldots, N-2\\}$ if $N$ is odd. Equivalently, the possible numbers of middle boys are all integers of the form $N - 2k$ for $k = 1, 2, \\ldots, \\lfloor N/2 \\rfloor$.",
+  "usage": {
+    "input_tokens": 115,
+    "output_tokens": 1045,
+    "thinking_tokens": 0
+  },
+  "latency_s": 15.762361395987682,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "All even numbers in $\\{0, 2, 4, \\ldots, N-2\\}$ if $N$ is even, and all odd numbers in $\\{1, 3, 5, \\ldots, N-2\\}$ if $N$ is odd. Equivalently, the possible numbers of middle boys are all integers of the form $N - 2k$ for $k = 1, 2, \\ldots, \\lfloor N/2 \\rfloor$."
+  }
+}

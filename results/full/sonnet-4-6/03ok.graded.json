@@ -1,0 +1,25 @@
+{
+  "id": "03ok",
+  "country": "China",
+  "competition": "China Mathematical Competition",
+  "gold_final_answer": "9",
+  "topics_flat": [
+    "Algebra > Intermediate Algebra > Quadratic functions",
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities"
+  ],
+  "prompt": "Suppose a quadratic function $f(x) = a x^2 + b x + c$ ($a, b, c \\in \\mathbb{R}$, and $a \\neq 0$) satisfies the following conditions:\n(1) When $x \\in \\mathbb{R}$, $f(x-4) = f(2-x)$ and $f(x) \\ge x$.\n(2) When $x \\in (0, 2)$, $f(x) \\le \\left(\\frac{x+1}{2}\\right)^2$.\n(3) The minimum value of $f(x)$ on $\\mathbb{R}$ is $0$.\nFind the maximal $m$ ($m > 1$) such that there exists $t \\in \\mathbb{R}$, $f(x+t) \\le x$ holds so long as $x \\in [1, m]$.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Setting Up the Problem\n\n**From condition (1):** f(x-4) = f(2-x) means the axis of symmetry is at x = -1 (midpoint of x-4 and 2-x... wait, let me recalculate).\n\nf(x-4) = f(2-x): substituting u = x-4 and v = 2-x, we have u+v = -2, so the axis of symmetry is at x = -1.\n\nThus b = 2a, so f(x) = a(x+1)² + c.\n\n**From condition (3):** minimum value is 0, so c = 0 (since minimum is a(x+1)² ≥ 0 with minimum 0).\n\nThus f(x) = a(x+1)².\n\n**From condition (1), f(x) ≥ x:** a(x+1)² ≥ x for all x ∈ ℝ.\nThis means a(x+1)² - x ≥ 0 for all x. The discriminant must be ≤ 0:\nax² + (2a-1)x + a ≥ 0 for all x requires a > 0 and discriminant ≤ 0.\nDiscriminant: (2a-1)² - 4a² = 4a² - 4a + 1 - 4a² = 1 - 4a ≤ 0, so a ≥ 1/4.\n\n**From condition (2):** For x ∈ (0,2), f(x) ≤ ((x+1)/2)².\na(x+1)² ≤ (x+1)²/4, so a ≤ 1/4.\n\nCombining: **a = 1/4**, so f(x) = (x+1)²/4.\n\n## Finding Maximal m\n\nWe need: there exists t ∈ ℝ such that f(x+t) ≤ x for all x ∈ [1, m].\n\nf(x+t) ≤ x means (x+t+1)²/4 ≤ x, i.e., (x+t+1)² ≤ 4x.\n\nThis gives: -2√x ≤ x+t+1 ≤ 2√x\n\nSo: -2√x - x - 1 ≤ t ≤ 2√x - x - 1\n\nFor t to exist satisfying this for all x ∈ [1,m], we need:\n$$\\max_{x \\in [1,m]} (-2\\sqrt{x} - x - 1) \\leq \\min_{x \\in [1,m]} (2\\sqrt{x} - x - 1)$$\n\nLet g(x) = 2√x - x - 1 and h(x) = -2√x - x - 1.\n\n**Analyzing g(x) = 2√x - x - 1:**\ng'(x) = 1/√x - 1 = 0 at x = 1. g(1) = 2-1-1 = 0. g''(1) < 0, so x=1 is a maximum.\ng is decreasing on [1,m], so min g(x) = g(m) = 2√m - m - 1.\n\n**Analyzing h(x) = -2√x - x - 1:**\nh'(x) = -1/√x - 1 < 0, so h is decreasing on [1,m].\nmax h(x) = h(1) = -2-1-1 = -4.\n\nThe condition becomes:\n$$-4 \\leq 2\\sqrt{m} - m - 1$$\n\nSo: 2√m - m - 1 ≥ -4\n2√m - m + 3 ≥ 0\nm - 2√m - 3 ≤ 0\n\nLet u = √m: u² - 2u - 3 ≤ 0\n(u-3)(u+1) ≤ 0\nSince u > 0: u ≤ 3, so √m ≤ 3, meaning **m ≤ 9**.\n\n**Verification at m = 9:** We need t such that:\n- t ≤ g(9) = 6-9-1 = -4\n- t ≥ h(1) = -4\n\nSo t = -4 works. Check: f(x-4) = (x-3)²/4 ≤ x?\n(x-3)² ≤ 4x → x²-6x+9 ≤ 4x → x²-10x+9 ≤ 0 → (x-1)(x-9) ≤ 0. ✓ for x ∈ [1,9].\n\nFinal answer: $m = 9$",
+  "usage": {
+    "input_tokens": 267,
+    "output_tokens": 1242,
+    "thinking_tokens": 0
+  },
+  "latency_s": 13.432556572020985,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "normalized",
+    "predicted": "$m = 9$"
+  }
+}

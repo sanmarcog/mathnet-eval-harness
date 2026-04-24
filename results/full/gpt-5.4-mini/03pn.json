@@ -1,0 +1,20 @@
+{
+  "id": "03pn",
+  "country": "China",
+  "competition": "China Mathematical Olympiad",
+  "gold_final_answer": "λ = √3/3 for n = 1; λ = 2√3/3 for n = 2; λ = n − 1 for n ≥ 3",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities",
+    "Algebra > Equations and Inequalities > QM-AM-GM-HM / Power Mean"
+  ],
+  "prompt": "Given a positive integer $n$, find the least positive number $\\lambda$ such that $\\cos \\theta_1 + \\cos \\theta_2 + \\cdots + \\cos \\theta_n$ is not greater than $\\lambda$ provided $\\tan \\theta_1 \\cdot \\tan \\theta_2 \\cdot \\cdots \\cdot \\tan \\theta_n = 2^{\\frac{n}{2}}$ for any $\\theta_i \\in (0, \\frac{\\pi}{2})$ ($i=1, 2, \\cdots, n$).",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let  \n\\[\nx_i=\\tan\\theta_i>0\\qquad (i=1,\\dots,n),\n\\]\nso the condition becomes\n\\[\nx_1x_2\\cdots x_n=2^{n/2}.\n\\]\nAlso,\n\\[\n\\cos\\theta_i=\\frac1{\\sqrt{1+\\tan^2\\theta_i}}=\\frac1{\\sqrt{1+x_i^2}}.\n\\]\n\nWe want the maximum possible value of\n\\[\nS=\\sum_{i=1}^n \\frac1{\\sqrt{1+x_i^2}}\n\\]\nunder the fixed-product condition.\n\nNow consider the function\n\\[\nf(x)=\\frac1{\\sqrt{1+x^2}},\\qquad x>0.\n\\]\nIt is convex in \\(\\ln x\\), so by Jensen on the variables \\(u_i=\\ln x_i\\) with fixed sum\n\\[\n\\sum u_i=\\ln\\!\\left(2^{n/2}\\right)=\\frac n2\\ln 2,\n\\]\nthe sum \\(S\\) is maximized when all \\(x_i\\) are equal:\n\\[\nx_1=x_2=\\cdots=x_n=2^{1/2}=\\sqrt2.\n\\]\nThen\n\\[\n\\cos\\theta_i=\\frac1{\\sqrt{1+2}}=\\frac1{\\sqrt3},\n\\]\nso\n\\[\nS\\le n\\cdot \\frac1{\\sqrt3}=\\frac{n}{\\sqrt3}.\n\\]\nThis bound is attained when \\(\\tan\\theta_i=\\sqrt2\\) for all \\(i\\), so it is the least possible upper bound.\n\n\\[\n\\boxed{\\lambda=\\frac{n}{\\sqrt3}}\n\\]\n\nFinal answer: \\(\\displaystyle \\frac{n}{\\sqrt3}\\)",
+  "usage": {
+    "input_tokens": 171,
+    "output_tokens": 397,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.2653791959164664,
+  "cached": false
+}

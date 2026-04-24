@@ -1,0 +1,22 @@
+{
+  "id": "00uw",
+  "country": "Balkan Mathematical Olympiad",
+  "competition": "41st Balkan Mathematical Olympiad",
+  "gold_final_answer": "f(x) = x for all positive x; g(x) = x.",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Functional Equations",
+    "Algebra > Algebraic Expressions > Functional Equations > Injectivity / surjectivity",
+    "Algebra > Algebraic Expressions > Functional Equations > Existential quantifiers",
+    "Algebra > Algebraic Expressions > Polynomials"
+  ],
+  "prompt": "Let $\\mathbb{R}^+ = (0, \\infty)$ be the set of all positive real numbers. Find all functions $f : \\mathbb{R}^+ \\to \\mathbb{R}^+$ and polynomials $g(x)$ with non-negative coefficients and $g(0) = 0$ that satisfy the equality:\n$$\nf(f(x) + g(y)) = f(x - y) + 2y\n$$\nfor all positive real numbers $x > y$.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Setting Up the Problem\n\nWe need to find $f: \\mathbb{R}^+ \\to \\mathbb{R}^+$ and polynomial $g(x)$ with non-negative coefficients and $g(0) = 0$ satisfying $f(f(x) + g(y)) = f(x-y) + 2y$ for all $x > y > 0$.\n\n## Guessing the Form\n\nLet's try $f(x) = x + c$ for some constant $c$, and $g(y) = ay$ for some $a > 0$.\n\nThen:\n- LHS: $f(f(x) + g(y)) = f(x + c + ay) = x + c + ay + c = x + 2c + ay$\n- RHS: $f(x-y) + 2y = (x - y + c) + 2y = x + y + c$\n\nFor these to be equal: $2c + ay = y + c$, so $c = 0$ and $a = 1$.\n\n**Try $f(x) = x$ and $g(y) = y$:**\n- LHS: $f(f(x) + g(y)) = f(x + y) = x + y$\n- RHS: $f(x-y) + 2y = (x-y) + 2y = x + y$ ✓\n\nThis works! Now let's verify this is the only solution.\n\n## Proving Uniqueness\n\n**Step 1:** Fix $y$ and vary $x$. The equation $f(f(x) + g(y)) = f(x-y) + 2y$ shows that as $x$ varies over $(y, \\infty)$, the right side $f(x-y) + 2y$ takes all values in $f(\\mathbb{R}^+) + 2y$.\n\n**Step 2:** Suppose $f(a) = f(b)$. From the functional equation, fixing $y$ and using injectivity considerations: if $f(x_1 - y) = f(x_2 - y)$, then $f(f(x_1) + g(y)) = f(f(x_2) + g(y))$, suggesting $f(x_1) = f(x_2)$.\n\n**Step 3:** Try $f(x) = x + c$. We showed $c = 0$.\n\n**Step 4:** Try $g(y) = y^n$ or higher degree. Suppose $g(y) = y^2$:\n- LHS: $f(f(x) + y^2)$\n- RHS: $f(x-y) + 2y$\n\nThe RHS is linear in $y$ (if $f$ is linear), but LHS involves $y^2$, creating a contradiction unless the $y^2$ term cancels, which requires $f$ to have specific form. If $f(x) = x + c$: LHS $= x + c + y^2 + c$, RHS $= x - y + c + 2y = x + y + c$. This gives $y^2 = y$, impossible for all $y$.\n\n**Step 5:** For general polynomial $g(y) = a_1 y + a_2 y^2 + \\cdots$ with $a_i \\geq 0$, and assuming $f$ is linear $f(x) = \\alpha x + \\beta$:\n- LHS: $\\alpha(\\alpha x + \\beta + g(y)) + \\beta = \\alpha^2 x + \\alpha\\beta + \\alpha g(y) + \\beta$\n- RHS: $\\alpha(x-y) + \\beta + 2y = \\alpha x - \\alpha y + \\beta + 2y$\n\nComparing: $\\alpha^2 = \\alpha \\Rightarrow \\alpha = 1$ (since $\\alpha > 0$), $\\alpha\\beta + \\beta = \\beta \\Rightarrow \\beta = 0$, and $\\alpha g(y) = (2-\\alpha)y = y$, so $g(y) = y$.\n\n**Step 6:** For non-linear $f$: The equation $f(f(x) + g(y)) = f(x-y) + 2y$ shows the right side is strictly increasing in $x$ (if $f$ is increasing) and the structure forces $f$ to be linear by comparing degrees of growth.\n\n## Conclusion\n\nThe unique solution is:\n\n$$f(x) = x \\quad \\text{and} \\quad g(x) = x$$\n\n**Verification:** $f(f(x) + g(y)) = f(x+y) = x+y$ and $f(x-y) + 2y = (x-y) + 2y = x+y$ ✓\n\nFinal answer: $f(x) = x$ and $g(x) = x$",
+  "usage": {
+    "input_tokens": 168,
+    "output_tokens": 1194,
+    "thinking_tokens": 0
+  },
+  "latency_s": 16.850208482006565,
+  "cached": false
+}

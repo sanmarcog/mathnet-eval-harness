@@ -1,0 +1,25 @@
+{
+  "id": "01rn",
+  "country": "Belarus",
+  "competition": "FINAL ROUND",
+  "gold_final_answer": "4",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Vieta's formulas",
+    "Algebra > Algebraic Expressions > Polynomials > Polynomial operations"
+  ],
+  "prompt": "Numbers $x_1$, $x_2$, $x_3$ ($x_1 < x_2 < x_3$) are the roots of the equation\n$$\nx^3 - 3x^2 + (a+2)x - a = 0,\n$$\nwhere $a$ is a real number.\nFind all possible values of the expression $4x_1 - x_1^2 + x_3^2$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let  \n\\[\nP(x)=x^3-3x^2+(a+2)x-a.\n\\]\nSince \\(x_1,x_2,x_3\\) are its roots, by Vieta:\n\n\\[\nx_1+x_2+x_3=3,\\qquad x_1x_2+x_1x_3+x_2x_3=a+2,\\qquad x_1x_2x_3=a.\n\\]\n\nNotice\n\\[\nP(1)=1-3+(a+2)-a=0,\n\\]\nso \\(x=1\\) is always a root. Hence one root is \\(1\\), and the polynomial factors as\n\\[\nP(x)=(x-1)\\bigl(x^2-2x+a\\bigr).\n\\]\nThus the other two roots are\n\\[\n1\\pm \\sqrt{1-a}.\n\\]\nSince \\(x_1<x_2<x_3\\), we have\n\\[\nx_1=1-\\sqrt{1-a},\\quad x_2=1,\\quad x_3=1+\\sqrt{1-a},\n\\]\nwith \\(a\\le 1\\).\n\nNow compute:\n\\[\n4x_1-x_1^2+x_3^2.\n\\]\nLet \\(t=\\sqrt{1-a}\\ge 0\\). Then\n\\[\nx_1=1-t,\\qquad x_3=1+t.\n\\]\nSo\n\\[\n4x_1-x_1^2+x_3^2\n=4(1-t)-(1-t)^2+(1+t)^2.\n\\]\nExpand:\n\\[\n=4-4t-(1-2t+t^2)+(1+2t+t^2)=4.\n\\]\n\nSo the expression is constant.\n\nFinal answer: \\(\\boxed{4}\\)",
+  "usage": {
+    "input_tokens": 144,
+    "output_tokens": 400,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 2.699754694942385,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "exact",
+    "predicted": "4"
+  }
+}

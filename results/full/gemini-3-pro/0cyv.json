@@ -1,0 +1,21 @@
+{
+  "id": "0cyv",
+  "country": "Saudi Arabia",
+  "competition": "Saudi Arabia Mathematical Competitions",
+  "gold_final_answer": "a_1432 = 16, a_1433 = 8; and in general\n- a_n = 4·tau(n) if n is odd,\n- a_n = 0 if n ≡ 2 mod 4,\n- a_n = 4·tau(n/4) if n is divisible by 4.",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Factorization techniques",
+    "Number Theory > Number-Theoretic Functions > τ (number of divisors)",
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities"
+  ],
+  "prompt": "For any positive integer $n$ let $a_{n}$ be the number of pairs $(x, y)$ of integers satisfying $|x^{2}-y^{2}|=n$.\n\na. Find $a_{1432}$ and $a_{1433}$.\n\nb. Find $a_{n}$.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find the number of integer pairs $(x, y)$ satisfying $|x^2 - y^2| = n$, we can consider the equation $x^2 - y^2 = n$ and $x^2 - y^2 = -n$. Since $n > 0$, these two cases are mutually exclusive, and by symmetry (swapping $x$ and $y$), they have the same number of solutions. Thus, the total number of solutions $a_n$ is twice the number of solutions to $x^2 - y^2 = n$.\n\nWe can factor $x^2 - y^2 = n$ as $(x-y)(x+y) = n$. Let $u = x-y$ and $v = x+y$. Then $uv = n$. \nNotice that $u + v = 2x$, which is even, so $u$ and $v$ must have the same parity. \nFor each valid pair of factors $(u, v)$, we uniquely determine $x = \\frac{u+v}{2}$ and $y = \\frac{v-u}{2}$.\n\nLet $d(k)$ denote the number of positive divisors of $k$.\n- If $n$ is odd, any factorization $n = uv$ consists of two odd factors, which naturally have the same parity. There are $2d(n)$ such integer pairs $(u, v)$ (accounting for negative factors). Thus, $x^2 - y^2 = n$ has $2d(n)$ solutions, giving $a_n = 4d(n)$.\n- If $n \\equiv 2 \\pmod 4$, it is impossible for $u$ and $v$ to have the same parity and multiply to $n$. Thus, $a_n = 0$.\n- If $n \\equiv 0 \\pmod 4$, both $u$ and $v$ must be even. Let $u = 2a$ and $v = 2b$, so $ab = n/4$. There are $2d(n/4)$ such pairs $(a, b)$, giving $a_n = 4d(n/4)$.\n\n**Part a:**\nFor $n = 1432$:\n$1432 \\equiv 0 \\pmod 4$, so we use $a_n = 4d(n/4)$.\n$1432 / 4 = 358 = 2 \\times 179$. Since $179$ is prime, $d(358) = d(2) \\times d(179) = 2 \\times 2 = 4$.\n$a_{1432} = 4 \\times 4 = 16$.\n\nFor $n = 1433$:\n$1433$ is odd, so we use $a_n = 4d(n)$.\nChecking for prime factors up to $\\sqrt{1433} \\approx 37.8$, we find that $1433$ is prime. Thus, $d(1433) = 2$.\n$a_{1433} = 4 \\times 2 = 8$.\n\nFinal answer: a. a_{1432}=16, a_{1433}=8; b. a_n=4d(n) if n is odd, 0 if n \\equiv 2 \\pmod 4, 4d(n/4) if n \\equiv 0 \\pmod 4",
+  "usage": {
+    "input_tokens": 106,
+    "output_tokens": 778,
+    "thoughts_tokens": 2726
+  },
+  "latency_s": 29.609155970043503,
+  "cached": true
+}

@@ -1,0 +1,25 @@
+{
+  "id": "065m",
+  "country": "Greece",
+  "competition": "SELECTION EXAMINATION",
+  "gold_final_answer": "(10, 8, 6)",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities > Cauchy-Schwarz",
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities"
+  ],
+  "prompt": "Find all triples of real numbers $(x, y, z)$ which are greater than $3$ and satisfy the equality:\n$$\n\\frac{(x+2)^2}{y+z-2} + \\frac{(y+4)^2}{z+x-4} + \\frac{(z+6)^2}{x+y-6} = 36.\n$$",
+  "model": "gpt-5.4",
+  "response_text": "Let\n\\[\nA=\\frac{(x+2)^2}{y+z-2},\\qquad\nB=\\frac{(y+4)^2}{z+x-4},\\qquad\nC=\\frac{(z+6)^2}{x+y-6}.\n\\]\nWe are given\n\\[\nA+B+C=36,\n\\]\nwith \\(x,y,z>3\\). We seek all such triples.\n\n## 1) Use Titu’s lemma / Engel form of Cauchy\n\nFor positive denominators,\n\\[\n\\sum \\frac{a_i^2}{b_i}\\ge \\frac{(a_1+a_2+a_3)^2}{b_1+b_2+b_3}.\n\\]\nApply it with\n\\[\na_1=x+2,\\; a_2=y+4,\\; a_3=z+6,\n\\]\nand\n\\[\nb_1=y+z-2,\\; b_2=z+x-4,\\; b_3=x+y-6.\n\\]\nThen\n\\[\n36\\ge \\frac{(x+y+z+12)^2}{(y+z-2)+(z+x-4)+(x+y-6)}.\n\\]\nNow\n\\[\n(y+z-2)+(z+x-4)+(x+y-6)=2x+2y+2z-12=2(x+y+z-6).\n\\]\nSo\n\\[\n36\\ge \\frac{(x+y+z+12)^2}{2(x+y+z-6)}.\n\\]\nSet\n\\[\ns=x+y+z.\n\\]\nThen\n\\[\n36\\ge \\frac{(s+12)^2}{2(s-6)}.\n\\]\nSince \\(x,y,z>3\\), we have \\(s>9\\), so \\(s-6>0\\). Multiply through:\n\\[\n72(s-6)\\ge (s+12)^2.\n\\]\nThat is\n\\[\n72s-432\\ge s^2+24s+144,\n\\]\n\\[\n0\\ge s^2-48s+576=(s-24)^2.\n\\]\nHence necessarily\n\\[\n(s-24)^2=0 \\quad\\Longrightarrow\\quad s=24.\n\\]\n\nSo equality must hold in Titu’s lemma.\n\n## 2) Equality conditions\n\nEquality in Titu’s lemma requires\n\\[\n\\frac{x+2}{y+z-2}=\\frac{y+4}{z+x-4}=\\frac{z+6}{x+y-6}.\n\\]\nAlso \\(x+y+z=24\\). Rewrite denominators using \\(s=24\\):\n\\[\ny+z-2=22-x,\\quad z+x-4=20-y,\\quad x+y-6=18-z.\n\\]\nBut since \\(x+y+z=24\\),\n\\[\n22-x=y+z-2,\\qquad 20-y=z+x-4,\\qquad 18-z=x+y-6,\n\\]\nand also\n\\[\nx+2=26-(y+z),\\quad y+4=28-(z+x),\\quad z+6=30-(x+y),\n\\]\nso it is easiest to use directly:\n\\[\n\\frac{x+2}{y+z-2}=\\frac{x+2}{22-x},\\quad\n\\frac{y+4}{z+x-4}=\\frac{y+4}{20-y},\\quad\n\\frac{z+6}{x+y-6}=\\frac{z+6}{18-z}.\n\\]\nBut because \\(x+y+z=24\\),\n\\[\nx+2 = 26-(y+z),\\quad 22-x = (y+z)-2,\n\\]\netc. A cleaner route is to compare each numerator and denominator:\n\nIf the common ratio is \\(k\\), then\n\\[\nx+2=k(y+z-2),\\quad y+4=k(z+x-4),\\quad z+6=k(x+y-6).\n\\]\nSumming gives\n\\[\n(x+y+z)+12 = k\\big((y+z-2)+(z+x-4)+(x+y-6)\\big).\n\\]\nSince \\(x+y+z=24\\), this becomes\n\\[\n36 = k\\cdot 36,\n\\]\nso \\(k=1\\).\n\nTherefore\n\\[\nx+2=y+z-2,\\qquad y+4=z+x-4,\\qquad z+6=x+y-6.\n\\]\nUsing \\(x+y+z=24\\), these simplify to\n\\[\nx+2=22-x \\Rightarrow 2x=20 \\Rightarrow x=10,\n\\]\n\\[\ny+4=20-y \\Rightarrow 2y=16 \\Rightarrow y=8,\n\\]\n\\[\nz+6=18-z \\Rightarrow 2z=12 \\Rightarrow z=6.\n\\]\n\nThese indeed satisfy \\(x,y,z>3\\).\n\n## 3) Check\n\n\\[\n\\frac{(10+2)^2}{8+6-2}+\\frac{(8+4)^2}{6+10-4}+\\frac{(6+6)^2}{10+8-6}\n=\n\\frac{144}{12}+\\frac{144}{12}+\\frac{144}{12}\n=12+12+12=36.\n\\]\n\nSo the unique solution is\n\nFinal answer: \\((x,y,z)=(10,8,6)\\).",
+  "usage": {
+    "input_tokens": 128,
+    "output_tokens": 1186,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 15.568387328996323,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "\\((x,y,z)=(10,8,6)\\)."
+  }
+}

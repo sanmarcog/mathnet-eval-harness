@@ -1,0 +1,25 @@
+{
+  "id": "06tq",
+  "country": "IMO",
+  "competition": "IMO 2016 Shortlisted Problems",
+  "gold_final_answer": "4/9",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities > Cauchy-Schwarz",
+    "Algebra > Algebraic Expressions > Sequences and Series > Telescoping series"
+  ],
+  "prompt": "Determine the largest real number $a$ such that for all $n \\geqslant 1$ and for all real numbers $x_{0}, x_{1}, \\ldots, x_{n}$ satisfying $0=x_{0}<x_{1}<x_{2}<\\cdots<x_{n}$, we have\n$$\n\\frac{1}{x_{1}-x_{0}}+\\frac{1}{x_{2}-x_{1}}+\\cdots+\\frac{1}{x_{n}-x_{n-1}} \\geqslant a\\left(\\frac{2}{x_{1}}+\\frac{3}{x_{2}}+\\cdots+\\frac{n+1}{x_{n}}\\right)\n$$",
+  "model": "claude-sonnet-4-6",
+  "response_text": "4/9\n\nFinal answer: 4/9",
+  "usage": {
+    "input_tokens": 225,
+    "output_tokens": 15,
+    "thinking_tokens": 0
+  },
+  "latency_s": 1.1036916930461302,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "exact",
+    "predicted": "4/9"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "id": "0aj2",
+  "country": "North Macedonia",
+  "competition": "Macedonian Junior Mathematical Olympiad",
+  "gold_final_answer": "Equality holds when a = b = c = 1/4.",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities > QM-AM-GM-HM / Power Mean"
+  ],
+  "prompt": "Prove that for positive real numbers $a, b, c$ the following inequality holds:\n$$\n(16a^2 + 8b + 17)(16b^2 + 8c + 17)(16c^2 + 8a + 17) \\geq 2^{12}(a+1)(b+1)(c+1).\n$$\nWhen does equality hold?",
+  "model": "claude-sonnet-4-6",
+  "response_text": "We will show that for any positive real $x, y > 0$ the following single-variable inequality holds:\n\n$$16x^2 + 8y + 17 \\geq 8(x+1)(y+1),$$\n\nand then multiply three such inequalities cyclically.\n\n**Step 1: Prove the key lemma.**\n\n**Lemma.** For all positive reals $x, y$:\n$$16x^2 + 8y + 17 \\geq 8(x+1)(y+1).$$\n\n*Proof.* Expand the right side:\n$$8(x+1)(y+1) = 8xy + 8x + 8y + 8.$$\n\nSo we need:\n$$16x^2 + 8y + 17 - 8xy - 8x - 8y - 8 \\geq 0,$$\n$$16x^2 - 8xy - 8x + 9 \\geq 0.$$\n\nView this as a quadratic in $x$:\n$$f(x) = 16x^2 - 8(y+1)x + 9.$$\n\nIts discriminant is:\n$$\\Delta = 64(y+1)^2 - 4 \\cdot 16 \\cdot 9 = 64(y+1)^2 - 576.$$\n\nFor $f(x) \\geq 0$ for all real $x$, we would need $\\Delta \\leq 0$, which is not always true. So we need a different approach.\n\nInstead, we use AM-GM. We want to show:\n$$16x^2 - 8xy - 8x + 9 \\geq 0.$$\n\nWrite $16x^2 - 8xy - 8x + 9 = 16x^2 - 8x(y+1) + 9$.\n\nBy AM-GM: $16x^2 + 9 \\geq 2\\sqrt{16x^2 \\cdot 9} = 24x$.\n\nSo $16x^2 - 8x(y+1) + 9 \\geq 24x - 8x(y+1) = 8x(3 - (y+1)) = 8x(2-y)$.\n\nThis is not always nonneg. Let us try a smarter split.\n\n**Better approach:** Write\n$$16x^2 + 8y + 17 = (4x-1)^2 + 8x + 8y + 16 = (4x-1)^2 + 8(x + y + 2).$$\n\nBy AM-GM: $x + y + 2 \\geq 2\\sqrt{(x+1)(y+1)} - ?$... Let's try directly.\n\nWe claim: $16x^2 + 8y + 17 \\geq 8(x+1)(y+1)$ iff $16x^2 - 8xy - 8x + 9 \\geq 0$.\n\nComplete the square differently: $16x^2 - 8x(y+1) + 9$. The minimum over $x$ is at $x = \\frac{y+1}{4}$, giving $9 - (y+1)^2$. This is negative when $y > 2$.\n\nSo the lemma as stated is **false** in general. We need a different factoring.\n\n**Step 2: Correct approach — use AM-GM on the product directly.**\n\nBy AM-GM on three terms:\n$$16a^2 + 8b + 17 \\geq 3\\sqrt[3]{16a^2 \\cdot 8b \\cdot 17}.$$\n\nThis seems hard to use. Instead, apply AM-GM as:\n$$16a^2 + 8b + 17 = 16a^2 + 1 + 8b + 16 \\geq 2\\sqrt{16a^2} + 8(b+2) - \\text{no...}$$\n\nTry: $16a^2 + 1 \\geq 8a$ (AM-GM: $16a^2 + 1 \\geq 2\\cdot 4a = 8a$) and $8b + 16 = 8(b+2)$.\n\nSo $16a^2 + 8b + 17 \\geq 8a + 8(b+2) = 8(a + b + 2)$.\n\nSimilarly: $16b^2 + 8c + 17 \\geq 8(b+c+2)$ and $16c^2 + 8a + 17 \\geq 8(c+a+2)$.\n\nThus:\n$$(16a^2+8b+17)(16b^2+8c+17)(16c^2+8a+17) \\geq 8^3(a+b+2)(b+c+2)(c+a+2).$$\n\nNow we need: $(a+b+2)(b+c+2)(c+a+2) \\geq 8(a+1)(b+1)(c+1)$.\n\nBy AM-GM: $a+b+2 = (a+1)+(b+1) \\geq 2\\sqrt{(a+1)(b+1)}$. Similarly for the other factors. Multiplying:\n$$(a+b+2)(b+c+2)(c+a+2) \\geq 8\\sqrt{(a+1)^2(b+1)^2(c+1)^2} = 8(a+1)(b+1)(c+1).$$\n\nTherefore:\n$$(16a^2+8b+17)(16b^2+8c+17)(16c^2+8a+17) \\geq 512 \\cdot 8(a+1)(b+1)(c+1) = 4096(a+1)(b+1)(c+1) = 2^{12}(a+1)(b+1)(c+1).$$\n\n**Equality conditions:**\n\n- $16a^2 + 1 = 8a \\Rightarrow (4a-1)^2 = 0 \\Rightarrow a = \\tfrac{1}{4}$. Similarly $b = \\tfrac{1}{4}$, $c = \\tfrac{1}{4}$.\n- $a+1 = b+1 \\Rightarrow a = b$, $b = c$, $c = a$.\n\nBoth conditions give $a = b = c = \\tfrac{1}{4}$.\n\n**Verification:** At $a=b=c=\\tfrac{1}{4}$: $16\\cdot\\tfrac{1}{16}+8\\cdot\\tfrac{1}{4}+17 = 1+2+17=20$. LHS $= 20^3 = 8000$. RHS $= 4096\\cdot(\\tfrac{5}{4})^3 = 4096\\cdot\\tfrac{125}{64} = 8000$. ✓\n\n**Conclusion.** The inequality holds for all positive reals $a,b,c$, with equality if and only if $a = b = c = \\dfrac{1}{4}$. $\\blacksquare$\n\nFinal answer: Equality holds if and only if $a = b = c = \\dfrac{1}{4}$.",
+  "usage": {
+    "input_tokens": 138,
+    "output_tokens": 1812,
+    "thinking_tokens": 0
+  },
+  "latency_s": 21.06506662501488,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "Equality holds if and only if $a = b = c = \\dfrac{1}{4}$."
+  }
+}

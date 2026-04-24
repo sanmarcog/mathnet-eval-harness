@@ -1,0 +1,25 @@
+{
+  "id": "04q4",
+  "country": "Croatia",
+  "competition": "Croatian Junior Mathematical Olympiad",
+  "gold_final_answer": "(-4, 3) and (3, -4)",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities",
+    "Algebra > Intermediate Algebra > Quadratic functions"
+  ],
+  "prompt": "Find all pairs $(a, b)$ of real (not necessarily positive) numbers such that $a^2 + b^2 = 25$, for which $ab + a + b$ attains the smallest possible value.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "We need to find pairs (a, b) with a² + b² = 25 that minimize ab + a + b.\n\nLet me parametrize: a = 5cos θ, b = 5sin θ.\n\nThen ab + a + b = 25cos θ sin θ + 5cos θ + 5sin θ = (25/2)sin 2θ + 5(cos θ + sin θ).\n\nLet s = cos θ + sin θ = √2 sin(θ + π/4), so s ∈ [-√2, √2].\nAlso s² = 1 + 2cos θ sin θ = 1 + sin 2θ, so sin 2θ = s² - 1.\n\nThus: ab + a + b = (25/2)(s² - 1) + 5s = (25/2)s² + 5s - 25/2.\n\nLet f(s) = (25/2)s² + 5s - 25/2 for s ∈ [-√2, √2].\n\nThis is a upward-opening parabola with vertex at s = -5/25 = -1/5.\n\nWait, vertex at s = -b/(2a) = -5/25 = -1/5. Since the parabola opens upward, the minimum is at s = -1/5.\n\nf(-1/5) = (25/2)(1/25) + 5(-1/5) - 25/2 = 1/2 - 1 - 25/2 = 1/2 - 1 - 25/2 = -13.\n\nSo the minimum value is -13, achieved when cos θ + sin θ = -1/5.\n\nNow find (a, b): a + b = 5(cos θ + sin θ) = 5(-1/5) = -1, and a² + b² = 25.\n\nFrom a + b = -1 and a² + b² = 25:\n(a + b)² = a² + 2ab + b² = 1, so 25 + 2ab = 1, giving ab = -12.\n\nSo a and b are roots of t² + t - 12 = 0: t = (-1 ± √49)/2 = (-1 ± 7)/2.\n\nThus t = 3 or t = -4.\n\nThe pairs are **(a, b) = (3, -4) and (a, b) = (-4, 3)**.\n\nVerification: 3² + (-4)² = 9 + 16 = 25 ✓\nab + a + b = -12 + 3 + (-4) = -13 ✓\n\nFinal answer: $(a, b) = (3, -4)$ and $(a, b) = (-4, 3)$",
+  "usage": {
+    "input_tokens": 96,
+    "output_tokens": 698,
+    "thinking_tokens": 0
+  },
+  "latency_s": 7.820870747091249,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "$(a, b) = (3, -4)$ and $(a, b) = (-4, 3)$"
+  }
+}

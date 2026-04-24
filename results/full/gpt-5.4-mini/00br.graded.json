@@ -1,0 +1,25 @@
+{
+  "id": "00br",
+  "country": "Argentina",
+  "competition": "Argentina_2018",
+  "gold_final_answer": "21, 25, 29, 41",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Sequences and Series > Sums and products",
+    "Number Theory > Divisibility / Factorization > Factorization techniques"
+  ],
+  "prompt": "A natural number is written on each face of a cube. To each vertex of the cube assign the product of the numbers of the three faces that have this vertex in common. Let the sum of these 8 products be 315. Determine the sum of the numbers on the faces (find all possibilities).",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let the six face numbers be arranged in opposite pairs:\n\\[\n(a,a'),\\ (b,b'),\\ (c,c').\n\\]\nEach vertex meets exactly one face from each opposite pair, so the sum of the 8 vertex-products is\n\\[\n(a+a')(b+b')(c+c').\n\\]\nWe are told this equals \\(315\\), so if we set\n\\[\nx=a+a',\\quad y=b+b',\\quad z=c+c',\n\\]\nthen\n\\[\nxyz=315.\n\\]\nThe sum of all face numbers is\n\\[\na+a'+b+b'+c+c' = x+y+z.\n\\]\n\nSo we need all factorizations of \\(315\\) into three positive integers \\(x,y,z\\), and then the corresponding possible values of \\(x+y+z\\).\n\nNow\n\\[\n315=3^2\\cdot 5\\cdot 7.\n\\]\nThe possible triples \\((x,y,z)\\) up to order are:\n\n- \\((1,1,315)\\) gives sum \\(317\\)\n- \\((1,3,105)\\) gives sum \\(109\\)\n- \\((1,5,63)\\) gives sum \\(69\\)\n- \\((1,7,45)\\) gives sum \\(53\\)\n- \\((1,9,35)\\) gives sum \\(45\\)\n- \\((1,15,21)\\) gives sum \\(37\\)\n- \\((3,3,35)\\) gives sum \\(41\\)\n- \\((3,5,21)\\) gives sum \\(29\\)\n- \\((3,7,15)\\) gives sum \\(25\\)\n- \\((3,9,15)\\) gives sum \\(27\\)\n- \\((5,7,9)\\) gives sum \\(21\\)\n\nThus the possible sums of the numbers on the faces are:\n\n\\[\n\\boxed{21,25,27,29,37,41,45,53,69,109,317}.\n\\]\n\nFinal answer: \\(21,25,27,29,37,41,45,53,69,109,317\\)",
+  "usage": {
+    "input_tokens": 109,
+    "output_tokens": 460,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.560965679003857,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "\\(21,25,27,29,37,41,45,53,69,109,317\\)"
+  }
+}

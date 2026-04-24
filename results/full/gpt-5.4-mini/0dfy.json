@@ -1,0 +1,20 @@
+{
+  "id": "0dfy",
+  "country": "Saudi Arabia",
+  "competition": "Saudi Arabian IMO Booklet",
+  "gold_final_answer": "Player A has a winning strategy if and only if n is even; Player B has a winning strategy if and only if n is odd (independent of k).",
+  "topics_flat": [
+    "Discrete Mathematics > Graph Theory > Matchings, Marriage Lemma, Tutte's theorem",
+    "Discrete Mathematics > Combinatorics > Games / greedy algorithms"
+  ],
+  "prompt": "Two players, $A$ and $B$ play the following game. On a $1 \\times n$ board, where fields are labeled in order from $1$ to $n$, a coin is placed at position $k$. Players take turns moving the coin, with player $A$ starting first. Each player can move a coin one or two fields in either direction, with the restriction that the coin cannot move onto a field it had already occupied. The player unable to make a move loses. For which values of $(n, k)$ does which player have a winning strategy?",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let the coin’s visited positions be recorded in order. Since the coin may never return to an occupied square, the set of occupied squares is always a consecutive interval \\([L,R]\\) containing the current position \\(x\\).  \nFrom \\(x\\), the only legal moves are:\n\n- to \\(x\\pm1\\) if that square lies outside \\([L,R]\\),\n- to \\(x\\pm2\\) if both intermediate and target squares lie outside \\([L,R]\\).\n\nSo the game is completely determined by the current interval and position.\n\n## Key observation\nA move is impossible exactly when the coin is trapped at an endpoint of the occupied interval and cannot extend further. That happens only when the current interval is the whole board or when the coin is at an endpoint with no legal move outward.\n\nThis game is an instance of a path-growth game, and the outcome depends only on the parity of the number of available moves from the initial position to the board ends.\n\n### Reduction\nFrom the starting square \\(k\\), the coin can move left at most \\(k-1\\) steps away from the left end and right at most \\(n-k\\) steps away from the right end. Since moves are of length 1 or 2, the relevant quantity is the total “distance budget” to both sides. The game is equivalent to a normal-play subtraction game on a path, and the starting position is losing exactly when both sides have the same parity of remaining distance.\n\nA clean way to express the result is:\n\n- If \\(n\\) is odd and \\(k=\\frac{n+1}{2}\\), then \\(B\\) wins.\n- Otherwise, \\(A\\) wins.\n\nIndeed, when the coin starts at the middle square of an odd-length board, every move leaves a symmetric position for the opponent, and the second player can mirror the first player’s moves. In every other case, the first player can move to the center of the remaining interval (or make the position symmetric enough) and force the mirror strategy.\n\nSo the winner is determined by whether the coin starts exactly in the center of an odd-length board.\n\nFinal answer: \\(B\\) has a winning strategy exactly when \\(n\\) is odd and \\(k=\\frac{n+1}{2}\\); otherwise \\(A\\) has a winning strategy.",
+  "usage": {
+    "input_tokens": 167,
+    "output_tokens": 488,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 4.53323577309493,
+  "cached": false
+}

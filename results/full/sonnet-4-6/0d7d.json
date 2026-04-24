@@ -1,0 +1,20 @@
+{
+  "id": "0d7d",
+  "country": "Saudi Arabia",
+  "competition": "SAUDI ARABIAN MATHEMATICAL COMPETITIONS",
+  "gold_final_answer": "n ∈ {5, 3, 2, 0, -1, -3}",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Polynomial operations",
+    "Number Theory > Divisibility / Factorization"
+  ],
+  "prompt": "Find all integers $n$ such that there exists a polynomial $P(x)$ with integer coefficients satisfying\n$$\nP\\left(\\sqrt[3]{n^{2}}+\\sqrt[3]{n}\\right)=2016 n+20 \\sqrt[3]{n^{2}}+16 \\sqrt[3]{n} .\n$$",
+  "model": "claude-sonnet-4-6",
+  "response_text": "Let me set $t = \\sqrt[3]{n}$, so $t^3 = n$. Then $\\sqrt[3]{n^2} = t^2$.\n\nThe argument of $P$ is $t^2 + t$, and the right side is $2016t^3 + 20t^2 + 16t$.\n\nLet $u = t^2 + t$. We need $P(u) = 2016t^3 + 20t^2 + 16t$.\n\nExpress the right side in terms of $u = t^2 + t$:\n\nNote that $u = t(t+1)$, so $u^2 = t^2(t+1)^2 = t^4 + 2t^3 + t^2$, and $u^3 = t^3(t+1)^3 = t^6 + 3t^5 + 3t^4 + t^3$.\n\nLet me try $P(u) = au^3 + bu^2 + cu + d$ and express in terms of $t$.\n\nActually, let me try to express $2016t^3 + 20t^2 + 16t$ as a polynomial in $u = t^2 + t$.\n\nSince $u = t^2 + t$, we have $t^2 = u - t$, so $t^3 = t \\cdot t^2 = t(u-t) = tu - t^2 = tu - (u-t) = tu - u + t = t(u+1) - u$.\n\nSo $t^3 = t(u+1) - u$.\n\nThe RHS: $2016t^3 + 20t^2 + 16t = 2016(t(u+1) - u) + 20(u-t) + 16t$\n$= 2016t(u+1) - 2016u + 20u - 20t + 16t$\n$= 2016t(u+1) - 1996u - 4t$\n$= t(2016(u+1) - 4) - 1996u$\n$= t(2016u + 2012) - 1996u$.\n\nFor $P(u)$ to be a polynomial in $u$ with integer coefficients, we need the coefficient of $t$ to be zero (since $t = \\sqrt[3]{n}$ is generally irrational), OR $t$ must be rational (i.e., $n$ is a perfect cube).\n\n**Case 1: $n$ is a perfect cube.** Let $n = k^3$, so $t = k$ is an integer. Then $u = k^2 + k$ is an integer, and $P(u) = 2016k^3 + 20k^2 + 16k$ is an integer. We need a polynomial $P$ with integer coefficients such that $P(k^2+k) = 2016k^3 + 20k^2 + 16k$ for this specific value. Since we just need one value, any polynomial passing through that point works. So all perfect cubes work.\n\n**Case 2: $n$ is not a perfect cube.** Then $t, t^2, 1$ are linearly independent over $\\mathbb{Q}$ (since $t = n^{1/3}$ is irrational and $t^2/t = t$ is irrational). So we need the coefficient of $t$ to be zero:\n\n$2016u + 2012 - 4 = 0 \\Rightarrow 2016u + 2008 = 0$... wait, let me recheck.\n\nCoefficient of $t$: $2016(u+1) - 4 = 2016u + 2016 - 4 = 2016u + 2012$.\n\nFor this to be zero: $2016u + 2012 = 0$, so $u = -2012/2016 = -503/504$. But $u = t^2 + t$ must satisfy this, which would mean $t^2 + t = -503/504$, giving a specific algebraic value. This is inconsistent unless $n$ is chosen so that $t^2 + t = -503/504$, but then $t$ would be rational only if the discriminant is a perfect square, and $t$ being rational means $n$ is a perfect cube — contradiction.\n\nSo for non-perfect-cube $n$, there's no solution unless the coefficient of $t$ vanishes identically, which requires $2016u + 2012 = 0$ as a constant, impossible.\n\nTherefore, the solutions are exactly the perfect cubes: $n = k^3$ for any integer $k$.\n\nFinal answer: All perfect cube integers, i.e., $n = k^3$ for any integer $k$.",
+  "usage": {
+    "input_tokens": 127,
+    "output_tokens": 1179,
+    "thinking_tokens": 0
+  },
+  "latency_s": 17.66278736689128,
+  "cached": false
+}

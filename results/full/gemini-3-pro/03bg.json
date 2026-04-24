@@ -1,0 +1,22 @@
+{
+  "id": "03bg",
+  "country": "Bulgaria",
+  "competition": "Bulgaria",
+  "gold_final_answer": "2^{2011}(2011\\cdot2010+2)",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments",
+    "Discrete Mathematics > Combinatorics > Induction / smoothing",
+    "Geometry > Plane Geometry > Combinatorial Geometry > Convex hulls",
+    "Geometry > Plane Geometry > Miscellaneous > Constructions and loci"
+  ],
+  "prompt": "Let $M$ be convex 2011-gon. Consider 2011 points lying inside $M$ and such that no three of all 4022 points (the vertexes of $M$ and 2011 points inside $M$) are collinear. A coloring of all points in two colors is called *good* if it is possible to connect some of the points by segments such that the following conditions hold:\n(1) Each segment has its endpoints of one and the same color.\n(2) No segments intersect in inner points.\n(3) Between any two points of the same color there exists a path through the given segments.\nFind the number of all good colorings.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find the number of good colorings, we can rephrase the problem in terms of graph theory and geometry. We are asked to find the number of 2-colorings (say, Red and Blue) of a set $S$ of 4022 points (2011 vertices of a convex polygon and 2011 strictly inside it) such that we can draw non-crossing monochromatic spanning forests that connect all Red points together and all Blue points together.\n\nAccording to a known theorem in discrete geometry (by Kaneko and Kano), for any set of points $S$ in general position colored Red and Blue, there exist non-crossing monochromatic spanning trees for both colors if and only if the vertices of the convex hull of $S$ do not contain an alternating sequence of four points in color (i.e., Red, Blue, Red, Blue in cyclic order). \n\nIn this problem, the convex hull of our set of 4022 points is exactly the 2011 vertices of the convex 2011-gon $M$. The 2011 inner points do not affect the convex hull of $S$. Thus, a coloring is \"good\" if and only if the 2011 vertices of $M$ do not contain an alternating sequence of length 4.\n\nLet $n = 2011$. We want to find the number of colorings of the $n$ vertices of $M$ such that no four vertices alternate in color. This condition means that the colors on the boundary must consist of at most one contiguous block of Red vertices and at most one contiguous block of Blue vertices. \nThe number of such colorings of the convex hull is:\n- All vertices Red: $1$ way\n- All vertices Blue: $1$ way\n- Exactly one proper contiguous block of Red vertices (and the rest Blue): The Red block can have any length from $1$ to $n-1$. For each length, there are $n$ possible starting vertices. This gives $n(n-1)$ ways.\n\nSo, there are $n(n-1) + 2$ valid colorings for the vertices of $M$. \nFor $n = 2011$, this is:\n$2011 \\times 2010 + 2 = 4042110 + 2 = 4042112$ ways.\n\nThe 2011 inner points can be colored in any of the 2 colors without any restrictions, giving $2^{2011}$ possibilities.\n\nMultiplying the possibilities together, the total number of good colorings is:\n$(2011 \\times 2010 + 2) \\times 2^{2011} = 4042112 \\times 2^{2011}$\n\nFinal answer: 4042112 \\cdot 2^{2011}",
+  "usage": {
+    "input_tokens": 190,
+    "output_tokens": 635,
+    "thoughts_tokens": 5352
+  },
+  "latency_s": 54.7533779500518,
+  "cached": false
+}

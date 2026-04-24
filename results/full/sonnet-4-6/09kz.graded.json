@@ -1,0 +1,25 @@
+{
+  "id": "09kz",
+  "country": "Mongolia",
+  "competition": "Mongolian Mathematical Olympiad",
+  "gold_final_answer": "Yes",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Prime numbers",
+    "Number Theory > Divisibility / Factorization > Factorization techniques"
+  ],
+  "prompt": "Are there ten positive integers such that no number in the set is divisible by another number, and the product of any two numbers is divisible by the remaining numbers in the set?",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Setting Up the Problem\n\nWe need 10 positive integers $a_1, a_2, \\ldots, a_{10}$ such that:\n1. No $a_i$ divides $a_j$ for $i \\neq j$\n2. For any two numbers $a_i, a_j$, the product $a_i \\cdot a_j$ is divisible by all other $a_k$ (where $k \\neq i, j$)\n\n## Construction\n\nLet me try numbers of the form using two primes $p, q$.\n\nConsider numbers built from primes $p_1, p_2, \\ldots$ where each number has exactly two prime factors.\n\n**Key idea:** Use numbers $a_i = p_i \\cdot P / p_i$ style construction.\n\nLet $P = p_1 p_2 \\cdots p_{10}$ be a product of 10 distinct primes. Define:\n$$a_i = P / p_i$$\n\nThen $a_i = \\prod_{j \\neq i} p_j$.\n\n**Check condition 1:** Does $a_i \\mid a_j$? We have $a_i = P/p_i$ and $a_j = P/p_j$. Since $a_i/a_j = p_j/p_i$, neither divides the other (for $i \\neq j$). ✓\n\n**Check condition 2:** For any two numbers $a_i, a_j$:\n$$a_i \\cdot a_j = \\frac{P}{p_i} \\cdot \\frac{P}{p_j} = \\frac{P^2}{p_i p_j}$$\n\nWe need this to be divisible by $a_k = P/p_k$ for all $k \\neq i, j$.\n\n$$\\frac{a_i \\cdot a_j}{a_k} = \\frac{P^2}{p_i p_j} \\cdot \\frac{p_k}{P} = \\frac{P \\cdot p_k}{p_i p_j}$$\n\nSince $k \\neq i$ and $k \\neq j$, we have $p_k \\neq p_i$ and $p_k \\neq p_j$. \n\nNow $P = p_1 p_2 \\cdots p_{10}$, so $P/(p_i p_j)$ is an integer (it's the product of all primes except $p_i$ and $p_j$). Therefore:\n$$\\frac{P \\cdot p_k}{p_i p_j} = p_k \\cdot \\frac{P}{p_i p_j}$$\n\nThis is clearly an integer. ✓\n\n## Explicit Example\n\nTake primes $p_1=2, p_2=3, p_3=5, p_4=7, p_5=11, p_6=13, p_7=17, p_8=19, p_9=23, p_{10}=29$.\n\nLet $P = 2\\cdot3\\cdot5\\cdot7\\cdot11\\cdot13\\cdot17\\cdot19\\cdot23\\cdot29 = 6469693230$.\n\nThe ten numbers are $a_i = P/p_i$:\n- $a_1 = P/2 = 3234846615$\n- $a_2 = P/3 = 2156564410$\n- etc.\n\nThese satisfy both conditions.\n\n## Answer\n\n**Yes**, such ten positive integers exist. \n\nTake any 10 distinct primes $p_1, \\ldots, p_{10}$ and let $P = p_1 p_2 \\cdots p_{10}$. The ten numbers $a_i = P/p_i$ satisfy:\n- No one divides another (since $a_i/a_j = p_j/p_i \\notin \\mathbb{Z}$)\n- For any $i \\neq j$: $a_i \\cdot a_j = P^2/(p_i p_j)$, and dividing by any $a_k = P/p_k$ (with $k \\neq i,j$) gives $P \\cdot p_k/(p_i p_j)$, which is an integer since $p_k, p_i, p_j$ are distinct primes all dividing $P$.\n\nFinal answer: Yes",
+  "usage": {
+    "input_tokens": 83,
+    "output_tokens": 1084,
+    "thinking_tokens": 0
+  },
+  "latency_s": 13.108422987046652,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "exact",
+    "predicted": "Yes"
+  }
+}

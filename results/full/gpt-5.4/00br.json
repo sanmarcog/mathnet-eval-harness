@@ -1,0 +1,20 @@
+{
+  "id": "00br",
+  "country": "Argentina",
+  "competition": "Argentina_2018",
+  "gold_final_answer": "21, 25, 29, 41",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Sequences and Series > Sums and products",
+    "Number Theory > Divisibility / Factorization > Factorization techniques"
+  ],
+  "prompt": "A natural number is written on each face of a cube. To each vertex of the cube assign the product of the numbers of the three faces that have this vertex in common. Let the sum of these 8 products be 315. Determine the sum of the numbers on the faces (find all possibilities).",
+  "model": "gpt-5.4",
+  "response_text": "Let the numbers on three pairs of opposite faces be\n\\[\na,a',\\quad b,b',\\quad c,c'.\n\\]\nThen each vertex product is obtained by choosing one number from each opposite pair, so the 8 vertex products are\n\\[\nabc,\\ abc',\\ ab'c,\\ ab'c',\\ a'bc,\\ a'bc',\\ a'b'c,\\ a'b'c'.\n\\]\nHence their sum is\n\\[\n(a+a')(b+b')(c+c')=315.\n\\]\n\nSo we need positive integers\n\\[\nx=a+a',\\quad y=b+b',\\quad z=c+c'\n\\]\nsuch that\n\\[\nxyz=315.\n\\]\nAlso, since each is a sum of two natural numbers, we must have\n\\[\nx,y,z\\ge 2.\n\\]\n\nNow\n\\[\n315=3^2\\cdot 5\\cdot 7.\n\\]\nWe seek all unordered factorizations of 315 into 3 integers at least 2:\n\n\\[\n315=3\\cdot 3\\cdot 35,\n\\]\n\\[\n315=3\\cdot 5\\cdot 21,\n\\]\n\\[\n315=3\\cdot 7\\cdot 15,\n\\]\n\\[\n315=3\\cdot 9\\cdot 11,\n\\]\n\\[\n315=5\\cdot 7\\cdot 9.\n\\]\n\nFor each such triple, the sum of the numbers on the faces is\n\\[\n(a+a')+(b+b')+(c+c')=x+y+z.\n\\]\nTherefore the possible values are\n\\[\n3+3+35=41,\n\\]\n\\[\n3+5+21=29,\n\\]\n\\[\n3+7+15=25,\n\\]\n\\[\n3+9+11=23,\n\\]\n\\[\n5+7+9=21.\n\\]\n\nSo all possible sums of the face numbers are\n\\[\n21,\\ 23,\\ 25,\\ 29,\\ 41.\n\\]\n\nFinal answer: 21, 23, 25, 29, 41",
+  "usage": {
+    "input_tokens": 109,
+    "output_tokens": 455,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 6.158707089023665,
+  "cached": false
+}

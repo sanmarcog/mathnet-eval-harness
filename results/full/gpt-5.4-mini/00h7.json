@@ -1,0 +1,19 @@
+{
+  "id": "00h7",
+  "country": "Asia Pacific Mathematics Olympiad (APMO)",
+  "competition": "APMO",
+  "gold_final_answer": "No",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Functional Equations > Existential quantifiers"
+  ],
+  "prompt": "Let $S=\\{2,3,4, \\ldots\\}$ denote the set of integers that are greater than or equal to $2$. Does there exist a function $f: S \\rightarrow S$ such that\n$$\nf(a) f(b) = f\\left(a^{2} b^{2}\\right) \\text{ for all } a, b \\in S \\text{ with } a \\neq b?\n$$",
+  "model": "gpt-5.4-mini",
+  "response_text": "Yes.\n\nLet us first test whether a constant function works.  \nSuppose \\(f(n)=c\\) for all \\(n\\in S\\), where \\(c\\ge 2\\). Then for any distinct \\(a,b\\in S\\),\n\\[\nf(a)f(b)=c\\cdot c=c^2,\n\\]\nwhile\n\\[\nf(a^2b^2)=c.\n\\]\nSo we would need \\(c^2=c\\), hence \\(c=1\\), impossible since \\(c\\in S\\).\n\nSo a constant function does not work.\n\nNow we show no such function exists at all.\n\nTake distinct \\(a,b,c\\in S\\). From the condition,\n\\[\nf(a)f(b)=f(a^2b^2),\\qquad f(a)f(c)=f(a^2c^2),\\qquad f(b)f(c)=f(b^2c^2).\n\\]\nSince \\(a,b,c\\) are distinct, the numbers \\(a^2b^2\\), \\(a^2c^2\\), \\(b^2c^2\\) are all distinct. Apply the given relation again to the pair \\(a^2b^2\\) and \\(a^2c^2\\) (which are distinct):\n\\[\nf(a^2b^2)f(a^2c^2)=f(a^4b^4c^4).\n\\]\nUsing the first three equations, the left side becomes\n\\[\n(f(a)f(b))(f(a)f(c))=f(a)^2 f(b)f(c).\n\\]\nSimilarly,\n\\[\nf(a^2b^2)f(b^2c^2)=f(a^4b^4c^4),\n\\]\nso\n\\[\nf(a)^2 f(b)f(c)=f(a)f(b)^2 f(c).\n\\]\nBecause values lie in \\(S\\), they are positive integers, so we can cancel \\(f(a)f(b)f(c)\\) to get\n\\[\nf(a)=f(b).\n\\]\nSince \\(a,b\\) were arbitrary distinct elements of \\(S\\), \\(f\\) must be constant on \\(S\\), which we already ruled out.\n\nTherefore such a function cannot exist.\n\nFinal answer: No, there does not exist such a function.",
+  "usage": {
+    "input_tokens": 140,
+    "output_tokens": 505,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.3472668500617146,
+  "cached": false
+}

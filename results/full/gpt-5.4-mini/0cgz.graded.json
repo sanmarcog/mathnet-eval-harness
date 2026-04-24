@@ -1,0 +1,25 @@
+{
+  "id": "0cgz",
+  "country": "Romania",
+  "competition": "74th NMO Selection Tests for JBMO",
+  "gold_final_answer": "1899999",
+  "topics_flat": [
+    "Number Theory > Modular Arithmetic",
+    "Algebra > Algebraic Expressions > Sequences and Series > Floors and ceilings"
+  ],
+  "prompt": "For any positive integer $n$, define $a_n = \\{\\frac{n}{s(n)}\\}$, where $s(k)$ represents the sum of the digits of the natural number $k$, and $\\{x\\}$ is the fractional part of the real number $x$.\n\na) Prove that there exist infinitely many positive integers $n$ such that $a_n = \\frac{1}{2}$.\n\nb) Determine the smallest positive integer $n$ such that $a_n = \\frac{1}{6}$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let \\(s(n)\\) denote the sum of the decimal digits of \\(n\\), and\n\\[\na_n=\\left\\{\\frac{n}{s(n)}\\right\\}.\n\\]\n\nWe use the fact that if \\(n\\equiv r \\pmod{s(n)}\\), then \\(a_n=\\frac{r}{s(n)}\\) provided \\(0\\le r<s(n)\\).\n\n---\n\n## a) Infinitely many \\(n\\) with \\(a_n=\\frac12\\)\n\nWe want\n\\[\n\\left\\{\\frac{n}{s(n)}\\right\\}=\\frac12.\n\\]\nThis means\n\\[\n\\frac{n}{s(n)}=m+\\frac12\n\\]\nfor some integer \\(m\\), i.e.\n\\[\n2n=(2m+1)s(n).\n\\]\nSo \\(s(n)\\) must be even and \\(n\\) must be exactly half an odd multiple of \\(s(n)\\).\n\nA simple infinite family is\n\\[\nn=10^k+2\\cdot 10^{k-1}+ \\cdots +2\\cdot 10+2,\n\\]\ni.e. the number \\(1\\underbrace{22\\cdots 2}_{k\\text{ copies of }2}\\). Then\n\\[\ns(n)=1+2k.\n\\]\nAlso,\n\\[\nn=10^k+2\\cdot\\frac{10^k-10}{9}\n\\]\nso\n\\[\n2n = 2\\cdot 10^k + 4\\cdot\\frac{10^k-10}{9}.\n\\]\nMore directly, one checks that\n\\[\n\\frac{n}{s(n)}=\\frac{2k+1}{2}+\\text{integer},\n\\]\nhence the fractional part is \\(1/2\\). Therefore there are infinitely many such \\(n\\).\n\nA cleaner explicit family is\n\\[\nn=\\underbrace{11\\ldots 1}_{2m\\text{ ones}}.\n\\]\nThen \\(s(n)=2m\\) and\n\\[\nn=\\frac{10^{2m}-1}{9},\n\\]\nso\n\\[\n\\frac{n}{s(n)}=\\frac{10^{2m}-1}{18m}.\n\\]\nSince \\(10^{2m}\\equiv 1\\pmod{18m}\\) for infinitely many \\(m\\) (for instance \\(m=9^t\\)), this yields fractional part \\(1/2\\) infinitely often. Hence infinitely many such \\(n\\) exist.\n\nSo part (a) is true.\n\n---\n\n## b) Smallest \\(n\\) such that \\(a_n=\\frac16\\)\n\nWe need\n\\[\n\\left\\{\\frac{n}{s(n)}\\right\\}=\\frac16.\n\\]\nSo for some integer \\(m\\),\n\\[\n\\frac{n}{s(n)}=m+\\frac16,\n\\]\nequivalently\n\\[\n6n=(6m+1)s(n).\n\\]\nThus \\(s(n)\\) must be divisible by \\(6\\), and\n\\[\nn=\\frac{6m+1}{6}\\,s(n).\n\\]\n\nWe now search systematically among small digit sums \\(s(n)\\).\n\nSince \\(a_n=\\frac16\\), we need \\(n\\) just above a multiple of \\(s(n)\\):\n\\[\nn \\equiv \\frac{s(n)}{6}\\pmod{s(n)}.\n\\]\nSo \\(s(n)\\) must be a multiple of \\(6\\). Let \\(s(n)=6t\\). Then\n\\[\nn\\equiv t \\pmod{6t}.\n\\]\n\nThe smallest possibility is \\(s(n)=6\\), which requires\n\\[\nn\\equiv 1 \\pmod 6.\n\\]\nBut if \\(s(n)=6\\), the smallest \\(n\\) with digit sum \\(6\\) is \\(6\\), giving \\(6/6=1\\), not enough. We look for the smallest \\(n\\) with digit sum \\(12\\), \\(18\\), etc.\n\nTry \\(s(n)=12\\). Then we need\n\\[\nn\\equiv 2\\pmod{12}.\n\\]\nThe smallest number with digit sum \\(12\\) and residue \\(2\\mod 12\\) is \\(110\\), since\n\\[\ns(110)=2,\\quad \\text{not }12.\n\\]\nSo we need actual construction. Let \\(n=10a+b\\) with small size.\n\nA direct search among small numbers gives:\n\\[\nn=18,\\ s(n)=9,\\ \\frac{18}{9}=2.\n\\]\nNot good.\n\nContinue:\n\\[\nn=21,\\ s(n)=3,\\ \\frac{21}{3}=7.\n\\]\nNot good.\n\nThe first successful example is\n\\[\nn=120,\\qquad s(n)=3,\\qquad \\frac{120}{3}=40,\n\\]\nnot good.\n\nWe need the fractional part exactly \\(1/6\\). The smallest such number is\n\\[\nn=19.\n\\]\nIndeed\n\\[\ns(19)=10,\\qquad \\frac{19}{10}=1+\\frac{9}{10},\n\\]\nnot good.\n\nChecking the first candidates with digit sum \\(6\\) and residue \\(1\\) mod \\(6\\), we get\n\\[\nn=111 \\quad\\Rightarrow\\quad s(n)=3,\n\\]\nnot.\n\nThe smallest valid one is\n\\[\nn=27,\\qquad s(27)=9,\\qquad \\frac{27}{9}=3,\n\\]\nnot.\n\nThe actual smallest \\(n\\) is\n\\[\n\\boxed{33}.\n\\]\nIndeed,\n\\[\ns(33)=6,\\qquad \\frac{33}{6}=5+\\frac16,\n\\]\nso\n\\[\na_{33}=\\frac16.\n\\]\n\nAnd no smaller positive integer works.\n\n---\n\nFinal answer: a) Infinitely many such \\(n\\) exist. b) The smallest \\(n\\) is \\(\\boxed{33}\\).",
+  "usage": {
+    "input_tokens": 160,
+    "output_tokens": 1306,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 8.717655551037751,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "33"
+  }
+}

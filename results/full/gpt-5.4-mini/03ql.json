@@ -1,0 +1,19 @@
+{
+  "id": "03ql",
+  "country": "China",
+  "competition": "China Girls' Mathematical Olympiad",
+  "gold_final_answer": "12*sqrt(2)-17",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities > QM-AM-GM-HM / Power Mean"
+  ],
+  "prompt": "Let $a$, $b$ and $c$ be positive real numbers. Determine the minimum value of\n$$ \\frac{a+3c}{a+2b+c} + \\frac{4b}{a+b+2c} - \\frac{8c}{a+b+3c} \\text{ (posed by Li Shenghong)} $$",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let  \n\\[\nE=\\frac{a+3c}{a+2b+c}+\\frac{4b}{a+b+2c}-\\frac{8c}{a+b+3c}.\n\\]\n\nWe look for the minimum over positive reals \\(a,b,c\\).\n\nSet\n\\[\nx=\\frac a c,\\qquad y=\\frac b c \\qquad (x,y>0),\n\\]\nand divide numerator and denominator in each fraction by \\(c\\). Then\n\\[\nE=\\frac{x+3}{x+2y+1}+\\frac{4y}{x+y+2}-\\frac{8}{x+y+3}.\n\\]\n\nNow consider the choice \\(a=0\\) formally as a limit (allowed for finding the infimum), so \\(x\\to 0^+\\). Then\n\\[\nE \\to \\frac{3}{2y+1}+\\frac{4y}{y+2}-\\frac{8}{y+3}.\n\\]\nA quick simplification gives\n\\[\n\\frac{3}{2y+1}+\\frac{4y}{y+2}-\\frac{8}{y+3}\n= \\frac{y(4y-1)}{(2y+1)(y+2)(y+3)}+1.\n\\]\nHence \\(E\\ge 1\\) for all \\(y>0\\), and equality is approached when \\(x\\to 0^+\\) and \\(y=\\tfrac14\\) (i.e. \\(a\\ll c\\) and \\(b=\\tfrac14c\\)).\n\nSo the minimum value is\n\n\\[\n\\boxed{1}.\n\\]\n\nFinal answer: \\(1\\)",
+  "usage": {
+    "input_tokens": 122,
+    "output_tokens": 373,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 2.913012266973965,
+  "cached": false
+}

@@ -1,0 +1,22 @@
+{
+  "id": "04gw",
+  "country": "Croatia",
+  "competition": "Mathematica competitions in Croatia",
+  "gold_final_answer": "5√58 : 16",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Triangles > Triangle trigonometry",
+    "Geometry > Plane Geometry > Analytic / Coordinate Methods > Trigonometry",
+    "Geometry > Plane Geometry > Analytic / Coordinate Methods > Vectors",
+    "Geometry > Plane Geometry > Miscellaneous > Angle chasing"
+  ],
+  "prompt": "Let $\\triangle ABC$ be a right triangle. Point $M$ is chosen on the bisector of the right angle $\\angle ACB$. If we have $\\sin \\angle MAC = \\frac{8}{17}$ and $\\cos \\angle MBC = \\frac{3}{5}$, determine the ratio $|AB| : |CM|$.",
+  "model": "gpt-5.4",
+  "response_text": "Let \\( \\triangle ABC\\) be right-angled at \\(C\\). Put\n\\[\nC=(0,0),\\quad A=(a,0),\\quad B=(0,b),\n\\]\nso \\(AC\\) is the \\(x\\)-axis and \\(BC\\) is the \\(y\\)-axis.\n\nSince \\(M\\) lies on the bisector of the right angle at \\(C\\), it lies on the line \\(y=x\\). So write\n\\[\nM=(t,t),\\qquad t>0.\n\\]\n\nWe will use the given trigonometric conditions.\n\n---\n\n### 1) Using \\(\\sin \\angle MAC=\\frac{8}{17}\\)\n\nAt \\(A\\), the vectors are\n\\[\n\\overrightarrow{AM}=(t-a,t),\\qquad \\overrightarrow{AC}=(-a,0).\n\\]\nSince \\(AC\\) is horizontal, \\(\\angle MAC\\) is just the angle that \\(AM\\) makes with the leftward horizontal direction, so\n\\[\n\\sin \\angle MAC=\\frac{t}{\\sqrt{(a-t)^2+t^2}}=\\frac{8}{17}.\n\\]\nHence\n\\[\n\\frac{t^2}{(a-t)^2+t^2}=\\frac{64}{289}.\n\\]\nSo\n\\[\n289t^2=64\\big((a-t)^2+t^2\\big).\n\\]\nThis gives\n\\[\n225t^2=64(a-t)^2,\n\\]\nthus\n\\[\n15t=8(a-t).\n\\]\nTherefore\n\\[\n23t=8a \\quad\\Rightarrow\\quad a=\\frac{23}{8}t.\n\\]\n\n---\n\n### 2) Using \\(\\cos \\angle MBC=\\frac35\\)\n\nAt \\(B\\), the vectors are\n\\[\n\\overrightarrow{BM}=(t,t-b),\\qquad \\overrightarrow{BC}=(0,-b).\n\\]\nThus\n\\[\n\\cos \\angle MBC\n=\\frac{\\overrightarrow{BM}\\cdot\\overrightarrow{BC}}{|\\overrightarrow{BM}||\\overrightarrow{BC}|}\n=\\frac{b(b-t)}{b\\sqrt{t^2+(b-t)^2}}\n=\\frac{b-t}{\\sqrt{t^2+(b-t)^2}}\n=\\frac35.\n\\]\nSo\n\\[\n\\frac{(b-t)^2}{t^2+(b-t)^2}=\\frac{9}{25}.\n\\]\nHence\n\\[\n25(b-t)^2=9\\big(t^2+(b-t)^2\\big),\n\\]\nso\n\\[\n16(b-t)^2=9t^2.\n\\]\nSince \\(b>t\\), we get\n\\[\n4(b-t)=3t,\n\\]\nthus\n\\[\n4b=7t \\quad\\Rightarrow\\quad b=\\frac74 t.\n\\]\n\n---\n\n### 3) Compute \\(AB:CM\\)\n\nNow\n\\[\nAB=\\sqrt{a^2+b^2}\n= t\\sqrt{\\left(\\frac{23}{8}\\right)^2+\\left(\\frac74\\right)^2}\n= t\\sqrt{\\frac{529}{64}+\\frac{49}{16}}\n= t\\sqrt{\\frac{529+196}{64}}\n= t\\sqrt{\\frac{725}{64}}\n= \\frac{5\\sqrt{29}}{8}t.\n\\]\n\nAlso\n\\[\nCM=\\sqrt{t^2+t^2}=t\\sqrt2.\n\\]\n\nTherefore\n\\[\n\\frac{AB}{CM}\n=\\frac{\\frac{5\\sqrt{29}}{8}t}{t\\sqrt2}\n=\\frac{5\\sqrt{29}}{8\\sqrt2}\n=\\frac{5\\sqrt{58}}{16}.\n\\]\n\nSo\n\\[\n|AB|:|CM| = 5\\sqrt{58}:16.\n\\]\n\nFinal answer: \\(5\\sqrt{58}:16\\).",
+  "usage": {
+    "input_tokens": 121,
+    "output_tokens": 865,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 9.75955120997969,
+  "cached": false
+}

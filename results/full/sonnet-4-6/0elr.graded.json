@@ -1,0 +1,25 @@
+{
+  "id": "0elr",
+  "country": "South Africa",
+  "competition": "The South African Mathematical Olympiad Third Round",
+  "gold_final_answer": "Maximum M is n if n is even, and n − 1 if n is odd.",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments",
+    "Discrete Mathematics > Combinatorics > Counting two ways"
+  ],
+  "prompt": "Write either $1$ or $-1$ in each of the cells of a $(2n) \\times (2n)$-table, in such a way that there are exactly $2n^2$ entries of each kind. Let the minimum of the absolute values of all row sums and all column sums be $M$. Determine the largest possible value of $M$.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "2\n\nFinal answer: 2",
+  "usage": {
+    "input_tokens": 128,
+    "output_tokens": 11,
+    "thinking_tokens": 0
+  },
+  "latency_s": 0.7219138729851693,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "2"
+  }
+}

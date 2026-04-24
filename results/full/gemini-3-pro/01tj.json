@@ -1,0 +1,19 @@
+{
+  "id": "01tj",
+  "country": "Belarus",
+  "competition": "66th Belarusian Mathematical Olympiad",
+  "gold_final_answer": "a) Yes; b) No",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Sequences and Series"
+  ],
+  "prompt": "An infinite sequence $(a_n)$, $n \\in \\mathbb{N}$, of positive numbers is called *lacunar* if there exists a number $q > 1$ such that $a_{n+1}/a_n \\ge q$ for all $n \\in \\mathbb{N}$. Also, the sequence is called *solitary* if there exists a number $r > 1$ such that the interval $(x, rx)$ contains at most one term of this sequence for any positive $x$.\n\na) Is it true that any lacunar sequence is solitary?\n\nb) Is it true that any solitary sequence is lacunar?",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To determine the answers to both parts, let's analyze the definitions given:\n1. **Lacunar sequence**: There exists $q > 1$ such that $\\frac{a_{n+1}}{a_n} \\ge q$ for all $n \\in \\mathbb{N}$. This implies the sequence is strictly increasing and the ratio between any two distinct terms $a_m$ and $a_n$ (with $m > n$) is $a_m \\ge q^{m-n} a_n \\ge q a_n$.\n2. **Solitary sequence**: There exists $r > 1$ such that for any $x > 0$, the open interval $(x, rx)$ contains at most one term of the sequence. This is equivalent to saying that the ratio of any two distinct terms in the sequence is at least $r$ (or at most $\\frac{1}{r}$).\n\n**Part a) Is any lacunar sequence solitary?**\n**Yes.** \nSuppose $(a_n)$ is a lacunar sequence with constant $q > 1$. Let $r = q$. For any $x > 0$, assume for the sake of contradiction that the interval $(x, rx)$ contains two distinct terms of the sequence, $a_n$ and $a_m$ with $m > n$. \nBecause both are in the interval, we have $x < a_n < rx$ and $x < a_m < rx$. \nHowever, from the lacunar property, we know that $a_m \\ge q a_n = r a_n$. Since $a_n > x$, it follows that $a_m > rx$, which contradicts the assumption that $a_m$ is in the interval $(x, rx)$. Thus, the interval can contain at most one term, making the sequence solitary.\n\n**Part b) Is any solitary sequence lacunar?**\n**No.** \nA sequence can be solitary without being lacunar. The definition of a lacunar sequence strictly requires the sequence to be increasing (since $\\frac{a_{n+1}}{a_n} \\ge q > 1$), but a solitary sequence only restricts the values of the terms, not their order. \nFor a counterexample, consider the sequence given by $a_n = 2^{-n}$ (i.e., $\\frac{1}{2}, \\frac{1}{4}, \\frac{1}{8}, \\dots$). \nLet $r = 2$. For any $x > 0$, the interval $(x, 2x)$ can contain at most one term because the ratio of any two distinct terms is at least 2 (or at most $\\frac{1}{2}$). If $a_n \\in (x, 2x)$, then any larger term in the sequence is $\\le \\frac{a_n}{2} < \\frac{2x}{2} = x$, and any smaller term is $\\ge 2a_n > 2x$, meaning no other term can be in the interval. Thus, the sequence is solitary. \nHowever, $\\frac{a_{n+1}}{a_n} = \\frac{1}{2} < 1$ for all $n$, meaning there is no $q > 1$ that satisfies the lacunar condition. \n(Another valid counterexample that diverges to infinity is $a_n = \\{2, 1, 8, 4, 32, 16, \\dots\\}$, which is solitary with $r=2$ but not lacunar because $\\frac{a_2}{a_1} = \\frac{1}{2} < 1$).\n\nFinal answer: a) Yes, b) No",
+  "usage": {
+    "input_tokens": 175,
+    "output_tokens": 803,
+    "thoughts_tokens": 4141
+  },
+  "latency_s": 38.512216561008245,
+  "cached": false
+}

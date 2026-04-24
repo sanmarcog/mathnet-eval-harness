@@ -1,0 +1,27 @@
+{
+  "id": "00u9",
+  "country": "Balkan Mathematical Olympiad",
+  "competition": "BMO 2022 shortlist",
+  "gold_final_answer": "1/8, 1/7, 1/5, 3/23",
+  "topics_flat": [
+    "Number Theory > Modular Arithmetic > Chinese remainder theorem",
+    "Number Theory > Divisibility / Factorization > Greatest common divisors (gcd)",
+    "Algebra > Algebraic Expressions > Sequences and Series > Sums and products",
+    "Discrete Mathematics > Other"
+  ],
+  "prompt": "A hare and a tortoise run in the same direction, at constant but different speeds, around the base of a tall square tower. They start together at the same vertex, and the run ends when both return to the initial vertex simultaneously for the first time. Suppose the hare runs with speed $1$, and the tortoise with speed less than $1$. For what rational numbers $x$ is it true that, if the tortoise runs with speed $x$, the fraction of the entire run for which the tortoise can see the hare is also $x$?",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let the square have side length \\(1\\), so its perimeter is \\(4\\).  \nIf the tortoise speed is \\(x\\), then the hare speed is \\(1\\), and both return together for the first time after a time \\(T\\) such that both have run integer numbers of laps:\n\n\\[\nT=\\operatorname{lcm}(4,4/x).\n\\]\n\nSince \\(x\\) is rational, write \\(x=\\frac{p}{q}\\) in lowest terms. Then the tortoise lap time is \\(4q/p\\), and the first common return time is\n\n\\[\nT=4q.\n\\]\n\nSo during the whole run, the tortoise travels\n\n\\[\nxT=\\frac{p}{q}\\cdot 4q=4p\n\\]\n\nunits of distance, i.e. exactly \\(p\\) laps.\n\nNow, the tortoise can see the hare exactly when the hare is on an edge adjacent to the tortoise’s edge, because the tower blocks the view otherwise. Thus, on each lap, the hare is visible to the tortoise for exactly half the lap. Therefore the fraction of time the tortoise sees the hare is \\(1/2\\), independent of \\(x\\), as long as the motion is synchronized over complete laps.\n\nSo we need\n\n\\[\nx=\\frac12.\n\\]\n\nCheck: this is rational and satisfies the condition.\n\nFinal answer: \\(\\boxed{\\frac12}\\)",
+  "usage": {
+    "input_tokens": 163,
+    "output_tokens": 311,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 2.6008792190114036,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "\\frac12"
+  }
+}

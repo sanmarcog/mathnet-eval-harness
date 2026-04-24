@@ -1,0 +1,20 @@
+{
+  "id": "0d9o",
+  "country": "Saudi Arabia",
+  "competition": "Team selection tests for BMO 2018",
+  "gold_final_answer": "11",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Factorization techniques",
+    "Algebra > Algebraic Expressions > Sequences and Series > Sums and products"
+  ],
+  "prompt": "Find the smallest positive integer $n$ which can not be expressed as $n=\\frac{2^{a}-2^{b}}{2^{c}-2^{d}}$ for some positive integers $a, b, c, d$.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "I need to find the smallest positive integer that cannot be expressed as $\\frac{2^a - 2^b}{2^c - 2^d}$ for positive integers $a, b, c, d$.\n\n## Setting Up the Expression\n\nFirst, simplify: $\\frac{2^a - 2^b}{2^c - 2^d} = \\frac{2^b(2^{a-b} - 1)}{2^d(2^{c-d} - 1)} = 2^{b-d} \\cdot \\frac{2^{a-b} - 1}{2^{c-d} - 1}$\n\nLet me set $p = a-b$, $q = c-d$ (positive integers, assuming $a > b$ and $c > d$), and $k = b - d$ (any integer, but we need $a,b,c,d$ positive).\n\nSo $n = 2^k \\cdot \\frac{2^p - 1}{2^q - 1}$ where $p, q$ are positive integers.\n\nFor $n$ to be a positive integer, we need $2^k \\cdot \\frac{2^p-1}{2^q-1}$ to be a positive integer.\n\nNote: $\\frac{2^p - 1}{2^q - 1}$ is an integer iff $q \\mid p$ (since $2^q - 1 \\mid 2^p - 1$ iff $q \\mid p$).\n\n## Checking Which Numbers Are Representable\n\n**$n = 1$:** $k=0, p=q=1$: $\\frac{2^1-1}{2^1-1} = 1$. ✓\n\n**$n = 2$:** $k=1, p=q=1$: $2^1 \\cdot 1 = 2$. ✓\n\n**$n = 3$:** $p=2, q=1$: $\\frac{2^2-1}{2^1-1} = 3$. ✓\n\n**$n = 4$:** $k=2$: $4 \\cdot 1 = 4$. ✓\n\n**$n = 5$:** $p=4, q=2$: $\\frac{15}{3} = 5$. ✓\n\n**$n = 6$:** $k=1, p=2, q=1$: $2 \\cdot 3 = 6$. ✓\n\n**$n = 7$:** $p=3, q=1$: $\\frac{7}{1} = 7$. ✓\n\n**$n = 11$:** Need $2^k \\cdot \\frac{2^p-1}{2^q-1} = 11$. Since 11 is odd, $k=0$. Need $\\frac{2^p-1}{2^q-1} = 11$. So $2^p - 1 = 11(2^q - 1) = 11 \\cdot 2^q - 11$, giving $2^p = 11 \\cdot 2^q - 10$. Try $q=1$: $2^p = 12$, not a power. $q=2$: $2^p = 34$, no. $q=3$: $2^p = 78$, no. $q=4$: $2^p = 166$, no. This won't work since $11 \\cdot 2^q - 10$ is never a power of 2.\n\n**Check $n = 11$ more carefully:** Could $k < 0$? Then $n = \\frac{2^p-1}{2^{|k|} \\cdot (2^q-1)}$, but this gives fractions less than integers... Actually $k$ can be negative if $b < d$, but then $n$ would not be an integer unless $(2^q-1) \\cdot 2^{|k|}$ divides $2^p - 1$. Since $2^p - 1$ is odd, we need $2^{|k|}$ divides an odd number, impossible for $k < 0$.\n\nSo $n = 2^k \\cdot m$ where $m = \\frac{2^p-1}{2^q-1}$ is an odd integer $\\geq 1$.\n\nThe odd values achievable: $m = \\frac{2^p - 1}{2^q - 1}$ where $q | p$. If $p = qr$, then $\\frac{2^{qr}-1}{2^q-1} = 1 + 2^q + 2^{2q} + \\cdots + 2^{(r-1)q}$.\n\nFor $m = 11$: We need $1 + 2^q + \\cdots + 2^{(r-1)q} = 11$. \n- $q=1$: $1+2+4+8 = 15$, $1+2+4=7$. No.\n- $q=2$: $1+4=5$, $1+4+16=21$. No.\n- $q=3$: $1+8=9$, too big next. No.\n\nSo 11 is not achievable as an odd quotient, and $11 \\cdot 2^k$ for $k \\geq 1$ gives even numbers, not 11.\n\nThus **11 cannot be represented**.\n\nCheck $n = 9$: $q=1, r=?$: need sum $=9$: $1+2+4+8=15$, no. $q=2$: $1+4=5$, no. Hmm, but $\\frac{2^6-1}{2^3-1} = \\frac{63}{7}=9$. ✓\n\n**$n = 11$** is the answer.\n\nFinal answer: 11",
+  "usage": {
+    "input_tokens": 102,
+    "output_tokens": 1471,
+    "thinking_tokens": 0
+  },
+  "latency_s": 20.09122965298593,
+  "cached": false
+}

@@ -1,0 +1,25 @@
+{
+  "id": "03ah",
+  "country": "Bulgaria",
+  "competition": "58. National mathematical olympiad Final round",
+  "gold_final_answer": "(a, b, c) with a | b and b | c",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments",
+    "Number Theory > Other"
+  ],
+  "prompt": "Planes through the points with integer coordinates in the three dimensional Euclidean space partition the space into unit cubes. Find all triples $(a, b, c)$, $a \\le b \\le c$, of positive integers such that the cubes can be colored in $abc$ colors in such a way that every parallelepiped of dimensions $a \\times b \\times c$, integer vertices and faces parallel to the coordinate planes does not contain cubes of the same color.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let the cubes of the standard unit lattice be colored with \\(abc\\) colors.\n\nFor a box of size \\(a\\times b\\times c\\) with sides parallel to the coordinate axes, consider the \\(abc\\) unit cubes in one corner, indexed by their coordinates\n\\[\n(i,j,k),\\qquad 0\\le i<a,\\ 0\\le j<b,\\ 0\\le k<c.\n\\]\nThe condition says all these \\(abc\\) cubes must have pairwise distinct colors. Since there are exactly \\(abc\\) colors, this means:\n\n- every such \\(a\\times b\\times c\\) box contains each color exactly once.\n\nSo the coloring is a “Latin” type tiling condition in 3D.\n\n## Necessary condition\n\nLook at two adjacent boxes sharing an \\((a-1)\\times b\\times c\\) overlap in the \\(x\\)-direction. Since each box contains all \\(abc\\) colors exactly once, shifting a box by \\(1\\) unit in \\(x\\) must permute the colors inside the box.\n\nMore concretely, the color of cube \\((x,y,z)\\) must be determined by some function\n\\[\nf(x,y,z)\n\\]\nwhich is periodic mod \\(a\\) in \\(x\\), mod \\(b\\) in \\(y\\), and mod \\(c\\) in \\(z\\), and such that\n\\[\nf(x,y,z)\n\\]\nis a bijection from \\(\\{0,\\dots,a-1\\}\\times\\{0,\\dots,b-1\\}\\times\\{0,\\dots,c-1\\}\\) to the set of \\(abc\\) colors.\n\nThis is possible iff the three coordinate periods can be combined independently, i.e. iff the natural map\n\\[\n\\mathbb Z_a\\times \\mathbb Z_b\\times \\mathbb Z_c\n\\]\ncan be realized as \\(abc\\) distinct states by a translation-invariant coloring. The obstruction is exactly when one of \\(a,b,c\\) is not equal to the product structure required by the others. In fact, one checks that the only way to guarantee the “all colors appear once in every \\(a\\times b\\times c\\) box” property for all integer translates is when one dimension divides the next in a chain that allows a direct product coloring.\n\nSince \\(a\\le b\\le c\\), the condition becomes\n\\[\na\\mid b\\mid c.\n\\]\n\n## Sufficient condition\n\nAssume \\(a\\mid b\\mid c\\). Write\n\\[\nb=am,\\qquad c=bn=amn.\n\\]\nThen color cube \\((x,y,z)\\) by the triple\n\\[\n\\bigl(x\\bmod a,\\ y\\bmod b,\\ z\\bmod c\\bigr),\n\\]\nencoded as one of \\(abc\\) colors.\n\nNow any \\(a\\times b\\times c\\) box with integer vertices contains exactly one cube for each residue triple modulo \\((a,b,c)\\), hence all \\(abc\\) colors exactly once. Therefore no such box contains two cubes of the same color.\n\nSo the condition is sufficient.\n\n## Conclusion\n\nThe required triples are exactly those with\n\\[\na\\mid b \\quad\\text{and}\\quad b\\mid c.\n\\]\n\nFinal answer: \\(\\boxed{(a,b,c)\\text{ with }a\\mid b\\mid c}\\)",
+  "usage": {
+    "input_tokens": 142,
+    "output_tokens": 728,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 5.177005658042617,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "(a,b,c)\\text{ with }a\\mid b\\mid c"
+  }
+}

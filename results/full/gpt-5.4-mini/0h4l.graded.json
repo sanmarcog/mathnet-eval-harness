@@ -1,0 +1,24 @@
+{
+  "id": "0h4l",
+  "country": "Ukraine",
+  "competition": "Ukrainian National Mathematical Olympiad",
+  "gold_final_answer": "2013 or 2021",
+  "topics_flat": [
+    "Algebra > Intermediate Algebra > Quadratic functions"
+  ],
+  "prompt": "Find all values of the parameter $a$ such that the parabolas $y = x^2 + 2013x + a$ and $y = -x^2 + ax + 2013$ are tangent to each other.",
+  "model": "gpt-5.4-mini",
+  "response_text": "For the two parabolas to be tangent, their graphs must intersect at exactly one point with equal slopes there.\n\nSet them equal:\n\\[\nx^2+2013x+a=-x^2+ax+2013\n\\]\n\\[\n2x^2+(2013-a)x+(a-2013)=0\n\\]\n\nTangency means this quadratic in \\(x\\) has a double root, so its discriminant is zero:\n\\[\n(2013-a)^2-4\\cdot 2\\cdot (a-2013)=0\n\\]\n\\[\n(2013-a)^2-8(a-2013)=0\n\\]\n\nLet \\(t=2013-a\\). Then \\(a-2013=-t\\), so\n\\[\nt^2+8t=0\n\\]\n\\[\nt(t+8)=0\n\\]\n\nThus \\(t=0\\) or \\(t=-8\\).\n\n- If \\(2013-a=0\\), then \\(a=2013\\).\n- If \\(2013-a=-8\\), then \\(a=2021\\).\n\nSo the required values are:\n\nFinal answer: \\(a=2013\\) or \\(a=2021\\).",
+  "usage": {
+    "input_tokens": 98,
+    "output_tokens": 267,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 2.0976182409795,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "\\(a=2013\\) or \\(a=2021\\)."
+  }
+}

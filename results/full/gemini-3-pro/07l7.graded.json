@@ -1,0 +1,24 @@
+{
+  "id": "07l7",
+  "country": "Ireland",
+  "competition": "Irska",
+  "gold_final_answer": "x^3 - 3/4 x",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Chebyshev polynomials"
+  ],
+  "prompt": "Find a polynomial $x^3 + a x^2 + b x + c$ for which $\\max_{x \\in [-1, 1]} |x^3 + a x^2 + b x + c|$ is minimised. You may assume that such a polynomial exists.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find the monic polynomial of degree 3, $P(x) = x^3 + ax^2 + bx + c$, that minimizes the maximum absolute value on the interval $[-1, 1]$, we use Chebyshev polynomials. \n\nThe Chebyshev polynomial of the first kind of degree $n$ is given by $T_n(x) = \\cos(n \\arccos x)$. These polynomials have the property that they minimize the maximum absolute value on $[-1, 1]$ among all polynomials of the same degree, up to a scaling factor.\n\nFor $n = 3$, we can use the trigonometric identity $\\cos(3\\theta) = 4\\cos^3(\\theta) - 3\\cos(\\theta)$. Substituting $x = \\cos(\\theta)$, we get the third Chebyshev polynomial:\n$$T_3(x) = 4x^3 - 3x$$\n\nThe maximum absolute value of $T_3(x)$ on $[-1, 1]$ is $1$. To make this polynomial monic (i.e., having a leading coefficient of $1$), we divide $T_3(x)$ by its leading coefficient, which is $4$:\n$$P(x) = \\frac{1}{4} T_3(x) = \\frac{1}{4} (4x^3 - 3x) = x^3 - \\frac{3}{4}x$$\n\nWe can verify this by checking the extrema of $P(x)$. The derivative is $P'(x) = 3x^2 - \\frac{3}{4}$, which has roots at $x = \\pm \\frac{1}{2}$. \nEvaluating $P(x)$ at the critical points and the endpoints of the interval $[-1, 1]$:\n- $P(-1) = -1 + \\frac{3}{4} = -\\frac{1}{4}$\n- $P\\left(-\\frac{1}{2}\\right) = -\\frac{1}{8} + \\frac{3}{8} = \\frac{1}{4}$\n- $P\\left(\\frac{1}{2}\\right) = \\frac{1}{8} - \\frac{3}{8} = -\\frac{1}{4}$\n- $P(1) = 1 - \\frac{3}{4} = \\frac{1}{4}$\n\nBy Chebyshev's equioscillation theorem, since the maximum absolute value of $\\frac{1}{4}$ is reached at $n+1 = 4$ points with alternating signs, this polynomial uniquely minimizes the maximum absolute value on the interval.\n\nFinal answer: x^3 - \\frac{3}{4}x",
+  "usage": {
+    "input_tokens": 99,
+    "output_tokens": 577,
+    "thoughts_tokens": 746
+  },
+  "latency_s": 10.723887639003806,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "x^3 - \\frac{3}{4}x"
+  }
+}

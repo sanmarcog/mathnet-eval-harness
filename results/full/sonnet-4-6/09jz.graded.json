@@ -1,0 +1,25 @@
+{
+  "id": "09jz",
+  "country": "Mongolia",
+  "competition": "Mongolian Mathematical Olympiad",
+  "gold_final_answer": "8",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Counting two ways",
+    "Discrete Mathematics > Combinatorics > Induction / smoothing"
+  ],
+  "prompt": "A family has four children with pairwise distinct positive integer ages such that the sum of the ages of any set of the children is different from the sum of the ages of any other set of the children. What is the minimum possible age of the eldest child?",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Setting Up the Problem\n\nLet the four children have ages $a_1 < a_2 < a_3 < a_4$ (distinct positive integers).\n\nWe need all subset sums to be distinct. There are $2^4 - 1 = 15$ non-empty subsets, so we need 15 distinct subset sums.\n\n## Finding the Minimum\n\nThe condition that all subset sums are distinct is related to Sidon sets / B_1 sets. We want to minimize $a_4$.\n\nLet me try small values systematically. The key constraint is that no two different subsets have the same sum.\n\n**Try $\\{1, 2, 3, 5\\}$:**\n- Singletons: 1, 2, 3, 5\n- Pairs: 3, 4, 6, 5, 7, 8\n- Wait: $\\{1,2\\}=3$ and $\\{3\\}=3$ — conflict!\n\n**Try $\\{1, 2, 3, 6\\}$:**\n- Singletons: 1, 2, 3, 6\n- Pairs: 3, 4, 7, 5, 8, 9\n- $\\{1,2\\}=3 = \\{3\\}$ — conflict!\n\n**Try $\\{1, 2, 4, 8\\}$:**\n- Singletons: 1, 2, 4, 8\n- Pairs: 3, 5, 9, 6, 10, 12\n- Triples: 7, 11, 13, 14\n- All: 15\n- All sums: 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15 — all distinct! ✓\n\nBut can we do better than $a_4 = 8$?\n\n**Try $a_4 = 7$:** Need $a_1 < a_2 < a_3 < 7$ with all subset sums distinct.\n\nTry $\\{1, 2, 3, 7\\}$: $\\{1,2\\}=3=\\{3\\}$ — conflict.\nTry $\\{1, 2, 4, 7\\}$: Singletons: 1,2,4,7. Pairs: 3,5,8,6,9,11. Triples: 7,10,12,13. All: 14.\nCheck: $\\{4,3\\}$... wait, $\\{1,2,4\\}=7=\\{7\\}$ — conflict!\n\nTry $\\{1, 3, 4, 7\\}$: Singletons: 1,3,4,7. Pairs: 4,5,8,7,10,11. $\\{1,3\\}=4=\\{4\\}$ — conflict.\n\nTry $\\{1, 2, 5, 7\\}$: Singletons: 1,2,5,7. Pairs: 3,6,8,7,9,12. $\\{7\\}=7=\\{2,5\\}$ — conflict.\n\nTry $\\{1, 3, 5, 7\\}$: Singletons: 1,3,5,7. Pairs: 4,6,8,8,10,12. $\\{3,5\\}=\\{1,7\\}=8$ — conflict.\n\nTry $\\{2, 3, 4, 7\\}$: Pairs: 5,6,9,7,10,11. Triples: 9,13,14,... $\\{2,3,4\\}=9=\\{2,7\\}$ — conflict.\n\nTry $\\{1, 2, 6, 7\\}$: Pairs: 3,7,8,8,9,13. $\\{1,6\\}=\\{2,5\\}$... $\\{1,6\\}=7=\\{7\\}$ — conflict.\n\nTry $\\{2, 3, 5, 7\\}$: Pairs: 5,7,9,8,10,12. $\\{2,3\\}=5=\\{5\\}$ — conflict.\n\nTry $\\{1, 4, 5, 7\\}$: Pairs: 5,6,8,9,11,12. $\\{1,4\\}=5=\\{5\\}$ — conflict.\n\nTry $\\{2, 4, 5, 7\\}$: Pairs: 6,7,9,9,11,12. Conflict.\n\nTry $\\{3, 4, 5, 7\\}$: Pairs: 7,8,10,9,11,12. $\\{3,4\\}=7=\\{7\\}$ — conflict.\n\nTry $\\{1, 3, 6, 7\\}$: Pairs: 4,7,8,9,10,13. $\\{1,6\\}=7=\\{7\\}$ — conflict.\n\nTry $\\{2, 3, 6, 7\\}$: Pairs: 5,8,9,9,10,13. Conflict.\n\nTry $\\{1, 4, 6, 7\\}$: Pairs: 5,7,8,10,11,13. $\\{1,6\\}=7=\\{7\\}$ — conflict.\n\nTry $\\{2, 4, 6, 7\\}$: Pairs: 6,8,9,10,11,13. $\\{2,4\\}=6=\\{6\\}$ — conflict.\n\nTry $\\{3, 4, 6, 7\\}$: Pairs: 7,9,10,10,11,13. Conflict.\n\nTry $\\{1, 5, 6, 7\\}$: Pairs: 6,7,8,11,12,13. $\\{1,5\\}=6=\\{6\\}$ — conflict.\n\nTry $\\{2, 5, 6, 7\\}$: Pairs: 7,8,9,11,12,13. $\\{2,5\\}=7=\\{7\\}$ — conflict.\n\nTry $\\{3, 5, 6, 7\\}$: Pairs: 8,9,10,11,12,13. Triples: 14,15,16,18. All: 21. Singletons: 3,5,6,7. All sums: 3,5,6,7,8,9,10,11,12,13,14,15,16,18,21. All distinct! ✓\n\nSo $\\{3, 5, 6, 7\\}$ works with eldest age **7**.\n\nCan we do $a_4 = 6$? Need $a_1 < a_2 < a_3 < 6$, so from $\\{1,2,3,4,5\\}$.\n\nTry $\\{1,2,3,6\\}$... wait $a_4=6$: try $\\{1,2,5,6\\}$: $\\{1,5\\}=6=\\{6\\}$ — conflict.\n$\\{1,3,5,6\\}$: $\\{1,5\\}=6=\\{6\\}$ — conflict.\n$\\{2,3,5,6\\}$: $\\{2,3\\}=5=\\{5\\}$ — conflict.\n$\\{1,4,5,6\\}$: $\\{1,5\\}=6=\\{6\\}$ — conflict.\n$\\{2,4,5,6\\}$: $\\{2,4\\}=6=\\{6\\}$ — conflict.\n$\\{3,4,5,6\\}$: $\\{3,4,5\\}=12=\\{6\\}$? No. Pairs: 7,8,9,9,10,11. $\\{3,6\\}=\\{4,5\\}=9$ — conflict.\n$\\{1,2,4,6\\}$: $\\{2,4\\}=6=\\{6\\}$ — conflict.\n$\\{1,3,4,6\\}$: $\\{3,4\\}=7$, $\\{1,6\\}=7$ — conflict.\n$\\{2,3,4,6\\}$: $\\{2,4\\}=6=\\{6\\}$ — conflict.\n$\\{1,2,3,6\\}$: $\\{1,2\\}=3=\\{3\\}$ — conflict.\n$\\{1,2,4,5\\}$: $\\{1,4\\}=5=\\{5\\}$ — conflict.\n$\\{1,2,3,5\\}$: $\\{2,3\\}=5=\\{5\\}$ — conflict.\n$\\{1,3,4,5\\}$: $\\{1,4\\}=5=\\{5\\}$ — conflict.\n$\\{2,3,4,5\\}$: $\\{1,...\\}$ not applicable. Pairs: 5,6,7,7,8,9. Conflict.\n$\\{1,2,3,4\\}$: $\\{1,3\\}=4=\\{4\\}$ — conflict.\n\nSo $a_4 = 6$ is impossible.\n\nThe minimum possible age of the eldest child is **7**.\n\nFinal answer: 7",
+  "usage": {
+    "input_tokens": 99,
+    "output_tokens": 2375,
+    "thinking_tokens": 0
+  },
+  "latency_s": 23.60582773911301,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "7"
+  }
+}

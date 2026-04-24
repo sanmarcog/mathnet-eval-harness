@@ -1,0 +1,25 @@
+{
+  "id": "0h2k",
+  "country": "Ukraine",
+  "competition": "51st Ukrainian National Mathematical Olympiad, 4th Round",
+  "gold_final_answer": "There are more twin numbers than non-twin numbers among the first 20112012 natural numbers.",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Least common multiples (lcm)",
+    "Discrete Mathematics > Combinatorics > Inclusion-exclusion"
+  ],
+  "prompt": "We call a natural number a *twin* if it has two natural divisors whose difference is equal to $2$. Determine whether there are more twin numbers or the numbers that are not twin among the first $20112012$ natural numbers.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Solution\n\nA natural number $n$ is called a \"twin\" if it has two natural divisors $d_1$ and $d_2$ with $d_2 - d_1 = 2$.\n\n**Identifying twin numbers:**\n\nThe simplest case: if $n$ is divisible by both $d$ and $d+2$ for some natural number $d$, then $n$ is a twin.\n\n**Key observation:** Every even number $n \\geq 4$ is a twin, because $2$ and $4$ are both divisors of $n$ (since $4 \\mid n$ when $n$ is divisible by 4... wait, let me reconsider).\n\nActually, if $n$ is even, then $2 \\mid n$. We need another divisor differing by 2, so we need $4 \\mid n$ (giving divisors 2 and 4), or $1 \\mid n$ and $3 \\mid n$ (giving divisors 1 and 3).\n\nLet me reconsider. A number $n$ is a twin if it has divisors $d$ and $d+2$.\n\n- If $n$ is divisible by both 1 and 3 (i.e., $3 \\mid n$): divisors 1 and 3 differ by 2. ✓\n- If $n$ is divisible by both 2 and 4 (i.e., $4 \\mid n$): divisors 2 and 4 differ by 2. ✓\n\n**Non-twin numbers:** $n$ is NOT a twin if for every divisor $d$ of $n$, $d+2$ is not a divisor of $n$.\n\nNumbers that are NOT twins must:\n- Not be divisible by 3 (otherwise 1 and 3 are both divisors)\n- Not be divisible by 4 (otherwise 2 and 4 are both divisors)\n- Not have any other pair of divisors differing by 2\n\nSo non-twin numbers must satisfy: $3 \\nmid n$ and $4 \\nmid n$.\n\nBut we also need to check other pairs. If $n$ is not divisible by 3 and not by 4, could it still be a twin? Yes, if it has divisors like 5 and 7, or 9 and 11, etc.\n\nHowever, let's count numbers that are definitely twins vs. not.\n\n**Numbers that ARE twins** include all multiples of 3 and all multiples of 4.\n\nBy inclusion-exclusion, among the first $N = 20112012$ natural numbers:\n- Multiples of 3: $\\lfloor N/3 \\rfloor = 6704004$\n- Multiples of 4: $\\lfloor N/4 \\rfloor = 5028003$\n- Multiples of 12: $\\lfloor N/12 \\rfloor = 1676001$\n\nNumbers divisible by 3 or 4: $6704004 + 5028003 - 1676001 = 10056006$\n\nSo at least $10056006$ numbers are twins.\n\n**Numbers that are NOT twins** must avoid having any pair of divisors differing by 2. Such numbers must not be divisible by 3 or 4. Among numbers not divisible by 3 or 4:\n\nNumbers not divisible by 3 or 4: $N - 10056006 = 20112012 - 10056006 = 10056006$.\n\nWait, exactly half! Let me verify: $N = 20112012 = 12 \\times 1676001$, so $N$ is divisible by 12.\n\nAmong every 12 consecutive integers:\n- Multiples of 3: 4 numbers\n- Multiples of 4: 3 numbers  \n- Multiples of 12: 1 number\n- Multiples of 3 or 4: $4 + 3 - 1 = 6$ numbers\n\nSo exactly 6 out of every 12 are divisible by 3 or 4, and 6 are not.\n\nAmong the 6 numbers per period not divisible by 3 or 4: these are numbers $\\equiv 1, 2, 5, 7, 10, 11 \\pmod{12}$.\n\nCheck if any of these can be twins via other divisor pairs:\n- $n \\equiv 1$: could have divisors 5,7 or 9,11 etc. — possible but not guaranteed\n- $n \\equiv 2$: odd divisors only from odd part; e.g., $n=2$ has divisors 1,2 (no pair differing by 2); $n=2\\cdot 5\\cdot 7=70$: divisors include 5 and 7. Twin!\n\nSo some numbers not divisible by 3 or 4 are still twins. This means there are **more twin numbers** than non-twin numbers.\n\nSince at least half are twins (from multiples of 3 or 4 alone equaling exactly half), and additional twins exist among the remaining half, there are strictly more twins.\n\n**There are more twin numbers** among the first 20112012 natural numbers.\n\nFinal answer: There are more twin numbers than non-twin numbers among the first $20112012$ natural numbers.",
+  "usage": {
+    "input_tokens": 97,
+    "output_tokens": 1282,
+    "thinking_tokens": 0
+  },
+  "latency_s": 26.333026267006062,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "normalized",
+    "predicted": "There are more twin numbers than non-twin numbers among the first $20112012$ natural numbers."
+  }
+}

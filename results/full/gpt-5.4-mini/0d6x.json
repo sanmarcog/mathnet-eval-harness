@@ -1,0 +1,20 @@
+{
+  "id": "0d6x",
+  "country": "Saudi Arabia",
+  "competition": "SAUDI ARABIAN MATHEMATICAL COMPETITIONS",
+  "gold_final_answer": "All real-coefficient polynomials P are:\n- If b = 0: P(x) = c for any real constant c.\n- If k = b/a is a natural number: P(x) = c · x(x − a)(x − 2a) ··· (x − (k − 1)a) for any real constant c.\n- If k = b/a is not a natural number: P(x) ≡ 0.",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Polynomial operations",
+    "Algebra > Algebraic Expressions > Functional Equations"
+  ],
+  "prompt": "Let $a, b$ be given two real numbers with $a \\neq 0$. Find all polynomials $P$ with real coefficients such that\n$$\nx P(x-a) = (x-b) P(x) \\text{ for all } x \\in \\mathbb{R}.\n$$",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let \\(P\\) be a real polynomial satisfying\n\\[\nxP(x-a)=(x-b)P(x)\\qquad \\forall x\\in\\mathbb R,\n\\]\nwith \\(a\\neq 0\\).\n\nWe will determine all possibilities.\n\n## 1) First observations\nIf \\(P\\equiv 0\\), the identity is true. So assume \\(P\\not\\equiv 0\\), and let \\(\\deg P=n\\) with leading coefficient \\(c\\neq 0\\).\n\nThen\n- left side: \\(xP(x-a)\\) has leading term \\(x\\cdot c x^n = c x^{n+1}\\),\n- right side: \\((x-b)P(x)\\) has leading term \\(x\\cdot c x^n = c x^{n+1}\\),\n\nso degrees match automatically.\n\nNow compare the coefficients of \\(x^n\\).  \nWrite\n\\[\nP(x)=cx^n+\\text{(lower terms)}.\n\\]\nThen\n\\[\nP(x-a)=c(x-a)^n+\\cdots = c\\left(x^n-na\\,x^{n-1}+\\cdots\\right)+\\cdots\n\\]\nso\n\\[\nxP(x-a)=cx^{n+1}-cna\\,x^n+\\cdots.\n\\]\nAlso,\n\\[\n(x-b)P(x)=cx^{n+1}+(d-bc)x^n+\\cdots\n\\]\nwhere \\(d\\) is the coefficient of \\(x^{n-1}\\) in \\(P\\). Equating the \\(x^n\\)-coefficients alone is not enough to finish directly, so we use roots.\n\n## 2) Root propagation\nIf \\(P(r)=0\\), then from the identity at \\(x=r\\),\n\\[\nrP(r-a)=(r-b)P(r)=0.\n\\]\nHence if \\(r\\neq 0\\), then \\(P(r-a)=0\\). So any nonzero root generates a root shifted by \\(-a\\), and then again, etc. This would produce infinitely many roots unless the process stops, impossible for a nonzero polynomial.\n\nTherefore, the only possible root of \\(P\\) is \\(0\\). Hence\n\\[\nP(x)=cx^n\n\\]\nfor some \\(c\\neq 0\\), \\(n\\ge 0\\).\n\n## 3) Substitute \\(P(x)=cx^n\\)\nThen\n\\[\nx\\cdot c(x-a)^n=(x-b)\\cdot cx^n.\n\\]\nCancel \\(c\\):\n\\[\nx(x-a)^n=(x-b)x^n.\n\\]\n\nIf \\(n=0\\), this becomes\n\\[\nx=x-b \\quad\\forall x,\n\\]\nso \\(b=0\\), and every constant polynomial works.\n\nNow assume \\(n\\ge 1\\). Compare the constant term: the left side has constant term \\(0\\), while the right side has constant term \\(0\\) too, so no issue. Instead evaluate at \\(x=0\\): both sides are \\(0\\). Better, compare roots:\n- The right side has roots \\(x=0\\) (with multiplicity \\(n\\)) and \\(x=b\\).\n- The left side has roots \\(x=0\\) and \\(x=a\\) (with multiplicity \\(n\\) at \\(x=a\\) unless \\(a=0\\), which is excluded).\n\nFor the identities to hold as polynomials, the sets of roots with multiplicities must match. This forces \\(n=1\\) and \\(b=a\\): indeed\n\\[\nx(x-a)= (x-a)x\n\\]\nworks exactly when \\(b=a\\).\n\nSo for \\(n\\ge 1\\), the only solution is \\(n=1\\), \\(b=a\\), and \\(P(x)=cx\\).\n\n## 4) Check the solutions\n- If \\(b=0\\), every constant polynomial \\(P(x)=c\\) works:\n  \\[\n  x c=(x-0)c.\n  \\]\n- If \\(b=a\\), every polynomial of the form \\(P(x)=cx\\) works:\n  \\[\n  x\\cdot c(x-a)=(x-a)\\cdot cx.\n  \\]\n- The zero polynomial always works.\n\nNo other solutions exist.\n\n---\n\nFinal answer: The solutions are:\n- \\(P(x)\\equiv 0\\) for all \\(a,b\\);\n- if \\(b=0\\), any constant polynomial \\(P(x)=c\\);\n- if \\(b=a\\), any linear polynomial of the form \\(P(x)=cx\\).\n\nEquivalently, the nonzero solutions are exactly:\n\\[\n\\boxed{\\begin{cases}\nP(x)=c & \\text{if } b=0,\\\\[2mm]\nP(x)=cx & \\text{if } b=a,\n\\end{cases}\n\\quad c\\in\\mathbb R,}\n\\]\nwith the zero polynomial always included.",
+  "usage": {
+    "input_tokens": 111,
+    "output_tokens": 1073,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 6.847265015006997,
+  "cached": false
+}

@@ -1,0 +1,19 @@
+{
+  "id": "0flu",
+  "country": "Spain",
+  "competition": "Spanija 2012",
+  "gold_final_answer": "n^3 - n",
+  "topics_flat": [
+    "Geometry > Solid Geometry > Other 3D problems"
+  ],
+  "prompt": "With several identical spheres, we build up a tetrahedron using $n$ spheres for each side. Determine, in terms of $n$, the number of tangency points between the spheres in the construction.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Setting Up the Problem\n\nWe build a tetrahedral arrangement of spheres where each edge has $n$ spheres. The total number of spheres in a tetrahedral arrangement with $n$ spheres per edge is $T(n) = \\binom{n+2}{3} = \\frac{n(n+1)(n+2)}{6}$.\n\n## Counting Tangency Points\n\nEach tangency point occurs between two adjacent spheres. I need to count all pairs of spheres that are tangent to each other.\n\n**Structure of the arrangement:** Spheres are arranged in a tetrahedral close-packing. We can use coordinates $(i,j,k,l)$ with $i+j+k+l = n-1$ where $i,j,k,l \\geq 0$ are non-negative integers. Two spheres are tangent if and only if their coordinate vectors differ by exactly 1 in two coordinates (one increases by 1, one decreases by 1), i.e., they are adjacent in the tetrahedral lattice.\n\n**Adjacency in the tetrahedral lattice:** Two positions $(i,j,k,l)$ and $(i',j',k',l')$ are adjacent when one coordinate increases by 1 and another decreases by 1 (all others stay the same). There are $\\binom{4}{2} = 6$ types of adjacency (choosing which two coordinates change).\n\n**Counting edges of each type:** For each pair of coordinates $(a,b)$ from $\\{i,j,k,l\\}$, we count adjacent pairs where coordinate $a$ increases by 1 and coordinate $b$ decreases by 1. The number of such pairs equals the number of positions where coordinate $b \\geq 1$ (so it can decrease), with the remaining two coordinates summing to $n-1-i_a - i_b$ freely.\n\nFor a fixed pair of coordinates, say $(i,j)$: we need positions where $j \\geq 1$. The number of such tangencies equals the number of $(i,j,k,l)$ with $i+j+k+l = n-1$, $j \\geq 1$, which equals the number of $(i,j',k,l)$ with $i+j'+k+l = n-2$ (substituting $j' = j-1$), giving $\\binom{n+1}{3}$.\n\nBy symmetry, each of the 6 pairs of coordinates gives $\\binom{n+1}{3}$ tangencies.\n\n**Total tangency points:**\n$$6 \\cdot \\binom{n+1}{3} = 6 \\cdot \\frac{n(n+1)(n-1)}{6} \\cdot \\frac{1}{1}$$\n\nWait, let me recalculate: $\\binom{n+1}{3} = \\frac{(n+1)n(n-1)}{6}$.\n\nSo total = $6 \\cdot \\frac{(n+1)n(n-1)}{6} = n(n+1)(n-1) = n(n^2-1)$.\n\n## Verification\n\nFor $n=2$: Total spheres = 4 (tetrahedron). Each sphere touches 3 others, so tangencies = $4 \\cdot 3/2 = 6$. Formula: $2(4-1) = 6$. ✓\n\nFor $n=3$: Total spheres = 10. Formula gives $3(9-1) = 24$.\n- Layer 1 (bottom, 6 spheres): internal tangencies within layer = 7 (triangular arrangement with 3 spheres per side has $3\\binom{3}{2} = 9$... let me recount). Triangular layer with 3 per side has 6 spheres and $2\\cdot 3 + 1\\cdot 2 = $ ... actually $\\binom{3+1}{2} - $ ... The triangular number $T_3 = 6$ spheres have $3(3-1) = 6$... \n\nLet me just trust the coordinate counting which gave the clean formula.\n\n## Answer\n\n$$\\text{Number of tangency points} = n(n^2-1) = n(n-1)(n+1)$$\n\nFinal answer: $n(n^2-1)$",
+  "usage": {
+    "input_tokens": 94,
+    "output_tokens": 1046,
+    "thinking_tokens": 0
+  },
+  "latency_s": 16.22045728401281,
+  "cached": false
+}

@@ -1,0 +1,21 @@
+{
+  "id": "0dy1",
+  "country": "Slovenia",
+  "competition": "Slovenija 2008",
+  "gold_final_answer": "4",
+  "topics_flat": [
+    "Number Theory > Residues and Primitive Roots > Quadratic residues",
+    "Number Theory > Divisibility / Factorization > Factorization techniques",
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities"
+  ],
+  "prompt": "Find the smallest possible value of the expression $|5^{4m+3} - n^2|$, given that $m$ and $n$ are non-negative integers.",
+  "model": "gpt-5.4",
+  "response_text": "We want to minimize\n\\[\n\\left|5^{4m+3}-n^2\\right|\n\\]\nover nonnegative integers \\(m,n\\).\n\nSo we are asking: how close can the number \\(5^{4m+3}\\) get to a perfect square?\n\n## Step 1: Rewrite the power\n\\[\n5^{4m+3}=5^3\\cdot 5^{4m}=125\\cdot (5^{2m})^2.\n\\]\nLet\n\\[\na=5^{2m}.\n\\]\nThen\n\\[\n5^{4m+3}=125a^2.\n\\]\nSo we want the distance from \\(125a^2\\) to the nearest square.\n\n## Step 2: Locate \\(125a^2\\) between consecutive squares\nSince\n\\[\n11^2=121<125<144=12^2,\n\\]\nwe get\n\\[\n(11a)^2 < 125a^2 < (12a)^2.\n\\]\nThus the nearest possible squares are around \\((11a)^2\\) and \\((12a)^2\\).\n\nCompute the distances:\n\\[\n125a^2-(11a)^2=125a^2-121a^2=4a^2,\n\\]\nand\n\\[\n(12a)^2-125a^2=144a^2-125a^2=19a^2.\n\\]\nSo among these two consecutive squares, the closer one is \\((11a)^2\\), with distance \\(4a^2\\).\n\nHence\n\\[\n\\left|125a^2-n^2\\right|\\ge 4a^2.\n\\]\nSince \\(a=5^{2m}\\), this becomes\n\\[\n\\left|5^{4m+3}-n^2\\right|\\ge 4\\cdot 5^{4m}.\n\\]\n\n## Step 3: Minimize over \\(m\\)\nBecause \\(m\\ge 0\\),\n\\[\n4\\cdot 5^{4m}\n\\]\nis smallest when \\(m=0\\), giving\n\\[\n4.\n\\]\n\nNow check that this value is attained:\nfor \\(m=0\\),\n\\[\n5^{4m+3}=5^3=125,\n\\]\nand taking \\(n=11\\),\n\\[\n|125-11^2|=|125-121|=4.\n\\]\n\nSo the minimum possible value is indeed \\(4\\).\n\nFinal answer: 4",
+  "usage": {
+    "input_tokens": 85,
+    "output_tokens": 540,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 6.855925737065263,
+  "cached": false
+}

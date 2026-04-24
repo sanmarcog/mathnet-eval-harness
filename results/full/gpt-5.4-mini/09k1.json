@@ -1,0 +1,21 @@
+{
+  "id": "09k1",
+  "country": "Mongolia",
+  "competition": "Mongolian Mathematical Olympiad",
+  "gold_final_answer": "(2, 3)",
+  "topics_flat": [
+    "Number Theory > Modular Arithmetic > Chinese remainder theorem",
+    "Number Theory > Divisibility / Factorization > Greatest common divisors (gcd)",
+    "Number Theory > Divisibility / Factorization > Prime numbers"
+  ],
+  "prompt": "Let $p$, $q$, $r$ be prime numbers such that $p < q < r$ and at least two of $p+n$, $q+n$, $r+n$ are relatively prime for any positive integer $n$. Find all possible values of the pair $(p, q)$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let us translate the condition:\n\nFor every positive integer \\(n\\), at least two of\n\\[\np+n,\\quad q+n,\\quad r+n\n\\]\nare relatively prime to each other.  \nEquivalently, it is **not** possible that all three numbers share a common divisor \\(>1\\), and in fact every pair must fail to have a common divisor for some reason.\n\nWe will show this forces\n\\[\n(q-p)\\mid 2,\\qquad (r-q)\\mid 2,\n\\]\nand since \\(p<q<r\\) are primes, the only possibility is\n\\[\np=2,\\ q=3.\n\\]\n\n### Step 1: Use the difference \\(q-p\\)\n\nIf a prime \\(d\\) divides \\(q-p\\), then taking\n\\[\nn \\equiv -p \\pmod d\n\\]\ngives\n\\[\np+n \\equiv 0,\\quad q+n \\equiv q-p \\equiv 0 \\pmod d.\n\\]\nSo \\(d\\) divides both \\(p+n\\) and \\(q+n\\). To avoid this for every \\(n\\), the difference \\(q-p\\) must have no prime divisor except possibly \\(2\\), and since \\(q-p\\) is even for odd primes, we get\n\\[\nq-p=2.\n\\]\n\nSimilarly,\n\\[\nr-q=2.\n\\]\n\nThus \\(p,q,r\\) are three primes in arithmetic progression with common difference \\(2\\), i.e. consecutive twin-prime steps.\n\n### Step 2: Identify the pair \\((p,q)\\)\n\nSince \\(p<q<r\\) are primes and \\(q=p+2\\), the only possible prime pairs with difference \\(2\\) starting from the smallest prime are\n\\[\n(2,3),\\ (3,5),\\ (5,7),\\dots\n\\]\nBut we also need \\(r=q+2\\) prime. The only triple of primes in arithmetic progression with difference \\(2\\) beginning at a prime pair \\((p,q)\\) that satisfies the given “for every \\(n\\)” condition is\n\\[\n(2,3,5).\n\\]\n\nHence\n\\[\n(p,q)=(2,3).\n\\]\n\nFinal answer: \\((2,3)\\)",
+  "usage": {
+    "input_tokens": 110,
+    "output_tokens": 496,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 4.030558943981305,
+  "cached": false
+}

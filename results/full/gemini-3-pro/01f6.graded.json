@@ -1,0 +1,25 @@
+{
+  "id": "01f6",
+  "country": "Baltic Way",
+  "competition": "Baltic Way 2019",
+  "gold_final_answer": "(3,4), (5,6), (6,7)",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Sequences and Series > Recurrence relations",
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities"
+  ],
+  "prompt": "Let $F_n$ be a sequence defined recursively by $F_1 = F_2 = 1$ and $F_{n+1} = F_n + F_{n-1}$ for $n \\ge 2$. Find all pairs of positive integers $(x, y)$ such that\n$$\n5F_x - 3F_y = 1\n$$",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find all pairs of positive integers $(x, y)$ such that $5F_x - 3F_y = 1$, we can analyze the relative sizes of $x$ and $y$.\n\nFirst, suppose $y \\ge x + 2$. Using the Fibonacci recurrence $F_{n+1} = F_n + F_{n-1}$, we have:\n$$3F_y \\ge 3F_{x+2} = 3(F_{x+1} + F_x) = 3(F_x + F_{x-1}) + 3F_x = 6F_x + 3F_{x-1}$$\nSince $F_x > 0$ and $F_{x-1} \\ge 0$ for all positive integers $x$, we get $3F_y > 5F_x$. Thus, $5F_x - 3F_y < 0$, which means there are no solutions for $y \\ge x + 2$.\n\nNext, suppose $y \\le x$. Then $F_y \\le F_x$, which gives:\n$$5F_x - 3F_y \\ge 5F_x - 3F_x = 2F_x$$\nFor $x \\ge 1$, $F_x \\ge 1$, so $2F_x \\ge 2$. Thus, $5F_x - 3F_y \\ge 2 > 1$, meaning there are no solutions for $y \\le x$.\n\nTherefore, the only possible case is $y = x + 1$. Substituting $y = x + 1$ into the equation gives:\n$$5F_x - 3F_{x+1} = 1$$\nWe can simplify the left side using the Fibonacci recurrence relation:\n$$5F_x - 3F_{x+1} = 5F_x - 3(F_x + F_{x-1}) = 2F_x - 3F_{x-1}$$\n$$= 2(F_{x-1} + F_{x-2}) - 3F_{x-1} = 2F_{x-2} - F_{x-1}$$\n$$= 2F_{x-2} - (F_{x-2} + F_{x-3}) = F_{x-2} - F_{x-3} = F_{x-4}$$\nSo the equation simplifies to:\n$$F_{x-4} = 1$$\nWe extend the Fibonacci sequence to negative indices using $F_{n-2} = F_n - F_{n-1}$:\n$F_0 = 0$\n$F_{-1} = 1$\n$F_{-2} = -1$\n$F_{-3} = 2$\n$F_{-4} = -3$\n\nThe only integers $n$ for which $F_n = 1$ are $n = 1, 2,$ and $-1$. \nSetting $x - 4$ to each of these values gives:\n1) $x - 4 = -1 \\implies x = 3$, which gives $y = 4$.\n2) $x - 4 = 1 \\implies x = 5$, which gives $y = 6$.\n3) $x - 4 = 2 \\implies x = 6$, which gives $y = 7$.\n\nChecking these pairs:\n- For $(3, 4)$: $5F_3 - 3F_4 = 5(2) - 3(3) = 10 - 9 = 1$\n- For $(5, 6)$: $5F_5 - 3F_6 = 5(5) - 3(8) = 25 - 24 = 1$\n- For $(6, 7)$: $5F_6 - 3F_7 = 5(8) - 3(13) = 40 - 39 = 1$\n\nAll three pairs are valid solutions.\n\nFinal answer: (3, 4), (5, 6), (6, 7)",
+  "usage": {
+    "input_tokens": 121,
+    "output_tokens": 933,
+    "thoughts_tokens": 3572
+  },
+  "latency_s": 32.155014998978004,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "(3, 4), (5, 6), (6, 7)"
+  }
+}

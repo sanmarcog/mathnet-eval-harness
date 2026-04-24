@@ -1,0 +1,19 @@
+{
+  "id": "0cfm",
+  "country": "Romania",
+  "competition": "74th NMO Shortlisted Problems",
+  "gold_final_answer": "60%",
+  "topics_flat": [
+    "Algebra > Prealgebra / Basic Algebra > Simple Equations"
+  ],
+  "prompt": "The path from Little Red Riding Hood to Grandma has ups, downs and flat portions. When walking, LRRH goes up two times slower and goes down two times faster than on flat ground. When riding her bike, she goes up three times slower and goes down three times faster than on flat ground.\n\nLRRH noticed that, when walking, the way back home from Grandma takes 18 minutes less than the way from home to Grandma, and when she rides her bike, the way back home from Grandma takes 20 minutes less than the way from home to Grandma. By what percentage is LRRH's speed larger by bike than by foot?",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let the lengths of the uphill, downhill, and flat parts of the path be \\(u,d,f\\).\n\nLet her walking speed on flat ground be \\(v\\). Then:\n\n- walking uphill: \\(v/2\\)\n- walking downhill: \\(2v\\)\n- walking flat: \\(v\\)\n\nLet her biking speed on flat ground be \\(w\\). Then:\n\n- biking uphill: \\(w/3\\)\n- biking downhill: \\(3w\\)\n- biking flat: \\(w\\)\n\nDenote the time from home to Grandma minus the time back as the signed difference caused by reversing the uphill/downhill parts.\n\n### Walking\nForward time:\n\\[\n\\frac{u}{v/2}+\\frac{d}{2v}+\\frac{f}{v}= \\frac{2u}{v}+\\frac{d}{2v}+\\frac{f}{v}\n\\]\nBackward time:\n\\[\n\\frac{u}{2v}+\\frac{d}{v/2}+\\frac{f}{v}= \\frac{u}{2v}+\\frac{2d}{v}+\\frac{f}{v}\n\\]\nSo the forward-backward difference is\n\\[\n\\left(\\frac{2u}{v}+\\frac{d}{2v}\\right)-\\left(\\frac{u}{2v}+\\frac{2d}{v}\\right)\n= \\frac{3}{2v}(u-d)\n\\]\nGiven backward is 18 minutes less, the difference in magnitude is \\(18\\), so\n\\[\n\\frac{3}{2v}(u-d)=18.\n\\]\n\n### Biking\nSimilarly, the forward-backward difference is\n\\[\n\\frac{3}{w}(u-d)\n\\]\nand this equals \\(20\\), so\n\\[\n\\frac{3}{w}(u-d)=20.\n\\]\n\nDivide the biking equation by the walking equation:\n\\[\n\\frac{3(u-d)/w}{\\frac{3}{2}(u-d)/v}=\\frac{20}{18}\n\\]\n\\[\n\\frac{2v}{w}=\\frac{10}{9}\n\\]\n\\[\n\\frac{w}{v}=\\frac{9}{5}.\n\\]\n\nSo biking speed on flat ground is \\(\\frac{9}{5}\\) times walking speed, i.e. larger by\n\\[\n\\left(\\frac{9}{5}-1\\right)\\cdot 100\\% = \\frac{4}{5}\\cdot 100\\%=80\\%.\n\\]\n\nFinal answer: **80%**",
+  "usage": {
+    "input_tokens": 178,
+    "output_tokens": 552,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.743235838948749,
+  "cached": false
+}

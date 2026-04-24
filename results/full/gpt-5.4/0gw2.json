@@ -1,0 +1,19 @@
+{
+  "id": "0gw2",
+  "country": "Ukraine",
+  "competition": "Ukrainian Mathematical Olympiad",
+  "gold_final_answer": "x = y = z = √2",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities > Cauchy-Schwarz"
+  ],
+  "prompt": "Find all triplets of real positive numbers $x$, $y$ and $z$ such that\n$$\n\\begin{cases}\n\\sqrt{2x - \\frac{2}{y}} + \\sqrt{2y - \\frac{2}{z}} + \\sqrt{2z - \\frac{2}{x}} = \\sqrt{3(x + y + z)}, \\\\\nx^2 + y^2 + z^2 = 6.\n\\end{cases}\n$$",
+  "model": "gpt-5.4",
+  "response_text": "Let\n\\[\na=\\sqrt{2x-\\frac2y},\\qquad b=\\sqrt{2y-\\frac2z},\\qquad c=\\sqrt{2z-\\frac2x}.\n\\]\nThen the first condition is\n\\[\na+b+c=\\sqrt{3(x+y+z)}.\n\\]\n\nWe will show this forces \\(a=b=c\\), then solve.\n\n## 1) Use Cauchy on the first equation\nBy Cauchy,\n\\[\n(a+b+c)^2\\le 3(a^2+b^2+c^2).\n\\]\nBut from the equation,\n\\[\n(a+b+c)^2=3(x+y+z).\n\\]\nSo\n\\[\n3(x+y+z)\\le 3\\left[\\left(2x-\\frac2y\\right)+\\left(2y-\\frac2z\\right)+\\left(2z-\\frac2x\\right)\\right].\n\\]\nHence\n\\[\nx+y+z\\le 2(x+y+z)-2\\left(\\frac1x+\\frac1y+\\frac1z\\right),\n\\]\ni.e.\n\\[\nx+y+z\\ge 2\\left(\\frac1x+\\frac1y+\\frac1z\\right). \\tag{1}\n\\]\n\nOn the other hand, by AM-GM,\n\\[\nx+\\frac1x\\ge 2,\\quad y+\\frac1y\\ge 2,\\quad z+\\frac1z\\ge 2.\n\\]\nSumming gives\n\\[\nx+y+z+\\left(\\frac1x+\\frac1y+\\frac1z\\right)\\ge 6. \\tag{2}\n\\]\n\nAlso from\n\\[\nx^2+y^2+z^2=6\n\\]\nwe get by Cauchy\n\\[\n(x+y+z)^2\\le 3(x^2+y^2+z^2)=18,\n\\]\nso\n\\[\nx+y+z\\le 3\\sqrt2.\n\\]\nAnd by Titu / Cauchy,\n\\[\n\\frac1x+\\frac1y+\\frac1z\\ge \\frac{(1+1+1)^2}{x+y+z}=\\frac{9}{x+y+z}.\n\\]\nThus from (1),\n\\[\nx+y+z\\ge 2\\cdot \\frac{9}{x+y+z},\n\\]\nso\n\\[\n(x+y+z)^2\\ge 18.\n\\]\nCombined with \\((x+y+z)^2\\le 18\\), we get\n\\[\nx+y+z=3\\sqrt2.\n\\]\nTherefore equality holds in Cauchy for \\(x,y,z\\), so\n\\[\nx=y=z.\n\\]\nThen from \\(x^2+y^2+z^2=6\\),\n\\[\n3x^2=6\\implies x^2=2\\implies x=\\sqrt2\n\\]\nsince the variables are positive.\n\nSo the only possible triple is\n\\[\nx=y=z=\\sqrt2.\n\\]\n\n## 2) Check\nFor \\(x=y=z=\\sqrt2\\),\n\\[\n2x-\\frac2y=2\\sqrt2-\\frac2{\\sqrt2}=2\\sqrt2-\\sqrt2=\\sqrt2,\n\\]\nso each radical equals\n\\[\n\\sqrt{\\sqrt2}=2^{1/4}.\n\\]\nHence the left-hand side is\n\\[\n3\\cdot 2^{1/4}.\n\\]\nThe right-hand side is\n\\[\n\\sqrt{3(x+y+z)}=\\sqrt{3\\cdot 3\\sqrt2}=\\sqrt{9\\sqrt2}=3\\cdot 2^{1/4}.\n\\]\nAlso\n\\[\nx^2+y^2+z^2=3\\cdot 2=6.\n\\]\nSo it works.\n\nFinal answer: \\((x,y,z)=(\\sqrt2,\\sqrt2,\\sqrt2)\\).",
+  "usage": {
+    "input_tokens": 151,
+    "output_tokens": 851,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 11.073147397022694,
+  "cached": false
+}

@@ -1,0 +1,20 @@
+{
+  "id": "01y3",
+  "country": "Belarus",
+  "competition": "69th Belarusian Mathematical Olympiad",
+  "gold_final_answer": "n = 5, k = 3",
+  "topics_flat": [
+    "Discrete Mathematics > Graph Theory",
+    "Discrete Mathematics > Combinatorics > Counting two ways"
+  ],
+  "prompt": "There are $n \\ge 5$ cities in some country. Some of the cities are connected with each other by roads, and the next three conditions are satisfied:\n1) there is at most one road between any two cities;\n2) not all cities are connected with each other;\n3) there are exactly $k \\ge 1$ roads between any four cities.\nFind all $n$ and $k$ at which this situation is possible.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let the cities be the vertices of a simple graph \\(G\\).  \nThe condition says:\n\n> For every set of 4 vertices, the induced subgraph has exactly \\(k\\) edges.\n\nWe will show this forces a very rigid form.\n\n## Step 1: Compare two 4-vertex sets\nTake any 5 distinct vertices \\(a,b,c,d,e\\).  \nCount edges in the 4-set \\(\\{a,b,c,d\\}\\) and in \\(\\{a,b,c,e\\}\\).  \nBoth have exactly \\(k\\) edges.\n\nSubtracting, the edges among \\(\\{a,b,c\\}\\) cancel, so the number of edges from \\(d\\) to \\(\\{a,b,c\\}\\) equals the number of edges from \\(e\\) to \\(\\{a,b,c\\}\\).\n\nThus, for any triple of vertices, every vertex outside the triple has the same number of connections to that triple.\n\nThis implies all vertices have the same degree. So \\(G\\) is regular; say every vertex has degree \\(r\\).\n\n## Step 2: Count edges in a 4-set using degrees\nPick any 4 vertices. The sum of their degrees is \\(4r\\).  \nIf among them there are \\(k\\) internal edges, then these contribute \\(2k\\) to the degree sum, and the remaining degree contribution is from edges going outside the set.\n\nBut since the same calculation works for every 4-set, and the graph is regular, the number \\(k\\) must satisfy a standard uniformity relation. A cleaner way is to use the complement graph \\(\\overline G\\).\n\nIn \\(\\overline G\\), every 4-set has exactly\n\\[\n\\binom{4}{2}-k = 6-k\n\\]\nedges.\n\nSo if one such graph exists, its complement also has the same property with parameter \\(6-k\\).  \nHence we may assume \\(k \\le 3\\) without loss of generality.\n\n## Step 3: Determine the possibilities\nA graph where every 4 vertices span the same number of edges must be either:\n\n- empty,\n- complete,\n- complete bipartite with equal parts,\n- or the complement of such.\n\nBut condition (2) says it is neither empty nor complete.\n\nSo the graph must be complete bipartite \\(K_{m,m}\\) for some \\(m\\), because only then every 4-vertex subset has a constant edge count:\n\n- if the 4 vertices are chosen with \\(2\\) from each part, there are \\(4\\) edges,\n- if chosen differently, the count changes unless the parts are equal and the condition is extremely restrictive.\n\nIn fact, checking all 4-subsets shows the only way the number of induced edges is constant is when \\(m=2\\), i.e. the graph is a 4-cycle \\(C_4\\), or its complement.\n\nBut \\(n \\ge 5\\), so \\(C_4\\) is impossible.\n\nHence the only remaining possibility is that the graph is a complete graph or empty graph on at most 4 vertices, both excluded.\n\nSo no such graph exists for \\(n\\ge 5\\).\n\nTherefore there are **no** admissible pairs \\((n,k)\\).\n\nFinal answer: No such pairs \\((n,k)\\) exist for \\(n\\ge 5\\).",
+  "usage": {
+    "input_tokens": 140,
+    "output_tokens": 713,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 5.823424012050964,
+  "cached": false
+}

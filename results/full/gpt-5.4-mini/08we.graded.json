@@ -1,0 +1,26 @@
+{
+  "id": "08we",
+  "country": "Japan",
+  "competition": "Japan Mathematical Olympiad",
+  "gold_final_answer": "All positive multiples of p; that is, n = k p for some positive integer k.",
+  "topics_flat": [
+    "Number Theory > Modular Arithmetic > Fermat / Euler / Wilson theorems",
+    "Number Theory > Modular Arithmetic > Polynomials mod p",
+    "Number Theory > Divisibility / Factorization > Factorization techniques"
+  ],
+  "prompt": "Let $p$ be a prime. Determine all positive integers $n$ for which the following condition is satisfied for all the integers $x$:\nCondition: If $x^n - 1$ is divisible by $p$, then it is also divisible by $p^2$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "We seek all positive integers \\(n\\) such that for every integer \\(x\\),\n\\[\np\\mid (x^n-1)\\quad \\Longrightarrow\\quad p^2\\mid (x^n-1).\n\\]\n\nLet us analyze modulo \\(p\\).\n\nIf \\(p\\mid x\\), then \\(x^n\\equiv 0\\pmod p\\), so \\(x^n-1\\not\\equiv 0\\pmod p\\). Thus the condition only concerns \\(x\\) with \\(p\\nmid x\\).\n\nFor \\(p\\nmid x\\), Fermat’s little theorem gives \\(x^{p-1}\\equiv 1\\pmod p\\), so the nonzero residues mod \\(p\\) form a cyclic group of order \\(p-1\\). Let \\(g\\) be a primitive root mod \\(p\\), and write \\(x\\equiv g^k\\pmod p\\). Then\n\\[\nx^n\\equiv 1\\pmod p\n\\iff g^{kn}\\equiv 1\\pmod p\n\\iff (p-1)\\mid kn.\n\\]\nSo the set of residues \\(x\\pmod p\\) satisfying \\(x^n\\equiv 1\\pmod p\\) is exactly the subgroup of \\((\\mathbb Z/p\\mathbb Z)^\\times\\) of size\n\\[\nd=\\gcd(n,p-1).\n\\]\n\nNow the condition says: every solution mod \\(p\\) of \\(x^n\\equiv 1\\pmod p\\) must actually satisfy \\(x^n\\equiv 1\\pmod{p^2}\\).\n\nA standard lifting argument shows this can happen for all such \\(x\\) only if the polynomial \\(X^n-1\\) has at most one root modulo \\(p\\), because if there are two distinct roots mod \\(p\\), one can choose a root that does not lift uniformly to mod \\(p^2\\). In the multiplicative group, that means the subgroup of \\(n\\)-th roots of unity mod \\(p\\) must be trivial:\n\\[\n\\gcd(n,p-1)=1.\n\\]\nIndeed, if \\(\\gcd(n,p-1)=1\\), then the only solution to \\(x^n\\equiv 1\\pmod p\\) is \\(x\\equiv 1\\pmod p\\). But then for any integer \\(x\\),\n\\[\nx^n\\equiv 1\\pmod p \\implies x\\equiv 1\\pmod p.\n\\]\nWrite \\(x=1+pt\\). Then\n\\[\nx^n=(1+pt)^n\\equiv 1+npt \\pmod{p^2}.\n\\]\nThis is divisible by \\(p^2\\) whenever \\(x^n\\equiv 1\\pmod p\\) for all such \\(x\\), and since the only relevant residue class is \\(1\\), the implication holds.\n\nConversely, if \\(\\gcd(n,p-1)>1\\), then there exists a nontrivial \\(a\\not\\equiv 1\\pmod p\\) with \\(a^n\\equiv 1\\pmod p\\). Taking a suitable integer representative of \\(a\\), one can find examples where \\(x^n\\equiv 1\\pmod p\\) but not modulo \\(p^2\\), so the condition fails.\n\nTherefore the condition holds exactly when\n\\[\n\\gcd(n,p-1)=1.\n\\]\n\nFinal answer: \\(\\boxed{\\gcd(n,p-1)=1}\\)",
+  "usage": {
+    "input_tokens": 106,
+    "output_tokens": 791,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 4.843785527977161,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "\\gcd(n,p-1)=1"
+  }
+}

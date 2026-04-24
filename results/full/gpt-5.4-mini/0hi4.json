@@ -1,0 +1,20 @@
+{
+  "id": "0hi4",
+  "country": "Ukraine",
+  "competition": "62nd Ukrainian National Mathematical Olympiad",
+  "gold_final_answer": "(x, y) = (1, 0)",
+  "topics_flat": [
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities",
+    "Algebra > Intermediate Algebra > Exponential functions"
+  ],
+  "prompt": "Find all pairs of non-negative integers $x \\ge y$ for which $x + 3^y$ and $y + 3^x$ are two consecutive integers.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let  \n\\[\na=x+3^y,\\qquad b=y+3^x.\n\\]\nWe want \\(a\\) and \\(b\\) to be consecutive integers, so\n\\[\n|a-b|=1.\n\\]\nThus\n\\[\n|(x-y)+(3^y-3^x)|=1.\n\\]\n\nAssume \\(x>y\\). Then \\(3^x>3^y\\), so\n\\[\nb-a=(y-x)+(3^x-3^y)=(3^x-3^y)-(x-y).\n\\]\nLet \\(d=x-y\\ge 0\\). Then\n\\[\nb-a=3^y(3^d-1)-d.\n\\]\n\nIf \\(d=0\\), then \\(x=y\\), and\n\\[\na=b=x+3^x,\n\\]\nwhich cannot be consecutive.\n\nNow suppose \\(d\\ge 1\\). Since \\(x\\ge y\\), we have \\(3^d-1\\ge 2\\), hence\n\\[\nb-a=3^y(3^d-1)-d.\n\\]\n\n- If \\(y\\ge 1\\), then \\(3^y\\ge 3\\), so\n  \\[\n  b-a \\ge 3\\cdot 2 - d = 6-d.\n  \\]\n  But \\(d\\) can’t be large enough to make this equal to \\(1\\) or \\(-1\\); in fact the expression is clearly at least \\(2\\) for all \\(d\\ge 1\\) and \\(y\\ge 1\\).\n\n- If \\(y=0\\), then \\(x=d\\), and\n  \\[\n  b-a = (3^x-1)-x=3^x-x-1.\n  \\]\n  Checking \\(x=0\\) gives no consecutive pair, and for \\(x\\ge 1\\),\n  \\[\n  3^x-x-1\\ge 3-1-1=1,\n  \\]\n  with equality only when \\(x=1\\). Indeed for \\(x=1,y=0\\),\n  \\[\n  a=1+1=2,\\qquad b=0+3=3,\n  \\]\n  which are consecutive.\n\nSo the only solution is \\((x,y)=(1,0)\\).\n\nFinal answer: \\((1,0)\\)",
+  "usage": {
+    "input_tokens": 85,
+    "output_tokens": 522,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.4688107550609857,
+  "cached": false
+}

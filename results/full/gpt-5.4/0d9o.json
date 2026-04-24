@@ -1,0 +1,20 @@
+{
+  "id": "0d9o",
+  "country": "Saudi Arabia",
+  "competition": "Team selection tests for BMO 2018",
+  "gold_final_answer": "11",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Factorization techniques",
+    "Algebra > Algebraic Expressions > Sequences and Series > Sums and products"
+  ],
+  "prompt": "Find the smallest positive integer $n$ which can not be expressed as $n=\\frac{2^{a}-2^{b}}{2^{c}-2^{d}}$ for some positive integers $a, b, c, d$.",
+  "model": "gpt-5.4",
+  "response_text": "Write\n\\[\nn=\\frac{2^a-2^b}{2^c-2^d}.\n\\]\nWe seek which positive integers can occur.\n\nWLOG assume \\(a>b\\) and \\(c>d\\), since otherwise numerator/denominator may be negative and signs cancel similarly. Then\n\\[\n2^a-2^b=2^b(2^{a-b}-1),\\qquad 2^c-2^d=2^d(2^{c-d}-1),\n\\]\nso\n\\[\nn=2^{\\,b-d}\\cdot \\frac{2^{a-b}-1}{2^{c-d}-1}.\n\\]\nLet\n\\[\nx=a-b,\\qquad y=c-d.\n\\]\nThen\n\\[\nn=2^{\\,b-d}\\cdot \\frac{2^x-1}{2^y-1}.\n\\]\nSince \\(n\\) is an integer, we need \\((2^y-1)\\mid (2^x-1)\\), which is equivalent to \\(y\\mid x\\). Hence\n\\[\n\\frac{2^x-1}{2^y-1}=1+2^y+2^{2y}+\\cdots+2^{(k-1)y},\n\\quad \\text{where }x=ky.\n\\]\nSo every representable \\(n\\) has the form\n\\[\nn=2^t\\bigl(1+2^y+2^{2y}+\\cdots+2^{(k-1)y}\\bigr),\n\\]\nfor integers \\(t\\ge 0,\\ y\\ge 1,\\ k\\ge 1\\).\n\nNow test small integers.\n\n- \\(1\\): yes, take \\(a=c,\\ b=d\\).\n- \\(2\\): yes, e.g. \\(2=\\frac{2^3-2^2}{2^2-2^1}=\\frac{4}{2}\\).\n- \\(3\\): yes, \\(3=\\frac{2^2-2^0}{2^1-2^0}\\) in spirit; with positive exponents,\n  \\[\n  3=\\frac{2^3-2^1}{2^2-2^1}=\\frac{6}{2}.\n  \\]\n- \\(4\\): yes, \\(4=2^2\\cdot 1\\).\n- \\(5\\): can it occur?\n\nIf \\(5\\) is representable, since it is odd, the factor \\(2^t\\) must be \\(1\\), so \\(t=0\\). Thus\n\\[\n5=1+2^y+\\cdots+2^{(k-1)y}.\n\\]\nIf \\(k=1\\), value is \\(1\\).  \nIf \\(k=2\\), value is \\(1+2^y\\), so \\(2^y=4\\), giving \\(y=2\\), hence \\(5=1+4\\). This works.\n\nIndeed,\n\\[\n5=\\frac{2^4-2^2}{2^2-2^1}=\\frac{12}{2}=6\n\\]\nOops, that is wrong. Let's construct correctly from \\(t=0,\\ y=2,\\ k=2\\): then\n\\[\n\\frac{2^{2\\cdot 2}-1}{2^2-1}=\\frac{2^4-1}{3}=\\frac{15}{3}=5.\n\\]\nSo choose \\(b=d\\), say \\(b=d=1\\), then\n\\[\na=b+4=5,\\quad c=d+2=3,\n\\]\nand\n\\[\n\\frac{2^5-2^1}{2^3-2^1}=\\frac{30}{6}=5.\n\\]\nThus \\(5\\) is representable.\n\n- \\(6\\): yes, \\(6=2\\cdot 3\\).\n- \\(7\\): yes, \\(7=\\frac{2^3-1}{2-1}\\) in spirit; with positive exponents,\n\\[\n7=\\frac{2^4-2^1}{2^2-2^1}=\\frac{14}{2}=7.\n\\]\n\nNow check \\(9\\) and \\(10\\) not needed if \\(8\\) works; but we need the smallest nonrepresentable. So test \\(1\\) through \\(7\\): all representable. Try \\(11\\).\n\nSince \\(11\\) is odd, again \\(t=0\\), so\n\\[\n11=1+2^y+\\cdots+2^{(k-1)y}.\n\\]\nIf \\(k=2\\), then \\(11=1+2^y\\), impossible.  \nIf \\(k\\ge 3\\) and \\(y\\ge 2\\), then\n\\[\n1+2^y+2^{2y}\\ge 1+4+16=21>11.\n\\]\nSo the only remaining case is \\(y=1\\), giving\n\\[\n11=1+2+4+\\cdots+2^{k-1}=2^k-1,\n\\]\nimpossible since \\(11+1=12\\) is not a power of \\(2\\).\n\nHence \\(11\\) is not representable.\n\nIt remains to show \\(8,9,10\\) are representable:\n\\[\n8=2^3,\\qquad\n9=\\frac{2^6-2^3}{2^4-2^3}=\\frac{56}{8}=7 \\text{ (wrong)}.\n\\]\nBetter: since \\(9=1+2^3\\),\n\\[\n9=\\frac{2^6-2^3}{2^3-2^0}\\ \\text{in spirit}.\n\\]\nUsing positive exponents with \\(b=d=1,\\ y=3,\\ k=2\\):\n\\[\na=1+6=7,\\ c=1+3=4,\\quad\n\\frac{2^7-2^1}{2^4-2^1}=\\frac{126}{14}=9.\n\\]\nAlso\n\\[\n10=2\\cdot 5,\n\\]\nso representable.\n\nThus the smallest positive integer not representable is \\(11\\).\n\nFinal answer: 11",
+  "usage": {
+    "input_tokens": 98,
+    "output_tokens": 1348,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 17.427189086098224,
+  "cached": false
+}

@@ -1,0 +1,25 @@
+{
+  "id": "0gpi",
+  "country": "Turkey",
+  "competition": "20th Turkish Mathematical Olympiad",
+  "gold_final_answer": "P(x) = 1; P(x) = 2; P(x) = x",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Polynomial operations",
+    "Number Theory > Divisibility / Factorization > Factorization techniques"
+  ],
+  "prompt": "Find all polynomials $P(x)$ with integer coefficients satisfying $P(n!) = |P(n)|!$ for all positive integers $n$.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Setting Up the Problem\n\nWe need polynomials with integer coefficients where $P(n!) = |P(n)|!$ for all positive integers $n$.\n\nSince $|P(n)|!$ is always a non-negative integer (factorial of a non-negative integer), we need $P(n!)$ to be a factorial for all positive integers $n$.\n\n## Initial Observations\n\nFor large $n$, $n!$ grows very fast. If $P$ has degree $d \\geq 1$, then $P(n!)$ grows like $(n!)^d$, while $|P(n)|!$ grows like $(n^d)!$ which is much larger. So we need $P(n!) = |P(n)|!$.\n\n**Constant polynomials:** If $P(x) = c$ (constant), then $c = |c|!$ for all $n$. We need $c = |c|!$. \n- $c = 1$: $1 = 1!$ ✓\n- $c = 2$: $2 = 2!$ ✓  \n- $c = -1$: $-1 = 1!$ ✗\n- $c = 0$: $0 = 0!= 1$ ✗\n\nSo constant solutions: $P(x) = 1$ and $P(x) = 2$.\n\n**Non-constant polynomials:** Try $P(x) = x$. Then $P(n!) = n!$ and $|P(n)|! = n!$. So $n! = n!$ ✓. This works!\n\nTry $P(x) = -x$. Then $P(n!) = -n!$ and $|P(n)|! = n!$. So $-n! = n!$ ✗.\n\nTry $P(x) = x + c$ for some constant $c$. Then $P(n!) = n! + c$ must equal $(n+c)!$ (approximately). For large $n$, $n! + c \\neq (n+c)!$ unless $c = 0$.\n\n**Check $P(x) = x$ more carefully:** Already verified ✓.\n\n**Try degree > 1:** If $\\deg P = d \\geq 2$, then $P(n!) \\sim (n!)^d$ while $|P(n)|! \\sim (n^d)!$. Using Stirling, $(n^d)! \\approx (n^d/e)^{n^d}$ which grows much faster than $(n!)^d \\approx (n/e)^{dn}$. So for large $n$, $|P(n)|!$ is much larger than $P(n!)$, making equality impossible for large $n$.\n\n**Try $P(x) = 1$ and $P(x) = 2$:** Already verified.\n\n**Try other linear polynomials:** $P(x) = ax + b$.\n- $P(n!) = an! + b$ must equal $|an + b|!$\n- For $a = 1, b = 0$: works (shown above)\n- For $a = 1, b = 1$: $P(n!) = n! + 1$, $|P(n)|! = (n+1)!= (n+1) \\cdot n!$. Need $n! + 1 = (n+1)!$ which fails.\n- For $a = -1, b = 0$: $P(n!) = -n!$, $|P(n)|! = n!$. Need $-n! = n!$ ✗.\n\n**Check $P(x) = 2$ again:** $P(n!) = 2$ and $|P(n)|! = 2! = 2$ ✓.\n\n**Check $P(x) = 1$:** $P(n!) = 1$ and $|P(n)|! = 1! = 1$ ✓.\n\n## Verification Summary\n\n- $P(x) = 1$: $1 = 1!$ ✓\n- $P(x) = 2$: $2 = 2!$ ✓  \n- $P(x) = x$: $n! = n!$ ✓\n\nNo other polynomials work based on degree analysis and checking linear cases.\n\n## Final Answer\n\nThe polynomials satisfying the condition are:\n\n$$P(x) = 1, \\quad P(x) = 2, \\quad P(x) = x$$\n\nFinal answer: $P(x) = 1$, $P(x) = 2$, and $P(x) = x$.",
+  "usage": {
+    "input_tokens": 83,
+    "output_tokens": 1132,
+    "thinking_tokens": 0
+  },
+  "latency_s": 13.33245652494952,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "$P(x) = 1$, $P(x) = 2$, and $P(x) = x$."
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "id": "040q",
+  "country": "China",
+  "competition": "China Mathematical Olympiad",
+  "gold_final_answer": "1008",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Induction / smoothing",
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments"
+  ],
+  "prompt": "Find the smallest positive integer $k$ with the following property: for any $k$ element subset $A$ of the set $S = \\{1, 2, \\dots, 2012\\}$, there exist three pairwise distinct elements $a, b, c$ of $S$ such that $a+b$, $b+c$, $c+a$ all belong to $A$.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find the smallest positive integer $k$ such that any $k$-element subset $A \\subseteq S = \\{1, 2, \\dots, 2012\\}$ contains three distinct elements $a, b, c \\in S$ such that $a+b, b+c, c+a \\in A$, we can rephrase the condition. \n\nLet $x = a+b$, $y = b+c$, and $z = c+a$. Then $x, y, z \\in A$. \nSince $a, b, c$ are positive integers, we have $x+y > z$, $y+z > x$, and $z+x > y$. This means $x, y, z$ form the sides of a non-degenerate triangle. \nFurthermore, $x+y+z = 2(a+b+c)$, which implies that the sum $x+y+z$ must be an even integer. \nThus, we are looking for the smallest $k$ such that any $k$-element subset $A$ contains three distinct elements that form a triangle and have an even sum.\n\nTo find the maximum size of a subset $A$ that *does not* contain such a triple, we can analyze the parities of the elements in $A$.\nIf we choose $A$ to contain all the odd numbers in $S$, then for any three elements $x, y, z \\in A$, their sum $x+y+z$ will be odd (since the",
+  "usage": {
+    "input_tokens": 123,
+    "output_tokens": 328,
+    "thoughts_tokens": 7860
+  },
+  "latency_s": 68.00374566100072,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": null
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "id": "0di2",
+  "country": "Saudi Arabia",
+  "competition": "SAUDI ARABIAN IMO Booklet 2023",
+  "gold_final_answer": "No",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Invariants / monovariants",
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments",
+    "Algebra > Algebraic Expressions > Sequences and Series > Sums and products"
+  ],
+  "prompt": "Determine whether or not it is possible to partition the set of positive integers in infinite subsets $A_1, A_2, \\dots$ such that for every positive integer $k$, the sum of elements of $A_k$ is $k + 2023$.\n\n*Remark*: a partition of a set $X$ is a collection of subsets of $X$ such that every element of $X$ is contained in exactly one the subsets.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Solution\n\nWe need to determine if we can partition the positive integers into infinite subsets $A_1, A_2, \\ldots$ such that the sum of elements of $A_k$ equals $k + 2023$ for every positive integer $k$.\n\n**Key Observation:** Each $A_k$ must be an infinite subset of positive integers with a finite sum equal to $k + 2023$. But an infinite set of positive integers has an infinite sum (since the terms are at least 1, 2, 3, ... eventually). This is a contradiction.\n\nWait — let me reconsider. An infinite subset of positive integers must have infinitely many distinct positive integers, so its sum is infinite. But we need the sum to equal $k + 2023$, which is finite. This is impossible.\n\n**Conclusion:** It is **not possible** to partition the positive integers into infinite subsets $A_1, A_2, \\ldots$ such that the sum of elements of $A_k$ is $k + 2023$.\n\n**Proof:** Any infinite subset of positive integers contains infinitely many distinct positive integers. Since each element is at least 1, and the elements are distinct positive integers, the sum of an infinite subset of positive integers is infinite (it diverges). However, $k + 2023$ is a finite number for every positive integer $k$. Therefore, no infinite subset of positive integers can have a finite sum, making the required partition impossible.\n\nFinal answer: It is not possible.",
+  "usage": {
+    "input_tokens": 147,
+    "output_tokens": 338,
+    "thinking_tokens": 0
+  },
+  "latency_s": 5.896288134972565,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "It is not possible."
+  }
+}

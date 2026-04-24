@@ -1,0 +1,26 @@
+{
+  "id": "01vu",
+  "country": "Belarus",
+  "competition": "Belarusian Mathematical Olympiad",
+  "gold_final_answer": "Odd number of vertices: first player wins. Even number of vertices: second player wins.",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Games / greedy algorithms",
+    "Discrete Mathematics > Combinatorics > Invariants / monovariants",
+    "Discrete Mathematics > Combinatorics > Induction / smoothing"
+  ],
+  "prompt": "The vertices of the regular $n$-gon are marked. Two players play the following game: they, in turn, select a vertex and connect it by a segment to either the adjacent vertex or the center of the $n$-gon. The winner is a player if after his move it is possible to get any vertex from any other vertex moving along segments.\nFor each integer $n \\ge 3$ determine who has a winning strategy.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To determine the winning strategy for the game, we can analyze the game as a Maker-Maker game played on the graphic matroid of the wheel graph $W_n$. \n\nThe board consists of $2n$ edges (the $n$ edges of the regular $n$-gon and the $n$ segments connecting the vertices to the center). The total number of vertices is $n+1$.\nThe game ends as soon as a player completes a spanning tree of the graph, which requires exactly $n$ edges that do not form any cycles. \n\nEvery time a player selects an edge, it either connects two previously disconnected components (increasing the rank of the chosen subgraph by 1) or it forms a cycle within a component (leaving the rank unchanged). \nInitially, there are $n+1$ components (each vertex is its own component). To win, a player must be the one to reduce the number of components to 1, meaning they must make the $n$-th rank-increasing move.\n\nIf no cycles are formed, the game must end on turn $n$. \n- If $n$ is odd, Player 1 makes the $n$-th move and wins.\n- If $n$ is even, Player 2 makes the $n$-th move and wins.\n\nHowever, players can choose to form cycles to change the parity of the remaining required moves. \nIn the wheel graph $W_n$, the shortest cycle is a triangle (length 3). \n- For $n=3$, Player 1 can easily avoid",
+  "usage": {
+    "input_tokens": 129,
+    "output_tokens": 326,
+    "thoughts_tokens": 7862
+  },
+  "latency_s": 132.0195424919948,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": null
+  }
+}

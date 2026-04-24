@@ -1,0 +1,25 @@
+{
+  "id": "03yz",
+  "country": "China",
+  "competition": "China Western Mathematical Olympiad",
+  "gold_final_answer": "0",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Induction / smoothing",
+    "Discrete Mathematics > Combinatorics > Algebraic properties of binomial coefficients"
+  ],
+  "prompt": "Let $n \\ge 2$ be a given integer.\n(1) Prove that one can arrange all the subsets of the set $\\{1, 2, \\dots, n\\}$ as a sequence of subsets $A_1, A_2, \\dots, A_{2^n}$, such that $|A_{i+1}| = |A_i| + 1$ or $|A_i| - 1$, where $i = 1, 2, \\dots, 2^n$ and $A_{2^n+1} = A_1$.\n(2) Determine, with proof, all possible values of the sum $\\sum_{i=1}^{2^n} (-1)^i S(A_i)$, where $S(A_i) = \\sum_{x \\in A_i} x$ and $S(\\emptyset) = 0$, for any subset sequence $A_1, A_2, \\dots, A_{2^n}$ satisfying the condition in (1). (posed by Liang Yingde)",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let \\(V=\\{1,2,\\dots,n\\}\\). We need a cyclic ordering of all \\(2^n\\) subsets so that consecutive subsets differ in size by \\(1\\), and then determine the possible values of  \n\\[\n\\Sigma=\\sum_{i=1}^{2^n}(-1)^i S(A_i),\\qquad S(A)=\\sum_{x\\in A}x.\n\\]\n\n---\n\n## (1) Existence of such an ordering\n\nThis is equivalent to finding a Hamiltonian cycle in the \\(n\\)-dimensional cube \\(Q_n\\), since:\n\n- vertices of \\(Q_n\\) are subsets of \\(V\\),\n- two subsets are adjacent iff they differ by exactly one element,\n- adjacent vertices then have sizes differing by \\(1\\).\n\nIt is a standard fact that every hypercube \\(Q_n\\) has a Hamiltonian cycle for \\(n\\ge 2\\). One way to prove this is by induction using Gray codes.\n\n### Gray-code construction\nFor \\(n=2\\), one cycle is\n\\[\n\\emptyset,\\ \\{1\\},\\ \\{1,2\\},\\ \\{2\\},\\ \\emptyset.\n\\]\n\nAssume we have a cyclic ordering of all subsets of \\(\\{1,\\dots,n-1\\}\\):\n\\[\nB_1,B_2,\\dots,B_{2^{n-1}},\n\\]\nwith successive sets differing by one element, and \\(B_{2^{n-1}+1}=B_1\\).\n\nThen define a cyclic ordering of all subsets of \\(\\{1,\\dots,n\\}\\) by\n\\[\nB_1,\\ B_2,\\ \\dots,\\ B_{2^{n-1}},\\ B_{2^{n-1}}\\cup\\{n\\},\\ B_{2^{n-1}-1}\\cup\\{n\\},\\dots,\\ B_1\\cup\\{n\\}.\n\\]\nConsecutive sets differ by exactly one element, and the last set \\(B_1\\cup\\{n\\}\\) differs from \\(B_1\\) by exactly one element as well. Thus the desired sequence exists for all \\(n\\ge 2\\).\n\n---\n\n## (2) Possible values of \\(\\Sigma=\\sum_{i=1}^{2^n}(-1)^i S(A_i)\\)\n\nWe claim the sum is completely determined:\n\n\\[\n\\boxed{\\Sigma = -\\sum_{x=1}^n x = -\\frac{n(n+1)}2.}\n\\]\n\nIn particular, this is the only possible value.\n\n### Key observation\nFor each \\(x\\in\\{1,\\dots,n\\}\\), define\n\\[\n\\varepsilon_i(x)=\n\\begin{cases}\n1,& x\\in A_i,\\\\\n0,& x\\notin A_i.\n\\end{cases}\n\\]\nThen\n\\[\nS(A_i)=\\sum_{x=1}^n x\\,\\varepsilon_i(x),\n\\]\nso\n\\[\n\\Sigma=\\sum_{i=1}^{2^n}(-1)^i\\sum_{x=1}^n x\\,\\varepsilon_i(x)\n=\\sum_{x=1}^n x\\left(\\sum_{i=1}^{2^n}(-1)^i\\varepsilon_i(x)\\right).\n\\]\n\nThus it suffices to show that for each fixed \\(x\\),\n\\[\n\\sum_{i=1}^{2^n}(-1)^i\\varepsilon_i(x)=-1.\n\\]\n\n### Why this is true\nAs we move around the cyclic Gray code, the membership of a fixed element \\(x\\) flips exactly when the edge crossed is labeled by \\(x\\). In a Hamiltonian cycle of the \\(n\\)-cube, each coordinate must be used an even number of times, and in fact exactly \\(2^{n-1}\\) times. The subsets containing \\(x\\) therefore appear in alternating blocks along the cycle, and because the cycle is closed, the alternating count is\n\\[\n\\#(\\text{positions with }x\\in A_i\\text{ and }i\\text{ even})-\\#(\\text{positions with }x\\in A_i\\text{ and }i\\text{ odd})= -1,\n\\]\nindependently of the particular Hamiltonian cycle.\n\nA cleaner way to see this is to note that the sequence \\((\\varepsilon_i(x))\\) around the cycle is a cyclic \\(0\\)-\\(1\\) sequence that changes value exactly \\(2^{n-1}\\) times and starts and ends in the opposite parity position because \\(2^n\\) is even; hence the alternating sum is always \\(-1\\).\n\nTherefore,\n\\[\n\\Sigma=\\sum_{x=1}^n x(-1)= -\\sum_{x=1}^n x\n= -\\frac{n(n+1)}2.\n\\]\n\n---\n\n## Conclusion\n\nAll such sequences give the same value.\n\nFinal answer: \\(\\displaystyle -\\frac{n(n+1)}2\\).",
+  "usage": {
+    "input_tokens": 275,
+    "output_tokens": 1087,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 6.851507998071611,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "\\(\\displaystyle -\\frac{n(n+1)}2\\)."
+  }
+}

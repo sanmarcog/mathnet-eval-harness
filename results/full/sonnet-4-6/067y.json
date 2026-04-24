@@ -1,0 +1,20 @@
+{
+  "id": "067y",
+  "country": "Greece",
+  "competition": "33rd Hellenic Mathematical Olympiad",
+  "gold_final_answer": "[(4, 8, 0), (35, 70, 1), (14, 77, 1)]",
+  "topics_flat": [
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities",
+    "Number Theory > Divisibility / Factorization > Factorization techniques"
+  ],
+  "prompt": "Find all possible triads of non negative integers $(x, y, z)$ with $x \\le y$, which satisfy the equation: $x^2 + y^2 = 3 \\cdot 2016^z + 77$",
+  "model": "claude-sonnet-4-6",
+  "response_text": "We need to find all non-negative integers $(x, y, z)$ with $x \\leq y$ satisfying $x^2 + y^2 = 3 \\cdot 2016^z + 77$.\n\n**Case z = 0:**\n$x^2 + y^2 = 3 + 77 = 80$\n\nWe need $x^2 + y^2 = 80$ with $x \\leq y$.\n- $y = 8$: $x^2 = 16$, $x = 4$. ✓ → $(4, 8, 0)$\n- $y = 7$: $x^2 = 31$, not a perfect square.\n- $y = 6$: $x^2 = 44$, not a perfect square.\n\nSo $(4, 8, 0)$ is a solution.\n\n**Case z = 1:**\n$x^2 + y^2 = 3 \\cdot 2016 + 77 = 6048 + 77 = 6125$\n\nCheck modulo 4: $2016 \\equiv 0 \\pmod{4}$, so $3 \\cdot 2016^z \\equiv 0 \\pmod{4}$, and $77 \\equiv 1 \\pmod{4}$.\nSo $x^2 + y^2 \\equiv 1 \\pmod{4}$.\n\nSquares mod 4 are 0 or 1. For sum ≡ 1 mod 4: one is 0, one is 1, meaning one of x, y is even and one is odd.\n\n$6125 = 5^3 \\cdot 7^2$. Check if representable as sum of two squares: $5 = 1^2 + 2^2$, $7$ is $3 \\pmod 4$ and appears to odd power (1 in $7^2$... wait $7^2$ has even power). Actually $6125 = 5^3 \\cdot 49$. Since $7 \\equiv 3 \\pmod 4$ appears to even power, and $5 \\equiv 1 \\pmod 4$, this is representable.\n\n$5^3 = 125 = 10^2 + 5^2 = 2^2 + 11^2$. Then $6125 = 49 \\cdot 125$.\n$125 = 10^2 + 5^2$, so $6125 = (70)^2 + (35)^2 = 4900 + 1225$. ✓ → $(35, 70, 1)$\nAlso $125 = 2^2 + 11^2$, so $6125 = 14^2 + 77^2 = 196 + 5929 = 6125$. ✓ → $(14, 77, 1)$\n\nCheck: $14^2 + 77^2 = 196 + 5929 = 6125$ ✓, $35^2 + 70^2 = 1225 + 4900 = 6125$ ✓.\n\n**Case z = 2:**\n$x^2 + y^2 = 3 \\cdot 2016^2 + 77 = 3 \\cdot 4064256 + 77 = 12192768 + 77 = 12192845$\n\nCheck modulo 9: $2016 = 224 \\cdot 9$, so $2016 \\equiv 0 \\pmod 9$, thus $3 \\cdot 2016^2 \\equiv 0 \\pmod 9$, and $77 \\equiv 5 \\pmod 9$.\nSo $x^2 + y^2 \\equiv 5 \\pmod 9$.\n\nSquares mod 9: 0, 1, 4, 7. Possible sums: 0,1,2,4,5,7,8. Sum = 5 is possible (1+4 or 4+1).\n\nCheck modulo 7: $2016 = 288 \\cdot 7$, so $2016 \\equiv 0 \\pmod 7$, $77 \\equiv 0 \\pmod 7$.\nSo $x^2 + y^2 \\equiv 0 \\pmod 7$. Squares mod 7: 0,1,2,4. For sum ≡ 0: both ≡ 0, or one ≡ 3... wait: 0+0=0, 1+6(no), 2+5(no), 3+4(no). Only 0+0. So $7 | x$ and $7 | y$.\n\nLet $x = 7a$, $y = 7b$: $49(a^2 + b^2) = 12192845$. But $12192845 / 49 = 248833.57...$, not an integer. Contradiction!\n\nSo **no solutions for z = 2**.\n\nFor $z \\geq 2$: $2016^z \\equiv 0 \\pmod{49}$, $77 \\equiv 0 \\pmod 7$ but $77/49$ is not integer, so $x^2+y^2 \\equiv 77 \\equiv 0 \\pmod 7$ requires $7|x, 7|y$, but then $49 | x^2+y^2$ requires $49|77$, which fails. So no solutions for $z \\geq 2$.\n\n**All solutions:** $(4, 8, 0)$, $(14, 77, 1)$, $(35, 70, 1)$.\n\nFinal answer: $(x, y, z) \\in \\{(4, 8, 0),\\ (14, 77, 1),\\ (35, 70, 1)\\}$",
+  "usage": {
+    "input_tokens": 102,
+    "output_tokens": 1466,
+    "thinking_tokens": 0
+  },
+  "latency_s": 20.296640770044178,
+  "cached": false
+}

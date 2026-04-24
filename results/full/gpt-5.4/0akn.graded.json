@@ -1,0 +1,26 @@
+{
+  "id": "0akn",
+  "country": "North Macedonia",
+  "competition": "Asian-Pacific Mathematical Olympiad",
+  "gold_final_answer": "All odd positive integers",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Transformations > Rotation",
+    "Geometry > Plane Geometry > Analytic / Coordinate Methods > Vectors",
+    "Geometry > Plane Geometry > Miscellaneous > Constructions and loci"
+  ],
+  "prompt": "Problem:\n\nLet $ABC$ be an equilateral triangle. From the vertex $A$ we draw a ray towards the interior of the triangle such that the ray reaches one of the sides of the triangle. When the ray reaches a side, it then bounces off following the law of reflection, that is, if it arrives with a directed angle $\\alpha$, it leaves with a directed angle $180^\\circ - \\alpha$. After $n$ bounces, the ray returns to $A$ without ever landing on any of the other vertices. Find all possible values of $n$.",
+  "model": "gpt-5.4",
+  "response_text": "Use the standard **unfolding** trick for billiards.\n\nLet the equilateral triangle have side length \\(1\\). Each time the ray reflects off a side, instead of reflecting the ray, reflect the whole triangle across that side. Then the broken billiard path becomes a **straight line** through a tessellation of the plane by equilateral triangles.\n\nSo:\n\n- starting at \\(A\\),\n- after \\(n\\) bounces,\n- the ray returns to \\(A\\),\n\nmeans that in the unfolded picture, a straight segment goes from the original \\(A\\) to some image \\(A'\\) of \\(A\\), crossing exactly \\(n\\) triangle sides on the way.\n\nWe must also exclude paths passing through any image of \\(B\\) or \\(C\\), since the original path may not hit the other vertices.\n\n## 1. Coordinates in the triangular lattice\nPut\n\\[\nA=(0,0),\\qquad B=(1,0),\\qquad C=\\left(\\frac12,\\frac{\\sqrt3}{2}\\right).\n\\]\nThe images of \\(A\\) in the triangular tiling form a triangular lattice:\n\\[\nA' = m\\,(1,0)+k\\left(\\frac12,\\frac{\\sqrt3}{2}\\right)\n\\]\nwith integers \\(m,k\\) satisfying a parity condition. In fact, the images of the same vertex \\(A\\) are exactly those lattice points with\n\\[\nm+k\\equiv 0 \\pmod 3.\n\\]\nEquivalently, if we use lattice basis vectors\n\\[\nu=(1,0),\\qquad v=\\left(\\frac12,\\frac{\\sqrt3}{2}\\right),\n\\]\nthen \\(A' = pu+qv\\) with \\(p+q\\equiv 0\\pmod 3\\).\n\nNow, how many side-lines does the straight segment from \\(A\\) to \\(A'=pu+qv\\) cross?\n\nIn the triangular lattice there are 3 families of parallel side-lines. A segment from \\(0\\) to \\(pu+qv\\) crosses:\n\n- \\(|p|\\) lines of one family,\n- \\(|q|\\) lines of another family,\n- \\(|p+q|\\) lines of the third family,\n\nbut each actual side crossing is counted in exactly one family, and the total number of crossed sides is\n\\[\nn=|p|+|q|+|p+q|.\n\\]\nMore precisely, dividing by 2 if signs differ is cumbersome; a cleaner way is to choose signs so the segment lies in a \\(60^\\circ\\) sector. Then for \\(p,q\\ge 0\\),\n\\[\nn=p+q.\n\\]\nSince by symmetry every image can be reduced to this case, we may assume \\(p,q\\ge 0\\), so\n\\[\nn=p+q.\n\\]\nBecause \\(A'\\) is an image of \\(A\\), we need\n\\[\np+q\\equiv 0\\pmod 3.\n\\]\nHence necessarily\n\\[\nn\\equiv 0\\pmod 3.\n\\]\n\n## 2. Excluding hits on \\(B\\) or \\(C\\)\nThe straight segment must not pass through any image of \\(B\\) or \\(C\\). In lattice terms, that means the segment from \\(0\\) to \\((p,q)\\) must be “primitive” with respect to the triangular lattice, i.e.\n\\[\n\\gcd(p,q)=1.\n\\]\nIndeed, if \\(\\gcd(p,q)>1\\), the segment passes through interior lattice points, which are images of triangle vertices. To avoid hitting \\(B\\) or \\(C\\), we need no such intermediate vertex.\n\nSo we need integers \\(p,q\\ge 0\\) such that\n\\[\np+q=n,\\qquad p+q\\equiv 0\\pmod 3,\\qquad \\gcd(p,q)=1.\n\\]\nThus \\(n\\) must be a multiple of \\(3\\).\n\nNow show every multiple of \\(3\\) greater than \\(1\\) works.  \nTake\n\\[\np=1,\\qquad q=n-1.\n\\]\nThen \\(\\gcd(1,n-1)=1\\), and if \\(n\\equiv 0\\pmod 3\\), then \\(p+q=n\\equiv 0\\pmod 3\\), so the endpoint is an image of \\(A\\). Also the segment is primitive, so it hits no other vertex image.\n\nFor \\(n=3\\), this gives \\(p=1,q=2\\), which works. Similarly for every \\(n=6,9,\\dots\\).\n\nTherefore the possible values are exactly the positive multiples of \\(3\\).\n\nFinal answer: \\(\\boxed{n\\in\\{3,6,9,\\dots\\}}\\)",
+  "usage": {
+    "input_tokens": 166,
+    "output_tokens": 1037,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 16.139160734950565,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "n\\in\\{3,6,9,\\dots\\}"
+  }
+}

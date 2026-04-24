@@ -1,0 +1,25 @@
+{
+  "id": "05ce",
+  "country": "Estonia",
+  "competition": "Estonian Mathematical Olympiad",
+  "gold_final_answer": "625, 3125, 9375",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Factorization techniques",
+    "Algebra > Prealgebra / Basic Algebra > Integers"
+  ],
+  "prompt": "Find all natural numbers whose last digit is not zero and deleting the first digit of which gives a number exactly 25 times smaller.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "Let the natural number have $n+1$ digits. Let the first digit be $a$ (where $1 \\le a \\le 9$), and let the remaining number (after deleting the first digit) be $m$.\n\nThe original number can be written as:\n$$N = a \\cdot 10^n + m$$\n\nWe need $N = 25m$, so:\n$$a \\cdot 10^n + m = 25m$$\n$$a \\cdot 10^n = 24m$$\n$$m = \\frac{a \\cdot 10^n}{24}$$\n\nFor $m$ to be a natural number, $24 \\mid a \\cdot 10^n$.\n\nSince $24 = 8 \\cdot 3$ and $10^n = 2^n \\cdot 5^n$:\n- For $n \\ge 3$: $8 \\mid 10^n$, so we need $3 \\mid a$. Thus $a \\in \\{3, 6, 9\\}$.\n- For $n = 1$: $10^1 = 10$, so $24 \\mid 10a$ means $12 \\mid 5a$, so $12 \\mid a$ (since $\\gcd(5,12)=1$). No valid single digit $a$.\n- For $n = 2$: $10^2 = 100$, so $24 \\mid 100a$ means $6 \\mid 25a$, so $6 \\mid a$ (since $\\gcd(25,6)=1$). Thus $a = 6$.\n\n**Case $n = 2$, $a = 6$:**\n$$m = \\frac{6 \\cdot 100}{24} = 25$$\n$N = 625$. Check: deleting first digit gives 25, and $625/25 = 25$. ✓\nLast digit of 625 is 5 ≠ 0. ✓\n\n**Case $n \\ge 3$, $a \\in \\{3, 6, 9\\}$:**\n$$m = \\frac{a \\cdot 10^n}{24} = \\frac{a \\cdot 5^n \\cdot 2^n}{24} = \\frac{a \\cdot 5^n \\cdot 2^{n-3}}{3}$$\n\nFor $m$ to be an integer, $3 \\mid a \\cdot 5^n \\cdot 2^{n-3}$, which means $3 \\mid a$ (already satisfied).\n\nAlso, $m$ must have exactly $n$ digits: $10^{n-1} \\le m < 10^n$.\n\n$$m = \\frac{a \\cdot 10^n}{24}$$\n\nUpper bound: $m < 10^n$ requires $a < 24$, always true.\nLower bound: $m \\ge 10^{n-1}$ requires $a \\cdot 10^n \\ge 24 \\cdot 10^{n-1}$, so $10a \\ge 24$, meaning $a \\ge 3$ (since $a \\ge 3$ here, this is satisfied for $a \\in \\{3,6,9\\}$).\n\nAlso, the last digit of $N$ must not be zero. The last digit of $N$ equals the last digit of $m$.\n\n$m = \\frac{a \\cdot 10^n}{24}$. For $n \\ge 3$: $m = \\frac{a \\cdot 5^n \\cdot 2^{n-3}}{3}$.\n\nFor $n \\ge 4$: $m$ contains factor $2^{n-3} \\ge 2$, and $5^n$ contributes factors of 5, so $m$ is divisible by $10^{n-3} \\cdot \\frac{a \\cdot 5^3}{3}$... Let me check the last digit directly.\n\nFor $n = 3$: $m = \\frac{a \\cdot 1000}{24} = \\frac{125a}{3}$. \n- $a=3$: $m = 125$, $N = 3125$. Last digit 5 ≠ 0. ✓ Check: $3125/25 = 125$. ✓\n- $a=6$: $m = 250$, last digit 0. ✗\n- $a=9$: $m = 375$, $N = 9375$. Last digit 5 ≠ 0. ✓ Check: $9375/25 = 375$. ✓\n\nFor $n \\ge 4$: $m = \\frac{a \\cdot 10^n}{24}$. Since $n \\ge 4$, $10^n$ is divisible by $10^4$, so $m$ is divisible by $\\frac{10^4}{24} \\cdot a$... Actually $m$ is divisible by $10^{n-3}/3 \\cdot a \\cdot 125$. For $n=4$: $m = \\frac{a \\cdot 10000}{24} = \\frac{1250a}{3}$. For $a=3$: $m=1250$ (last digit 0 ✗); $a=6$: $m=2500$ (✗); $a=9$: $m=3750$ (✗). For $n \\ge 4$, $m$ ends in 0 always (since $m$ divisible by 10). ✗\n\nSo the solutions are: **625, 3125, 9375**.\n\nFinal answer: 625, 3125, 9375",
+  "usage": {
+    "input_tokens": 74,
+    "output_tokens": 1411,
+    "thinking_tokens": 0
+  },
+  "latency_s": 19.465583526995033,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "exact",
+    "predicted": "625, 3125, 9375"
+  }
+}

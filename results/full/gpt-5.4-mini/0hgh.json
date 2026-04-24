@@ -1,0 +1,21 @@
+{
+  "id": "0hgh",
+  "country": "Ukraine",
+  "competition": "62nd Ukrainian National Mathematical Olympiad, Third Round, First Tour",
+  "gold_final_answer": "2021",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Greatest common divisors (gcd)",
+    "Algebra > Prealgebra / Basic Algebra > Integers",
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities"
+  ],
+  "prompt": "The sum of coprime integers $m$ and $n$ equals $90$. What largest possible value can be attained by the product $mn$ of these integers?",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let \\(m+n=90\\) with \\(\\gcd(m,n)=1\\).  \nFor a fixed sum, the product \\(mn\\) is maximized when the two numbers are as close as possible.\n\nSince \\(90\\) is even, the closest pair is \\(45\\) and \\(45\\), but they are not coprime.  \nSo we look at the nearest pair with gcd \\(1\\):\n\n\\[\n44+46=90,\\qquad \\gcd(44,46)=2\n\\]\n\nNot allowed. Next:\n\n\\[\n43+47=90,\\qquad \\gcd(43,47)=1\n\\]\n\nThus this pair is valid, and its product is\n\n\\[\n43\\cdot 47 = 2021.\n\\]\n\nSo the largest possible product is\n\n**Final answer: 2021**",
+  "usage": {
+    "input_tokens": 83,
+    "output_tokens": 186,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 1.7886606029933318,
+  "cached": false
+}

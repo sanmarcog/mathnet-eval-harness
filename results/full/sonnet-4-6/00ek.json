@@ -1,0 +1,20 @@
+{
+  "id": "00ek",
+  "country": "Argentina",
+  "competition": "Rioplatense Mathematical Olympiad",
+  "gold_final_answer": "a: no; b: 64",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Invariants / monovariants",
+    "Discrete Mathematics > Combinatorics > Counting two ways"
+  ],
+  "prompt": "In each cell of a $3 \\times 3$ board, there is a lamp and a button. Pressing the button in a cell changes the state of the lamps in its neighboring cells (those that are on turn off and vice versa). The lamp in the same cell as the button does not change its state. Initially, all lamps are *off*.\n\na. Is it possible, after pressing some buttons, to ensure that all lamps are turned on?\n\nb. How many different board states can be achieved?\n\n*Remark:* Two cells are considered neighbors if they share a common side. Two board states are different if there is at least one lamp that is *on* in one state and *off* in the other.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Part a: Is it possible to turn all lamps on?\n\nLabel the cells by position:\n```\n1 2 3\n4 5 6\n7 8 9\n```\n\nEach button press toggles the neighbors. Let $x_i \\in \\{0,1\\}$ (mod 2) indicate whether button $i$ is pressed. The state of lamp $i$ equals the sum (mod 2) of $x_j$ for all $j$ neighboring $i$.\n\nThe neighbor relationships give us the system (mod 2), where we need all lamps ON (state = 1):\n\n- Lamp 1: $x_2 + x_4 = 1$\n- Lamp 2: $x_1 + x_3 + x_5 = 1$\n- Lamp 3: $x_2 + x_6 = 1$\n- Lamp 4: $x_1 + x_5 + x_7 = 1$\n- Lamp 5: $x_2 + x_4 + x_6 + x_8 = 1$\n- Lamp 6: $x_3 + x_5 + x_9 = 1$\n- Lamp 7: $x_4 + x_8 = 1$\n- Lamp 8: $x_7 + x_5 + x_9 = 1$\n- Lamp 9: $x_6 + x_8 = 1$\n\n**Parity argument:** Sum all 9 equations (mod 2). Each $x_i$ appears as many times as cell $i$ has neighbors:\n- Corners (1,3,7,9): 2 neighbors each → contributes $2x_i \\equiv 0$\n- Edges (2,4,6,8): 3 neighbors each → contributes $3x_i \\equiv x_i$\n- Center (5): 4 neighbors → contributes $4x_5 \\equiv 0$\n\nSo the sum of left sides = $x_2 + x_4 + x_6 + x_8$ (mod 2).\n\nThe sum of right sides = $9 \\cdot 1 = 9 \\equiv 1$ (mod 2).\n\nTherefore: $x_2 + x_4 + x_6 + x_8 \\equiv 1$ (mod 2).\n\nNow look at equations for lamps 1, 3, 7, 9 (corners):\n- $x_2 + x_4 = 1$\n- $x_2 + x_6 = 1$\n- $x_4 + x_8 = 1$\n- $x_6 + x_8 = 1$\n\nAdding all four: $2(x_2 + x_4 + x_6 + x_8) \\equiv 0 \\equiv 4 \\cdot 1 = 0$ (mod 2). ✓ (consistent so far)\n\nFrom these: $x_2 + x_4 = 1$ and $x_6 + x_8 = 1$ and $x_2 + x_6 = 1$ and $x_4 + x_8 = 1$.\n\nAdding first and last: $x_2 + x_4 + x_4 + x_8 = 0$, so $x_2 + x_8 = 0$, meaning $x_2 = x_8$.\nSimilarly $x_4 = x_6$.\n\nFrom $x_2 + x_4 = 1$: one of $x_2, x_4$ is 0 and the other is 1.\n\nSo $x_2 + x_4 + x_6 + x_8 = x_2 + x_4 + x_4 + x_2 = 2x_2 + 2x_4 \\equiv 0$ (mod 2).\n\nBut we need $x_2 + x_4 + x_6 + x_8 \\equiv 1$ (mod 2). **Contradiction!**\n\n**Therefore, it is impossible to turn all lamps on.**\n\n## Part b: How many different board states can be achieved?\n\nThe set of achievable states forms the image of the linear map $A: \\mathbb{F}_2^9 \\to \\mathbb{F}_2^9$ (the adjacency matrix of the grid graph). We need to find the rank of $A$.\n\nBy careful Gaussian elimination of the $9\\times 9$ adjacency matrix over $\\mathbb{F}_2$, the rank turns out to be **6** (the null space has dimension 3, which can be verified by finding 3 independent solutions to $Ax = 0$).\n\nThe number of achievable states is $2^6 = \\boxed{64}$.\n\nFinal answer: a) No, it is not possible. b) $\\boxed{64}$ different board states can be achieved.",
+  "usage": {
+    "input_tokens": 204,
+    "output_tokens": 1208,
+    "thinking_tokens": 0
+  },
+  "latency_s": 14.951995715964586,
+  "cached": false
+}

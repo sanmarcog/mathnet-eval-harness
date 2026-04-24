@@ -1,0 +1,21 @@
+{
+  "id": "00p9",
+  "country": "Balkan Mathematical Olympiad",
+  "competition": "shortlistBMO 2011",
+  "gold_final_answer": "1/(n-1)^n",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Symmetric functions",
+    "Algebra > Algebraic Expressions > Polynomials > Polynomial operations",
+    "Algebra > Equations and Inequalities > QM-AM-GM-HM / Power Mean"
+  ],
+  "prompt": "Given an integer number $n \\ge 3$, determine the maximum value the product of $n$ non-negative real numbers $x_1, x_2, \\dots, x_n$ may achieve, subject to\n$$\n\\frac{x_1}{1+x_1} + \\frac{x_2}{1+x_2} + \\dots + \\frac{x_n}{1+x_n} = 1.\n$$",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let  \n\\[\nf(x)=\\frac{x}{1+x}\\qquad (x\\ge 0).\n\\]\nThe condition is\n\\[\n\\sum_{i=1}^n f(x_i)=1.\n\\]\n\nWe want to maximize \\(P=x_1x_2\\cdots x_n\\).\n\n## Step 1: Use a substitution\nSet\n\\[\ny_i=\\frac{x_i}{1+x_i}.\n\\]\nThen \\(0\\le y_i<1\\), \\(\\sum y_i=1\\), and\n\\[\nx_i=\\frac{y_i}{1-y_i}.\n\\]\nSo\n\\[\nP=\\prod_{i=1}^n \\frac{y_i}{1-y_i}.\n\\]\n\n## Step 2: Reduce to a symmetric optimization\nFor fixed \\(\\sum y_i=1\\), the product \\(\\prod \\frac{y_i}{1-y_i}\\) is maximized when the \\(y_i\\)'s are equal, by symmetry and standard convexity/AM-GM reasoning.\n\nThus\n\\[\ny_1=y_2=\\cdots=y_n=\\frac1n.\n\\]\nThen\n\\[\nx_i=\\frac{1/n}{1-1/n}=\\frac1{n-1}.\n\\]\n\nSo the maximum product is\n\\[\nP_{\\max}=\\left(\\frac1{n-1}\\right)^n.\n\\]\n\nThis is achieved at\n\\[\nx_1=x_2=\\cdots=x_n=\\frac1{n-1}.\n\\]\n\nFinal answer: \\(\\displaystyle \\left(\\frac1{n-1}\\right)^n\\)",
+  "usage": {
+    "input_tokens": 137,
+    "output_tokens": 356,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 2.483199432026595,
+  "cached": false
+}

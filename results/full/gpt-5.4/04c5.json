@@ -1,0 +1,21 @@
+{
+  "id": "04c5",
+  "country": "Croatia",
+  "competition": "Mathematica competitions in Croatia",
+  "gold_final_answer": "For any prime p, the solutions are n = 0 and n = -p. If p is odd (p > 2), there are two additional solutions: n = ((p−1)/2)^2 and n = −((p+1)/2)^2.",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Prime numbers",
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities",
+    "Algebra > Intermediate Algebra > Quadratic functions"
+  ],
+  "prompt": "For a given prime number $p$ determine all integers $n$ such that $\\sqrt{n^2 + pn}$ is an integer.",
+  "model": "gpt-5.4",
+  "response_text": "Let\n\\[\n\\sqrt{n^2+pn}=m\\in \\mathbb Z.\n\\]\nWe seek all integers \\(n\\) for a fixed prime \\(p\\).\n\nSo we need\n\\[\nn^2+pn=m^2.\n\\]\nRewrite:\n\\[\nn(n+p)=m^2.\n\\]\n\nWe will solve this in integers.\n\n## 1) A useful factorization\nMultiply by \\(4\\):\n\\[\n4m^2=4n^2+4pn=(2n+p)^2-p^2.\n\\]\nHence\n\\[\n(2n+p)^2-(2m)^2=p^2.\n\\]\nSo\n\\[\n(2n+p-2m)(2n+p+2m)=p^2.\n\\]\n\nSince \\(p\\) is prime, the integer factor pairs of \\(p^2\\) are very limited.\n\nAlso note both factors have the same parity, and since \\(p\\) is odd unless \\(p=2\\), we treat \\(p=2\\) separately.\n\n---\n\n## 2) Case \\(p\\) odd prime\n\nThen \\(p^2\\) is odd, so both factors are odd. Their product is \\(p^2\\), so the possible pairs are\n\\[\n(1,p^2),\\ (p,p),\\ (-1,-p^2),\\ (-p,-p).\n\\]\n\n### Pair 1: \n\\[\n2n+p-2m=p,\\qquad 2n+p+2m=p.\n\\]\nThen \\(m=0\\), and\n\\[\n2n+p=p \\implies n=0.\n\\]\n\n### Pair 2:\n\\[\n2n+p-2m=1,\\qquad 2n+p+2m=p^2.\n\\]\nAdding:\n\\[\n2(2n+p)=p^2+1 \\implies 2n+p=\\frac{p^2+1}{2}.\n\\]\nThus\n\\[\n2n=\\frac{p^2+1-2p}{2}=\\frac{(p-1)^2}{2},\n\\]\nso\n\\[\nn=\\frac{(p-1)^2}{4}.\n\\]\nThen indeed\n\\[\n2m=\\frac{p^2-1}{2}\\implies m=\\frac{p^2-1}{4}.\n\\]\n\n### Negative pairs\nThey similarly give \\(n=0\\) or\n\\[\nn=-\\frac{(p+1)^2}{4}.\n\\]\n\nIndeed, from\n\\[\n2n+p-2m=-p^2,\\qquad 2n+p+2m=-1\n\\]\nwe get\n\\[\n2(2n+p)=-(p^2+1),\n\\]\nhence\n\\[\nn=-\\frac{(p+1)^2}{4}.\n\\]\n\nSo for odd prime \\(p\\),\n\\[\nn\\in \\left\\{0,\\ \\frac{(p-1)^2}{4},\\ -\\frac{(p+1)^2}{4}\\right\\}.\n\\]\n\nThese are integers because \\(p\\) odd implies \\(p\\pm1\\) are even.\n\n---\n\n## 3) Case \\(p=2\\)\n\nWe need\n\\[\nn^2+2n=m^2.\n\\]\nThen\n\\[\n(n+1)^2-m^2=1,\n\\]\nso\n\\[\n(n+1-m)(n+1+m)=1.\n\\]\nThus both factors are either \\(1,1\\) or \\(-1,-1\\).\n\n- If both are \\(1\\), then \\(m=0\\), \\(n=0\\).\n- If both are \\(-1\\), then again \\(m=0\\), \\(n=-2\\).\n\nSo for \\(p=2\\),\n\\[\nn\\in\\{0,-2\\}.\n\\]\n\nNote this matches the general odd-prime formulas only partly, so \\(p=2\\) must be listed separately.\n\n## 4) Verification\n- \\(n=0\\): \\(\\sqrt{0}=0\\).\n- For odd \\(p\\),\n\\[\nn=\\frac{(p-1)^2}{4}\n\\]\ngives\n\\[\nn^2+pn=\\left(\\frac{p^2-1}{4}\\right)^2,\n\\]\na square.\n- For odd \\(p\\),\n\\[\nn=-\\frac{(p+1)^2}{4}\n\\]\ngives\n\\[\nn^2+pn=\\left(\\frac{p^2-1}{4}\\right)^2,\n\\]\nalso a square.\n- For \\(p=2\\), \\(n=-2\\) gives \\(\\sqrt{4-4}=0\\).\n\nTherefore these are all solutions.\n\nFinal answer: If \\(p=2\\), then \\(n=0\\) or \\(n=-2\\). If \\(p\\) is an odd prime, then\n\\[\nn\\in \\left\\{\\,0,\\ \\frac{(p-1)^2}{4},\\ -\\frac{(p+1)^2}{4}\\right\\}.\n\\]",
+  "usage": {
+    "input_tokens": 77,
+    "output_tokens": 1098,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 13.295945843914524,
+  "cached": false
+}

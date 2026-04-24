@@ -1,0 +1,19 @@
+{
+  "id": "01yy",
+  "country": "Belarus",
+  "competition": "SELECTION and TRAINING SESSION",
+  "gold_final_answer": "all integers m with 1 ≤ m ≤ floor(n/2)",
+  "topics_flat": [
+    "Discrete Mathematics > Graph Theory"
+  ],
+  "prompt": "There are $n \\ge 2$ cities in a country. Some pairs of cities are connected with an air communication, and for any such pair the connection is mutual. It is possible to travel from one city to another (possibly with a couple of flights). It is also known that the minimal number of flights that are needed to travel from any given city to another doesn't exceed the same number $m$, and for any city $A$ there exists another city $B$ which cannot be reached from $A$ by less than $m$ flights.\nGiven $n$, find all possible values of $m$, for which it is possible.\n(Aliaksei Vaidzelevich)",
+  "model": "gpt-5.4-mini",
+  "response_text": "Model the cities and flights as a connected undirected graph.  \nThe condition says its **diameter** is exactly \\(m\\).\n\nWe need: for a given \\(n\\), determine all possible diameters of a connected simple graph on \\(n\\) vertices.\n\n## Claim\nThe possible values of \\(m\\) are exactly\n\\[\n1 \\le m \\le n-1.\n\\]\n\n## Why?\n\n### 1) Necessity: \\(m \\le n-1\\)\nTake two cities at maximal distance \\(m\\), and a shortest route between them.  \nA shortest path cannot repeat a city, so it uses \\(m+1\\) distinct cities. Hence\n\\[\nm+1 \\le n \\quad\\Rightarrow\\quad m \\le n-1.\n\\]\n\nAlso, since the graph is connected and \\(n\\ge 2\\), we must have \\(m\\ge 1\\).\n\n### 2) Sufficiency: every \\(m\\) with \\(1\\le m\\le n-1\\) is achievable\nConstruct a graph on \\(n\\) cities like this:\n\n- Make a path of length \\(m\\):\n  \\[\n  v_0 - v_1 - \\cdots - v_m\n  \\]\n  This already has diameter \\(m\\).\n- If \\(n>m+1\\), attach the remaining \\(n-(m+1)\\) cities to \\(v_0\\) (or any vertex) by single edges.\n\nThen the graph is connected, and no distance exceeds \\(m\\).  \nAlso, \\(v_0\\) and \\(v_m\\) are still at distance exactly \\(m\\), so the diameter is \\(m\\).\n\nThus every integer \\(m\\) from \\(1\\) to \\(n-1\\) occurs.\n\nFinal answer: \\(\\boxed{m=1,2,\\dots,n-1}\\)",
+  "usage": {
+    "input_tokens": 188,
+    "output_tokens": 406,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.606191013008356,
+  "cached": false
+}

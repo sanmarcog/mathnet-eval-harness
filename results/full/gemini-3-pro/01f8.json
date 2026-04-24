@@ -1,0 +1,20 @@
+{
+  "id": "01f8",
+  "country": "Baltic Way",
+  "competition": "Baltic Way 2019",
+  "gold_final_answer": "f(x) = 0 for all x; f(x) = x + 1 for all x",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Functional Equations > Existential quantifiers",
+    "Algebra > Algebraic Expressions > Functional Equations > Injectivity / surjectivity"
+  ],
+  "prompt": "Find all functions $f: \\mathbb{R} \\to \\mathbb{R}$ such that\n$$\nf(xf(y) - y^2) = (y + 1)f(x - y)\n$$\nholds for all $x, y \\in \\mathbb{R}$.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find all functions $f: \\mathbb{R} \\to \\mathbb{R}$ satisfying the given equation:\n$$ f(xf(y) - y^2) = (y + 1)f(x - y) $$\nwe can test and deduce the properties of $f$.\n\n1. **Zero function:**\nIt is easy to see that $f(x) = 0$ for all $x$ is a solution, since both sides evaluate to $0$. \nAssume from now on that $f$ is not identically zero.\n\n2. **Finding the roots of $f$:**\nLet $y = -1$. The equation becomes:\n$$ f(xf(-1) - 1) = 0 $$\nIf $f(-1) \\neq 0$, then as $x$ varies over $\\mathbb{R}$, the expression $xf(-1) - 1$ takes all real values, which would mean $f(z) = 0$ for all $z$, contradicting our assumption. Thus, we must have $f(-1) = 0$.\n\nNow suppose $f(a) = 0$ for some $a \\in \\mathbb{R}$. Setting $y = a$ in the original equation gives:\n$$ f(-a^2) = (a + 1)f(x - a) $$\nThe left side is a constant independent of $x$. For the right side to be constant for a non-zero function $f$, we must have $a + 1 = 0$, which means $a = -1$. \nTherefore, $x = -1$ is the *unique* root of $f$.\n\n3. **Finding $f(0)$:**\nSetting $y = 0$ gives $f(xf(0)) = f(x)$. If $f(0) = c \\neq 1$, then $f(x) = f(cx)$. Plugging in $x = -1$ gives $f(-c) = f(-1) = 0$. Since $-1$ is the unique root, $-c = -1 \\implies c = 1$. Thus, $f(0) = 1$.\n\n4. **Determining the form of $f$:**\nSetting $x = y$ in the original equation gives:\n$$ f(yf(y) - y^2) = (y + 1)f(0) = y + 1 $$\nLet $a = yf(y) - y^2$. Then $f(a) = y + 1$.\n\nNow, suppose $f(a) = k$ for some $a \\neq -1$ and $k \\neq 0$. We substitute $y = a$ into the original equation:\n$$ f(xf(a) - a^2) = (a + 1)f(x - a) \\implies f(xk - a^2) = (a + 1)f(x - a) $$\nChoose $x$ such that $xk - a^2 = -1$, which means $x = \\frac{a^2 - 1}{k}$. Then the left side becomes $f(-1) = 0$.\nThis gives $(a + 1)f(x - a) = 0$. Since $a \\neq -1$, we have $f(x - a) = 0$.\nBecause $-1$ is the unique root of $f$, we must have $x - a = -1 \\implies x = a - 1$.\nEquating the two expressions for $x$:\n$$ \\frac{a^2 - 1}{k} = a - 1 \\implies (a - 1)(a + 1) = k(a - 1) $$\nSince this holds, we either have $a = 1$ or $a + 1 = k \\implies a = k - 1$.\n\nApplying this to $a = yf(y) - y^2$ and $k = y + 1$, we get that for each $y$, either:\n$$ yf(y) - y^2 = 1 \\quad \\text{or} \\quad yf(y) - y^2 = (y + 1) - 1 = y $$\nIf $yf(y) - y^2 = 1$, then $f(1) = y + 1$. Since $f(1)$ is a constant, this can only be true for a single value of $y$.\nFor all other values of $y$, we must have $yf(y) - y^2 = y$, which simplifies to $yf(y) = y^2 + y$. For $y \\neq 0$, this yields $f(y) = y + 1$.\nSince $f(y) = y + 1$ holds for infinitely many values, $f(1)$ must be $1 + 1 = 2$. The only $y$ for which $f(1) = y + 1$ is $y = 1$, which also satisfies $f(1) = 1 + 1$. We already established $f(0) = 1$. \n\nThus, $f(x) = x + 1$ for all $x \\in \\mathbb{R}$. \nChecking $f(x) = x + 1$ in the original equation:\nLHS: $f(x(y+1) - y^2) = xy + x - y^2 + 1$\nRHS: $(y+1)(x-y+1) = xy - y^2 + x + 1$\nBoth sides match perfectly.\n\nFinal answer: f(x) = 0, f(x) = x + 1",
+  "usage": {
+    "input_tokens": 103,
+    "output_tokens": 1252,
+    "thoughts_tokens": 4607
+  },
+  "latency_s": 44.798820268013515,
+  "cached": false
+}

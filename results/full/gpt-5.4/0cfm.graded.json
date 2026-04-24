@@ -1,0 +1,24 @@
+{
+  "id": "0cfm",
+  "country": "Romania",
+  "competition": "74th NMO Shortlisted Problems",
+  "gold_final_answer": "60%",
+  "topics_flat": [
+    "Algebra > Prealgebra / Basic Algebra > Simple Equations"
+  ],
+  "prompt": "The path from Little Red Riding Hood to Grandma has ups, downs and flat portions. When walking, LRRH goes up two times slower and goes down two times faster than on flat ground. When riding her bike, she goes up three times slower and goes down three times faster than on flat ground.\n\nLRRH noticed that, when walking, the way back home from Grandma takes 18 minutes less than the way from home to Grandma, and when she rides her bike, the way back home from Grandma takes 20 minutes less than the way from home to Grandma. By what percentage is LRRH's speed larger by bike than by foot?",
+  "model": "gpt-5.4",
+  "response_text": "Let the one-way route consist of total uphill distance \\(U\\), downhill distance \\(D\\), and flat distance \\(F\\), measured from home to Grandma.\n\nLet walking speed on flat ground be \\(w\\), and biking speed on flat ground be \\(b\\).\n\nThen:\n\n- walking uphill speed \\(= \\frac w2\\),\n- walking downhill speed \\(= 2w\\),\n\nand\n\n- biking uphill speed \\(= \\frac b3\\),\n- biking downhill speed \\(= 3b\\).\n\nBecause the return trip reverses uphill and downhill, we can write the time differences.\n\n## 1) Walking\nHome \\(\\to\\) Grandma:\n\\[\nT_w=\\frac{U}{w/2}+\\frac{D}{2w}+\\frac{F}{w}\n=\\frac{2U}{w}+\\frac{D}{2w}+\\frac{F}{w}.\n\\]\n\nGrandma \\(\\to\\) Home:\n\\[\nT_w'=\\frac{D}{w/2}+\\frac{U}{2w}+\\frac{F}{w}\n=\\frac{2D}{w}+\\frac{U}{2w}+\\frac{F}{w}.\n\\]\n\nGiven the return is 18 minutes shorter:\n\\[\nT_w-T_w'=18.\n\\]\nSo\n\\[\n\\left(\\frac{2U}{w}+\\frac{D}{2w}\\right)-\\left(\\frac{2D}{w}+\\frac{U}{2w}\\right)=18.\n\\]\n\\[\n\\frac{3(U-D)}{2w}=18.\n\\]\nHence\n\\[\nU-D=12w.\n\\]\n\n## 2) Biking\nHome \\(\\to\\) Grandma:\n\\[\nT_b=\\frac{U}{b/3}+\\frac{D}{3b}+\\frac{F}{b}\n=\\frac{3U}{b}+\\frac{D}{3b}+\\frac{F}{b}.\n\\]\n\nGrandma \\(\\to\\) Home:\n\\[\nT_b'=\\frac{D}{b/3}+\\frac{U}{3b}+\\frac{F}{b}\n=\\frac{3D}{b}+\\frac{U}{3b}+\\frac{F}{b}.\n\\]\n\nGiven the return is 20 minutes shorter:\n\\[\nT_b-T_b'=20.\n\\]\nThus\n\\[\n\\left(\\frac{3U}{b}+\\frac{D}{3b}\\right)-\\left(\\frac{3D}{b}+\\frac{U}{3b}\\right)=20,\n\\]\n\\[\n\\frac{8(U-D)}{3b}=20.\n\\]\nHence\n\\[\nU-D=\\frac{15}{2}b.\n\\]\n\n## 3) Compare the two expressions for \\(U-D\\)\n\\[\n12w=\\frac{15}{2}b.\n\\]\nSo\n\\[\n24w=15b,\\qquad \\frac bw=\\frac{24}{15}=\\frac85.\n\\]\n\nThus the bike speed on flat ground is \\( \\frac85 = 1.6\\) times the walking speed, i.e. larger by\n\\[\n1.6-1=0.6=60\\%.\n\\]\n\nFinal answer: 60%",
+  "usage": {
+    "input_tokens": 178,
+    "output_tokens": 695,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 9.714834318961948,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "exact",
+    "predicted": "60%"
+  }
+}

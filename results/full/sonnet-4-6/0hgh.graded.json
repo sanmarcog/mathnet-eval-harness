@@ -1,0 +1,26 @@
+{
+  "id": "0hgh",
+  "country": "Ukraine",
+  "competition": "62nd Ukrainian National Mathematical Olympiad, Third Round, First Tour",
+  "gold_final_answer": "2021",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Greatest common divisors (gcd)",
+    "Algebra > Prealgebra / Basic Algebra > Integers",
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities"
+  ],
+  "prompt": "The sum of coprime integers $m$ and $n$ equals $90$. What largest possible value can be attained by the product $mn$ of these integers?",
+  "model": "claude-sonnet-4-6",
+  "response_text": "We need to find coprime integers m and n with m + n = 90, maximizing mn.\n\nSince m + n = 90, we have mn = m(90 - m).\n\nTo maximize mn, we want m as close to 45 as possible. The maximum of m(90-m) occurs at m = 45, giving 45 × 45 = 2025, but gcd(45, 45) = 45 ≠ 1.\n\nWe need gcd(m, 90-m) = 1. Note that gcd(m, 90-m) = gcd(m, 90).\n\nSo we need gcd(m, 90) = 1.\n\n90 = 2 × 3² × 5\n\nWe need m coprime to 90, meaning m not divisible by 2, 3, or 5.\n\nStarting from 45 and going outward:\n- m = 44: gcd(44, 90) = gcd(44, 90) = 2 (even) ✗\n- m = 46: even ✗\n- m = 43: gcd(43, 90) = 1 ✓ (43 is prime, doesn't divide 90)\n\nSo m = 43, n = 47: gcd(43, 90) = 1, gcd(47, 90) = 1.\n\nmn = 43 × 47 = 2021.\n\nCheck m = 41: mn = 41 × 49 = 2009 < 2021.\nCheck m = 44 or 46: not coprime with 90.\n\nSo the largest value is **2021**.\n\nFinal answer: 2021",
+  "usage": {
+    "input_tokens": 82,
+    "output_tokens": 408,
+    "thinking_tokens": 0
+  },
+  "latency_s": 5.910272530047223,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "exact",
+    "predicted": "2021"
+  }
+}

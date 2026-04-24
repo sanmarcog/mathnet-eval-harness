@@ -1,0 +1,26 @@
+{
+  "id": "0cyv",
+  "country": "Saudi Arabia",
+  "competition": "Saudi Arabia Mathematical Competitions",
+  "gold_final_answer": "a_1432 = 16, a_1433 = 8; and in general\n- a_n = 4·tau(n) if n is odd,\n- a_n = 0 if n ≡ 2 mod 4,\n- a_n = 4·tau(n/4) if n is divisible by 4.",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Factorization techniques",
+    "Number Theory > Number-Theoretic Functions > τ (number of divisors)",
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities"
+  ],
+  "prompt": "For any positive integer $n$ let $a_{n}$ be the number of pairs $(x, y)$ of integers satisfying $|x^{2}-y^{2}|=n$.\n\na. Find $a_{1432}$ and $a_{1433}$.\n\nb. Find $a_{n}$.",
+  "model": "gpt-5.4",
+  "response_text": "We use\n\\[\nx^2-y^2=(x-y)(x+y).\n\\]\nSo counting integer pairs \\((x,y)\\) with \\(|x^2-y^2|=n\\) is equivalent to counting factorizations\n\\[\nuv=\\pm n,\\qquad u=x-y,\\ v=x+y,\n\\]\nwith the condition that \\(u,v\\) have the same parity, since\n\\[\nx=\\frac{u+v}{2},\\qquad y=\\frac{v-u}{2}\n\\]\nmust be integers.\n\nThus \\(a_n\\) is the number of ordered integer pairs \\((u,v)\\) such that\n\n- \\(uv=n\\) or \\(uv=-n\\),\n- \\(u\\equiv v\\pmod 2\\).\n\nEach such \\((u,v)\\) gives exactly one \\((x,y)\\), and vice versa.\n\n## Key parity fact\nFor \\(u,v\\) to have the same parity:\n\n- if \\(n\\equiv 2\\pmod 4\\), impossible, because then one factorization side must be even and the other odd mod \\(2\\);\n- if \\(n\\) is odd, then every factor pair of \\(n\\) has both factors odd, so all work;\n- if \\(4\\mid n\\), then both \\(u,v\\) must be even.\n\nSo:\n\n- \\(a_n=0\\) if \\(n\\equiv 2\\pmod 4\\).\n\nNow count in the other cases.\n\n---\n\n## a) Compute \\(a_{1432}\\) and \\(a_{1433}\\)\n\n### 1. \\(n=1432\\)\nFactor:\n\\[\n1432=8\\cdot 179=2^3\\cdot 179.\n\\]\nSince \\(1432\\equiv 0\\pmod 4\\), we need \\(u,v\\) both even. Write\n\\[\nu=2r,\\quad v=2s.\n\\]\nThen\n\\[\nrs=\\pm \\frac{1432}{4}=\\pm 358.\n\\]\nNow \\(358=2\\cdot 179\\), so its number of positive divisors is\n\\[\nd(358)=(1+1)(1+1)=4.\n\\]\nFor \\(rs=358\\), the number of ordered integer pairs \\((r,s)\\) is \\(2d(358)=8\\): each positive divisor \\(r\\mid 358\\) gives \\((r,358/r)\\), and also negatives \\((-r,-358/r)\\).\n\nSimilarly, for \\(rs=-358\\), the number is also \\(2d(358)=8\\).\n\nHence total\n\\[\na_{1432}=8+8=16.\n\\]\n\n### 2. \\(n=1433\\)\nFactor:\n\\[\n1433=211\\cdot 6+? \\quad \\text{actually }1433=1433,\n\\]\nand check divisibility:\nnot by \\(3,5,7,11,13,\\dots\\); in fact \\(1433\\) is prime.\n\nSince \\(1433\\) is odd, every factor pair has both factors odd, so all factorizations work.\n\nFor \\(uv=1433\\), number of ordered integer pairs is \\(2d(1433)=2\\cdot 2=4\\).\nFor \\(uv=-1433\\), same count \\(4\\).\n\nThus\n\\[\na_{1433}=8.\n\\]\n\nSo:\n\\[\n\\boxed{a_{1432}=16,\\qquad a_{1433}=8.}\n\\]\n\n---\n\n## b) Find \\(a_n\\)\n\nLet \\(d(m)\\) denote the number of positive divisors of \\(m\\).\n\n### Case 1: \\(n\\) odd\nThen every divisor pair \\((u,v)\\) of \\(\\pm n\\) consists of odd integers, hence same parity.\n\nFor \\(uv=n\\): \\(2d(n)\\) ordered integer pairs.\nFor \\(uv=-n\\): \\(2d(n)\\) ordered integer pairs.\n\nTherefore\n\\[\na_n=4d(n)\\qquad (n\\ \\text{odd}).\n\\]\n\n### Case 2: \\(n\\equiv 2\\pmod 4\\)\nNo factorization into same-parity integers exists, so\n\\[\na_n=0.\n\\]\n\n### Case 3: \\(4\\mid n\\)\nThen \\(u,v\\) must both be even, so write \\(u=2r,\\ v=2s\\). Then\n\\[\nrs=\\pm \\frac n4.\n\\]\nExactly as in the odd case, the number of ordered integer pairs \\((r,s)\\) with product \\(n/4\\) is \\(2d(n/4)\\), and likewise for product \\(-n/4\\). Hence\n\\[\na_n=4d\\!\\left(\\frac n4\\right)\\qquad (4\\mid n).\n\\]\n\nSo the complete formula is\n\\[\n\\boxed{\na_n=\n\\begin{cases}\n4d(n),& n\\ \\text{odd},\\\\[4pt]\n0,& n\\equiv 2\\pmod 4,\\\\[4pt]\n4d\\!\\left(\\dfrac n4\\right),& 4\\mid n.\n\\end{cases}}\n\\]\n\nThis also gives the values in part (a):\n\\[\na_{1432}=4d(358)=4\\cdot 4=16,\\qquad a_{1433}=4d(1433)=4\\cdot 2=8.\n\\]\n\nFinal answer: \\(\\displaystyle a_{1432}=16,\\ a_{1433}=8,\\quad a_n=\\begin{cases}4d(n),& n\\text{ odd},\\\\ 0,& n\\equiv 2\\pmod 4,\\\\ 4d(n/4),& 4\\mid n,\\end{cases}\\) where \\(d(m)\\) is the number of positive divisors of \\(m\\).",
+  "usage": {
+    "input_tokens": 114,
+    "output_tokens": 1282,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 17.273715452989563,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "\\(\\displaystyle a_{1432}=16,\\ a_{1433}=8,\\quad a_n=\\begin{cases}4d(n),& n\\text{ odd},\\\\ 0,& n\\equiv 2\\pmod 4,\\\\ 4d(n/4),& 4\\mid n,\\end{cases}\\) where \\(d(m)\\) is the number of positive divisors of \\(m\\)."
+  }
+}

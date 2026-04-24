@@ -1,0 +1,19 @@
+{
+  "id": "03sa",
+  "country": "China",
+  "competition": "China Mathematical Competition (Jiangxi)",
+  "gold_final_answer": "4π/3",
+  "topics_flat": [
+    "Precalculus > Trigonometric functions"
+  ],
+  "prompt": "Assume that $\\alpha, \\beta, \\gamma$ satisfy $0 < \\alpha < \\beta < \\gamma < 2\\pi$. If\n$$\n\\cos(x + \\alpha) + \\cos(x + \\beta) + \\cos(x + \\gamma) = 0\n$$\nfor arbitrary $x \\in \\mathbb{R}$, then $\\gamma - \\alpha = \\underline{\\hspace{2cm}}$.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find the value of $\\gamma - \\alpha$, we start by expanding the given equation using the cosine addition formula:\n$$ \\cos(x + \\alpha) + \\cos(x + \\beta) + \\cos(x + \\gamma) = 0 $$\n$$ (\\cos x \\cos \\alpha - \\sin x \\sin \\alpha) + (\\cos x \\cos \\beta - \\sin x \\sin \\beta) + (\\cos x \\cos \\gamma - \\sin x \\sin \\gamma) = 0 $$\nFactoring out $\\cos x$ and $\\sin x$, we get:\n$$ \\cos x (\\cos \\alpha + \\cos \\beta + \\cos \\gamma) - \\sin x (\\sin \\alpha + \\sin \\beta + \\sin \\gamma) = 0 $$\nFor this equation to hold for arbitrary $x \\in \\mathbb{R}$, the coefficients of $\\cos x$ and $\\sin x$ must both be exactly zero:\n$$ \\cos \\alpha + \\cos \\beta + \\cos \\gamma = 0 $$\n$$ \\sin \\alpha + \\sin \\beta + \\sin \\gamma = 0 $$\nThis implies that the sum of the three unit vectors $(\\cos \\alpha, \\sin \\alpha)$, $(\\cos \\beta, \\sin \\beta)$, and $(\\cos \\gamma, \\sin \\gamma)$ is the zero vector. \n\nFor three unit vectors to sum to zero, they must form an equilateral triangle, meaning the angle between any two of these vectors must be $\\frac{2\\pi}{3}$ or $\\frac{4\\pi}{3}$. \n\nSince we are given the strict ordering $0 < \\alpha < \\beta < \\gamma < 2\\pi$, the angles must be equally spaced around the unit circle in increasing order. Therefore, the difference between consecutive angles must be exactly $\\frac{2\\pi}{3}$:\n$$ \\beta - \\alpha = \\frac{2\\pi}{3} $$\n$$ \\gamma - \\beta = \\frac{2\\pi}{3} $$\nAdding these two equations together gives the difference between $\\gamma$ and $\\alpha$:\n$$ \\gamma - \\alpha = (\\gamma - \\beta) + (\\beta - \\alpha) = \\frac{2\\pi}{3} + \\frac{2\\pi}{3} = \\frac{4\\pi}{3} $$\n\nFinal answer: \\frac{4\\pi}{3}",
+  "usage": {
+    "input_tokens": 130,
+    "output_tokens": 518,
+    "thoughts_tokens": 1072
+  },
+  "latency_s": 10.605386061011814,
+  "cached": false
+}

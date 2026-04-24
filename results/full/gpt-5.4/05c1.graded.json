@@ -1,0 +1,25 @@
+{
+  "id": "05c1",
+  "country": "Estonia",
+  "competition": "Estonian Mathematical Olympiad",
+  "gold_final_answer": "a: 675; b: 2025",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Factorization techniques",
+    "Number Theory > Divisibility / Factorization > Prime numbers"
+  ],
+  "prompt": "Find the least positive integer $n$ such that:\n\na. both $n$ and $n+1$ are divisible by the squares of two distinct prime numbers;\n\nb. both $n$ and $n+3$ are divisible by the squares of two distinct prime numbers.",
+  "model": "gpt-5.4",
+  "response_text": "Let a number be **squareful by a prime** if it is divisible by the square of that prime.\n\nWe seek the least positive \\(n\\) in each case.\n\n---\n\n## a) \\(n\\) and \\(n+1\\) are each divisible by the square of a prime, and the two primes are distinct\n\nWe need\n\\[\np^2\\mid n,\\qquad q^2\\mid n+1,\n\\]\nwith distinct primes \\(p\\neq q\\).\n\nSince consecutive integers are coprime, the same prime square cannot divide both, so “distinct” is automatic.\n\nTo minimize \\(n\\), use the smallest prime squares: \\(4\\) and \\(9\\).\n\nSo try\n\\[\nn\\equiv 0\\pmod 4,\\qquad n\\equiv -1\\equiv 8\\pmod 9.\n\\]\nWrite \\(n=4k\\). Then\n\\[\n4k\\equiv 8\\pmod 9.\n\\]\nSince \\(4^{-1}\\equiv 7\\pmod 9\\), we get\n\\[\nk\\equiv 8\\cdot 7=56\\equiv 2\\pmod 9.\n\\]\nThus\n\\[\nn=4k\\equiv 8\\pmod{36},\n\\]\nso the least positive solution is\n\\[\nn=8.\n\\]\nCheck: \\(8\\) is divisible by \\(4=2^2\\), and \\(9\\) is divisible by \\(9=3^2\\).\n\nSo part (a) gives\n\\[\n\\boxed{8}.\n\\]\n\n---\n\n## b) \\(n\\) and \\(n+3\\) are each divisible by the squares of two distinct prime numbers\n\nWe need\n\\[\np^2\\mid n,\\qquad q^2\\mid n+3,\n\\]\nwith distinct primes \\(p\\neq q\\).\n\nAgain, to minimize \\(n\\), try the smallest prime squares \\(4\\) and \\(9\\).\n\nThere are two assignments:\n\n### Case 1:\n\\[\nn\\equiv 0\\pmod 4,\\qquad n\\equiv -3\\equiv 6\\pmod 9.\n\\]\nLet \\(n=4k\\). Then\n\\[\n4k\\equiv 6\\pmod 9.\n\\]\nMultiply by \\(4^{-1}\\equiv 7\\pmod 9\\):\n\\[\nk\\equiv 6\\cdot 7=42\\equiv 6\\pmod 9.\n\\]\nHence\n\\[\nn=4k\\equiv 24\\pmod{36},\n\\]\nso least \\(n=24\\).\n\n### Case 2:\n\\[\nn\\equiv 0\\pmod 9,\\qquad n\\equiv -3\\equiv 1\\pmod 4.\n\\]\nLet \\(n=9k\\). Then\n\\[\n9k\\equiv k\\equiv 1\\pmod 4,\n\\]\nso \\(k\\equiv 1\\pmod 4\\), giving\n\\[\nn\\equiv 9\\pmod{36}.\n\\]\nLeast \\(n=9\\).\n\nCheck: \\(9\\) is divisible by \\(3^2\\), and \\(12=9+3\\) is divisible by \\(2^2\\). The primes are distinct.\n\nSo part (b) gives\n\\[\n\\boxed{9}.\n\\]\n\nFinal answer: a) 8, b) 9",
+  "usage": {
+    "input_tokens": 105,
+    "output_tokens": 755,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 9.55031398893334,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "a) 8, b) 9"
+  }
+}

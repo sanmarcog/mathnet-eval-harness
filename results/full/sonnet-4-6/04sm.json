@@ -1,0 +1,19 @@
+{
+  "id": "04sm",
+  "country": "Czech Republic",
+  "competition": "Czech and Slovak Mathematical Olympiad",
+  "gold_final_answer": "all integers k ≥ 2",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization"
+  ],
+  "prompt": "Find all integers $k \\ge 2$ for which there exists $k$-element set $M$ of positive integers such that the product of all numbers in $M$ is divisible by the sum of any two (different) numbers from $M$.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Solution\n\nLet me find all integers $k \\geq 2$ for which there exists a $k$-element set $M$ of positive integers such that the product of all numbers in $M$ is divisible by the sum of any two different numbers from $M$.\n\n**Construction for all $k \\geq 2$:**\n\nConsider the set $M = \\{1, 2, 3, \\ldots, k-1, N\\}$ for some large $N$ to be determined, or try a different approach.\n\n**Try $M = \\{a, a, \\ldots\\}$ type sets:**\n\nLet me try $M = \\{1, 2, 3, \\ldots, k\\}$ and check if the product is divisible by all pairwise sums.\n\nActually, let me try a specific construction. Consider $M = \\{n, 2n, 3n, \\ldots, kn\\}$ for some $n$.\n\nThe product is $P = k! \\cdot n^k$. The sum of elements $in$ and $jn$ is $(i+j)n$. We need $(i+j)n \\mid k! \\cdot n^k$, i.e., $(i+j) \\mid k! \\cdot n^{k-1}$.\n\nSince $i+j \\leq 2k-1$, if we choose $n = (2k-1)!$ or simply $n$ divisible by all integers up to $2k-1$, this works. So this construction works for **all $k \\geq 2$**.\n\nWait, but the problem asks to \"find all integers $k \\geq 2$\" suggesting not all work. Let me re-read.\n\nThe problem says the product is divisible by the sum of **any two different numbers**. Let me verify small cases more carefully.\n\nFor $k = 2$: $M = \\{a, b\\}$, product $= ab$, sum $= a+b$. Need $(a+b) \\mid ab$. Take $a=2, b=2$... but they must be different. Take $a=2, b=6$: sum $= 8$, product $= 12$. No. Take $a=3, b=6$: sum $= 9$, product $= 18$. Yes! $9 \\mid 18$. ✓\n\nSo $k=2$ works. The construction $M = \\{n, 2n, \\ldots, kn\\}$ with appropriate $n$ works for all $k$.\n\nLet me verify for $k=3$: $M = \\{n, 2n, 3n\\}$, product $= 6n^3$. Sums: $3n, 4n, 5n$. Need $3n \\mid 6n^3$ ✓, $4n \\mid 6n^3$ requires $4 \\mid 6n^2$, so $2 \\mid 3n^2$, take $n$ even. $5n \\mid 6n^3$ requires $5 \\mid 6n^2$, take $5 \\mid n$. So $n = 10$: $M = \\{10, 20, 30\\}$, product $= 6000$. Sums: $30 \\mid 6000$ ✓, $40 \\mid 6000$ ✓, $50 \\mid 6000$ ✓. Works!\n\nThe construction works for all $k \\geq 2$: Take $M = \\{n, 2n, 3n, \\ldots, kn\\}$ where $n$ is chosen so that all integers $i+j$ (for $1 \\leq i < j \\leq k$) divide $k! \\cdot n^{k-1}$. Since the maximum value of $i+j$ is $2k-1$, choosing $n = \\text{lcm}(1, 2, \\ldots, 2k-1)$ ensures $(i+j) \\mid n$ for all relevant $i+j$, hence $(i+j) \\mid n^{k-1}$, and thus $(i+j)n \\mid k! \\cdot n^k$.\n\nTherefore, such a set $M$ exists for **all integers $k \\geq 2$**.\n\nFinal answer: All integers $k \\geq 2$.",
+  "usage": {
+    "input_tokens": 100,
+    "output_tokens": 1054,
+    "thinking_tokens": 0
+  },
+  "latency_s": 13.83928060811013,
+  "cached": false
+}

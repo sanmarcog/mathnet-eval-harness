@@ -1,0 +1,25 @@
+{
+  "id": "0d08",
+  "country": "Saudi Arabia",
+  "competition": "Saudi Arabia Mathematical Competitions 2012",
+  "gold_final_answer": "{1, 2, 4, 5, 10}",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Sequences and Series > Sums and products",
+    "Number Theory > Divisibility / Factorization > Factorization techniques"
+  ],
+  "prompt": "Let $M = \\{1, 2, 4, 5, 7, 8, \\dots\\}$ be the set of all positive integers not divisible by $3$. The sum of $2n$ consecutive elements of $M$ is $300$. Determine the possible values of $n$.",
+  "model": "gpt-5.4",
+  "response_text": "Let the \\(2n\\) consecutive elements of \\(M\\) be\n\\[\na_1,a_2,\\dots,a_{2n}.\n\\]\nWe want\n\\[\na_1+a_2+\\cdots+a_{2n}=300.\n\\]\n\nSince \\(M\\) consists of all positive integers not divisible by \\(3\\), its elements come in pairs:\n\\[\n(1,2),\\ (4,5),\\ (7,8),\\dots\n\\]\nThat is, the \\(k\\)-th pair is\n\\[\n(3k+1,\\ 3k+2)\\qquad (k\\ge0).\n\\]\n\nBecause we are summing \\(2n\\) consecutive elements of \\(M\\), there are two cases:\n\n## Case 1: the block starts at the first element of a pair\nThen the \\(2n\\) terms are exactly \\(n\\) full pairs:\n\\[\n(3k+1,3k+2),(3k+4,3k+5),\\dots\n\\]\nTheir sum is\n\\[\n(6k+3)+(6k+9)+\\cdots+(6k+6n-3).\n\\]\nThis is an arithmetic progression of \\(n\\) terms, so\n\\[\nS=n\\cdot \\frac{(6k+3)+(6k+6n-3)}2\n=n(6k+3n)=3n(2k+n).\n\\]\nThus\n\\[\n3n(2k+n)=300,\n\\]\nso\n\\[\nn(2k+n)=100.\n\\]\nHence \\(n\\mid 100\\), and since \\(k\\ge0\\), we need\n\\[\n2k=\\frac{100}{n}-n\\ge0 \\quad\\Longrightarrow\\quad \\frac{100}{n}\\ge n.\n\\]\nAlso \\(2k\\) must be an integer, so \\(\\frac{100}{n}-n\\) must be even.\n\nCheck divisors \\(n\\) of \\(100\\) with \\(n^2\\le100\\):\n\\[\nn=1,2,4,5,10.\n\\]\nNow\n- \\(n=1:\\ 100-1=99\\) odd, no.\n- \\(n=2:\\ 50-2=48\\) even, yes.\n- \\(n=4:\\ 25-4=21\\) odd, no.\n- \\(n=5:\\ 20-5=15\\) odd, no.\n- \\(n=10:\\ 10-10=0\\) even, yes.\n\nSo this case gives\n\\[\nn=2,\\ 10.\n\\]\n\n## Case 2: the block starts at the second element of a pair\nThen the terms look like\n\\[\n3k+2,\\ 3k+4,3k+5,\\dots,3k+3n+1\n\\]\nand consist of:\n- the second element of one pair,\n- then \\(n-1\\) full pairs,\n- then the first element of the next pair.\n\nA quicker way: compared to Case 1 with the same \\(k\\), we replace the first term \\(3k+1\\) by \\(3k+2\\) and the last term \\(3k+3n+2\\) by \\(3k+3n+1\\), so the total sum stays the same. Thus the sum is again\n\\[\nS=3n(2k+n).\n\\]\nSo we get the same equation\n\\[\nn(2k+n)=100,\n\\]\nhence the same possibilities:\n\\[\nn=2,\\ 10.\n\\]\n\nTherefore the possible values of \\(n\\) are\n\nFinal answer: \\(2,\\ 10\\).",
+  "usage": {
+    "input_tokens": 113,
+    "output_tokens": 800,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 10.844400113914162,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "\\(2,\\ 10\\)."
+  }
+}

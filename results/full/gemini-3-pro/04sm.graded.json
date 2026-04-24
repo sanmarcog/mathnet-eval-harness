@@ -1,0 +1,24 @@
+{
+  "id": "04sm",
+  "country": "Czech Republic",
+  "competition": "Czech and Slovak Mathematical Olympiad",
+  "gold_final_answer": "all integers k ≥ 2",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization"
+  ],
+  "prompt": "Find all integers $k \\ge 2$ for which there exists $k$-element set $M$ of positive integers such that the product of all numbers in $M$ is divisible by the sum of any two (different) numbers from $M$.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find all integers $k \\ge 2$ for which such a set $M$ exists, we can construct a valid $k$-element set for any integer $k \\ge 2$.\n\nLet $x_1, x_2, \\dots, x_k$ be any $k$ distinct positive integers (for example, $x_i = i$ for $i = 1, 2, \\dots, k$). \nLet $c$ be a common multiple of all pairwise sums of these integers. For instance, we can choose:\n$$ c = \\prod_{1 \\le i < j \\le k} (x_i + x_j) $$\nNow, define the set $M = \\{a_1, a_2, \\dots, a_k\\}$ where $a_i = c x_i$ for each $i = 1, 2, \\dots, k$. Since the $x_i$'s are distinct positive integers and $c > 0$, the elements of $M$ are also distinct positive integers, so $M$ is a valid $k$-element set.\n\nLet's check if $M$ satisfies the given condition. The sum of any two distinct elements $a_i$ and $a_j$ from $M$ is:\n$$ a_i + a_j = c(x_i + x_j) $$\nThe product of all elements in $M$ is:\n$$ P = \\prod_{m=1}^k a_m = c^k \\prod_{m=1}^k x_m $$\nWe want to show that $(a_i + a_j)$ divides $P$. \n$$ \\frac{P}{a_i + a_j} = \\frac{c^k \\prod_{m=1}^k x_m}{c(x_i + x_j)} = \\frac{c^{k-1}}{x_i + x_j} \\prod_{m=1}^k x_m $$\nSince $k \\ge 2$, we have $k - 1 \\ge 1$. By our definition of $c$, $(x_i + x_j)$ divides $c$. Therefore, $(x_i + x_j)$ must also divide $c^{k-1}$. \nThis means that $\\frac{c^{k-1}}{x_i + x_j}$ is an integer, and thus the entire expression for $\\frac{P}{a_i + a_j}$ is an integer. \n\nThis construction holds and works perfectly for any integer $k \\ge 2$.\n\nFinal answer: k \\ge 2",
+  "usage": {
+    "input_tokens": 91,
+    "output_tokens": 575,
+    "thoughts_tokens": 2863
+  },
+  "latency_s": 28.447130114072934,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "k \\ge 2"
+  }
+}

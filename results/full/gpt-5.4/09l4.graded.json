@@ -1,0 +1,25 @@
+{
+  "id": "09l4",
+  "country": "Mongolia",
+  "competition": "Mongolian Mathematical Olympiad",
+  "gold_final_answer": "2026",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Miscellaneous > Angle chasing",
+    "Geometry > Plane Geometry > Geometric Inequalities > Optimization in geometry"
+  ],
+  "prompt": "A convex polygon has exactly $2023$ obtuse angles. Determine the maximum possible number of angles that this polygon can have.",
+  "model": "gpt-5.4",
+  "response_text": "Let the polygon have \\(n\\) angles, of which exactly \\(2023\\) are obtuse.\n\nWe want the **largest possible \\(n\\)**.\n\n## Key fact\nFor any convex \\(n\\)-gon, the sum of interior angles is\n\\[\n(n-2)180^\\circ.\n\\]\n\nSince the polygon is convex, every interior angle is less than \\(180^\\circ\\).\n\nWe are told exactly \\(2023\\) angles are obtuse, so each of those is \\(>90^\\circ\\).  \nThe remaining \\(n-2023\\) angles are not obtuse, so each is \\(\\le 90^\\circ\\).\n\nNow use angle sum constraints.\n\n- The \\(2023\\) obtuse angles contribute **more than**\n  \\[\n  2023\\cdot 90^\\circ.\n  \\]\n- The other \\(n-2023\\) angles contribute **more than \\(0^\\circ\\)**, but that does not help for an upper bound.\n\nSo necessarily\n\\[\n(n-2)180^\\circ > 2023\\cdot 90^\\circ.\n\\]\nThis gives only a lower bound on \\(n\\), not an upper bound, so we need a sharper idea.\n\n## Better approach\nIn a convex polygon, the exterior angles sum to \\(360^\\circ\\).  \nIf an interior angle is obtuse, then its corresponding exterior angle is less than \\(90^\\circ\\).  \nIf an interior angle is non-obtuse, then its exterior angle is at least \\(90^\\circ\\).\n\nThus the \\(n-2023\\) non-obtuse angles contribute at least\n\\[\n(n-2023)\\cdot 90^\\circ\n\\]\nto the sum of exterior angles, which is exactly \\(360^\\circ\\). Therefore\n\\[\n(n-2023)\\cdot 90^\\circ < 360^\\circ,\n\\]\nbecause the obtuse-angle exterior angles are positive, so the non-obtuse ones cannot already total \\(360^\\circ\\).\n\nHence\n\\[\nn-2023 < 4,\n\\]\nso\n\\[\nn \\le 2026.\n\\]\n\nNow we check that \\(n=2026\\) is attainable.\n\nIf \\(n=2026\\), then there are exactly \\(3\\) non-obtuse angles.  \nTake those three to be right angles, so their exterior angles are each \\(90^\\circ\\), totaling \\(270^\\circ\\).  \nThe remaining \\(2023\\) exterior angles then sum to \\(90^\\circ\\), so each can be chosen positive and less than \\(90^\\circ\\). Then the corresponding interior angles are all between \\(90^\\circ\\) and \\(180^\\circ\\), i.e. obtuse.\n\nSuch a convex polygon exists.\n\nTherefore the maximum possible number of angles is\n\nFinal answer: \\(2026\\)",
+  "usage": {
+    "input_tokens": 74,
+    "output_tokens": 601,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 9.756006746087223,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "normalized",
+    "predicted": "\\(2026\\)"
+  }
+}

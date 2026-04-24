@@ -1,0 +1,25 @@
+{
+  "id": "09ls",
+  "country": "Mongolia",
+  "competition": "Mongolian Mathematical Olympiad",
+  "gold_final_answer": "630",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Algebraic properties of binomial coefficients",
+    "Algebra > Algebraic Expressions > Sequences and Series > Sums and products"
+  ],
+  "prompt": "A number whose digits first increase and then decrease is called a *mountain-shaped number*. For example, $1310$ is mountain-shaped, while $1331$, $1234$, $4321$, and $3412$ are not mountain-shaped. How many four-digit mountain-shaped numbers are there in total?",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let the digits be \\(a b c d\\), with \\(a\\neq 0\\).\n\nA four-digit mountain-shaped number must have some point where the digits strictly increase and then strictly decrease. Since there are only 4 digits, the possible peak positions are:\n\n1. **Peak at the second digit:** \\(a<b>c>d\\)\n2. **Peak at the third digit:** \\(a<b<c>d\\)\n\nWe count each case.\n\n### Case 1: \\(a<b>c>d\\)\nHere \\(b\\) is larger than both neighbors, and the sequence decreases after \\(b\\).  \nChoose \\(b\\in\\{2,3,\\dots,9\\}\\). Then:\n- \\(a\\) can be any digit from \\(1\\) to \\(b-1\\): \\(b-1\\) choices\n- \\(c\\) can be any digit from \\(0\\) to \\(b-1\\): \\(b\\) choices, but must satisfy \\(c< b\\) and \\(c>d\\)\n- \\(d\\) can be any digit from \\(0\\) to \\(c-1\\)\n\nA cleaner way is to count by the middle digit \\(b\\). The number of pairs \\((c,d)\\) with \\(b>c>d\\) and digits \\(0\\le c,d\\le 9\\) is \\(\\binom{b}{2}\\) if \\(c,d\\in\\{0,\\dots,b-1\\}\\), and \\(a\\) has \\(b-1\\) choices.\n\nSo for each \\(b\\),\n\\[\n(b-1)\\binom{b}{2}.\n\\]\nSumming:\n\\[\n\\sum_{b=2}^9 (b-1)\\binom{b}{2}\n= \\sum_{b=2}^9 (b-1)\\frac{b(b-1)}{2}.\n\\]\nThis gives\n\\[\n1+6+18+40+75+126+196+288 = 750.\n\\]\n\n### Case 2: \\(a<b<c>d\\)\nNow the digits increase to \\(c\\), then decrease to \\(d\\).\n\nChoose \\(c\\in\\{2,3,\\dots,9\\}\\). Then:\n- \\(a\\) can be any digit from \\(1\\) to \\(c-1\\): \\(c-1\\) choices\n- \\(b\\) can be any digit with \\(a<b<c\\), and \\(d\\) any digit with \\(0\\le d<c\\) and \\(d<c\\) but also \\(d<c\\). A more direct count is to choose the increasing triple \\(a<b<c\\) and then \\(d<c\\).\n\nFor fixed \\(c\\), the number of ways to choose \\(a<b<c\\) with \\(a\\neq 0\\) is \\(\\binom{c-1}{2}\\), and \\(d\\) has \\(c\\) choices (\\(0,1,\\dots,c-1\\)).\n\nThus the count is\n\\[\n\\sum_{c=2}^9 c\\binom{c-1}{2}.\n\\]\nThis equals\n\\[\n0+3+12+30+60+105+168+252 = 630.\n\\]\n\n### Total\n\\[\n750+630=1380.\n\\]\n\nFinal answer: \\(\\boxed{1380}\\)",
+  "usage": {
+    "input_tokens": 112,
+    "output_tokens": 723,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 5.178910458111204,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "1380"
+  }
+}

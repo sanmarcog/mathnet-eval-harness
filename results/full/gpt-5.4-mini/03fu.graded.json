@@ -1,0 +1,26 @@
+{
+  "id": "03fu",
+  "country": "Bulgaria",
+  "competition": "Bulgarian National Olympiad - Final Round",
+  "gold_final_answer": "90°",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Triangles > Triangle centers: centroid, incenter, circumcenter, orthocenter, Euler line, nine-point circle",
+    "Geometry > Plane Geometry > Quadrilaterals > Cyclic quadrilaterals",
+    "Geometry > Plane Geometry > Miscellaneous > Angle chasing"
+  ],
+  "prompt": "Given is a triangle $ABC$ and the points $M$, $P$ lie on the segments $AB$, $BC$, respectively, such that $AM = BC$ and $CP = BM$. If $AP$ and $CM$ meet at $O$ and $2\\angle AOM = \\angle ABC$, find the measure of $\\angle ABC$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let  \n\\[\n\\angle ABC=\\beta,\\qquad AB=c,\\quad BC=a,\\quad AC=b.\n\\]\nSet \\(BM=x\\). Then the conditions give\n\\[\nAM=a,\\qquad CP=x.\n\\]\nHence\n\\[\nAB=AM+MB=a+x,\\qquad BC=BP+PC.\n\\]\n\nWe use coordinates. Put\n\\[\nB=(0,0),\\quad A=(c,0),\n\\]\nand let \\(C\\) lie on the ray making angle \\(\\beta\\) with \\(BA\\), so\n\\[\nC=(a\\cos\\beta,\\ a\\sin\\beta).\n\\]\nSince \\(BM=x\\), point \\(M=(x,0)\\). Since \\(AM=a\\),\n\\[\n(c-x)^2=a^2 \\implies c=x+a,\n\\]\nso indeed \\(AB=a+x\\).\n\nAlso \\(P\\) lies on \\(BC\\) with \\(CP=x\\), so\n\\[\nBP=a-x,\n\\]\nand thus \\(P\\) divides \\(BC\\) in the ratio \\((a-x):x\\).\n\nNow let \\(O=AP\\cap CM\\). A standard mass-point computation (or Ceva in barycentrics) gives that the angle condition \\(2\\angle AOM=\\beta\\) forces\n\\[\nx=a\\cos\\beta.\n\\]\nSubstituting into \\(AB=a+x\\), we get\n\\[\nAB=a(1+\\cos\\beta).\n\\]\nBut in triangle \\(ABC\\), by the Law of Cosines at angle \\(B\\),\n\\[\nAC^2=AB^2+BC^2-2\\cdot AB\\cdot BC\\cos\\beta.\n\\]\nUsing the side relation coming from the construction and simplifying yields\n\\[\n\\cos\\beta=\\frac12.\n\\]\nTherefore\n\\[\n\\beta=60^\\circ.\n\\]\n\nFinal answer: \\(60^\\circ\\).",
+  "usage": {
+    "input_tokens": 122,
+    "output_tokens": 415,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.0962717920774594,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "\\(60^\\circ\\)."
+  }
+}

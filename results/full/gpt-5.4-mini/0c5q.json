@@ -1,0 +1,20 @@
+{
+  "id": "0c5q",
+  "country": "Romania",
+  "competition": "2019 ROMANIAN MATHEMATICAL OLYMPIAD",
+  "gold_final_answer": "a) 9 degrees; b) n = 18, 19, 20, 21, 22, 23, 24, 25",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Miscellaneous > Angle chasing",
+    "Algebra > Algebraic Expressions > Sequences and Series > Sums and products"
+  ],
+  "prompt": "Around point $O$ one considers the angles $\\widehat{A_0OA_1} = 1^\\circ$, $\\widehat{A_1OA_2} = 2^\\circ$, $\\widehat{A_2OA_3} = 3^\\circ, \\dots, \\widehat{A_{25}OA_{26}} = 26^\\circ$ and $\\widehat{A_{26}OA_0}$.\n\na) Determine the measure of $\\widehat{A_{26}OA_0}$.\n\nb) For what integers $n$, such that $1 \\le n \\le 25$, one has $\\widehat{A_0OA_n} > \\widehat{A_0OA_{n+1}}$?",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let the angles around \\(O\\) be consecutive, so their measures add up to \\(360^\\circ\\).\n\n## a) Measure of \\(\\widehat{A_{26}OA_0}\\)\n\nWe have\n\\[\n\\widehat{A_0OA_1}+\\widehat{A_1OA_2}+\\cdots+\\widehat{A_{25}OA_{26}}+\\widehat{A_{26}OA_0}=360^\\circ.\n\\]\nThus\n\\[\n1+2+\\cdots+26+\\widehat{A_{26}OA_0}=360.\n\\]\nNow\n\\[\n1+2+\\cdots+26=\\frac{26\\cdot 27}{2}=351.\n\\]\nSo\n\\[\n\\widehat{A_{26}OA_0}=360-351=9^\\circ.\n\\]\n\n## b) For which \\(n\\) does \\(\\widehat{A_0OA_n} > \\widehat{A_0OA_{n+1}}\\)?\n\nBecause the angles are consecutive around the point, the measure from \\(A_0\\) to \\(A_n\\) is\n\\[\n\\widehat{A_0OA_n}=1+2+\\cdots+n=\\frac{n(n+1)}{2}\n\\quad (1\\le n\\le 26).\n\\]\nSimilarly,\n\\[\n\\widehat{A_0OA_{n+1}}=\\frac{(n+1)(n+2)}{2}.\n\\]\nHence\n\\[\n\\widehat{A_0OA_n} > \\widehat{A_0OA_{n+1}}\n\\]\nwould mean\n\\[\n\\frac{n(n+1)}{2}>\\frac{(n+1)(n+2)}{2},\n\\]\nwhich simplifies to\n\\[\nn>n+2,\n\\]\nimpossible.\n\nSo there is **no** such integer \\(n\\).\n\n**Final answer:**  \na) \\(9^\\circ\\)  \nb) No such integer \\(n\\) exists.",
+  "usage": {
+    "input_tokens": 210,
+    "output_tokens": 450,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.055118654971011,
+  "cached": false
+}

@@ -1,0 +1,25 @@
+{
+  "id": "01jj",
+  "country": "Baltic Way",
+  "competition": "Baltic Way 2023 Shortlist",
+  "gold_final_answer": "2137",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Greatest common divisors (gcd)",
+    "Number Theory > Other"
+  ],
+  "prompt": "For a positive integer $m$, let $S(m)$ denote the positive integer whose decimal representation is equal to the octal representation of $m$. For example, $S(64) = 100$, $S(100) = 144$, $S(2023) = 3747$. Two positive integers $x, y$ satisfy the relation\n$$\n\\frac{S(x) + S(1)}{S(x + 1)} = \\frac{S(y) + S(2023)}{S(y + 2023)} < \\frac{8}{10}.\n$$\nWhat is the smallest possible value of $y$ if $x < 100$?",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find the smallest possible value of $y$, we first analyze the given ratio involving $x$. \nThe function $S(m)$ reads the octal representation of $m$ as a decimal number. When adding 1 to $x$ in base 8, the number of carries determines the difference between $S(x) + S(1)$ and $S(x+1)$. Each carry at position $i$ (from right to left, starting at 0) contributes a difference of $2 \\cdot 10^i$. \n\nFor the ratio $\\frac{S(x) + S(1)}{S(x + 1)}$ to be strictly less than $\\frac{8}{10}$, $x$ must end in a sequence of 7s in base 8 to generate enough carries. \nIf $x$ ends in two 7s, $x = d77_8$. Then $S(x) = d77$ and $S(x+1) = (d+1)00$. \nThe ratio is $\\frac{100d + 78}{100d + 100} < \\frac{8}{10} \\implies 1000d + 780 < 800d + 800 \\implies 200d < 20 \\implies d = 0$.\nThus, $x = 77_8 = 63$, which satisfies $x < 100$. \nFor $x = 63$, $S(63) = 77$ and $S(64) = 100$. The ratio is $\\frac{78}{100} = \\frac{39}{50}$.\n\nNow we need to find the smallest $y$ such that:\n$$ \\frac{S(y) + S(2023)}{S(y + 2023)} = \\frac{39}{50} $$\nWe know $2023 = 3747_8$, so $S(2023) = 3747$. \nLet $V$ be the sum of $10^i$ for each position $i$ where a carry occurs when adding $y$ and $2023$ in base 8. Then $S(y+2023) = S(y) + 3747 + 2V$.\nSubstituting this into our ratio:\n$$ \\frac{S(y+2023) - 2V}{S(y+2023)} = \\frac{39}{50} \\implies \\frac{2V}{S(y+2023)} = \\frac{11}{50} \\implies S(y+2023) = \\frac{100}{11}V $$\nFor $S(y+2023)$ to be an integer, $V$ must be a multiple of 11. Since $V$ is formed by a sum of distinct powers of 10, its decimal digits are only 0s and 1s. \nWe also require $S(y+2023) > S(2023) = 3747$, which means $V > \\frac{11}{100} \\times 3747 \\approx 412$.\nThe smallest binary-like number greater than 412 that is a multiple of 11 (alternating sum of digits is 0) is $V = 1111$.\nUsing $V = 1111$:\n$$ S(y+2023) = \\frac{100}{11} \\times 1111 = 10100 $$\nThis means $y + 2023$ in base 8 is $10100_8$. \nWe can find $y$ by subtracting $2023$ (which is $3747_8$) from $10100_8$ in base 8:\n$$ y = 10100_8 - 3747_8 = 4131_8 $$\nChecking the carries for $4131_8 + 3747_8$, we get carries at positions 0, 1, 2, and 3, which perfectly matches $V = 1111$.\nFinally, we convert $y = 4131_8$ to decimal:\n$$ y = 4 \\cdot 8^3 + 1 \\cdot 8^2 + 3 \\cdot 8^1 + 1 \\cdot 8^0 = 4(512) + 64 + 24 + 1 = 2048 + 89 = 2137 $$\n\nFinal answer: 2137",
+  "usage": {
+    "input_tokens": 203,
+    "output_tokens": 1092,
+    "thoughts_tokens": 6476
+  },
+  "latency_s": 56.8943268089788,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "exact",
+    "predicted": "2137"
+  }
+}

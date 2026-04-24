@@ -1,0 +1,21 @@
+{
+  "id": "02d5",
+  "country": "Brazil",
+  "competition": "I OBM",
+  "gold_final_answer": "The locus is the entire parabola b y = a^2 − x^2, in coordinates with A = (−a, 0), B = (a, 0), and C moving along y = b.",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Triangles > Triangle centers: centroid, incenter, circumcenter, orthocenter, Euler line, nine-point circle",
+    "Geometry > Plane Geometry > Analytic / Coordinate Methods > Cartesian coordinates",
+    "Geometry > Plane Geometry > Miscellaneous > Constructions and loci"
+  ],
+  "prompt": "The vertex $C$ of the triangle $ABC$ is allowed to vary along a line parallel to $AB$. Find the locus of the orthocenter.",
+  "model": "gpt-5.4",
+  "response_text": "Let the fixed side \\(AB\\) lie on the \\(x\\)-axis, with\n\\[\nA=(0,0),\\qquad B=(b,0).\n\\]\nSince \\(C\\) moves on a line parallel to \\(AB\\), let that line be\n\\[\ny=h\n\\]\nfor some fixed nonzero constant \\(h\\). Then we may write\n\\[\nC=(t,h),\n\\]\nwhere \\(t\\) varies.\n\nWe find the orthocenter \\(H\\) of \\(\\triangle ABC\\).\n\n- The altitude from \\(C\\) is perpendicular to \\(AB\\), and since \\(AB\\) is horizontal, this altitude is the vertical line\n  \\[\n  x=t.\n  \\]\n\n- The slope of \\(BC\\) is\n  \\[\n  \\frac{h-0}{t-b}=\\frac{h}{t-b}.\n  \\]\n  Hence the altitude from \\(A\\), perpendicular to \\(BC\\), has slope\n  \\[\n  -\\frac{t-b}{h},\n  \\]\n  so its equation is\n  \\[\n  y=-\\frac{t-b}{h}x.\n  \\]\n\nSince the orthocenter lies on both altitudes, substitute \\(x=t\\):\n\\[\ny=-\\frac{t-b}{h}\\,t=\\frac{t(b-t)}{h}.\n\\]\n\nThus\n\\[\nH=\\left(t,\\frac{t(b-t)}{h}\\right).\n\\]\nIf we denote the coordinates of \\(H\\) by \\((x,y)\\), then \\(x=t\\), so\n\\[\ny=\\frac{x(b-x)}{h}.\n\\]\n\nThis is a quadratic relation, hence the locus is a parabola.\n\nSo the locus of the orthocenter is the parabola\n\\[\n\\boxed{\\,y=\\frac{x(b-x)}{h}\\,}\n\\]\nin coordinates where \\(A=(0,0)\\), \\(B=(b,0)\\), and the line of motion of \\(C\\) is \\(y=h\\).\n\nGeometrically: **the orthocenter traces a parabola passing through \\(A\\) and \\(B\\), with axis perpendicular to \\(AB\\).**\n\nFinal answer: The locus of the orthocenter is a parabola (specifically, in suitable coordinates \\(A=(0,0), B=(b,0)\\), and \\(C\\in\\{y=h\\}\\), it is \\(y=\\frac{x(b-x)}{h}\\)).",
+  "usage": {
+    "input_tokens": 80,
+    "output_tokens": 531,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 7.569864707998931,
+  "cached": false
+}

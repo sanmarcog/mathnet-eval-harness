@@ -1,0 +1,26 @@
+{
+  "id": "09e7",
+  "country": "Mongolia",
+  "competition": "Mongolian Mathematical Olympiad",
+  "gold_final_answer": "48!/32!*16!*17!",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Recursion, bijection",
+    "Discrete Mathematics > Combinatorics > Invariants / monovariants",
+    "Number Theory > Other"
+  ],
+  "prompt": "a_1, a_2, ..., a_{49} is a permutation of the set $\\{2, 3, ..., 50\\}$. Denote $S_1 = a_1$, $S_2 = a_1 + a_2$, ..., $S_{49} = a_1 + a_2 + ... + a_{49}$. Find the number of different sequences $S_1, S_2, ..., S_{49}$ in which no one of $S_i$ is divisible by $3$.",
+  "model": "gpt-5.4",
+  "response_text": "Let  \n\\[\na_1,a_2,\\dots,a_{49}\n\\]\nbe a permutation of \\(\\{2,3,\\dots,50\\}\\), and define partial sums\n\\[\nS_k=a_1+\\cdots+a_k.\n\\]\nWe want the number of possible sequences \\(S_1,\\dots,S_{49}\\) such that none of the \\(S_k\\) is divisible by \\(3\\).\n\nSince the map\n\\[\n(a_1,\\dots,a_{49}) \\longleftrightarrow (S_1,\\dots,S_{49})\n\\]\nis bijective (because \\(a_1=S_1,\\ a_k=S_k-S_{k-1}\\)), it suffices to count permutations \\(a_1,\\dots,a_{49}\\) with all partial sums nonzero mod \\(3\\).\n\n## Step 1: Count residues mod 3 among \\(2,3,\\dots,50\\)\n\nFrom \\(2\\) to \\(50\\), the counts of residues mod \\(3\\) are:\n\n- \\(0 \\pmod 3\\): \\(3,6,\\dots,48\\) → \\(16\\) numbers,\n- \\(1 \\pmod 3\\): \\(4,7,\\dots,49\\) → \\(16\\) numbers,\n- \\(2 \\pmod 3\\): \\(2,5,\\dots,50\\) → \\(17\\) numbers.\n\nSo we have:\n- 16 zeros,\n- 16 ones,\n- 17 twos.\n\nNumbers congruent to \\(0\\pmod3\\) do not change the residue of the running sum; only 1's and 2's matter.\n\n## Step 2: Necessary pattern of nonzero residues\n\nLet \\(T_k=S_k \\pmod 3\\). We need \\(T_k\\in\\{1,2\\}\\) for all \\(k\\).\n\nA term \\(a_i\\equiv 0\\pmod3\\) leaves \\(T_k\\) unchanged, so harmless.\n\nBut when we add:\n- \\(1\\), residue changes \\(1\\leftrightarrow 2\\) only if current residue is \\(1\\to2\\); from \\(2\\) it goes to \\(0\\), forbidden.\n- \\(2\\), residue changes \\(2\\leftrightarrow 1\\) only if current residue is \\(2\\to1\\); from \\(1\\) it goes to \\(0\\), forbidden.\n\nThus among the nonzero residues, after the first one, they must alternate:\n- first must be \\(1\\) or \\(2\\),\n- then the next nonzero must be the opposite,\n- then opposite again, etc.\n\nSince there are 16 ones and 17 twos, the only possible alternating pattern is\n\\[\n2,1,2,1,\\dots,2\n\\]\n(starting and ending with \\(2\\)), because there is one more \\(2\\) than \\(1\\).\n\nSo the subsequence of all nonzero-residue terms is forced in residue pattern.\n\n## Step 3: Arrange actual numbers\n\n### Nonzero terms\n- The 17 numbers congruent to \\(2\\pmod3\\) can be placed in the 17 residue-\\(2\\) slots in \\(17!\\) ways.\n- The 16 numbers congruent to \\(1\\pmod3\\) can be placed in the 16 residue-\\(1\\) slots in \\(16!\\) ways.\n\n### Zero terms\nThere are 16 numbers divisible by \\(3\\). They can be inserted anywhere among the 33 nonzero terms: before the first, between consecutive ones, or after the last.\n\nThat gives \\(33+1=34\\) gaps. Distributing 16 distinct zero-residue numbers among these 34 gaps is equivalent to arranging the 49 terms with the 33 nonzero positions fixed in order. So choose the 16 positions of the zero-residue numbers among 49 total positions, and permute those 16 numbers:\n\\[\n\\binom{49}{16}\\cdot 16!.\n\\]\n\n## Step 4: Total count\n\nHence total number is\n\\[\n17!\\cdot 16!\\cdot \\binom{49}{16}\\cdot 16!.\n\\]\nUsing\n\\[\n\\binom{49}{16}=\\frac{49!}{16!\\,33!}, \\qquad 33!=17!\\,16!\\binom{33}{17},\n\\]\nbut the simplest form is\n\\[\n\\binom{49}{16}(16!)^2 17!.\n\\]\n\nThis also simplifies nicely:\n\\[\n\\binom{49}{16}(16!)^2 17!\n= \\frac{49!}{16!\\,33!}(16!)^2 17!\n= \\frac{49!\\,16!\\,17!}{33!}\n= \\frac{49!\\,16!}{33}.\n\\]\n\nSo the number of valid sequences is\n\nFinal answer: \\(\\displaystyle \\binom{49}{16}(16!)^2\\,17! = \\frac{49!\\,16!}{33}\\).",
+  "usage": {
+    "input_tokens": 161,
+    "output_tokens": 1080,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 16.337582515901886,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "\\(\\displaystyle \\binom{49}{16}(16!)^2\\,17! = \\frac{49!\\,16!}{33}\\)."
+  }
+}

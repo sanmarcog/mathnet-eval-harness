@@ -1,0 +1,25 @@
+{
+  "id": "0cy4",
+  "country": "Saudi Arabia",
+  "competition": "SAMC",
+  "gold_final_answer": "x = (a^2 + b^2) / (a + b) (with no solution if ab = 0 due to domain restrictions)",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Polynomial operations",
+    "Algebra > Prealgebra / Basic Algebra > Simple Equations"
+  ],
+  "prompt": "Let $a$ and $b$ be real numbers such that $a+b \\neq 0$. Solve the equation\n$$\n\\frac{1}{(x+a)^2-b^2}+\\frac{1}{(x+b)^2-a^2}=\\frac{1}{x^2-(a+b)^2}+\\frac{1}{x^2-(a-b)^2}\n$$",
+  "model": "gpt-5.4",
+  "response_text": "Let\n\\[\n\\frac{1}{(x+a)^2-b^2}+\\frac{1}{(x+b)^2-a^2}=\\frac{1}{x^2-(a+b)^2}+\\frac{1}{x^2-(a-b)^2},\n\\]\nwith \\(a,b\\in \\mathbb R\\) and \\(a+b\\ne 0\\).\n\nWe solve for real \\(x\\), keeping in mind that all denominators must be nonzero.\n\n## 1) Factor the denominators\nNotice\n\\[\n(x+a)^2-b^2=(x+a-b)(x+a+b),\n\\]\n\\[\n(x+b)^2-a^2=(x+b-a)(x+a+b),\n\\]\n\\[\nx^2-(a+b)^2=(x-a-b)(x+a+b),\n\\]\n\\[\nx^2-(a-b)^2=(x-a+b)(x+a-b).\n\\]\n\nSo the equation becomes\n\\[\n\\frac{1}{(x+a-b)(x+a+b)}+\\frac{1}{(x+b-a)(x+a+b)}\n=\\frac{1}{(x-a-b)(x+a+b)}+\\frac{1}{(x-a+b)(x+a-b)}.\n\\]\n\n## 2) Combine the left-hand side\nSince \\(x+b-a=x-a+b\\),\n\\[\n\\frac{1}{(x+a-b)(x+a+b)}+\\frac{1}{(x-a+b)(x+a+b)}\n=\\frac{1}{x+a+b}\\left(\\frac1{x+a-b}+\\frac1{x-a+b}\\right).\n\\]\nNow\n\\[\n\\frac1{x+a-b}+\\frac1{x-a+b}\n=\\frac{(x-a+b)+(x+a-b)}{(x+a-b)(x-a+b)}\n=\\frac{2x}{(x+a-b)(x-a+b)}.\n\\]\nHence\n\\[\n\\text{LHS}=\\frac{2x}{(x+a+b)(x+a-b)(x-a+b)}.\n\\]\n\n## 3) Combine the right-hand side\n\\[\n\\frac{1}{(x-a-b)(x+a+b)}+\\frac{1}{(x-a+b)(x+a-b)}.\n\\]\nBut\n\\[\n(x-a-b)(x+a+b)=x^2-(a+b)^2,\n\\]\n\\[\n(x-a+b)(x+a-b)=x^2-(a-b)^2.\n\\]\nSo\n\\[\n\\text{RHS}=\\frac1{x^2-(a+b)^2}+\\frac1{x^2-(a-b)^2}\n\\]\n\\[\n=\\frac{[x^2-(a-b)^2]+[x^2-(a+b)^2]}{[x^2-(a+b)^2][x^2-(a-b)^2]}.\n\\]\nThe numerator simplifies:\n\\[\nx^2-(a-b)^2+x^2-(a+b)^2\n=2x^2-\\big((a-b)^2+(a+b)^2\\big)\n=2x^2-2(a^2+b^2).\n\\]\nThus\n\\[\n\\text{RHS}=\\frac{2(x^2-a^2-b^2)}{(x-a-b)(x+a+b)(x-a+b)(x+a-b)}.\n\\]\n\n## 4) Equate and clear denominators\nAssuming denominators are nonzero, multiply both sides by\n\\[\n(x+a+b)(x+a-b)(x-a+b)(x-a-b):\n\\]\n\\[\n2x(x-a-b)=2(x^2-a^2-b^2).\n\\]\nCancel \\(2\\):\n\\[\nx(x-a-b)=x^2-a^2-b^2.\n\\]\nExpand:\n\\[\nx^2-x(a+b)=x^2-a^2-b^2.\n\\]\nSo\n\\[\nx(a+b)=a^2+b^2.\n\\]\nSince \\(a+b\\ne0\\),\n\\[\nx=\\frac{a^2+b^2}{a+b}.\n\\]\n\n## 5) Check admissibility\nWe must ensure this \\(x\\) does not make any denominator zero. The forbidden values are\n\\[\nx=\\pm(a+b),\\qquad x=\\pm(a-b).\n\\]\n\nNow\n\\[\n\\frac{a^2+b^2}{a+b}=a+b\n\\quad\\Longleftrightarrow\\quad\na^2+b^2=(a+b)^2\n\\quad\\Longleftrightarrow\\quad\n2ab=0.\n\\]\nSo if \\(ab=0\\), the obtained value is forbidden.\n\nAlso\n\\[\n\\frac{a^2+b^2}{a+b}=a-b\n\\quad\\Longleftrightarrow\\quad\na^2+b^2=(a-b)(a+b)=a^2-b^2\n\\quad\\Longleftrightarrow\\quad\n2b^2=0,\n\\]\nhence \\(b=0\\), again forbidden.\n\nSimilarly,\n\\[\n\\frac{a^2+b^2}{a+b}=b-a \\Longleftrightarrow a=0,\n\\]\nforbidden, and\n\\[\n\\frac{a^2+b^2}{a+b}=-(a+b)\n\\]\nwould give \\(a^2+b^2=-(a+b)^2\\), impossible unless \\(a=b=0\\), excluded by \\(a+b\\ne0\\).\n\nTherefore:\n- If \\(ab\\ne0\\), the solution is valid.\n- If \\(ab=0\\), the equation has no solution, since the only algebraic candidate is excluded from the domain.\n\nFinal answer: \\[\n\\boxed{\\text{If }ab\\ne0,\\ \\ x=\\frac{a^2+b^2}{a+b};\\qquad \\text{if }ab=0,\\ \\text{there is no real solution.}}\n\\]",
+  "usage": {
+    "input_tokens": 132,
+    "output_tokens": 1266,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 14.739250554004684,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "\\text{If }ab\\ne0,\\ \\ x=\\frac{a^2+b^2}{a+b};\\qquad \\text{if }ab=0,\\ \\text{there is no real solution.}"
+  }
+}

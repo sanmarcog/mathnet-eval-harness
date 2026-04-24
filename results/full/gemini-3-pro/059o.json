@@ -1,0 +1,20 @@
+{
+  "id": "059o",
+  "country": "Estonia",
+  "competition": "Estonian Math Competitions",
+  "gold_final_answer": "10^{2^{2020}} + 33",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Sequences and Series > Recurrence relations",
+    "Algebra > Intermediate Algebra > Quadratic functions"
+  ],
+  "prompt": "On the first line of a notebook Juku writes the number $43$. On every following line he writes the number $x^2 - 66x + 1122$, where $x$ is the number on the previous line. Find the number that Juku will write on the $2021$st line.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find the number Juku will write on the $2021$st line, let's analyze the given sequence. \n\nLet $x_n$ be the number written on the $n$-th line. We are given that $x_1 = 43$ and for $n > 1$, the number on the $n$-th line is given by the recurrence relation:\n$$x_n = x_{n-1}^2 - 66x_{n-1} + 1122$$\n\nWe can simplify this expression by completing the square:\n$$x_n = (x_{n-1}^2 - 66x_{n-1} + 33^2) + 1122 - 33^2$$\n$$x_n = (x_{n-1} - 33)^2 + 1122 - 1089$$\n$$x_n = (x_{n-1} - 33)^2 + 33$$\n\nSubtracting $33$ from both sides gives:\n$$x_n - 33 = (x_{n-1} - 33)^2$$\n\nLet $y_n = x_n - 33$. Then the recurrence relation becomes:\n$$y_n = y_{n-1}^2$$\n\nWe can find the first term of this new sequence:\n$$y_1 = x_1 - 33 = 43 - 33 = 10$$\n\nNow we can easily find the subsequent terms:\n$$y_2 = y_1^2 = 10^2$$\n$$y_3 = y_2^2 = (10^2)^2 = 10^4 = 10^{2^2}$$\n$$y_4 = y_3^2 = (10^4)^2 = 10^8 = 10^{2^3}$$\n\nBy induction, the general formula for $y_n$ is:\n$$y_n = 10^{2^{n-1}}$$\n\nWe want to find the number on the $2021$st line, which corresponds to $x_{2021}$. First, we find $y_{2021}$:\n$$y_{2021} = 10^{2^{2021-1}} = 10^{2^{2020}}$$\n\nSince $x_n = y_n + 33$, we have:\n$$x_{2021} = 10^{2^{2020}} + 33$$\n\nFinal answer: 10^{2^{2020}} + 33",
+  "usage": {
+    "input_tokens": 110,
+    "output_tokens": 600,
+    "thoughts_tokens": 1249
+  },
+  "latency_s": 14.347909354022704,
+  "cached": false
+}

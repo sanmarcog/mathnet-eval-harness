@@ -1,0 +1,20 @@
+{
+  "id": "0d9r",
+  "country": "Saudi Arabia",
+  "competition": "Team selection tests for JBMO 2018",
+  "gold_final_answer": "1980",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Prime numbers",
+    "Number Theory > Divisibility / Factorization > Factorization techniques"
+  ],
+  "prompt": "Distinct prime numbers $p$, $q$, $r$ satisfy the equation\n$$\n2 p q r + 50 p q = 7 p q r + 55 p r = 8 p q r + 12 q r = A\n$$\nfor some positive integer $A$. Find $A$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let the common value be \\(A\\). Then\n\n\\[\n2pqr+50pq=A,\\qquad 7pqr+55pr=A,\\qquad 8pqr+12qr=A.\n\\]\n\nSet these equal pairwise.\n\n### 1) Compare the first two:\n\\[\n2pqr+50pq=7pqr+55pr\n\\]\n\\[\n50pq-55pr=5pqr\n\\]\nFactor out \\(5p\\):\n\\[\n10q-11r=qr.\n\\]\nSo\n\\[\nqr-10q+11r=0.\n\\]\nRewrite:\n\\[\n(q+11)(r-10)= -110.\n\\]\n\nSince \\(q,r\\) are distinct primes, test possibilities from the factorization. Because \\(r\\) is prime and \\(r>0\\), the only viable positive prime solution is\n\\[\nr=2,\\quad q=11.\n\\]\nIndeed, then \\(10q-11r=110-22=88\\) and \\(qr=22\\), so this does not work; so we continue more carefully by using the second and third equations.\n\n### 2) Compare the second and third:\n\\[\n7pqr+55pr=8pqr+12qr\n\\]\n\\[\n55pr-12qr=pqr\n\\]\nFactor out \\(r\\):\n\\[\nr(55p-12q)=pqr\n\\]\nso\n\\[\n55p-12q=pq.\n\\]\nRearrange:\n\\[\npq-55p+12q=0\n\\]\n\\[\n(p+12)(q-55)=-660.\n\\]\n\nSince \\(p,q\\) are distinct primes, the positive prime solutions are limited. Let’s test prime \\(q<55\\) dividing the equation:\n\\[\npq=55p-12q \\implies q(p+12)=55p.\n\\]\nThus \\(q\\mid 55p\\), and since \\(q\\neq p\\), \\(q\\) must divide \\(55\\), so \\(q=5\\) or \\(11\\).\n\n- If \\(q=5\\), then \\(5p=55p-60\\), giving \\(50p=60\\), impossible.\n- If \\(q=11\\), then \\(11p=55p-132\\), so \\(44p=132\\), hence \\(p=3\\).\n\nThus\n\\[\np=3,\\quad q=11.\n\\]\n\n### 3) Find \\(r\\) from the first equation\nUse\n\\[\n10q-11r=qr.\n\\]\nSubstitute \\(q=11\\):\n\\[\n110-11r=11r\n\\]\n\\[\n110=22r\n\\]\n\\[\nr=5.\n\\]\n\nSo\n\\[\n(p,q,r)=(3,11,5).\n\\]\n\n### 4) Compute \\(A\\)\nUse\n\\[\nA=2pqr+50pq=2(3)(11)(5)+50(3)(11)=330+1650=1980.\n\\]\n\nFinal answer: \\(\\boxed{1980}\\)",
+  "usage": {
+    "input_tokens": 113,
+    "output_tokens": 667,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 4.590654842904769,
+  "cached": false
+}

@@ -1,0 +1,20 @@
+{
+  "id": "0euf",
+  "country": "South Korea",
+  "competition": "Korean Mathematical Olympiad Final Round",
+  "gold_final_answer": "kn",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Invariants / monovariants",
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments"
+  ],
+  "prompt": "There is an $n \\times n$ chess board. Each of the $n^2$ small boxes can present a number from $0$ to $k$, for some positive integer $k$. In each row and column, there is a button and if we push the button in a row (or column), the number in each of the $n$ small boxes contained in that row (or column, respectively) increases by $1$ and the number $k$ is changed to $0$. We call this a \"process\". At first, the number $0$ was presented in every $n^2$ small box. But there were some processes and the numbers were changed. Show that every number in the $n^2$ small boxes can be changed to $0$ by taking at most $kn$ processes.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To return the board to its initial state of all zeros, we must apply a certain number of processes to the rows and columns. Since the numbers on the board are from $0$ to $k$, the operations are equivalent to addition modulo $k+1$. \n\nBecause the current board was obtained by a sequence of processes from the all-zero board, the number in the cell at row $i$ and column $j$ can be represented as $r_i + c_j \\pmod{k+1}$, where $r_i$ and $c_j$ are the total number of times row $i$ and column $j$ were pushed, respectively.\n\nTo change all numbers back to $0$, we need to push row $i$ exactly $x_i$ times and column $j$ exactly $y_j$ times such that:\n$$x_i + y_j \\equiv -(r_i + c_j) \\pmod{k+1}$$\nThis condition is satisfied if we choose $x_i \\equiv -r_i \\pmod{k+1}$ and $y_j \\equiv -c_j \\pmod{k+1}$. \n\nNotice that the choice of $x_i$ and $y_j$ is not unique. For any integer $m \\in \\{0, 1, \\dots, k\\}$, we can add $m$ to all row pushes and subtract $m$ from all column pushes, and the effect on the board will remain exactly the same. Thus, for each $m$, a valid sequence of processes is given by:\n$$x_i(m) = (x_i + m) \\bmod (k+1)$$\n$$y_j(m) = (y_j - m) \\bmod (k+1)$$\n\nThe total number of processes used for a given $m$ is:\n$$S(m) = \\sum_{i=1}^n x_i(m) + \\sum_{j=1}^n y_j(m)$$\n\nLet's find the average number of processes over all $k+1$ possible values of $m$. As $m$ ranges from $0$ to $k$, the term $(x_i + m) \\bmod (k+1)$ takes on each value in $\\{0, 1, \\dots, k\\}$ exactly once. The sum of these values is $\\frac{k(k+1)}{2}$. The same is true for $(y_j - m) \\bmod (k+1)$. \n\nSumming $S(m)$ over all $m \\in \\{0, 1, \\dots, k\\}$, we get:\n$$\\sum_{m=0}^k S(m) = \\sum_{i=1}^n \\frac{k(k+1)}{2} + \\sum_{j=1}^n \\frac{k(k+1)}{2} = n \\frac{k(k+1)}{2} + n \\frac{k(k+1)}{2} = nk(k+1)$$\n\nSince the sum of $S(m)$ over the $k+1$ possible values of $m$ is $nk(k+1)$, the average value of $S(m)$ is:\n$$\\text{Average} = \\frac{nk(k+1)}{k+1} = kn$$\n\nBecause the average number of processes over all choices of $m$ is exactly $kn$, by the Pigeonhole Principle, there must exist at least one $m \\in \\{0, 1, \\dots, k\\}$ for which the total number of processes $S(m)$ is less than or equal to the average. \n\nTherefore, there is always a sequence of processes that returns the board to all zeros using at most $kn$ processes.\n\nFinal answer: kn",
+  "usage": {
+    "input_tokens": 208,
+    "output_tokens": 819,
+    "thoughts_tokens": 1792
+  },
+  "latency_s": 90.89237406698521,
+  "cached": false
+}

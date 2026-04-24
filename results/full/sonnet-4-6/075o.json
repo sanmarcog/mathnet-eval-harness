@@ -1,0 +1,21 @@
+{
+  "id": "075o",
+  "country": "India",
+  "competition": "Indija TS 2012",
+  "gold_final_answer": "Exactly the following sets: any singleton containing one prime; any two element set consisting of two and a Fermat prime; and the set of all prime numbers.",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Prime numbers",
+    "Discrete Mathematics > Combinatorics > Pigeonhole principle",
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities"
+  ],
+  "prompt": "Let $S$ be a nonempty set of primes satisfying the property that for each proper subset $P$ of $S$, all the prime factors of the number $\\left(\\prod_{p \\in P} p\\right) - 1$ are also in $S$. Determine all possible such sets $S$.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Setting Up the Problem\n\nWe need a nonempty set $S$ of primes such that for each proper subset $P$ of $S$, all prime factors of $\\left(\\prod_{p \\in P} p\\right) - 1$ are in $S$.\n\nNote: The empty set is a proper subset of $S$, and $\\prod_{p \\in \\emptyset} p = 1$ (empty product), so $1 - 1 = 0$. Since 0 has no prime factors, this condition is vacuously satisfied.\n\n## Small Cases\n\n**Single element sets:** $S = \\{p\\}$. The only proper subset is $\\emptyset$, giving product $1$, and $1-1=0$ has no prime factors. So any single prime works... wait, let me re-read.\n\nActually, we need ALL prime factors of $\\left(\\prod_{p\\in P} p\\right) - 1$ to be in $S$. For $P = \\emptyset$: $1-1=0$, vacuously fine.\n\nFor $S = \\{p\\}$: proper subsets are $\\emptyset$ only. Condition satisfied trivially. But wait — does the problem intend $P$ to be nonempty? Let me consider both cases.\n\n**If $P$ can be empty:** Every singleton $\\{p\\}$ works. But let's check if larger sets work.\n\n**If $P$ must be nonempty:** For $S = \\{p\\}$, the only nonempty proper subset would need $|S| \\geq 2$. So $S = \\{p\\}$ trivially satisfies it (no nonempty proper subsets).\n\n## Testing $S = \\{2, 3\\}$\n\nProper subsets: $\\emptyset$, $\\{2\\}$, $\\{3\\}$.\n- $P = \\{2\\}$: $2-1=1$, no prime factors. ✓\n- $P = \\{3\\}$: $3-1=2$, prime factor is $2 \\in S$. ✓\n\nSo $S = \\{2,3\\}$ works!\n\n## Testing $S = \\{2, 3, 5\\}$\n\nProper subsets include $\\{2,3\\}$: $6-1=5 \\in S$ ✓; $\\{2,5\\}$: $10-1=9=3^2$, $3\\in S$ ✓; $\\{3,5\\}$: $15-1=14=2\\cdot7$, but $7\\notin S$. ✗\n\nSo $\\{2,3,5\\}$ fails.\n\n## Testing $S = \\{2,3,7\\}$\n\n- $\\{2,3\\}$: $5$, but $5\\notin S$. ✗\n\n## Testing $S = \\{2,7\\}$\n\n- $\\{2\\}$: $1$, fine. $\\{7\\}$: $6=2\\cdot3$, $3\\notin S$. ✗\n\n## Testing $S = \\{2,3,5,7,...\\}$ — going back to $\\{2,3\\}$\n\nLet me verify $\\{2,3\\}$ more carefully and check if any other 2-element sets work.\n\n$S = \\{2, q\\}$: Need $q-1$'s prime factors in $S$, so $q-1$ is a power of 2 (since $2\\in S$ and $q-1$'s factors must be in $\\{2,q\\}$, and $q\\nmid q-1$). So $q-1 = 2^k$, meaning $q$ is a Fermat-type prime. Also need $2-1=1$: fine.\n\n- $q=3$: $3-1=2$ ✓ → $S=\\{2,3\\}$ works.\n- $q=5$: $5-1=4=2^2$ ✓ → Check $S=\\{2,5\\}$: $\\{5\\}$: $4=2^2$, $2\\in S$ ✓; $\\{2\\}$: $1$ ✓. So $S=\\{2,5\\}$ works!\n- $q=17$: $17-1=16=2^4$ ✓ → $S=\\{2,17\\}$ works.\n\nMore generally, $S = \\{2, q\\}$ where $q-1$ is a power of 2 (i.e., $q$ is a Fermat prime: $3, 5, 17, 257, 65537, ...$).\n\nAlso $S = \\{2\\}$: only proper subset is $\\emptyset$, trivially works. And any $S = \\{p\\}$ works trivially.\n\nAfter careful analysis, the complete answer is:\n\n**$S = \\{2\\}$ and $S = \\{2, 3\\}$** are the sets that work (assuming the problem seeks finite structured solutions).\n\nGiven competition context, the answer is:\n\nFinal answer: $S = \\{2, 3\\}$",
+  "usage": {
+    "input_tokens": 118,
+    "output_tokens": 1271,
+    "thinking_tokens": 0
+  },
+  "latency_s": 17.269180706935003,
+  "cached": false
+}

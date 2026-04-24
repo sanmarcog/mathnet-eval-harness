@@ -1,0 +1,20 @@
+{
+  "id": "08sx",
+  "country": "Japan",
+  "competition": "Japan Junior Mathematical Olympiad",
+  "gold_final_answer": "720",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Recursion, bijection",
+    "Discrete Mathematics > Combinatorics > Counting two ways"
+  ],
+  "prompt": "In a certain fencing competition there were $6$ participants. Each participant had one match each with $5$ other participants. The number of winning matches of the participants turned out to be all different. Assume that there was no draw in all of the matches. How many distinct winner-loser combinations were possible for this competition?",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Setting Up the Problem\n\nWith 6 participants, each plays 5 matches. Total matches = C(6,2) = 15. Total wins = 15.\n\nSince all 6 participants have different numbers of wins, and wins range from 0 to 5, the only possibility is that the wins are exactly {0, 1, 2, 3, 4, 5}.\n\n## Analyzing the Structure\n\nThe participant with 5 wins beat everyone. The participant with 0 wins lost to everyone. The participant with 4 wins lost only to the one with 5 wins. The participant with 1 win beat only the one with 0 wins.\n\nLet me label participants by their win counts: P5, P4, P3, P2, P1, P0.\n\n**Fixed results:**\n- P5 beats everyone (P4, P3, P2, P1, P0)\n- P0 loses to everyone (P5, P4, P3, P2, P1)\n- P4 beats P3, P2, P1, P0 (loses to P5) ✓ (4 wins)\n- P1 beats P0, loses to P5, P4 — needs exactly 1 win total, so loses to P3 and P2 as well ✓\n\nSo the only freedom is in the matches among {P4, P3, P2, P1} — but wait, P4 beats P3, P2, P1 (fixed), and P1 loses to P3, P2 (fixed). \n\nThe remaining undetermined matches are among **{P3, P2, P1}** — but P1 loses to both P3 and P2 (fixed). So the only undetermined match is **P3 vs P2**.\n\nWait, let me recount. Among {P3, P2, P1}:\n- P3 vs P2: undetermined\n- P3 vs P1: P3 must beat P1 (since P1 only beats P0)\n- P2 vs P1: P2 must beat P1 (since P1 only beats P0)\n\nSo P3 vs P2 is the only free match. But we need P3 to have exactly 3 wins and P2 to have exactly 2 wins.\n\n**Case 1: P3 beats P2**\n- P3's wins: beats P2, P1, P0 = 3 wins ✓\n- P2's wins: beats P1, P0 = 2 wins ✓\n\n**Case 2: P2 beats P3**\n- P3's wins: beats P1, P0 = 2 wins ✗ (needs 3)\n\nSo the match results among participants are **completely determined** once we assign win-counts to participants!\n\n## Counting Distinct Combinations\n\nThe question asks for distinct winner-loser combinations. The win sequence {0,1,2,3,4,5} is fixed, but we need to count how many ways to assign these win totals to the 6 participants (i.e., how many valid tournaments exist on labeled players).\n\nSince the results are completely determined by the assignment of win-counts to players, the number of distinct tournaments equals the number of ways to assign the win sequence to 6 labeled participants = 6! = 720.\n\nBut wait — the problem says \"distinct winner-loser combinations,\" meaning distinct tournament outcomes (who beats whom). Since each assignment of win-counts to players gives a unique set of match results (as shown above), the answer is 6! = 720.\n\nHmm, but let me reconsider whether the problem is asking about labeled or unlabeled participants. The participants are distinct people in a competition, so they are labeled.\n\nEach of the 6! = 720 permutations assigns win-counts to players, and each gives a unique tournament (since results are fully determined). So there are **720** distinct winner-loser combinations.\n\nFinal answer: 720",
+  "usage": {
+    "input_tokens": 114,
+    "output_tokens": 933,
+    "thinking_tokens": 0
+  },
+  "latency_s": 14.489671217044815,
+  "cached": false
+}

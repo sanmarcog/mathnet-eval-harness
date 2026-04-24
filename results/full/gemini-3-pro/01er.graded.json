@@ -1,0 +1,26 @@
+{
+  "id": "01er",
+  "country": "Baltic Way",
+  "competition": "Baltic Way shortlist",
+  "gold_final_answer": "0",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization",
+    "Number Theory > Modular Arithmetic",
+    "Discrete Mathematics > Combinatorics > Pigeonhole principle"
+  ],
+  "prompt": "Let's say that a digit is *eternal* for a positive integer $n$, if it is contained in every multiple of $n$. Find all digits which are eternal for at least one positive integer.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find all digits which are eternal for at least one positive integer, we can test the digits and use the Pigeonhole Principle.\n\nFirst, let's check if the digit $0$ is eternal for any positive integer. \nConsider $n = 10$. Every positive multiple of $10$ (i.e., $10, 20, 30, \\dots$) ends with the digit $0$. Therefore, every multiple of $10$ contains the digit $0$, making $0$ an eternal digit for $n = 10$.\n\nNow, let's check if any non-zero digit $d \\in \\{1, 2, \\dots, 9\\}$ can be eternal for some positive integer $n$.\nAssume for the sake of contradiction that a non-zero digit $d$ is eternal for a positive integer $n$. This means every multiple of $n$ must contain the digit $d$.\nChoose any non-zero digit $c$ such that $c \\neq d$. (Since there are 9 non-zero digits, we can easily pick one).\nConsider the sequence of $n+1$ integers formed entirely by the digit $c$:\n$x_1 = c$\n$x_2 = cc$\n$x_3 = ccc$\n$\\dots$\n$x_{n+1} = \\underbrace{cc\\dots c}_{n+1 \\text{ times}}$\n\nBy the Pigeonhole Principle, since there are $n+1$ numbers and only $n$ possible remainders when divided by $n$, there must be at least two numbers in this sequence that leave the same remainder when divided by $n$. Let these two numbers be $x_i$ and $x_j$ with $i > j$.\n\nBecause $x_i$ and $x_j$ have the same remainder modulo $n$, their difference must be a multiple of $n$:\n$x_i - x_j = \\underbrace{cc\\dots c}_{i \\text{ times}} - \\underbrace{cc\\dots c}_{j \\text{ times}} = \\underbrace{cc\\dots c}_{i-j \\text{ times}}\\underbrace{00\\dots 0}_{j \\text{ times}}$\n\nThis difference is a valid positive multiple of $n$. However, looking at its decimal representation, it consists entirely of the digits $c$ and $0$. Since we specifically chose $c \\neq d$ and we know $d \\neq 0$, the digit $d$ does not appear anywhere in this multiple of $n$. \n\nThis contradicts our assumption that $d$ is contained in *every* multiple of $n$. Thus, no non-zero digit can be eternal for any positive integer $n$.\n\nFinal answer: 0",
+  "usage": {
+    "input_tokens": 81,
+    "output_tokens": 596,
+    "thoughts_tokens": 1881
+  },
+  "latency_s": 21.018970313947648,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "exact",
+    "predicted": "0"
+  }
+}

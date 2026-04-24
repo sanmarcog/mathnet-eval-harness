@@ -1,0 +1,20 @@
+{
+  "id": "0cy4",
+  "country": "Saudi Arabia",
+  "competition": "SAMC",
+  "gold_final_answer": "x = (a^2 + b^2) / (a + b) (with no solution if ab = 0 due to domain restrictions)",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Polynomial operations",
+    "Algebra > Prealgebra / Basic Algebra > Simple Equations"
+  ],
+  "prompt": "Let $a$ and $b$ be real numbers such that $a+b \\neq 0$. Solve the equation\n$$\n\\frac{1}{(x+a)^2-b^2}+\\frac{1}{(x+b)^2-a^2}=\\frac{1}{x^2-(a+b)^2}+\\frac{1}{x^2-(a-b)^2}\n$$",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Solution\n\nLet me factor each denominator.\n\n**Left side denominators:**\n- $(x+a)^2 - b^2 = (x+a+b)(x+a-b)$\n- $(x+b)^2 - a^2 = (x+b+a)(x+b-a)$\n\n**Right side denominators:**\n- $x^2 - (a+b)^2 = (x+a+b)(x-a-b)$\n- $x^2 - (a-b)^2 = (x+a-b)(x-a+b)$\n\nLet me substitute $p = x+a+b$, $q = x+a-b$, $r = x-a+b$, $s = x-a-b$.\n\nNote: $p = x+a+b$, $s = x-a-b = -(a+b-x)$, so $s = -p + 2x$... Let me just use the factored forms.\n\nThe equation becomes:\n$$\\frac{1}{(x+a+b)(x+a-b)} + \\frac{1}{(x+a+b)(x+b-a)} = \\frac{1}{(x+a+b)(x-a-b)} + \\frac{1}{(x+a-b)(x-a+b)}$$\n\nLet $u = x+a+b$, $v = x+a-b$, $w = x-a+b$. Note $u = v+w-x+x$... Actually: $u - v = 2b$, $u - w = 2a$, $v + w = 2x$, $u = x+a+b$, $-u+2x = x-a-b$.\n\nSo the equation is:\n$$\\frac{1}{uv} + \\frac{1}{uw} = \\frac{1}{u(2x-u)} + \\frac{1}{vw}$$\n\n$$\\frac{1}{u}\\left(\\frac{1}{v} + \\frac{1}{w}\\right) = \\frac{1}{u(2x-u)} + \\frac{1}{vw}$$\n\n$$\\frac{v+w}{uvw} = \\frac{1}{u(2x-u)} + \\frac{1}{vw}$$\n\nSince $v + w = 2x$:\n$$\\frac{2x}{uvw} - \\frac{1}{vw} = \\frac{1}{u(2x-u)}$$\n\n$$\\frac{1}{vw}\\left(\\frac{2x}{u} - 1\\right) = \\frac{1}{u(2x-u)}$$\n\n$$\\frac{1}{vw} \\cdot \\frac{2x - u}{u} = \\frac{1}{u(2x-u)}$$\n\n$$\\frac{2x-u}{uvw} = \\frac{1}{u(2x-u)}$$\n\n$$(2x-u)^2 = vw$$\n\nNow $2x - u = 2x - (x+a+b) = x - a - b$, and $vw = (x+a-b)(x-a+b) = x^2 - (a-b)^2$.\n\nSo: $(x-a-b)^2 = (x+a-b)(x-a+b)$\n\n$$x^2 - 2x(a+b) + (a+b)^2 = x^2 - (a-b)^2$$\n\n$$-2x(a+b) + (a+b)^2 = -(a-b)^2$$\n\n$$-2x(a+b) = -(a-b)^2 - (a+b)^2$$\n\n$$-2x(a+b) = -(a^2 - 2ab + b^2) - (a^2 + 2ab + b^2) = -2a^2 - 2b^2$$\n\n$$x(a+b) = a^2 + b^2$$\n\nSince $a + b \\neq 0$:\n\n$$x = \\frac{a^2 + b^2}{a+b}$$\n\nWe must verify this doesn't make any denominator zero (generically it doesn't for $a,b$ not specially related).\n\nFinal answer: $x = \\dfrac{a^2+b^2}{a+b}$",
+  "usage": {
+    "input_tokens": 152,
+    "output_tokens": 1095,
+    "thinking_tokens": 0
+  },
+  "latency_s": 14.014734046999365,
+  "cached": false
+}

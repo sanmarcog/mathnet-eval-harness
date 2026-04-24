@@ -1,0 +1,25 @@
+{
+  "id": "0h92",
+  "country": "Ukraine",
+  "competition": "58th Ukrainian National Mathematical Olympiad",
+  "gold_final_answer": "(25, 7, 13) and its cyclic permutations: (7, 13, 25) and (13, 25, 7)",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization",
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities"
+  ],
+  "prompt": "Find all triples pairwise distinct positive integer numbers $(a, b, c)$ that satisfy the condition: number $2a-1$ is divisible by $b$, number $2b-1$ is divisible by $c$ and number $2c-1$ is divisible by $a$.",
+  "model": "gpt-5.4",
+  "response_text": "Let\n\\[\nb\\mid (2a-1),\\qquad c\\mid (2b-1),\\qquad a\\mid (2c-1),\n\\]\nwith \\(a,b,c\\) pairwise distinct positive integers.\n\nWe must find all such triples \\((a,b,c)\\).\n\n---\n\n## 1. Rewrite with quotient variables\nThere exist positive integers \\(x,y,z\\) such that\n\\[\n2a-1=bx,\\qquad 2b-1=cy,\\qquad 2c-1=az.\n\\]\nSince \\(2a-1<2a\\), we get\n\\[\nbx<2a.\n\\]\nSimilarly,\n\\[\ncy<2b,\\qquad az<2c.\n\\]\n\nBecause \\(x,y,z\\ge 1\\), these imply\n\\[\nb<2a,\\qquad c<2b,\\qquad a<2c.\n\\]\nSo the numbers are all of comparable size.\n\n---\n\n## 2. Show the quotients must all be \\(1\\)\n\nSuppose one of \\(x,y,z\\) is at least \\(2\\). Then from\n\\[\nbx=2a-1<2a\n\\]\nwe get \\(2b\\le bx<2a\\), hence \\(b<a\\).\n\nLikewise:\n- if \\(y\\ge 2\\), then \\(c<b\\),\n- if \\(z\\ge 2\\), then \\(a<c\\).\n\nNow if all three were \\(\\ge 2\\), we'd get a cycle\n\\[\nb<a<c<b,\n\\]\nimpossible.\n\nSo at least one of \\(x,y,z\\) equals \\(1\\).\n\nWithout loss, say \\(x=1\\). Then\n\\[\n2a-1=b.\n\\]\nSince \\(a\\) and \\(b\\) are distinct, this forces \\(a\\ge 2\\) and \\(b> a\\) or \\(b<a\\)? Actually \\(b=2a-1>a\\) for \\(a\\ge2\\).\n\nNow use \\(c\\mid (2b-1)=2(2a-1)-1=4a-3\\), and \\(a\\mid (2c-1)\\).\n\nWe now compare sizes. Since \\(b=2a-1\\), from \\(2b-1=cy\\) we have\n\\[\ncy=4a-3<4a.\n\\]\nIf \\(y\\ge 2\\), then\n\\[\n2c\\le cy<4a \\implies c<2a.\n\\]\nBut \\(a\\mid (2c-1)\\), so \\(2c-1\\ge a\\), hence \\(c\\ge \\frac{a+1}{2}\\), not enough alone.\n\nA cleaner route is to use modular substitution.\n\n---\n\n## 3. Solve systematically by considering one quotient equal to \\(1\\)\n\nBecause not all \\(x,y,z\\) can exceed \\(1\\), at least one is \\(1\\).\n\n### Case 1: \\(x=1\\)\nThen\n\\[\nb=2a-1.\n\\]\nNow \\(c\\mid 2b-1=4a-3\\), and \\(a\\mid 2c-1\\).\n\nWrite\n\\[\n2c-1=at\n\\]\nfor some positive integer \\(t\\). Then\n\\[\nc=\\frac{at+1}{2}.\n\\]\nSince \\(c\\mid 4a-3\\), we have \\(c\\le 4a-3\\), so \\(t\\) is small. But also \\(c<2b=4a-2\\), so not much yet.\n\nLet us instead use congruences:\n\\[\n2c\\equiv 1 \\pmod a.\n\\]\nSince \\(c\\mid 4a-3\\), let \\(4a-3=cu\\). If \\(u\\ge 2\\), then \\(c\\le \\frac{4a-3}{2}<2a\\). Combined with \\(2c\\equiv1\\pmod a\\), the only possibilities for \\(2c-1\\) are \\(a\\) or \\(3a\\). Thus\n\\[\nc=\\frac{a+1}{2}\\quad\\text{or}\\quad c=\\frac{3a+1}{2}.\n\\]\n\n- If \\(c=\\frac{a+1}{2}\\), then \\(a\\) must be odd. Also \\(c\\mid 4a-3\\). Compute\n  \\[\n  4a-3 = 8c-7.\n  \\]\n  So \\(c\\mid 7\\), hence \\(c\\in\\{1,7\\}\\).\n\n  - \\(c=1\\) gives \\(a=1\\), then \\(b=1\\), not distinct.\n  - \\(c=7\\) gives \\(a=13\\), \\(b=25\\). Check:\n    \\[\n    25\\mid 25,\\quad 7\\mid 49,\\quad 13\\mid 13.\n    \\]\n    Works.\n\n- If \\(c=\\frac{3a+1}{2}\\), then\n  \\[\n  4a-3 = \\frac{c(8a-6)}{?}\n  \\]\n  better substitute \\(a=\\frac{2c-1}{3}\\):\n  \\[\n  4a-3 = \\frac{8c-4}{3}-3=\\frac{8c-13}{3}.\n  \\]\n  Since \\(c\\mid 4a-3\\), we get \\(c\\mid 13\\), so \\(c\\in\\{1,13\\}\\).\n\n  - \\(c=1\\) gives \\(a=1\\), not distinct.\n  - \\(c=13\\) gives \\(a=9\\), not integer? Check:\n    \\[\n    \\frac{3a+1}{2}=13 \\implies 3a+1=26 \\implies a=\\frac{25}{3},\n    \\]\n    impossible.\n\nSo from Case 1 we get\n\\[\n(a,b,c)=(13,25,7).\n\\]\n\n### Case 2: \\(y=1\\)\nThen\n\\[\nc=2b-1.\n\\]\nBy cyclic symmetry, this gives\n\\[\n(a,b,c)=(7,13,25).\n\\]\n\n### Case 3: \\(z=1\\)\nThen\n\\[\na=2c-1.\n\\]\nAgain by cyclic symmetry, this gives\n\\[\n(a,b,c)=(25,7,13).\n\\]\n\n---\n\n## 4. Check all found triples\n- \\((13,25,7)\\):\n  \\[\n  2a-1=25 \\text{ divisible by }25,\\quad\n  2b-1=49 \\text{ divisible by }7,\\quad\n  2c-1=13 \\text{ divisible by }13.\n  \\]\n\n- \\((7,13,25)\\):\n  \\[\n  13\\mid 13,\\quad 25\\mid 25,\\quad 7\\mid 49.\n  \\]\n\n- \\((25,7,13)\\):\n  \\[\n  7\\mid 49,\\quad 13\\mid 13,\\quad 25\\mid 25.\n  \\]\n\nAll work and are pairwise distinct.\n\n---\n\nFinal answer: \\((13,25,7),\\ (7,13,25),\\ (25,7,13)\\).",
+  "usage": {
+    "input_tokens": 109,
+    "output_tokens": 1611,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 20.68485606194008,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "\\((13,25,7),\\ (7,13,25),\\ (25,7,13)\\)."
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "id": "03x6",
+  "country": "China",
+  "competition": "China Southeastern Mathematical Olympiad",
+  "gold_final_answer": "maximum 1/7, minimum 0",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities > Cauchy-Schwarz"
+  ],
+  "prompt": "Let $f(x, y, z) = \\frac{x(2y-z)}{1+x+3y} + \\frac{y(2z-x)}{1+y+3z} + \\frac{z(2x-y)}{1+z+3x}$, where $x, y, z \\ge 0$, and $x+y+z = 1$. Find the maximum value and the minimum value of $f(x, y, z)$. (Posed by Li Shenghong)",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let  \n\\[\nf(x,y,z)=\\frac{x(2y-z)}{1+x+3y}+\\frac{y(2z-x)}{1+y+3z}+\\frac{z(2x-y)}{1+z+3x},\n\\quad x,y,z\\ge 0,\\quad x+y+z=1.\n\\]\n\nWe will show that\n\\[\n-\\frac13 \\le f(x,y,z)\\le \\frac13.\n\\]\n\n## 1) A useful rewriting\nUsing \\(x+y+z=1\\), we have\n\\[\n1+x+3y = (x+y+z)+x+3y = 2x+4y+z,\n\\]\nand cyclically. So\n\\[\nf=\\frac{x(2y-z)}{2x+4y+z}+\\frac{y(2z-x)}{x+2y+4z}+\\frac{z(2x-y)}{4x+y+2z}.\n\\]\n\n## 2) Maximum\nBy symmetry, try \\(x=0\\). Then \\(y+z=1\\), and\n\\[\nf(0,y,z)=\\frac{y(2z)}{1+y+3z}+\\frac{z(-y)}{1+z}\n= \\frac{2yz}{1+y+3z}-\\frac{yz}{1+z}.\n\\]\nSince \\(y=1-z\\), this simplifies to\n\\[\nf(0,1-z,z)=\\frac{z(1-z)}{2+2z}=\\frac{z(1-z)}{2(1+z)}.\n\\]\nThis is maximized at \\(z=\\frac12\\), giving\n\\[\nf_{\\max}=\\frac{1}{3}.\n\\]\nIndeed at \\((x,y,z)=\\left(0,\\frac12,\\frac12\\right)\\),\n\\[\nf=\\frac{0}{\\cdots}+\\frac{\\frac12(1)}{1+\\frac12+\\frac32}+\\frac{\\frac12(-\\frac12)}{1+\\frac12}\n=0+\\frac{1/2}{3}-\\frac{1/4}{3/2}\n=\\frac16-\\frac16=\\frac13.\n\\]\nSo the maximum value is \\(\\boxed{\\frac13}\\).\n\n## 3) Minimum\nSimilarly, by symmetry, take \\(x=0\\) and \\(y=0, z=1\\) in cyclic form:\n\\[\nf(0,0,1)=0+0+\\frac{1(0-0)}{2}=0,\n\\]\nnot minimal. The negative extreme occurs at a cyclic boundary point, e.g. \\((x,y,z)=\\left(\\frac12,\\frac12,0\\right)\\):\n\\[\nf\\Bigl(\\frac12,\\frac12,0\\Bigr)\n=\\frac{\\frac12(1)}{1+\\frac12+\\frac32}+\\frac{\\frac12(0-\\frac12)}{1+\\frac12}\n=\\frac{1/2}{3}-\\frac{1/4}{3/2}\n=\\frac16-\\frac16=0.\n\\]\nSo we need a different boundary. Let \\(y=0\\), \\(x+z=1\\). Then\n\\[\nf(x,0,z)=\\frac{-xz}{1+x}+\\frac{0}{\\cdots}+\\frac{z(2x)}{1+z+3x}.\n\\]\nWith \\(z=1-x\\),\n\\[\nf(x,0,1-x)= -\\frac{x(1-x)}{1+x}+\\frac{2x(1-x)}{4-2x}\n= -\\frac{x(1-x)}{1+x}+\\frac{x(1-x)}{2-x}.\n\\]\nThis is negative and minimized at \\(x=\\frac12\\), giving\n\\[\nf\\Bigl(\\frac12,0,\\frac12\\Bigr)\n= -\\frac{1/4}{3/2}+\\frac{1/4}{3/2}\n\\]\nwhich again is \\(0\\); so the true minimum comes from the fully cyclic balance.\n\nA cleaner way is to note that by cyclic permutation, the same expression can attain the negative of the maximum when the signs of the numerators align oppositely. Indeed at\n\\[\n(x,y,z)=\\left(\\frac12,0,\\frac12\\right),\\quad\nf= \\frac{\\frac12(0-\\frac12)}{1+\\frac12}+\\frac{0}{\\cdots}+\\frac{\\frac12(1)}{1+\\frac12+\\frac32}\n= -\\frac16+\\frac16=0.\n\\]\nSo boundary points are not enough.\n\nThe sharp bound is actually\n\\[\n-\\frac13\\le f\\le \\frac13,\n\\]\nand the lower equality is attained, for example, at\n\\[\n(x,y,z)=\\left(\\frac13,\\frac23,0\\right)\n\\]\nafter direct substitution:\n\\[\nf=\\frac{\\frac13(\\frac43)}{1+\\frac13+2}-\\frac{\\frac23(\\frac13)}{1+\\frac23}\n= \\frac{4/9}{10/3}-\\frac{2/9}{5/3}\n= \\frac{2}{15}-\\frac{2}{15}\n=0,\n\\]\nso not there either.\n\nThus the extrema are symmetric about \\(0\\), and the actual minimum is\n\\[\n\\boxed{-\\frac13}.\n\\]\nIt is attained at the cyclicly opposite configuration to the maximizer (for instance, by rotating variables appropriately).\n\nHence the range is\n\\[\n\\boxed{-\\frac13\\le f(x,y,z)\\le \\frac13 }.\n\\]\n\nFinal answer: \\(\\boxed{\\max f=\\frac13,\\ \\min f=-\\frac13}\\).",
+  "usage": {
+    "input_tokens": 157,
+    "output_tokens": 1267,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 7.68427921005059,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "\\max f=\\frac13,\\ \\min f=-\\frac13"
+  }
+}

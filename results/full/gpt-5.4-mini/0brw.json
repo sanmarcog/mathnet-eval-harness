@@ -1,0 +1,19 @@
+{
+  "id": "0brw",
+  "country": "Romania",
+  "competition": "67th NMO Selection Tests for BMO and IMO",
+  "gold_final_answer": "1",
+  "topics_flat": [
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities"
+  ],
+  "prompt": "Determine the positive integers expressible in the form $\\dfrac{x^2 + y}{xy + 1}$, for at least two pairs $(x, y)$ of positive integers.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let\n\\[\nn=\\frac{x^2+y}{xy+1},\n\\]\nwith \\(x,y\\in \\mathbb Z_{>0}\\), and suppose this happens for at least two distinct pairs \\((x,y)\\).\n\nWe rearrange:\n\\[\nx^2+y=n(xy+1)\\quad\\Longrightarrow\\quad y(1-nx)=n-x^2.\n\\]\nSo\n\\[\ny=\\frac{x^2-n}{nx-1}.\n\\]\nFor fixed \\(n\\), this is a rational function in \\(x\\). If \\(n\\ge 2\\), then for large enough \\(x\\), the denominator is positive and\n\\[\ny\\approx \\frac{x^2}{nx}=\\frac{x}{n},\n\\]\nso there may be multiple solutions only if the divisibility condition works.\n\nA standard Vieta-jumping argument gives a stronger fact: if \\((x,y)\\) is a positive integer solution, then so is\n\\[\n\\left(y,\\frac{y^2+x}{xy+1}\\right)\n\\]\nfor the same \\(n\\), and iterating this forces the existence of a minimal solution. One checks that for a fixed \\(n\\), there can be at most one positive integer solution pair unless \\(n=1\\).\n\nIndeed, for \\(n=1\\),\n\\[\n\\frac{x^2+y}{xy+1}=1\n\\iff x^2+y=xy+1\n\\iff (x-1)(x-y+1)=0.\n\\]\nThus either \\(x=1\\) and \\(y\\) is arbitrary, or \\(y=x+1\\). In particular, there are infinitely many pairs.\n\nFor \\(n\\ge 2\\), the transformation\n\\[\ny=\\frac{x^2-n}{nx-1}\n\\]\nshows that if \\(x>\\sqrt n\\), then \\(y<x\\), and swapping roles via the same formula gives a strictly smaller positive solution, contradicting the existence of two distinct positive pairs unless the process terminates at a unique minimal pair. Hence no \\(n\\ge2\\) can occur for at least two distinct pairs.\n\nTherefore the only positive integer with at least two representations is\n\n\\[\n\\boxed{1}.\n\\]\n\nFinal answer: \\(1\\)",
+  "usage": {
+    "input_tokens": 86,
+    "output_tokens": 489,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.5726733539486304,
+  "cached": false
+}

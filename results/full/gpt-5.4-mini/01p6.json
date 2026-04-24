@@ -1,0 +1,20 @@
+{
+  "id": "01p6",
+  "country": "Belarus",
+  "competition": "Belarusian Mathematical Olympiad",
+  "gold_final_answer": "P(x) = a x(x-1)(x+1) for any real a",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials",
+    "Algebra > Algebraic Expressions > Functional Equations"
+  ],
+  "prompt": "Find all polynomials $P(x)$ such that the equality\n$$\n(x - 1)P(x + 1) - (x + 1)P(x - 1) = 4P(x)\n$$\nholds for all real $x$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "We look for all polynomials \\(P(x)\\) satisfying\n\\[\n(x-1)P(x+1)-(x+1)P(x-1)=4P(x)\\qquad \\forall x\\in\\mathbb R.\n\\]\n\nLet \\(\\deg P=n\\) and write\n\\[\nP(x)=a_n x^n+\\cdots,\\qquad a_n\\neq 0.\n\\]\n\nWe compare leading terms. Using\n\\[\nP(x\\pm1)=a_n(x\\pm1)^n+\\cdots = a_n\\left(x^n \\pm nx^{n-1}+\\cdots\\right),\n\\]\nwe get\n\\[\n(x-1)P(x+1)=(x-1)a_n\\left(x^n+nx^{n-1}+\\cdots\\right)\n= a_n\\left(x^{n+1}+(n-1)x^n+\\cdots\\right),\n\\]\nand\n\\[\n(x+1)P(x-1)=(x+1)a_n\\left(x^n-nx^{n-1}+\\cdots\\right)\n= a_n\\left(x^{n+1}-(n-1)x^n+\\cdots\\right).\n\\]\nSubtracting,\n\\[\n(x-1)P(x+1)-(x+1)P(x-1)=2a_n(n-1)x^n+\\cdots.\n\\]\nThe right-hand side is\n\\[\n4P(x)=4a_n x^n+\\cdots.\n\\]\nHence\n\\[\n2(n-1)=4 \\quad\\Longrightarrow\\quad n=3.\n\\]\nSo any nonzero solution must be a cubic polynomial.\n\nNow write\n\\[\nP(x)=ax^3+bx^2+cx+d.\n\\]\nSubstitute into the identity. A direct expansion gives:\n\\[\n(x-1)P(x+1)-(x+1)P(x-1)=4ax^3+4bx^2+4cx-4a.\n\\]\nThe right-hand side is\n\\[\n4P(x)=4ax^3+4bx^2+4cx+4d.\n\\]\nComparing constants,\n\\[\n-4a=4d \\quad\\Longrightarrow\\quad d=-a.\n\\]\nNo other restrictions appear.\n\nTherefore all solutions are\n\\[\n\\boxed{P(x)=ax^3+bx^2+cx-a \\quad \\text{for arbitrary real } a,b,c.}\n\\]\n\nFinal answer: \\(\\boxed{P(x)=ax^3+bx^2+cx-a\\text{ for arbitrary real }a,b,c}\\)",
+  "usage": {
+    "input_tokens": 102,
+    "output_tokens": 570,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.8361558710457757,
+  "cached": false
+}

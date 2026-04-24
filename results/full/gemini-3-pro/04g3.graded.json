@@ -1,0 +1,24 @@
+{
+  "id": "04g3",
+  "country": "Croatia",
+  "competition": "Mathematica competitions in Croatia",
+  "gold_final_answer": "1 + i, -1 - i",
+  "topics_flat": [
+    "Algebra > Intermediate Algebra > Complex numbers"
+  ],
+  "prompt": "Determine all complex numbers $z$ such that\n$$\n|z^2 - i| = 1 \\quad \\text{and} \\quad |z| = \\sqrt{2}.\n$$",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find all complex numbers $z$ that satisfy the given conditions, let $z = x + iy$, where $x$ and $y$ are real numbers. \n\nThe second condition is $|z| = \\sqrt{2}$, which implies:\n$$|z|^2 = x^2 + y^2 = 2$$\n\nThe first condition is $|z^2 - i| = 1$. Squaring both sides gives:\n$$|z^2 - i|^2 = 1$$\nUsing the property $|w|^2 = w\\bar{w}$, we can rewrite this as:\n$$(z^2 - i)(\\bar{z}^2 + i) = 1$$\n$$z^2\\bar{z}^2 + iz^2 - i\\bar{z}^2 - i^2 = 1$$\n$$(z\\bar{z})^2 + i(z^2 - \\bar{z}^2) + 1 = 1$$\n$$|z|^4 + i(z^2 - \\bar{z}^2) = 0$$\n\nSince $|z| = \\sqrt{2}$, we have $|z|^4 = 4$. Substituting this into the equation yields:\n$$4 + i(z^2 - \\bar{z}^2) = 0$$\n\nNow, we express $z^2 - \\bar{z}^2$ in terms of $x$ and $y$:\n$$z^2 = (x + iy)^2 = x^2 - y^2 + 2ixy$$\n$$\\bar{z}^2 = (x - iy)^2 = x^2 - y^2 - 2ixy$$\n$$z^2 - \\bar{z}^2 = 4ixy$$\n\nSubstitute this back into our equation:\n$$4 + i(4ixy) = 0$$\n$$4 - 4xy = 0$$\n$$xy = 1$$\n\nNow we have a system of two equations:\n1) $x^2 + y^2 = 2$\n2) $xy = 1$\n\nWe can solve this by considering $(x - y)^2$:\n$$(x - y)^2 = x^2 - 2xy + y^2 = (x^2 + y^2) - 2xy = 2 - 2(1) = 0$$\nThis implies $x - y = 0$, so $x = y$.\n\nSubstitute $x = y$ into $xy = 1$:\n$$x^2 = 1 \\implies x = 1 \\text{ or } x = -1$$\n\nSince $y = x$, we get two pairs of solutions for $(x, y)$:\n$$(1, 1) \\quad \\text{and} \\quad (-1, -1)$$\n\nThese correspond to the complex numbers $z = 1 + i$ and $z = -1 - i$. \n\nChecking these solutions:\nFor $z = \\pm(1 + i)$, $z^2 = 1 + 2i - 1 = 2i$.\nThen $|z^2 - i| = |2i - i| = |i| = 1$, and $|z| = \\sqrt{1^2 + 1^2} = \\sqrt{2}$. Both conditions are satisfied.\n\nFinal answer: 1+i, -1-i",
+  "usage": {
+    "input_tokens": 81,
+    "output_tokens": 740,
+    "thoughts_tokens": 1013
+  },
+  "latency_s": 14.056359859067015,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "1+i, -1-i"
+  }
+}

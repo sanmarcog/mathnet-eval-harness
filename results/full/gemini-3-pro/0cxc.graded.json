@@ -1,0 +1,25 @@
+{
+  "id": "0cxc",
+  "country": "Saudi Arabia",
+  "competition": "SAMC",
+  "gold_final_answer": "All pairs are (k, k^2) and (k^2, k) with k ≥ 2.",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization",
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities"
+  ],
+  "prompt": "Find all pairs ($m, n$) of integers, $m, n \\geq 2$ such that $m n - 1$ divides $n^{3} - 1$.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find all pairs of integers $(m, n)$ with $m, n \\geq 2$ such that $mn - 1 \\mid n^3 - 1$, we proceed as follows:\n\nFirst, we are given that $mn - 1$ divides $n^3 - 1$. \nNotice that $m^3(n^3 - 1) = m^3n^3 - m^3 = (mn)^3 - m^3$. \nSince $mn \\equiv 1 \\pmod{mn - 1}$, it follows that $(mn)^3 \\equiv 1 \\pmod{mn - 1}$. \nThus, $(mn)^3 - m^3 \\equiv 1 - m^3 \\pmod{mn - 1}$. \nBecause $mn - 1$ divides $n^3 - 1$, it must also divide $m^3(n^3 - 1)$, which implies that $mn - 1$ divides $m^3 - 1$. \nThis shows that the condition is symmetric with respect to $m$ and $n$.\n\nNow, assume without loss of generality that $m \\geq n$. \nIf $m = n$, then $n^2 - 1 \\mid n^3 - 1$. Using polynomial division, $n^3 - 1 = n(n^2 - 1) + n - 1$. For $n^2 - 1$ to divide $n - 1$, we must have $n^2 - 1 \\leq n - 1$, which implies $n \\leq 0$, contradicting $n \\geq 2$. Thus, $m \\neq n$, meaning $m > n$.\n\nSince $mn - 1 \\mid n^3 - 1$, there exists a positive integer $k$ such that:\n$n^3 - 1 = k(mn - 1)$\nBecause $m > n$, we have $m \\geq n + 1$, so $mn - 1 \\geq n^2 + n - 1$. \nTherefore, \n$k = \\frac{n^3 - 1}{mn - 1} \\leq \\frac{n^3 - 1}{n^2 + n - 1} < n$\nSo $k \\leq n - 1$.\n\nWe can rewrite the equation $n^3 - 1 = kmn - k$ as:\n$k - 1 = n(km - n^2)$\nIf $k > 1$, then $k - 1 > 0$, which means $km - n^2 > 0$. Since $k, m, n$ are integers, $km - n^2 \\geq 1$. \nThis implies:\n$k - 1 = n(km - n^2) \\geq n(1) = n \\implies k \\geq n + 1$\nThis contradicts our previous deduction that $k \\leq n - 1$. \n\nTherefore, we must have $k = 1$. \nSubstituting $k = 1$ into the equation gives:\n$n^3 - 1 = 1(mn - 1) \\implies n^3 = mn \\implies m = n^2$\n\nBy symmetry, if we had assumed $n > m$, we would have found $n = m^2$. \nChecking these solutions, if $m = n^2$, then $mn - 1 = n^3 - 1$, which trivially divides $n^3 - 1$. If $n = m^2$, then $mn - 1 = m^3 - 1$, and $n^3 - 1 = m^6 - 1 = (m^3 - 1)(m^3 + 1)$, which is also divisible by $m^3 - 1$. Both families of solutions are valid.\n\nFinal answer: (k, k^2) \\text{ and } (k^2, k) \\text{ for } k \\geq 2",
+  "usage": {
+    "input_tokens": 78,
+    "output_tokens": 875,
+    "thoughts_tokens": 3743
+  },
+  "latency_s": 44.58773699798621,
+  "cached": true,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "(k, k^2) \\text{ and } (k^2, k) \\text{ for } k \\geq 2"
+  }
+}

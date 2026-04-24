@@ -1,0 +1,24 @@
+{
+  "id": "02ly",
+  "country": "Brazil",
+  "competition": "XXXI Brazilian Math Olympiad",
+  "gold_final_answer": "(x,y,z) = (1,1,1) or (x,y,z) = (-(1+t)/t, t, -1/(1+t)) for any real t ≠ 0, −1, together with all cyclic permutations of this triple.",
+  "topics_flat": [
+    "Algebra > Prealgebra / Basic Algebra > Simple Equations"
+  ],
+  "prompt": "Solve, in real numbers, the system\n$$\n\\begin{aligned}\nx + \\frac{1}{y} = y + \\frac{1}{z} = z + \\frac{1}{x} \\\\\nxyz = 1\n\\end{aligned}\n$$",
+  "model": "gpt-5.4",
+  "response_text": "Let\n\\[\nx+\\frac1y=y+\\frac1z=z+\\frac1x=:k,\n\\qquad xyz=1.\n\\]\n\nWe solve for real \\(x,y,z\\).\n\nSince \\(xyz=1\\), none of \\(x,y,z\\) is \\(0\\), so all expressions are defined.\n\nAlso, from \\(xyz=1\\),\n\\[\n\\frac1y=xz,\\qquad \\frac1z=xy,\\qquad \\frac1x=yz.\n\\]\nSo the equalities become\n\\[\nx+xz=y+xy=z+yz.\n\\]\nFactor:\n\\[\nx(1+z)=y(1+x)=z(1+y).\n\\]\n\nNow compare the first two:\n\\[\nx(1+z)=y(1+x)\n\\]\n\\[\nx+xz=y+xy\n\\]\n\\[\nx-y=x y-x z=x(y-z).\n\\]\nThus\n\\[\nx-y=x(y-z). \\tag{1}\n\\]\n\nSimilarly, from\n\\[\ny(1+x)=z(1+y)\n\\]\nwe get\n\\[\ny-z=y(z-x). \\tag{2}\n\\]\n\nA cleaner way is to subtract the original equalities:\n\\[\nx+\\frac1y=y+\\frac1z\n\\]\ngives\n\\[\nx-y=\\frac1z-\\frac1y=\\frac{y-z}{yz}.\n\\]\nBut since \\(xyz=1\\), we have \\(yz=\\frac1x\\), hence\n\\[\nx-y=x(y-z). \\tag{3}\n\\]\nLikewise,\n\\[\ny-z=y(z-x),\\qquad z-x=z(x-y). \\tag{4}\n\\]\n\nLet\n\\[\na=x-y,\\quad b=y-z,\\quad c=z-x.\n\\]\nThen\n\\[\na=xb,\\qquad b=yc,\\qquad c=za.\n\\]\nMultiplying,\n\\[\nabc=xyz\\,abc=abc.\n\\]\nThat alone gives nothing, so instead use the relations directly.\n\nFrom \\(a=xb\\), if \\(b=0\\), then \\(a=0\\), so \\(x=y=z\\). Then \\(x^3=1\\), hence \\(x=y=z=1\\).\n\nNow assume \\(b\\neq 0\\). Then also \\(a,c\\neq 0\\), and\n\\[\n\\frac{a}{b}=x,\\qquad \\frac{b}{c}=y,\\qquad \\frac{c}{a}=z.\n\\]\nMultiplying gives again \\(xyz=1\\), consistent.\n\nBut since \\(a+b+c=0\\), write using \\(a=xb,\\ c=\\frac{b}{y}\\):\n\\[\nxb+b+\\frac{b}{y}=0\n\\quad\\Rightarrow\\quad\nx+1+\\frac1y=0.\n\\]\nUsing \\(\\frac1y=xz\\),\n\\[\nx+1+xz=0\n\\quad\\Rightarrow\\quad\nx(1+z)=-1.\n\\]\nSimilarly from the cyclic equations,\n\\[\ny(1+x)=-1,\\qquad z(1+y)=-1.\n\\]\nBut from the original common value,\n\\[\nx+\\frac1y=x+xz=x(1+z),\n\\]\nso this common value equals \\(-1\\). Hence\n\\[\nx+\\frac1y=y+\\frac1z=z+\\frac1x=-1.\n\\]\nThus\n\\[\nx(1+z)=y(1+x)=z(1+y)=-1.\n\\]\nSubtract the first two:\n\\[\nx+xz-y-xy=(x-y)+x(z-y)=0\n\\]\nwhich simplifies to\n\\[\n(x-y)(1-z)=0.\n\\]\nCyclically,\n\\[\n(y-z)(1-x)=0,\\qquad (z-x)(1-y)=0.\n\\]\n\nNow if no two variables are equal, then \\(1-x=1-y=1-z=0\\), so\n\\[\nx=y=z=1,\n\\]\ncontradiction to “no two equal.” Therefore at least two are equal, and then by the earlier argument all three are equal. Hence\n\\[\nx=y=z.\n\\]\nUsing \\(xyz=1\\),\n\\[\nx^3=1 \\implies x=1\n\\]\nin real numbers.\n\nTherefore\n\\[\n(x,y,z)=(1,1,1).\n\\]\n\nFinal answer: \\((x,y,z)=(1,1,1)\\)",
+  "usage": {
+    "input_tokens": 106,
+    "output_tokens": 957,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 14.357126964023337,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "\\((x,y,z)=(1,1,1)\\)"
+  }
+}

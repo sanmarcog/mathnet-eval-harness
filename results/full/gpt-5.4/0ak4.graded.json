@@ -1,0 +1,25 @@
+{
+  "id": "0ak4",
+  "country": "North Macedonia",
+  "competition": "Junior Balkan Mathematical Olympiad",
+  "gold_final_answer": "(m, n) = (0, 0) and (m, n) = (-2, 2)",
+  "topics_flat": [
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities",
+    "Number Theory > Divisibility / Factorization > Greatest common divisors (gcd)"
+  ],
+  "prompt": "Find all the pairs $(m,n)$ of integers which satisfy the equation\n$$m^5 - n^5 = 16mn.$$",
+  "model": "gpt-5.4",
+  "response_text": "We seek all integer solutions of\n\\[\nm^5-n^5=16mn.\n\\]\n\nWe will show the only solutions are\n\\[\n(m,n)=(0,0),\\ (2,-2),\\ (-2,2).\n\\]\n\n## 1. Easy cases\nIf \\(m=0\\), then\n\\[\n-n^5=0 \\implies n=0.\n\\]\nSimilarly, if \\(n=0\\), then \\(m=0\\).\n\nSo any nonzero solution must have \\(mn\\neq 0\\).\n\nAlso, if \\(m=n\\), then left side is \\(0\\), so \\(16mn=0\\), hence again \\(m=n=0\\).  \nThus for nonzero solutions, \\(m\\neq n\\).\n\n---\n\n## 2. Factorization\nUse\n\\[\nm^5-n^5=(m-n)(m^4+m^3n+m^2n^2+mn^3+n^4).\n\\]\nHence\n\\[\n(m-n)(m^4+m^3n+m^2n^2+mn^3+n^4)=16mn.\n\\]\nLet\n\\[\nS=m^4+m^3n+m^2n^2+mn^3+n^4.\n\\]\n\nNow\n\\[\nS=(m^2+n^2)^2+mn(m^2+n^2)+m^2n^2>0\n\\]\nfor all integers \\((m,n)\\neq (0,0)\\). So \\(S>0\\).\n\n---\n\n## 3. A size estimate\nWe claim\n\\[\nS\\ge m^2+n^2.\n\\]\nIndeed, for integers \\(m,n\\), either directly by checking small cases and noting quartic growth, or more cleanly:\n\\[\nS=\\frac{m^5-n^5}{m-n},\n\\]\nand for \\(|m|,|n|\\ge 1\\), certainly \\(S\\) is at least \\(1\\), while in fact it is much larger unless \\(|m|=|n|=1\\). A better route is to use the identity below in sign cases.\n\nInstead, let us split by sign.\n\n### Case A: \\(mn>0\\)\nThen \\(m,n\\) have the same sign. Since \\(S>0\\), the equation gives\n\\[\nm-n>0 \\iff \\text{RHS}>0,\n\\]\nso signs are consistent, but more importantly:\n\\[\n|m^5-n^5|=16|mn|.\n\\]\nIf \\(|m|>|n|\\ge 1\\), then\n\\[\n|m^5-n^5|\\ge |m|^5-|n|^5.\n\\]\nFor \\(|m|\\ge 2\\), this grows too fast compared with \\(16|mn|\\). In fact, testing the only small possibilities with \\(|m|,|n|\\in\\{1,2\\}\\):\n- \\((1,1)\\): LHS \\(0\\), no.\n- \\((2,1)\\): \\(32-1=31\\neq 32\\).\n- \\((2,2)\\): LHS \\(0\\), no.\nSo no same-sign nonzero solutions.\n\nA cleaner argument: if \\(mn>0\\), then\n\\[\nS=m^4+m^3n+m^2n^2+mn^3+n^4\\ge 5|mn|^2\n\\]\nby AM-GM on the nonnegative terms \\(|m|^4,|m|^3|n|,\\dots,|n|^4\\). Hence\n\\[\n|m-n|\\,5|mn|^2 \\le |m-n|S = 16|mn|,\n\\]\nso\n\\[\n5|m-n||mn|\\le 16.\n\\]\nSince \\(m,n\\) are nonzero integers and \\(m\\ne n\\), we have \\(|m-n|\\ge 1,\\ |mn|\\ge 1\\), so this forces\n\\[\n|mn|\\le 3.\n\\]\nThus only small possibilities remain:\n\\[\n(|m|,|n|)=(1,1),(1,2),(1,3),(2,1),(3,1).\n\\]\nChecking them gives no solution.\n\nSo \\(mn>0\\) gives no nonzero solutions.\n\n---\n\n### Case B: \\(mn<0\\)\nLet \\(n=-k\\) with \\(k>0\\). Then\n\\[\nm^5+k^5=-16mk.\n\\]\nSo \\(m\\) and \\(k\\) must have opposite signs? Since RHS has sign \\(-\\operatorname{sgn}(m)\\), LHS suggests \\(m\\) should be negative or we should inspect directly. It is simpler to set\n\\[\nm=a,\\qquad n=-b,\\qquad a,b>0.\n\\]\nThen\n\\[\na^5+b^5=-16a(-b)=16ab,\n\\]\nso\n\\[\na^5+b^5=16ab.\n\\]\nNow if \\(\\max(a,b)\\ge 3\\), then\n\\[\na^5+b^5\\ge 3^5+1=244>16ab\n\\]\ncertainly for small \\(b\\), and in general the fifth powers dominate strongly. More systematically, for \\(a,b\\ge 1\\),\n\\[\na^5+b^5 \\ge a^2b^2(a+b)\n\\]\nand this quickly exceeds \\(16ab\\) unless \\(a,b\\) are very small. So check \\(a,b\\in\\{1,2\\}\\):\n- \\((1,1)\\): \\(1+1=2\\neq 16\\),\n- \\((1,2)\\): \\(1+32=33\\neq 32\\),\n- \\((2,1)\\): \\(32+1=33\\neq 32\\),\n- \\((2,2)\\): \\(32+32=64=16\\cdot 4\\), yes.\n\nThus \\(a=b=2\\), giving\n\\[\n(m,n)=(2,-2).\n\\]\nBy symmetry, also\n\\[\n(m,n)=(-2,2).\n\\]\n\n---\n\n## 4. Conclusion\nThe integer solutions are exactly\n\\[\n(0,0),\\ (2,-2),\\ (-2,2).\n\\]\n\nFinal answer: \\((m,n)=(0,0),\\ (2,-2),\\ (-2,2)\\).",
+  "usage": {
+    "input_tokens": 76,
+    "output_tokens": 1387,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 22.742685737088323,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "\\((m,n)=(0,0),\\ (2,-2),\\ (-2,2)\\)."
+  }
+}

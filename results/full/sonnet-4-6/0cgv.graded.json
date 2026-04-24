@@ -1,0 +1,27 @@
+{
+  "id": "0cgv",
+  "country": "Romania",
+  "competition": "74th NMO Selection Tests for BMO and IMO",
+  "gold_final_answer": "minimum: n−1; maximum: floor(n/2) * floor((n+1)/2)",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Counting two ways",
+    "Algebra > Algebraic Expressions > Sequences and Series > Sums and products",
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities",
+    "Algebra > Equations and Inequalities > Combinatorial optimization"
+  ],
+  "prompt": "Fix an integer $n \\ge 2$. Consider $n$ real numbers $a_1, a_2, \\dots, a_n$, not all equal, and let\n$$\nd = d(a_1, a_2, \\dots, a_n) = \\max_{1 \\le i < j \\le n} |a_i - a_j|\n$$\nand\n$$\ns = s(a_1, a_2, \\dots, a_n) = \\sum_{1 \\le i < j \\le n} |a_i - a_j|.\n$$\n\nDetermine, in terms of $n$, the smallest and the largest values the quotient $s/d$ may achieve.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Setting Up the Problem\n\nLet me find the range of $s/d$ where $d = \\max_{i<j}|a_i - a_j|$ and $s = \\sum_{i<j}|a_i - a_j|$.\n\n**Normalization:** WLOG, by scaling and translation, we can assume $d = 1$, so the $a_i \\in [0,1]$ with $\\min = 0$ and $\\max = 1$.\n\nWe need to find the range of $s = \\sum_{i<j}|a_i - a_j|$.\n\n## Finding the Minimum\n\nWith $d = 1$, we want to minimize $s$. \n\nPut $n-2$ values at some point $t \\in [0,1]$, one value at 0, one at 1. Actually, let's try concentrating as many values as possible at one point.\n\n**Try:** $a_1 = 0$, $a_2 = a_3 = \\cdots = a_n = 1$ (or $n-1$ values at one endpoint, 1 at the other).\n\nThen $s = (n-1) \\cdot 1 + \\binom{n-1}{2} \\cdot 0 = n-1$.\n\n**Try:** $a_1 = 0$, $a_2 = 1$, $a_3 = \\cdots = a_n = t$.\n\nThen $s = 1 + (n-2)t + (n-2)(1-t) + 0 = 1 + (n-2) = n-1$.\n\nHmm, same value. Let me try $a_1 = 0$, $a_2 = \\cdots = a_n = 1$: $s = n-1$.\n\n**Try:** $a_1 = 0$, $a_2 = 1$, rest at 0: $s = 1 + (n-2)\\cdot 0 + (n-2)\\cdot 1 = n-1$.\n\nCan we do less? Try $a_1 = 0$, $a_2 = 1$, rest at $t$: $s = 1 + (n-2)t + (n-2)(1-t) = 1 + (n-2) = n-1$.\n\nThe minimum seems to be $n-1$, achieved when all values are at the two endpoints (at least one at each). So $s/d \\geq n-1$.\n\n**Verification:** With values $k$ at 0 and $n-k$ at 1: $s = k(n-k)$, minimized at $k=1$ or $k=n-1$, giving $s = n-1$.\n\n## Finding the Maximum\n\nWith $d = 1$, maximize $s$. \n\n**Try equally spaced:** $a_i = \\frac{i-1}{n-1}$ for $i = 1, \\ldots, n$.\n\n$$s = \\sum_{i<j} \\frac{j-i}{n-1} = \\frac{1}{n-1}\\sum_{i<j}(j-i) = \\frac{1}{n-1}\\sum_{k=1}^{n-1}k(n-k)$$\n\n$$\\sum_{k=1}^{n-1}k(n-k) = n\\cdot\\frac{n(n-1)}{2} - \\frac{(n-1)n(2n-1)}{6} = \\frac{n(n-1)}{6}(3n - (2n-1)) = \\frac{n(n-1)(n+1)}{6}$$\n\nSo $s = \\frac{n(n-1)(n+1)}{6(n-1)} = \\frac{n(n+1)}{6}$.\n\n**Is this the maximum?** For fixed $d=1$, we want to maximize $\\sum_{i<j}|a_i - a_j|$. This is a convex function of the $a_i$, so the maximum is at extreme points. With $a_i \\in [0,1]$, the maximum over all configurations is achieved when each $a_i \\in \\{0,1\\}$, giving $s = k(n-k) \\leq \\lfloor n/2 \\rfloor \\lceil n/2 \\rceil = \\lfloor n^2/4 \\rfloor$.\n\nCompare: $\\lfloor n^2/4 \\rfloor$ vs $\\frac{n(n+1)}{6}$. For $n=4$: $4$ vs $\\frac{20}{6} \\approx 3.33$. So binary is larger!\n\n**Maximum:** $s = \\lfloor n^2/4 \\rfloor$, achieved with $\\lfloor n/2 \\rfloor$ values at 0 and $\\lceil n/2 \\rceil$ at 1.\n\n## Conclusion\n\nThe minimum value of $s/d$ is $\\boxed{n-1}$ and the maximum value is $\\left\\lfloor \\dfrac{n^2}{4} \\right\\rfloor$.\n\nFinal answer: The smallest value is $n-1$ and the largest value is $\\left\\lfloor\\dfrac{n^2}{4}\\right\\rfloor$.",
+  "usage": {
+    "input_tokens": 213,
+    "output_tokens": 1326,
+    "thinking_tokens": 0
+  },
+  "latency_s": 15.76552001410164,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "The smallest value is $n-1$ and the largest value is $\\left\\lfloor\\dfrac{n^2}{4}\\right\\rfloor$."
+  }
+}

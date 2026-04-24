@@ -1,0 +1,21 @@
+{
+  "id": "05bk",
+  "country": "Estonia",
+  "competition": "Estonian Mathematical Olympiad",
+  "gold_final_answer": "a) 4; b) 3",
+  "topics_flat": [
+    "Number Theory > Modular Arithmetic > Chinese remainder theorem",
+    "Number Theory > Divisibility / Factorization > Greatest common divisors (gcd)",
+    "Algebra > Algebraic Expressions > Sequences and Series > Sums and products"
+  ],
+  "prompt": "How many integers $k$ are there for which $1 \\le k \\le n$ and the sum $1 + 2 + \\dots + k$ is divisible by $n$, if\n\na) $n = 2023^{2024}$;\nb) $n = 2024^{2023}$?",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let  \n\\[\nS_k=1+2+\\cdots+k=\\frac{k(k+1)}2.\n\\]\nWe want the number of integers \\(k\\) with \\(1\\le k\\le n\\) such that\n\\[\nn \\mid \\frac{k(k+1)}2.\n\\]\n\nSince \\(\\gcd(k,k+1)=1\\), this divisibility depends on the prime-power factors of \\(n\\). It is convenient to set \\(m=2n\\). Then the condition becomes\n\\[\n2n \\mid k(k+1).\n\\]\nBecause \\(k\\) and \\(k+1\\) are consecutive, the prime power factors of \\(2n\\) must split between them, and the counting reduces to choosing which of \\(k\\) or \\(k+1\\) absorbs each prime power. For a prime power \\(p^e\\), exactly one of \\(k\\) or \\(k+1\\) is divisible by \\(p^e\\), and the two choices correspond to one solution modulo \\(p^e\\). By the Chinese Remainder Theorem, the total number of solutions modulo \\(2n\\) is \\(2^{\\omega(2n)}\\), where \\(\\omega\\) is the number of distinct prime factors. Since solutions come in pairs \\(k\\) and \\(2n-1-k\\), the number in \\(1\\le k\\le n\\) is half of that.\n\nSo the number of such \\(k\\) is\n\\[\n2^{\\omega(n)-1}\n\\]\nwhen \\(n\\) is odd, and\n\\[\n2^{\\omega(n)-1}\n\\]\nalso in the even case here (the same count works for these specific powers because only the distinct primes matter).\n\nNow compute:\n\n### a) \\(n=2023^{2024}\\)\nFactor \\(2023\\):\n\\[\n2023=7\\cdot 17^2.\n\\]\nSo the distinct primes dividing \\(n\\) are \\(7\\) and \\(17\\). Hence \\(\\omega(n)=2\\), so the number of \\(k\\) is\n\\[\n2^{2-1}=2.\n\\]\n\n### b) \\(n=2024^{2023}\\)\nFactor:\n\\[\n2024=2^3\\cdot 11\\cdot 23.\n\\]\nSo the distinct primes dividing \\(n\\) are \\(2,11,23\\). Hence \\(\\omega(n)=3\\), and the number of \\(k\\) is\n\\[\n2^{3-1}=4.\n\\]\n\nFinal answer: a) \\(2\\), b) \\(4\\).",
+  "usage": {
+    "input_tokens": 115,
+    "output_tokens": 570,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 4.120826716069132,
+  "cached": false
+}

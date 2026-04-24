@@ -1,0 +1,24 @@
+{
+  "id": "0esm",
+  "country": "South Africa",
+  "competition": "South African Mathematics Olympiad First Round",
+  "gold_final_answer": "A",
+  "topics_flat": [
+    "Algebra > Prealgebra / Basic Algebra > Decimals"
+  ],
+  "prompt": "It is estimated that there are $3\\,000\\,000$ km² of rain forest in Brazil, and it is being reduced at the rate of $7\\,400$ km² per year. If this rate stays the same, then the number of years before there is no rain forest left is approximately\n(A) $400$ (B) $300$ (C) $200$ (D) $150$ (E) $100$",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find the approximate number of years before there is no rain forest left, we need to divide the total area of the rain forest by the rate at which it is being reduced per year.\n\nTotal area = $3,000,000 \\text{ km}^2$\nRate of reduction = $7,400 \\text{ km}^2/\\text{year}$\n\nNumber of years = $\\frac{3,000,000}{7,400}$\n\nWe can simplify this fraction by dividing the numerator and the denominator by 100:\nNumber of years = $\\frac{30,000}{74}$\n\nTo estimate this value, we can round the denominator to a more convenient number, such as 75:\n$\\frac{30,000}{75} = 400$\n\nCalculating exactly, $400 \\times 74 = 29,600$, which is very close to $30,000$. Thus, the exact number of years is slightly more than 400 (approximately 405.4 years). \n\nLooking at the given options, the closest approximation is 400.\n\nFinal answer: 400",
+  "usage": {
+    "input_tokens": 147,
+    "output_tokens": 270,
+    "thoughts_tokens": 359
+  },
+  "latency_s": 6.05331531399861,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "400"
+  }
+}

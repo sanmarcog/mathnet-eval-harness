@@ -1,0 +1,26 @@
+{
+  "id": "01rv",
+  "country": "Belarus",
+  "competition": "FINAL ROUND",
+  "gold_final_answer": "79 and 114",
+  "topics_flat": [
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities",
+    "Algebra > Prealgebra / Basic Algebra > Integers",
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities"
+  ],
+  "prompt": "After division of a positive integer $n$ by $29$, $41$, and $59$ one has three nonzero remainders such that their sum is equal to $n$.\nFind all possible values of $n$.",
+  "model": "gpt-5.4",
+  "response_text": "Let the remainders upon dividing \\(n\\) by \\(29,41,59\\) be \\(a,b,c\\), respectively. Then\n\n\\[\nn \\equiv a \\pmod{29},\\qquad n \\equiv b \\pmod{41},\\qquad n \\equiv c \\pmod{59},\n\\]\n\nwith\n\n\\[\n1\\le a\\le 28,\\quad 1\\le b\\le 40,\\quad 1\\le c\\le 58,\n\\]\n\nand we are given\n\n\\[\na+b+c=n.\n\\]\n\nWe want all positive integers \\(n\\) with this property.\n\nSince \\(a=n-29x,\\ b=n-41y,\\ c=n-59z\\) for some integers \\(x,y,z\\ge 0\\), we get\n\n\\[\nn=(n-29x)+(n-41y)+(n-59z),\n\\]\n\nso\n\n\\[\n2n=29x+41y+59z.\n\\]\n\nAlso, because \\(a,b,c\\) are remainders,\n\n\\[\nx=\\left\\lfloor \\frac n{29}\\right\\rfloor,\\quad\ny=\\left\\lfloor \\frac n{41}\\right\\rfloor,\\quad\nz=\\left\\lfloor \\frac n{59}\\right\\rfloor.\n\\]\n\nA cleaner way is to use the remainder condition directly:\n\\[\nn=(n\\bmod 29)+(n\\bmod 41)+(n\\bmod 59).\n\\]\nHence\n\\[\nn\\le 28+40+58=126.\n\\]\nSo we only need \\(n<127\\).\n\nNow split into intervals according to the quotients by \\(29,41,59\\).\n\n## Case 1: \\(1\\le n<29\\)\n\nThen all three remainders equal \\(n\\), so\n\\[\nn=n+n+n=3n,\n\\]\nimpossible for positive \\(n\\).\n\n## Case 2: \\(29\\le n<41\\)\n\nRemainders are \\(n-29,\\ n,\\ n\\), so\n\\[\nn=(n-29)+n+n=3n-29,\n\\]\nthus \\(2n=29\\), impossible.\n\n## Case 3: \\(41\\le n<58\\)\n\nRemainders are \\(n-29,\\ n-41,\\ n\\), so\n\\[\nn=(n-29)+(n-41)+n=3n-70,\n\\]\nhence\n\\[\n2n=70,\\quad n=35,\n\\]\nnot in this interval.\n\n## Case 4: \\(59\\le n<82\\)\n\nRemainders are \\(n-29,\\ n-41,\\ n-59\\), so\n\\[\nn=(n-29)+(n-41)+(n-59)=3n-129,\n\\]\nhence\n\\[\n2n=129,\n\\]\nimpossible.\n\n## Case 5: \\(82\\le n<87\\)\n\nNow\n\\[\nn\\bmod 29=n-58,\\quad n\\bmod 41=n-41,\\quad n\\bmod 59=n-59.\n\\]\nSo\n\\[\nn=(n-58)+(n-41)+(n-59)=3n-158,\n\\]\nthus\n\\[\n2n=158,\\quad n=79,\n\\]\nnot in this interval.\n\n## Case 6: \\(87\\le n<118\\)\n\nNow\n\\[\nn\\bmod 29=n-58,\\quad n\\bmod 41=n-82,\\quad n\\bmod 59=n-59.\n\\]\nHence\n\\[\nn=(n-58)+(n-82)+(n-59)=3n-199,\n\\]\nso\n\\[\n2n=199,\n\\]\nimpossible.\n\n## Case 7: \\(118\\le n\\le 126\\)\n\nNow\n\\[\nn\\bmod 29=n-87,\\quad n\\bmod 41=n-82,\\quad n\\bmod 59=n-59.\n\\]\nThus\n\\[\nn=(n-87)+(n-82)+(n-59)=3n-228,\n\\]\nhence\n\\[\n2n=228,\\quad n=114,\n\\]\nwhich is not in this interval.\n\nSo there is no solution in any possible interval.\n\nTherefore no positive integer \\(n\\) satisfies the condition.\n\nFinal answer: There are no such positive integers \\(n\\).",
+  "usage": {
+    "input_tokens": 95,
+    "output_tokens": 941,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 12.199254096020013,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "There are no such positive integers \\(n\\)."
+  }
+}

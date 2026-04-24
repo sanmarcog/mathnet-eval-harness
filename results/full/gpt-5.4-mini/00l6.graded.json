@@ -1,0 +1,24 @@
+{
+  "id": "00l6",
+  "country": "Austria",
+  "competition": "National Competition",
+  "gold_final_answer": "C = 3; equality holds precisely when x1 + x4 = x2 + x5 = x3 + x6.",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities"
+  ],
+  "prompt": "Determine the largest constant $C$ such that\n$$\n(x_1 + x_2 + \\dots + x_6)^2 \\geq C \\cdot (x_1(x_2 + x_3) + x_2(x_3 + x_4) + \\dots + x_6(x_1 + x_2))\n$$\nholds for all real numbers $x_1, x_2, \\dots, x_6$.\nFor this $C$, determine all $x_1, x_2, \\dots, x_6$ such that equality holds.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let  \n\\[\nS=x_1+x_2+\\cdots+x_6,\n\\qquad \nT=x_1(x_2+x_3)+x_2(x_3+x_4)+\\cdots+x_6(x_1+x_2).\n\\]\nWe want the largest \\(C\\) such that\n\\[\nS^2\\ge C\\,T\n\\]\nfor all real \\(x_i\\).\n\n## 1) Find the best constant\n\nExpand \\(T\\):\n\\[\nT=\\sum_{i=1}^6 x_ix_{i+1}+\\sum_{i=1}^6 x_ix_{i+2},\n\\]\nwhere indices are modulo \\(6\\).\n\nNow compare \\(S^2\\) with \\(T\\):\n\\[\nS^2=\\sum_{i=1}^6 x_i^2+2\\sum_{1\\le i<j\\le 6}x_ix_j.\n\\]\nThe key is to rewrite\n\\[\n2S^2-3T\n\\]\nin a sum-of-squares form. A direct expansion gives\n\\[\n2S^2-3T\n=\\frac12\\sum_{i=1}^6 (x_i-x_{i+3})^2\n+\\frac12\\sum_{i=1}^6 (x_i+x_{i+1}-x_{i+2})^2,\n\\]\nwith indices modulo \\(6\\). Hence \\(2S^2-3T\\ge 0\\), so\n\\[\nS^2\\ge \\frac32\\,T.\n\\]\nThus\n\\[\nC=\\frac32.\n\\]\n\n## 2) Equality case\n\nEquality holds iff both sums of squares vanish:\n\n1. \\(x_i=x_{i+3}\\) for all \\(i\\),\n2. \\(x_i+x_{i+1}=x_{i+2}\\) for all \\(i\\),\n\nwith indices modulo \\(6\\).\n\nFrom \\(x_i=x_{i+3}\\), we get\n\\[\nx_1=x_4,\\quad x_2=x_5,\\quad x_3=x_6.\n\\]\nThen from \\(x_1+x_2=x_3\\), \\(x_2+x_3=x_4=x_1\\), etc., one obtains\n\\[\nx_1=x_2=\\cdots=x_6=0\n\\]\nas the only real solution.\n\nSo equality occurs only at\n\\[\nx_1=x_2=\\cdots=x_6=0.\n\\]\n\nFinal answer: \\(\\displaystyle C=\\frac32\\), and equality holds only when \\(x_1=x_2=\\cdots=x_6=0\\).",
+  "usage": {
+    "input_tokens": 174,
+    "output_tokens": 582,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.7058311329456046,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "\\(\\displaystyle C=\\frac32\\), and equality holds only when \\(x_1=x_2=\\cdots=x_6=0\\)."
+  }
+}

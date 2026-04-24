@@ -1,0 +1,24 @@
+{
+  "id": "03sa",
+  "country": "China",
+  "competition": "China Mathematical Competition (Jiangxi)",
+  "gold_final_answer": "4π/3",
+  "topics_flat": [
+    "Precalculus > Trigonometric functions"
+  ],
+  "prompt": "Assume that $\\alpha, \\beta, \\gamma$ satisfy $0 < \\alpha < \\beta < \\gamma < 2\\pi$. If\n$$\n\\cos(x + \\alpha) + \\cos(x + \\beta) + \\cos(x + \\gamma) = 0\n$$\nfor arbitrary $x \\in \\mathbb{R}$, then $\\gamma - \\alpha = \\underline{\\hspace{2cm}}$.",
+  "model": "gpt-5.4",
+  "response_text": "We are told\n\\[\n\\cos(x+\\alpha)+\\cos(x+\\beta)+\\cos(x+\\gamma)=0\n\\quad\\text{for all }x\\in\\mathbb R.\n\\]\nSince this holds for arbitrary \\(x\\), the trigonometric expression must be identically zero.\n\nWrite each term as\n\\[\n\\cos(x+t)=\\cos x\\cos t-\\sin x\\sin t.\n\\]\nSo\n\\[\n\\cos x(\\cos\\alpha+\\cos\\beta+\\cos\\gamma)-\\sin x(\\sin\\alpha+\\sin\\beta+\\sin\\gamma)=0\n\\]\nfor all \\(x\\). Hence both coefficients must vanish:\n\\[\n\\cos\\alpha+\\cos\\beta+\\cos\\gamma=0,\\qquad\n\\sin\\alpha+\\sin\\beta+\\sin\\gamma=0.\n\\]\nCombine these as complex numbers:\n\\[\ne^{i\\alpha}+e^{i\\beta}+e^{i\\gamma}=0.\n\\]\nThus three unit vectors sum to zero. This happens only when they are equally spaced by \\(120^\\circ\\), i.e. the arguments differ by \\( \\frac{2\\pi}{3}\\).\n\nSince \\(0<\\alpha<\\beta<\\gamma<2\\pi\\), the three angles must be\n\\[\n\\alpha,\\quad \\alpha+\\frac{2\\pi}{3},\\quad \\alpha+\\frac{4\\pi}{3}.\n\\]\nTherefore\n\\[\n\\gamma-\\alpha=\\frac{4\\pi}{3}.\n\\]\n\nFinal answer: \\(\\frac{4\\pi}{3}\\)",
+  "usage": {
+    "input_tokens": 141,
+    "output_tokens": 343,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 5.202740644919686,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "\\(\\frac{4\\pi}{3}\\)"
+  }
+}

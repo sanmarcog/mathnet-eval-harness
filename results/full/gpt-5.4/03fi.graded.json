@@ -1,0 +1,27 @@
+{
+  "id": "03fi",
+  "country": "Bulgaria",
+  "competition": "Bulgarian Spring Tournament",
+  "gold_final_answer": "m = 1, M = 9/8; No, the minimum cannot be attained by any triple of nonnegative rational numbers.",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities > QM-AM-GM-HM / Power Mean",
+    "Algebra > Algebraic Expressions > Polynomials > Symmetric functions",
+    "Number Theory > Diophantine Equations > Infinite descent / root flipping",
+    "Number Theory > Algebraic Number Theory > Unique factorization"
+  ],
+  "prompt": "The nonnegative real numbers $x, y, z$ are such that $(x + y)(y+z)(z+x) = 1$. We denote by $m$ and $M$ respectively the smallest and largest possible values of the expression $A = (xy + yz + zx)(x + y + z)$.\n\na) Find $m$ and $M$.\n\nb) Is there a triple of nonnegative rational numbers $(x, y, z)$ satisfying the given equality for which $A = m$?",
+  "model": "gpt-5.4",
+  "response_text": "Let\n\\[\ns=x+y+z,\\qquad p=xy+yz+zx,\\qquad q=xyz.\n\\]\nThen\n\\[\n(x+y)(y+z)(z+x)=(x+y+z)(xy+yz+zx)-xyz=sp-q.\n\\]\nSo the condition is\n\\[\nsp-q=1.\n\\]\nThe quantity we want is\n\\[\nA=sp.\n\\]\nHence\n\\[\nA=1+q=1+xyz.\n\\]\nSo the problem becomes: under\n\\[\n(x+y)(y+z)(z+x)=1,\n\\]\nfind the minimum and maximum of \\(1+xyz\\), i.e. of \\(xyz\\).\n\n## 1) Lower bound\n\nSince \\(x,y,z\\ge 0\\), clearly \\(xyz\\ge 0\\), so\n\\[\nA=1+xyz\\ge 1.\n\\]\nEquality happens when one variable is \\(0\\). For example, if \\(z=0\\), then the condition becomes\n\\[\nxy(x+y)=1,\n\\]\nwhich has solutions in nonnegative reals, e.g. \\(x=y=2^{-1/3}\\). Then\n\\[\nA=(xy)(x+y)=1.\n\\]\nThus\n\\[\nm=1.\n\\]\n\n## 2) Upper bound\n\nLet\n\\[\na=x+y,\\quad b=y+z,\\quad c=z+x.\n\\]\nThen \\(a,b,c>0\\) and\n\\[\nabc=1.\n\\]\nAlso\n\\[\nx=\\frac{a+c-b}{2},\\quad y=\\frac{a+b-c}{2},\\quad z=\\frac{b+c-a}{2},\n\\]\nso\n\\[\nxyz=\\frac{(a+b-c)(b+c-a)(c+a-b)}{8}.\n\\]\nNow use the identity\n\\[\n(a+b-c)(b+c-a)(c+a-b)\n\\le abc\n\\]\nfor positive \\(a,b,c\\) satisfying the triangle inequalities; equivalently, writing\n\\[\nu=a+b-c,\\quad v=b+c-a,\\quad w=c+a-b,\n\\]\nwe have\n\\[\na=\\frac{v+w}{2},\\ b=\\frac{w+u}{2},\\ c=\\frac{u+v}{2},\n\\]\nand\n\\[\nabc=\\frac{(u+v)(v+w)(w+u)}{8}\\ge \\frac{8uvw}{8}=uvw,\n\\]\nsince \\((u+v)(v+w)(w+u)\\ge 8uvw\\) by AM-GM.\n\nTherefore\n\\[\nxyz\\le \\frac{abc}{8}=\\frac18.\n\\]\nHence\n\\[\nA=1+xyz\\le 1+\\frac18=\\frac98.\n\\]\nEquality holds when\n\\[\nu=v=w,\n\\]\ni.e. when \\(a=b=c\\), so\n\\[\nx=y=z.\n\\]\nFrom\n\\[\n(2x)^3=1\n\\]\nwe get\n\\[\nx=y=z=\\frac12,\n\\]\nand then\n\\[\nA=(3\\cdot\\tfrac14)(\\tfrac32)=\\frac98.\n\\]\nThus\n\\[\nM=\\frac98.\n\\]\n\n## 3) Rational triple for the minimum?\n\nWe need \\(A=m=1\\), so \\(xyz=0\\). WLOG let \\(z=0\\). Then the condition becomes\n\\[\nxy(x+y)=1.\n\\]\nCan this have positive rational solutions \\(x,y\\in\\mathbb Q\\)?\n\nWrite\n\\[\nx=\\frac{a}{b},\\qquad y=\\frac{c}{d}\n\\]\nin lowest terms. Then\n\\[\n\\frac{ac(ad+bc)}{b^2d^2}=1,\n\\]\nso\n\\[\nac(ad+bc)=b^2d^2.\n\\]\nNow \\(\\gcd(a,b)=\\gcd(c,d)=1\\). Hence \\(\\gcd(ac,b^2d^2)=1\\), so from the divisibility above we must have\n\\[\nac=1.\n\\]\nThus \\(a=c=1\\), and then\n\\[\nad+bc=d+b=b^2d^2,\n\\]\nimpossible because \\(b+d\\ge 2\\) while \\(b^2d^2\\) is much larger unless \\(b=d=1\\), which gives \\(2=1\\). More simply, from \\(ac=1\\) we get \\(x=y=1/b,1/d\\), and then\n\\[\nxy(x+y)=\\frac{b+d}{b^2d^2}\\neq 1.\n\\]\nSo there are no positive rational \\(x,y\\) with \\(xy(x+y)=1\\).\n\nTherefore no nonnegative rational triple can attain \\(A=m\\).\n\nSo:\n\n\\[\nm=1,\\qquad M=\\frac98.\n\\]\n\nAnd the answer to (b) is **no**.\n\nFinal answer: \\(\\boxed{m=1,\\ M=\\frac98,\\ \\text{and no nonnegative rational triple attains }A=m.}\\)",
+  "usage": {
+    "input_tokens": 157,
+    "output_tokens": 1095,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 17.37041527510155,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "m=1,\\ M=\\frac98,\\ \\text{and no nonnegative rational triple attains }A=m."
+  }
+}

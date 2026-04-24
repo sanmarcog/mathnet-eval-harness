@@ -1,0 +1,22 @@
+{
+  "id": "04gw",
+  "country": "Croatia",
+  "competition": "Mathematica competitions in Croatia",
+  "gold_final_answer": "5√58 : 16",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Triangles > Triangle trigonometry",
+    "Geometry > Plane Geometry > Analytic / Coordinate Methods > Trigonometry",
+    "Geometry > Plane Geometry > Analytic / Coordinate Methods > Vectors",
+    "Geometry > Plane Geometry > Miscellaneous > Angle chasing"
+  ],
+  "prompt": "Let $\\triangle ABC$ be a right triangle. Point $M$ is chosen on the bisector of the right angle $\\angle ACB$. If we have $\\sin \\angle MAC = \\frac{8}{17}$ and $\\cos \\angle MBC = \\frac{3}{5}$, determine the ratio $|AB| : |CM|$.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Setting Up Coordinates\n\nLet C be at the origin with the right angle. Since CM bisects the right angle ∠ACB, and ∠ACB = 90°, the bisector makes 45° with both legs.\n\nPlace C at origin, with CA along the positive x-axis and CB along the positive y-axis. The angle bisector of ∠ACB goes along the direction y = x (45° line).\n\nSo M is on the line y = x, meaning M = (t, t) for some t > 0.\n\nLet A = (a, 0) and B = (0, b) with a, b > 0.\n\n## Computing the Angles\n\n**Angle MAC:** This is the angle at vertex A in triangle MAC, i.e., ∠MAC = angle at A between rays AM and AC.\n\nVector AC = C - A = (-a, 0), direction: negative x-axis.\nVector AM = M - A = (t - a, t).\n\nsin∠MAC = 8/17.\n\nThe angle between AM and AC (negative x-axis):\ncos∠MAC = |(-a)(t-a) + 0·t| / (a · |AM|) ... let me use the formula properly.\n\nActually, ∠MAC is the angle at A between rays AM and AC.\n\nRay AC direction: (-1, 0)\nRay AM direction: (t-a, t)\n\ncos∠MAC = [(-1)(t-a) + 0·t] / |AM| = (a-t)/|AM|\n\nsin∠MAC = |(-1)·t - 0·(t-a)| / |AM| = t/|AM|\n\nSo sin∠MAC = t/√((t-a)² + t²) = 8/17.\n\n**Angle MBC:** Angle at vertex B between rays BM and BC.\n\nRay BC direction: (0, -1)\nRay BM direction: (t, t-b)\n\ncos∠MBC = [0·t + (-1)(t-b)] / |BM| = (b-t)/|BM|\n\nsin∠MBC = |0·(t-b) - (-1)·t| / |BM| = t/|BM|\n\nGiven cos∠MBC = 3/5, so sin∠MBC = 4/5.\n\nFrom sin∠MBC = t/|BM| = 4/5 and cos∠MBC = (b-t)/|BM| = 3/5:\nSo t/(b-t) = 4/3, meaning b-t = 3t/4, so b = t + 3t/4 = 7t/4.\n\nFrom sin∠MAC = 8/17: t/|AM| = 8/17, so cos∠MAC = 15/17 (since sin²+cos²=1).\ncos∠MAC = (a-t)/|AM| = 15/17.\n\nSo t/(a-t) = 8/15, meaning a-t = 15t/8, so a = t + 15t/8 = 23t/8.\n\n## Computing |AB| and |CM|\n\n|CM| = distance from C=(0,0) to M=(t,t) = t√2.\n\n|AB| = √(a² + b²) = √((23t/8)² + (7t/4)²)\n\n= t√((23/8)² + (7/4)²)\n\n= t√(529/64 + 49/16)\n\n= t√(529/64 + 196/64)\n\n= t√(725/64)\n\n= t·√725/8\n\n√725 = √(25·29) = 5√29\n\nSo |AB| = 5t√29/8.\n\n## Computing the Ratio\n\n|AB|/|CM| = (5t√29/8)/(t√2) = 5√29/(8√2) = 5√(29/2)/8 = 5√58/16.\n\nLet me verify: 5√29/(8√2) = 5√29·√2/(8·2) = 5√58/16.\n\n**Verification check:** sin∠MAC = 8/17, cos∠MAC = 15/17 ✓ (8²+15²=64+225=289=17²)\ncos∠MBC = 3/5, sin∠MBC = 4/5 ✓ (3²+4²=25=5²)\n\n## Result\n\n$$|AB| : |CM| = \\frac{5\\sqrt{58}}{16} : 1 = 5\\sqrt{58} : 16$$\n\nFinal answer: $|AB|:|CM| = \\dfrac{5\\sqrt{58}}{16}$",
+  "usage": {
+    "input_tokens": 128,
+    "output_tokens": 1155,
+    "thinking_tokens": 0
+  },
+  "latency_s": 15.547240472049452,
+  "cached": false
+}

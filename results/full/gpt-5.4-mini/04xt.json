@@ -1,0 +1,20 @@
+{
+  "id": "04xt",
+  "country": "Czech-Polish-Slovak Mathematical Match",
+  "competition": "12th Czech-Polish-Slovak Mathematics Competition",
+  "gold_final_answer": "sqrt(82)",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities > QM-AM-GM-HM / Power Mean",
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities"
+  ],
+  "prompt": "Positive real numbers $a$, $b$, $c$, $d$ satisfy the relations\n$$\nabcd = 4, \\quad a^2 + b^2 + c^2 + d^2 = 10.\n$$\nDetermine the largest possible value of the expression $ab + bc + cd + da$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let  \n\\[\nx=ab,\\qquad y=bc,\\qquad z=cd,\\qquad w=da.\n\\]\nThen\n\\[\nxy=ab\\cdot bc=ab^2c,\\quad \\text{etc.}\n\\]\nA better idea is to group as\n\\[\nab+cd \\quad\\text{and}\\quad bc+da.\n\\]\n\nSet\n\\[\np=ab+cd,\\qquad q=bc+da.\n\\]\nWe want to maximize \\(p+q\\).\n\nNow observe that\n\\[\n(ac)(bd)=abcd=4,\n\\]\nand\n\\[\na^2+b^2+c^2+d^2=10.\n\\]\nUse\n\\[\n(a-c)^2+(b-d)^2\\ge 0\n\\]\nto get\n\\[\na^2+c^2\\ge 2ac,\\qquad b^2+d^2\\ge 2bd,\n\\]\nhence\n\\[\n10=(a^2+c^2)+(b^2+d^2)\\ge 2ac+2bd.\n\\]\nSo\n\\[\nac+bd\\le 5.\n\\]\n\nSimilarly,\n\\[\n(a-d)^2+(b-c)^2\\ge 0\n\\]\ngives\n\\[\na^2+d^2+b^2+c^2\\ge 2ad+2bc,\n\\]\nhence\n\\[\nad+bc\\le 5.\n\\]\n\nNow apply AM-GM to \\(ab+cd\\) and \\(bc+da\\):\n\\[\n(ab+cd)(bc+da)\\le (ab+bc+cd+da)^2/4.\n\\]\nBut a cleaner route is to use the substitution\n\\[\nx=a d,\\qquad y=b c.\n\\]\nThen \\(xy=abcd=4\\), and\n\\[\na^2+b^2+c^2+d^2 \\ge 2(ad+bc)=2(x+y),\n\\]\nso\n\\[\nx+y\\le 5.\n\\]\nSince \\(xy=4\\), the maximum of \\(x+y\\) under fixed product is not relevant; instead, the target expression can be written as\n\\[\nab+bc+cd+da = b(a+c)+d(a+c)=(b+d)(a+c).\n\\]\nBy AM-GM,\n\\[\n(a+c)^2\\le 2(a^2+c^2),\\qquad (b+d)^2\\le 2(b^2+d^2),\n\\]\nso\n\\[\n(ab+bc+cd+da)^2=(a+c)^2(b+d)^2\\le 4(a^2+c^2)(b^2+d^2).\n\\]\nLet\n\\[\nX=a^2+c^2,\\quad Y=b^2+d^2,\n\\]\nso \\(X+Y=10\\). Also by AM-GM,\n\\[\nXY\\le \\left(\\frac{X+Y}{2}\\right)^2=25.\n\\]\nHence\n\\[\nab+bc+cd+da\\le 2\\sqrt{XY}\\le 10.\n\\]\nSo the expression is at most \\(10\\).\n\nNow check attainability. Take\n\\[\na=b=c=d=\\sqrt2.\n\\]\nThen\n\\[\nabcd=4,\\qquad a^2+b^2+c^2+d^2=8\\neq 10,\n\\]\nso not valid. We need equality in the above bounds, which suggests\n\\[\na=c,\\qquad b=d.\n\\]\nThen the conditions become\n\\[\na^2b^2=4,\\qquad 2a^2+2b^2=10 \\implies a^2+b^2=5.\n\\]\nWith \\(a^2b^2=4\\), the numbers \\(a^2,b^2\\) are roots of\n\\[\nt^2-5t+4=0,\n\\]\nso \\(\\{a^2,b^2\\}=\\{1,4\\}\\). Thus \\((a,b,c,d)=(1,2,1,2)\\) or similar, and\n\\[\nab+bc+cd+da=2+2+2+2=8.\n\\]\n\nSo the maximum is \\(8\\).\n\nFinal answer: 8",
+  "usage": {
+    "input_tokens": 114,
+    "output_tokens": 922,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 5.9559486790094525,
+  "cached": false
+}

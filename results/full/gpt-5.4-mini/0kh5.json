@@ -1,0 +1,20 @@
+{
+  "id": "0kh5",
+  "country": "United States",
+  "competition": "Fall 2021 AMC 10 B",
+  "gold_final_answer": "D",
+  "topics_flat": [
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities",
+    "Algebra > Prealgebra / Basic Algebra > Simple Equations"
+  ],
+  "prompt": "Which of the following conditions is sufficient to guarantee that integers $x$, $y$, and $z$ satisfy the equation\n$$\nx(x - y) + y(y - z) + z(z - x) = 1?\n$$\n(A) $x > y$ and $y = z$\n(B) $x = y - 1$ and $y = z - 1$\n(C) $x = z + 1$ and $y = x + 1$\n(D) $x = z$ and $y - 1 = x$\n(E) $x + y + z = 1$",
+  "model": "gpt-5.4-mini",
+  "response_text": "Rewrite the expression:\n\\[\nx(x-y)+y(y-z)+z(z-x)=x^2-xy+y^2-yz+z^2-zx.\n\\]\n\nA useful factorization is\n\\[\nx^2+y^2+z^2-xy-yz-zx=\\frac12\\big((x-y)^2+(y-z)^2+(z-x)^2\\big).\n\\]\nSo the left-hand side is always nonnegative, and equals 1 only in very special cases.\n\nNow test the options:\n\n- **(A)** \\(y=z\\). Then\n  \\[\n  x(x-y)+y(y-y)+y(y-x)=x^2-2xy+y^2=(x-y)^2.\n  \\]\n  Since \\(x>y\\), we have \\(x-y\\ge 1\\), so the value is a square, not always 1.\n- **(B)** \\(x=y-1,\\ y=z-1\\). Then \\(x=z-2\\). Substituting gives\n  \\[\n  x(x-y)+y(y-z)+z(z-x)=3,\n  \\]\n  not 1.\n- **(C)** \\(x=z+1,\\ y=x+1\\). Then \\(y=z+2\\), and substitution does not force 1.\n- **(D)** \\(x=z\\) and \\(y=x+1\\). Then\n  \\[\n  x(x-y)+y(y-z)+z(z-x)=x(x-(x+1))+(x+1)((x+1)-x)+x(x-x)=-x+x+1=1.\n  \\]\n  This always works.\n- **(E)** \\(x+y+z=1\\) does not determine the value.\n\nSo the sufficient condition is **(D)**.\n\nFinal answer: **(D) \\(x=z\\) and \\(y-1=x\\)**",
+  "usage": {
+    "input_tokens": 177,
+    "output_tokens": 410,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 2.7335150520084426,
+  "cached": false
+}

@@ -1,0 +1,25 @@
+{
+  "id": "0hcu",
+  "country": "Ukraine",
+  "competition": "59th Ukrainian National Mathematical Olympiad",
+  "gold_final_answer": "One valid construction is: for k from 1 to n−1, set a_k = −2^{n−k}(2^{n−1}−1), and set a_n = 2^{n−1}.",
+  "topics_flat": [
+    "Algebra > Prealgebra / Basic Algebra > Fractions",
+    "Algebra > Algebraic Expressions > Sequences and Series > Telescoping series"
+  ],
+  "prompt": "For any natural number $n \\ge 3$ find integers $a_1 < a_2 < \\dots < a_n$ such that the following equality holds:\n$$\n\\frac{a_1}{a_1} + \\frac{a_1}{a_2} + \\frac{a_1}{a_3} + \\dots + \\frac{a_1}{a_n} = \\frac{a_2}{a_1} + \\frac{a_2}{a_2} + \\frac{a_2}{a_3} + \\dots + \\frac{a_2}{a_n}. \\qquad (\\text{BogdanRublyov})\n$$",
+  "model": "gpt-5.4",
+  "response_text": "We need\n\\[\n\\sum_{j=1}^n \\frac{a_1}{a_j}=\\sum_{j=1}^n \\frac{a_2}{a_j}.\n\\]\nSubtracting the left side from the right side gives\n\\[\n(a_2-a_1)\\sum_{j=1}^n \\frac1{a_j}=0.\n\\]\nSince \\(a_2>a_1\\), this is equivalent to\n\\[\n\\sum_{j=1}^n \\frac1{a_j}=0.\n\\]\nSo the problem reduces to finding, for every \\(n\\ge 3\\), distinct increasing integers \\(a_1<\\cdots<a_n\\) whose reciprocals sum to \\(0\\).\n\nIt is enough to construct such a set for every \\(n\\).\n\n## Base case \\(n=3\\)\nTake\n\\[\n(-1,2,2)?\n\\]\nBut they must be distinct, so instead use\n\\[\na_1=-2,\\quad a_2=1,\\quad a_3=2.\n\\]\nThen\n\\[\n-\\frac12+1+\\frac12=0.\n\\]\n\n## Inductive step\nSuppose we already have distinct integers\n\\[\na_1<\\cdots<a_n,\\qquad \\sum_{i=1}^n \\frac1{a_i}=0.\n\\]\nChoose an integer \\(t\\neq 0,-1\\) such that none of\n\\[\nt,\\quad -t-1,\\quad t(t+1)\n\\]\nis among \\(a_1,\\dots,a_n\\). This is clearly possible for large \\(t\\).\n\nNow use the identity\n\\[\n\\frac1t+\\frac1{-t-1}+\\frac1{t(t+1)}=0,\n\\]\nbecause\n\\[\n\\frac1t-\\frac1{t+1}+\\frac1{t(t+1)}\n=\\frac{t+1-t+1}{t(t+1)}=\\frac{2}{t(t+1)},\n\\]\noops—that is wrong. Let us find a correct 3-term zero identity.\n\nA standard one is\n\\[\n\\frac1{-m}+\\frac1{m+1}+\\frac1{m(m+1)}=0,\n\\]\nsince\n\\[\n-\\frac1m+\\frac1{m+1}+\\frac1{m(m+1)}\n=\\frac{-(m+1)+m+1}{m(m+1)}=0.\n\\]\n\nSo if \\(\\sum 1/a_i=0\\), then also\n\\[\n\\sum_{i=1}^n \\frac1{a_i}+\\frac1{-m}+\\frac1{m+1}+\\frac1{m(m+1)}=0.\n\\]\nThus from a solution for \\(n\\), we get one for \\(n+3\\).\n\nHence it remains to produce solutions for three consecutive values of \\(n\\), say \\(3,4,5\\).\n\n## \\(n=4\\)\nTake\n\\[\n-6,\\,-3,\\,2,\\,6,\n\\]\nsince\n\\[\n-\\frac16-\\frac13+\\frac12+\\frac16=0.\n\\]\n\n## \\(n=5\\)\nTake\n\\[\n-6,\\,-2,\\,1,\\,4,\\,12,\n\\]\nsince\n\\[\n-\\frac16-\\frac12+1+\\frac14+\\frac1{12}=0.\n\\]\n\nNow:\n- \\(n=3,4,5\\) are done explicitly;\n- from any solution for \\(n\\), the above identity gives a solution for \\(n+3\\).\n\nTherefore solutions exist for every \\(n\\ge 3\\).\n\nFinally, once \\(\\sum_{j=1}^n 1/a_j=0\\), we have\n\\[\n\\sum_{j=1}^n \\frac{a_1}{a_j}\n= a_1\\sum_{j=1}^n \\frac1{a_j}=0\n= a_2\\sum_{j=1}^n \\frac1{a_j}\n=\\sum_{j=1}^n \\frac{a_2}{a_j},\n\\]\nso the required equality holds.\n\nFinal answer: It suffices to choose distinct integers \\(a_1<\\cdots<a_n\\) with \\(\\sum_{j=1}^n \\frac1{a_j}=0\\). Such sets exist for all \\(n\\ge3\\): for example,\n\\[\n(-2,1,2),\\qquad (-6,-3,2,6),\\qquad (-6,-2,1,4,12)\n\\]\nwork for \\(n=3,4,5\\), and from any solution for \\(n\\) one gets a solution for \\(n+3\\) by adjoining\n\\[\n-m,\\quad m+1,\\quad m(m+1),\n\\]\nfor large enough \\(m\\), since\n\\[\n-\\frac1m+\\frac1{m+1}+\\frac1{m(m+1)}=0.\n\\]\nThus by induction modulo \\(3\\), for every \\(n\\ge3\\) there are integers \\(a_1<\\cdots<a_n\\) satisfying\n\\[\n\\frac{a_1}{a_1}+\\frac{a_1}{a_2}+\\cdots+\\frac{a_1}{a_n}\n=\n\\frac{a_2}{a_1}+\\frac{a_2}{a_2}+\\cdots+\\frac{a_2}{a_n}.\n\\]",
+  "usage": {
+    "input_tokens": 197,
+    "output_tokens": 1203,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 17.02056122990325,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "It suffices to choose distinct integers \\(a_1<\\cdots<a_n\\) with \\(\\sum_{j=1}^n \\frac1{a_j}=0\\). Such sets exist for all \\(n\\ge3\\): for example,"
+  }
+}

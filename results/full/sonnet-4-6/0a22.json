@@ -1,0 +1,21 @@
+{
+  "id": "0a22",
+  "country": "Netherlands",
+  "competition": "BxMO/EGMO Team Selection Test",
+  "gold_final_answer": "[(3,5), (5,3)]",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Greatest common divisors (gcd)",
+    "Number Theory > Divisibility / Factorization > Prime numbers",
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities"
+  ],
+  "prompt": "Find all pairs of prime numbers $(p, q)$ for which there exist positive integers $(m, n)$ such that\n$$\n(p+q)^m = (p-q)^n.\n$$",
+  "model": "claude-sonnet-4-6",
+  "response_text": "We need $(p+q)^m = (p-q)^n$ where $p, q$ are primes and $m, n$ are positive integers.\n\nFirst, note that $p - q$ must be positive (since we need a positive base for the equation to make sense with positive integers), so $p > q$.\n\nAlso, $p - q$ must be positive. If $p - q < 0$, then $(p-q)^n$ would be negative for odd $n$ and positive for even $n$, but $p + q > 0$ always, so we need $p > q$.\n\nLet $a = p + q$ and $b = p - q$. We need $a^m = b^n$ with $a > b > 0$.\n\nSince $a^m = b^n$, both $a$ and $b$ must have the same prime factors. Let's say the common prime factorization base is $k$, so $a = k^s$ and $b = k^t$ for some integers... more precisely, $a$ and $b$ must be powers of the same integer.\n\nSo $p + q = r^s$ and $p - q = r^t$ for some integer $r \\geq 2$ and positive integers $s, t$ with $s > t$ (since $a > b$), and $ms = nt$.\n\nFrom $p + q = r^s$ and $p - q = r^t$:\n- $2p = r^s + r^t = r^t(r^{s-t} + 1)$\n- $2q = r^s - r^t = r^t(r^{s-t} - 1)$\n\nSince $q$ is prime, let's consider cases.\n\n**Case $q = 2$:** Then $p$ is an odd prime, $p > 2$.\n- $2q = 4 = r^t(r^{s-t} - 1)$\n- $2p = r^s + r^t$\n\nFrom $r^t(r^{s-t} - 1) = 4$:\n- If $r = 2, t = 1$: $2(2^{s-1} - 1) = 4 \\Rightarrow 2^{s-1} - 1 = 2 \\Rightarrow 2^{s-1} = 3$. No integer solution.\n- If $r = 2, t = 2$: $4(2^{s-2} - 1) = 4 \\Rightarrow 2^{s-2} = 2 \\Rightarrow s = 3$. Then $a = 8, b = 4$. So $p+q = 8, p-q = 4 \\Rightarrow p = 6, q = 2$. But $6$ is not prime.\n- If $r = 3, t = 1$: $3(3^{s-1}-1) = 4$. No integer solution.\n- If $r = 4, t = 1$: $4(4^{s-1}-1) = 4 \\Rightarrow 4^{s-1} = 2 \\Rightarrow s-1 = 1/2$. No.\n\n**Case $q$ is odd prime, $p$ is odd prime:** Then $p + q$ and $p - q$ are both even.\nSo $r$ must be even, say $r = 2c$.\n\n$2q = r^t(r^{s-t} - 1)$. Since $r$ is even, $r^t$ is even, and $r^{s-t} - 1$ is odd. So $r^t = 2$ (since $2q = 2 \\cdot \\text{prime}$), meaning $r = 2, t = 1$.\n\nWith $r = 2, t = 1$: $2(2^{s-1} - 1) = 2q \\Rightarrow q = 2^{s-1} - 1$ (Mersenne prime condition).\nAnd $2p = 2^s + 2 = 2(2^{s-1} + 1) \\Rightarrow p = 2^{s-1} + 1$.\n\nFor $p$ to be prime: $p = 2^{s-1} + 1$. This is prime only if $s - 1$ is a power of 2 (Fermat prime). \n- $s = 2$: $q = 1$ (not prime).\n- $s = 3$: $q = 3$ (prime), $p = 5$ (prime). Check: $p + q = 8 = 2^3$, $p - q = 2 = 2^1$. Then $8^1 = 2^3$ and $2^3 = 2^3$. ✓ So $m = 1, n = 3$ works.\n- $s = 5$: $q = 15$ (not prime).\n\nSo the only solution is $(p, q) = (5, 3)$.\n\nFinal answer: $(p, q) = (5, 3)$",
+  "usage": {
+    "input_tokens": 93,
+    "output_tokens": 1271,
+    "thinking_tokens": 0
+  },
+  "latency_s": 17.25157136807684,
+  "cached": false
+}

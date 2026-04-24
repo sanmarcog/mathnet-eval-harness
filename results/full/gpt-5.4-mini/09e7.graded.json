@@ -1,0 +1,26 @@
+{
+  "id": "09e7",
+  "country": "Mongolia",
+  "competition": "Mongolian Mathematical Olympiad",
+  "gold_final_answer": "48!/32!*16!*17!",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Recursion, bijection",
+    "Discrete Mathematics > Combinatorics > Invariants / monovariants",
+    "Number Theory > Other"
+  ],
+  "prompt": "a_1, a_2, ..., a_{49} is a permutation of the set $\\{2, 3, ..., 50\\}$. Denote $S_1 = a_1$, $S_2 = a_1 + a_2$, ..., $S_{49} = a_1 + a_2 + ... + a_{49}$. Find the number of different sequences $S_1, S_2, ..., S_{49}$ in which no one of $S_i$ is divisible by $3$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let us work modulo \\(3\\).\n\nThe numbers \\(2,3,\\dots,50\\) consist of:\n\n- \\(16\\) numbers congruent to \\(0 \\pmod 3\\),\n- \\(17\\) numbers congruent to \\(1 \\pmod 3\\),\n- \\(16\\) numbers congruent to \\(2 \\pmod 3\\).\n\nWe want every partial sum\n\\[\nS_k=a_1+\\cdots+a_k \\qquad (1\\le k\\le 49)\n\\]\nto be **nonzero mod \\(3\\)**.\n\nSo we are counting permutations of the multiset of residue classes \\(\\{0^{16},1^{17},2^{16}\\}\\) such that all partial sums avoid \\(0 \\pmod 3\\).\n\n---\n\n### Step 1: Reduce to residue walks mod \\(3\\)\n\nA partial sum modulo \\(3\\) evolves by adding:\n\n- \\(0\\): no change,\n- \\(1\\): move \\(x\\mapsto x+1\\),\n- \\(2\\): move \\(x\\mapsto x-1\\).\n\nStarting from \\(S_0=0\\), we need the walk on \\(\\mathbb Z/3\\mathbb Z\\) to avoid returning to \\(0\\) at times \\(1,\\dots,49\\).\n\nSince the total sum of \\(2+3+\\cdots+50\\) is\n\\[\n\\frac{49\\cdot 52}{2}=1274\\equiv 2 \\pmod 3,\n\\]\nwe end at residue \\(2\\). Thus the walk starts at \\(0\\), avoids \\(0\\) in intermediate steps, and ends at \\(2\\).\n\n---\n\n### Step 2: The zeros can be inserted freely\n\nThe residue \\(0\\) terms do not affect the current residue, so the only important part is the relative order of the \\(17\\) ones and \\(16\\) twos.\n\nTo avoid ever hitting \\(0\\), once we leave \\(0\\) the walk must stay in either residue \\(1\\) or residue \\(2\\). From residue \\(1\\), a \\(2\\) would return to \\(0\\); from residue \\(2\\), a \\(1\\) would return to \\(0\\). Hence:\n\n- if the walk is at \\(1\\), only \\(1\\)'s may follow until perhaps a \\(0\\)-term occurs,\n- if the walk is at \\(2\\), only \\(2\\)'s may follow.\n\nBut \\(0\\)-terms don't change the residue, so they can be inserted anywhere without affecting validity.\n\nTherefore, the nonzero residues must occur in a sequence that consists of alternating blocks of \\(1\\)'s and \\(2\\)'s, beginning with \\(1\\) and ending with \\(2\\). Since there are \\(17\\) ones and \\(16\\) twos, the only possibility is:\n\\[\n1^{17}2^{16}.\n\\]\n\nAny other interleaving would force a transition \\(1\\to 2\\) or \\(2\\to 1\\) at the wrong time and create a partial sum divisible by \\(3\\).\n\nSo the residue pattern is forced: all \\(17\\) numbers congruent to \\(1\\) mod \\(3\\) must come before all \\(16\\) numbers congruent to \\(2\\) mod \\(3\\), with the \\(16\\) multiples of \\(3\\) inserted arbitrarily.\n\n---\n\n### Step 3: Count the valid permutations\n\n- The \\(17\\) numbers congruent to \\(1 \\pmod 3\\) can be arranged among themselves in \\(17!\\) ways.\n- The \\(16\\) numbers congruent to \\(2 \\pmod 3\\) can be arranged among themselves in \\(16!\\) ways.\n- The \\(16\\) multiples of \\(3\\) can be inserted into the \\(49\\) positions, preserving the order of the \\(1\\)'s followed by the \\(2\\)'s, in\n  \\[\n  \\binom{49}{16}\n  \\]\n  ways.\n\nThus the number of valid sequences of partial sums is\n\\[\n\\binom{49}{16}\\cdot 17!\\cdot 16!.\n\\]\n\nThis simplifies to\n\\[\n\\frac{49!}{16!33!}\\cdot 17!\\cdot 16!\n= \\frac{49!}{33!}\\cdot 17!\n= \\frac{49!}{33!}\\cdot 17!.\n\\]\n\nEquivalently,\n\\[\n49!\\,/\\,33!.\n\\]\nBut since \\(17!/1\\) is already included in the first form, the clean counting expression is\n\\[\n\\binom{49}{16}17!16!.\n\\]\n\nSo the answer is:\n\n**Final answer:** \\(\\boxed{\\binom{49}{16}\\,17!\\,16!}\\)",
+  "usage": {
+    "input_tokens": 161,
+    "output_tokens": 1041,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 8.371383088058792,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "\\binom{49}{16}\\,17!\\,16!"
+  }
+}

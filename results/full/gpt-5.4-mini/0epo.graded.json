@@ -1,0 +1,25 @@
+{
+  "id": "0epo",
+  "country": "South Africa",
+  "competition": "South African Mathematics Olympiad",
+  "gold_final_answer": "20",
+  "topics_flat": [
+    "Algebra > Prealgebra / Basic Algebra > Simple Equations",
+    "Algebra > Prealgebra / Basic Algebra > Decimals"
+  ],
+  "prompt": "Steve was sorting $1\\,000$ eggs into sizes. He got paid $20$ cents for each egg that he sorted. For each egg that he broke while sorting he did not get paid and had to pay his employer $R1$. Steve was paid $R176$. How many eggs did Steve break?",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let \\(x\\) be the number of eggs Steve sorted without breaking, and \\(b\\) the number he broke.\n\nHe earns \\(20\\) cents for each successfully sorted egg, so his gross pay is\n\\[\n0.20x \\text{ rand}.\n\\]\nFor each broken egg, he pays \\(R1\\), so his net pay is\n\\[\n0.20x - b = 176.\n\\]\n\nAlso, he handled 1000 eggs total:\n\\[\nx+b=1000.\n\\]\n\nSubstitute \\(x=1000-b\\) into the pay equation:\n\\[\n0.20(1000-b)-b=176.\n\\]\n\\[\n200-0.20b-b=176.\n\\]\n\\[\n200-1.20b=176.\n\\]\n\\[\n1.20b=24.\n\\]\n\\[\nb=20.\n\\]\n\nFinal answer: 20",
+  "usage": {
+    "input_tokens": 111,
+    "output_tokens": 200,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 2.774221723084338,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "exact",
+    "predicted": "20"
+  }
+}

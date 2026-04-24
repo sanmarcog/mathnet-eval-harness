@@ -1,0 +1,19 @@
+{
+  "id": "04qx",
+  "country": "Czech Republic",
+  "competition": "Czech-Slovak-Polish Match",
+  "gold_final_answer": "x = y = z = ± sqrt(2)/2",
+  "topics_flat": [
+    "Algebra > Prealgebra / Basic Algebra > Simple Equations"
+  ],
+  "prompt": "Solve the system of equations\n$$\n\\frac{1}{xy} = \\frac{x}{z} + 1, \\quad \\frac{1}{yz} = \\frac{y}{x} + 1, \\quad \\frac{1}{zx} = \\frac{z}{y} + 1\n$$\nin the domain of the real numbers.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "Let me denote the three equations:\n1. $\\frac{1}{xy} = \\frac{x}{z} + 1$\n2. $\\frac{1}{yz} = \\frac{y}{x} + 1$\n3. $\\frac{1}{zx} = \\frac{z}{y} + 1$\n\n**Adding all three equations:**\n\n$$\\frac{1}{xy} + \\frac{1}{yz} + \\frac{1}{zx} = \\frac{x}{z} + \\frac{y}{x} + \\frac{z}{y} + 3$$\n\nThe left side equals $\\frac{z + x + y}{xyz}$, and the right side has $\\frac{x}{z} + \\frac{y}{x} + \\frac{z}{y} + 3$.\n\n**Looking for symmetric solutions:** Try $x = y = z$.\n\nFrom equation 1: $\\frac{1}{x^2} = \\frac{x}{x} + 1 = 2$, so $x^2 = \\frac{1}{2}$, giving $x = \\pm\\frac{1}{\\sqrt{2}}$.\n\nCheck: If $x = y = z = \\frac{1}{\\sqrt{2}}$:\n- LHS: $\\frac{1}{xy} = \\frac{1}{1/2} = 2$\n- RHS: $\\frac{x}{z} + 1 = 1 + 1 = 2$ ✓\n\nIf $x = y = z = -\\frac{1}{\\sqrt{2}}$:\n- LHS: $\\frac{1}{xy} = \\frac{1}{1/2} = 2$\n- RHS: $\\frac{x}{z} + 1 = 1 + 1 = 2$ ✓\n\n**Checking for other solutions:** Multiply the three equations together:\n\n$$\\frac{1}{x^2y^2z^2} = \\frac{xyz}{xyz} \\cdot \\frac{x^2y^2z^2 \\cdot \\text{products of RHS}}{...}$$\n\nLet me try subtracting equations. Subtract eq1 from eq2:\n$$\\frac{1}{yz} - \\frac{1}{xy} = \\frac{y}{x} - \\frac{x}{z}$$\n$$\\frac{x-z}{xyz} = \\frac{yz - x^2}{xz}$$\n$$(x-z) \\cdot z = y(yz - x^2) = y^2z - x^2y$$\n$$xz - z^2 = y^2z - x^2y$$\n\nThis is complex. Let me try substituting $a = x/z$, $b = y/x$, $c = z/y$ (so $abc = 1$).\n\nFrom the equations:\n1. $\\frac{1}{xy} = a + 1$\n2. $\\frac{1}{yz} = b + 1$  \n3. $\\frac{1}{zx} = c + 1$\n\nMultiply all three: $\\frac{1}{x^2y^2z^2} = (a+1)(b+1)(c+1)$\n\nAlso $\\frac{1}{xy} \\cdot \\frac{1}{yz} \\cdot \\frac{1}{zx} = \\frac{1}{x^2y^2z^2}$.\n\nFrom eq1: $xy = \\frac{1}{a+1}$, eq2: $yz = \\frac{1}{b+1}$, eq3: $zx = \\frac{1}{c+1}$.\n\nThen $(xy)(yz)(zx) = x^2y^2z^2 = \\frac{1}{(a+1)(b+1)(c+1)}$.\n\nAlso $\\frac{(xy)(zx)}{yz} = x^2 = \\frac{b+1}{(a+1)(c+1)}$, similarly for $y^2, z^2$.\n\nSince $a = x/z$: $a^2 = x^2/z^2 = \\frac{(b+1)}{(a+1)(c+1)} \\cdot \\frac{(a+1)(b+1)}{c+1} \\cdot \\frac{1}{...}$\n\nActually $x^2 = \\frac{b+1}{(a+1)(c+1)}$, $z^2 = \\frac{a+1}{(b+1)(c+1)}$, so $a^2 = \\frac{x^2}{z^2} = \\frac{(b+1)^2}{(a+1)^2}$, giving $a(a+1) = b+1$.\n\nSimilarly: $b(b+1) = c+1$ and $c(c+1) = a+1$.\n\nWith $abc=1$. For $a=b=c=1$: $1\\cdot2=2$ ✓, and $abc=1$ ✓. This gives $x=y=z=\\pm\\frac{1}{\\sqrt{2}}$.\n\nOne can verify the cyclic system $a(a+1)=b+1$, $b(b+1)=c+1$, $c(c+1)=a+1$ with $abc=1$ has only $a=b=c=1$ as a real solution (by monotonicity arguments).\n\n**Final answer:** $x = y = z = \\dfrac{1}{\\sqrt{2}}$ and $x = y = z = -\\dfrac{1}{\\sqrt{2}}$.\n\nFinal answer: $x = y = z = \\dfrac{1}{\\sqrt{2}}$ and $x = y = z = -\\dfrac{1}{\\sqrt{2}}$",
+  "usage": {
+    "input_tokens": 134,
+    "output_tokens": 1467,
+    "thinking_tokens": 0
+  },
+  "latency_s": 19.398742976016365,
+  "cached": false
+}

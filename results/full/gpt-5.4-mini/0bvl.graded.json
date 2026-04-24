@@ -1,0 +1,25 @@
+{
+  "id": "0bvl",
+  "country": "Romania",
+  "competition": "SHORTLISTED PROBLEMS FOR THE 68th NMO",
+  "gold_final_answer": "0",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Sequences and Series > Floors and ceilings",
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities"
+  ],
+  "prompt": "What values can assume $[\\sqrt{m} + \\frac{1}{m+n}] + [\\sqrt{n} + \\frac{1}{m+n}] - [\\sqrt{m}] - [\\sqrt{n}]$, when $m$ and $n$ are integers $\\ge 9$?",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let  \n\\[\nE=\\left[\\sqrt m+\\frac1{m+n}\\right]+\\left[\\sqrt n+\\frac1{m+n}\\right]-[\\sqrt m]-[\\sqrt n].\n\\]\n\nSince \\(m,n\\ge 9\\), we have \\(m+n\\ge 18\\), so\n\\[\n0<\\frac1{m+n}\\le \\frac1{18}<1.\n\\]\n\nFor any real \\(x\\), the quantity \\([x+\\varepsilon]-[x]\\) with \\(0<\\varepsilon<1\\) can only be \\(0\\) or \\(1\\), and it equals \\(1\\) exactly when the fractional part of \\(x\\) is at least \\(1-\\varepsilon\\).\n\nThus each of\n\\[\n\\left[\\sqrt m+\\frac1{m+n}\\right]-[\\sqrt m],\\qquad\n\\left[\\sqrt n+\\frac1{m+n}\\right]-[\\sqrt n]\n\\]\nis either \\(0\\) or \\(1\\). Hence \\(E\\) can only be\n\\[\n0,\\ 1,\\ 2.\n\\]\n\nAll three values occur:\n- \\(E=0\\): take \\(m=n=9\\).\n- \\(E=1\\): take \\(m=9,\\ n=10\\).\n- \\(E=2\\): take \\(m=n=10^2=100\\) (or any non-square integers whose square roots have fractional part close enough to \\(1\\)).\n\nSo the possible values are exactly \\(0,1,2\\).\n\nFinal answer: \\(0,1,2\\).",
+  "usage": {
+    "input_tokens": 114,
+    "output_tokens": 348,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.198595611960627,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "\\(0,1,2\\)."
+  }
+}

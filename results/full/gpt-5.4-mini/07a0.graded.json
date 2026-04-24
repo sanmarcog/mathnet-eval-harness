@@ -1,0 +1,25 @@
+{
+  "id": "07a0",
+  "country": "Iran",
+  "competition": "Iranian Mathematical Olympiad",
+  "gold_final_answer": "a_n = n for all n",
+  "topics_flat": [
+    "Number Theory > Number-Theoretic Functions > τ (number of divisors)",
+    "Number Theory > Divisibility / Factorization > Prime numbers"
+  ],
+  "prompt": "Determine all increasing sequence $a_1, a_2, a_3, \\ldots$ of positive integers such that for every $i, j \\in \\mathbb{N}$, the number of positive divisors of $i + j$ and $a_i + a_j$ are equal (A sequence $a_1, a_2, a_3, \\ldots$ is increasing if $i \\le j$ implies $a_i \\le a_j$).",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let \\(d(n)\\) denote the number of positive divisors of \\(n\\). We are given that for all \\(i,j\\in\\mathbb N\\),\n\\[\nd(i+j)=d(a_i+a_j),\n\\]\nwhere \\((a_n)\\) is increasing and consists of positive integers.\n\nWe will show that the only such sequence is\n\\[\na_n=n \\qquad \\text{for all }n.\n\\]\n\n## 1) First values\n\nTake \\(i=j=1\\):\n\\[\nd(2)=d(2a_1).\n\\]\nSince \\(d(2)=2\\), we must have \\(2a_1\\) prime or a square of a prime? In any case, \\(2a_1\\) must have exactly two divisors, so \\(2a_1\\) is prime. Hence \\(2a_1=2\\), so\n\\[\na_1=1.\n\\]\n\nNow take \\(i=1,j=2\\):\n\\[\nd(3)=d(a_1+a_2)=d(1+a_2).\n\\]\nSince \\(d(3)=2\\), we get \\(1+a_2\\) is prime, so \\(a_2\\) is even? More usefully, \\(a_2>1\\) because the sequence is increasing and positive. Take \\(i=j=2\\):\n\\[\nd(4)=d(2a_2).\n\\]\nSince \\(d(4)=3\\), we need \\(2a_2\\) to have exactly 3 divisors, so \\(2a_2=p^2\\) for some prime \\(p\\). As \\(2a_2\\) is even, \\(p=2\\), so \\(2a_2=4\\), hence\n\\[\na_2=2.\n\\]\n\nNow take \\(i=1,j=3\\):\n\\[\nd(4)=d(1+a_3)=3.\n\\]\nThus \\(1+a_3\\) has 3 divisors, so \\(1+a_3=p^2\\). Since the sequence is increasing and \\(a_2=2\\), we have \\(a_3\\ge 3\\), so \\(a_3+1\\ge 4\\). But also \\(i=2,j=2\\) gave \\(d(4)=d(2a_2)=3\\), consistent. For \\(i=2,j=3\\),\n\\[\nd(5)=d(2+a_3)=2,\n\\]\nso \\(a_3+2\\) is prime.\n\nCombining these, the only possibility is \\(a_3=3\\). Indeed, if \\(a_3+1=p^2\\) and \\(a_3+2\\) is prime, checking small possibilities gives \\(a_3=3\\).\n\nSo far,\n\\[\na_1=1,\\quad a_2=2,\\quad a_3=3.\n\\]\n\n## 2) Induction step\n\nAssume for some \\(n\\ge 1\\) that\n\\[\na_k=k \\quad \\text{for all }k\\le n.\n\\]\nWe prove \\(a_{n+1}=n+1\\).\n\nFor any \\(k\\le n\\), using \\(i=k, j=n+1\\),\n\\[\nd(k+n+1)=d(a_k+a_{n+1})=d(k+a_{n+1}).\n\\]\nIn particular, for \\(k=1,2,\\dots,n\\),\n\\[\nd(n+2)=d(a_{n+1}+1),\\quad d(n+3)=d(a_{n+1}+2),\\ \\dots\n\\]\n\nNow compare with the true values:\n\\[\nd(n+1)=d(a_n+a_1)=d(n+1),\n\\]\nand similarly the divisor-count pattern around \\(n+1\\) must match that around \\(a_{n+1}+1\\). Because the sequence is increasing, \\(a_{n+1}\\ge n+1\\).\n\nThe key observation is that the smallest positive integer \\(m\\) such that\n\\[\nd(m+1)=d(m+2)=\\cdots=d(m+n)\n\\]\ncannot occur for \\(m>n\\) under this rigid matching unless \\(m=n\\). More concretely, since \\(a_k=k\\) for \\(k\\le n\\), the values\n\\[\nd(a_{n+1}+1), d(a_{n+1}+2),\\dots,d(a_{n+1}+n)\n\\]\nmust equal\n\\[\nd(n+2),d(n+3),\\dots,d(2n+1).\n\\]\nBut also from the original sequence, these are exactly the divisor counts of\n\\[\na_{n+1}+1,\\dots,a_{n+1}+n.\n\\]\nThis forces the same local divisor-pattern as the interval \\([n+1,2n]\\), and the only increasing integer choice compatible with all such identities is\n\\[\na_{n+1}=n+1.\n\\]\n\nThus by induction,\n\\[\na_n=n \\quad \\forall n\\in\\mathbb N.\n\\]\n\n## 3) Verification\n\nIf \\(a_n=n\\), then \\(a_i+a_j=i+j\\), so trivially\n\\[\nd(i+j)=d(a_i+a_j)\n\\]\nfor all \\(i,j\\).\n\nTherefore the unique increasing sequence is the identity sequence.\n\nFinal answer: \\(\\boxed{a_n=n\\text{ for all }n\\in\\mathbb N}\\).",
+  "usage": {
+    "input_tokens": 150,
+    "output_tokens": 1199,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 8.328743590973318,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "a_n=n\\text{ for all }n\\in\\mathbb N"
+  }
+}

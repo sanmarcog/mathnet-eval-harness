@@ -1,0 +1,21 @@
+{
+  "id": "0d8l",
+  "country": "Saudi Arabia",
+  "competition": "SAUDI ARABIAN MATHEMATICAL COMPETITIONS",
+  "gold_final_answer": "(4, 4), (5, 6), (6, 5)",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Vieta's formulas",
+    "Algebra > Intermediate Algebra > Quadratic functions",
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities"
+  ],
+  "prompt": "Find all pairs of positive integers ($p$, $q$) such that both equations $x^{2} - p x + q = 0$ and $x^{2} - q x + p = 0$ have integral solutions.",
+  "model": "claude-opus-4-7",
+  "response_text": "p=q=4, or {p,q}={5,6}.\n\nLet me verify: p=q=4: x²-4x+4=0, x=2. Good.\np=5,q=6: x²-5x+6=0, roots 2,3. x²-6x+5=0, roots 1,5. Good.\n\nFinal answer: (4,4), (5,6), (6,5)",
+  "usage": {
+    "input_tokens": 131,
+    "output_tokens": 119,
+    "thinking_tokens": 0
+  },
+  "latency_s": 2.54230281105265,
+  "cached": false
+}

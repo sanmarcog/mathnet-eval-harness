@@ -1,0 +1,20 @@
+{
+  "id": "03f0",
+  "country": "Bulgaria",
+  "competition": "Bulgarian Winter Tournament",
+  "gold_final_answer": "4045 * 2^2025 + 6",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Sequences and Series > Sums and products",
+    "Algebra > Algebraic Expressions > Sequences and Series > Telescoping series"
+  ],
+  "prompt": "Find $A_{2024}$, where\n$$\nA_n = 1 \\cdot 2 + 3 \\cdot 4 + 5 \\cdot 8 + \\dots + (2n-1) \\cdot 2^n.\n$$",
+  "model": "gpt-5.4",
+  "response_text": "We need\n\\[\nA_n=\\sum_{k=1}^n (2k-1)2^k.\n\\]\nSo\n\\[\nA_n=2\\sum_{k=1}^n k2^k-\\sum_{k=1}^n 2^k.\n\\]\n\nUse the standard identity\n\\[\n\\sum_{k=1}^n k2^k=(n-1)2^{n+1}+2,\n\\]\nand also\n\\[\n\\sum_{k=1}^n 2^k=2^{n+1}-2.\n\\]\n\nTherefore\n\\[\nA_n=2\\big((n-1)2^{n+1}+2\\big)-(2^{n+1}-2).\n\\]\nSimplify:\n\\[\nA_n=(n-1)2^{n+2}+4-2^{n+1}+2\n=2^{n+1}(2n-3)+6.\n\\]\n\nNow plug in \\(n=2024\\):\n\\[\nA_{2024}=2^{2025}(2\\cdot 2024-3)+6=2^{2025}\\cdot 4045+6.\n\\]\n\nFinal answer: \\(\\boxed{4045\\cdot 2^{2025}+6}\\).",
+  "usage": {
+    "input_tokens": 105,
+    "output_tokens": 281,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.916388451005332,
+  "cached": false
+}

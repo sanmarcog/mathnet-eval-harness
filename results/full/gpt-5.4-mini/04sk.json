@@ -1,0 +1,20 @@
+{
+  "id": "04sk",
+  "country": "Czech Republic",
+  "competition": "15th Czech-Polish-Slovak Mathematics Competition",
+  "gold_final_answer": "sqrt(3)",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities",
+    "Algebra > Intermediate Algebra > Quadratic functions"
+  ],
+  "prompt": "Real numbers $x, y, z$ satisfy\n$$\n\\frac{1}{x} + \\frac{1}{y} + \\frac{1}{z} + x + y + z = 0\n$$\nand none of them lies in the open interval $(-1, 1)$. Find the maximum value of $x+y+z$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let  \n\\[\nS=x+y+z,\\qquad P=xy+yz+zx,\\qquad Q=xyz.\n\\]\nGiven\n\\[\n\\frac1x+\\frac1y+\\frac1z+x+y+z=0,\n\\]\nwe have\n\\[\n\\frac{xy+yz+zx}{xyz}+S=0\n\\quad\\Longrightarrow\\quad\nP+SQ=0.\n\\]\nSo\n\\[\nP=-SQ.\n\\]\n\nAlso, since \\(x,y,z\\notin(-1,1)\\), each satisfies either \\(|t|\\ge 1\\). We want the maximum of \\(S\\).\n\nNow consider\n\\[\nx+y+z+\\frac1x+\\frac1y+\\frac1z=0.\n\\]\nBy grouping:\n\\[\nx+\\frac1x+y+\\frac1y+z+\\frac1z=0.\n\\]\nFor any real \\(t\\) with \\(|t|\\ge1\\),\n\\[\nt+\\frac1t\n\\]\nhas the same sign as \\(t\\), and its absolute value is at least \\(2\\), with equality at \\(t=\\pm1\\).\n\nTo maximize \\(S\\), we should make the terms \\(x+\\frac1x,\\ y+\\frac1y,\\ z+\\frac1z\\) balance while keeping \\(x,y,z\\) as large as possible. A standard extremal check shows the maximum occurs when two variables are equal and one is \\(-1\\). Let\n\\[\nx=y=a,\\qquad z=-1.\n\\]\nThen the condition becomes\n\\[\n2a-1+\\frac{2}{a}-1=0\n\\]\nso\n\\[\n2a+\\frac{2}{a}=2\n\\quad\\Longrightarrow\\quad\na+\\frac1a=1.\n\\]\nThis has no real solution, so that case is impossible.\n\nTry \\(x=y=a,\\ z=1\\). Then\n\\[\n2a+1+\\frac{2}{a}+1=0\n\\]\nimpossible for \\(a\\ge1\\). So the maximum must occur with one positive and two negative numbers (or vice versa), and the boundary case is when two variables are \\(-1\\).\n\nLet\n\\[\nx=y=-1,\\qquad z=t.\n\\]\nThen\n\\[\n-2+t-2+\\frac1t=0\n\\quad\\Longrightarrow\\quad\nt+\\frac1t=4.\n\\]\nHence\n\\[\nt^2-4t+1=0\n\\quad\\Longrightarrow\\quad\nt=2\\pm\\sqrt3.\n\\]\nTo maximize \\(S=-2+t\\), take\n\\[\nt=2+\\sqrt3.\n\\]\nThus\n\\[\nS_{\\max}=-2+(2+\\sqrt3)=\\sqrt3.\n\\]\n\nSo the maximum value is attained at \\((x,y,z)=(-1,-1,2+\\sqrt3)\\) and equals \\(\\sqrt3\\).\n\nFinal answer: \\(\\sqrt3\\)",
+  "usage": {
+    "input_tokens": 124,
+    "output_tokens": 647,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 4.539564067032188,
+  "cached": false
+}

@@ -1,0 +1,26 @@
+{
+  "id": "0eon",
+  "country": "South Africa",
+  "competition": "South African Mathematics Olympiad",
+  "gold_final_answer": "2, 3, 31",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Factorization techniques",
+    "Number Theory > Modular Arithmetic",
+    "Algebra > Prealgebra / Basic Algebra > Integers"
+  ],
+  "prompt": "Find three prime factors of: $5^{2015} + 5^{2016} + 5^{2017} + 31^{2016}$\nNB: Show all your working!",
+  "model": "gpt-5.4",
+  "response_text": "\\[\n5^{2015}+5^{2016}+5^{2017}+31^{2016}\n=5^{2015}(1+5+25)+31^{2016}\n=31\\cdot 5^{2015}+31^{2016}.\n\\]\n\nNow factor out \\(31\\):\n\n\\[\n31\\cdot 5^{2015}+31^{2016}\n=31\\left(5^{2015}+31^{2015}\\right).\n\\]\n\nSo one prime factor is immediately\n\n\\[\n\\boxed{31}.\n\\]\n\nNow look at \\(5^{2015}+31^{2015}\\). Since \\(2015\\) is odd, we use\n\n\\[\na^n+b^n \\text{ is divisible by } a+b \\quad \\text{when } n \\text{ is odd}.\n\\]\n\nThus\n\n\\[\n5^{2015}+31^{2015}\n\\]\nis divisible by\n\n\\[\n5+31=36.\n\\]\n\nThe prime factors of \\(36\\) are \\(2\\) and \\(3\\). Hence \\(2\\) and \\(3\\) also divide the original number.\n\nWe can also verify directly:\n\n- The number is even since all terms are odd, and sum of four odd numbers is even.\n- Mod \\(3\\): \\(5\\equiv 2\\), \\(31\\equiv 1\\), so\n  \\[\n  5^{2015}+5^{2016}+5^{2017}+31^{2016}\n  \\equiv 2+1+2+1=6\\equiv 0 \\pmod 3.\n  \\]\n\nTherefore three prime factors are\n\n\\[\n\\boxed{2,\\ 3,\\ 31}.\n\\]\n\nFinal answer: \\(2, 3, 31\\)",
+  "usage": {
+    "input_tokens": 89,
+    "output_tokens": 382,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 4.82927944289986,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "normalized",
+    "predicted": "\\(2, 3, 31\\)"
+  }
+}

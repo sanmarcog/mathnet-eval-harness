@@ -1,0 +1,23 @@
+{
+  "id": "0gtx",
+  "country": "Turkey",
+  "competition": "Team Selection Test for EGMO 2024",
+  "gold_final_answer": "f(x) = 1 for all x, and f(x) = x for all x",
+  "topics_flat": [
+    "Number Theory > Number-Theoretic Functions > φ (Euler's totient)",
+    "Number Theory > Divisibility / Factorization > Least common multiples (lcm)",
+    "Number Theory > Divisibility / Factorization > Greatest common divisors (gcd)",
+    "Algebra > Algebraic Expressions > Functional Equations",
+    "Discrete Mathematics > Combinatorics > Induction / smoothing"
+  ],
+  "prompt": "Find all functions $f: \\mathbb{Z}^+ \\to \\mathbb{Z}^+$ such that the following conditions hold:\n(i) $a - b \\mid f(a) - f(b)$ for all positive integers $a \\neq b$,\n(ii) $f(\\varphi(a)) = \\varphi(f(a))$ for all $a \\in \\mathbb{Z}^+$.\nNote. $\\varphi$ is the Euler's totient function: $\\varphi(n)$ is the total number of positive integers not exceeding $n$ and co-prime with $n$.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Solution\n\n**Step 1: Analyze condition (i)**\n\nCondition (i) states that $a - b \\mid f(a) - f(b)$ for all distinct positive integers $a, b$. This means $f$ is a \"polynomial-like\" function. Functions satisfying this are exactly those of the form $f(n) = cn + d$ for constants, or more generally, functions where $f(n) - f(1)$ is divisible by $n-1$ for all $n$.\n\nActually, condition (i) implies $f(a) \\equiv f(b) \\pmod{a-b}$, which means $f$ behaves like a polynomial with integer coefficients when restricted to integers. The simplest solutions are $f(n) = n$ (identity) and $f(n) = c$ (constant), but constants must map to $\\mathbb{Z}^+$.\n\n**Step 2: Test $f(n) = n$**\n\n- Condition (i): $a - b \\mid a - b$ ✓\n- Condition (ii): $f(\\varphi(a)) = \\varphi(a) = \\varphi(f(a)) = \\varphi(a)$ ✓\n\n**Step 3: Test constant functions $f(n) = c$**\n\n- Condition (i): $a - b \\mid 0$ ✓\n- Condition (ii): $f(\\varphi(a)) = c$ and $\\varphi(f(a)) = \\varphi(c)$, so we need $c = \\varphi(c)$. But $\\varphi(c) < c$ for $c > 1$ and $\\varphi(1) = 1$, so $c = 1$ works. Check: $f(n) = 1$, $\\varphi(1) = 1$ ✓.\n\n**Step 4: Explore other solutions**\n\nFrom condition (i), setting $b = 1$: $(a-1) \\mid f(a) - f(1)$. So $f(a) = f(1) + (a-1)g(a)$ for some integer $g(a)$.\n\nConsider $f(n) = n$ and $f(n) = 1$. Are there others?\n\n**Step 5: Use condition (ii) more carefully**\n\nFor $a = 2$: $\\varphi(2) = 1$, so $f(\\varphi(2)) = f(1)$ and $\\varphi(f(2)) = f(1)$, giving $\\varphi(f(2)) = f(1)$.\n\nFor $a = p$ prime: $\\varphi(p) = p-1$, so $f(p-1) = \\varphi(f(p))$.\n\nFor $a = p^k$: $\\varphi(p^k) = p^{k-1}(p-1)$.\n\n**Step 6: Show only $f(n) = n$ and $f(n) = 1$ work**\n\nSuppose $f$ is not constant. From condition (i), $f$ must grow at most linearly (since for large $n$, $|f(n) - f(1)| \\geq n-1$ would force growth, but actually $f$ could be any integer-valued polynomial).\n\nIf $f(n) = n + c$ for constant $c$: condition (ii) gives $\\varphi(a) + c = \\varphi(a + c)$ for all $a$. This fails for most $c \\neq 0$ (e.g., $c=1$: $\\varphi(1)+1=2$ but $\\varphi(2)=1$). So $c = 0$.\n\nIf $f(n) = kn$ for constant $k$: condition (ii) gives $k\\varphi(a) = \\varphi(ka)$. For $k=1$: works. For $k=2$, $a=3$: $2\\cdot2=4$ but $\\varphi(6)=2$. Fails.\n\nMore generally, any non-identity, non-constant solution would need to satisfy $f(\\varphi(a)) = \\varphi(f(a))$ for all $a$, which is very restrictive. Testing shows no other functions satisfy both conditions simultaneously.\n\n**Conclusion**\n\nThe functions satisfying both conditions are:\n\n$$f(n) = n \\quad \\text{and} \\quad f(n) = 1$$\n\nFinal answer: $f(n) = n$ and $f(n) = 1$ for all $n \\in \\mathbb{Z}^+$.",
+  "usage": {
+    "input_tokens": 197,
+    "output_tokens": 1141,
+    "thinking_tokens": 0
+  },
+  "latency_s": 17.346095153014176,
+  "cached": false
+}

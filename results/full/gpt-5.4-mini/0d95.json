@@ -1,0 +1,21 @@
+{
+  "id": "0d95",
+  "country": "Saudi Arabia",
+  "competition": "SAUDI ARABIAN MATHEMATICAL COMPETITIONS",
+  "gold_final_answer": "403",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Invariants / monovariants",
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments",
+    "Algebra > Prealgebra / Basic Algebra > Integers"
+  ],
+  "prompt": "Consider the set $X=\\{1,2,3, \\ldots, 2018\\}$. How many positive integers $k$ with $2 \\leq k \\leq 2017$ that satisfy the following conditions:\n\ni) There exists some partition of the set $X$ into $1009$ disjoint pairs which are $(a_{1}, b_{1}), (a_{2}, b_{2}), \\ldots, (a_{1009}, b_{1009})$ with $|a_{i}-b_{i}| \\in \\{1, k\\}$.\n\nii) For all partitions satisfy the condition (i), the sum $T=\\sum_{i=1}^{1009}|a_{i}-b_{i}|$ has the right most digit is $9$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let the pairs in a valid partition have differences \\(1\\) or \\(k\\).  \nSuppose among the \\(1009\\) pairs, exactly \\(x\\) pairs have difference \\(k\\), so the other \\(1009-x\\) pairs have difference \\(1\\).\n\nThen the total sum is\n\\[\nT=(1009-x)\\cdot 1+x\\cdot k=1009+x(k-1).\n\\]\n\nSo we need:\n\n1. **At least one such partition exists**, and  \n2. **For every such partition**, \\(T\\equiv 9 \\pmod{10}\\).\n\n---\n\n### Step 1: Condition on \\(T \\pmod{10}\\)\nSince\n\\[\nT=1009+x(k-1),\n\\]\nand \\(1009\\equiv 9\\pmod{10}\\), we need\n\\[\n9+x(k-1)\\equiv 9 \\pmod{10}\n\\]\nfor all possible valid \\(x\\). Hence\n\\[\nx(k-1)\\equiv 0\\pmod{10}\n\\]\nfor all valid \\(x\\).\n\nSo the key is to understand which \\(x\\) can occur.\n\n---\n\n### Step 2: Possible values of \\(x\\)\nA partition of \\(\\{1,2,\\dots,2018\\}\\) into pairs with differences \\(1\\) or \\(k\\) is possible iff \\(k\\) is odd.  \nIndeed, a pair with difference \\(1\\) joins numbers of opposite parity, while a pair with difference \\(k\\) joins opposite parity only when \\(k\\) is odd; since the set has 1009 odd and 1009 even numbers, all pairs must be opposite-parity pairs, so \\(k\\) must be odd.\n\nNow, for odd \\(k\\), there are partitions using only difference \\(1\\) pairs, so \\(x=0\\) is possible. Also, as long as \\(k\\le 2017\\), there are partitions with some \\(k\\)-difference pairs. In fact, because the graph on \\(\\{1,\\dots,2018\\}\\) using edges of length \\(1\\) and \\(k\\) is connected enough to allow a perfect matching with varying numbers of \\(k\\)-edges, the value of \\(x\\) is not fixed. Thus for the congruence to hold for **all** valid partitions, we must have\n\\[\nk-1\\equiv 0\\pmod{10},\n\\]\ni.e.\n\\[\nk\\equiv 1\\pmod{10}.\n\\]\n\nAlso \\(k\\) must be odd, which is automatic if \\(k\\equiv 1\\pmod{10}\\).\n\n---\n\n### Step 3: Count such \\(k\\)\nWe need\n\\[\n2\\le k\\le 2017,\\qquad k\\equiv 1\\pmod{10}.\n\\]\nThese are\n\\[\n11,21,31,\\dots,2011.\n\\]\nThis is an arithmetic progression with first term \\(11\\), last term \\(2011\\), common difference \\(10\\). The number of terms is\n\\[\n\\frac{2011-11}{10}+1=\\frac{2000}{10}+1=200+1=201.\n\\]\n\nFinal answer: \\(201\\)",
+  "usage": {
+    "input_tokens": 218,
+    "output_tokens": 713,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 5.145529648987576,
+  "cached": false
+}

@@ -1,0 +1,21 @@
+{
+  "id": "090p",
+  "country": "Japan",
+  "competition": "The 35th Japanese Mathematical Olympiad",
+  "gold_final_answer": "20!^3",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Recursion, bijection",
+    "Discrete Mathematics > Combinatorics > Invariants / monovariants",
+    "Discrete Mathematics > Combinatorics > Games / greedy algorithms"
+  ],
+  "prompt": "Alice plays a game using a board with 20 rows and 25 columns. Initially, no number is written in any of the $20 \\times 25$ cells. The game proceeds in several turns, and on the $n$-th turn, the following operation is performed:\nChoose a positive integer $k$ and $k$ empty cells $A_1, A_2, \\dots, A_k$ such that for every integer $i$ with $1 \\le i \\le k-1$, the cell $A_{i+1}$ is adjacent to $A_i$ either to the right or above. Write the number $n$ in each of these $k$ cells.\nThe game ends when all cells on the board are filled with some numbers. When Alice plays optimally to minimize the number of turns until the game ends, how many different possible numberings of the board can be obtained when the game ends?\nNote: Numberings that are identical under rotation or reflection are considered distinct and counted as different.",
+  "model": "gpt-5.4",
+  "response_text": "Each turn writes the current turn number on a path of empty cells that moves only **right** or **up** from one chosen cell to the next.\n\nWe want:\n\n1. the **minimum possible number of turns**, and  \n2. among optimal plays, the **number of distinct final numberings**.\n\n---\n\n## 1. Minimum number of turns\n\nIn one turn, the chosen cells form a monotone path using only right/up steps. Hence no two chosen cells can lie in the same **southwest-northeast diagonal**\n\\[\nr+c=\\text{constant},\n\\]\nbecause moving right or up increases \\(r+c\\) by \\(1\\) each step.\n\nSo in any one turn, at most one cell from each diagonal can be filled.\n\nNow the board has \\(20\\) rows and \\(25\\) columns, so the values of \\(r+c\\) range over\n\\[\n2,3,\\dots,45,\n\\]\ni.e. there are\n\\[\n20+25-1=44\n\\]\ndiagonals.\n\nThe longest diagonal has length \\(20\\) (since \\(\\min(20,25)=20\\)). Therefore, because each turn can cover at most one cell from that diagonal, we need at least \\(20\\) turns.\n\nNow show \\(20\\) turns are achievable. Label rows \\(1,\\dots,20\\) from bottom to top and columns \\(1,\\dots,25\\) from left to right. For each row \\(i\\), fill on turn \\(i\\) all cells of that row from left to right:\n\\[\n(i,1),(i,2),\\dots,(i,25).\n\\]\nThis is allowed, since each next cell is to the right. After 20 turns the whole board is filled.\n\nSo the minimum number of turns is\n\n\\[\n\\boxed{20}.\n\\]\n\n---\n\n## 2. Characterizing optimal final numberings\n\nIf the game ends in exactly 20 turns, then look at any diagonal of length 20. Since each turn can hit that diagonal at most once, and there are exactly 20 turns total, **every turn must hit that diagonal exactly once**.\n\nIn particular, along such a diagonal, the numbers \\(1,2,\\dots,20\\) must each appear exactly once.\n\nNow consider two diagonals of length 20 that are adjacent. Since cells written in the same turn form a right/up path, the chosen cell on the next diagonal must be weakly above the chosen cell on the previous one. Chasing this across all 20 turns forces the cells with the same number to form a full horizontal row. Hence each turn fills exactly one entire row.\n\nMore concretely: in an optimal 20-turn filling, the final numbering must be constant on each row, and different rows must receive distinct numbers \\(1,\\dots,20\\). Also, because turn numbers increase with time, the rows are assigned these numbers in some order: if row \\(r\\) is filled on turn \\(t\\), then every cell in row \\(r\\) gets number \\(t\\).\n\nThus every optimal final numbering is obtained by choosing a permutation of the 20 rows and assigning turn numbers \\(1,\\dots,20\\) accordingly.\n\nNumber of such numberings:\n\\[\n20!.\n\\]\n\n---\n\nFinal answer: \\(20!\\)",
+  "usage": {
+    "input_tokens": 259,
+    "output_tokens": 690,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 12.489505636971444,
+  "cached": false
+}

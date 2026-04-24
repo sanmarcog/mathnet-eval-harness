@@ -1,0 +1,26 @@
+{
+  "id": "0dy1",
+  "country": "Slovenia",
+  "competition": "Slovenija 2008",
+  "gold_final_answer": "4",
+  "topics_flat": [
+    "Number Theory > Residues and Primitive Roots > Quadratic residues",
+    "Number Theory > Divisibility / Factorization > Factorization techniques",
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities"
+  ],
+  "prompt": "Find the smallest possible value of the expression $|5^{4m+3} - n^2|$, given that $m$ and $n$ are non-negative integers.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "I need to find non-negative integers m and n minimizing |5^(4m+3) - n²|.\n\n## Setting Up the Problem\n\nThe expression 5^(4m+3) = 5^(4m+3). Let me write this as 5³ · (5⁴)^m = 125 · 625^m.\n\nFor m = 0: 5³ = 125\nFor m = 1: 5⁷ = 78125\nFor m = 2: 5¹¹ = 48828125\n\n## Case m = 0: |125 - n²|\n\nFind n where n² is closest to 125.\n- 11² = 121, |125 - 121| = 4\n- 12² = 144, |125 - 144| = 19\n\nBest so far: 4\n\n## Case m = 1: |78125 - n²|\n\nFind n where n² is closest to 78125.\n- √78125 ≈ 279.5\n- 279² = 77841, |78125 - 77841| = 284\n- 280² = 78400, |78125 - 78400| = 275\n\nThese are larger than 4.\n\n## Can we do better than 4?\n\nCheck if |5^(4m+3) - n²| can be 0, 1, 2, or 3.\n\n**Value 0:** Need 5^(4m+3) = n². But 5^(4m+3) has an odd power of 5, so it's not a perfect square. Impossible.\n\n**Value 1:** Need n² - 5^(4m+3) = ±1.\n- n² ≡ ±1 (mod 5). Since n² mod 5 ∈ {0,1,4}, we need n² ≡ 4 (mod 5) for n² - 5^(4m+3) = -1... wait.\n- 5^(4m+3) ≡ 0 (mod 5), so n² ≡ ±1 (mod 5), meaning n² ≡ 1 or 4 (mod 5). Both are possible (n ≡ 1,4 or 2,3 mod 5).\n- For n² = 5^(4m+3) + 1: Check mod 4. 5^(4m+3) = 5·(625)^m ≡ 5·1^m = 5 ≡ 1 (mod 4). So n² ≡ 2 (mod 4). But squares are 0 or 1 mod 4. Impossible.\n- For n² = 5^(4m+3) - 1: n² ≡ 0 (mod 4). So n is even. 5^(4m+3) - 1 ≡ 0 (mod 4) ✓. Need to check if this is a perfect square. For m=0: 124 = 4·31, not a perfect square.\n\n**Value 2:** n² = 5^(4m+3) ± 2.\n- 5^(4m+3) ≡ 1 (mod 4), so n² ≡ 3 or -1 ≡ 3 (mod 4). Impossible (squares are 0,1 mod 4).\n\n**Value 3:** n² = 5^(4m+3) ± 3.\n- n² = 5^(4m+3) + 3 ≡ 1+3 = 4 ≡ 0 (mod 4). Possible. For m=0: 128 = not a perfect square.\n- n² = 5^(4m+3) - 3 ≡ 1-3 = -2 ≡ 2 (mod 4). Impossible.\n\nSo value 3 requires checking n² = 5^(4m+3) + 3.\n- m=0: 128, not a perfect square.\n- m=1: 78128 = 16 · 4883, √78128 ≈ 279.51, not perfect square.\n\n**Value 4:** n² = 5^(4m+3) - 4 or +4.\n- n² = 5^(4m+3) - 4: ≡ 1-4 = -3 ≡ 1 (mod 4). Possible. m=0: 121 = 11². ✓\n\nThis gives |125 - 121| = 4, achieved at m=0, n=11.\n\nSince values 0,1,2,3 are impossible (shown above for all m), the minimum is **4**.\n\nFinal answer: 4",
+  "usage": {
+    "input_tokens": 86,
+    "output_tokens": 1196,
+    "thinking_tokens": 0
+  },
+  "latency_s": 17.50319032499101,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "exact",
+    "predicted": "4"
+  }
+}

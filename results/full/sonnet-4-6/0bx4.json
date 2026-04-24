@@ -1,0 +1,21 @@
+{
+  "id": "0bx4",
+  "country": "Romania",
+  "competition": "THE 68th ROMANIAN MATHEMATICAL OLYMPIAD",
+  "gold_final_answer": "x = 13, y = 5",
+  "topics_flat": [
+    "Algebra > Prealgebra / Basic Algebra > Simple Equations",
+    "Number Theory > Divisibility / Factorization > Factorization techniques",
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities"
+  ],
+  "prompt": "Two children, Alex and Cristi, play several times a game, in which the winner receives $x$ points, and the loser $y$ points ($x$ and $y$ are nonnegative integers, with $x > y$, and in any game one of the children is the winner and the other is the loser). The final score is $147$ to $123$, in Alex's favour. Cristi has won $6$ games. Determine the numbers $x$ and $y$.\n\nBogdan Antohe",
+  "model": "claude-sonnet-4-6",
+  "response_text": "Let's say Alex won $a$ games and Cristi won 6 games.\n\nTotal points: Alex gets $ax + 6y = 147$ and Cristi gets $6x + ay = 123$.\n\nAdding: $(a+6)(x+y) = 270$\n\nSubtracting: $(a-6)(x-y) = 24$\n\nLet $n = a + 6$ (total games) and $d = x - y > 0$.\n\nFrom the subtraction equation: $(a-6)(x-y) = 24$, so $(n-12) \\cdot d = 24$.\n\nFrom the addition equation: $n(x+y) = 270$.\n\nLet $s = x + y$. Then $ns = 270$ and $(n-12)d = 24$.\n\nAlso $x = (s+d)/2$ and $y = (s-d)/2$, so $s$ and $d$ must have the same parity, and $y \\geq 0$ means $s \\geq d$.\n\nFrom $ns = 270$: $n$ divides 270.\nFrom $(n-12)d = 24$: $n > 12$ (since $d > 0$, and $a \\geq 0$ means $n \\geq 6$; if $n = 12$ then $a = 6$ and $(0)d = 24$ impossible, so $n > 12$).\n\nDivisors of 270 greater than 12: 15, 18, 27, 30, 45, 54, 90, 135, 270.\n\nFor each, compute $d = 24/(n-12)$:\n- $n=15$: $d = 24/3 = 8$, $s = 270/15 = 18$. Check $s \\geq d$: $18 \\geq 8$ ✓. $x = 13, y = 5$. Check parity: $s+d=26$ even ✓.\n- $n=18$: $d = 24/6 = 4$, $s = 15$. $s+d=19$ odd → $x,y$ not integers. ✗\n- $n=27$: $d = 24/15$ not integer. ✗\n- $n=30$: $d = 24/18$ not integer. ✗\n- $n=36$: $36 \\nmid 270$. ✗\n- $n=45$: $d = 24/33$ not integer. ✗\n\nSo the only solution is $n = 15$, $d = 8$, $s = 18$, giving $x = 13$, $y = 5$.\n\nVerify: $a = n - 6 = 9$. Alex wins 9 games, Cristi wins 6.\n- Alex: $9 \\times 13 + 6 \\times 5 = 117 + 30 = 147$ ✓\n- Cristi: $6 \\times 13 + 9 \\times 5 = 78 + 45 = 123$ ✓\n\nFinal answer: $x = 13, y = 5$",
+  "usage": {
+    "input_tokens": 165,
+    "output_tokens": 782,
+    "thinking_tokens": 0
+  },
+  "latency_s": 10.140155378961936,
+  "cached": false
+}

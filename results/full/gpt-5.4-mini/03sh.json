@@ -1,0 +1,21 @@
+{
+  "id": "03sh",
+  "country": "China",
+  "competition": "China Mathematical Competition",
+  "gold_final_answer": "1",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities > QM-AM-GM-HM / Power Mean",
+    "Algebra > Algebraic Expressions > Polynomials > Polynomial operations",
+    "Algebra > Algebraic Expressions > Sequences and Series > Sums and products"
+  ],
+  "prompt": "The number of real solutions for equation\n$$\n(x^{2006} + 1)(1 + x^2 + x^4 + \\cdots + x^{2004}) = 2006x^{2005}\n$$\nis \\underline{\\quad}.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let  \n\\[\nS=1+x^2+x^4+\\cdots+x^{2004}.\n\\]\nThen\n\\[\nS=\\sum_{k=0}^{1002}x^{2k}.\n\\]\nUse the identity\n\\[\n(x^2-1)S=x^{2006}-1,\n\\]\nso for \\(x\\neq \\pm1\\),\n\\[\nS=\\frac{x^{2006}-1}{x^2-1}.\n\\]\nThe equation becomes\n\\[\n(x^{2006}+1)\\frac{x^{2006}-1}{x^2-1}=2006x^{2005},\n\\]\nhence\n\\[\n\\frac{x^{4012}-1}{x^2-1}=2006x^{2005}.\n\\]\nMultiply by \\(x^2-1\\):\n\\[\nx^{4012}-1=2006x^{2005}(x^2-1),\n\\]\nor\n\\[\nx^{4012}-2006x^{2007}+2006x^{2005}-1=0.\n\\]\nFactor by grouping:\n\\[\n(x^{2005}-1)(x^{2007}-1)=0.\n\\]\nSo real solutions are the real roots of\n\\[\nx^{2005}=1 \\quad\\text{or}\\quad x^{2007}=1.\n\\]\nSince both exponents are odd, each equation has exactly one real solution:\n\\[\nx=1.\n\\]\nCheck \\(x=1\\) in the original equation:\n\\[\n(1+1)(1003)=2006,\n\\]\ntrue.\n\nThus there is exactly one real solution.\n\nFinal answer: \\(1\\)",
+  "usage": {
+    "input_tokens": 103,
+    "output_tokens": 360,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 2.660990481963381,
+  "cached": false
+}

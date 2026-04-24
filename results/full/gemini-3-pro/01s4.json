@@ -1,0 +1,20 @@
+{
+  "id": "01s4",
+  "country": "Belarus",
+  "competition": "SELECTION and TRAINING SESSION",
+  "gold_final_answer": "All solutions are given by constant p(x) = a. If a = 0, q(x) is arbitrary in R[x]. If a ≠ 0, then q must satisfy q(x) + q(1 − x) = 1 for all real x, equivalently q(x) = (x − 1/2) r((x − 1/2)^2) + 1/2 for some polynomial r(x) in R[x].",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials",
+    "Algebra > Algebraic Expressions > Functional Equations"
+  ],
+  "prompt": "Find all pairs of polynomials $p(x), q(x) \\in \\mathbb{R}[x]$ satisfying the equality\n$$\np(x^2) = p(x)q(1-x) + p(1-x)q(x)\n$$\nfor all real $x$.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find all pairs of polynomials $p(x), q(x) \\in \\mathbb{R}[x]$ satisfying the given equation:\n$$ p(x^2) = p(x)q(1-x) + p(1-x)q(x) $$\n\nFirst, observe the right-hand side of the equation. Let $f(x) = p(x)q(1-x) + p(1-x)q(x)$. \nIf we substitute $1-x$ for $x$, we get:\n$$ f(1-x) = p(1-x)q(x) + p(x)q(1-x) = f(x) $$\nThis means that the right-hand side is symmetric with respect to the substitution $x \\to 1-x$. Because the left-hand side must equal the right-hand side for all real $x$, it must also share this symmetry. Therefore:\n$$ p(x^2) = p((1-x)^2) $$\nfor all real $x$.\n\nLet $p(x)$ be a polynomial of degree $n$. If $n \\ge 1$, we can write $p(x) = a_n x^n + a_{n-1} x^{n-1} + \\dots + a_0$ with $a_n \\neq 0$. \nSubstituting into our symmetry condition:\n$$ a_n x^{2n} + a_{n-1} x^{2n-2} + \\dots = a_n (1-x)^{2n} + a_{n-1} (1-x)^{2n-2} + \\dots $$\nExpanding the right side, the term of degree $2n$ is $a_n x^{2n}$, and the term of degree $2n-1$ is $-2n a_n x^{2n-1}$. \nOn the left side, the coefficient of $x^{2n-1}$ is $0$. For the two polynomials to be identical, their coefficients must match, which implies:\n$$ -2n a_n = 0 $$\nSince $a_n \\neq 0$, we must have $n = 0$. Thus, $p(x)$ must be a constant polynomial. Let $p(x) = c$ for some real number $c$.\n\nSubstitute $p(x) = c$ back into the original equation:\n$$ c = c \\cdot q(1-x) + c \\cdot q(x) $$\n$$ c = c(q(x) + q(1-x)) $$\n\nThis gives us two cases based on the value of $c$:\n1. **If $c = 0$**: The equation becomes $0 = 0$, which holds true for any polynomial $q(x) \\in \\mathbb{R}[x]$.\n2. **If $c \\neq 0$**: We can divide both sides by $c$ to obtain $1 = q(x) + q(1-x)$. This holds for any polynomial $q(x)$ that satisfies this symmetry condition (for example, $q(x) = \\frac{1}{2} + g(x - \\frac{1}{2})$ where $g$ is any odd polynomial).\n\nFinal answer: p(x) = 0 \\text{ with any } q(x) \\in \\mathbb{R}[x], \\text{ and } p(x) = c \\neq 0 \\text{ with any } q(x) \\in \\mathbb{R}[x] \\text{ satisfying } q(x) + q(1-x) = 1",
+  "usage": {
+    "input_tokens": 105,
+    "output_tokens": 802,
+    "thoughts_tokens": 4706
+  },
+  "latency_s": 48.288294657017104,
+  "cached": false
+}

@@ -1,0 +1,21 @@
+{
+  "id": "0a22",
+  "country": "Netherlands",
+  "competition": "BxMO/EGMO Team Selection Test",
+  "gold_final_answer": "[(3,5), (5,3)]",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Greatest common divisors (gcd)",
+    "Number Theory > Divisibility / Factorization > Prime numbers",
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities"
+  ],
+  "prompt": "Find all pairs of prime numbers $(p, q)$ for which there exist positive integers $(m, n)$ such that\n$$\n(p+q)^m = (p-q)^n.\n$$",
+  "model": "gpt-5.4-mini",
+  "response_text": "We need\n\\[\n(p+q)^m=(p-q)^n\n\\]\nfor some positive integers \\(m,n\\), with \\(p,q\\) prime.\n\nSince the left side is positive, the right side must be positive, so \\(p-q>0\\), hence \\(p>q\\).\n\nNow\n\\[\np+q > p-q > 0.\n\\]\nBoth numbers are integers. If\n\\[\na^m=b^n\n\\]\nfor positive integers \\(a>b\\), then the larger base must be a power of the smaller base with exponent ratio; in particular, the prime factorizations of \\(a\\) and \\(b\\) must match exactly up to powers. Here \\(p+q\\) and \\(p-q\\) have the same parity, and\n\\[\n\\gcd(p+q,p-q)=\\gcd(p+q,2q).\n\\]\n\nWe split into cases:\n\n### 1) \\(q\\neq 2\\)\nThen \\(p,q\\) are odd primes, so \\(p+q\\) and \\(p-q\\) are even. Hence\n\\[\np+q \\ge 4,\\quad p-q \\ge 2.\n\\]\nAlso\n\\[\n(p+q)^m=(p-q)^n\n\\]\nimplies \\(p+q\\) and \\(p-q\\) are powers of the same integer. But note\n\\[\n(p+q)-(p-q)=2q\n\\]\nis fixed, and if \\(p-q\\ge 2\\), then \\(p+q\\) cannot be a proper power of \\(p-q\\) because it is strictly larger yet differs by only \\(2q\\). More directly, let \\(d=\\gcd(p+q,p-q)\\). Then both are powers of \\(d\\), say\n\\[\np+q=d^r,\\qquad p-q=d^s,\\qquad r,s\\ge1.\n\\]\nSince \\(p+q>p-q\\), we have \\(r>s\\), and\n\\[\n2q=d^s(d^{r-s}-1).\n\\]\nBecause \\(q\\) is prime, this forces very small possibilities. Checking \\(d=2\\) gives \\(p-q\\) a power of 2 and \\(p+q\\) another power of 2; then both are even, so \\(p\\) and \\(q\\) are odd, okay. But then\n\\[\n(p+q)-(p-q)=2q\n\\]\nis the difference of two powers of 2. The only way two powers of 2 differ by twice a prime and remain symmetric around the prime \\(p\\) is impossible except when \\(q=2\\) (see next case). Thus no solutions with \\(q\\neq2\\).\n\n### 2) \\(q=2\\)\nThen the equation becomes\n\\[\n(p+2)^m=(p-2)^n.\n\\]\nSince \\(p\\) is an odd prime \\(>2\\), both bases are positive odd integers. But they are distinct and satisfy\n\\[\np+2>p-2>0.\n\\]\nIf two positive integers greater than 1 have equal positive powers, they must be powers of the same integer. Here the difference is\n\\[\n(p+2)-(p-2)=4.\n\\]\nThe only way two powers of the same integer differ by 4 is very limited. Testing the smallest prime \\(p=3\\):\n\\[\n5^m=1^n\n\\]\nimpossible. For \\(p\\ge5\\), both bases are at least \\(3\\), and since \\(p+2\\) and \\(p-2\\) are distinct odd numbers differing by 4, they cannot be equal powers of the same integer. Hence no solution here either.\n\nTherefore, there are no prime pairs \\((p,q)\\) satisfying the equation.\n\nFinal answer: There are no such pairs of primes \\((p,q)\\).",
+  "usage": {
+    "input_tokens": 88,
+    "output_tokens": 841,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 5.559511187020689,
+  "cached": false
+}

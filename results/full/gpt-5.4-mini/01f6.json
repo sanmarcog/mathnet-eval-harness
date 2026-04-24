@@ -1,0 +1,20 @@
+{
+  "id": "01f6",
+  "country": "Baltic Way",
+  "competition": "Baltic Way 2019",
+  "gold_final_answer": "(3,4), (5,6), (6,7)",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Sequences and Series > Recurrence relations",
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities"
+  ],
+  "prompt": "Let $F_n$ be a sequence defined recursively by $F_1 = F_2 = 1$ and $F_{n+1} = F_n + F_{n-1}$ for $n \\ge 2$. Find all pairs of positive integers $(x, y)$ such that\n$$\n5F_x - 3F_y = 1\n$$",
+  "model": "gpt-5.4-mini",
+  "response_text": "We use the Fibonacci recursion and check the equation modulo small integers.\n\nThe sequence begins\n\\[\nF_1=1,\\ F_2=1,\\ F_3=2,\\ F_4=3,\\ F_5=5,\\dots\n\\]\nand the equation is\n\\[\n5F_x-3F_y=1.\n\\]\n\nSince \\(5F_x \\equiv 1 \\pmod 3\\), we get\n\\[\n2F_x \\equiv 1 \\pmod 3 \\quad\\Rightarrow\\quad F_x \\equiv 2 \\pmod 3.\n\\]\nNow Fibonacci numbers modulo \\(3\\) repeat with period \\(8\\):\n\\[\n1,1,2,0,2,2,1,0,\\dots\n\\]\nSo \\(F_x\\equiv 2\\pmod 3\\) only when\n\\[\nx \\equiv 3,5,6 \\pmod 8.\n\\]\n\nAlso modulo \\(5\\), the equation gives\n\\[\n-3F_y \\equiv 1 \\pmod 5\n\\quad\\Rightarrow\\quad\n2F_y \\equiv 1 \\pmod 5\n\\quad\\Rightarrow\\quad\nF_y \\equiv 3 \\pmod 5.\n\\]\nFibonacci numbers modulo \\(5\\) have period \\(20\\), and the residue \\(3\\) occurs only for certain \\(y\\). But instead of using that fully, let's test small values of \\(x\\) consistent with the equation.\n\nBecause \\(5F_x = 1+3F_y\\), the left side is close to a multiple of \\(3\\), so \\(F_x\\) must be small if \\(F_y\\) is to be positive. Try \\(x=1\\):\n\\[\n5F_1-3F_y=1 \\implies 5-3F_y=1 \\implies F_y=\\frac43,\n\\]\nimpossible.\n\nTry \\(x=2\\):\n\\[\n5-3F_y=1\n\\]\nsame impossibility.\n\nTry \\(x=3\\):\n\\[\n5\\cdot 2-3F_y=1 \\implies 10-3F_y=1 \\implies F_y=3,\n\\]\nso \\(y=4\\).\n\nCheck:\n\\[\n5F_3-3F_4 = 5\\cdot 2 - 3\\cdot 3 = 10-9=1.\n\\]\n\nNow we show this is the only solution. If \\(x\\ge 4\\), then \\(F_x\\ge 3\\), so\n\\[\n5F_x-1 = 3F_y.\n\\]\nThus \\(5F_x\\equiv 1\\pmod 3\\), which is fine, but we can compare sizes. Since \\(F_y\\) is positive, we need\n\\[\n5F_x > 1.\n\\]\nMore importantly, for \\(x\\ge 4\\), \\(F_x\\) grows quickly and \\(5F_x-1\\) is not a Fibonacci number multiple of \\(3\\) in the required way; checking the next few admissible \\(x\\) values from the mod \\(3\\) restriction (\\(x\\equiv 3,5,6\\pmod 8\\)) gives:\n- \\(x=5\\): \\(5F_5-1=24\\), so \\(F_y=8\\), not Fibonacci.\n- \\(x=6\\): \\(5F_6-1=39\\), so \\(F_y=13\\), not Fibonacci.\n- larger \\(x\\) only increase the gap, and no further Fibonacci value fits.\n\nHence the unique solution is\n\\[\n(x,y)=(3,4).\n\\]\n\nFinal answer: \\((3,4)\\)",
+  "usage": {
+    "input_tokens": 126,
+    "output_tokens": 821,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 5.005550267058425,
+  "cached": false
+}

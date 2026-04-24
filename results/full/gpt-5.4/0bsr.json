@@ -1,0 +1,20 @@
+{
+  "id": "0bsr",
+  "country": "Romania",
+  "competition": "67th Romanian Mathematical Olympiad",
+  "gold_final_answer": "12",
+  "topics_flat": [
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities",
+    "Algebra > Algebraic Expressions > Polynomials > Polynomial operations"
+  ],
+  "prompt": "a) Prove that, for every integer $k$, the equation $x^3 - 24x + k = 0$ has at most one integer solution.\n\nb) Prove that the equation $x^3 + 24x - 2016 = 0$ has exactly one integer solution.",
+  "model": "gpt-5.4",
+  "response_text": "Let  \n\\[\nf_k(x)=x^3-24x+k.\n\\]\n\nWe will use a factorization argument.\n\n## a) At most one integer solution for \\(x^3-24x+k=0\\)\n\nSuppose \\(a,b\\in\\mathbb Z\\) are two integer solutions. Then\n\\[\na^3-24a+k=0,\\qquad b^3-24b+k=0.\n\\]\nSubtracting,\n\\[\na^3-b^3-24(a-b)=0.\n\\]\nSo\n\\[\n(a-b)(a^2+ab+b^2-24)=0.\n\\]\nIf \\(a\\ne b\\), then\n\\[\na^2+ab+b^2=24.\n\\]\nWe show this is impossible for distinct integers \\(a,b\\).\n\nIndeed,\n\\[\na^2+ab+b^2=\\left(a+\\frac b2\\right)^2+\\frac{3b^2}{4}\\ge 0,\n\\]\nso we just check integer possibilities. Modulo \\(3\\),\n\\[\na^2+ab+b^2 \\equiv 0 \\pmod 3\n\\]\nimplies \\(a\\equiv b\\pmod 3\\). Let \\(a=b+3t\\). But an easier direct observation is:\n\nIf \\(|a|\\ge 5\\), then \\(a^2\\ge 25\\), hence\n\\[\na^2+ab+b^2\\ge a^2-|a||b|+b^2\n\\]\nand a quick check shows values get too large unless \\(|a|,|b|\\le 4\\). So we only need check integers from \\(-4\\) to \\(4\\). Their squares are \\(0,1,4,9,16\\), and one verifies no distinct pair satisfies\n\\[\na^2+ab+b^2=24.\n\\]\n\nA cleaner way: treat it as a quadratic in \\(a\\):\n\\[\na^2+ab+b^2=24.\n\\]\nIts discriminant in \\(a\\) is\n\\[\n\\Delta=b^2-4(b^2-24)=96-3b^2=3(32-b^2).\n\\]\nFor integer \\(a\\), \\(\\Delta\\) must be a perfect square. Hence \\(32-b^2\\ge 0\\), so \\(b^2\\le 32\\), i.e. \\(b\\in\\{0,\\pm1,\\pm2,\\pm3,\\pm4,\\pm5\\}\\). Testing these gives\n\\[\n\\Delta\\in\\{96,93,84,69,48,21\\},\n\\]\nnone of which is a perfect square. Contradiction.\n\nTherefore \\(a=b\\). So there cannot be two distinct integer solutions.\n\nHence the equation has **at most one integer solution** for every integer \\(k\\).\n\n---\n\n## b) Exactly one integer solution for \\(x^3+24x-2016=0\\)\n\nRewrite it as\n\\[\nx^3+24x-2016=0.\n\\]\nWe look for an integer root among divisors of \\(2016\\). Try \\(x=12\\):\n\\[\n12^3+24\\cdot 12=1728+288=2016.\n\\]\nSo\n\\[\n12^3+24\\cdot 12-2016=0,\n\\]\nhence \\(x=12\\) is an integer solution.\n\nNow to prove it is the only one, note that this equation is of the form\n\\[\nx^3-24x+k=0\n\\]\nonly with the opposite sign on the linear term, so we argue directly: the function\n\\[\ng(x)=x^3+24x-2016\n\\]\nis strictly increasing on integers (indeed on all reals), since for \\(m<n\\),\n\\[\ng(n)-g(m)=(n-m)(n^2+nm+m^2+24)>0.\n\\]\nTherefore it can have at most one integer root.\n\nSince \\(x=12\\) is one integer root, it is the unique one.\n\nSo the equation has **exactly one integer solution**, namely \\(x=12\\).\n\nFinal answer: a) The equation \\(x^3-24x+k=0\\) has at most one integer solution for every integer \\(k\\). b) The equation \\(x^3+24x-2016=0\\) has exactly one integer solution, namely \\(x=12\\).",
+  "usage": {
+    "input_tokens": 112,
+    "output_tokens": 966,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 13.88957268896047,
+  "cached": false
+}

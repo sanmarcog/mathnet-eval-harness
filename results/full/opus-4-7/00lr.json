@@ -1,0 +1,20 @@
+{
+  "id": "00lr",
+  "country": "Austria",
+  "competition": "48th Austrian Mathematical Olympiad",
+  "gold_final_answer": "3026",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Inclusion-exclusion",
+    "Number Theory > Divisibility / Factorization > Least common multiples (lcm)"
+  ],
+  "prompt": "Anthony writes down in order all positive integers which are divisible by $2$. Bertha writes down in order all positive integers which are divisible by $3$. Claire writes down in order all positive integers which are divisible by $4$. Orderly Dora writes all numbers written by the other three. Thereby she puts them in order by size and does not repeat a number. What is the $2017$th number in her list?\n(Richard Henner)",
+  "model": "claude-opus-4-7",
+  "response_text": "<think>\nNumbers divisible by 2, 3, or 4 = divisible by 2 or 3. Count up to N: floor(N/2)+floor(N/3)-floor(N/6).\n\nPattern per 6: numbers 2,3,4,6 — 4 numbers per 6.\n2017 = 4*504 + 1. So after 504*6=3024, we have 504*4=2016 numbers. Next is 3024+2=3026.\n</think>\n\nFinal answer: 3026",
+  "usage": {
+    "input_tokens": 199,
+    "output_tokens": 162,
+    "thinking_tokens": 0
+  },
+  "latency_s": 3.0923904810333624,
+  "cached": false
+}

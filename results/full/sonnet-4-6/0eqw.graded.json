@@ -1,0 +1,24 @@
+{
+  "id": "0eqw",
+  "country": "South Africa",
+  "competition": "South African Mathematics Olympiad Second Round",
+  "gold_final_answer": "65%",
+  "topics_flat": [
+    "Algebra > Prealgebra / Basic Algebra > Fractions"
+  ],
+  "prompt": "There are twice as many girls as boys at a school. If $30\\%$ of the girls and $45\\%$ of the boys have already completed their holiday project, what percentage of the learners still needs to complete their project?",
+  "model": "claude-sonnet-4-6",
+  "response_text": "Let boys = b, girls = 2b, total = 3b.\n\nCompleted: 0.30(2b) + 0.45(b) = 0.60b + 0.45b = 1.05b\n\nStill need to complete: 3b - 1.05b = 1.95b\n\nPercentage = 1.95b/3b = 0.65 = 65%\n\nFinal answer: 65%",
+  "usage": {
+    "input_tokens": 96,
+    "output_tokens": 108,
+    "thinking_tokens": 0
+  },
+  "latency_s": 2.3580138160614297,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "exact",
+    "predicted": "65%"
+  }
+}

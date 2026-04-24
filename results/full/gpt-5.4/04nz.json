@@ -1,0 +1,20 @@
+{
+  "id": "04nz",
+  "country": "Croatia",
+  "competition": "Croatia_2018",
+  "gold_final_answer": "2, 9, 38",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Sequences and Series > Telescoping series",
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities"
+  ],
+  "prompt": "Let $a_1, a_2, \\dots, a_{41}$ be an arithmetic sequence such that\n$$\n\\frac{1}{\\sqrt{a_1} + \\sqrt{a_2}} + \\frac{1}{\\sqrt{a_2} + \\sqrt{a_3}} + \\dots + \\frac{1}{\\sqrt{a_{40}} + \\sqrt{a_{41}}}\n$$\nis a positive integer. If $a_1 = 1$, and the common difference of the sequence is a positive integer, find the common difference.\n*(Anastazija Pažanin)*",
+  "model": "gpt-5.4",
+  "response_text": "Let the arithmetic sequence have common difference \\(d\\in \\mathbb Z_{>0}\\). Since \\(a_1=1\\), we have\n\\[\na_n=1+(n-1)d.\n\\]\nWe are given\n\\[\nS=\\sum_{k=1}^{40}\\frac1{\\sqrt{a_k}+\\sqrt{a_{k+1}}}\n\\]\nis a positive integer.\n\nNow rationalize each term:\n\\[\n\\frac1{\\sqrt{a_k}+\\sqrt{a_{k+1}}}\n=\\frac{\\sqrt{a_{k+1}}-\\sqrt{a_k}}{a_{k+1}-a_k}\n=\\frac{\\sqrt{a_{k+1}}-\\sqrt{a_k}}{d}.\n\\]\nSo\n\\[\nS=\\frac1d\\sum_{k=1}^{40}\\left(\\sqrt{a_{k+1}}-\\sqrt{a_k}\\right).\n\\]\nThis telescopes:\n\\[\nS=\\frac{\\sqrt{a_{41}}-\\sqrt{a_1}}{d}.\n\\]\nSince \\(a_1=1\\) and \\(a_{41}=1+40d\\),\n\\[\nS=\\frac{\\sqrt{1+40d}-1}{d}.\n\\]\nWe want \\(S\\) to be a positive integer, say \\(m\\). Then\n\\[\n\\sqrt{1+40d}=1+md.\n\\]\nSquaring:\n\\[\n1+40d=(1+md)^2=1+2md+m^2d^2.\n\\]\nThus\n\\[\n40d=2md+m^2d^2.\n\\]\nSince \\(d>0\\), divide by \\(d\\):\n\\[\n40=2m+m^2d.\n\\]\nHence\n\\[\nd=\\frac{40-2m}{m^2}=\\frac{2(20-m)}{m^2}.\n\\]\nBecause \\(d\\) is a positive integer, \\(m\\) is a positive integer with \\(m<20\\), and \\(m^2\\mid 2(20-m)\\).\n\nAlso from\n\\[\n40=2m+m^2d\\ge 2m+m^2,\n\\]\nwe get\n\\[\nm^2+2m-40\\le 0,\n\\]\nso \\(m\\le 5\\).\n\nCheck \\(m=1,2,3,4,5\\):\n- \\(m=1\\): \\(d=38\\)\n- \\(m=2\\): \\(d=9\\)\n- \\(m=3\\): \\(d=34/9\\) not integer\n- \\(m=4\\): \\(d=3/2\\) not integer\n- \\(m=5\\): \\(d=2/5\\) not integer\n\nNow test whether \\(S\\) is indeed integer:\n- If \\(d=38\\), then\n  \\[\n  S=\\frac{\\sqrt{1+40\\cdot 38}-1}{38}=\\frac{\\sqrt{1521}-1}{38}=\\frac{39-1}{38}=1.\n  \\]\n- If \\(d=9\\), then\n  \\[\n  S=\\frac{\\sqrt{361}-1}{9}=\\frac{19-1}{9}=2.\n  \\]\n\nSo there are exactly two possible common differences.\n\nFinal answer: \\(9\\) or \\(38\\)",
+  "usage": {
+    "input_tokens": 182,
+    "output_tokens": 730,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 9.115227525006048,
+  "cached": false
+}

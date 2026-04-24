@@ -1,0 +1,19 @@
+{
+  "id": "04w2",
+  "country": "Czech Republic",
+  "competition": "First Round of the 73rd Czech and Slovak Mathematical Olympiad (take-home part)",
+  "gold_final_answer": "No",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Prime numbers"
+  ],
+  "prompt": "We shall say that an odd prime $p$ is *kooky* if the sum of all primes smaller than $p$ is a multiple of $p$. Can two consecutive primes be kooky?",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To determine if two consecutive primes can be kooky, let's denote the sequence of primes as $p_1, p_2, p_3, \\dots$, where $p_1 = 2, p_2 = 3, p_3 = 5$, and so on. \n\nLet $S_n$ be the sum of all primes smaller than $p_n$. That is,\n$$S_n = p_1 + p_2 + \\dots + p_{n-1}$$\nA prime $p_n$ is called *kooky* if $p_n$ divides $S_n$. This means there exists some positive integer $k$ such that $S_n = k p_n$.\n\nSuppose for the sake of contradiction that two consecutive primes, $p_n$ and $p_{n+1}$, are both kooky. \nSince $p_n$ is kooky, we have:\n$$S_n = k p_n$$\nThe sum of all primes smaller than $p_{n+1}$ is simply $S_n$ plus the prime $p_n$ itself:\n$$S_{n+1} = S_n + p_n = k p_n + p_n = (k+1)p_n$$\nSince $p_{n+1}$ is also kooky, it must divide $S_{n+1}$. Therefore:\n$$p_{n+1} \\mid (k+1)p_n$$\nBecause $p_n$ and $p_{n+1}$ are distinct primes, they are coprime ($\\gcd(p_n, p_{n+1}) = 1$). By Euclid's Lemma, $p_{n+1}$ must divide $k+1$. \nSince $k \\ge 1$, we have $k+1 \\ge 2$, which means $k+1$ is a positive multiple of $p_{n+1}$. Thus:\n$$k+1 \\ge p_{n+1} \\implies k \\ge p_{n+1} - 1$$\nNow, let's look at the maximum possible value for $S_n$. The sum $S_n$ consists of $n-1$ terms, each of which is strictly less than $p_n$. Therefore:\n$$S_n = p_1 + p_2 + \\dots + p_{n-1} < (n-1)p_n$$\nSubstituting $S_n = k p_n$ into the inequality gives:\n$$k p_n < (n-1)p_n \\implies k < n-1$$\nCombining our two inequalities for $k$, we get:\n$$p_{n+1} - 1 \\le k < n - 1 \\implies p_{n+1} < n$$\nHowever, the $(n+1)$-th prime is always strictly greater than $n$ for all $n \\ge 1$ (in fact, $p_{n+1} \\ge n+1$). This gives $p_{n+1} < n < p_{n+1}$, which is a clear contradiction. \n\nTherefore, our assumption that two consecutive primes can be kooky must be false.\n\nFinal answer: No",
+  "usage": {
+    "input_tokens": 80,
+    "output_tokens": 710,
+    "thoughts_tokens": 2359
+  },
+  "latency_s": 24.011673293076456,
+  "cached": false
+}

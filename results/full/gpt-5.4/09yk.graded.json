@@ -1,0 +1,24 @@
+{
+  "id": "09yk",
+  "country": "Netherlands",
+  "competition": "Junior Mathematical Olympiad",
+  "gold_final_answer": "C",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Invariants / monovariants"
+  ],
+  "prompt": "Joah has a very long liquorice lace. He keeps taking bites out of the lace (but not from the very beginning or end of the lace), each time eating $2$ cm of the liquorice, creating two smaller pieces in the process. He repeats this several times. At the end, he is left with pieces of liquorice lace of $1$, $2$, $3$, $4$, $5$, $6$, $7$, $8$, $9$, and $10$ cm.\nHow long (in cm) was his liquorice lace originally?\nA) $55$ \nB) $66$ \nC) $73$ \nD) $75$ \nE) $81$",
+  "model": "gpt-5.4",
+  "response_text": "Each bite removes a **2 cm middle segment** from one existing piece, splitting that piece into **two** smaller pieces.\n\nSo if a piece of length \\(L\\) is bitten into pieces of lengths \\(a\\) and \\(b\\), then\n\\[\nL=a+2+b.\n\\]\n\nAt the end, the pieces have lengths\n\\[\n1,2,3,4,5,6,7,8,9,10,\n\\]\nwhose total is\n\\[\n1+2+\\cdots+10=55.\n\\]\n\nSo the original length equals\n\n\\[\n55 + 2\\times(\\text{number of bites}).\n\\]\n\nThus we need the number of bites.\n\nStarting with 1 piece, each bite increases the number of pieces by 1.  \nEnding with 10 pieces means\n\\[\n\\text{number of bites}=10-1=9.\n\\]\n\nHence original length\n\\[\n55+2\\cdot 9=55+18=73.\n\\]\n\nFinal answer: 73",
+  "usage": {
+    "input_tokens": 194,
+    "output_tokens": 219,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.468777742004022,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "73"
+  }
+}

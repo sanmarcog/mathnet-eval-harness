@@ -1,0 +1,25 @@
+{
+  "id": "0hg9",
+  "country": "Ukraine",
+  "competition": "62nd Ukrainian National Mathematical Olympiad, Third Round, First Tour",
+  "gold_final_answer": "6",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Geometric Inequalities > Triangle inequalities",
+    "Algebra > Prealgebra / Basic Algebra > Integers"
+  ],
+  "prompt": "There are $n \\ge 3$ segments, their lengths in centimeters are distinct positive integers. It's known that it's possible to form a nondegenerate triangle from any three of these $n$ segments. Suppose that among these segments there are segments with lengths $5$ cm and $12$ cm. What's the largest value $n$ can attain?",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let the lengths be distinct positive integers, and sorted as\n\\[\na_1<a_2<\\cdots<a_n.\n\\]\nSince any three segments form a nondegenerate triangle, for every \\(i<j<k\\),\n\\[\na_i+a_j>a_k.\n\\]\n\nWe are told that \\(5\\) and \\(12\\) are among the lengths.\n\n### Key observation\nBecause \\(5\\) is a length, it must be the smallest length: if there were a smaller positive integer \\(x<5\\), then the three smallest lengths \\(x,5,\\text{(something)}\\) would force strong restrictions, and in particular the maximal possible set is obtained by taking the smallest possible starting point, namely \\(1\\).  \nBut the real bound comes from the triangle condition with the two smallest lengths.\n\nIf the smallest two lengths are \\(a_1<a_2\\), then every other length \\(a_k\\) must satisfy\n\\[\na_k<a_1+a_2.\n\\]\nSo all lengths must be distinct integers in the interval \\([a_1,\\,a_1+a_2-1]\\), which gives at most\n\\[\n(a_1+a_2-1)-a_1+1=a_2\n\\]\nnumbers total. Thus\n\\[\nn\\le a_2.\n\\]\nSince \\(5\\) and \\(12\\) are present, the smallest possible second length is \\(5\\), but \\(5\\) itself is present and distinct from \\(12\\), so the smallest two lengths are at most \\(5\\) and something larger. To maximize \\(n\\), we should make the smallest possible pair with \\(5\\) included and still allow \\(12\\).\n\nTake the smallest length to be \\(1\\), then the second smallest can be \\(5\\). This gives the upper bound\n\\[\na_k<1+5=6,\n\\]\nso the only possible lengths are\n\\[\n1,2,3,4,5,\n\\]\nwhich already shows that \\(12\\) cannot be included. So \\(1\\) is impossible.\n\nTry smallest length \\(2\\). Then with \\(5\\) as the second smallest, we get\n\\[\na_k<2+5=7,\n\\]\nso lengths can only be among\n\\[\n2,3,4,5,6.\n\\]\nAgain \\(12\\) is impossible.\n\nContinue: if the smallest length is \\(a_1\\), and \\(5\\) is the second smallest, then all lengths are \\(<a_1+5\\), so to include \\(12\\) we need\n\\[\n12<a_1+5 \\quad\\Rightarrow\\quad a_1\\ge 8.\n\\]\nNow the smallest length cannot be less than \\(8\\). To maximize \\(n\\), choose the smallest possible \\(a_1=8\\), with \\(5\\) as the second smallest. Then all lengths must lie below \\(13\\), so the possible distinct integers are\n\\[\n5,8,9,10,11,12.\n\\]\nThese 6 numbers do satisfy the triangle condition: the sum of the two smallest is \\(5+8=13\\), and every third length is at most \\(12\\), so every triple works.\n\nThus the largest possible value is\n\\[\n\\boxed{6}.\n\\]\n\nFinal answer: 6",
+  "usage": {
+    "input_tokens": 120,
+    "output_tokens": 720,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 6.077562452992424,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "exact",
+    "predicted": "6"
+  }
+}

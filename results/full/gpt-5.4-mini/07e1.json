@@ -1,0 +1,21 @@
+{
+  "id": "07e1",
+  "country": "Iran",
+  "competition": "Iranian Mathematical Olympiad",
+  "gold_final_answer": "n^2",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Geometric Inequalities > Optimization in geometry",
+    "Algebra > Equations and Inequalities > QM-AM-GM-HM / Power Mean",
+    "Discrete Mathematics > Combinatorics > Games / greedy algorithms"
+  ],
+  "prompt": "Let $n$ be a positive integer. Two players are playing a game in a field of a shape of a $2n \\times 2n$ grid. Initially, the first player is on the top right point and second player is on the bottom left point. Each player, in his turn, moves to an adjacent point, by passing on an edge, such that none of the players have reached it previously. The first player wants to get back to his start position finally and make a non-self-intersecting closed polygon with maximum possible area. On the other hand, the second player wants to minimize this area. Without considering second's player moves, what would be the maximum possible area that first player can always achieve?",
+  "model": "gpt-5.4-mini",
+  "response_text": "The first player can force a simple closed lattice polygon whose vertices lie on the grid points of the \\(2n\\times 2n\\) square.  \nSo the problem is really: what is the largest area of a non-self-intersecting closed polygon formed by grid edges, starting and ending at the top-right corner?\n\nThe maximal possible such polygon is the boundary of the whole \\(2n\\times 2n\\) square, whose area is\n\n\\[\n(2n)^2 = 4n^2.\n\\]\n\nThis area is clearly achievable, and the second player cannot reduce it if we ignore his moves entirely.\n\nFinal answer: \\(\\boxed{4n^2}\\)",
+  "usage": {
+    "input_tokens": 195,
+    "output_tokens": 151,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 1.6694169050315395,
+  "cached": false
+}

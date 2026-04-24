@@ -1,0 +1,20 @@
+{
+  "id": "04rk",
+  "country": "Czech Republic",
+  "competition": "62nd Czech and Slovak Mathematical Olympiad",
+  "gold_final_answer": "a=1, b=4, c=3",
+  "topics_flat": [
+    "Algebra > Intermediate Algebra > Quadratic functions",
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities"
+  ],
+  "prompt": "Find all real $a$, $b$, $c$, such that\n$$\na^2 + b^2 + c^2 = 26, \\quad a+b=5 \\quad \\text{and} \\quad b+c \\ge 7.\n$$",
+  "model": "gpt-5.4",
+  "response_text": "From\n\\[\na+b=5,\n\\]\nwe write\n\\[\na=5-b.\n\\]\nThen the condition\n\\[\na^2+b^2+c^2=26\n\\]\nbecomes\n\\[\n(5-b)^2+b^2+c^2=26.\n\\]\nExpand:\n\\[\n25-10b+b^2+b^2+c^2=26\n\\]\nso\n\\[\n2b^2-10b+c^2=1.\n\\]\nComplete the square in \\(b\\):\n\\[\n2(b^2-5b)+c^2=1\n\\]\n\\[\n2\\left[\\left(b-\\frac52\\right)^2-\\frac{25}{4}\\right]+c^2=1\n\\]\n\\[\n2\\left(b-\\frac52\\right)^2+c^2=\\frac{27}{2}.\n\\]\nThus \\((b,c)\\) lies on the ellipse\n\\[\n2\\left(b-\\frac52\\right)^2+c^2=\\frac{27}{2}.\n\\]\n\nNow use the inequality \\(b+c\\ge 7\\). Let\n\\[\nx=b-\\frac52,\\qquad y=c.\n\\]\nThen the ellipse is\n\\[\n2x^2+y^2=\\frac{27}{2},\n\\]\nand\n\\[\nb+c\\ge 7 \\iff x+y\\ge \\frac92.\n\\]\n\nWe now find the maximum possible value of \\(x+y\\) on the ellipse. By Cauchy (or tangent-line optimization),\n\\[\n(x+y)^2 \\le \\left(2x^2+y^2\\right)\\left(\\frac12+1\\right)\n= \\frac{27}{2}\\cdot \\frac32\n= \\frac{81}{4}.\n\\]\nHence\n\\[\nx+y\\le \\frac92.\n\\]\nBut we also need \\(x+y\\ge \\frac92\\). Therefore necessarily\n\\[\nx+y=\\frac92.\n\\]\nEquality in Cauchy requires\n\\[\n\\frac{x}{1/2}=\\frac{y}{1},\n\\]\nso \\(y=2x\\).\n\nNow solve\n\\[\nx+y=\\frac92,\\qquad y=2x.\n\\]\nThen\n\\[\n3x=\\frac92 \\implies x=\\frac32,\\qquad y=3.\n\\]\nSo\n\\[\nb=x+\\frac52=\\frac32+\\frac52=4,\\qquad c=y=3,\n\\]\nand\n\\[\na=5-b=1.\n\\]\n\nCheck:\n\\[\n1^2+4^2+3^2=1+16+9=26,\\quad a+b=1+4=5,\\quad b+c=4+3=7.\n\\]\nAll conditions hold.\n\nFinal answer: \\((a,b,c)=(1,4,3)\\).",
+  "usage": {
+    "input_tokens": 103,
+    "output_tokens": 611,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 8.563824762939475,
+  "cached": false
+}

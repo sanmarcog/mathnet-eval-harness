@@ -1,0 +1,20 @@
+{
+  "id": "09v7",
+  "country": "Netherlands",
+  "competition": "Second Round, March 2019",
+  "gold_final_answer": "11",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments",
+    "Algebra > Algebraic Expressions > Sequences and Series > Recurrence relations"
+  ],
+  "prompt": "In a tall hat there are one hundred notes, numbered from $1$ to $100$. You want to have three notes with the property that each of the three numbers is smaller than the sum of the other two. For example, the three notes numbered $10$, $15$, and $20$ would be suitable (as $10 < 15 + 20$, $15 < 10 + 20$, and $20 < 10 + 15$), but the notes numbered $3$, $4$, and $7$ would not (as $7$ is not smaller than $3 + 4$). You may (without looking at the numbers on the notes) take some notes from the hat.\nWhat is the smallest number of notes you have to take to be sure to have three notes that meet your wish?",
+  "model": "claude-sonnet-4-6",
+  "response_text": "I need to find the smallest number of notes to guarantee that among them, there exist three numbers forming a valid triple (each number less than the sum of the other two).\n\n## Setting Up the Problem\n\nThree numbers a ≤ b ≤ c satisfy the condition if and only if a + b > c (the other two inequalities are automatic when c is largest).\n\nI need to find the largest set of numbers from {1, ..., 100} where NO three numbers satisfy this condition, then add 1.\n\n## Finding the Largest \"Bad\" Set\n\nA set has no valid triple if for every three elements a ≤ b ≤ c, we have a + b ≤ c. This means the set is \"sum-free\" in the sense that no element is less than the sum of the two preceding ones.\n\nActually, I need: for ANY three elements, the largest is ≥ sum of the two smaller ones. This means the set must be such that when sorted a₁ ≤ a₂ ≤ ... ≤ aₙ, for every i < j < k: aᵢ + aⱼ ≤ aₖ.\n\nThe worst case is when consecutive triples fail, i.e., aₖ ≥ aₖ₋₁ + aₖ₋₂ for all k ≥ 3 (Fibonacci-like growth).\n\n## Constructing the Maximal Bad Set\n\nStarting with the largest possible values (to fit as many as possible within {1,...,100}), I want a sequence where each term is ≥ sum of two previous terms, using numbers ≤ 100.\n\nBuild a Fibonacci-like sequence starting small:\n1, 2, 3, 5, 8, 13, 21, 34, 55, 89\n\nCheck: each term equals sum of previous two (so aₖ = aₖ₋₁ + aₖ₋₂, meaning aₖ₋₂ + aₖ₋₁ = aₖ, not strictly greater). Next would be 144 > 100.\n\nThis gives 10 elements. Can I add more elements from {1,...,100}?\n\nIf I add any number x to this set, I need to check all triples. If x > 89, say x = 90, 91,...,100: take 55, 89, x — need 55 + 89 ≤ x, i.e., 144 ≤ x. Not satisfied for x ≤ 100. So adding any number > 89 creates a valid triple with 55 and 89.\n\nWhat about replacing some elements? The Fibonacci sequence {1,2,3,5,8,13,21,34,55,89} has 10 elements and is maximal within {1,...,100}.\n\nCan I find an 11-element bad set? In a bad set sorted as a₁ < a₂ < ... < a₁₁, we need aₖ ≥ aₖ₋₁ + aₖ₋₂ for all consecutive triples (this is the binding constraint). So:\n- a₃ ≥ a₁ + a₂\n- a₄ ≥ a₂ + a₃ ≥ a₂ + a₁ + a₂ = a₁ + 2a₂\n- The sequence grows at least as fast as Fibonacci.\n\nWith a₁ = 1, a₂ = 2: the minimum sequence is 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144.\nThe 11th term is at least 144 > 100.\n\nWith a₁ = 1, a₂ = 1: 1,1,2,3,5,8,13,21,34,55,89 — but we need distinct numbers from {1,...,100}, so a₁ ≥ 1, a₂ ≥ 2 (distinct positive integers).\n\nActually with distinct integers, minimum is a₁=1, a₂=2, giving 11th term ≥ 144 > 100.\n\nTherefore, the maximum size of a bad set is **10**.\n\n## Conclusion\n\nWith 10 notes, it's possible to have no valid triple (e.g., {1,2,3,5,8,13,21,34,55,89}).\n\nWith 11 notes, we must have a valid triple.\n\n**Verification**: Any 11 distinct numbers from {1,...,100}, when sorted, cannot all satisfy aₖ ≥ aₖ₋₁ + aₖ₋₂, since that would require a₁₁ ≥ 144 > 100.\n\nFinal answer: 11",
+  "usage": {
+    "input_tokens": 230,
+    "output_tokens": 1182,
+    "thinking_tokens": 0
+  },
+  "latency_s": 19.519000352011062,
+  "cached": false
+}

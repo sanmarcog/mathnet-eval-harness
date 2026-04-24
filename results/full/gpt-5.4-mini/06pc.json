@@ -1,0 +1,22 @@
+{
+  "id": "06pc",
+  "country": "IMO",
+  "competition": "48th International Mathematical Olympiad Vietnam 2007 Shortlisted Problems with Solutions",
+  "gold_final_answer": "Partition the indices into n+1 consecutive blocks of length n. For block v (0 ≤ v ≤ n), the first n−v entries are 0 and the last v entries are 1. Equivalently, writing any index as u + v n with 1 ≤ u ≤ n and 0 ≤ v ≤ n, the sequence is given by a_{u+vn} = 0 if u + v ≤ n and a_{u+vn} = 1 if u + v ≥ n + 1.",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Pigeonhole principle",
+    "Discrete Mathematics > Combinatorics > Induction / smoothing",
+    "Discrete Mathematics > Combinatorics > Counting two ways",
+    "Algebra > Algebraic Expressions > Sequences and Series > Sums and products"
+  ],
+  "prompt": "Let $n > 1$ be an integer. Find all sequences $a_{1}, a_{2}, \\ldots, a_{n^{2}+n}$ satisfying the following conditions:\n(a) $a_{i} \\in \\{0,1\\}$ for all $1 \\leq i \\leq n^{2}+n$;\n(b) $a_{i+1}+a_{i+2}+\\ldots+a_{i+n} < a_{i+n+1}+a_{i+n+2}+\\ldots+a_{i+2n}$ for all $0 \\leq i \\leq n^{2}-n$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let  \n\\[\nS_i=a_{i+1}+a_{i+2}+\\cdots+a_{i+n}\\qquad (0\\le i\\le n^2-n).\n\\]\nThen condition (b) is exactly\n\\[\nS_i<S_{i+n}\\qquad (0\\le i\\le n^2-n).\n\\]\nSince each \\(S_i\\) is an integer, this means\n\\[\nS_{i+n}\\ge S_i+1.\n\\]\n\nNow fix a residue class mod \\(n\\). For \\(r=1,2,\\dots,n\\), consider\n\\[\nS_{r-1},\\ S_{r-1+n},\\ S_{r-1+2n},\\ \\dots,\\ S_{r-1+(n-1)n}.\n\\]\nThis is a chain of \\(n\\) integers, each at most \\(n\\), and each at least 1 more than the previous. Hence it must be\n\\[\n1,2,\\dots,n.\n\\]\nSo for every \\(r\\), we have \\(S_{r-1}=1\\).\n\nThus every block of \\(n\\) consecutive terms has sum \\(1\\):\n\\[\na_{i+1}+\\cdots+a_{i+n}=1\\qquad (0\\le i\\le n^2-n).\n\\]\n\nSubtract consecutive equal sums:\n\\[\n(a_{i+2}+\\cdots+a_{i+n+1})-(a_{i+1}+\\cdots+a_{i+n})=0,\n\\]\nso\n\\[\na_{i+n+1}=a_{i+1}\\qquad (0\\le i\\le n^2-n-1).\n\\]\nHence the sequence is periodic with period \\(n\\):\n\\[\na_{k+n}=a_k \\quad \\text{for all } k.\n\\]\nSince every block of \\(n\\) consecutive terms has sum \\(1\\), the first period must contain exactly one \\(1\\) and \\(n-1\\) zeros.\n\nTherefore the sequences are precisely the ones of the form\n\\[\n(\\underbrace{0,\\dots,0}_{n\\text{ terms with exactly one }1})\\ \\text{repeated } n+1 \\text{ times},\n\\]\ni.e. choose one position among \\(1,2,\\dots,n\\) to be \\(1\\), set all other entries in that period to \\(0\\), and repeat this \\(n\\)-term pattern \\(n+1\\) times.\n\nSo there are exactly \\(n\\) such sequences.\n\nFinal answer: The sequences are exactly the periodic sequences with period \\(n\\) whose period contains exactly one \\(1\\) and \\(n-1\\) zeros; equivalently, choose one of the \\(n\\) positions in a block of length \\(n\\) to be \\(1\\), and repeat that block \\(n+1\\) times.",
+  "usage": {
+    "input_tokens": 187,
+    "output_tokens": 626,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 4.198120732908137,
+  "cached": false
+}

@@ -1,0 +1,24 @@
+{
+  "id": "0694",
+  "country": "Greece",
+  "competition": "SELECTION EXAMINATION 2019",
+  "gold_final_answer": "f(x) = x for all x > 0",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Functional Equations"
+  ],
+  "prompt": "Let $\\mathbb{R}_+ = (0, \\infty)$. Determine all functions $f : \\mathbb{R}_+ \\to \\mathbb{R}_+$ such that\n$$\nf(xf(y)) + yf(z) + zf(x) = xy + yz + zx,\n$$\nfor all $x, y, z \\in \\mathbb{R}_+$.",
+  "model": "gpt-5.4",
+  "response_text": "Let  \n\\[\nP(x,y,z):\\qquad f(xf(y)) + y f(z) + z f(x)=xy+yz+zx\n\\]\nfor all \\(x,y,z>0\\).\n\nWe determine all \\(f:\\mathbb R_+\\to\\mathbb R_+\\) satisfying \\(P(x,y,z)\\).\n\n---\n\n## Claim\nThe only solution is\n\\[\nf(x)=x\\qquad \\forall x>0.\n\\]\n\nWe now prove it.\n\n---\n\n## 1. First rearrangement\n\nFrom\n\\[\nf(xf(y)) + y f(z) + z f(x)=xy+yz+zx,\n\\]\nsolve for the first term:\n\\[\nf(xf(y))=xy+yz+zx-yf(z)-zf(x).\n\\]\nFor fixed \\(x,y\\), the left side is independent of \\(z\\). Hence for all \\(z>0\\),\n\\[\nyz+zx-yf(z)-zf(x)\n\\]\nis constant in \\(z\\). Therefore\n\\[\nz(x+y-f(x)) - y f(z)\n\\]\nis constant in \\(z\\).\n\nSo for fixed \\(x,y\\), there exists a constant \\(C_{x,y}\\) such that\n\\[\ny f(z)=z(x+y-f(x)) - C_{x,y}.\n\\]\nThus \\(f(z)\\) is affine in \\(z\\). Since this holds for all \\(z>0\\), \\(f\\) must be of the form\n\\[\nf(z)=az+b\n\\]\nfor some constants \\(a,b\\in\\mathbb R\\).\n\nBecause \\(f(\\mathbb R_+)\\subset \\mathbb R_+\\), we have \\(a,b\\) such that \\(az+b>0\\) for all \\(z>0\\). Now substitute into the equation.\n\n---\n\n## 2. Substitute \\(f(t)=at+b\\)\n\nWe get\n\\[\nf(xf(y))=a\\bigl(x(ay+b)\\bigr)+b=a^2xy+abx+b.\n\\]\nAlso\n\\[\ny f(z)=y(az+b)=ayz+by,\\qquad zf(x)=z(ax+b)=axz+bz.\n\\]\nSo the equation becomes\n\\[\na^2xy+abx+b+ayz+by+axz+bz = xy+yz+zx.\n\\]\nMatch coefficients of \\(xy,yz,zx,x,y,z,\\) and constant term:\n\n- coefficient of \\(xy\\): \\(a^2=1\\),\n- coefficient of \\(yz\\): \\(a=1\\),\n- coefficient of \\(zx\\): \\(a=1\\),\n- coefficients of \\(x,y,z\\): \\(ab=0,\\ b=0,\\ b=0\\),\n- constant term: \\(b=0\\).\n\nHence\n\\[\na=1,\\qquad b=0.\n\\]\nTherefore\n\\[\nf(x)=x.\n\\]\n\n---\n\n## 3. Verification\n\nCheck:\n\\[\nf(xf(y))=f(xy)=xy,\\qquad yf(z)=yz,\\qquad zf(x)=zx,\n\\]\nso\n\\[\nf(xf(y))+yf(z)+zf(x)=xy+yz+zx,\n\\]\nwhich is true.\n\nThus \\(f(x)=x\\) indeed works.\n\n---\n\nFinal answer: \\(\\boxed{f(x)=x\\text{ for all }x\\in\\mathbb R_+}\\).",
+  "usage": {
+    "input_tokens": 133,
+    "output_tokens": 739,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 10.217862349003553,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "f(x)=x\\text{ for all }x\\in\\mathbb R_+"
+  }
+}

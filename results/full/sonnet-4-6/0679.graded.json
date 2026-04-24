@@ -1,0 +1,26 @@
+{
+  "id": "0679",
+  "country": "Greece",
+  "competition": "31st Hellenic Mathematical Olympiad",
+  "gold_final_answer": "(2, 1)",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Prime numbers",
+    "Number Theory > Divisibility / Factorization > Factorization techniques",
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities"
+  ],
+  "prompt": "Let $p$ prime and $m$ a positive integer. Determine all pairs $(p, m)$ satisfying the equation: $p(p+m)+p=(m+1)^3$. (A. Fellouris)",
+  "model": "claude-sonnet-4-6",
+  "response_text": "We need to find all pairs $(p, m)$ where $p$ is prime and $m$ is a positive integer satisfying $p(p+m) + p = (m+1)^3$.\n\n**Simplify the equation:**\n\n$p(p+m) + p = (m+1)^3$\n\n$p(p + m + 1) = (m+1)^3$\n\n$p(p + m + 1) = (m+1)^3$\n\nNote that $p + m + 1 = p + (m+1)$, so let $k = m+1$ (where $k \\geq 2$ since $m \\geq 1$):\n\n$p(p + k) = k^3$\n\nSo we need $p(p + k) = k^3$ where $k = m+1 \\geq 2$.\n\n**Analysis:**\n\nSince $p$ is prime and $p \\mid k^3$, we have $p \\mid k$. Let $k = p \\cdot t$ for some positive integer $t$.\n\nThen: $p(p + pt) = (pt)^3$\n\n$p \\cdot p(1 + t) = p^3 t^3$\n\n$p^2(1 + t) = p^3 t^3$\n\n$1 + t = p t^3$\n\nSo $p = \\frac{1+t}{t^3} = \\frac{1}{t^3} + \\frac{1}{t^2}$.\n\nFor $p$ to be a positive integer, we need $t^3 \\mid (1+t)$.\n\nSince $t \\geq 1$:\n- If $t = 1$: $p = \\frac{2}{1} = 2$. Check: $p = 2$ is prime. ✓\n- If $t = 2$: $p = \\frac{3}{8}$. Not an integer.\n- If $t \\geq 2$: $t^3 > 1 + t$ for $t \\geq 2$ (since $t^3 - t - 1 > 0$), so $p < 1$. No solution.\n\n**So $t = 1$, $p = 2$:**\n\n$k = p \\cdot t = 2 \\cdot 1 = 2$, so $m + 1 = 2$, giving $m = 1$.\n\n**Verification:**\n\n$p(p+m) + p = 2(2+1) + 2 = 6 + 2 = 8 = (1+1)^3 = 8$. ✓\n\n**The only solution is $(p, m) = (2, 1)$.**\n\nFinal answer: $(p, m) = (2, 1)$",
+  "usage": {
+    "input_tokens": 99,
+    "output_tokens": 686,
+    "thinking_tokens": 0
+  },
+  "latency_s": 8.315644217072986,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "$(p, m) = (2, 1)$"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "id": "0h97",
+  "country": "Ukraine",
+  "competition": "The Problems of Ukrainian Authors",
+  "gold_final_answer": "2197",
+  "topics_flat": [
+    "Geometry > Solid Geometry > 3D Shapes",
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities"
+  ],
+  "prompt": "The cube is cut into $2010$ smaller cubes. $2008$ of them are unit cubes (cubes of side $1$) and edges of another $2$ cubes are assigned integer numbers (different from $1$). Find the volume of the big cube.\n\n(Serhiy Zhydkov)",
+  "model": "claude-sonnet-4-6",
+  "response_text": "Let the two non-unit cubes have integer side lengths $a$ and $b$ (both integers ≥ 2).\n\nThe total volume of the big cube is:\n$$N^3 = 2008 \\cdot 1 + a^3 + b^3$$\n\nSo $N^3 = 2008 + a^3 + b^3$.\n\nWe need $N^3 - a^3 - b^3 = 2008$ where $N, a, b$ are positive integers with $a, b \\geq 2$ and $a, b < N$.\n\nAlso, we need the configuration to be geometrically feasible (the cubes must actually fit together to tile the big cube).\n\nLet me try small values. If $a = b = 2$:\n$N^3 = 2008 + 8 + 8 = 2024$ — not a perfect cube.\n\nIf $a = 2, b = 3$:\n$N^3 = 2008 + 8 + 27 = 2043$ — not a perfect cube.\n\nIf $a = 2, b = 6$:\n$N^3 = 2008 + 8 + 216 = 2232$ — not a perfect cube.\n\nIf $a = 3, b = 6$:\n$N^3 = 2008 + 27 + 216 = 2251$ — not a perfect cube.\n\nIf $a = 2, b = 9$:\n$N^3 = 2008 + 8 + 729 = 2745$ — not a perfect cube.\n\nIf $a = 3, b = 9$:\n$N^3 = 2008 + 27 + 729 = 2764$ — not a perfect cube.\n\nIf $a = 6, b = 9$:\n$N^3 = 2008 + 216 + 729 = 2953$ — not a perfect cube.\n\nIf $a = 9, b = 9$:\n$N^3 = 2008 + 729 + 729 = 3466$ — not a perfect cube.\n\nIf $a = 2, b = 10$:\n$N^3 = 2008 + 8 + 1000 = 3016$ — not a perfect cube.\n\nIf $a = 10, b = 10$:\n$N^3 = 2008 + 1000 + 1000 = 4008$ — not a perfect cube.\n\nIf $a = 2, b = 12$:\n$N^3 = 2008 + 8 + 1728 = 3744$ — not a perfect cube.\n\nIf $a = 6, b = 12$:\n$N^3 = 2008 + 216 + 1728 = 3952$ — not a perfect cube.\n\nIf $a = 10, b = 12$:\n$N^3 = 2008 + 1000 + 1728 = 4736$ — not a perfect cube ($16^3 = 4096, 17^3 = 4913$) — no.\n\nIf $a = 12, b = 12$:\n$N^3 = 2008 + 1728 + 1728 = 5464$ — not a perfect cube ($17^3 = 4913, 18^3 = 5832$) — no.\n\nIf $a = 6, b = 6$:\n$N^3 = 2008 + 216 + 216 = 2440$ — not a perfect cube.\n\nIf $a = 3, b = 3$:\n$N^3 = 2008 + 27 + 27 = 2062$ — not a perfect cube.\n\nIf $a = 2, b = 4$:\n$N^3 = 2008 + 8 + 64 = 2080$ — not a perfect cube.\n\nIf $a = 4, b = 4$:\n$N^3 = 2008 + 64 + 64 = 2136$ — not a perfect cube.\n\nIf $a = 4, b = 6$:\n$N^3 = 2008 + 64 + 216 = 2288$ — not a perfect cube.\n\nIf $a = 6, b = 10$:\n$N^3 = 2008 + 216 + 1000 = 3224$ — not a perfect cube.\n\nIf $a = 2, b = 7$: $N^3 = 2008 + 8 + 343 = 2359$ — no.\n\nIf $a = 7, b = 7$: $N^3 = 2008 + 343 + 343 = 2694$ — no.\n\nIf $a = 3, b = 12$: $N^3 = 2008 + 27 + 1728 = 3763$ — no.\n\nIf $a = 9, b = 12$: $N^3 = 2008 + 729 + 1728 = 4465$ — no ($16^3=4096, 17^3=4913$).\n\nIf $a = 2, b = 2$: already done. Let me try $N = 12$: $1728 - 2008 < 0$. $N=13$: $2197 - 2008 = 189 = a^3 + b^3$. With $a=5, b=4$: $125+64=189$. Yes!\n\nSo $N=13$, $a=5$, $b=4$: $2197 = 2008 + 125 + 64$. ✓\n\nThe volume of the big cube is $\\boxed{2197}$.\n\nFinal answer: 2197",
+  "usage": {
+    "input_tokens": 117,
+    "output_tokens": 1446,
+    "thinking_tokens": 0
+  },
+  "latency_s": 16.732979359920137,
+  "cached": false
+}

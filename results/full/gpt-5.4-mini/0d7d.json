@@ -1,0 +1,20 @@
+{
+  "id": "0d7d",
+  "country": "Saudi Arabia",
+  "competition": "SAUDI ARABIAN MATHEMATICAL COMPETITIONS",
+  "gold_final_answer": "n ∈ {5, 3, 2, 0, -1, -3}",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Polynomial operations",
+    "Number Theory > Divisibility / Factorization"
+  ],
+  "prompt": "Find all integers $n$ such that there exists a polynomial $P(x)$ with integer coefficients satisfying\n$$\nP\\left(\\sqrt[3]{n^{2}}+\\sqrt[3]{n}\\right)=2016 n+20 \\sqrt[3]{n^{2}}+16 \\sqrt[3]{n} .\n$$",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let  \n\\[\na=\\sqrt[3]{n},\\qquad t=a^2+a.\n\\]\nThen \\(a^3=n\\), \\(a^2=\\sqrt[3]{n^2}\\), and the condition becomes\n\\[\nP(t)=2016a^3+20a^2+16a.\n\\]\n\nNow note that \\(a\\) satisfies the cubic equation\n\\[\na^3-a^2\\cdot 0? \n\\]\nMore usefully, since \\(t=a^2+a\\), we can express powers of \\(a\\) in terms of \\(t\\) only if \\(a\\) is algebraic of degree \\(3\\). But the key observation is this:\n\nWe want \\(P(t)\\in \\mathbb Z[a]\\) to equal a linear combination of \\(1,a,a^2\\) with integer coefficients. Since \\(P\\) has integer coefficients, \\(P(t)\\) lies in \\(\\mathbb Z[t]\\). Thus every polynomial expression in \\(t\\) must, when written in the basis \\(1,a,a^2\\), satisfy the relation coming from \\(t=a^2+a\\).\n\nLet us compute the powers of \\(t\\) in terms of \\(1,a,a^2\\):\n\\[\nt=a+a^2,\\qquad\nt^2=(a+a^2)^2=a^2+2a^3+a^4.\n\\]\nUsing \\(a^3=n\\) and \\(a^4=na\\), we get\n\\[\nt^2=a^2+2n+na.\n\\]\nSo any polynomial \\(P(t)\\) will have coefficients in \\(\\mathbb Z\\) multiplying \\(1,a,a^2\\), and we need to realize exactly\n\\[\n2016n+16a+20a^2.\n\\]\n\nA much simpler route is to seek a polynomial of degree at most 2:\n\\[\nP(x)=Ax^2+Bx+C,\\qquad A,B,C\\in\\mathbb Z.\n\\]\nThen\n\\[\nP(t)=A(a^2+2n+na)+B(a^2+a)+C\n\\]\n\\[\n=(An+B)a+(A+B)a^2+(2An+C).\n\\]\nMatching coefficients with\n\\[\n2016n+16a+20a^2\n\\]\ngives the system\n\\[\nAn+B=16,\\qquad A+B=20,\\qquad 2An+C=2016n.\n\\]\nFrom the first two equations,\n\\[\nB=20-A,\\qquad A(n-1)= -4 \\quad\\Longrightarrow\\quad A=\\frac{4}{1-n}.\n\\]\nSince \\(A\\) must be an integer, \\(1-n\\mid 4\\). Also \\(A\\) integer implies \\(n\\neq 1\\).\n\nNow use \\(B=20-A\\), and the third equation:\n\\[\nC=n(2016-2A).\n\\]\nSo \\(C\\) is automatically an integer once \\(A\\) is.\n\nThus the only requirement is that\n\\[\nA=\\frac{4}{1-n}\\in\\mathbb Z,\n\\]\ni.e.\n\\[\n1-n\\in\\{\\pm1,\\pm2,\\pm4\\}.\n\\]\nHence\n\\[\nn\\in\\{0,2,-1,3,-3,5\\}.\n\\]\n\nWe should verify all these work. For each such \\(n\\), the above formulas produce integers \\(A,B,C\\), so the polynomial\n\\[\nP(x)=Ax^2+Bx+C\n\\]\nhas integer coefficients and satisfies the condition.\n\nTherefore the integers \\(n\\) are\n\\[\n\\boxed{-3,-1,0,2,3,5}.\n\\]\n\nFinal answer: \\(\\boxed{-3,-1,0,2,3,5}\\)",
+  "usage": {
+    "input_tokens": 117,
+    "output_tokens": 825,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 5.6085158589994535,
+  "cached": false
+}

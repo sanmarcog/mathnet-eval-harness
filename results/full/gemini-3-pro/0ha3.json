@@ -1,0 +1,20 @@
+{
+  "id": "0ha3",
+  "country": "Ukraine",
+  "competition": "58th Ukrainian National Mathematical Olympiad",
+  "gold_final_answer": "0 or 3/5",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Polynomial operations",
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities"
+  ],
+  "prompt": "Let $a, b$ are such that $\\frac{7a^3b^3}{a^6-8b^6} = 1$. Determine what the value of $\\frac{a^2-b^2}{a^2+b^2}$ can be.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find the possible values of $\\frac{a^2-b^2}{a^2+b^2}$, we can start by analyzing the given equation:\n$$ \\frac{7a^3b^3}{a^6-8b^6} = 1 $$\n\nAssuming $b \\neq 0$ (since if $b=0$, the equation becomes $0 = 1$, which is impossible), we can divide the numerator and the denominator by $b^6$. Let $x = \\frac{a}{b}$. Substituting $a = bx$ into the equation gives:\n$$ \\frac{7x^3}{x^6-8} = 1 $$\n\nMultiplying both sides by $x^6 - 8$, we get:\n$$ 7x^3 = x^6 - 8 $$\n$$ x^6 - 7x^3 - 8 = 0 $$\n\nThis is a quadratic equation in terms of $x^3$. We can factor it as:\n$$ (x^3 - 8)(x^3 + 1) = 0 $$\n\nThis gives two possible real values for $x^3$:\n1) $x^3 = 8 \\implies x = 2$\n2) $x^3 = -1 \\implies x = -1$\n\nNow we want to find the value of the expression $\\frac{a^2-b^2}{a^2+b^2}$. Dividing the numerator and denominator by $b^2$, we can rewrite this expression in terms of $x$:\n$$ \\frac{a^2-b^2}{a^2+b^2} = \\frac{x^2-1}{x^2+1} $$\n\nNow we substitute the possible values of $x$:\n- For $x = 2$:\n$$ \\frac{2^2-1}{2^2+1} = \\frac{4-1}{4+1} = \\frac{3}{5} $$\n\n- For $x = -1$:\n$$ \\frac{(-1)^2-1}{(-1)^2+1} = \\frac{1-1}{1+1} = \\frac{0}{2} = 0 $$\n\nBoth values are valid and do not make the original denominator $a^6 - 8b^6$ equal to zero.\n\nFinal answer: 0, \\frac{3}{5}",
+  "usage": {
+    "input_tokens": 99,
+    "output_tokens": 524,
+    "thoughts_tokens": 1366
+  },
+  "latency_s": 15.271585165057331,
+  "cached": false
+}

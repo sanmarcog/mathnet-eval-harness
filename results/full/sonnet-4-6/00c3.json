@@ -1,0 +1,20 @@
+{
+  "id": "00c3",
+  "country": "Argentina",
+  "competition": "Argentina_2018",
+  "gold_final_answer": "Maximum number of distinct values is 3; the occurrences are 64, 8, and 8.",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Miscellaneous > Constructions and loci",
+    "Geometry > Plane Geometry > Miscellaneous > Angle chasing"
+  ],
+  "prompt": "All diagonals of a convex 10-gon are drawn. They divide the angles into 80 parts. It is known that 59 of these parts are equal. Determine the maximum of different values among the 80 angles of division. How many times does each of these values occur?",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Setting Up the Problem\n\nA convex 10-gon has its diagonals drawn. Each vertex has diagonals and sides creating angular divisions. At each vertex of a convex 10-gon, we have sides and diagonals emanating from that vertex.\n\n**Counting angles at each vertex:**\nAt each vertex of a convex 10-gon, there are 2 sides and 7 diagonals, creating 9 rays total, which divide the angle at that vertex into 8 parts. With 10 vertices, we get 10 × 8 = 80 parts total. ✓\n\n**Regular polygon case:**\nIn a regular 10-gon, at each vertex, the 9 rays (2 sides + 7 diagonals) are equally spaced? No - in a regular 10-gon, the angles between consecutive rays at a vertex are not all equal.\n\nIn a regular 10-gon, the interior angle is 144°. The diagonals from a vertex go to vertices at positions 2,3,4,5,6,7,8 steps away (7 diagonals). The angles between consecutive rays at vertex $V_0$ going to $V_1, V_2, ..., V_9$ (and $V_9$ on the other side) follow a pattern.\n\nThe angle subtended at $V_0$ between rays to $V_k$ and $V_{k+1}$ equals the inscribed angle subtending arc from $V_k$ to $V_{k+1}$, which is $\\frac{360°/10}{2} = 18°$ for adjacent vertices on the circle.\n\nSo in a regular 10-gon (inscribed in circle), the angle between consecutive rays at $V_0$ to vertices $V_1, V_2, ..., V_9$ are all **18°** each (since each consecutive pair subtends one arc of 36°, giving inscribed angle 18°).\n\nWait - all 8 parts at each vertex equal 18°! That gives 80 angles all equal to 18°.\n\n**But the problem says 59 are equal, not 80.**\n\nSo we need a non-regular convex 10-gon where 59 of the 80 angles are equal.\n\n**Analysis:**\nIf we perturb the regular 10-gon slightly, the 80 equal angles of 18° split into different values. The problem asks: in the configuration where exactly 59 angles are equal (and the rest differ), what is the maximum number of different values among all 80 angles, and how many times does each occur?\n\nSince 59 angles are equal (say value $\\alpha$), the remaining 21 angles have various values. We want to maximize the number of distinct values among all 80 angles.\n\nThe 21 remaining angles could potentially all be different from each other and from $\\alpha$, giving at most 22 distinct values total (1 value appearing 59 times, and 21 other distinct values each appearing once).\n\nBut we need to check feasibility. The 21 remaining angles must each appear at least once. If they're all distinct, we have 22 distinct values: one appearing 59 times, and 21 appearing once each.\n\n**Checking the count:** 59 + 21×1 = 80. ✓\n\n**Can we achieve this?** The problem states that 59 parts ARE equal, and asks for the maximum number of different values. The answer should be that among 80 angles, we have:\n- 1 value occurring 59 times\n- 21 other values each occurring once\n\nThis gives **22 different values** total.\n\nBut wait - we should verify this is achievable and that we can't do better (we can't, since 59 are fixed equal).\n\nThe maximum number of different values is **22**: one value appears 59 times, and the remaining 21 values each appear exactly **1** time.\n\nFinal answer: The maximum number of different values is $\\boxed{22}$, with one value occurring 59 times and each of the other 21 values occurring once.",
+  "usage": {
+    "input_tokens": 111,
+    "output_tokens": 959,
+    "thinking_tokens": 0
+  },
+  "latency_s": 17.67131214903202,
+  "cached": false
+}

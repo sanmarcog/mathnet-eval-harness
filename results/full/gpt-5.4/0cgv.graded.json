@@ -1,0 +1,27 @@
+{
+  "id": "0cgv",
+  "country": "Romania",
+  "competition": "74th NMO Selection Tests for BMO and IMO",
+  "gold_final_answer": "minimum: n−1; maximum: floor(n/2) * floor((n+1)/2)",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Counting two ways",
+    "Algebra > Algebraic Expressions > Sequences and Series > Sums and products",
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities",
+    "Algebra > Equations and Inequalities > Combinatorial optimization"
+  ],
+  "prompt": "Fix an integer $n \\ge 2$. Consider $n$ real numbers $a_1, a_2, \\dots, a_n$, not all equal, and let\n$$\nd = d(a_1, a_2, \\dots, a_n) = \\max_{1 \\le i < j \\le n} |a_i - a_j|\n$$\nand\n$$\ns = s(a_1, a_2, \\dots, a_n) = \\sum_{1 \\le i < j \\le n} |a_i - a_j|.\n$$\n\nDetermine, in terms of $n$, the smallest and the largest values the quotient $s/d$ may achieve.",
+  "model": "gpt-5.4",
+  "response_text": "Let\n\\[\nm=\\min_i a_i,\\qquad M=\\max_i a_i,\n\\]\nso since the numbers are not all equal,\n\\[\nd=M-m>0.\n\\]\nWe want the extremal values of\n\\[\n\\frac{s}{d},\\qquad s=\\sum_{i<j}|a_i-a_j|.\n\\]\n\nIt is convenient to sort the numbers:\n\\[\nx_1\\le x_2\\le \\cdots \\le x_n,\n\\]\nso \\(x_1=m,\\ x_n=M,\\ d=x_n-x_1\\). Then\n\\[\ns=\\sum_{i<j}(x_j-x_i).\n\\]\n\n## 1) Minimum of \\(s/d\\)\n\nSince among the terms of \\(s\\) there is the pair \\((1,n)\\), we have\n\\[\ns\\ge x_n-x_1=d.\n\\]\nHence\n\\[\n\\frac{s}{d}\\ge 1.\n\\]\n\nThis lower bound is attained: take\n\\[\na_1=\\cdots=a_{n-1}=0,\\qquad a_n=1.\n\\]\nThen \\(d=1\\), and the only nonzero pairwise differences are the \\(n-1\\) pairs involving \\(a_n\\), so actually this gives \\(s=n-1\\), not 1. So we need a sharper check.\n\nFor any \\(k\\) numbers equal to \\(m\\) and \\(n-k\\) equal to \\(M\\), we get\n\\[\ns=k(n-k)d.\n\\]\nThis is minimized for \\(k=1\\) or \\(k=n-1\\), giving\n\\[\ns=(n-1)d.\n\\]\nSo certainly \\(\\frac{s}{d}\\le n-1\\) is achievable.\n\nNow prove this is the true minimum. For each interior index \\(i=1,\\dots,n-1\\),\n\\[\nx_n-x_1=(x_{i+1}-x_i)+\\text{other nonnegative gaps},\n\\]\nand summing all pairwise distances in the standard gap form gives\n\\[\ns=\\sum_{i=1}^{n-1} i(n-i)(x_{i+1}-x_i).\n\\]\nSince \\(i(n-i)\\ge n-1\\) for all \\(i=1,\\dots,n-1\\),\n\\[\ns\\ge (n-1)\\sum_{i=1}^{n-1}(x_{i+1}-x_i)=(n-1)(x_n-x_1)=(n-1)d.\n\\]\nThus\n\\[\n\\frac{s}{d}\\ge n-1,\n\\]\nwith equality when only one gap is nonzero, i.e. all numbers take only the two extreme values and one of those values occurs exactly once.\n\nSo the minimum is\n\\[\n\\boxed{n-1}.\n\\]\n\n## 2) Maximum of \\(s/d\\)\n\nAgain use\n\\[\ns=\\sum_{i=1}^{n-1} i(n-i)(x_{i+1}-x_i),\n\\qquad\nd=\\sum_{i=1}^{n-1}(x_{i+1}-x_i).\n\\]\nSet\n\\[\ng_i=x_{i+1}-x_i\\ge 0.\n\\]\nThen\n\\[\n\\frac{s}{d}\n=\n\\frac{\\sum_{i=1}^{n-1} i(n-i)g_i}{\\sum_{i=1}^{n-1} g_i}.\n\\]\nThis is a weighted average of the numbers \\(i(n-i)\\), so it lies between their minimum and maximum. Hence\n\\[\n\\frac{s}{d}\\le \\max_{1\\le i\\le n-1} i(n-i).\n\\]\nThe maximum of \\(i(n-i)\\) is attained in the middle:\n\\[\n\\max_{1\\le i\\le n-1} i(n-i)=\\left\\lfloor \\frac{n^2}{4}\\right\\rfloor.\n\\]\nTherefore\n\\[\n\\frac{s}{d}\\le \\left\\lfloor \\frac{n^2}{4}\\right\\rfloor.\n\\]\n\nThis bound is attainable by making only one gap nonzero, at an index \\(i\\) maximizing \\(i(n-i)\\): take\n\\[\nx_1=\\cdots=x_i=0,\\qquad x_{i+1}=\\cdots=x_n=1,\n\\]\nwith \\(i=\\lfloor n/2\\rfloor\\) or \\(i=\\lceil n/2\\rceil\\). Then \\(d=1\\) and\n\\[\ns=i(n-i)=\\left\\lfloor \\frac{n^2}{4}\\right\\rfloor.\n\\]\n\nSo the maximum is\n\\[\n\\boxed{\\left\\lfloor \\frac{n^2}{4}\\right\\rfloor}.\n\\]\n\nFinal answer: \\(\\displaystyle \\min \\frac{s}{d}=n-1,\\qquad \\max \\frac{s}{d}=\\left\\lfloor \\frac{n^2}{4}\\right\\rfloor.\\)",
+  "usage": {
+    "input_tokens": 195,
+    "output_tokens": 1087,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 15.192355701001361,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "\\(\\displaystyle \\min \\frac{s}{d}=n-1,\\qquad \\max \\frac{s}{d}=\\left\\lfloor \\frac{n^2}{4}\\right\\rfloor.\\)"
+  }
+}

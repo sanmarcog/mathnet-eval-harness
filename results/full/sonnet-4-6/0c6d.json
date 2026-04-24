@@ -1,0 +1,20 @@
+{
+  "id": "0c6d",
+  "country": "Romania",
+  "competition": "70th ROMANIAN MATHEMATICAL OLYMPIAD",
+  "gold_final_answer": "a) 300; b) 7776",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization",
+    "Number Theory > Modular Arithmetic"
+  ],
+  "prompt": "At the math class 25 students of the fifth grade receive a paper stick with an integer on it. Each student divides his number to $24$ and communicates the remainder to the math teacher. The sum of all remainders is $288$. Dany, one of the students, remarks that all the remainders of the students are different two by two, but his remainder equals the quotient he obtained.\n\na)\nWhat is the number on Dany's stick?\n\nb) Find the sum of the numbers written on the $25$ sticks, knowing that each student different from Dany, obtained a quotient one unit bigger than the remainder.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Part a)\n\nSince there are 25 students and all remainders are different from each other, and remainders when dividing by 24 are integers from 0 to 23, we have 25 students but only 24 possible remainders (0 through 23). Wait - that means we can't have all 25 remainders different if they're all in {0, 1, ..., 23}.\n\nLet me re-read: \"all the remainders of the students are different two by two\" - this means all 25 remainders are distinct. But remainders mod 24 are in {0, 1, ..., 23}, giving only 24 values. So 25 distinct remainders from {0,...,23} is impossible unless... \n\nActually, wait. The sum of all 24 possible remainders 0+1+2+...+23 = 23·24/2 = 276. But the sum of remainders is 288. Since we have 25 students with all different remainders, but only 24 possible values exist, this is a contradiction unless one remainder appears twice.\n\nRe-reading: \"all the remainders of the students are different two by two, **but** his remainder equals the quotient he obtained.\" The \"but\" suggests Dany is the exception - perhaps Dany's situation is special. \n\nLet me reconsider: all OTHER students have different remainders, and Dany's remainder equals his quotient. Perhaps the 24 other students have 24 distinct remainders (all of {0,...,23}), and Dany's remainder might repeat one of them.\n\nThe sum of the 24 other students' remainders = 0+1+2+...+23 = 276.\nDany's remainder = 288 - 276 = 12.\n\nSo Dany's remainder is **12**.\n\nSince Dany's remainder equals his quotient, Dany's quotient is also 12.\n\nDany's number = 24 × quotient + remainder = 24 × 12 + 12 = 288 + 12 = **300**.\n\n**Dany's number is 300.**\n\n## Part b)\n\nFor each student other than Dany: quotient = remainder + 1.\n\nIf a student has remainder r, their number = 24 × quotient + r = 24(r + 1) + r = 25r + 24.\n\nThe 24 other students have remainders {0, 1, 2, ..., 23} (all distinct, covering all possibilities).\n\nSum of their numbers = Σ(r=0 to 23) (25r + 24) = 25·(0+1+...+23) + 24·24 = 25·276 + 576 = 6900 + 576 = 7476.\n\nAdding Dany's number: 7476 + 300 = **7776**.\n\n**Verification:** Sum of remainders = 276 + 12 = 288 ✓\n\nFinal answer: \na) Dany's number is **300**.\nb) The sum of all 25 numbers is **7776**.",
+  "usage": {
+    "input_tokens": 187,
+    "output_tokens": 741,
+    "thinking_tokens": 0
+  },
+  "latency_s": 10.816175323096104,
+  "cached": false
+}

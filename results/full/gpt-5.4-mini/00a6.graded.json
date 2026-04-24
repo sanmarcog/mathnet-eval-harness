@@ -1,0 +1,25 @@
+{
+  "id": "00a6",
+  "country": "Argentina",
+  "competition": "Argentine National Olympiad 2015",
+  "gold_final_answer": "All n that are multiples of 4",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Invariants / monovariants",
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments"
+  ],
+  "prompt": "A $+1$ or $-1$ is written at each vertex of a regular $n$-gonal prism so that the product of numbers on each face is $-1$. For which $n \\geq 3$ is this possible?",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let the prism have top vertices \\(T_1,\\dots,T_n\\) and bottom vertices \\(B_1,\\dots,B_n\\), with side faces \\(T_iT_{i+1}B_{i+1}B_i\\) (indices mod \\(n\\)).\n\nWrite the values at the vertices as \\(\\pm1\\).  \nFor each face, the product of its four vertex values must be \\(-1\\).\n\n## Step 1: Convert to equations\nLet\n\\[\na_i = T_i,\\qquad b_i = B_i \\in \\{\\pm1\\}.\n\\]\nThen:\n\n- Top face:  \n  \\[\n  a_1a_2\\cdots a_n=-1.\n  \\]\n- Bottom face:  \n  \\[\n  b_1b_2\\cdots b_n=-1.\n  \\]\n- Side face \\(i\\):  \n  \\[\n  a_i a_{i+1} b_{i+1} b_i = -1 \\qquad (i=1,\\dots,n).\n  \\]\n\n## Step 2: Multiply all side-face equations\nMultiplying all \\(n\\) side-face equations gives\n\\[\n\\prod_{i=1}^n (a_i a_{i+1} b_{i+1} b_i)=(-1)^n.\n\\]\nEach \\(a_i\\) appears exactly twice, and each \\(b_i\\) appears exactly twice, so the left-hand side is\n\\[\n(a_1^2\\cdots a_n^2)(b_1^2\\cdots b_n^2)=1.\n\\]\nHence\n\\[\n1 = (-1)^n,\n\\]\nso \\(n\\) must be even.\n\nThus, if \\(n\\) is odd, it is impossible.\n\n## Step 3: Show it is possible for even \\(n\\)\nAssume \\(n\\) is even. Set all top vertices to \\(+1\\), and alternate the bottom vertices:\n\\[\nb_i = (-1)^i\n\\]\n(after choosing an indexing).\n\nThen:\n\n- Top face product is \\(1\\), so adjust one top vertex to \\(-1\\) and the rest \\(+1\\), making the top product \\(-1\\).\n- Similarly, choose the bottom vertices so their product is \\(-1\\), which is easy since \\(n\\) is even.\n- On each side face, the two top vertices are \\(+1\\) except for one controlled choice, and the alternating bottom signs ensure each side face product is \\(-1\\).\n\nA direct explicit construction is:\n\\[\na_1=-1,\\ a_2=\\cdots=a_n=+1,\n\\]\n\\[\nb_i = (-1)^i.\n\\]\nThen:\n- \\(\\prod a_i = -1\\),\n- \\(\\prod b_i = (-1)^{1+2+\\cdots+n} = -1\\) for even \\(n\\),\n- and each side face has product \\(-1\\).\n\nSo it works for every even \\(n\\).\n\nTherefore the condition is exactly that \\(n\\) be even.\n\nFinal answer: all even integers \\(n \\ge 4\\) (equivalently, all even \\(n \\ge 3\\)).",
+  "usage": {
+    "input_tokens": 101,
+    "output_tokens": 692,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 5.026157015003264,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "all even integers \\(n \\ge 4\\) (equivalently, all even \\(n \\ge 3\\))."
+  }
+}

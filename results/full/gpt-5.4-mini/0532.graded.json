@@ -1,0 +1,25 @@
+{
+  "id": "0532",
+  "country": "Estonia",
+  "competition": "Open Contests",
+  "gold_final_answer": "No",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials",
+    "Algebra > Intermediate Algebra > Other"
+  ],
+  "prompt": "Publisher Soothsayer published a reference book claiming that for each real number $x$ and positive even number $n$ the equality $(1+x)^n \\ge 2^n x$ holds. Is this claim true?",
+  "model": "gpt-5.4-mini",
+  "response_text": "Yes, the claim is true.\n\nLet  \n\\[\nf(x)=(1+x)^n-2^n x,\n\\]\nwhere \\(n\\) is a positive even integer.\n\nWe want to show \\(f(x)\\ge 0\\) for all real \\(x\\).\n\nUsing the binomial theorem,\n\\[\n(1+x)^n=\\sum_{k=0}^n \\binom{n}{k}x^k.\n\\]\nBecause \\(n\\) is even, the expression is a convex polynomial, but there is an even simpler route using the AM-GM inequality:\n\\[\n\\frac{1+x}{2}\\ge \\sqrt{x}\n\\]\nonly applies for \\(x\\ge 0\\), so we need a universal argument.\n\nConsider the function\n\\[\ng(x)=(1+x)^n-2^n x.\n\\]\nIts derivative is\n\\[\ng'(x)=n(1+x)^{n-1}-2^n.\n\\]\nSince \\(n\\) is even, \\(n-1\\) is odd, and a more useful observation is that \\(g\\) has a unique critical point at\n\\[\n1+x=2 \\quad\\Rightarrow\\quad x=1,\n\\]\nbecause if we set \\(y=1+x\\), then\n\\[\ng=(y)^n-2^n(y-1)=y^n-2^n y+2^n.\n\\]\nNow apply AM-GM to the \\(n\\) numbers \\(y,\\dots,y,2,\\dots,2\\) (or equivalently use the standard inequality \\(y^n+2^n\\ge 2^n y\\) for even \\(n\\)), obtaining\n\\[\ny^n+2^n \\ge 2^n y.\n\\]\nThus\n\\[\ny^n-2^n y+2^n\\ge 0,\n\\]\ni.e.\n\\[\n(1+x)^n\\ge 2^n x.\n\\]\n\nSo the publisher’s claim is correct for every real \\(x\\) and every positive even integer \\(n\\).\n\nFinal answer: The claim is true for all real \\(x\\) when \\(n\\) is a positive even integer.",
+  "usage": {
+    "input_tokens": 94,
+    "output_tokens": 474,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.638170573976822,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "The claim is true for all real \\(x\\) when \\(n\\) is a positive even integer."
+  }
+}

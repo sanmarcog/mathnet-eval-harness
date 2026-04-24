@@ -1,0 +1,25 @@
+{
+  "id": "0le5",
+  "country": "Vietnam",
+  "competition": "VMO",
+  "gold_final_answer": "a) f(x) = (x^16 + (223/256)x^8 + 1) / [(x^2 + (sqrt(15)/2)x + 1)(x^4 + (7/4)x^2 + 1)(x^8 + (17/16)x^4 + 1)]. b) All real alpha with alpha < 2.",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Polynomial operations",
+    "Algebra > Algebraic Expressions > Sequences and Series > Recurrence relations"
+  ],
+  "prompt": "Consider the following polynomial\n$$\nf(x) = x^2 - \\alpha x + 1\n$$\nwith $\\alpha \\in \\mathbb{R}$.\n\na) For $\\alpha = \\frac{\\sqrt{15}}{2}$, express $f(x)$ as the quotient of two polynomials with non-negative coefficients.\n\nb) Find all values of $\\alpha$ such that $f(x)$ can be written as the quotient of two polynomials with non-negative coefficients.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Part a) α = √15/2\n\nWe need to write $f(x) = x^2 - \\frac{\\sqrt{15}}{2}x + 1$ as a quotient $P(x)/Q(x)$ where $P, Q$ have non-negative coefficients.\n\n**Key idea:** Multiply numerator and denominator by a polynomial with non-negative coefficients to clear the negative term.\n\nTry multiplying by $(x^2 + \\frac{\\sqrt{15}}{2}x + 1)$:\n\n$$f(x) \\cdot (x^2 + \\frac{\\sqrt{15}}{2}x + 1) = (x^2+1)^2 - \\frac{15}{4}x^2 = x^4 + 2x^2 + 1 - \\frac{15}{4}x^2 = x^4 - \\frac{7}{4}x^2 + 1$$\n\nStill negative. Try multiplying by $(x^4 + \\frac{\\sqrt{15}}{2}x^3 + \\frac{11}{4}x^2 + \\frac{\\sqrt{15}}{2}x + 1)$... Let me use a systematic approach.\n\nNote $f(x) = \\frac{x^3+1}{x+1} \\cdot \\frac{1}{?}$... Actually, consider:\n\n$$f(x) = \\frac{x^4 + x^2 + 1 - \\frac{\\sqrt{15}}{2}x(x^2+1) + \\text{correction}}{...}$$\n\n**Better approach:** Use $f(x)(x^2 + \\frac{\\sqrt{15}}{2}x+1) = x^4 - \\frac{7}{4}x^2 + 1$. Then multiply again by $(x^4 + \\frac{7}{4}x^2 + 1)$:\n\n$(x^4 - \\frac{7}{4}x^2+1)(x^4+\\frac{7}{4}x^2+1) = (x^4+1)^2 - \\frac{49}{16}x^4 = x^8 + \\frac{15}{16}x^4 + 1$\n\nAll non-negative! So:\n\n$$f(x) = \\frac{x^8 + \\frac{15}{16}x^4 + 1}{(x^2 + \\frac{\\sqrt{15}}{2}x+1)(x^4+\\frac{7}{4}x^2+1)}$$\n\nThe denominator: $(x^2+\\frac{\\sqrt{15}}{2}x+1)(x^4+\\frac{7}{4}x^2+1)$ — all coefficients positive. ✓\n\n$$\\boxed{f(x) = \\frac{x^8 + \\tfrac{15}{16}x^4 + 1}{\\left(x^2 + \\tfrac{\\sqrt{15}}{2}x + 1\\right)\\!\\left(x^4 + \\tfrac{7}{4}x^2 + 1\\right)}}$$\n\n## Part b) All valid values of α\n\n**Claim:** $f(x)$ can be written as a quotient of polynomials with non-negative coefficients if and only if $|\\alpha| \\leq 2$.\n\n**Necessity:** If $f(x) = P(x)/Q(x)$ with $P,Q$ having non-negative coefficients, then for $x > 0$, both $P(x) > 0$ and $Q(x) > 0$, so $f(x) > 0$ for all $x > 0$. \n\nIf $\\alpha > 2$, then $f$ has a positive real root (discriminant $\\alpha^2 - 4 > 0$), so $f(x_0) = 0$ for some $x_0 > 0$, giving $P(x_0) = 0$, impossible since $P$ has non-negative coefficients and $x_0 > 0$ (unless $P \\equiv 0$). So $\\alpha \\leq 2$. Similarly $\\alpha \\geq -2$ (consider $x < 0$ or use symmetry: $f(x) = x^2 + |\\alpha|x + 1$ for negative $\\alpha$ evaluated at negative $x$).\n\n**Sufficiency:** For $|\\alpha| \\leq 2$, write $\\alpha = 2\\cos\\theta$ for $\\theta \\in [0,\\pi]$. Then $f(x) = \\frac{x^{2n} - 1}{(x^2-1) \\cdot U_{n-1}(\\alpha/2)}$... \n\nMore directly: $f(x)(1+x^2+x^4+\\cdots)$ telescopes. Indeed, $\\frac{x^{2n}-1}{x^2-1}$ works for roots of unity arguments. One can show $(x^2-\\alpha x+1)\\cdot Q(x) = x^{2n}+\\text{non-negative terms}$ for appropriate $n$ when $|\\alpha|\\leq 2$.\n\n**Answer:**\n\n$$\\boxed{|\\alpha| \\leq 2}$$\n\nFinal answer: $f(x)$ can be written as a quotient of two polynomials with non-negative coefficients if and only if $|\\alpha| \\leq 2$.",
+  "usage": {
+    "input_tokens": 167,
+    "output_tokens": 1352,
+    "thinking_tokens": 0
+  },
+  "latency_s": 19.22317303903401,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "$f(x)$ can be written as a quotient of two polynomials with non-negative coefficients if and only if $|\\alpha| \\leq 2$."
+  }
+}

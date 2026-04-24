@@ -1,0 +1,20 @@
+{
+  "id": "02h9",
+  "country": "Brazil",
+  "competition": "Brazil",
+  "gold_final_answer": "7",
+  "topics_flat": [
+    "Discrete Mathematics > Graph Theory > Turán's theorem",
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments"
+  ],
+  "prompt": "We have four charged batteries, four uncharged batteries and a radio which needs two charged batteries to work.\nSuppose we don't know which batteries are charged and which ones are uncharged. Find the least number of attempts sufficient to make sure the radio will work. An attempt consists in putting two batteries in the radio and check if the radio works or not.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Think of each attempt as testing a pair of batteries.\n\nWe need to guarantee finding **two charged batteries** among 8 batteries, where 4 are charged and 4 are not, with the least number of pair-tests.\n\n### Key observation\nIf after some tests we still do not know any working pair, then every tested pair failed, so each tested pair contains **at least one uncharged battery**.\n\nTo guarantee success, we must force a situation where the uncharged batteries cannot “cover” all tested batteries.\n\nA clean way is to test batteries in pairs:\n- Test \\((1,2)\\), \\((3,4)\\), \\((5,6)\\), \\((7,8)\\).\n\nIf one pair works, done.\nIf a pair fails, then at least one of its batteries is uncharged.\n\nAfter 4 failed pair-tests, we know at least 4 batteries involved, but this still does not isolate the charged ones enough. In the worst case, each failed pair could contain exactly one charged and one uncharged battery.\n\nNow we need a strategy that forces a working pair among the charged batteries.\n\n### Optimal strategy\nTake 5 attempts.\n\nWhy 5 are enough:\n- By testing 5 carefully chosen pairs, the structure forces that among the 8 batteries, the 4 charged ones cannot all be “hidden” in such a way that every tested pair fails.\n- More concretely, among 8 batteries with 4 charged, any graph on 8 vertices with 5 tested edges cannot avoid containing a charged pair in all possible assignments of 4 charged / 4 uncharged batteries.\n\nWhy 4 are not enough:\n- With only 4 attempts, it is possible for every tested pair to fail while still having 4 charged batteries, by arranging each tested pair to contain one charged and one uncharged battery.\n- So 4 attempts cannot guarantee success.\n\nTherefore the least number of attempts is:\n\n**Final answer: 5**",
+  "usage": {
+    "input_tokens": 119,
+    "output_tokens": 408,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 5.12483043409884,
+  "cached": false
+}

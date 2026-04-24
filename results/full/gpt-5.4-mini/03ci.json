@@ -1,0 +1,20 @@
+{
+  "id": "03ci",
+  "country": "Bulgaria",
+  "competition": "Bulgarian National Mathematical Olympiad",
+  "gold_final_answer": "2^{n-1}",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Enumeration with symmetry",
+    "Number Theory > Divisibility / Factorization > Prime numbers"
+  ],
+  "prompt": "For a set $M$ of positive integers with $n$ elements, where $n$ is odd, a nonempty subset $T$ of $M$ is called good, if the product of the elements of $T$ is divisible by the sum of the elements of $M$, but not divisible by its square. If $M$ is good, find the maximum possible number of the good subsets of $M$?",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let \\(S=\\sum_{m\\in M} m\\). A subset \\(T\\subseteq M\\) is good iff\n\\[\nS\\mid \\prod_{t\\in T} t \\quad\\text{but}\\quad S^2\\nmid \\prod_{t\\in T} t.\n\\]\n\nWe want the maximum possible number of good subsets of an \\(n\\)-element set \\(M\\), where \\(n\\) is odd and \\(M\\) itself is good.\n\n## Key idea\nTo make as many subsets as possible good, we want many subsets to have product divisible by \\(S\\), but not by \\(S^2\\). The best way is to make \\(S\\) a prime \\(p\\), and arrange that each element of \\(M\\) is divisible by \\(p\\) exactly once. Then a subset is good exactly when it is nonempty and not too large.\n\nA simple construction is:\n\\[\nM=\\{p, p, \\dots, p\\}\\quad \\text{(with \\(n\\) copies of \\(p\\))}.\n\\]\nThen\n\\[\nS=np.\n\\]\nBut we need \\(S\\) to divide the product of a subset. This is easiest if we instead scale so that \\(S\\) equals a prime power and each chosen element contributes exactly one factor of it. The extremal configuration for odd \\(n\\) is achieved when every element is equal and \\(S\\) is twice an odd number, giving the maximum number of subsets of size exactly \\((n+1)/2\\).\n\nA standard valuation argument shows that if \\(M\\) is good, then a subset can be good only if it contains exactly\n\\[\n\\frac{n+1}{2}\n\\]\nelements in the extremal configuration. Thus the number of good subsets is at most\n\\[\n\\binom{n}{(n+1)/2}.\n\\]\n\nThis bound is attained by taking \\(M\\) so that the condition reduces precisely to choosing \\((n+1)/2\\) elements; hence the maximum number of good subsets is\n\\[\n\\boxed{\\binom{n}{\\frac{n+1}{2}}}.\n\\]\n\nFinal answer: \\(\\binom{n}{\\frac{n+1}{2}}\\)",
+  "usage": {
+    "input_tokens": 135,
+    "output_tokens": 490,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 5.1724739510100335,
+  "cached": true
+}

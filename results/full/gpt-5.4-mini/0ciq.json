@@ -1,0 +1,21 @@
+{
+  "id": "0ciq",
+  "country": "Romania",
+  "competition": "75th NMO",
+  "gold_final_answer": "All integers n ≥ 2 except n = 3",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Roots of unity",
+    "Algebra > Intermediate Algebra > Complex numbers",
+    "Geometry > Plane Geometry > Analytic / Coordinate Methods > Trigonometry"
+  ],
+  "prompt": "For each integer $n \\ge 2$, we consider the set of all $n$-th roots of unity $U_n = \\{z \\in \\mathbb{C} \\mid z^n = 1\\}$. Determine the integers $n \\ge 2$ for which there exist $x, y \\in U_n$, $x \\ne y$ such that $x + y \\notin U_k$ for any integer $k \\ge 2$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let \\(x,y\\in U_n\\) with \\(x\\neq y\\). Write\n\\[\nx=\\zeta^a,\\qquad y=\\zeta^b,\\qquad \\zeta=e^{2\\pi i/n}.\n\\]\nThen\n\\[\nx+y=\\zeta^a(1+\\zeta^{b-a}).\n\\]\nSo the question is whether we can choose a nontrivial \\(n\\)-th root \\(w=\\zeta^{b-a}\\neq 1\\) such that \\(1+w\\) is **not** a root of unity.\n\nNow if \\(w=e^{i\\theta}\\) with \\(\\theta\\not\\equiv 0\\pmod{2\\pi}\\), then\n\\[\n1+w=1+e^{i\\theta}=e^{i\\theta/2}\\cdot 2\\cos(\\theta/2).\n\\]\nHence \\(1+w\\) is a root of unity only if its modulus is \\(1\\), because every root of unity has absolute value \\(1\\). Therefore we need\n\\[\n|1+w|=2|\\cos(\\theta/2)|=1.\n\\]\nThis happens exactly when\n\\[\n|\\cos(\\theta/2)|=\\frac12,\n\\]\ni.e. when \\(w\\) is a primitive \\(3\\)-rd or \\(6\\)-th root of unity, equivalently when \\(w\\) has order \\(3\\) or \\(6\\). In those cases:\n- if \\(w=e^{2\\pi i/3}\\), then \\(1+w=e^{i\\pi/3}\\), a root of unity;\n- if \\(w=e^{\\pi i/3}\\), then \\(1+w=e^{i\\pi/3}\\), also a root of unity.\n\nFor all other roots of unity \\(w\\neq 1\\), \\(1+w\\) is **not** a root of unity.\n\nSo such \\(x,y\\) exist exactly when \\(U_n\\) contains an element whose order is not \\(3\\) or \\(6\\), i.e. when \\(n\\) has some divisor \\(d\\ge 2\\) with \\(d\\notin\\{3,6\\}\\). This fails only for\n\\[\nn=3,\\ 6.\n\\]\nIndeed:\n- For \\(n=3\\), the only distinct roots are \\(1,\\omega,\\omega^2\\), and any sum of two distinct ones is another root of unity.\n- For \\(n=6\\), every nontrivial difference of roots gives order \\(2,3,\\) or \\(6\\), and the only possible sums of distinct roots of unity are again roots of unity.\n\nTherefore, the desired integers are all \\(n\\ge 2\\) except \\(3\\) and \\(6\\).\n\nFinal answer: \\(\\boxed{n\\ge 2,\\ n\\neq 3,6}\\).",
+  "usage": {
+    "input_tokens": 149,
+    "output_tokens": 625,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 4.544133827905171,
+  "cached": false
+}

@@ -1,0 +1,25 @@
+{
+  "id": "0hd3",
+  "country": "Ukraine",
+  "competition": "59th Ukrainian National Mathematical Olympiad",
+  "gold_final_answer": "(x, y, z) = (t, 2t, 2t), (t, 0, 0), (0, t, 0), (0, 0, t) for any real t",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities",
+    "Algebra > Intermediate Algebra > Quadratic functions"
+  ],
+  "prompt": "Prove that for any real numbers $x, y, z$ the following inequality is true:\n$$\nx^2(3y^2 + 3z^2 - 2yz) \\geq yz(2xy + 2xz - yz).\n$$\nFind the triples that turn it into equality.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let\n\\[\nF=x^2(3y^2+3z^2-2yz)-yz(2xy+2xz-yz).\n\\]\nWe want to prove \\(F\\ge 0\\).\n\nA convenient substitution is to separate the symmetric part in \\(y,z\\). Write\n\\[\ns=y+z,\\qquad d=y-z.\n\\]\nThen\n\\[\ny=\\frac{s+d}{2},\\qquad z=\\frac{s-d}{2},\n\\]\nso\n\\[\ny^2+z^2=\\frac{s^2+d^2}{2},\\qquad yz=\\frac{s^2-d^2}{4}.\n\\]\nNow compute the coefficient of \\(x^2\\):\n\\[\n3y^2+3z^2-2yz\n=3(y^2+z^2)-2yz\n=3\\cdot \\frac{s^2+d^2}{2}-2\\cdot \\frac{s^2-d^2}{4}\n=s^2+2d^2.\n\\]\nAlso\n\\[\n2xy+2xz-yz=2x(y+z)-yz=2xs-\\frac{s^2-d^2}{4}.\n\\]\nHence\n\\[\nF=x^2(s^2+2d^2)-\\frac{s^2-d^2}{4}\\left(2xs-\\frac{s^2-d^2}{4}\\right).\n\\]\nA cleaner way is to expand the original inequality as a quadratic in \\(x\\):\n\\[\nF=(3y^2+3z^2-2yz)x^2-2yz(y+z)x+y^2z^2.\n\\]\nIts discriminant is\n\\[\n\\Delta=[-2yz(y+z)]^2-4(3y^2+3z^2-2yz)y^2z^2\n=4y^2z^2\\bigl((y+z)^2-(3y^2+3z^2-2yz)\\bigr).\n\\]\nSince\n\\[\n(y+z)^2-(3y^2+3z^2-2yz)=y^2+2yz+z^2-3y^2-3z^2+2yz\n=-2(y-z)^2\\le 0,\n\\]\nwe get \\(\\Delta\\le 0\\). Also the leading coefficient\n\\[\n3y^2+3z^2-2yz=(y-z)^2+2(y^2+yz+z^2)\\ge 0.\n\\]\nTherefore the quadratic \\(F\\) in \\(x\\) is always nonnegative, proving the inequality.\n\n### Equality\nFor a quadratic with nonnegative leading coefficient and discriminant \\(\\le 0\\), equality can happen only when both the discriminant is \\(0\\) and the quadratic has a repeated root.\n\nHere \\(\\Delta=0\\) requires\n\\[\ny=z.\n\\]\nIf \\(y=z=t\\), then the inequality becomes\n\\[\nx^2(4t^2)-t^2(4xt-t^2)=t^2(2x-t)^2\\ge 0.\n\\]\nSo equality holds when\n\\[\nt=0 \\quad\\text{or}\\quad 2x=t.\n\\]\nThus the equality cases are:\n\\[\n\\boxed{y=z=0 \\text{ (any }x\\text{)}}\n\\quad\\text{or}\\quad\n\\boxed{y=z\\neq 0,\\ \\ x=\\frac y2=\\frac z2 }.\n\\]\nEquivalently, equality holds exactly when\n\\[\n\\boxed{y=z\\ \\text{and}\\ 2x=y=z}\n\\]\nor the degenerate case \\(\\boxed{y=z=0}\\) (which is included in the first condition if \\(x=0\\), but also gives equality for all \\(x\\)).  \n\nFinal answer: The inequality is always true, and equality holds exactly when \\(y=z\\) and either \\(y=z=0\\) (any \\(x\\)) or \\(2x=y=z\\).",
+  "usage": {
+    "input_tokens": 114,
+    "output_tokens": 884,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 5.626296926988289,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "The inequality is always true, and equality holds exactly when \\(y=z\\) and either \\(y=z=0\\) (any \\(x\\)) or \\(2x=y=z\\)."
+  }
+}

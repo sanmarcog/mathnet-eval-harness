@@ -1,0 +1,26 @@
+{
+  "id": "0416",
+  "country": "China",
+  "competition": "China Western Mathematical Olympiad",
+  "gold_final_answer": "No",
+  "topics_flat": [
+    "Number Theory > Modular Arithmetic",
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities",
+    "Discrete Mathematics > Combinatorics > Pigeonhole principle"
+  ],
+  "prompt": "Do there exist integers $a$, $b$ and $c$ such that $a^2bc + 2$, $ab^2c + 2$, $abc^2 + 2$ are perfect squares?",
+  "model": "gpt-5.4",
+  "response_text": "Assume there exist integers \\(a,b,c\\) such that\n\\[\na^2bc+2,\\qquad ab^2c+2,\\qquad abc^2+2\n\\]\nare all perfect squares.\n\nWe will show this is impossible.\n\nSet\n\\[\nx=abc.\n\\]\nThen the three numbers become\n\\[\nax+2,\\qquad bx+2,\\qquad cx+2.\n\\]\nSo there exist integers \\(p,q,r\\) such that\n\\[\nax+2=p^2,\\qquad bx+2=q^2,\\qquad cx+2=r^2.\n\\]\n\nWe may assume \\(x\\neq 0\\), since if \\(x=0\\), then each number equals \\(2\\), not a square.\n\nAlso \\(x\\neq 1,2\\) is not needed; instead we use a descent/minimality argument.\n\nAmong all such triples \\((a,b,c)\\), choose one for which\n\\[\n|x|=|abc|\n\\]\nis minimal.\n\nWithout loss of generality, let\n\\[\np\\le q\\le r.\n\\]\nThen\n\\[\np^2=ax+2,\\quad q^2=bx+2,\\quad r^2=cx+2.\n\\]\n\nNow consider the quadratic in \\(t\\):\n\\[\nt^2-(q^2+r^2-4)t+qr(qr-2)=0.\n\\]\nIts roots are \\(x\\) and another integer \\(x'\\), and by Vieta one gets\n\\[\nx+x'=q^2+r^2-4,\\qquad xx'= (q^2-2)(r^2-2).\n\\]\nMore concretely, this is the standard Vieta-jumping setup for\n\\[\n(x+2)(\\cdots)\n\\]\nand produces another solution with smaller positive parameter. A cleaner way is to eliminate \\(a,b,c\\):\n\nFrom\n\\[\np^2-2=ax,\\quad q^2-2=bx,\\quad r^2-2=cx,\n\\]\nmultiplying gives\n\\[\n(p^2-2)(q^2-2)(r^2-2)=abc\\,x^3=x^4.\n\\]\nHence\n\\[\n(p^2-2)(q^2-2)(r^2-2)\n\\]\nis a fourth power.\n\nNow reduce modulo \\(4\\). A square is \\(0\\) or \\(1\\pmod 4\\), so any \\(p^2-2\\equiv 2\\) or \\(3\\pmod 4\\). In fact:\n- if \\(p\\) even, \\(p^2-2\\equiv 2\\pmod 4\\);\n- if \\(p\\) odd, \\(p^2-2\\equiv -1\\equiv 3\\pmod 4\\).\n\nThus each factor \\(p^2-2,q^2-2,r^2-2\\) is congruent to \\(2\\) or \\(3\\pmod 4\\), never \\(0\\) or \\(1\\pmod 4\\).\n\nBut a fourth power modulo \\(4\\) is only \\(0\\) or \\(1\\). So let us inspect the product:\n- if any factor is \\(2\\pmod4\\), the product is even but not divisible by \\(4\\), unless at least two factors are \\(2\\pmod4\\);\n- if all three are odd, then the product is \\(3\\cdot3\\cdot3\\equiv 3\\pmod4\\).\n\nCheck parity cases:\n- If all \\(p,q,r\\) are odd, product \\(\\equiv 3\\pmod4\\), impossible.\n- If exactly one of \\(p,q,r\\) is even, product \\(\\equiv 2\\pmod4\\), impossible.\n- If exactly two are even, product \\(\\equiv 0\\pmod4\\), possible mod \\(4\\), so go mod \\(8\\):\n  even square is \\(0\\) or \\(4\\pmod8\\), hence \\(p^2-2\\equiv 6\\) or \\(2\\pmod8\\); odd square gives \\(1\\), so odd square minus \\(2\\equiv 7\\pmod8\\). Thus product of two even-type factors and one odd-type factor is\n  \\[\n  (2\\text{ or }6)(2\\text{ or }6)\\cdot 7 \\equiv 4\\pmod8,\n  \\]\n  but a fourth power modulo \\(8\\) is only \\(0\\) or \\(1\\), contradiction.\n- If all three are even, then each factor is \\(2\\) or \\(6\\pmod8\\), so the product is divisible by \\(8\\). But then write \\(p=2p_1,q=2q_1,r=2r_1\\). Then\n  \\[\n  p^2-2=2(2p_1^2-1),\\quad q^2-2=2(2q_1^2-1),\\quad r^2-2=2(2r_1^2-1),\n  \\]\n  so\n  \\[\n  x^4=(p^2-2)(q^2-2)(r^2-2)=8\\cdot(\\text{odd}).\n  \\]\n  Hence \\(v_2(x^4)=3\\), impossible since \\(v_2(x^4)\\) must be a multiple of \\(4\\).\n\nEvery parity case leads to contradiction.\n\nTherefore no such integers \\(a,b,c\\) exist.\n\nFinal answer: No, there do not exist integers \\(a,b,c\\) such that \\(a^2bc+2\\), \\(ab^2c+2\\), and \\(abc^2+2\\) are all perfect squares.",
+  "usage": {
+    "input_tokens": 94,
+    "output_tokens": 1263,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 17.892003574990667,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "No, there do not exist integers \\(a,b,c\\) such that \\(a^2bc+2\\), \\(ab^2c+2\\), and \\(abc^2+2\\) are all perfect squares."
+  }
+}

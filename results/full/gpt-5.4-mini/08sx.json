@@ -1,0 +1,20 @@
+{
+  "id": "08sx",
+  "country": "Japan",
+  "competition": "Japan Junior Mathematical Olympiad",
+  "gold_final_answer": "720",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Recursion, bijection",
+    "Discrete Mathematics > Combinatorics > Counting two ways"
+  ],
+  "prompt": "In a certain fencing competition there were $6$ participants. Each participant had one match each with $5$ other participants. The number of winning matches of the participants turned out to be all different. Assume that there was no draw in all of the matches. How many distinct winner-loser combinations were possible for this competition?",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let the 6 participants be \\(A_1,\\dots,A_6\\), and let their numbers of wins be all different. Since each person plays 5 matches and there are no draws, the possible win totals are integers from \\(0\\) to \\(5\\).\n\nBecause all 6 win totals are different, they must be exactly\n\\[\n0,1,2,3,4,5.\n\\]\nSo the total number of wins is\n\\[\n0+1+2+3+4+5 = 15.\n\\]\nBut each match contributes exactly one win and one loss, so the total number of matches is also 15, which is correct for \\( \\binom{6}{2}=15\\).\n\nNow, in any tournament with score sequence \\(0,1,2,3,4,5\\), the winner-loser relations are forced uniquely up to relabeling: the player with 5 wins must beat everyone, the player with 0 wins must lose to everyone, and continuing this logic determines all outcomes.\n\nSo there is only one possible winner-loser pattern among the 6 labeled participants with all distinct win totals.\n\nFinal answer: \\(1\\)",
+  "usage": {
+    "input_tokens": 113,
+    "output_tokens": 254,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 2.566393419052474,
+  "cached": false
+}

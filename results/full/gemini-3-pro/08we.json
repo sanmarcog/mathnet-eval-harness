@@ -1,0 +1,21 @@
+{
+  "id": "08we",
+  "country": "Japan",
+  "competition": "Japan Mathematical Olympiad",
+  "gold_final_answer": "All positive multiples of p; that is, n = k p for some positive integer k.",
+  "topics_flat": [
+    "Number Theory > Modular Arithmetic > Fermat / Euler / Wilson theorems",
+    "Number Theory > Modular Arithmetic > Polynomials mod p",
+    "Number Theory > Divisibility / Factorization > Factorization techniques"
+  ],
+  "prompt": "Let $p$ be a prime. Determine all positive integers $n$ for which the following condition is satisfied for all the integers $x$:\nCondition: If $x^n - 1$ is divisible by $p$, then it is also divisible by $p^2$.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find all positive integers $n$ satisfying the given condition, we analyze the requirement: for any integer $x$, if $x^n \\equiv 1 \\pmod p$, then $x^n \\equiv 1 \\pmod{p^2}$.\n\n**Sufficiency:**\nSuppose $p \\mid n$. Then we can write $n = pm$ for some positive integer $m$. \nAssume $x$ is an integer such that $x^n - 1$ is divisible by $p$, meaning $x^n \\equiv 1 \\pmod p$. \nBy Fermat's Little Theorem, for any integer $y$, we have $y^p \\equiv y \\pmod p$. \nApplying this to $y = x^m$, we get:\n$x^n = x^{pm} = (x^m)^p \\equiv x^m \\pmod p$\nSince we are given $x^n \\equiv 1 \\pmod p$, it follows that $x^m \\equiv 1 \\pmod p$. \nThus, we can write $x^m = 1 + kp$ for some integer $k$. \nNow, we evaluate $x^n$ modulo $p^2$:\n$x^n = (x^m)^p = (1 + kp)^p$\nUsing the Binomial Theorem, we expand this as:\n$(1 + kp)^p = 1 + p(kp) + \\binom{p}{2}(kp)^2 + \\dots + (kp)^p$\nNotice that every term after the first one contains a factor of at least $p^2$. Therefore:\n$x^n \\equiv 1 + kp^2 \\equiv 1 \\pmod{p^2}$\nThis shows that $x^n - 1$ is divisible by $p^2$. Hence, any multiple of $p$ satisfies the condition.\n\n**Necessity:**\nSuppose $p \\nmid n$. We can test the condition with the integer $x = 1 + p$. \nClearly, $x \\equiv 1 \\pmod p$, so $x^n \\equiv 1^n \\equiv 1 \\pmod p$, meaning $x^n - 1$ is divisible by $p$. \nNow we check if it is divisible by $p^2$. Using the Binomial Theorem again:\n$x^n = (1 + p)^n = 1 + np + \\binom{n}{2}p^2 + \\dots + p^n$\nModulo $p^2$, all terms with $p^2$ or higher powers vanish, leaving:\n$x^n \\equiv 1 + np \\pmod{p^2}$\nFor $x^n - 1$ to be divisible by $p^2$, we must have $np \\equiv 0 \\pmod{p^2}$, which implies $p \\mid n$. This contradicts our assumption that $p \\nmid n$. \nThus, if $n$ is not a multiple of $p$, the condition fails for $x = 1 + p$.\n\nConclusion: The condition is satisfied if and only if $n$ is a multiple of $p$.\n\nFinal answer: multiples of p",
+  "usage": {
+    "input_tokens": 97,
+    "output_tokens": 691,
+    "thoughts_tokens": 2456
+  },
+  "latency_s": 25.22239945200272,
+  "cached": false
+}

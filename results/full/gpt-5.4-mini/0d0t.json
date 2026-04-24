@@ -1,0 +1,20 @@
+{
+  "id": "0d0t",
+  "country": "Saudi Arabia",
+  "competition": "Saudi Arabia Mathematical Competitions 2012",
+  "gold_final_answer": "n!·(n−1)^n",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities > Combinatorial optimization",
+    "Discrete Mathematics > Combinatorics > Induction / smoothing"
+  ],
+  "prompt": "In an $n \\times n$ board, the numbers $0$ through $n^2 - 1$ are written so that the number in row $i$ and column $j$ is equal to\n$$\n(i-1) + n(j-1) \\text{ where } 1 \\le i, j \\le n.\n$$\nSuppose we select $n$ different cells of the board, where no two cells are in the same row or column. Find the maximum possible product of the numbers in the $n$ cells.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let the chosen cells be \\((i_1,j_1),\\dots,(i_n,j_n)\\), with all \\(i_k\\) distinct and all \\(j_k\\) distinct.  \nThe number in row \\(i\\), column \\(j\\) is\n\\[\n(i-1)+n(j-1).\n\\]\n\nWe want to maximize the product of the \\(n\\) selected numbers.\n\n## Key idea\nTo make the product as large as possible, we should choose the largest available numbers, but still one from each row and each column. Since the entries increase as \\(j\\) increases much faster than as \\(i\\) increases, the best arrangement is to pair the largest row-indices with the largest column-indices.\n\nSo we choose the cells\n\\[\n(1,n),\\ (2,n-1),\\ \\dots,\\ (n,1),\n\\]\nor equivalently any permutation matching rows and columns in reverse order.\n\nThe corresponding numbers are:\n\\[\nn(n-1),\\ n(n-1)-1,\\ n(n-1)-2,\\ \\dots,\\ n(n-1)-(n-1).\n\\]\nThat is,\n\\[\nn(n-1)-k \\quad \\text{for } k=0,1,\\dots,n-1.\n\\]\n\nHence the maximum product is\n\\[\n\\prod_{k=0}^{n-1}\\bigl(n(n-1)-k\\bigr).\n\\]\n\nThis can also be written as\n\\[\n\\frac{(n^2-n)!}{(n^2-2n)!}.\n\\]\n\nFinal answer: \\(\\displaystyle \\prod_{k=0}^{n-1}\\bigl(n(n-1)-k\\bigr)=\\frac{(n^2-n)!}{(n^2-2n)!}\\)",
+  "usage": {
+    "input_tokens": 162,
+    "output_tokens": 387,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.1181939149973914,
+  "cached": false
+}

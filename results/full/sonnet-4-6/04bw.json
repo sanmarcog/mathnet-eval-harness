@@ -1,0 +1,21 @@
+{
+  "id": "04bw",
+  "country": "Croatia",
+  "competition": "Mathematica competitions in Croatia",
+  "gold_final_answer": "1, 4, 9",
+  "topics_flat": [
+    "Algebra > Prealgebra / Basic Algebra > Integers",
+    "Algebra > Intermediate Algebra > Quadratic functions",
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities"
+  ],
+  "prompt": "Determine all positive integers smaller than $1000$ that are equal to the sum of squares of their digits.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "I need to find positive integers less than 1000 where the number equals the sum of squares of its digits.\n\n## Setting Up Cases\n\n**1-digit numbers:** n = d, so n = d². This means d = d², so d(d-1) = 0, giving d = 0 or d = 1. Since positive integer: **n = 1**.\n\n**2-digit numbers:** n = 10a + b where a ∈ {1,...,9}, b ∈ {0,...,9}.\nNeed: 10a + b = a² + b²\n\nRearranging: a² - 10a + b² - b = 0\na(a-10) + b(b-1) = 0\n\nSince a ≥ 1: a(a-10) ranges from -9 (a=1) to 0 (a=10, but a≤9 so max at a=9: 9(-1)=-9).\nSo a(a-10) ∈ {-9, -16, -21, -24, -25, -24, -21, -16, -9} for a=1,...,9.\n\nNeed b(b-1) = 10a - a² = a(10-a).\n\nCheck each a:\n- a=1: b(b-1) = 9 → b²-b-9=0, no integer solution\n- a=2: b(b-1) = 16 → b²-b-16=0, discriminant=65, no\n- a=3: b(b-1) = 21 → discriminant=1+84=85, no\n- a=4: b(b-1) = 24 → discriminant=1+96=97, no\n- a=5: b(b-1) = 25 → discriminant=1+100=101, no\n- a=6: b(b-1) = 24 → same as a=4, no\n- a=7: b(b-1) = 21 → no\n- a=8: b(b-1) = 16 → no\n- a=9: b(b-1) = 9 → no\n\nNo 2-digit solutions.\n\n**3-digit numbers:** n = 100a + 10b + c where a ∈ {1,...,9}.\nNeed: 100a + 10b + c = a² + b² + c²\n\nMaximum sum of squares for 3 digits: 9²+9²+9² = 243.\nSo 100a + 10b + c ≤ 243, meaning a = 1 or a = 2.\n\n**Case a = 1:** 100 + 10b + c = 1 + b² + c²\nSo b² - 10b + c² - c = 99\nb(b-10) + c(c-1) = 99... wait: b² - 10b + c² - c - 99 = 0\n\nFor b=0,...,9: b²-10b ranges from 0 to -25 (min at b=5: -25).\nNeed c² - c = 99 - (b²-10b)... let me write: c²-c = 99+10b-b²\n\n- b=0: c²-c=99, discriminant=397, no\n- b=1: c²-c=108, discriminant=433, no\n- b=2: c²-c=115, discriminant=461, no\n- b=3: c²-c=120, discriminant=481, no\n- b=4: c²-c=123, discriminant=493, no\n- b=5: c²-c=124, discriminant=497, no\n- b=6: c²-c=123, no\n- b=7: c²-c=120, no\n- b=8: c²-c=115, no\n- b=9: c²-c=108, no\n\nNo solutions with a=1.\n\n**Case a = 2:** 200 + 10b + c = 4 + b² + c²\nb² - 10b + c² - c = 196\nNeed c²-c = 196 + 10b - b²\n\n- b=0: c²-c=196, discriminant=785, no\n- b=1: c²-c=205, discriminant=821, no\n- b=2: c²-c=212, discriminant=849, no\n- b=3: c²-c=217, discriminant=869, no\n- b=4: c²-c=220, discriminant=881, no\n- b=5: c²-c=221, discriminant=885, no\n- b=6: c²-c=220, no\n- b=7: c²-c=217, no\n- b=8: c²-c=212, no\n- b=9: c²-c=205, no\n\nNo solutions with a=2.\n\n## Conclusion\n\nThe only positive integer less than 1000 equal to the sum of squares of its digits is **1**.\n\nFinal answer: 1",
+  "usage": {
+    "input_tokens": 69,
+    "output_tokens": 1239,
+    "thinking_tokens": 0
+  },
+  "latency_s": 15.095932006952353,
+  "cached": false
+}

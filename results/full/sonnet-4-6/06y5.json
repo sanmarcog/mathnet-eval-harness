@@ -1,0 +1,21 @@
+{
+  "id": "06y5",
+  "country": "IMO",
+  "competition": "IMO2024 Shortlisted Problems",
+  "gold_final_answer": "a_n = n + C for some nonnegative integer C",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Sequences and Series > Recurrence relations",
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities",
+    "Number Theory > Divisibility / Factorization > Greatest common divisors (gcd)"
+  ],
+  "prompt": "Let $p \\neq q$ be coprime positive integers. Determine all infinite sequences $a_{1}, a_{2}, \\ldots$ of positive integers such that the following conditions hold for all $n \\geqslant 1$:\n$$\n\\begin{aligned}\n& \\max \\left(a_{n}, a_{n+1}, \\ldots, a_{n+p}\\right)-\\min \\left(a_{n}, a_{n+1}, \\ldots, a_{n+p}\\right)=p \\quad \\text{ and } \\\\\n& \\max \\left(a_{n}, a_{n+1}, \\ldots, a_{n+q}\\right)-\\min \\left(a_{n}, a_{n+1}, \\ldots, a_{n+q}\\right)=q .\n\\end{aligned}\n$$",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Solution\n\n**Claim:** The only sequences satisfying both conditions are $a_n = n + c$ and $a_n = -n + c$ for some constant $c$ (i.e., arithmetic sequences with common difference $+1$ or $-1$).\n\nMore precisely, the sequences are $a_n = n + c$ or $a_n = (c+1) - n$ for some integer constant $c$.\n\n**Step 1: Understanding the constraints.**\n\nFor any window of $p+1$ consecutive terms, the max minus min equals $p$. For any window of $q+1$ consecutive terms, the max minus min equals $q$.\n\n**Step 2: Key observation about consecutive differences.**\n\nConsider any $p+1$ consecutive terms $a_n, a_{n+1}, \\ldots, a_{n+p}$. Their spread is exactly $p$. Since all terms are positive integers, the values in any such window form a set of integers with range $p$.\n\n**Step 3: The sequence must be a permutation of consecutive integers locally.**\n\nIn a window of $p+1$ terms with max $-$ min $= p$, the values lie in an interval $[m, m+p]$ of length $p$. Since there are $p+1$ terms and the range is $p$, if all terms are distinct integers, they must be exactly $\\{m, m+1, \\ldots, m+p\\}$.\n\n**Step 4: Showing terms are distinct in each window.**\n\nSuppose two terms in a window of size $p+1$ are equal. Then the $p+1$ terms take at most $p$ distinct values in an interval of length $p$, which is possible. However, combining both conditions (windows of size $p+1$ and $q+1$) with $\\gcd(p,q)=1$ forces the sequence to be strictly monotone.\n\n**Step 5: Using both conditions together.**\n\nIf the sequence is strictly monotone (say increasing), then in any window of $k+1$ terms, max $-$ min $= a_{n+k} - a_n$. The conditions give:\n- $a_{n+p} - a_n = p$ for all $n$\n- $a_{n+q} - a_n = q$ for all $n$\n\nFrom the first: $a_{n+p} = a_n + p$, so $a_n$ is periodic mod $p$ with linear growth $p$ per $p$ steps.\n\nWrite $a_n = n + b_n$ where $b_n$ is periodic with period $p$ (from first condition: $b_{n+p} = b_n$) and also periodic with period $q$ (from second condition: $b_{n+q} = b_n$). Since $\\gcd(p,q) = 1$, $b_n$ has period $\\gcd(p,q) = 1$, so $b_n = c$ is constant.\n\nThus $a_n = n + c$.\n\n**Step 6: Decreasing case.**\n\nSimilarly, if strictly decreasing: $a_n = -n + c$ for some constant $c$ (requiring $c$ large enough for positivity).\n\n**Step 7: Verifying no other cases arise.**\n\nThe conditions with $\\gcd(p,q)=1$ force strict monotonicity. If the sequence were not strictly monotone, one can show a contradiction arises from the two window conditions simultaneously (the spread conditions would be violated for some $n$).\n\n**Verification:** For $a_n = n + c$:\n- Window $[n, n+p]$: max $= n+p+c$, min $= n+c$, difference $= p$. ✓\n- Window $[n, n+q]$: difference $= q$. ✓\n\n**Conclusion:**\n\nThe infinite sequences satisfying both conditions are exactly:\n\n$$a_n = n + c \\quad \\text{or} \\quad a_n = c - n$$\n\nfor some integer constant $c$ (chosen so all terms are positive).\n\nFinal answer: All sequences of the form $a_n = n + c$ or $a_n = c - n$ for some integer constant $c$ (with $c$ chosen so that all terms are positive integers).",
+  "usage": {
+    "input_tokens": 242,
+    "output_tokens": 1016,
+    "thinking_tokens": 0
+  },
+  "latency_s": 20.336364091024734,
+  "cached": false
+}

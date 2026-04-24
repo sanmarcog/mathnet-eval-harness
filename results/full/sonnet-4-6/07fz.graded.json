@@ -1,0 +1,24 @@
+{
+  "id": "07fz",
+  "country": "Iran",
+  "competition": "37th Iranian Mathematical Olympiad",
+  "gold_final_answer": "Bob; maximum guaranteed point difference 2020^2/2",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Games / greedy algorithms"
+  ],
+  "prompt": "Alice and Bob take turns alternatively on a $2020 \\times 2020$ board with Alice starting the game. In each move every person colors a cell that has not been colored yet and will be rewarded with as many points as the colored cells in the same row and column. When the table is colored completely, the points determine the winner. Who has a winning strategy and what is the maximum difference he/she can guarantee?",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Setting Up the Problem\n\nLet me analyze the scoring system. When a player colors a cell, they receive points equal to the number of already-colored cells in the same row and column (including or excluding the current cell - I'll assume excluding, as is standard).\n\nActually, let me reconsider: \"rewarded with as many points as the colored cells in the same row and column\" - this means when you color a cell, you get points equal to the number of colored cells currently in that row plus that column (not counting the cell being placed).\n\n## Key Observation\n\nLet's think about the total points distributed. When cell $(i,j)$ is colored as the $k$-th cell overall, the points awarded equal (colored cells in row $i$) + (colored cells in column $j$) at that moment.\n\n**Total points across all moves:** Consider any two cells $(i,j)$ and $(i,k)$ in the same row. Whichever is placed second, it contributes 1 point (from the other being in the same row). Similarly for columns. So total points = number of pairs of cells sharing a row or column = $2020 \\cdot \\binom{2020}{2} \\cdot 2 = 2 \\cdot 2020 \\cdot \\frac{2020 \\cdot 2019}{2} = 2020^2 \\cdot 2019$.\n\n## Symmetry Strategy\n\nThe board is $2020 \\times 2020$. Consider a **central symmetry** strategy: pair each cell $(i,j)$ with $(2021-i, 2021-j)$.\n\n**Bob's strategy:** Whenever Alice colors cell $(i,j)$, Bob colors $(2021-i, 2021-j)$.\n\nWhen Alice colors $(i,j)$, let $r$ = colored cells in row $i$, $c$ = colored cells in column $j$. Alice gets $r + c$ points.\n\nWhen Bob responds with $(2021-i, 2021-j)$: row $2021-i$ has the same number of colored cells as row $i$ had before Alice's move (by symmetry of previous moves), plus now Alice's cell doesn't affect this row. Actually, by the symmetric pairing, row $2021-i$ has exactly $r$ colored cells and column $2021-j$ has exactly $c$ colored cells (since the configuration is symmetric). So Bob gets $r + c$ points too.\n\n**Each pair of moves gives equal points to Alice and Bob!**\n\nThis means Bob can always mirror Alice's score, guaranteeing a tie (difference = 0).\n\n**Alice's strategy:** Similarly, Alice can use the same mirror strategy after Bob's first move... but Alice goes first, so she moves first without a mirror.\n\nWait - Alice moves first. After Alice's first move, Bob mirrors. After Bob's mirror, Alice mirrors Bob's next move, etc. But Alice moves first each round.\n\nWith the mirror strategy for Bob: After each complete pair of moves, scores are equal. The total number of cells is $2020^2$ (even), so there are $2020^2/2$ pairs of moves. Each pair contributes equal points to both players.\n\nTherefore **Bob can guarantee the difference is 0**, and **Alice can also guarantee difference is 0** (by using the same mirror after Bob's first move - but Alice goes first).\n\nSince Bob can mirror Alice perfectly (the board has even dimensions, so the center symmetry pairs all $2020^2$ cells into $2020^2/2$ pairs with no fixed point), Bob guarantees equal scores.\n\nAlice cannot do better than 0 difference against Bob's mirror strategy.\n\n## Conclusion\n\nThe total score is $2020^2 \\cdot 2019$, split equally as $\\frac{2020^2 \\cdot 2019}{2}$ each.\n\nBob has a strategy to guarantee the difference is **0** (a tie), and Alice cannot guarantee a positive difference. Neither player can guarantee a win; the game ends in a draw with optimal play.\n\nThe maximum difference that can be guaranteed is **0**, achieved by Bob (second player) using the central symmetry mirror strategy.\n\nFinal answer: Bob has a winning strategy (tie) guaranteeing a maximum difference of $\\boxed{0}$.",
+  "usage": {
+    "input_tokens": 135,
+    "output_tokens": 985,
+    "thinking_tokens": 0
+  },
+  "latency_s": 19.405136329936795,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "0"
+  }
+}

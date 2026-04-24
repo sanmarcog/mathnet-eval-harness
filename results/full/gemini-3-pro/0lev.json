@@ -1,0 +1,21 @@
+{
+  "id": "0lev",
+  "country": "Vietnam",
+  "competition": "VMO",
+  "gold_final_answer": "7, 17, 289",
+  "topics_flat": [
+    "Number Theory > Number-Theoretic Functions > φ (Euler's totient)",
+    "Number Theory > Modular Arithmetic > Fermat / Euler / Wilson theorems",
+    "Number Theory > Divisibility / Factorization > Prime numbers"
+  ],
+  "prompt": "For every pair of positive integers $n, m$ with $n < m$, denote $s(n, m)$ as the number of positive integers in the range $[n, m]$ that are coprime with $m$. Find all positive integers $m \\ge 2$ such that $m$ satisfies these conditions\n\ni) $\\frac{s(n, m)}{m-n} \\ge \\frac{s(1, m)}{m}$ for all $n = 1, 2, \\dots, m-1$.\nii) $2022^m + 1$ is divisible by $m^2$.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find all positive integers $m \\ge 2$ satisfying the given conditions, we analyze them one by one.\n\n**Condition i):**\nThe condition states that $\\frac{s(n, m)}{m-n} \\ge \\frac{s(1, m)}{m}$ for all $n = 1, 2, \\dots, m-1$.\nNotice that $s(1, m) = \\phi(m)$, the Euler totient function. Thus, the condition is equivalent to $\\frac{s(n, m)}{m-n} \\ge \\frac{\\phi(m)}{m}$.\n\nSuppose $m$ has at least two distinct prime factors. Let $p$ be the smallest prime factor of $m$. We can choose $n = p$. \nThe interval $[p, m]$ contains $m - p + 1$ integers. The number of integers in $[1, m]$ coprime to $m$ is $\\phi(m)$. Since $p$ is the smallest prime factor of $m$, all positive integers strictly less than $p$ are coprime to $m$. There are exactly $p - 1$ such integers.\nTherefore, the number of integers in $[p, m]$ coprime to $m$ is exactly $s(p, m) = \\phi(m) - (p - 1)$.\nFor $n = p$, the condition becomes:\n$$ \\frac{\\phi(m) - p + 1}{m - p} \\ge \\frac{\\phi(m)}{m} $$\nCross-multiplying and simplifying gives:\n$$ m\\phi(m) - mp + m \\ge m\\phi(m) - p\\phi(m) \\implies p\\phi(m) \\ge m(p - 1) \\implies \\frac{\\phi(m)}{m} \\ge \\frac{p - 1}{p} = 1 - \\frac{1}{p} $$\nHowever, since $m$ has at least one other prime factor $q > p$, we have:\n$$ \\frac{\\phi(m)}{m} \\le \\left(1 - \\frac{1}{p}\\",
+  "usage": {
+    "input_tokens": 173,
+    "output_tokens": 464,
+    "thoughts_tokens": 7724
+  },
+  "latency_s": 62.7991100900108,
+  "cached": false
+}

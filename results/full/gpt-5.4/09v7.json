@@ -1,0 +1,20 @@
+{
+  "id": "09v7",
+  "country": "Netherlands",
+  "competition": "Second Round, March 2019",
+  "gold_final_answer": "11",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments",
+    "Algebra > Algebraic Expressions > Sequences and Series > Recurrence relations"
+  ],
+  "prompt": "In a tall hat there are one hundred notes, numbered from $1$ to $100$. You want to have three notes with the property that each of the three numbers is smaller than the sum of the other two. For example, the three notes numbered $10$, $15$, and $20$ would be suitable (as $10 < 15 + 20$, $15 < 10 + 20$, and $20 < 10 + 15$), but the notes numbered $3$, $4$, and $7$ would not (as $7$ is not smaller than $3 + 4$). You may (without looking at the numbers on the notes) take some notes from the hat.\nWhat is the smallest number of notes you have to take to be sure to have three notes that meet your wish?",
+  "model": "gpt-5.4",
+  "response_text": "Let the chosen note numbers be \\(a \\le b \\le c\\).  \nThe condition “each number is smaller than the sum of the other two” is equivalent to just\n\n\\[\nc<a+b,\n\\]\n\nbecause the other two inequalities are automatic for positive integers.\n\nSo we want the smallest \\(N\\) such that **any** set of \\(N\\) numbers from \\(\\{1,2,\\dots,100\\}\\) contains three numbers \\(a\\le b\\le c\\) with \\(c<a+b\\).\n\nEquivalently, we want the largest possible subset of \\(\\{1,\\dots,100\\}\\) with **no** such triple. In such a set, whenever \\(a\\le b\\le c\\) are chosen from it, we must have\n\n\\[\nc\\ge a+b.\n\\]\n\nTo make such a set as large as possible, list its elements increasingly:\n\n\\[\nx_1 < x_2 < x_3 < \\cdots\n\\]\n\nThen for every \\(k\\ge 3\\), since \\(x_k\\) together with \\(x_{k-2},x_{k-1}\\) must fail the triangle condition, we need\n\n\\[\nx_k \\ge x_{k-1}+x_{k-2}.\n\\]\n\nThus the sequence grows at least as fast as the Fibonacci-type sequence starting from the smallest possible values \\(1,2\\):\n\n\\[\n1,2,3,5,8,13,21,34,55,89,144,\\dots\n\\]\n\nUp to \\(100\\), this gives at most\n\n\\[\n1,2,3,5,8,13,21,34,55,89\n\\]\n\nwhich has \\(10\\) numbers.\n\nAnd this bound is achievable: in this set, every term is at least the sum of the previous two, so no three numbers satisfy \\(c<a+b\\).\n\nTherefore the largest bad set has size \\(10\\), so to be certain of getting a good triple, you must take\n\n\\[\n10+1=11\n\\]\n\nnotes.\n\nFinal answer: 11",
+  "usage": {
+    "input_tokens": 217,
+    "output_tokens": 446,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 7.015637485077605,
+  "cached": false
+}

@@ -1,0 +1,24 @@
+{
+  "id": "0bsf",
+  "country": "Romania",
+  "competition": "67th Romanian Mathematical Olympiad",
+  "gold_final_answer": "f(x) = x for all real x, and f(x) = -x for all real x",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Functional Equations"
+  ],
+  "prompt": "Find all functions $f : \\mathbb{R} \\to \\mathbb{R}$ such that\n$$\nf(a^2) - f(b^2) \\leq (f(a) + b)(a - f(b)), \\quad \\text{for all } a, b \\in \\mathbb{R}.\n$$",
+  "model": "claude-sonnet-4-6",
+  "response_text": "Let me denote the functional inequality as $f(a^2) - f(b^2) \\leq (f(a) + b)(a - f(b))$ for all $a, b \\in \\mathbb{R}$.\n\n**Testing f(x) = x:**\n$(f(a)+b)(a-f(b)) = (a+b)(a-b) = a^2 - b^2 = f(a^2) - f(b^2)$. ✓ (equality holds)\n\n**Testing f(x) = -x:**\nLHS: $f(a^2) - f(b^2) = -a^2 + b^2$\nRHS: $(f(a)+b)(a-f(b)) = (-a+b)(a+b) = -(a-b)(a+b) = -(a^2-b^2) = -a^2+b^2$. ✓ (equality holds)\n\n**Exploring other solutions:**\n\nLet me substitute $a = b$:\n$0 \\leq (f(a)+a)(a-f(a)) = -(f(a)-a)(f(a)+a) = -(f(a)^2 - a^2)$\n\nSo $f(a)^2 \\leq a^2$ for all $a$, meaning $|f(a)| \\leq |a|$ for all $a$.\n\nNow substitute $b = 0$:\n$f(a^2) - f(0) \\leq (f(a)+0)(a - f(0)) = f(a)(a - f(0))$\n\nSubstitute $a = 0$:\n$f(0) - f(b^2) \\leq (f(0)+b)(0 - f(b)) = -(f(0)+b)f(b)$\n\nSo $f(b^2) \\geq f(0) + (f(0)+b)f(b)$.\n\nFrom $a=b=0$: $0 \\leq (f(0))^2 \\cdot (-1)$... wait: $0 \\leq (f(0)+0)(0-f(0)) = -f(0)^2$, so $f(0) = 0$.\n\nWith $f(0) = 0$, from $b=0$: $f(a^2) \\leq f(a) \\cdot a$.\n\nFrom $a=0$: $-f(b^2) \\leq -b \\cdot f(b)$, so $f(b^2) \\geq b \\cdot f(b)$.\n\nThus $b \\cdot f(b) \\leq f(b^2) \\leq a \\cdot f(a)$... more precisely: $f(a^2) = a \\cdot f(a)$ for all $a$ (since both $f(a^2) \\leq a \\cdot f(a)$ and $f(a^2) \\geq a \\cdot f(a)$).\n\nSo **$f(a^2) = a \\cdot f(a)$ for all $a$**.\n\nNow the original inequality becomes:\n$a \\cdot f(a) - b \\cdot f(b) \\leq (f(a)+b)(a-f(b))$\n\nExpanding RHS: $a \\cdot f(a) - f(a)f(b) + ab - b \\cdot f(b)$\n\nSo: $a \\cdot f(a) - b \\cdot f(b) \\leq a \\cdot f(a) - f(a)f(b) + ab - b \\cdot f(b)$\n\nThis simplifies to: $0 \\leq -f(a)f(b) + ab$, i.e., $f(a)f(b) \\leq ab$ for all $a, b$.\n\nCombined with $|f(a)| \\leq |a|$, we have $f(a)f(b) \\leq ab$ for all $a,b$.\n\nSetting $b = a$: $f(a)^2 \\leq a^2$ (consistent).\n\nSetting $b = -a$: $f(a)f(-a) \\leq -a^2$.\n\nBut $|f(a)| \\leq |a|$ and $|f(-a)| \\leq |a|$, so $|f(a)f(-a)| \\leq a^2$, meaning $f(a)f(-a) \\geq -a^2$.\n\nThus $f(a)f(-a) = -a^2$ for all $a$.\n\nFrom $f(a^2) = a \\cdot f(a)$ and replacing $a$ with $-a$: $f(a^2) = -a \\cdot f(-a)$, so $a \\cdot f(a) = -a \\cdot f(-a)$, giving $f(-a) = -f(a)$ (f is odd).\n\nThen $f(a)f(-a) = -f(a)^2 = -a^2$, so $f(a)^2 = a^2$, meaning $f(a) = \\pm a$ for each $a$.\n\nUsing $f(a^2) = a \\cdot f(a)$: if $f(a) = a$ then $f(a^2) = a^2$ ✓; if $f(a) = -a$ then $f(a^2) = -a^2 = a \\cdot (-a)$ ✓. But we need consistency: $f(ab) \\cdot f(1) \\leq ab$... checking $f(a)f(b) \\leq ab$ with mixed signs fails unless $f$ is consistently $x$ or $-x$.\n\nThe only solutions are $f(x) = x$ and $f(x) = -x$.\n\nFinal answer: $f(x) = x$ and $f(x) = -x$",
+  "usage": {
+    "input_tokens": 123,
+    "output_tokens": 1465,
+    "thinking_tokens": 0
+  },
+  "latency_s": 15.798745176987723,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "$f(x) = x$ and $f(x) = -x$"
+  }
+}

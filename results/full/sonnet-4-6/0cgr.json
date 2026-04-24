@@ -1,0 +1,21 @@
+{
+  "id": "0cgr",
+  "country": "Romania",
+  "competition": "74th Romanian Mathematical Olympiad",
+  "gold_final_answer": "8",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Greatest common divisors (gcd)",
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities",
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities"
+  ],
+  "prompt": "a) Prove that $12n+13$ and $13n+14$ are coprime, for every natural $n$.\n\nb) Find the number of the pairs $(a, b)$ of natural numbers for which there exists a natural number $n$ so that $\\frac{a}{b} = \\frac{12n+13}{13n+14}$ and $17a + 19b < 2024$.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Part a)\n\nLet $d = \\gcd(12n+13, 13n+14)$. Then $d$ divides any linear combination of $12n+13$ and $13n+14$.\n\nCompute:\n$$13(12n+13) - 12(13n+14) = 156n + 169 - 156n - 168 = 1$$\n\nSo $d \\mid 1$, which means $d = 1$. Therefore $\\gcd(12n+13, 13n+14) = 1$ for every natural number $n$. $\\blacksquare$\n\n## Part b)\n\nSince $\\gcd(12n+13, 13n+14) = 1$ for every $n$, the fraction $\\frac{12n+13}{13n+14}$ is already in lowest terms.\n\nSo $\\frac{a}{b} = \\frac{12n+13}{13n+14}$ with $a, b$ natural numbers means $a = k(12n+13)$ and $b = k(13n+14)$ for some positive integer $k$, and the fraction $\\frac{a}{b}$ in lowest terms equals $\\frac{12n+13}{13n+14}$.\n\nThe condition is $17a + 19b < 2024$:\n$$17k(12n+13) + 19k(13n+14) < 2024$$\n$$k(204n + 221 + 247n + 266) < 2024$$\n$$k(451n + 487) < 2024$$\n\nWe need to find all pairs $(k, n)$ with $k, n \\in \\mathbb{N}$ (positive integers) satisfying this, then each such pair gives a unique pair $(a,b) = (k(12n+13), k(13n+14))$.\n\n**Check that different $(k,n)$ pairs give different $(a,b)$ pairs:** If $k(12n+13) = k'(12n'+13)$ and $k(13n+14) = k'(13n'+14)$, then $\\frac{12n+13}{13n+14} = \\frac{12n'+13}{13n'+14}$, which gives $n = n'$, and then $k = k'$. So the map is injective.\n\nNow count pairs $(k,n)$ with $k(451n + 487) < 2024$:\n\n**$n = 1$:** $451 + 487 = 938$. Need $938k < 2024$, so $k < 2.158$, giving $k \\in \\{1, 2\\}$. **2 pairs.**\n\n**$n = 2$:** $902 + 487 = 1389$. Need $1389k < 2024$, so $k < 1.457$, giving $k = 1$. **1 pair.**\n\n**$n = 3$:** $1353 + 487 = 1840$. Need $1840k < 2024$, so $k < 1.1$, giving $k = 1$. **1 pair.**\n\n**$n = 4$:** $1804 + 487 = 2291 > 2024$. No solution even for $k=1$.\n\nSo total pairs: $2 + 1 + 1 = \\boxed{4}$.\n\nFinal answer: 4",
+  "usage": {
+    "input_tokens": 142,
+    "output_tokens": 837,
+    "thinking_tokens": 0
+  },
+  "latency_s": 11.450586258084513,
+  "cached": false
+}

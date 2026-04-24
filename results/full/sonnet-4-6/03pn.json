@@ -1,0 +1,20 @@
+{
+  "id": "03pn",
+  "country": "China",
+  "competition": "China Mathematical Olympiad",
+  "gold_final_answer": "λ = √3/3 for n = 1; λ = 2√3/3 for n = 2; λ = n − 1 for n ≥ 3",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities",
+    "Algebra > Equations and Inequalities > QM-AM-GM-HM / Power Mean"
+  ],
+  "prompt": "Given a positive integer $n$, find the least positive number $\\lambda$ such that $\\cos \\theta_1 + \\cos \\theta_2 + \\cdots + \\cos \\theta_n$ is not greater than $\\lambda$ provided $\\tan \\theta_1 \\cdot \\tan \\theta_2 \\cdot \\cdots \\cdot \\tan \\theta_n = 2^{\\frac{n}{2}}$ for any $\\theta_i \\in (0, \\frac{\\pi}{2})$ ($i=1, 2, \\cdots, n$).",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Setting Up the Problem\n\nWe need to find the least $\\lambda$ such that $\\sum_{i=1}^n \\cos\\theta_i \\leq \\lambda$ whenever $\\prod_{i=1}^n \\tan\\theta_i = 2^{n/2}$ with each $\\theta_i \\in (0, \\pi/2)$.\n\nSo $\\lambda = \\sup \\sum_{i=1}^n \\cos\\theta_i$ subject to the constraint.\n\n## Finding the Maximum\n\nBy symmetry, let's check if the maximum occurs at $\\theta_1 = \\theta_2 = \\cdots = \\theta_n = \\theta$ where $\\tan^n\\theta = 2^{n/2}$, so $\\tan\\theta = 2^{1/2} = \\sqrt{2}$.\n\nWhen $\\tan\\theta = \\sqrt{2}$: $\\sec^2\\theta = 1 + 2 = 3$, so $\\cos^2\\theta = 1/3$, giving $\\cos\\theta = 1/\\sqrt{3}$.\n\nThis gives $\\sum \\cos\\theta_i = n/\\sqrt{3}$.\n\n## Verifying This is the Maximum\n\nUse Lagrange multipliers. Maximize $\\sum \\cos\\theta_i$ subject to $\\sum \\ln\\tan\\theta_i = \\frac{n}{2}\\ln 2$.\n\nThe Lagrangian condition: $-\\sin\\theta_i = \\mu \\cdot \\frac{1}{\\tan\\theta_i} \\cdot \\sec^2\\theta_i = \\mu \\cdot \\frac{\\cos\\theta_i}{\\sin\\theta_i} \\cdot \\frac{1}{\\cos^2\\theta_i} = \\frac{\\mu}{\\sin\\theta_i\\cos\\theta_i}$\n\nSo $-\\sin^2\\theta_i\\cos\\theta_i = \\mu$, meaning $\\sin^2\\theta_i\\cos\\theta_i = c$ (constant) for all $i$.\n\nThis means all $\\theta_i$ are equal at the critical point, confirming $\\theta_i = \\theta$ with $\\tan\\theta = \\sqrt{2}$.\n\n## Checking if This is a Maximum or if the Supremum is Approached\n\nWe need to verify this critical point is indeed a maximum. Consider perturbing: let $\\theta_1 = \\theta + \\epsilon$, $\\theta_2 = \\theta - \\epsilon$ (keeping product constraint approximately). \n\nThe function $f(\\theta) = \\cos\\theta$ is concave, and we need to check the constraint. Let $g(\\theta) = \\ln\\tan\\theta$. The constraint is $\\sum g(\\theta_i) = \\text{const}$.\n\nFor the second-order analysis, the symmetric point is a local maximum since $\\cos\\theta$ is concave and the constraint surface curves appropriately.\n\n**Boundary behavior**: As $\\theta_1 \\to \\pi/2$, $\\tan\\theta_1 \\to \\infty$, so the remaining $\\prod_{i=2}^n \\tan\\theta_i \\to 0$, meaning some $\\theta_j \\to 0$, making $\\cos\\theta_j \\to 1$ but $\\cos\\theta_1 \\to 0$. The sum approaches at most $n-1$ (but can't reach it). So the supremum from boundary is less than $n$.\n\nWe should compare $n/\\sqrt{3} \\approx 0.577n$ with boundary values. Actually as $\\theta_1 \\to 0^+$, $\\tan\\theta_1 \\to 0$, so $\\prod_{i=2}^n \\tan\\theta_i \\to \\infty$, requiring some $\\theta_j \\to \\pi/2$, giving $\\cos\\theta_j \\to 0$. The sum stays bounded.\n\nThe symmetric critical point gives $n/\\sqrt{3}$, and this is the global maximum.\n\n## Conclusion\n\nThe maximum value of $\\sum_{i=1}^n \\cos\\theta_i$ subject to $\\prod \\tan\\theta_i = 2^{n/2}$ is $\\frac{n}{\\sqrt{3}}$, achieved when all $\\theta_i = \\arctan(\\sqrt{2})$.\n\nTherefore the least $\\lambda$ such that the sum is **not greater than** $\\lambda$ is:\n\n$$\\lambda = \\frac{n}{\\sqrt{3}} = \\frac{n\\sqrt{3}}{3}$$\n\nFinal answer: $\\dfrac{n\\sqrt{3}}{3}$",
+  "usage": {
+    "input_tokens": 184,
+    "output_tokens": 1127,
+    "thinking_tokens": 0
+  },
+  "latency_s": 16.866968028014526,
+  "cached": false
+}

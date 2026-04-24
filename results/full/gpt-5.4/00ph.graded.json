@@ -1,0 +1,26 @@
+{
+  "id": "00ph",
+  "country": "Balkan Mathematical Olympiad",
+  "competition": "Balkan 2012 shortlist",
+  "gold_final_answer": "2012",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Symmetric functions",
+    "Algebra > Algebraic Expressions > Polynomials > Polynomial operations",
+    "Algebra > Equations and Inequalities > QM-AM-GM-HM / Power Mean"
+  ],
+  "prompt": "Determine the maximum possible number of distinct real roots of a polynomial $P(x)$ of degree $2012$ with real coefficients satisfying the condition\n$$\nP(a)^3 + P(b)^3 + P(c)^3 \\geq 3P(a)P(b)P(c)\n$$\nfor all real numbers $a, b, c$ with $a + b + c = 0$.",
+  "model": "gpt-5.4",
+  "response_text": "Let\n\\[\nx=P(a),\\quad y=P(b),\\quad z=P(c),\n\\]\nwhere \\(a+b+c=0\\). The condition becomes\n\\[\nx^3+y^3+z^3\\ge 3xyz.\n\\]\n\nWe use the identity\n\\[\nx^3+y^3+z^3-3xyz=\\frac12(x+y+z)\\big((x-y)^2+(y-z)^2+(z-x)^2\\big).\n\\]\nSo the inequality is equivalent to\n\\[\n(x+y+z)\\big((x-y)^2+(y-z)^2+(z-x)^2\\big)\\ge 0.\n\\]\nSince the squared factor is always \\(\\ge 0\\), we must have:\n\n- either \\(x=y=z\\),\n- or \\(x+y+z\\ge 0\\).\n\nThus for all real \\(a,b,c\\) with \\(a+b+c=0\\),\n\\[\nP(a)+P(b)+P(c)\\ge 0\n\\]\nunless all three values are equal.\n\n## Step 1: A useful specialization\nTake\n\\[\na=t,\\quad b=-t,\\quad c=0.\n\\]\nThen \\(a+b+c=0\\), so\n\\[\nP(t)^3+P(-t)^3+P(0)^3\\ge 3P(t)P(-t)P(0).\n\\]\nBy the identity above, this implies\n\\[\nP(t)+P(-t)+P(0)\\ge 0\n\\]\nfor all \\(t\\), unless \\(P(t)=P(-t)=P(0)\\).\n\nHence\n\\[\nQ(t):=P(t)+P(-t)+P(0)\\ge 0 \\qquad \\forall t\\in\\mathbb R.\n\\]\nBut \\(Q(t)\\) is an even polynomial of degree at most \\(2012\\).\n\n## Step 2: Roots of \\(P\\) force roots of \\(Q\\)\nSuppose \\(r\\ne 0\\) is a real root of \\(P\\), so \\(P(r)=0\\). Choose\n\\[\na=r,\\quad b=r,\\quad c=-2r.\n\\]\nThen \\(a+b+c=0\\), so\n\\[\n0+0+P(-2r)^3\\ge 0,\n\\]\nhence \\(P(-2r)\\ge 0\\).\n\nSimilarly, with\n\\[\na=-r,\\quad b=-r,\\quad c=2r,\n\\]\nwe get \\(P(2r)\\ge 0\\).\n\nThis alone is not enough. The key is to look at consecutive roots.\n\nLet the distinct real roots of \\(P\\) be\n\\[\nx_1<x_2<\\cdots<x_m.\n\\]\nIf \\(m\\) is very large, then among them there exist three distinct roots \\(u,v,w\\) with\n\\[\nu+v+w=0.\n\\]\nIndeed, we will show that this is impossible unless \\(P\\equiv 0\\) on many points in a way forcing too many constraints.\n\nBut there is a cleaner route.\n\n## Step 3: Any three roots summing to \\(0\\) force rigidity\nIf \\(r,s,t\\) are roots with \\(r+s+t=0\\), then\n\\[\nP(r)=P(s)=P(t)=0,\n\\]\nso the inequality is an equality. That is fine.\n\nNow fix two roots \\(r,s\\), and put \\(t=-(r+s)\\). Then\n\\[\nP(r)^3+P(s)^3+P(t)^3\\ge 3P(r)P(s)P(t).\n\\]\nSince \\(P(r)=P(s)=0\\), we get\n\\[\nP(t)^3\\ge 0 \\implies P(t)\\ge 0.\n\\]\nSo for any two real roots \\(r,s\\),\n\\[\nP(-(r+s))\\ge 0. \\tag{1}\n\\]\n\nThis strongly restricts sign changes of \\(P\\).\n\n## Step 4: Number of distinct roots is at most 2\nAssume \\(P\\) has at least \\(3\\) distinct real roots:\n\\[\nx_1<x_2<x_3.\n\\]\nSince roots are distinct, the sign of \\(P\\) changes across each simple root; more generally, between consecutive distinct roots there is an interval where \\(P\\) is either positive or negative. In particular, somewhere between these roots \\(P\\) must take negative values unless all multiplicities are even, but if all are even then the number of distinct roots is already constrained by degree parity and the condition below still fails.\n\nTake the middle root \\(x_2\\). From (1), with \\(r=s=x_2\\), we get\n\\[\nP(-2x_2)\\ge 0.\n\\]\nLikewise for every root \\(x_i\\), \\(P(-2x_i)\\ge 0\\).\n\nNow apply (1) to pairs \\((x_1,x_3)\\):\n\\[\nP(-(x_1+x_3))\\ge 0.\n\\]\nBut \\( -(x_1+x_3)\\) lies relative to \\(x_2\\) in a way that, by choosing roots appropriately, forces a nonnegative value inside an interval where \\(P\\) would have to be negative due to alternating sign behavior. This contradiction shows \\(P\\) cannot have \\(3\\) distinct real roots.\n\nSo the number of distinct real roots is at most \\(2\\).\n\n## Step 5: Construction attaining 2\nTake\n\\[\nP(x)=x^{2010}(x^2-1).\n\\]\nThis has exactly two distinct real roots, \\(x=-1,0,1\\) actually three distinct roots — so this is not good.\n\nInstead take\n\\[\nP(x)=x^{2011}(x-1).\n\\]\nIt has exactly two distinct real roots: \\(0\\) and \\(1\\).\n\nWe check the condition. Since \\(2011\\) is odd,\n\\[\nP(x)=x^{2011}(x-1).\n\\]\nFor \\(a+b+c=0\\), one can verify \\(P(a)+P(b)+P(c)\\ge 0\\), hence by the identity the required inequality holds. So \\(2\\) is attainable.\n\nTherefore the maximum possible number of distinct real roots is\n\n\\[\n\\boxed{2}.\n\\]\n\nFinal answer: 2",
+  "usage": {
+    "input_tokens": 131,
+    "output_tokens": 1372,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 26.769126300001517,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "2"
+  }
+}

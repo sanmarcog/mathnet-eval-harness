@@ -1,0 +1,19 @@
+{
+  "id": "0e1w",
+  "country": "Slovenia",
+  "competition": "National Math Olympiad",
+  "gold_final_answer": "1",
+  "topics_flat": [
+    "Algebra > Prealgebra / Basic Algebra > Simple Equations"
+  ],
+  "prompt": "For a real number $t$ and positive real numbers $a$ and $b$ we have\n$$\n2a^2 - 3abt + b^2 = 2a^2 + abt - b^2 = 0.\n$$\nFind $t$.",
+  "model": "gpt-5.4",
+  "response_text": "From\n\\[\n2a^2-3abt+b^2=0,\\qquad 2a^2+abt-b^2=0\n\\]\nwith \\(a,b>0\\), subtract the second equation from the first:\n\\[\n(2a^2-3abt+b^2)-(2a^2+abt-b^2)=0\n\\]\n\\[\n-4abt+2b^2=0.\n\\]\nSince \\(b>0\\),\n\\[\n2b(-2at+b)=0 \\implies b=2at.\n\\]\n\nNow substitute \\(b=2at\\) into one of the equations, say\n\\[\n2a^2+abt-b^2=0.\n\\]\nThen\n\\[\n2a^2+a(2at)t-(2at)^2=0\n\\]\n\\[\n2a^2+2a^2t^2-4a^2t^2=0\n\\]\n\\[\n2a^2(1-t^2)=0.\n\\]\nBecause \\(a>0\\),\n\\[\n1-t^2=0 \\implies t^2=1 \\implies t=\\pm1.\n\\]\n\nBut \\(b=2at\\) and \\(a,b>0\\), so \\(t>0\\). Hence\n\\[\nt=1.\n\\]\n\nFinal answer: \\(1\\)",
+  "usage": {
+    "input_tokens": 106,
+    "output_tokens": 295,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 4.308383484953083,
+  "cached": false
+}

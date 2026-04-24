@@ -1,0 +1,25 @@
+{
+  "id": "0eol",
+  "country": "South Africa",
+  "competition": "South African Mathematics Olympiad",
+  "gold_final_answer": "C",
+  "topics_flat": [
+    "Algebra > Prealgebra / Basic Algebra > Fractions",
+    "Algebra > Prealgebra / Basic Algebra > Simple Equations"
+  ],
+  "prompt": "When $a$ is increased by $20\\%$ and $b$ is decreased by $20\\%$ the resulting values are equal. The ratio of $a$ to $b$ is\n\n(A) $\\frac{1}{2}$ (B) $1$ (C) $\\frac{2}{3}$ (D) $\\frac{3}{4}$ (E) $\\frac{4}{3}$",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find the ratio of $a$ to $b$, we can set up an equation based on the information given in the problem. \n\nWhen $a$ is increased by $20\\%$, its new value is $a + 0.20a = 1.20a$.\nWhen $b$ is decreased by $20\\%$, its new value is $b - 0.20b = 0.80b$.\n\nThe problem states that these resulting values are equal, so we can write:\n$1.20a = 0.80b$\n\nTo find the ratio of $a$ to $b$ (which is $\\frac{a}{b}$), we divide both sides of the equation by $1.20b$:\n$\\frac{a}{b} = \\frac{0.80}{1.20}$\n\nNow, we simplify the fraction by multiplying the numerator and the denominator by 100 to remove the decimals:\n$\\frac{a}{b} = \\frac{80}{120}$\n\nDividing both the numerator and the denominator by their greatest common divisor, which is 40, we get:\n$\\frac{a}{b} = \\frac{2}{3}$\n\nFinal answer: 2/3",
+  "usage": {
+    "input_tokens": 125,
+    "output_tokens": 279,
+    "thoughts_tokens": 363
+  },
+  "latency_s": 5.971694157924503,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "2/3"
+  }
+}

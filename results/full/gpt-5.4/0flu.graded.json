@@ -1,0 +1,24 @@
+{
+  "id": "0flu",
+  "country": "Spain",
+  "competition": "Spanija 2012",
+  "gold_final_answer": "n^3 - n",
+  "topics_flat": [
+    "Geometry > Solid Geometry > Other 3D problems"
+  ],
+  "prompt": "With several identical spheres, we build up a tetrahedron using $n$ spheres for each side. Determine, in terms of $n$, the number of tangency points between the spheres in the construction.",
+  "model": "gpt-5.4",
+  "response_text": "Let \\(T_n\\) be the tetrahedral stack with \\(n\\) spheres along each edge.\n\nWe want the number of **tangency points**, i.e. the number of pairs of spheres that touch.\n\nA convenient way is to count all touching pairs by direction.\n\n## 1. Model the stack by layers\nThe tetrahedron has \\(n\\) layers:\n- top layer: triangular arrangement of side \\(1\\),\n- next layer: side \\(2\\),\n- ...\n- bottom layer: side \\(n\\).\n\nIn a triangular layer of side \\(k\\), the number of touching pairs **within that layer** is:\n\n- horizontal: \\(\\sum_{r=1}^k (r-1)=\\frac{k(k-1)}2\\),\n- and the same number in each of the other two lattice directions.\n\nSo total within one layer:\n\\[\n3\\cdot \\frac{k(k-1)}2.\n\\]\n\nSumming over all layers \\(k=1,\\dots,n\\):\n\\[\n\\sum_{k=1}^n 3\\cdot \\frac{k(k-1)}2\n= \\frac32 \\sum_{k=1}^n (k^2-k).\n\\]\nUsing\n\\[\n\\sum k=\\frac{n(n+1)}2,\\qquad \\sum k^2=\\frac{n(n+1)(2n+1)}6,\n\\]\nwe get\n\\[\n\\frac32\\left(\\frac{n(n+1)(2n+1)}6-\\frac{n(n+1)}2\\right)\n= \\frac{n(n+1)(n-1)}2.\n\\]\n\n## 2. Count tangencies between consecutive layers\nBetween a layer of side \\(k\\) and the one above it of side \\(k-1\\), each sphere in the upper layer touches \\(3\\) spheres in the lower layer.\n\nThe upper layer contains\n\\[\n\\frac{k(k-1)}2\n\\]\nspheres, so the number of inter-layer tangencies is\n\\[\n3\\cdot \\frac{k(k-1)}2.\n\\]\n\nSumming for \\(k=2,\\dots,n\\):\n\\[\n\\sum_{k=2}^n 3\\cdot \\frac{k(k-1)}2\n= \\frac{n(n+1)(n-1)}2.\n\\]\n\n## 3. Total\nHence total tangencies are\n\\[\n\\frac{n(n+1)(n-1)}2+\\frac{n(n+1)(n-1)}2\n= n(n+1)(n-1).\n\\]\n\nThus\n\\[\n\\boxed{n(n^2-1)}.\n\\]\n\nFinal answer: \\(\\boxed{n(n^2-1)}\\)",
+  "usage": {
+    "input_tokens": 89,
+    "output_tokens": 596,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 8.635720136924647,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "n(n^2-1)"
+  }
+}

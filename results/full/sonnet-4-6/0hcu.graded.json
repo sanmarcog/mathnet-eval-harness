@@ -1,0 +1,25 @@
+{
+  "id": "0hcu",
+  "country": "Ukraine",
+  "competition": "59th Ukrainian National Mathematical Olympiad",
+  "gold_final_answer": "One valid construction is: for k from 1 to n−1, set a_k = −2^{n−k}(2^{n−1}−1), and set a_n = 2^{n−1}.",
+  "topics_flat": [
+    "Algebra > Prealgebra / Basic Algebra > Fractions",
+    "Algebra > Algebraic Expressions > Sequences and Series > Telescoping series"
+  ],
+  "prompt": "For any natural number $n \\ge 3$ find integers $a_1 < a_2 < \\dots < a_n$ such that the following equality holds:\n$$\n\\frac{a_1}{a_1} + \\frac{a_1}{a_2} + \\frac{a_1}{a_3} + \\dots + \\frac{a_1}{a_n} = \\frac{a_2}{a_1} + \\frac{a_2}{a_2} + \\frac{a_2}{a_3} + \\dots + \\frac{a_2}{a_n}. \\qquad (\\text{BogdanRublyov})\n$$",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Solution\n\nWe need to find integers $a_1 < a_2 < \\cdots < a_n$ such that:\n$$\\sum_{k=1}^n \\frac{a_1}{a_k} = \\sum_{k=1}^n \\frac{a_2}{a_k}$$\n\nThis simplifies to:\n$$(a_1 - a_2)\\sum_{k=1}^n \\frac{1}{a_k} = 0$$\n\nSince $a_1 \\neq a_2$ (as $a_1 < a_2$), we need:\n$$\\sum_{k=1}^n \\frac{1}{a_k} = 0$$\n\nSo we need $n$ strictly increasing integers whose reciprocals sum to zero.\n\n**Construction:**\n\nWe need integers $a_1 < a_2 < \\cdots < a_n$ with $\\sum \\frac{1}{a_k} = 0$. We can use negative integers to cancel positive ones.\n\n**Base case $n = 3$:** We need $\\frac{1}{a} + \\frac{1}{b} + \\frac{1}{c} = 0$ with $a < b < c$.\n\nTake $a = -2, b = -3, c = 6$: $-\\frac{1}{2} - \\frac{1}{3} + \\frac{1}{6} = \\frac{-3-2+1}{6} = \\frac{-4}{6} \\neq 0$.\n\nTry $a = -3, b = -6, c = 2$: not increasing properly. \n\nTry $a = -2, b = 3, c = 6$: $-\\frac{1}{2} + \\frac{1}{3} + \\frac{1}{6} = \\frac{-3+2+1}{6} = 0$. ✓\n\nSo for $n=3$: $(-2, 3, 6)$.\n\n**General construction for $n \\geq 3$:**\n\nStart with $(-2, 3, 6)$ giving sum $0$. For each additional term needed (to go from $3$ to $n$ terms), we can split one term using the identity $\\frac{1}{m} = \\frac{1}{m+1} + \\frac{1}{m(m+1)}$, replacing $a_k$ with two larger values.\n\nMore explicitly, for general $n$, use the following approach:\n\n**Explicit family:** Take $a_1 = -2$, $a_2 = 3$, $a_3 = 7$, $a_4 = 42$, and for larger $n$ keep splitting. But let's give a clean general answer.\n\n**Clean construction for all $n \\geq 3$:**\n\nUse $a_1 = -2$, $a_2 = 3$, $a_3 = 6$ for $n=3$.\n\nFor $n > 3$: replace $a_n = M$ (the largest term) with two terms using $\\frac{1}{M} = \\frac{1}{M+1} + \\frac{1}{M(M+1)}$, increasing the count by 1 each time.\n\nStarting from $(-2, 3, 6)$: replace $6$ → $(7, 42)$: gives $(-2, 3, 7, 42)$, sum $= -\\frac{1}{2}+\\frac{1}{3}+\\frac{1}{7}+\\frac{1}{42} = -\\frac{1}{2}+\\frac{1}{3}+\\frac{1}{6}=0$. ✓\n\nReplace $42$ → $(43, 42\\cdot 43) = (43, 1806)$: gives $(-2,3,7,43,1806)$. ✓\n\nIn general, for $n \\geq 3$, define the sequence recursively:\n- $a_1 = -2,\\ a_2 = 3,\\ a_3 = 6$\n- For each step $k$ from $3$ to $n-1$: replace the current last term $a_k = M$ by $M+1$ and $M(M+1)$.\n\nThis gives a valid strictly increasing sequence of integers with $\\sum \\frac{1}{a_k} = 0$.\n\n**Answer:** For any $n \\geq 3$, take $a_1 = -2,\\ a_2 = 3,\\ a_3 = 6,\\ a_4 = 42,\\ a_5 = 1806, \\ldots$ where each new term is obtained by the splitting $\\frac{1}{m} = \\frac{1}{m+1} + \\frac{1}{m(m+1)}$. These integers satisfy $\\sum_{k=1}^n \\frac{1}{a_k} = 0$, which is the required condition.\n\nFinal answer: Choose $a_1=-2,\\, a_2=3,\\, a_3=6$ and for $k\\ge 3$ replace the last term $m$ by $m+1$ and $m(m+1)$; this gives $n$ strictly increasing integers with $\\tfrac{1}{a_1}+\\cdots+\\tfrac{1}{a_n}=0$, which is equivalent to the required equality.",
+  "usage": {
+    "input_tokens": 216,
+    "output_tokens": 1337,
+    "thinking_tokens": 0
+  },
+  "latency_s": 20.071958474931307,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "Choose $a_1=-2,\\, a_2=3,\\, a_3=6$ and for $k\\ge 3$ replace the last term $m$ by $m+1$ and $m(m+1)$; this gives $n$ strictly increasing integers with $\\tfrac{1}{a_1}+\\cdots+\\tfrac{1}{a_n}=0$, which is equivalent to the required equality."
+  }
+}

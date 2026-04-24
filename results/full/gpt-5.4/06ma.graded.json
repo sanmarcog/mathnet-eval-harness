@@ -1,0 +1,24 @@
+{
+  "id": "06ma",
+  "country": "Hong Kong",
+  "competition": "HongKong 2022-23 IMO Selection Tests",
+  "gold_final_answer": "2358",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Inclusion-exclusion"
+  ],
+  "prompt": "A 'palindrome' is a positive integer which reads the same from left to right as from right to left, such as $12321$ and $259952$. Someone wrote down a five-digit palindrome $m$ and then removed a digit of $m$ to obtain a four-digit positive integer $n$ (that does not start with $0$). How many possible values of $n$ are there?",
+  "model": "gpt-5.4",
+  "response_text": "Let the five-digit palindrome be\n\\[\nm=abcba\n\\]\nwith \\(a\\in\\{1,\\dots,9\\}\\) and \\(b,c\\in\\{0,\\dots,9\\}\\).\n\nWe delete one digit of \\(m\\) to get a 4-digit number \\(n\\), which must not start with \\(0\\).\n\nWe consider which position is deleted.\n\n## 1. Delete the 1st digit\nFrom \\(abcba\\), deleting \\(a\\) gives\n\\[\nbcba.\n\\]\nThis must be 4-digit, so \\(b\\neq 0\\).\n\nSo all numbers of the form \\(bcba\\) with \\(b\\in\\{1,\\dots,9\\}\\), \\(c\\in\\{0,\\dots,9\\}\\) occur.\n\nCount:\n\\[\n9\\cdot 10=90.\n\\]\n\n## 2. Delete the 2nd digit\nWe get\n\\[\nacba.\n\\]\nHere \\(a\\neq 0\\), so always valid.\n\nCount:\n\\[\n9\\cdot 10\\cdot 10=900.\n\\]\n\n## 3. Delete the 3rd digit\nWe get\n\\[\nabba.\n\\]\nCount:\n\\[\n9\\cdot 10=90.\n\\]\n\n## 4. Delete the 4th digit\nWe get\n\\[\nabca.\n\\]\nCount:\n\\[\n9\\cdot 10\\cdot 10=900.\n\\]\n\n## 5. Delete the 5th digit\nWe get\n\\[\nabcb.\n\\]\nCount:\n\\[\n9\\cdot 10\\cdot 10=900.\n\\]\n\nIf these sets were disjoint, total would be \\(90+900+90+900+900=2880\\), but there is overlap.\n\n---\n\nWe classify all possible 4-digit numbers obtainable.\n\nA 4-digit number \\(n=d_1d_2d_3d_4\\) can arise iff it matches one of:\n- \\(bcba\\), i.e. \\(d_1=d_3\\),\n- \\(acba\\), no special restriction except \\(d_1=d_4\\)? Actually \\(acba\\) means digits are \\((a,c,b,a)\\), so \\(d_1=d_4\\),\n- \\(abba\\), so \\(d_1=d_4\\) and \\(d_2=d_3\\),\n- \\(abca\\), so \\(d_1=d_4\\),\n- \\(abcb\\), so \\(d_2=d_4\\).\n\nThus \\(n\\) is obtainable iff at least one of the following holds:\n\\[\nd_1=d_3,\\qquad d_1=d_4,\\qquad d_2=d_4.\n\\]\n\nSo we count 4-digit numbers \\(d_1d_2d_3d_4\\) with \\(d_1\\in\\{1,\\dots,9\\}\\), others in \\(\\{0,\\dots,9\\}\\), satisfying at least one of those equalities.\n\nTotal 4-digit numbers:\n\\[\n9\\cdot 10^3=9000.\n\\]\n\nCount complement: numbers with\n\\[\nd_1\\ne d_3,\\quad d_1\\ne d_4,\\quad d_2\\ne d_4.\n\\]\n\nChoose digits:\n- \\(d_1\\): \\(9\\) choices.\n- \\(d_2\\): \\(10\\) choices.\n- \\(d_3\\): any digit except \\(d_1\\): \\(9\\) choices.\n- \\(d_4\\): any digit except \\(d_1\\) and \\(d_2\\).\n\nFor \\(d_4\\):\n- if \\(d_2=d_1\\), then \\(d_4\\) has \\(9\\) choices;\n- if \\(d_2\\neq d_1\\), then \\(d_4\\) has \\(8\\) choices.\n\nCount:\n- Case \\(d_2=d_1\\): \\(9\\cdot 1\\cdot 9\\cdot 9=729\\).\n- Case \\(d_2\\neq d_1\\): \\(9\\cdot 9\\cdot 9\\cdot 8=5832\\).\n\nComplement:\n\\[\n729+5832=6561.\n\\]\n\nHence desired count:\n\\[\n9000-6561=2439.\n\\]\n\nFinal answer: 2439",
+  "usage": {
+    "input_tokens": 132,
+    "output_tokens": 958,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 12.3618941080058,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "2439"
+  }
+}

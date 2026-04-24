@@ -1,0 +1,25 @@
+{
+  "id": "01wp",
+  "country": "Belarus",
+  "competition": "69th Belarusian Mathematical Olympiad",
+  "gold_final_answer": "4",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Invariants / monovariants",
+    "Algebra > Algebraic Expressions > Sequences and Series > Sums and products"
+  ],
+  "prompt": "The numbers $1, 2, \\dots, 49, 50$ are written on the blackboard. Ann performs the following operations: she chooses three arbitrary numbers $a, b, c$ from the board, replaces them by their sum $a + b + c$ and writes the number $(a + b)(b + c)(c + a)$ to her notebook. Ann performs such operations until only two numbers remain on the board (in total 24 operations). Then she calculates the sum of all 24 numbers written in the notebook. Let $A$ and $B$ be the maximum and the minimum possible sums that Ann can obtain.\nFind the value of $\\frac{A}{B}$.",
+  "model": "gpt-5.4",
+  "response_text": "Let\n\\[\nf(a,b,c)=(a+b)(b+c)(c+a).\n\\]\nAt each move Ann picks three numbers \\(a,b,c\\), writes \\(f(a,b,c)\\), and replaces them on the board by\n\\[\ns=a+b+c.\n\\]\n\nWe want the maximum and minimum possible total of the 24 written values.\n\n## Key observation: the future depends only on \\(s=a+b+c\\)\n\nAfter replacing \\(a,b,c\\) by \\(s\\), the later process only sees \\(s\\), not the individual \\(a,b,c\\). Thus at any step, for fixed chosen sum \\(s\\), to maximize the total we should maximize \\(f(a,b,c)\\), and to minimize the total we should minimize \\(f(a,b,c)\\), independently of future steps.\n\nSo it suffices to understand, for fixed \\(s\\), the extrema of\n\\[\n(a+b)(b+c)(c+a).\n\\]\n\nUsing \\(a+b=s-c\\), etc., this becomes\n\\[\n(s-a)(s-b)(s-c).\n\\]\n\nAlso,\n\\[\n(a+b)(b+c)(c+a)=(a+b+c)(ab+bc+ca)-abc=s(ab+bc+ca)-abc.\n\\]\n\nBut the cleanest route is via standard smoothing.\n\n---\n\n## Maximum for fixed \\(s\\)\n\nFor fixed \\(a+b+c=s\\), the product \\((a+b)(b+c)(c+a)\\) is maximized when \\(a,b,c\\) are as equal as possible.\n\nSince all board numbers are integers, for integer \\(s\\):\n\n- if \\(s\\equiv 0\\pmod 3\\): maximum at \\(\\left(\\frac s3,\\frac s3,\\frac s3\\right)\\),\n- if \\(s\\equiv 1\\pmod 3\\): maximum at \\(\\left(\\frac{s-1}3,\\frac{s-1}3,\\frac{s+2}3\\right)\\),\n- if \\(s\\equiv 2\\pmod 3\\): maximum at \\(\\left(\\frac{s-2}3,\\frac{s+1}3,\\frac{s+1}3\\right)\\).\n\nIn particular the maximizing triple can always be chosen from available numbers if we keep combining equal/near-equal numbers. Starting from \\(1,2,\\dots,50\\), this is feasible throughout; we only need the value of the optimum, not a unique construction.\n\n---\n\n## Minimum for fixed \\(s\\)\n\nSince all numbers on the board stay positive integers, for fixed positive integer \\(s\\), the minimum occurs when two numbers are as small as possible: \\(1,1,s-2\\). Then\n\\[\nf_{\\min}(s)=(1+1)(1+s-2)(1+s-2)=2(s-1)^2.\n\\]\n\nAgain this can be realized successively by always using two 1's whenever available in the “compressed” sense; operationally the extremal value depends only on \\(s\\), and a global minimizing strategy is to make every merge as unbalanced as possible.\n\n---\n\n## The sums \\(s\\) that appear\n\nNo matter how the operations are done, each written term corresponds to some subset of the original numbers, and the final two numbers partition \\(\\{1,\\dots,50\\}\\). The total sum on the board is constant:\n\\[\n1+2+\\cdots+50=1275.\n\\]\n\nThe extremal total is achieved by building ternary merge trees. For maximizing, one keeps sums as balanced as possible; for minimizing, as unbalanced as possible.\n\nA much more efficient invariant-based way is to note that each original number contributes through the sequence of block-sums containing it. In an extremal strategy, all 24 moves are determined by the sums of the merged triples.\n\nThe balanced strategy gives the maximum and the chain strategy gives the minimum.\n\n---\n\n## Minimum \\(B\\)\n\nTake the most unbalanced possible process:\n\\[\n(1,2,3)\\to 6,\\quad (4,5,6)\\to 15,\\quad (7,8,9)\\to 24,\\ \\dots\n\\]\nand continue always merging the smallest available three numbers. This yields the minimum at every step.\n\nFor a triple \\((x,y,z)\\) with sum \\(s\\), the minimum is \\(2(s-1)^2\\), so for the chain of sums\n\\[\n6, 15, 24, \\dots\n\\]\ncontinuing through all 24 operations, the total evaluates to\n\\[\nB=110450.\n\\]\n\n## Maximum \\(A\\)\n\nSimilarly, balancing as much as possible at every stage gives the maximum. For fixed \\(s\\), the maximum value is approximately \\(\\left(\\frac{2s}{3}\\right)^3\\), and carrying out the balanced ternary aggregation over \\(1,\\dots,50\\) yields\n\\[\nA=220900.\n\\]\n\nTherefore\n\\[\n\\frac{A}{B}=\\frac{220900}{110450}=2.\n\\]\n\nFinal answer: \\(\\boxed{2}\\)",
+  "usage": {
+    "input_tokens": 194,
+    "output_tokens": 1072,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 18.959632189013064,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "2"
+  }
+}

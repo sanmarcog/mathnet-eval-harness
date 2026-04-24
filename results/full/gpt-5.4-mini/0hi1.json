@@ -1,0 +1,22 @@
+{
+  "id": "0hi1",
+  "country": "Ukraine",
+  "competition": "Problems from Ukrainian Authors",
+  "gold_final_answer": "m(m+1)(2m+1)/6",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Geometric Inequalities > Optimization in geometry",
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments",
+    "Discrete Mathematics > Combinatorics > Induction / smoothing",
+    "Geometry > Plane Geometry > Miscellaneous > Constructions and loci"
+  ],
+  "prompt": "Let $n = 2m + 1$ for some integer $m$. $n$ points $A_1, A_2, \\dots, A_n$ are chosen on two parallel lines. What is the largest possible number of acute triangles among the triangles $A_iA_jA_k$ over $1 \\le i < j < k \\le n$?",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let the two parallel lines be horizontal. A triangle formed by points on two parallel lines is acute only in the following cases:\n\n- all 3 points lie on one line: impossible, since then the “triangle” is degenerate;\n- so the triangle must have 2 vertices on one line and 1 on the other.\n\nNow suppose a triangle has two vertices on the lower line and one on the upper line. The angle at the upper vertex is always acute, while the two base angles are acute exactly when the upper point lies between the two lower points in horizontal order and the horizontal distance is small enough. To maximize the total number of acute triangles, we want the points distributed as evenly as possible between the two lines, and arranged in alternating order so that as many triples as possible are acute.\n\nA standard extremal fact for this configuration is that the maximum number of acute triangles among \\(n\\) points on two parallel lines occurs when the numbers of points on the two lines are as equal as possible, i.e. \\(m\\) points on one line and \\(m+1\\) on the other, with a suitable alternating placement. Then every choice of 2 points from the larger line and 1 point from the smaller line gives an acute triangle, and every choice of 1 point from the larger line and 2 points from the smaller line also gives an acute triangle, for a total of\n\n\\[\n\\binom{m+1}{2}\\binom{m}{1}+\\binom{m}{2}\\binom{m+1}{1}.\n\\]\n\nCompute:\n\n\\[\n\\binom{m+1}{2}m+\\binom{m}{2}(m+1)\n= \\frac{m(m+1)}{2}\\,m+\\frac{m(m-1)}{2}(m+1)\n\\]\n\n\\[\n= \\frac{m(m+1)}{2}\\bigl(m+m-1\\bigr)\n= \\frac{m(m+1)(2m-1)}{2}.\n\\]\n\nSince \\(n=2m+1\\), this can also be written as\n\n\\[\n\\frac{(n-1)(n+1)(n-2)}{8}.\n\\]\n\nSo the largest possible number of acute triangles is\n\n\\[\n\\boxed{\\frac{m(m+1)(2m-1)}{2}=\\frac{(n-1)(n+1)(n-2)}{8}}.\n\\]\n\nFinal answer: \\(\\frac{m(m+1)(2m-1)}{2}\\) (equivalently, \\(\\frac{(n-1)(n+1)(n-2)}{8}\\)).",
+  "usage": {
+    "input_tokens": 126,
+    "output_tokens": 571,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 4.4923727550776675,
+  "cached": false
+}

@@ -1,0 +1,19 @@
+{
+  "id": "00st",
+  "country": "Balkan Mathematical Olympiad",
+  "competition": "BMO 2019 Shortlist",
+  "gold_final_answer": "1 + floor(n/d)",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Greatest common divisors (gcd)"
+  ],
+  "prompt": "Let $S \\subset \\{1, \\dots, n\\}$ be a nonempty set, where $n$ is a positive integer. We denote by $s$ the greatest common divisor of the elements of the set $S$. We assume that $s \\neq 1$ and let $d$ be its smallest divisor greater than $1$. Let $T \\subset \\{1, \\dots, n\\}$ be a set such that $S \\subset T$ and $|T| \\geq 1 + \\lfloor \\frac{n}{d} \\rfloor$. Prove that the greatest common divisor of the elements in $T$ is $1$.\n\nLet $n$ ($n \\geq 1$) be a positive integer and $U = \\{1, \\dots, n\\}$. Let $S$ be a nonempty subset of $U$ and let $d$ ($d \\neq 1$) be the smallest common divisor of all elements of the set $S$. Find the smallest positive integer $k$ such that for any subset $T$ of $U$, consisting of $k$ elements, with $S \\subset T$, the greatest common divisor of all elements of $T$ is equal to $1$.",
+  "model": "gpt-5.4",
+  "response_text": "Let \\(g(A)\\) denote the gcd of the elements of a finite nonempty set \\(A\\).\n\nWe are given a nonempty \\(S\\subset \\{1,\\dots,n\\}\\), and let\n\\[\ns=g(S)>1.\n\\]\nLet \\(d\\) be the smallest divisor of \\(s\\) greater than \\(1\\). Since \\(d\\) is the smallest prime divisor of \\(s\\), every divisor \\(>1\\) of \\(s\\) is at least \\(d\\).\n\nWe must show:\n\n- if \\(T\\supset S\\) and \\(|T|\\ge 1+\\left\\lfloor \\frac nd\\right\\rfloor\\), then \\(g(T)=1\\);\n- and this bound is best possible.\n\n## Step 1: Prove the stated sufficient condition\n\nAssume for contradiction that \\(g(T)=m>1\\).\n\nThen \\(m\\) divides every element of \\(T\\), hence in particular every element of \\(S\\). So \\(m\\mid s\\). Therefore \\(m\\) is a divisor \\(>1\\) of \\(s\\), so by minimality of \\(d\\),\n\\[\nm\\ge d.\n\\]\n\nNow all elements of \\(T\\) are multiples of \\(m\\), hence also among the multiples of \\(d\\)? More carefully, since \\(m\\ge d\\), the number of multiples of \\(m\\) in \\(\\{1,\\dots,n\\}\\) is at most\n\\[\n\\left\\lfloor \\frac nm\\right\\rfloor \\le \\left\\lfloor \\frac nd\\right\\rfloor.\n\\]\nBut every element of \\(T\\) is a multiple of \\(m\\), so\n\\[\n|T|\\le \\left\\lfloor \\frac nm\\right\\rfloor \\le \\left\\lfloor \\frac nd\\right\\rfloor,\n\\]\ncontradicting \\(|T|\\ge 1+\\left\\lfloor \\frac nd\\right\\rfloor\\).\n\nHence \\(g(T)=1\\).\n\n---\n\n## Step 2: Show the bound is sharp\n\nWe now seek the smallest \\(k\\) such that **every** \\(T\\subset \\{1,\\dots,n\\}\\) with \\(S\\subset T\\) and \\(|T|=k\\) satisfies \\(g(T)=1\\).\n\nFrom Step 1, any such \\(T\\) works whenever\n\\[\nk\\ge 1+\\left\\lfloor \\frac nd\\right\\rfloor.\n\\]\nSo\n\\[\nk_{\\min}\\le 1+\\left\\lfloor \\frac nd\\right\\rfloor.\n\\]\n\nIt remains to show that\n\\[\nk=\\left\\lfloor \\frac nd\\right\\rfloor\n\\]\ndoes **not** always suffice.\n\nSince \\(d\\mid s\\), every element of \\(S\\) is divisible by \\(d\\). Thus\n\\[\nS\\subset M:=\\{d,2d,\\dots,\\lfloor n/d\\rfloor d\\},\n\\]\nand\n\\[\n|M|=\\left\\lfloor \\frac nd\\right\\rfloor.\n\\]\nTake \\(T=M\\). Then \\(S\\subset T\\), \\(|T|=\\left\\lfloor \\frac nd\\right\\rfloor\\), and every element of \\(T\\) is divisible by \\(d\\). Hence\n\\[\ng(T)\\ge d>1,\n\\]\nso \\(g(T)\\neq 1\\).\n\nTherefore no smaller \\(k\\) can work.\n\nSo the smallest such integer is\n\\[\n\\boxed{1+\\left\\lfloor \\frac nd\\right\\rfloor}.\n\\]\n\nFinal answer: \\(\\boxed{k=1+\\left\\lfloor \\frac nd\\right\\rfloor}\\).",
+  "usage": {
+    "input_tokens": 314,
+    "output_tokens": 809,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 10.897973085055128,
+  "cached": false
+}

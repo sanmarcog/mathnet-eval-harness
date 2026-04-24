@@ -1,0 +1,20 @@
+{
+  "id": "0c5q",
+  "country": "Romania",
+  "competition": "2019 ROMANIAN MATHEMATICAL OLYMPIAD",
+  "gold_final_answer": "a) 9 degrees; b) n = 18, 19, 20, 21, 22, 23, 24, 25",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Miscellaneous > Angle chasing",
+    "Algebra > Algebraic Expressions > Sequences and Series > Sums and products"
+  ],
+  "prompt": "Around point $O$ one considers the angles $\\widehat{A_0OA_1} = 1^\\circ$, $\\widehat{A_1OA_2} = 2^\\circ$, $\\widehat{A_2OA_3} = 3^\\circ, \\dots, \\widehat{A_{25}OA_{26}} = 26^\\circ$ and $\\widehat{A_{26}OA_0}$.\n\na) Determine the measure of $\\widehat{A_{26}OA_0}$.\n\nb) For what integers $n$, such that $1 \\le n \\le 25$, one has $\\widehat{A_0OA_n} > \\widehat{A_0OA_{n+1}}$?",
+  "model": "gpt-5.4",
+  "response_text": "Let  \n\\[\n\\angle A_{k-1}OA_k = k^\\circ \\qquad (k=1,2,\\dots,26).\n\\]\nThese consecutive angles go all the way around point \\(O\\).\n\n## a) Compute \\(\\angle A_{26}OA_0\\)\n\nThe sum of angles around a point is \\(360^\\circ\\). Hence\n\\[\n\\angle A_{26}OA_0\n=360^\\circ-(1+2+\\cdots+26).\n\\]\nNow\n\\[\n1+2+\\cdots+26=\\frac{26\\cdot 27}{2}=351.\n\\]\nSo\n\\[\n\\angle A_{26}OA_0=360^\\circ-351^\\circ=9^\\circ.\n\\]\n\n## b) Find \\(n\\in\\{1,\\dots,25\\}\\) such that \\(\\angle A_0OA_n>\\angle A_0OA_{n+1}\\)\n\nLet\n\\[\ns_n=1+2+\\cdots+n=\\frac{n(n+1)}2.\n\\]\nGoing from \\(A_0\\) to \\(A_n\\) along the given order gives angle \\(s_n^\\circ\\). Therefore the smaller angle\n\\[\n\\angle A_0OA_n=\\min(s_n,\\ 360-s_n).\n\\]\nWe want\n\\[\n\\min(s_n,360-s_n)>\\min(s_{n+1},360-s_{n+1}),\n\\]\nwith\n\\[\ns_{n+1}=s_n+(n+1).\n\\]\n\nAs \\(n\\) increases, \\(s_n\\) increases. The value \\(\\min(s_n,360-s_n)\\) increases until \\(s_n\\) passes \\(180\\), then decreases.\n\nSo we need to know when \\(s_n\\) crosses \\(180\\):\n\\[\ns_{18}=\\frac{18\\cdot19}{2}=171<180,\\qquad\ns_{19}=\\frac{19\\cdot20}{2}=190>180.\n\\]\nThus the sequence \\(\\angle A_0OA_n\\) increases up to \\(n=18\\), then decreases from \\(n=19\\) onward. Hence\n\\[\n\\angle A_0OA_n>\\angle A_0OA_{n+1}\n\\]\nexactly for\n\\[\nn=19,20,21,22,23,24,25.\n\\]\n\nFinal answer: a) \\(\\angle A_{26}OA_0=9^\\circ\\).  b) \\(n=19,20,21,22,23,24,25\\).",
+  "usage": {
+    "input_tokens": 210,
+    "output_tokens": 561,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 7.4915218349779025,
+  "cached": false
+}

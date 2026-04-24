@@ -1,0 +1,20 @@
+{
+  "id": "0d9r",
+  "country": "Saudi Arabia",
+  "competition": "Team selection tests for JBMO 2018",
+  "gold_final_answer": "1980",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Prime numbers",
+    "Number Theory > Divisibility / Factorization > Factorization techniques"
+  ],
+  "prompt": "Distinct prime numbers $p$, $q$, $r$ satisfy the equation\n$$\n2 p q r + 50 p q = 7 p q r + 55 p r = 8 p q r + 12 q r = A\n$$\nfor some positive integer $A$. Find $A$.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "We have three expressions equal to A:\n1. 2pqr + 50pq = A\n2. 7pqr + 55pr = A\n3. 8pqr + 12qr = A\n\nFrom expressions 1 and 2:\n2pqr + 50pq = 7pqr + 55pr\n-5pqr + 50pq - 55pr = 0\nDivide by 5p:\n-qr + 10q - 11r = 0\n10q - qr = 11r\nq(10 - r) = 11r\nq = 11r/(10 - r)\n\nFor q to be positive, we need 10 - r > 0, so r < 10. Since r is prime: r ∈ {2, 3, 5, 7}.\n\n- r = 2: q = 22/8 = 11/4 (not integer)\n- r = 3: q = 33/7 (not integer)\n- r = 5: q = 55/5 = 11 ✓\n- r = 7: q = 77/3 (not integer)\n\nSo r = 5, q = 11.\n\nFrom expressions 1 and 3:\n2pqr + 50pq = 8pqr + 12qr\n-6pqr + 50pq - 12qr = 0\nDivide by 2q:\n-3pr + 25p - 6r = 0\np(25 - 3r) = 6r\nWith r = 5:\np(25 - 15) = 30\n10p = 30\np = 3 ✓\n\nCheck p = 3, q = 11, r = 5 are distinct primes: yes.\n\nA = 2pqr + 50pq = 2(3)(11)(5) + 50(3)(11) = 330 + 1650 = 1980\n\nVerify with expression 2: 7(3)(11)(5) + 55(3)(5) = 1155 + 825 = 1980 ✓\nVerify with expression 3: 8(3)(11)(5) + 12(11)(5) = 1320 + 660 = 1980 ✓\n\nFinal answer: 1980",
+  "usage": {
+    "input_tokens": 121,
+    "output_tokens": 579,
+    "thinking_tokens": 0
+  },
+  "latency_s": 10.60577765898779,
+  "cached": false
+}

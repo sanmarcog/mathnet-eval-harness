@@ -1,0 +1,20 @@
+{
+  "id": "066d",
+  "country": "Greece",
+  "competition": "Hellenic Mathematical Olympiad",
+  "gold_final_answer": "A = [(k-1)^2 + 1^2][(k+1)^2 + 1^2]; K = (2n)^2 + (2n+1)^2",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Factorization techniques",
+    "Algebra > Algebraic Expressions > Sequences and Series > Sums and products"
+  ],
+  "prompt": "(α) Write the expression $A = k^4 + 4$, where $k$ is a positive integer, as a product of two factors each of them being a sum of two squares of integers.\n\n(β) Simplify the expression\n$$\nK = \\frac{\\left(2^4 + \\frac{1}{4}\\right)\\left(4^4 + \\frac{1}{4}\\right)\\left(6^4 + \\frac{1}{4}\\right) \\cdots \\left((2n)^4 + \\frac{1}{4}\\right)}{\\left(1^4 + \\frac{1}{4}\\right)\\left(3^4 + \\frac{1}{4}\\right)\\left(5^4 + \\frac{1}{4}\\right) \\cdots \\left((2n-1)^4 + \\frac{1}{4}\\right)}\n$$\nand write it as a sum of the squares of two successive integers.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To solve part (α), we can use Sophie Germain's identity to factor the expression $A = k^4 + 4$:\n$$ A = k^4 + 4 = k^4 + 4k^2 + 4 - 4k^2 $$\n$$ A = (k^2 + 2)^2 - (2k)^2 $$\nThis is a difference of squares, which factors as:\n$$ A = (k^2 - 2k + 2)(k^2 + 2k + 2) $$\nWe can rewrite each quadratic factor as a sum of two squares:\n$$ k^2 - 2k + 2 = (k-1)^2 + 1^2 $$\n$$ k^2 + 2k + 2 = (k+1)^2 + 1^2 $$\nThus, the expression as a product of two factors, each being a sum of two squares, is:\n$$ A = ((k-1)^2 + 1^2)((k+1)^2 + 1^2) $$\n\nFor part (β), we are given the expression:\n$$ K = \\frac{\\left(2^4 + \\frac{1}{4}\\right)\\left(4^4 + \\frac{1}{4}\\right) \\cdots \\left((2n)^4 + \\frac{1}{4}\\right)}{\\left(1^4 + \\frac{1}{4}\\right)\\left(3^4 + \\frac{1}{4}\\right) \\cdots \\left((2n-1)^4 + \\frac{1}{4}\\right)} $$\nWe can multiply the numerator and the denominator by $4^n$ (multiplying each of the $n$ factors by 4) to clear the fractions:\n$$ K = \\frac{(4(2)^4 + 1)(4(4)^4 + 1) \\cdots (4(2n)^4 + 1)}{(4(1)^4 + 1)(4(3)^4 + 1) \\cdots (4(2n-1)^4 + 1)} $$\nNotice that each term is of the form $4x^4 + 1$. Using the factorization from part (α) with $k = x\\sqrt{2}$, or simply applying Sophie Germain's identity directly to $4x^4 + 1$:\n$$ 4x^4 + 1 = 4x^4 + 4x^2 + 1 - 4x^2 = (2x^2 + 1)^2 - (2x)^2 = (2x^2 - 2x + 1)(2x^2 + 2x + 1) $$\nNotice that $2x^2 - 2x + 1 = x^2 + (x-1)^2$ and $2x^2 + 2x + 1 = x^2 + (x+1)^2$. \nLet $g(x) = x^2 + (x-1)^2$. Then $2x^2 + 2x + 1 = (x+1)^2 + x^2 = g(x+1)$.\nTherefore, $4x^4 + 1 = g(x)g(x+1)$.\n\nSubstituting this into our expression for $K$:\n$$ K = \\frac{g(2)g(3) \\cdot g(4)g(5) \\cdots g(2n)g(2n+1)}{g(1)g(2) \\cdot g(3)g(4) \\cdots g(2n-1)g(2n)} $$\nThis is a telescoping product where every term cancels out except for $g(2n+1)$ in the numerator and $g(1)$ in the denominator:\n$$ K = \\frac{g(2n+1)}{g(1)} $$\nSince $g(1) = 1^2 + 0^2 = 1$, we are left with:\n$$ K = g(2n+1) = (2n+1)^2 + ((2n+1)-1)^2 = (2n+1)^2 + (2n)^2 $$\nThis simplifies the expression and writes it as the sum of the squares of two successive integers, $2n$ and $2n+1$.\n\nFinal answer: (\\alpha) ((k-1)^2+1^2)((k+1)^2+1^2), (\\beta) (2n)^2+(2n+1)^2",
+  "usage": {
+    "input_tokens": 244,
+    "output_tokens": 992,
+    "thoughts_tokens": 1599
+  },
+  "latency_s": 20.149595796945505,
+  "cached": false
+}

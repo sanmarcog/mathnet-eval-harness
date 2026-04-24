@@ -1,0 +1,25 @@
+{
+  "id": "09jz",
+  "country": "Mongolia",
+  "competition": "Mongolian Mathematical Olympiad",
+  "gold_final_answer": "8",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Counting two ways",
+    "Discrete Mathematics > Combinatorics > Induction / smoothing"
+  ],
+  "prompt": "A family has four children with pairwise distinct positive integer ages such that the sum of the ages of any set of the children is different from the sum of the ages of any other set of the children. What is the minimum possible age of the eldest child?",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let the ages be \\(a<b<c<d\\), all distinct positive integers.  \nWe need every subset sum to be different from every other subset sum.\n\nThere are \\(2^4=16\\) subsets, so all 16 subset sums must be distinct.\n\n### Step 1: The smallest possible ages\nTo minimize the eldest child’s age, we want the ages as small as possible while keeping all subset sums distinct.\n\nThe first three distinct positive integers are \\(1,2,3\\), but these fail because\n\\[\n1+2=3.\n\\]\nSo the ages cannot begin \\(1,2,3\\).\n\nTry \\(1,2,4\\). Then the subset sums are\n\\[\n0,1,2,3,4,5,6,7,\n\\]\nall distinct. So with three children, \\(1,2,4\\) works.\n\n### Step 2: Add the fourth child as small as possible\nWe need a fourth age \\(d>4\\) so that all subset sums remain distinct. This is exactly the condition that \\(d\\) be larger than the sum of all previous ages:\n\\[\nd > 1+2+4 = 7.\n\\]\nIf \\(d=8\\), then the subset sums are all numbers from \\(0\\) to \\(15\\), all distinct.\n\nThus the smallest possible choice is\n\\[\n1,2,4,8.\n\\]\n\nSo the minimum possible age of the eldest child is \\(8\\).\n\nFinal answer: 8",
+  "usage": {
+    "input_tokens": 100,
+    "output_tokens": 326,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 2.614352368982509,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "exact",
+    "predicted": "8"
+  }
+}

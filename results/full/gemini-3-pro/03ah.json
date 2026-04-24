@@ -1,0 +1,20 @@
+{
+  "id": "03ah",
+  "country": "Bulgaria",
+  "competition": "58. National mathematical olympiad Final round",
+  "gold_final_answer": "(a, b, c) with a | b and b | c",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments",
+    "Number Theory > Other"
+  ],
+  "prompt": "Planes through the points with integer coordinates in the three dimensional Euclidean space partition the space into unit cubes. Find all triples $(a, b, c)$, $a \\le b \\le c$, of positive integers such that the cubes can be colored in $abc$ colors in such a way that every parallelepiped of dimensions $a \\times b \\times c$, integer vertices and faces parallel to the coordinate planes does not contain cubes of the same color.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find all triples $(a, b, c)$ with $a \\le b \\le c$ such that the unit cubes in $\\mathbb{Z}^3$ can be colored with $abc$ colors where every $a \\times b \\times c$ parallelepiped (in any of the 6 orientations parallel to the axes) has all distinct colors, we can analyze the conditions for periodic colorings.\n\nFor any 2D grid, it is a known result (often proven using polynomials and roots of unity or group algebra) that we can color the grid with $ab$ colors such that every $a \\times b$ and $b \\times a$ rectangle has distinct colors if and only if $a$ divides $b$ (assuming $a \\le b$). \n\nThis logic extends to 3 dimensions. We require that any box of dimensions $p_1 \\times p_2 \\times p_3$, where $(p_1, p_2, p_3)$ is a permutation of $(a, b, c)$, contains exactly one cube of each of the $abc$ colors. \nIf we project this requirement down to the conditions of the dimensions, the existence of such a coloring implies that the dimensions must divide each other in increasing order. Thus, we must have $a$ divides $b$, and $b$ divides $c$. \n\nWhen $a \\mid b$ and $b \\mid c$, we can explicitly construct such a coloring by writing the coordinates in mixed radix bases (modulo $a$, modulo $b/a$, and modulo $c/b$) and assigning weights to each coordinate such that the sum modulo $abc$ uniquely identifies the color for any valid orientation of the $a \\times b \\times c$ parallelepiped.\n\nFinal answer: a \\mid b \\text{ and } b \\mid c",
+  "usage": {
+    "input_tokens": 133,
+    "output_tokens": 388,
+    "thoughts_tokens": 7545
+  },
+  "latency_s": 65.41388877108693,
+  "cached": false
+}

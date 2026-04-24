@@ -1,0 +1,20 @@
+{
+  "id": "07kn",
+  "country": "Ireland",
+  "competition": "Irish Mathematical Olympiad",
+  "gold_final_answer": "[-9, -8, -7, -4, -1, 0, 1]",
+  "topics_flat": [
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities",
+    "Algebra > Algebraic Expressions > Polynomials > Polynomial operations"
+  ],
+  "prompt": "Determine, with proof, all integers $x$ for which $x(x+1)(x+7)(x+8)$ is a perfect square.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let  \n\\[\nP=x(x+1)(x+7)(x+8).\n\\]\nWe will show the only integer \\(x\\) for which \\(P\\) is a perfect square are\n\\[\nx=0,\\,-1,\\,-7,\\,-8.\n\\]\n\n## Step 1: Rewrite the product\n\nGroup the factors as\n\\[\nx(x+8)\\cdot (x+1)(x+7).\n\\]\nNow set\n\\[\nu=x+4.\n\\]\nThen\n\\[\nx(x+8)=(u-4)(u+4)=u^2-16,\n\\]\nand\n\\[\n(x+1)(x+7)=(u-3)(u+3)=u^2-9.\n\\]\nSo\n\\[\nP=(u^2-16)(u^2-9).\n\\]\nLet\n\\[\na=u^2.\n\\]\nThen\n\\[\nP=(a-16)(a-9)=a^2-25a+144.\n\\]\n\n## Step 2: Compare with a square\n\nSuppose \\(P=y^2\\) for some integer \\(y\\). Then\n\\[\ny^2=(a-16)(a-9).\n\\]\nNotice that\n\\[\n(a-16)(a-9)=\\bigl(a-\\tfrac{25}{2}\\bigr)^2-\\Bigl(\\tfrac{7}{2}\\Bigr)^2.\n\\]\nHence\n\\[\n\\left|\\,y-\\left(a-\\tfrac{25}{2}\\right)\\right|\\cdot \\left|\\,y+\\left(a-\\tfrac{25}{2}\\right)\\right|=\\left(\\tfrac{7}{2}\\right)^2.\n\\]\nA cleaner way is to use the identity\n\\[\n4P=4(a-16)(a-9)=(2a-25)^2-49.\n\\]\nSo if \\(P=y^2\\), then\n\\[\n(2a-25)^2-(2y)^2=49,\n\\]\nhence\n\\[\n(2a-25-2y)(2a-25+2y)=49.\n\\]\nSince \\(49\\) has only factor pairs\n\\[\n1\\cdot 49,\\quad 7\\cdot 7,\\quad (-1)\\cdot(-49),\\quad (-7)\\cdot(-7),\n\\]\nwe get only a few possibilities.\n\nBecause the two factors have the same parity, both are odd integers. Thus the only possible positive factor pairs are:\n\\[\n(1,49)\\quad\\text{or}\\quad(7,7).\n\\]\n\n### Case 1: \\(2a-25-2y=1,\\; 2a-25+2y=49\\)\n\nAdding gives \\(4a-50=50\\), so \\(a=25\\), hence\n\\[\nu^2=25 \\implies u=\\pm 5.\n\\]\nThus\n\\[\nx+4=\\pm 5 \\implies x=1 \\text{ or } x=-9.\n\\]\nCheck:\n\\[\nP(1)=1\\cdot2\\cdot8\\cdot9=144=12^2,\n\\]\n\\[\nP(-9)=(-9)(-8)(-2)(-1)=144=12^2.\n\\]\n\n### Case 2: \\(2a-25-2y=7,\\; 2a-25+2y=7\\)\n\nThen \\(2y=0\\), so \\(y=0\\), and\n\\[\n2a-25=7 \\implies a=16.\n\\]\nThus\n\\[\nu^2=16 \\implies u=\\pm 4,\n\\]\nso\n\\[\nx=0 \\text{ or } x=-8.\n\\]\nCheck:\n\\[\nP(0)=0,\\qquad P(-8)=0,\n\\]\nboth perfect squares.\n\n## Step 3: Determine all integer solutions\n\nThe integer values are\n\\[\n\\boxed{x\\in\\{-9,-8,-1,0,1\\}}.\n\\]\nIndeed:\n- \\(x=-9,-8,0,1\\) give square values;\n- \\(x=-7\\) was included in the original factor symmetry but actually\n\\[\n(-7)(-6)(0)(1)=0,\n\\]\nso \\(x=-7\\) also gives a square, and similarly \\(x=-1\\) gives\n\\[\n(-1)(0)(6)(7)=0.\n\\]\n\nCollecting all zeros and nonzero square cases, the complete set is\n\\[\n\\boxed{x\\in\\{-9,-8,-7,-1,0,1\\}}.\n\\]\n\nFinal answer: \\(\\{-9,-8,-7,-1,0,1\\}\\)",
+  "usage": {
+    "input_tokens": 79,
+    "output_tokens": 1032,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 6.850711758947,
+  "cached": false
+}

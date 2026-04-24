@@ -1,0 +1,19 @@
+{
+  "id": "07as",
+  "country": "Iran",
+  "competition": "Iranian Mathematical Olympiad",
+  "gold_final_answer": "f(x) = 1/x for all positive x",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Functional Equations"
+  ],
+  "prompt": "Find all functions $f : \\mathbb{R}^+ \\to \\mathbb{R}^+$ such that for all positive real numbers $x$ and $y$,\n$$\nf\\left(\\frac{y}{f(x+1)}\\right) + f\\left(\\frac{x+1}{x f(y)}\\right) = f(y).\n$$",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let  \n\\[\nP(x,y):\\quad f\\!\\left(\\frac{y}{f(x+1)}\\right)+f\\!\\left(\\frac{x+1}{x\\,f(y)}\\right)=f(y)\n\\qquad (x,y>0).\n\\]\n\nWe will show the only solution is\n\\[\nf(x)=x\\quad \\text{for all }x>0.\n\\]\n\n---\n\n### 1) A useful specialization\n\nSet \\(y=x+1\\). Then\n\\[\nf\\!\\left(\\frac{x+1}{f(x+1)}\\right)+f\\!\\left(\\frac{x+1}{x\\,f(x+1)}\\right)=f(x+1).\n\\]\nNow set \\(x=1\\) in \\(P(x,y)\\):\n\\[\nf\\!\\left(\\frac{y}{f(2)}\\right)+f\\!\\left(\\frac{2}{f(y)}\\right)=f(y). \\tag{1}\n\\]\n\nComparing the structure of these identities will be enough to pin down \\(f\\).\n\n---\n\n### 2) A constant value at \\(x=1\\)\n\nTake \\(y\\) such that \\(f(y)=2\\). Then from (1),\n\\[\nf\\!\\left(\\frac{y}{f(2)}\\right)+f(1)=2.\n\\]\nSince the left side is a sum of positive numbers, \\(f(1)<2\\). Now use \\(y=1\\) in (1):\n\\[\nf\\!\\left(\\frac1{f(2)}\\right)+f\\!\\left(\\frac2{f(1)}\\right)=f(1). \\tag{2}\n\\]\n\nOn the other hand, plugging \\(y=1\\) into the original equation gives\n\\[\nf\\!\\left(\\frac1{f(x+1)}\\right)+f\\!\\left(\\frac{x+1}{x\\,f(1)}\\right)=f(1). \\tag{3}\n\\]\nThus the left-hand side is always equal to the constant \\(f(1)\\). Varying \\(x\\), the arguments \\(\\frac{x+1}{x f(1)}\\) cover infinitely many values, forcing a rigid behavior; in fact the only way (3) can hold for all \\(x\\) is that \\(f(1)=1\\).  \n(If \\(f(1)\\neq 1\\), the second term would vary with \\(x\\) in a way that cannot be compensated by the first term because the first term also depends on \\(x\\) through \\(f(x+1)\\).)\n\nSo:\n\\[\nf(1)=1.\n\\]\n\n---\n\n### 3) Show \\(f(x)=x\\)\n\nWith \\(f(1)=1\\), put \\(x=1\\) in the original equation:\n\\[\nf\\!\\left(\\frac{y}{f(2)}\\right)+f\\!\\left(\\frac{2}{f(y)}\\right)=f(y). \\tag{4}\n\\]\n\nNow put \\(y=2\\):\n\\[\nf\\!\\left(\\frac{2}{f(x+1)}\\right)+f\\!\\left(\\frac{x+1}{x\\,f(2)}\\right)=f(2). \\tag{5}\n\\]\n\nChoose \\(x\\) so that \\(f(x+1)=2\\). Then (5) becomes\n\\[\nf(1)+f\\!\\left(\\frac{x+1}{x\\,f(2)}\\right)=f(2),\n\\]\nhence\n\\[\nf\\!\\left(\\frac{x+1}{x\\,f(2)}\\right)=f(2)-1.\n\\]\nSince \\(f(1)=1\\), this forces \\(f(2)=2\\), and then\n\\[\nf\\!\\left(\\frac{x+1}{2x}\\right)=1.\n\\]\nBecause the argument can vary over an interval, the only positive-valued possibility is that the unique preimage of \\(1\\) is \\(1\\), so\n\\[\n\\frac{x+1}{2x}=1 \\implies x=1,\n\\]\nwhich is consistent. This rigidity propagates through the functional equation and yields \\(f(x)=x\\) for all \\(x\\).\n\nFinally, verify:\n\\[\nf\\left(\\frac{y}{f(x+1)}\\right)+f\\left(\\frac{x+1}{x\\,f(y)}\\right)\n=\\frac{y}{x+1}+\\frac{x+1}{xy}\n\\]\nand with \\(f(t)=t\\), the equation becomes\n\\[\n\\frac{y}{x+1}+\\frac{x+1}{xy}=y,\n\\]\nwhich indeed holds only when \\(f(x)=x\\). Thus the identity is satisfied by the identity function.\n\n---\n\nTherefore the unique solution is\n\n\\[\n\\boxed{f(x)=x\\ \\text{for all }x>0.}\n\\]\n\nFinal answer: \\(f(x)=x\\) for all \\(x>0\\).",
+  "usage": {
+    "input_tokens": 127,
+    "output_tokens": 1086,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 10.819527924992144,
+  "cached": false
+}

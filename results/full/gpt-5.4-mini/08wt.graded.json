@@ -1,0 +1,27 @@
+{
+  "id": "08wt",
+  "country": "Japan",
+  "competition": "Japan Junior Mathematical Olympiad",
+  "gold_final_answer": "199998",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Enumeration with symmetry",
+    "Discrete Mathematics > Combinatorics > Recursion, bijection",
+    "Discrete Mathematics > Combinatorics > Invariants / monovariants",
+    "Number Theory > Other"
+  ],
+  "prompt": "Suppose you write down on a blackboard without repetition each of those positive integers which are less than or equal to $10^6$ and are divisible by $3$. How many $1$'s do you have to write on the blackboard?",
+  "model": "gpt-5.4-mini",
+  "response_text": "The numbers written are the multiples of \\(3\\) up to \\(10^6\\):  \n\\[\n3,6,9,\\dots,999999\n\\]\nSo there are\n\\[\n\\frac{10^6}{3}=333333\n\\]\nsuch numbers.\n\nNow count how many digit \\(1\\)'s appear when writing all these numbers. A standard way is to count the number of times \\(1\\) appears in each decimal place among numbers from \\(1\\) to \\(999999\\), then adjust for the multiples of \\(3\\).\n\nIn each fixed digit position (units, tens, hundreds, thousands, ten-thousands, hundred-thousands), among the numbers \\(1\\) to \\(999999\\), each digit \\(0\\)–\\(9\\) appears equally often except for leading zeros issues, and the digit \\(1\\) appears\n\\[\n10^5\n\\]\ntimes in that position. Since there are \\(6\\) positions, the total number of \\(1\\)'s in all numbers from \\(1\\) to \\(999999\\) is\n\\[\n6\\cdot 10^5 = 600000.\n\\]\n\nAmong all numbers \\(1\\) to \\(999999\\), exactly one-third are divisible by \\(3\\), and by symmetry of digit sums mod \\(3\\), the digit \\(1\\)-count is evenly distributed across residue classes mod \\(3\\). So the multiples of \\(3\\) contain one-third of the total \\(1\\)'s:\n\\[\n\\frac{600000}{3}=200000.\n\\]\n\nSo the number of \\(1\\)'s written is\n\n\\[\n\\boxed{200000}.\n\\]\n\nFinal answer: 200000",
+  "usage": {
+    "input_tokens": 100,
+    "output_tokens": 363,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 2.993545023025945,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "200000"
+  }
+}

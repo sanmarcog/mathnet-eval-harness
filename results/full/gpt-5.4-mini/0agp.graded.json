@@ -1,0 +1,25 @@
+{
+  "id": "0agp",
+  "country": "North Macedonia",
+  "competition": "Mediterranean Mathematics Competition",
+  "gold_final_answer": "p^{mn-m-n} ((p-1)^{m+n} + (-1)^{m+n} (p-1))",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Inclusion-exclusion",
+    "Discrete Mathematics > Combinatorics > Counting two ways"
+  ],
+  "prompt": "Let $p$ be a positive integer, $p > 1$. Find the number of $m \\times n$ matrices with entries in the set $\\{1,2,3,..., p\\}$ and such that the sum of elements on each row and each column is not divisible by $p$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let the entries be considered modulo \\(p\\). We need the number of \\(m\\times n\\) matrices over \\(\\{1,2,\\dots,p\\}\\) such that every row sum and every column sum is nonzero modulo \\(p\\).\n\nUse the roots-of-unity filter. Let \\(\\omega=e^{2\\pi i/p}\\). For an integer \\(s\\),\n\\[\n\\mathbf 1_{s\\not\\equiv 0\\pmod p}\n=\\frac1p\\sum_{k=1}^{p-1}\\omega^{ks}.\n\\]\nSo the desired count is\n\\[\nN=\\sum_{A}\\prod_{i=1}^m \\mathbf 1_{\\text{row}_i(A)\\not\\equiv 0}\\prod_{j=1}^n \\mathbf 1_{\\text{col}_j(A)\\not\\equiv 0}.\n\\]\nSubstituting the filter gives\n\\[\nN=\\frac1{p^{m+n}}\n\\sum_{\\substack{a_1,\\dots,a_m\\in\\mathbb Z_p\\\\ a_i\\ne 0}}\n\\sum_{\\substack{b_1,\\dots,b_n\\in\\mathbb Z_p\\\\ b_j\\ne 0}}\n\\sum_{A}\\omega^{\\sum_{i,j}(a_i+b_j)A_{ij}}.\n\\]\nFor a fixed choice of \\((a_i),(b_j)\\), the sum over each entry \\(A_{ij}\\in\\{1,\\dots,p\\}\\) is\n\\[\n\\sum_{x=1}^p \\omega^{(a_i+b_j)x}\n=\n\\begin{cases}\np,& a_i+b_j\\equiv 0\\pmod p,\\\\\n0,& \\text{otherwise}.\n\\end{cases}\n\\]\nHence the whole contribution is nonzero iff \\(a_i+b_j\\equiv 0\\) for all \\(i,j\\). That forces all \\(a_i\\) to be equal to some nonzero \\(a\\), and all \\(b_j\\) to equal \\(-a\\). There are \\(p-1\\) such choices, and then every entry contributes a factor \\(p\\), giving \\(p^{mn}\\).\n\nTherefore\n\\[\nN=\\frac{(p-1)p^{mn}}{p^{m+n}}=(p-1)p^{mn-m-n}.\n\\]\n\nSo the number of such matrices is\n\n\\[\n\\boxed{(p-1)p^{mn-m-n}}.\n\\]\n\nFinal answer: \\((p-1)p^{mn-m-n}\\)",
+  "usage": {
+    "input_tokens": 111,
+    "output_tokens": 560,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.7316522259498015,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "\\((p-1)p^{mn-m-n}\\)"
+  }
+}

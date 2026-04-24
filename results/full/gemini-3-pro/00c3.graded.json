@@ -1,0 +1,25 @@
+{
+  "id": "00c3",
+  "country": "Argentina",
+  "competition": "Argentina_2018",
+  "gold_final_answer": "Maximum number of distinct values is 3; the occurrences are 64, 8, and 8.",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Miscellaneous > Constructions and loci",
+    "Geometry > Plane Geometry > Miscellaneous > Angle chasing"
+  ],
+  "prompt": "All diagonals of a convex 10-gon are drawn. They divide the angles into 80 parts. It is known that 59 of these parts are equal. Determine the maximum of different values among the 80 angles of division. How many times does each of these values occur?",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find the maximum number of different values among the 80 angles of division, we analyze the linear relations between these angles. \n\nLet the vertices of the 10-gon be $A_1, A_2, \\dots, A_{10}$ in counterclockwise order. The diagonals from each vertex divide the interior angle into 8 parts, giving a total of $10 \\times 8 = 80$ angles. Each of these angles is subtended by one of the 10 edges of the 10-gon at one of the 8 remaining vertices. Let $x_{i, j}$ be the angle subtended by the edge $A_j A_{j+1}$ at vertex $A_i$.\n\nFor any two edges $e_i = A_i A_{i+1}$ and $e_j = A_j A_{j+1}$, the diagonals connecting their endpoints intersect. By considering the triangles formed by this intersection, the sum of the angles subtended by $e_j$ at $A_i$ and $A_{i+1}$ equals the sum of the angles subtended by $e_i$ at $A_j$ and $A_{j+1}$:\n$$x_{i, j} + x_{i+1, j} = x_{j, i} + x_{j+1, i}$$\n\nWe are given that 59 of the 80 angles are equal to some value $\\alpha$. Let $y_{i, j} = x_{",
+  "usage": {
+    "input_tokens": 100,
+    "output_tokens": 328,
+    "thoughts_tokens": 7860
+  },
+  "latency_s": 66.58980613190215,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": null
+  }
+}

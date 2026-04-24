@@ -1,0 +1,25 @@
+{
+  "id": "0h4n",
+  "country": "Ukraine",
+  "competition": "55rd Ukrainian National Mathematical Olympiad - Third Round",
+  "gold_final_answer": "1, 2, 3, 4, 6",
+  "topics_flat": [
+    "Number Theory > Number-Theoretic Functions > τ (number of divisors)",
+    "Number Theory > Divisibility / Factorization > Greatest common divisors (gcd)"
+  ],
+  "prompt": "Find all integers $n$ that have more than $\\frac{n}{2}$ divisors.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "We need to find all integers $n$ that have more than $n/2$ divisors.\n\nLet $d(n)$ denote the number of positive divisors of $n$. We need $d(n) > n/2$.\n\n**Check small values:**\n\n- $n = 1$: $d(1) = 1 > 1/2$ ✓\n- $n = 2$: $d(2) = 2 > 1$ ✓\n- $n = 3$: $d(3) = 2 > 3/2$ ✓\n- $n = 4$: $d(4) = 3 > 2$ ✓\n- $n = 5$: $d(5) = 2 > 5/2$? No, $2 \\not> 2.5$ ✗\n- $n = 6$: $d(6) = 4 > 3$ ✓\n- $n = 7$: $d(7) = 2 > 3.5$? No ✗\n- $n = 8$: $d(8) = 4 > 4$? No ✗\n- $n = 9$: $d(9) = 3 > 4.5$? No ✗\n- $n = 10$: $d(10) = 4 > 5$? No ✗\n- $n = 11$: $d(11) = 2 > 5.5$? No ✗\n- $n = 12$: $d(12) = 6 > 6$? No ✗\n\n**For $n \\geq 7$ (odd):** $d(n) \\leq n/3 \\cdot 2 $... more carefully, for odd $n \\geq 7$, the divisors come in pairs $(d, n/d)$ with $d \\leq \\sqrt{n}$, so $d(n) \\leq 2\\sqrt{n}$. We need $2\\sqrt{n} > n/2$, i.e., $4 > \\sqrt{n}$, i.e., $n < 16$. But we already checked odd values up to 9 and none work for $n \\geq 5$.\n\n**For $n \\geq 8$ (even):** Similarly $d(n) \\leq 2\\sqrt{n}$, need $n < 16$. Check $n = 8, 10, 12, 14$: none work as shown above.\n\n**For $n \\geq 16$:** $d(n) \\leq 2\\sqrt{n} \\leq n/2$ since $2\\sqrt{n} \\leq n/2 \\iff 4 \\leq \\sqrt{n} \\iff n \\geq 16$. So for $n \\geq 16$, $d(n) \\leq 2\\sqrt{n} \\leq n/2$, meaning the condition fails (with equality possible but we need strict inequality).\n\nActually at $n = 16$: $d(16) = 5$, $n/2 = 8$. $5 \\not> 8$. ✗\n\nSo the solutions are $n \\in \\{1, 2, 3, 4, 6\\}$.\n\n**Verification:**\n- $n=1$: $1 > 0.5$ ✓\n- $n=2$: $2 > 1$ ✓  \n- $n=3$: $2 > 1.5$ ✓\n- $n=4$: $3 > 2$ ✓\n- $n=6$: $4 > 3$ ✓\n\nFinal answer: $n \\in \\{1, 2, 3, 4, 6\\}$",
+  "usage": {
+    "input_tokens": 69,
+    "output_tokens": 941,
+    "thinking_tokens": 0
+  },
+  "latency_s": 10.029713203082792,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "$n \\in \\{1, 2, 3, 4, 6\\}$"
+  }
+}

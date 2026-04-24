@@ -1,0 +1,26 @@
+{
+  "id": "04bw",
+  "country": "Croatia",
+  "competition": "Mathematica competitions in Croatia",
+  "gold_final_answer": "1, 4, 9",
+  "topics_flat": [
+    "Algebra > Prealgebra / Basic Algebra > Integers",
+    "Algebra > Intermediate Algebra > Quadratic functions",
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities"
+  ],
+  "prompt": "Determine all positive integers smaller than $1000$ that are equal to the sum of squares of their digits.",
+  "model": "gpt-5.4",
+  "response_text": "Let \\(n\\) be a positive integer less than \\(1000\\), and suppose \\(n\\) equals the sum of the squares of its digits.\n\nWe check by number of digits.\n\n### 1-digit numbers\nIf \\(n=d\\), then\n\\[\nd=d^2.\n\\]\nSo\n\\[\nd(d-1)=0 \\implies d=0 \\text{ or } 1.\n\\]\nSince \\(n\\) is positive, we get\n\\[\nn=1.\n\\]\n\n### 2-digit numbers\nLet\n\\[\nn=10a+b\n\\]\nwith \\(1\\le a\\le 9\\), \\(0\\le b\\le 9\\). Then\n\\[\n10a+b=a^2+b^2.\n\\]\nRearrange:\n\\[\na^2-10a+b^2-b=0\n\\]\n\\[\n(a-5)^2+(b-\\tfrac12)^2=25+\\tfrac14.\n\\]\nA simpler way is to test \\(a=1,\\dots,9\\):\n\n\\[\n10a+b=a^2+b^2 \\implies b^2-b+(a^2-10a)=0.\n\\]\nFor each \\(a\\), solve for digit \\(b\\).\n\n- \\(a=1\\): \\(b^2-b-9=0\\), no digit solution.\n- \\(a=2\\): \\(b^2-b-16=0\\), no.\n- \\(a=3\\): \\(b^2-b-21=0\\), no.\n- \\(a=4\\): \\(b^2-b-24=0\\), no.\n- \\(a=5\\): \\(b^2-b-25=0\\), no.\n- \\(a=6\\): \\(b^2-b-24=0\\), no.\n- \\(a=7\\): \\(b^2-b-21=0\\), no.\n- \\(a=8\\): \\(b^2-b-16=0\\), no.\n- \\(a=9\\): \\(b^2-b-9=0\\), no.\n\nSo there are no 2-digit solutions.\n\n### 3-digit numbers\nLet\n\\[\nn=100a+10b+c\n\\]\nwith \\(1\\le a\\le 9\\), \\(0\\le b,c\\le 9\\). Then\n\\[\n100a+10b+c=a^2+b^2+c^2.\n\\]\nBut\n\\[\na^2+b^2+c^2\\le 9^2+9^2+9^2=243.\n\\]\nHence\n\\[\n100a+10b+c\\le 243,\n\\]\nso \\(a\\) can only be \\(1\\) or \\(2\\).\n\n#### Case \\(a=1\\)\nThen\n\\[\n100+10b+c=1+b^2+c^2\n\\]\n\\[\n99+10b+c=b^2+c^2.\n\\]\nSince \\(b^2\\le 81\\), \\(c^2\\le 81\\), search digits \\(b,c\\).\n\nRewrite:\n\\[\nb^2-10b+c^2-c=99.\n\\]\nNow\n\\[\nb^2-10b=(b-5)^2-25,\\qquad c^2-c=\\left(c-\\tfrac12\\right)^2-\\tfrac14.\n\\]\nTesting \\(b=0,\\dots,9\\), only \\(b=0\\) makes it plausible:\n\\[\n99+c=c^2+1 \\implies c^2-c-98=0,\n\\]\nwhose digit solution is \\(c=7\\). Thus\n\\[\n107=1^2+0^2+7^2.\n\\]\n\n#### Case \\(a=2\\)\nThen\n\\[\n200+10b+c=4+b^2+c^2\n\\]\n\\[\n196+10b+c=b^2+c^2.\n\\]\nBut the right side is at most \\(81+81=162\\), impossible.\n\nSo the only 3-digit solution is \\(107\\).\n\nTherefore, the positive integers less than \\(1000\\) equal to the sum of the squares of their digits are\n\n\\[\n1,\\ 107.\n\\]\n\nFinal answer: \\(\\boxed{1,\\,107}\\)",
+  "usage": {
+    "input_tokens": 70,
+    "output_tokens": 923,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 11.91520816704724,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "1,\\,107"
+  }
+}

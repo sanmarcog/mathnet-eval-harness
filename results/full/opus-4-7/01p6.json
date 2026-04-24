@@ -1,0 +1,20 @@
+{
+  "id": "01p6",
+  "country": "Belarus",
+  "competition": "Belarusian Mathematical Olympiad",
+  "gold_final_answer": "P(x) = a x(x-1)(x+1) for any real a",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials",
+    "Algebra > Algebraic Expressions > Functional Equations"
+  ],
+  "prompt": "Find all polynomials $P(x)$ such that the equality\n$$\n(x - 1)P(x + 1) - (x + 1)P(x - 1) = 4P(x)\n$$\nholds for all real $x$.",
+  "model": "claude-opus-4-7",
+  "response_text": "Final answer: <answer>P(x) = a x^3 + bx for constants a,b (i.e., P(x)=c(x^3-x)+dx)</answer>",
+  "usage": {
+    "input_tokens": 136,
+    "output_tokens": 58,
+    "thinking_tokens": 0
+  },
+  "latency_s": 2.0027421179693192,
+  "cached": false
+}

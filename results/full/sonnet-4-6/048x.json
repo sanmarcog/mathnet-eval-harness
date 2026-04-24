@@ -1,0 +1,21 @@
+{
+  "id": "048x",
+  "country": "Croatia",
+  "competition": "Hrvatska 2011",
+  "gold_final_answer": "3 - 2√2",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Circles > Tangents",
+    "Geometry > Plane Geometry > Analytic / Coordinate Methods > Cartesian coordinates",
+    "Geometry > Plane Geometry > Miscellaneous > Distance chasing"
+  ],
+  "prompt": "Let $ABCD$ be a unit square. The unit circle $k$ has center $C$. Determine the radius of the circle $k_1$ which touches the circle $k$ and line segments $\\overline{AB}$ and $\\overline{AD}$.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "Let me set up coordinates with A at the origin, B at (1,0), C at (1,1), D at (0,1).\n\nThe unit circle k has center C = (1,1) and radius 1.\n\nCircle k₁ touches line segments AB (the segment from A(0,0) to B(1,0), lying on y=0) and AD (the segment from A(0,0) to D(0,1), lying on x=0).\n\nSince k₁ touches both AB (y=0) and AD (x=0), its center must be at (r, r) where r is its radius.\n\nCircle k₁ must touch circle k. Since k₁ is small (near corner A) and k has center (1,1) with radius 1, k₁ is externally tangent to k.\n\nDistance between centers = r + 1:\n$$\\sqrt{(1-r)^2 + (1-r)^2} = r + 1$$\n$$(1-r)\\sqrt{2} = r + 1$$\n$$\\sqrt{2} - r\\sqrt{2} = r + 1$$\n$$\\sqrt{2} - 1 = r(1 + \\sqrt{2})$$\n$$r = \\frac{\\sqrt{2}-1}{\\sqrt{2}+1} = \\frac{(\\sqrt{2}-1)^2}{(\\sqrt{2}+1)(\\sqrt{2}-1)} = \\frac{(\\sqrt{2}-1)^2}{1} = 3 - 2\\sqrt{2}$$\n\nLet me verify: r = 3 - 2√2 ≈ 3 - 2.828 ≈ 0.172.\n\nCenter of k₁ is at (r, r) ≈ (0.172, 0.172). Distance to C(1,1): √2(1-r) = √2(1 - 0.172) = √2 · 0.828 ≈ 1.172. And r+1 ≈ 1.172. ✓\n\nAlso check that the center (r,r) with r ≈ 0.172 is within the square (yes, since r < 1), and the circle touches the segments AB and AD (not their extensions) — since the center is at x = r ∈ (0,1) and y = r ∈ (0,1), the foot of perpendicular to y=0 is (r,0) which is on AB, and to x=0 is (0,r) which is on AD. ✓\n\nFinal answer: $3 - 2\\sqrt{2}$",
+  "usage": {
+    "input_tokens": 108,
+    "output_tokens": 645,
+    "thinking_tokens": 0
+  },
+  "latency_s": 8.823023631004617,
+  "cached": false
+}

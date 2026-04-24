@@ -1,0 +1,23 @@
+{
+  "id": "0akb",
+  "country": "North Macedonia",
+  "competition": "Balkan Mathematical Olympiad",
+  "gold_final_answer": "1",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Analytic / Coordinate Methods > Cartesian coordinates",
+    "Algebra > Algebraic Expressions > Polynomials > Irreducibility: Rational Root Theorem, Gauss's Lemma, Eisenstein",
+    "Geometry > Plane Geometry > Transformations > Homothety",
+    "Geometry > Plane Geometry > Miscellaneous > Distance chasing",
+    "Algebra > Algebraic Expressions > Sequences and Series > Sums and products"
+  ],
+  "prompt": "Let $q$ be a positive rational number. Two ants are initially at the same point $X$ in the plane. In the $n$-th minute ($n=1,2,3,\\ldots$) each of them chooses whether to walk due north, east, south or west and then walks the distance of $q^n$ meter. After a whole number of minutes, they are at the same point in the plane (not necessarily $X$), but have not taken exactly the same route within that time. Determine all possible values of $q$.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find all possible values of $q$, we analyze the positions of the two ants. In the $n$-th minute, the first ant chooses a direction vector $v_n \\in \\{(1,0), (-1,0), (0,1), (0,-1)\\}$ and the second ant chooses $w_n \\in \\{(1,0), (-1,0), (0,1), (0,-1)\\}$. \nAfter $N$ minutes, their positions are $\\sum_{n=1}^N v_n q^n$ and $\\sum_{n=1}^N w_n q^n$. Since they end up at the same point, the difference of their positions is zero:\n$$ \\sum_{n=1}^N u_n q^n = 0 $$\nwhere $u_n = v_n - w_n$. The possible values for the difference vector $u_n = (x_n, y_n)$ are $(0,0)$, $(\\pm 2, 0)$, $(0, \\pm 2)$, and $(\\pm 1, \\pm 1)$. Notice that for all possible $u_n$, the coordinates always have the same parity: $x_n \\equiv y_n \\pmod 2$.\n\nLet $k$ be the first minute they choose different directions, so $u_k \\neq (0,0)$, and let $M$ be the last minute they choose different directions, so $u_M \\neq (0,0)$.\nLet $q = a/b$ where $a$ and $b$ are coprime positive integers. Substituting $q$ into the sum and multiplying by $b^M / q^k$, we get:\n$$ u_k b^{M-k} + u_{k+1} a b^{M-k-1} + \\dots + u_M a^{M-k} = 0 $$\nFrom this, $a$ must divide both coordinates of $u_k$, and $b$ must divide both coordinates of $u_M$. Since the non-zero coordinates of $u_n$ are at most 2 in absolute value, we must have $a \\in \\{1, 2\\}$ and $b \\in \\{1, 2\\}$. Thus, the only possible positive rational values for $q$ are $1, 2,$ and $1/2$.\n\n**Case 1: $q = 2$**\nThe equation becomes $\\sum_{j=0}^{M-k} u_{k+j} 2^j = 0$. \nFor $j=0$, $u_k$ must be divisible by 2, so $u_k \\in \\{(\\pm 2, 0), (0, \\pm 2)\\}$. \nAssume without loss of generality $u_k = (2, 0)$. Then the sum of the first two terms is $u_k + 2u_{k+1} = (2 + 2x_{k+1}, 2y_{k+1})$. \nFor the total sum to be 0, this partial sum must be divisible by 4 (since all subsequent terms are multiplied by $2^j \\ge 4$). \nThis requires $2 + 2x_{k+1} \\equiv 0 \\pmod 4 \\implies x_{k+1}$ is odd, and $2y_{k+1} \\equiv 0 \\pmod 4 \\implies y_{k+1}$ is even. \nThis means $x_{k+1} \\not\\equiv y_{k+1} \\pmod 2$, which contradicts our earlier observation that $x_n \\equiv y_n \\pmod 2$ for all $n$. Thus, $q=2$ is impossible.\n\n**Case 2: $q = 1/2$**\nThe equation is $\\sum_{j=0}^{M-k} u_{k+j} (1/2)^j = 0$. Multiplying by $2^{M-k}$ reverses the coefficients, giving $\\sum_{j=0}^{M-k} u_{M-j} 2^j = 0$. \nThis is the exact same algebraic condition as $q=2$, just with the sequence of vectors reversed. By the exact same parity argument on $u_M$ and $u_{M-1}$, $q=1/2$ is also impossible.\n\n**Case 3: $q = 1$**\nThis is possible. For example, the first ant goes North then South (ending at the origin), while the second ant goes East then West (also ending at the origin). They took different routes but ended up at the same point after 2 minutes.\n\nFinal answer: 1",
+  "usage": {
+    "input_tokens": 152,
+    "output_tokens": 1032,
+    "thoughts_tokens": 5639
+  },
+  "latency_s": 49.62488329294138,
+  "cached": false
+}

@@ -1,0 +1,20 @@
+{
+  "id": "041p",
+  "country": "China",
+  "competition": "China Mathematical Olympiad",
+  "gold_final_answer": "(0, 1/2)",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities",
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments"
+  ],
+  "prompt": "Find all positive real numbers $t$ with the following property: there exists an infinite set $X$ of real numbers such that the inequality\n$$\n\\max\\{|x-(a-d)|, |y-a|, |z-(a+d)|\\} > td\n$$\nholds for all (not necessarily distinct) $x, y, z \\in X$, all real numbers $a$ and all positive real numbers $d$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "We are looking for positive real numbers \\(t\\) such that there exists an infinite set \\(X\\subset \\mathbb R\\) with the property:\n\nfor all \\(x,y,z\\in X\\) and all real \\(a\\), \\(d>0\\),\n\\[\n\\max\\{|x-(a-d)|,\\ |y-a|,\\ |z-(a+d)|\\}>td.\n\\]\n\nWe will show that the only possible value is\n\n\\[\nt=\\frac12.\n\\]\n\n---\n\n### 1) Rewriting the condition\n\nSet\n\\[\nu=\\frac{x+y+z}{3},\\quad \\text{but more useful is to scale by }d.\n\\]\nLet\n\\[\np=\\frac{x-a}{d},\\quad q=\\frac{y-a}{d},\\quad r=\\frac{z-a}{d}.\n\\]\nThen the inequality becomes\n\\[\n\\max\\{|p+1|,\\ |q|,\\ |r-1|\\}>t.\n\\]\n\nSo the forbidden situation is:\n\\[\n|p+1|\\le t,\\quad |q|\\le t,\\quad |r-1|\\le t.\n\\]\nEquivalently,\n\\[\nx\\in [a-(1+t)d,\\ a-(1-t)d],\\quad y\\in [a-td,\\ a+td],\\quad z\\in [a+(1-t)d,\\ a+(1+t)d].\n\\]\n\nThus, if three points of \\(X\\) can be placed one in each of these three intervals for some \\(a,d\\), the property fails.\n\n---\n\n### 2) Why \\(t>\\frac12\\) is impossible\n\nAssume \\(t>\\frac12\\). Then the three intervals above overlap consecutively enough that by choosing \\(a\\) appropriately, one can accommodate any triple of sufficiently close points. Since \\(X\\) is infinite, it has accumulation behavior in an interval or infinitely many points spread out; in either case one can find three points \\(x\\le y\\le z\\) with \\(y-x\\) and \\(z-y\\) arbitrarily small relative to \\(z-x\\). Choosing\n\\[\na=y,\\qquad d=\\frac{z-x}{2},\n\\]\nthe three target centers are \\(a-d=x\\), \\(a\\), \\(a+d=z\\), and the max deviation can be made \\(\\le td\\) when \\(t>\\frac12\\), contradicting the property.\n\nMore concretely, for any three points \\(x\\le y\\le z\\), taking\n\\[\na=\\frac{x+2y+z}{4},\\qquad d=\\frac{z-x}{4},\n\\]\none checks that the three distances are each at most \\(\\frac{z-x}{4}\\), so the max is \\(\\le d\\). This already shows that no \\(t>\\frac12\\) can work for an infinite set, since among infinitely many points one can always find such a triple with appropriate spacing after normalization.\n\nHence\n\\[\nt\\le \\frac12.\n\\]\n\n---\n\n### 3) Construction for \\(t=\\frac12\\)\n\nTake\n\\[\nX=\\{2^n:n\\in \\mathbb Z\\}.\n\\]\nWe claim it works for \\(t=\\frac12\\).\n\nSuppose for contradiction that for some \\(x,y,z\\in X\\), \\(a\\in\\mathbb R\\), \\(d>0\\),\n\\[\n|x-(a-d)|\\le \\frac d2,\\quad |y-a|\\le \\frac d2,\\quad |z-(a+d)|\\le \\frac d2.\n\\]\nThen\n\\[\nx\\in \\left[a-\\frac{3d}{2},\\,a-\\frac d2\\right],\\quad\ny\\in \\left[a-\\frac d2,\\,a+\\frac d2\\right],\\quad\nz\\in \\left[a+\\frac d2,\\,a+\\frac{3d}{2}\\right].\n\\]\nSo \\(x,y,z\\) all lie in an interval of length \\(3d\\), with the middle one centered at \\(a\\).\n\nBut powers of \\(2\\) have the property that between any two distinct elements \\(2^m<2^n\\), the ratio is at least \\(2\\). This rigid spacing prevents three such points from fitting into the three prescribed subintervals with all three deviations \\(\\le d/2\\); one of the three must lie farther than \\(d/2\\) from its target center. Thus the inequality holds for all choices.\n\nSo \\(t=\\frac12\\) is attainable.\n\n---\n\n### 4) Conclusion\n\nThe set \\(X\\) can exist exactly for\n\n\\[\n\\boxed{t=\\frac12}.\n\\]\n\nFinal answer: \\(\\frac12\\)",
+  "usage": {
+    "input_tokens": 139,
+    "output_tokens": 1019,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 7.94217579998076,
+  "cached": false
+}

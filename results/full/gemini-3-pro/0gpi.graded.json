@@ -1,0 +1,25 @@
+{
+  "id": "0gpi",
+  "country": "Turkey",
+  "competition": "20th Turkish Mathematical Olympiad",
+  "gold_final_answer": "P(x) = 1; P(x) = 2; P(x) = x",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Polynomial operations",
+    "Number Theory > Divisibility / Factorization > Factorization techniques"
+  ],
+  "prompt": "Find all polynomials $P(x)$ with integer coefficients satisfying $P(n!) = |P(n)|!$ for all positive integers $n$.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find all polynomials $P(x)$ with integer coefficients satisfying $P(n!) = |P(n)|!$ for all positive integers $n$, we can analyze the degree of $P(x)$.\n\n**Case 1: $P(x)$ is a constant polynomial.**\nLet $P(x) = c$ for some integer $c$. The given equation becomes:\n$c = |c|!$\nSince factorials are always positive, $c$ must be a positive integer. Thus, $c = c!$.\nThe only positive integers that satisfy this are $c = 1$ and $c = 2$. \nThis gives us two valid polynomials: $P(x) = 1$ and $P(x) = 2$.\n\n**Case 2: $P(x)$ has degree $d \\ge 1$.**\nLet $P(x) = a_d x^d + a_{d-1} x^{d-1} + \\dots + a_0$ with $a_d \\neq 0$. \nFor large $n$, the left-hand side $P(n!)$ grows asymptotically as $a_d (n!)^d$.\nThe right-hand side $|P(n)|!$ grows asymptotically as $(|a_d| n^d)!$.\n\nUsing Stirling's approximation, the logarithm of the left-hand side grows as:\n$\\ln(P(n!)) \\sim \\ln(a_d (n!)^d) \\sim d \\ln(n!) \\sim d n \\ln n$\nThe logarithm of the right-hand side grows as:\n$\\ln(|P(n)|!) \\sim |P(n)| \\ln|P(n)| \\sim (|a_d| n^d) \\ln(|a_d| n^d) \\sim |a_d| d n^d \\ln n$\n\nFor the two sides to be equal for all $n$, their asymptotic growth rates must match:\n$d n \\ln n \\sim |a_d| d n^d \\ln n$\nThis requires $d = 1$ and $|a_d| = 1$. Thus, $P(x)$ must be a linear polynomial of the form $P(x) = \\pm x + c$.\n\n- If $P(x) = -x + c$, then $P(n!) = -n! + c$, which is negative for sufficiently large $n$. However, the right-hand side $|P(n)|!$ is a factorial and must be strictly positive, so this yields no solutions.\n- If $P(x) = x + c$, then $P(n!) = n! + c$ and $|P(n)|! = |n + c|!$. \nFor large $n$, $n+c > 0$, so we must have $n! + c = (n+c)!$.\n  - If $c > 0$, then $(n+c)! \\ge (n+1)! = (n+1)n! > n! + c$ for large $n$.\n  - If $c < 0$, let $c = -k$ for $k > 0$. Then $n! - k = (n-k)!$, which means $n! - (n-k)! = k$. But $n! - (n-k)!$ grows indefinitely with $n$, so it cannot equal a constant $k$.\n  - If $c = 0$, we get $n! = n!$, which holds true for all positive integers $n$.\n\nThis gives us the polynomial $P(x) = x$. Checking this solution, $P(n!) = n!$ and $|P(n)|! = |n|! = n!$, which perfectly satisfies the condition for all $n \\ge 1$.\n\nFinal answer: P(x) = 1, P(x) = 2, P(x) = x",
+  "usage": {
+    "input_tokens": 71,
+    "output_tokens": 873,
+    "thoughts_tokens": 2713
+  },
+  "latency_s": 27.31278320995625,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "P(x) = 1, P(x) = 2, P(x) = x"
+  }
+}

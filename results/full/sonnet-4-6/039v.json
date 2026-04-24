@@ -1,0 +1,20 @@
+{
+  "id": "039v",
+  "country": "Bulgaria",
+  "competition": "Fall Mathematical Competition",
+  "gold_final_answer": "All pairs of positive integers with n = m or n = 2m.",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments",
+    "Discrete Mathematics > Other"
+  ],
+  "prompt": "Find all pairs of positive integers $(m, n)$, $m \\le n$, such that there exists an $m \\times n$ table of zeros and ones which satisfy the following condition:\nIf there is a zero (resp. one) in a cell, then the number of the zeros (resp. ones) in the row of that cell is equal to the number of the zeros (resp. ones) in the column of the cell.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "Let me denote the table as an $m \\times n$ matrix where $m \\leq n$.\n\n**Setting up the conditions:**\n\nLet cell $(i,j)$ have value $a_{ij} \\in \\{0,1\\}$. Let $r_i$ = number of ones in row $i$, so zeros in row $i$ = $n - r_i$. Let $c_j$ = number of ones in column $j$, so zeros in column $j$ = $m - c_j$.\n\nThe condition states:\n- If $a_{ij} = 1$: number of ones in row $i$ = number of ones in column $j$, i.e., $r_i = c_j$\n- If $a_{ij} = 0$: number of zeros in row $i$ = number of zeros in column $j$, i.e., $n - r_i = m - c_j$, so $c_j - r_i = m - n$\n\n**Analysis:**\n\nIf $a_{ij} = 1$: $r_i = c_j$\nIf $a_{ij} = 0$: $c_j = r_i + (m-n)$\n\nSince $m \\leq n$, let $d = n - m \\geq 0$.\n\nFor a zero: $c_j = r_i - d$.\nFor a one: $c_j = r_i$.\n\n**Case $m = n$ (square table, $d = 0$):**\nBoth conditions give $r_i = c_j$ for all cells. This means all row sums equal all column sums. If every row sum equals every column sum, say all equal $k$, then $mn \\cdot k/n = k$ (consistent). We need $r_i = c_j$ for all $i,j$, meaning all row sums are equal and all column sums are equal and they're the same value $k$. Any $k$ from $0$ to $n$ works (e.g., all-zeros or all-ones). So all $m = n$ works.\n\n**Case $m < n$ ($d > 0$):**\n\nEach cell is either 0 or 1. For row $i$, the ones in that row go to columns $j$ with $c_j = r_i$, and zeros go to columns $j$ with $c_j = r_i - d$.\n\nSo each column $j$ has $c_j$ either equal to $r_i$ (if $a_{ij}=1$) or $r_i - d$ (if $a_{ij}=0$), for each row $i$.\n\nThis means each column sum $c_j$ takes only values in $\\{r_i\\} \\cup \\{r_i - d\\}$ across rows. But $c_j$ is fixed, so for each column $j$, either $c_j = r_i$ for all rows where $a_{ij}=1$ and $c_j = r_i - d$ for all rows where $a_{ij}=0$.\n\nIf all $r_i$ are equal to $r$: columns with ones have $c_j = r$, columns with zeros have $c_j = r - d$. \n\nNumber of ones in row $i$ = number of columns with $c_j = r$ = $r$ (consistent since those are exactly the columns where $a_{ij}=1$). ✓\n\nNumber of ones in a column with $c_j = r$: each row contributes 1 to this column, so $c_j = m = r$. Thus $r = m$.\nNumber of ones in a column with $c_j = r-d = m-d$: each row contributes 0, so $c_j = 0$. Thus $m - d = 0$, so $m = d = n - m$, giving $n = 2m$.\n\nCheck: $r = m$, each row has $m$ ones and $m$ zeros. Columns of ones: $m$ of them, each with $m$ ones. Columns of zeros: $n - m = m$ of them, each with 0 ones. This works! The table has the first $m$ columns all ones and last $m$ columns all zeros (or any permutation).\n\n**Verify $n = 2m$ works:** $m \\times 2m$ table, first $m$ columns all 1s, last $m$ columns all 0s. Row sums = $m$, column sums = $m$ or $0$. For a 1 in column $j \\leq m$: ones in row = $m$, ones in column = $m$. ✓ For a 0 in column $j > m$: zeros in row = $m$, zeros in column = $m$. ✓\n\n**Other cases with $m < n$, $n \\neq 2m$:** More careful analysis shows no solution exists when row sums aren't all equal, and equal row sums force $n = 2m$.\n\n**Conclusion:** The pairs are $m = n$ (any positive integer) and $n = 2m$.\n\nThe pairs $(m,n)$ with $m \\leq n$ are: **all pairs with $m = n$, and all pairs with $n = 2m$**.\n\nFinal answer: All pairs of positive integers with $m = n$ or $n = 2m$.",
+  "usage": {
+    "input_tokens": 140,
+    "output_tokens": 1302,
+    "thinking_tokens": 0
+  },
+  "latency_s": 21.024391349055804,
+  "cached": false
+}

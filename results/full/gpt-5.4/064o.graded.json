@@ -1,0 +1,25 @@
+{
+  "id": "064o",
+  "country": "Greece",
+  "competition": "24th Hellenic Mathematical Olympiad",
+  "gold_final_answer": "none",
+  "topics_flat": [
+    "Number Theory > Modular Arithmetic",
+    "Number Theory > Divisibility / Factorization > Factorization techniques"
+  ],
+  "prompt": "Determine the natural numbers $v$ for which $2007 + 4v$ is perfect square.",
+  "model": "gpt-5.4",
+  "response_text": "We seek natural numbers \\(v\\) such that\n\\[\n2007+4v\n\\]\nis a perfect square.\n\nLet\n\\[\n2007+4v=n^2\n\\]\nfor some integer \\(n\\). Then\n\\[\n4v=n^2-2007.\n\\]\n\nSo we need \\(n^2-2007\\) to be divisible by \\(4\\). Reduce mod \\(4\\):\n\n- \\(2007 \\equiv 3 \\pmod 4\\),\n- any square \\(n^2 \\equiv 0\\) or \\(1 \\pmod 4\\).\n\nThus\n\\[\nn^2-2007 \\equiv n^2-3 \\pmod 4.\n\\]\nFor this to be \\(0 \\pmod 4\\), we need\n\\[\nn^2 \\equiv 3 \\pmod 4,\n\\]\nbut a square modulo \\(4\\) can never be \\(3\\).\n\nHence there is no integer \\(n\\) satisfying the equation, so there is no natural number \\(v\\) for which \\(2007+4v\\) is a perfect square.\n\nFinal answer: There are no natural numbers \\(v\\).",
+  "usage": {
+    "input_tokens": 69,
+    "output_tokens": 257,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.5752054509939626,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "There are no natural numbers \\(v\\)."
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "id": "09he",
+  "country": "Mongolia",
+  "competition": "Mongolian National Mathematical Olympiad",
+  "gold_final_answer": "a1 = 677; and when a1 = 677, the remaining terms are consecutive: a2, a3, ..., a53 = n, n+1, ..., n+51 with n ≥ 678.",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities",
+    "Algebra > Algebraic Expressions > Sequences and Series > Sums and products",
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments"
+  ],
+  "prompt": "Let $a_1 < a_2 < \\dots < a_{53}$ be positive integers such that the sum of any 27 integers is greater than the sum of the remaining 26 integers.\n\na) Find the minimum value of $a_1$.\n\nb) Find all possible values of $a_2, \\dots, a_{53}$, when $a_1$ is at the minimum value.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Setting Up the Problem\n\nThe condition states: for any selection of 27 integers from the set, their sum exceeds the sum of the remaining 26.\n\nLet $S = a_1 + a_2 + \\cdots + a_{53}$.\n\nIf we pick any 27 elements with sum $T$, then $T > S - T$, so $T > S/2$.\n\nThe **worst case** (minimum sum of 27 elements) occurs when we pick the 27 **smallest** elements: $a_1 + a_2 + \\cdots + a_{27}$.\n\nSo the condition is equivalent to:\n$$a_1 + a_2 + \\cdots + a_{27} > a_{28} + a_{29} + \\cdots + a_{53}$$\n\nThis means the sum of the 27 smallest exceeds the sum of the 26 largest.\n\n## Part a) Finding the minimum value of $a_1$\n\nWe need $\\sum_{i=1}^{27} a_i > \\sum_{i=28}^{53} a_i$.\n\nTo minimize $a_1$, we want to make the condition as easy to satisfy as possible while keeping all $a_i$ distinct positive integers with $a_1 < a_2 < \\cdots < a_{53}$.\n\n**Key constraint:** We need $\\sum_{i=1}^{27} a_i > \\sum_{i=28}^{53} a_i$.\n\nTo minimize $a_1$, we should minimize the right side and maximize the left side (relative to $a_1$). \n\nGiven $a_1$ is fixed, to satisfy the inequality most easily, we want $a_2, \\ldots, a_{53}$ to be as small as possible (consecutive integers starting from $a_1 + 1$).\n\nLet $a_i = a_1 + (i-1)$ for $i = 1, \\ldots, 53$ (consecutive integers).\n\nThen:\n- $\\sum_{i=1}^{27} a_i = 27a_1 + (0+1+\\cdots+26) = 27a_1 + 351$\n- $\\sum_{i=28}^{53} a_i = 26a_1 + (27+28+\\cdots+52) = 26a_1 + 1027$\n\nCondition: $27a_1 + 351 > 26a_1 + 1027$\n\n$$a_1 > 676$$\n\nSo $a_1 \\geq 677$.\n\n**Check $a_1 = 677$:** With consecutive integers $677, 678, \\ldots, 729$:\n- LHS: $27(677) + 351 = 18279 + 351 = 18630$\n- RHS: $26(677) + 1027 = 17602 + 1027 = 18629$\n- $18630 > 18629$ ✓\n\n**The minimum value of $a_1$ is $\\boxed{677}$.**\n\n## Part b) Finding all possible values of $a_2, \\ldots, a_{53}$ when $a_1 = 677$\n\nWith $a_1 = 677$, the condition is:\n$$\\sum_{i=1}^{27} a_i > \\sum_{i=28}^{53} a_i$$\n\nSince $a_1 = 677$ and all $a_i$ are distinct positive integers with $a_1 < a_2 < \\cdots < a_{53}$, we need $a_i \\geq 677 + (i-1)$ for all $i$.\n\nThe condition becomes:\n$$677 + \\sum_{i=2}^{27} a_i > \\sum_{i=28}^{53} a_i$$\n\n$$\\sum_{i=2}^{27} a_i - \\sum_{i=28}^{53} a_i > -677$$\n\nTo satisfy the inequality with $a_1 = 677$ (minimum), we need the remaining values to be as constrained as possible. \n\nSince $a_i \\geq 677 + (i-1)$, the minimum possible value for each $a_i$ is $677 + (i-1)$. If any $a_j > 677 + (j-1)$, then all subsequent values must also increase, making $\\sum_{i=28}^{53} a_i$ grow faster than $\\sum_{i=2}^{27} a_i$, which would **violate** the condition (since the gap was exactly 1 with consecutive integers).\n\nMore precisely, if $a_k = 677 + (k-1) + d$ for some $d \\geq 1$ at position $k$, then $\\sum_{i=28}^{53} a_i$ increases by at least $d \\cdot 26$ while $\\sum_{i=2}^{27} a_i$ increases by at most $d \\cdot 26$, but the balance tips unfavorably.\n\nSince the margin is exactly 1, **any deviation from consecutive integers breaks the condition**.\n\nTherefore, $a_i = 677 + (i-1)$ for all $i$, meaning:\n\n$$a_2 = 678, \\quad a_3 = 679, \\quad \\ldots, \\quad a_{53} = 729$$\n\n**The only possibility is $a_i = 676 + i$ for $i = 2, 3, \\ldots, 53$** (i.e., $a_2 = 678, a_3 = 679, \\ldots, a_{53} = 729$).\n\nFinal answer: a) $a_1 = 677$; b) The only solution is $a_i = 676+i$ for $i=2,\\ldots,53$, giving $a_2=678, a_3=679,\\ldots, a_{53}=729$.",
+  "usage": {
+    "input_tokens": 139,
+    "output_tokens": 1451,
+    "thinking_tokens": 0
+  },
+  "latency_s": 17.04177605197765,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "a) $a_1 = 677$; b) The only solution is $a_i = 676+i$ for $i=2,\\ldots,53$, giving $a_2=678, a_3=679,\\ldots, a_{53}=729$."
+  }
+}

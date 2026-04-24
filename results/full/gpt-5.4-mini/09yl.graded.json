@@ -1,0 +1,24 @@
+{
+  "id": "09yl",
+  "country": "Netherlands",
+  "competition": "First Round",
+  "gold_final_answer": "17",
+  "topics_flat": [
+    "Discrete Mathematics > Other"
+  ],
+  "prompt": "Line up the numbers $1$ to $15$ such that if you add any two numbers that are next to each other, you get a square number.\nWhat do you get if you add the first and last number from the line?",
+  "model": "gpt-5.4-mini",
+  "response_text": "We need a Hamiltonian path through the numbers \\(1,\\dots,15\\), where adjacent numbers sum to a perfect square.\n\nThe possible square sums in this range are:\n\\[\n4,9,16,25\n\\]\nso the allowed adjacencies are pairs summing to one of these.\n\nA valid arrangement is:\n\\[\n8,1,15,10,6,3,13,12,4,5,11,14,2,7,9\n\\]\nCheck each adjacent sum:\n\\[\n8+1=9,\\;\n1+15=16,\\;\n15+10=25,\\;\n10+6=16,\\;\n6+3=9,\\;\n3+13=16,\\;\n13+12=25,\\;\n12+4=16,\\;\n4+5=9,\\;\n5+11=16,\\;\n11+14=25,\\;\n14+2=16,\\;\n2+7=9,\\;\n7+9=16\n\\]\nAll are squares.\n\nNow add the first and last numbers:\n\\[\n8+9=17\n\\]\n\nFinal answer: 17",
+  "usage": {
+    "input_tokens": 96,
+    "output_tokens": 243,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 2.4674342569196597,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "exact",
+    "predicted": "17"
+  }
+}

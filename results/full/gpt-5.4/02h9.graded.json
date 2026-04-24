@@ -1,0 +1,25 @@
+{
+  "id": "02h9",
+  "country": "Brazil",
+  "competition": "Brazil",
+  "gold_final_answer": "7",
+  "topics_flat": [
+    "Discrete Mathematics > Graph Theory > Turán's theorem",
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments"
+  ],
+  "prompt": "We have four charged batteries, four uncharged batteries and a radio which needs two charged batteries to work.\nSuppose we don't know which batteries are charged and which ones are uncharged. Find the least number of attempts sufficient to make sure the radio will work. An attempt consists in putting two batteries in the radio and check if the radio works or not.",
+  "model": "gpt-5.4",
+  "response_text": "Label the 8 batteries \\(1,2,\\dots,8\\). Exactly 4 are good and 4 are bad. We need to guarantee finding a pair of good batteries.\n\nWe will show:\n\n- **4 attempts are sufficient**\n- **3 attempts are not sufficient**\n\nSo the least number is **4**.\n\n---\n\n## 1. A strategy using 4 attempts\n\nGroup the batteries into 4 disjoint pairs:\n\n\\[\n(1,2),\\ (3,4),\\ (5,6),\\ (7,8).\n\\]\n\nTest these pairs one by one.\n\n- If any tested pair works, we are done.\n- Suppose the first **3** tested pairs all fail:\n  \\[\n  (1,2),\\ (3,4),\\ (5,6)\\ \\text{all fail.}\n  \\]\n\nA failed pair contains **at most one** charged battery. Hence among batteries \\(1,2,3,4,5,6\\), there are at most \\(3\\) charged batteries total.\n\nBut there are \\(4\\) charged batteries altogether, so among the remaining pair \\((7,8)\\), both must be charged. Therefore the **4th attempt** with \\((7,8)\\) must work.\n\nThus **4 attempts always suffice**.\n\n---\n\n## 2. Why 3 attempts cannot guarantee success\n\nWe must show that after any 3 unsuccessful attempts, it is still possible that no tested pair was two charged batteries, yet there remains uncertainty.\n\nEach failed attempt only tells us that the tested pair is **not** two charged batteries.\n\nAn adversary can answer “fail” to 3 tests in such a way that there is still a valid placement of 4 charged batteries consistent with all answers and with **no tested pair** being all charged.\n\nFor example, no matter what 3 pairs you test, they involve at most 6 incidences of batteries, and one can choose 4 charged batteries so that each tested pair contains at least one uncharged battery. Concretely, if you test three disjoint pairs, say\n\\[\n(1,2),\\ (3,4),\\ (5,6),\n\\]\nall failing, then a consistent arrangement is:\n\\[\n1,3,5,7 \\text{ charged},\\quad 2,4,6,8 \\text{ uncharged}.\n\\]\nSo after 3 failures, you still do not know any working pair.\n\nHence **3 attempts are not enough** to be sure.\n\n---\n\nTherefore the minimum number of attempts needed is\n\nFinal answer: 4",
+  "usage": {
+    "input_tokens": 119,
+    "output_tokens": 544,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 10.565306336968206,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "4"
+  }
+}

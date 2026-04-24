@@ -1,0 +1,24 @@
+{
+  "id": "00l6",
+  "country": "Austria",
+  "competition": "National Competition",
+  "gold_final_answer": "C = 3; equality holds precisely when x1 + x4 = x2 + x5 = x3 + x6.",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities"
+  ],
+  "prompt": "Determine the largest constant $C$ such that\n$$\n(x_1 + x_2 + \\dots + x_6)^2 \\geq C \\cdot (x_1(x_2 + x_3) + x_2(x_3 + x_4) + \\dots + x_6(x_1 + x_2))\n$$\nholds for all real numbers $x_1, x_2, \\dots, x_6$.\nFor this $C$, determine all $x_1, x_2, \\dots, x_6$ such that equality holds.",
+  "model": "gpt-5.4",
+  "response_text": "Let\n\\[\nS=x_1+x_2+\\cdots+x_6\n\\]\nand\n\\[\nT=x_1(x_2+x_3)+x_2(x_3+x_4)+x_3(x_4+x_5)+x_4(x_5+x_6)+x_5(x_6+x_1)+x_6(x_1+x_2).\n\\]\nWe seek the largest constant \\(C\\) such that\n\\[\nS^2\\ge C\\,T\n\\]\nfor all real \\(x_1,\\dots,x_6\\).\n\n## 1. Rewrite \\(T\\)\nExpand:\n\\[\nT=\\sum_{i=1}^6 x_ix_{i+1}+\\sum_{i=1}^6 x_ix_{i+2},\n\\]\nwith indices mod \\(6\\).\n\nAlso,\n\\[\nS^2=\\sum_{i=1}^6 x_i^2+2\\sum_{i=1}^6 x_ix_{i+1}+2\\sum_{i=1}^6 x_ix_{i+2}+2x_1x_4+2x_2x_5+2x_3x_6.\n\\]\n\nSo we want the best \\(C\\) such that\n\\[\n\\sum x_i^2+2\\sum x_ix_{i+1}+2\\sum x_ix_{i+2}+2(x_1x_4+x_2x_5+x_3x_6)\n\\ge C\\left(\\sum x_ix_{i+1}+\\sum x_ix_{i+2}\\right).\n\\]\n\nThis is a quadratic-form problem. Since the form is circulant, the extremal constant comes from Fourier modes.\n\n## 2. Use circulant eigenvalues\nThe denominator quadratic form \\(T\\) corresponds to the symmetric circulant matrix with first row\n\\[\n(0,1,1,0,1,1),\n\\]\nbecause each pair \\(x_ix_{i+1}\\) and \\(x_ix_{i+2}\\) appears once in \\(T\\), so in matrix form \\(T=\\frac12 x^TBx\\) where \\(B\\) has that first row.\n\nThe numerator \\(S^2=x^T J x\\), where \\(J\\) is the all-ones matrix.\n\nFor circulant vectors, use the standard Fourier basis \\(v_k=(1,\\omega^k,\\omega^{2k},\\dots,\\omega^{5k})\\), \\(\\omega=e^{2\\pi i/6}\\).\n\n- For \\(J\\), eigenvalues are \\(6\\) for \\(k=0\\) and \\(0\\) for \\(k=1,\\dots,5\\).\n- For \\(B\\), eigenvalues are\n\\[\n\\lambda_k=\\omega^k+\\omega^{2k}+\\omega^{4k}+\\omega^{5k}\n=2\\cos\\frac{2\\pi k}{6}+2\\cos\\frac{4\\pi k}{6}.\n\\]\nCompute:\n\\[\n\\lambda_0=4,\\quad\n\\lambda_1=0,\\quad\n\\lambda_2=-2,\\quad\n\\lambda_3=0,\\quad\n\\lambda_4=-2,\\quad\n\\lambda_5=0.\n\\]\n\nSince \\(S^2\\) vanishes on all modes except \\(k=0\\), any vector with \\(T>0\\) must have a nonzero \\(k=0\\) component. The sharp constant is determined by the constant vector direction \\(x_1=\\cdots=x_6\\), because on that direction\n\\[\nS^2=(6a)^2=36a^2,\n\\]\nand\n\\[\nT=6\\cdot a( a+a)=12a^2.\n\\]\nHence\n\\[\n\\frac{S^2}{T}=\\frac{36a^2}{12a^2}=3.\n\\]\nSo \\(C\\le 3\\).\n\nNow verify \\(C=3\\) works.\n\n## 3. Prove \\(C=3\\) works\nConsider\n\\[\nS^2-3T.\n\\]\nA direct identity is\n\\[\nS^2-3T\n=\\frac12\\Big((x_1-x_2+x_3-x_4+x_5-x_6)^2+(x_1-x_3+x_5)^2+(x_2-x_4+x_6)^2\\Big)\\ge 0,\n\\]\nso indeed\n\\[\nS^2\\ge 3T\n\\]\nfor all real \\(x_i\\).\n\nThus the largest constant is\n\\[\nC=3.\n\\]\n\n## 4. Equality case\nEquality holds iff all three squares above vanish:\n\\[\nx_1-x_2+x_3-x_4+x_5-x_6=0,\n\\]\n\\[\nx_1-x_3+x_5=0,\n\\]\n\\[\nx_2-x_4+x_6=0.\n\\]\nFrom these,\n\\[\nx_1=x_3=x_5,\\qquad x_2=x_4=x_6,\n\\]\nand the first condition then gives\n\\[\n3x_1-3x_2=0 \\quad\\Rightarrow\\quad x_1=x_2.\n\\]\nHence\n\\[\nx_1=x_2=x_3=x_4=x_5=x_6.\n\\]\n\nConversely, if all six are equal, equality is immediate.\n\nFinal answer: \\(\\boxed{C=3}\\), with equality exactly when \\(\\boxed{x_1=x_2=x_3=x_4=x_5=x_6}\\).",
+  "usage": {
+    "input_tokens": 174,
+    "output_tokens": 1219,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 17.649570201989263,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "x_1=x_2=x_3=x_4=x_5=x_6"
+  }
+}

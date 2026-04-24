@@ -1,0 +1,24 @@
+{
+  "id": "0aj2",
+  "country": "North Macedonia",
+  "competition": "Macedonian Junior Mathematical Olympiad",
+  "gold_final_answer": "Equality holds when a = b = c = 1/4.",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities > QM-AM-GM-HM / Power Mean"
+  ],
+  "prompt": "Prove that for positive real numbers $a, b, c$ the following inequality holds:\n$$\n(16a^2 + 8b + 17)(16b^2 + 8c + 17)(16c^2 + 8a + 17) \\geq 2^{12}(a+1)(b+1)(c+1).\n$$\nWhen does equality hold?",
+  "model": "gpt-5.4",
+  "response_text": "Let\n\\[\nX=16a^2+8b+17,\\qquad Y=16b^2+8c+17,\\qquad Z=16c^2+8a+17.\n\\]\nWe want to prove\n\\[\nXYZ\\ge 2^{12}(a+1)(b+1)(c+1).\n\\]\n\nA natural idea is to prove the stronger termwise inequalities\n\\[\nX\\ge 16(a+1),\\qquad Y\\ge 16(b+1),\\qquad Z\\ge 16(c+1),\n\\]\nbecause then multiplying gives the result immediately.\n\nIndeed,\n\\[\nX-16(a+1)=16a^2+8b+17-16a-16=16a^2-16a+8b+1.\n\\]\nRewrite:\n\\[\n16a^2-16a+8b+1=(4a-2)^2+8b-3.\n\\]\nThis is not obviously nonnegative for all positive \\(b\\), so let us instead use\n\\[\n16a^2+8b+17-16(a+1)=16a^2-16a+8b+1\n=16\\left(a-\\frac12\\right)^2+8b-3.\n\\]\nStill not enough directly.\n\nSo we sharpen the observation differently:\n\\[\n16a^2+8b+17\n=8(a+1)+\\bigl(16a^2-8a\\bigr)+8b+9.\n\\]\nSince\n\\[\n16a^2-8a=8a(2a-1)\\ge -2,\n\\]\nthis is not ideal either.\n\nA better approach is to use AM-GM in the form\n\\[\n16a^2+8b+17 \\ge 16a+8\\sqrt{2b\\cdot ?}\n\\]\nbut this becomes messy. Instead, we search for a clean factorization around the equality case \\(a=b=c=\\frac12\\). At \\(a=\\frac12\\),\n\\[\n16a^2+8b+17=4+8b+17=8b+21,\n\\]\nso if also \\(b=\\frac12\\), this equals \\(25\\), while the right side factor would be \\(16\\cdot \\frac32=24\\). So equality is not there.\n\nTry \\(a=b=c=1\\):\n\\[\n16+8+17=41,\\qquad 41^3>16^3\\cdot 2^3,\n\\]\nnot equality.\n\nLet us instead compare each factor with \\(8(a+1)\\), \\(8(b+1)\\), \\(8(c+1)\\):\n\\[\n16a^2+8b+17\\ge 8(a+1)\n\\]\nis trivial, but multiplying only gives \\(8^3\\), not enough.\n\nSo we need a cyclic argument.\n\nConsider the stronger inequality\n\\[\n16a^2+8b+17 \\ge 16\\sqrt{(a+1)(b+1)}.\n\\]\nIf true cyclically, then multiplying all three inequalities gives\n\\[\nXYZ\\ge 16^3\\sqrt{(a+1)(b+1)^2(c+1)^2(a+1)}\n=16^3(a+1)(b+1)(c+1),\n\\]\nwhich is exactly the claim since \\(16^3=2^{12}\\).\n\nThus it remains to prove\n\\[\n16a^2+8b+17 \\ge 16\\sqrt{(a+1)(b+1)}.\n\\]\nSquaring is possible, but there is a simpler way via AM-GM:\n\\[\n16a^2+8b+17\n= (16a^2-16a+8b+8)+(16a+9).\n\\]\nNot clean. Instead observe\n\\[\n16a^2+8b+17\n\\ge 8a+8b+16,\n\\]\nbecause\n\\[\n16a^2+8b+17-(8a+8b+16)=16a^2-8a+1=(4a-1)^2\\ge 0.\n\\]\nNow by AM-GM,\n\\[\n8a+8b+16 = 8(a+b+2)\\ge 16\\sqrt{(a+1)(b+1)},\n\\]\nsince\n\\[\na+b+2=(a+1)+(b+1)\\ge 2\\sqrt{(a+1)(b+1)}.\n\\]\nTherefore\n\\[\n16a^2+8b+17 \\ge 16\\sqrt{(a+1)(b+1)}.\n\\]\nSimilarly,\n\\[\n16b^2+8c+17 \\ge 16\\sqrt{(b+1)(c+1)},\n\\]\n\\[\n16c^2+8a+17 \\ge 16\\sqrt{(c+1)(a+1)}.\n\\]\nMultiplying,\n\\[\n\\prod (16a^2+8b+17)\\ge 16^3\\sqrt{(a+1)(b+1)(b+1)(c+1)(c+1)(a+1)},\n\\]\nhence\n\\[\n(16a^2 + 8b + 17)(16b^2 + 8c + 17)(16c^2 + 8a + 17)\n\\ge 16^3(a+1)(b+1)(c+1)=2^{12}(a+1)(b+1)(c+1).\n\\]\n\nNow for equality. We need equality in all steps.\n\nFor\n\\[\n16a^2+8b+17 \\ge 8a+8b+16,\n\\]\nequality requires\n\\[\n(4a-1)^2=0\\quad\\Rightarrow\\quad a=\\frac14.\n\\]\nSimilarly from the other two analogous inequalities we get\n\\[\nb=\\frac14,\\qquad c=\\frac14.\n\\]\nAlso, equality in\n\\[\n(a+1)+(b+1)\\ge 2\\sqrt{(a+1)(b+1)}\n\\]\nrequires \\(a=b\\), and cyclically this is consistent with \\(a=b=c=\\frac14\\).\n\nCheck:\n\\[\n16\\left(\\frac14\\right)^2+8\\left(\\frac14\\right)+17=1+2+17=20,\n\\]\nso LHS \\(=20^3=8000\\), while\n\\[\n2^{12}\\left(\\frac54\\right)^3=4096\\cdot \\frac{125}{64}=8000.\n\\]\nSo equality indeed holds.\n\nFinal answer: \n\\[\n(16a^2 + 8b + 17)(16b^2 + 8c + 17)(16c^2 + 8a + 17) \\ge 2^{12}(a+1)(b+1)(c+1),\n\\]\nwith equality if and only if\n\\[\na=b=c=\\frac14.\n\\]",
+  "usage": {
+    "input_tokens": 133,
+    "output_tokens": 1507,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 20.189268177957274,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "\\["
+  }
+}

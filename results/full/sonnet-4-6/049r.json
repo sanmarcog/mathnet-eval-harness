@@ -1,0 +1,19 @@
+{
+  "id": "049r",
+  "country": "Croatia",
+  "competition": "Hrvatska 2011",
+  "gold_final_answer": "27/8",
+  "topics_flat": [
+    "Geometry > Solid Geometry > Volume"
+  ],
+  "prompt": "Determine the greatest possible ratio of the volume of a sphere and the volume of a right circular cone inscribed in it.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "Let the sphere have radius R. Let the cone have height h and base radius r, with the cone inscribed in the sphere.\n\nFor a cone inscribed in a sphere of radius R, the base circle lies inside the sphere. Let the center of the sphere be at the origin, and the cone's axis along the vertical axis. The apex is at the top of the sphere at distance R from center, and the base circle is at height y below the center.\n\nLet the apex be at height R (top of sphere), and the base at height -d where d ≥ 0. The height of the cone is h = R + d.\n\nThe base circle has radius r where r² + d² = R² (since the base circle lies on the sphere), so r² = R² - d².\n\nVolume of cone: V_cone = (1/3)πr²h = (1/3)π(R² - d²)(R + d)\n\nLet me maximize V_cone with respect to d (0 ≤ d ≤ R):\n\nf(d) = (R² - d²)(R + d) = (R-d)(R+d)(R+d) = (R-d)(R+d)²\n\nf'(d) = -(R+d)² + (R-d)·2(R+d) = (R+d)[-(R+d) + 2(R-d)] = (R+d)(R - 3d)\n\nSetting f'(d) = 0: d = R/3 (since d = -R is not in range)\n\nAt d = R/3:\n- h = R + R/3 = 4R/3\n- r² = R² - R²/9 = 8R²/9\n\nV_cone = (1/3)π · (8R²/9) · (4R/3) = (1/3)π · 32R³/27 = 32πR³/81\n\nVolume of sphere: V_sphere = (4/3)πR³\n\nRatio: V_sphere/V_cone = (4/3)πR³ / (32πR³/81) = (4/3) · (81/32) = 324/96 = 27/8\n\nSo the ratio V_sphere/V_cone = 27/8, meaning V_cone/V_sphere = 8/27.\n\nThe question asks for the greatest possible ratio of the volume of the sphere to the volume of the cone inscribed in it.\n\nWait, re-reading: \"greatest possible ratio of the volume of a sphere and the volume of a right circular cone inscribed in it.\"\n\nThis is V_sphere/V_cone, which is minimized when V_cone is maximized. The minimum ratio is 27/8.\n\nOr it could mean V_cone/V_sphere, which is maximized at 8/27.\n\nThe problem says \"greatest possible ratio of the volume of a sphere and the volume of a cone inscribed in it\" — this means we want the maximum of V_sphere/V_cone. But V_sphere is fixed and V_cone varies, so V_sphere/V_cone is maximized when V_cone is minimized (approaching 0), giving infinity. That doesn't make sense.\n\nMore likely the problem asks for the greatest ratio of V_cone to V_sphere, i.e., what fraction of the sphere's volume can the inscribed cone occupy at most.\n\nThe maximum ratio V_cone/V_sphere = (32πR³/81)/(4πR³/3) = (32/81)·(3/4) = 96/324 = 8/27.\n\nSo the greatest possible ratio is **8/27**.\n\nFinal answer: $\\dfrac{8}{27}$",
+  "usage": {
+    "input_tokens": 71,
+    "output_tokens": 871,
+    "thinking_tokens": 0
+  },
+  "latency_s": 13.368480831966735,
+  "cached": false
+}

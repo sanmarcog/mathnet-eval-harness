@@ -1,0 +1,25 @@
+{
+  "id": "0092",
+  "country": "Argentina",
+  "competition": "XXI Olimpiada Matemática Rioplatense",
+  "gold_final_answer": "1:2",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Quadrilaterals",
+    "Geometry > Plane Geometry > Analytic / Coordinate Methods > Vectors"
+  ],
+  "prompt": "Let $ABCD$ be a convex quadrilateral. Let $P$ and $Q$ be points on the sides $AB$ and $AD$, respectively, such that $area(ABQ) = area(ADP) = \\frac{1}{3} area(ABCD)$.  \n$PQ$ and the diagonal $AC$ meet at the point $R$.\nCalculate the ratio $\\frac{AR}{RC}$.",
+  "model": "claude-opus-4-7",
+  "response_text": "<think>\nLet me set coordinates. Let area of ABCD = S. Area ABQ = S/3, area ADP = S/3.\n\nLet AB = b, AD = d. Area ABQ with Q on AD: = (AQ/AD) * area(ABD). So AQ/AD = (S/3)/area(ABD).\n\nSimilarly AP/AB = (S/3)/area(ABD)... wait, area ADP = (AP/AB)*area(ABD). So AP/AB = (S/3)/[ABD].\n\nLet [ABD]=T1, [BCD]=T2, T1+T2=S.\nAP/AB = S/(3T1), AQ/AD = S/(3T1).\n\nLet α = S/(3T1). So AP = α·AB, AQ = α·AD.\n\nLine PQ: points αAB and αAD from A. So PQ is parallel-ish... parametrize: A + α(1-t)AB + αt·AD... wait, point on PQ: (1-t)P + tQ = (1-t)α·B + tα·D (taking A as origin).\n\nSo PQ = α[(1-t)B + tD].\n\nDiagonal AC: points sC where C is some point.\n\nWe need R = α[(1-t)B + tD] = sC.\n\nExpress C in terms of B, D. Let C = xB + yD (with A origin).\n\nFor ABCD convex, area ABCD... Area ABD = (1/2)|B×D| = T1. Area BCD = (1/2)|C-B) × (D-B)| = (1/2)|(xB+yD-B)×(D-B)| = (1/2)|((x-1)B+yD)×(D-B)| = (1/2)|(x-1)B×D - (x-1)B×B + yD×D - yD×B| = (1/2)|(x-1)(B×D) + y(B×D)| = (1/2)|x-1+y|·|B×D| = |x+y-1|·T1.\n\nSo T2/T1 = |x+y-1|. For C outside triangle ABD on opposite side, x+y-1 > 0, so x+y = 1 + T2/T1 = S/T1.\n\nSo α = S/(3T1) = (x+y)/3.\n\nFrom R: s·x = α(1-t), s·y = αt. Adding: s(x+y) = α. So s = α/(x+y) = 1/3.\n\nSo AR/AC = 1/3, meaning AR/RC = 1/2.\n</think>\n\n**Setting up:** Place A at origin. Let AB = **b**, AD = **d**, and write C = x**b** + y**d**.\n\n**Area relations:** With [ABD] = T₁, we have [ABCD] = [ABD] + [BCD] = T₁·(x+y), so x+y = S/T₁ where S = [ABCD].\n\nSince [ADP] = (AP/AB)·T₁ = S/3, we get AP/AB = S/(3T₁) = (x+y)/3. Similarly AQ/AD = (x+y)/3. Let α = (x+y)/3.\n\n**Finding R:** Points on PQ: α[(1−t)**b** + t**d**]. Points on AC: s(x**b** + y**d**).\n\nEquating: sx = α(1−t), sy = αt. Adding gives s(x+y) = α, so \n$$s = \\frac{\\alpha}{x+y} = \\frac{1}{3}.$$\n\nThus AR/AC = 1/3, giving AR/RC = 1/2.\n\nFinal answer: <answer>1/2</answer>",
+  "usage": {
+    "input_tokens": 206,
+    "output_tokens": 1158,
+    "thinking_tokens": 0
+  },
+  "latency_s": 14.229276608093642,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "<answer>1/2</answer>"
+  }
+}

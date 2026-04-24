@@ -1,0 +1,20 @@
+{
+  "id": "0lf4",
+  "country": "Vietnam",
+  "competition": "Team selection tests",
+  "gold_final_answer": "a) 2·min(m, n). b) min(m, n), except when m = n is odd, in which case it is m − 1.",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments",
+    "Discrete Mathematics > Combinatorics > Counting two ways"
+  ],
+  "prompt": "A school has two classes $A$ and $B$ which have $m$ and $n$ students each. The students of the two classes sit in a circle. Each student is then given a number of candies equal to the number of consecutive students sitting to the left of him that are from his same class. After distributing the candies, the teacher decides to group the students such that in each group, all the students receive the same amount of candies, and any two students from two different groups should receive a different amount of candies.\na) What is the maximum number of students that a group can have?\nb) Excluding the group where every student receives no candies, what is the maximum number of students that a group can have?",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find the maximum number of students in a group, we first determine how many candies each student receives. The students are seated in a circle and partitioned into alternating blocks of class $A$ and class $B$ students. Let there be $k$ blocks of class $A$ and $k$ blocks of class $B$. \n\nIf a block of students from the same class has size $s$, the number of consecutive students to the left of each student in this block from the same class will be $0, 1, 2, \\dots, s-1$. Thus, the set of candies received by the students in this block is exactly $\\{0, 1, 2, \\dots, s-1\\}$. \n\nThis means that for any integer $c \\ge 0$, the number of students receiving exactly $c$ candies is equal to the number of blocks (from both classes combined) that have a size strictly greater than $c$.\n\n**Part a)**\nThe number of students receiving $0$ candies is exactly the total number of blocks, which is $2k$. Since every block must contain at least one student, the number of blocks of class $A$ cannot exceed the total number of class $A$ students, so $k \\le m$. Similarly, $k \\le n$. Therefore, $k \\le \\min(m, n)$.\nThe maximum number of students receiving $0$ candies is $2\\min(m, n)$. For any $c > 0$, the number of students receiving $c$ candies is at most the total number of blocks, which is also bounded by $2\\min(m, n)$. \nThus, the maximum number of students a group can have is $2\\min(m, n)$.\n\n**Part b)**\nWe now exclude the group receiving $0$ candies and want to maximize the number of students receiving $c$ candies for $c \\ge 1$. To maximize this, we should choose $c = 1$. The number of students receiving $1$ candy is the number of blocks of size $\\ge 2$.\nLet $x$ be the number of class $A$ blocks of size $\\ge 2$, and $y$ be the number of class $B$ blocks of size $\\ge 2$. We want to maximize $x + y$.\nSince the sum of the sizes of the $k$ blocks of class $A$ is $m$, we have $2x + 1(k - x) \\le m \\implies x \\le m - k$. We also naturally have $x \\le k$. Thus, $x \\le \\min(k, m - k)$.\nSimilarly, for class $B$, $y \\le \\min(k, n - k)$.\nWe want to maximize $f(k) = \\min(k, m - k) + \\min(k, n - k)$ over all possible values of $k \\in [1, \\min(m, n)]$.\n\nAssume without loss of generality that $m \\le n$. \n- If $m < n$, we can choose $k = m$. Then $\\min(m, 0) + \\min(m, n - m) = 0 + m = m$. It can be shown that $f(k)$ cannot exceed $m$, so the maximum is $m = \\min(m, n)$.\n- If $m = n$, then $f(k) = 2\\min(k, m - k)$. This is maximized when $k = \\lfloor m/2 \\rfloor$, giving a maximum of $2\\lfloor m/2 \\rfloor$. (Notice that if $m$ is even, this equals $m$, but if $m$ is odd, it equals $m - 1$).\n\nFinal answer: a) 2\\min(m,n), b) \\min(m,n) \\text{ if } m \\neq n, \\text{ and } 2\\lfloor m/2 \\rfloor \\text{ if } m=n",
+  "usage": {
+    "input_tokens": 189,
+    "output_tokens": 862,
+    "thoughts_tokens": 6885
+  },
+  "latency_s": 60.21249779895879,
+  "cached": false
+}

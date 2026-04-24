@@ -1,0 +1,26 @@
+{
+  "id": "03wv",
+  "country": "China",
+  "competition": "Chinese Mathematical Olympiad",
+  "gold_final_answer": "All odd integers greater than 1",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Counting two ways",
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments",
+    "Discrete Mathematics > Graph Theory > Matchings, Marriage Lemma, Tutte's theorem"
+  ],
+  "prompt": "Find all integers $n$ such that we can color all the edges and the diagonals of a convex $n$-polygon by $n$ given colors satisfying the following conditions;\n(1) Each of the edges or the diagonals is colored by only one color;\n(2) For any three distinct colors, there exists a triangle whose vertices are vertices of the $n$-polygon and three edges are colored by these three colors.",
+  "model": "gpt-5.4-mini",
+  "response_text": "We show that the answer is exactly **\\(n\\ge 3\\)**.\n\n### Necessity\nIf \\(n<3\\), there are fewer than 3 vertices, so no triangle exists at all. Hence condition (2) cannot hold. Thus \\(n\\ge 3\\).\n\n### Sufficiency\nAssume \\(n\\ge 3\\). We will color the \\( \\binom n2 \\) edges/diagonals using the \\(n\\) colors so that every triangle has three different colors; then condition (2) is automatic.\n\nLabel the vertices \\(1,2,\\dots,n\\) cyclically, and color the segment \\(ij\\) (\\(i<j\\)) by\n\\[\n\\text{color}(ij)= i+j \\pmod n,\n\\]\nusing the \\(n\\) colors identified with residues mod \\(n\\).\n\nNow consider any triangle with vertices \\(a<b<c\\). Its three side-colors are\n\\[\na+b,\\quad b+c,\\quad c+a \\pmod n.\n\\]\nIf two of these were equal mod \\(n\\), then subtracting gives one of\n\\[\nb-a,\\ c-b,\\ c-a\n\\]\ncongruent to \\(0 \\pmod n\\), impossible because \\(1\\le b-a,\\ c-b,\\ c-a \\le n-1\\). So the three colors are distinct.\n\nTherefore every triangle uses three distinct colors, so in particular for any three distinct colors, there is a triangle whose edges have exactly those three colors.\n\nHence such a coloring exists for every \\(n\\ge 3\\).\n\nFinal answer: \\(\\boxed{n\\ge 3}\\)",
+  "usage": {
+    "input_tokens": 137,
+    "output_tokens": 356,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 2.7989636830752715,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "n\\ge 3"
+  }
+}

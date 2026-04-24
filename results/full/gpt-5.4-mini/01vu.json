@@ -1,0 +1,21 @@
+{
+  "id": "01vu",
+  "country": "Belarus",
+  "competition": "Belarusian Mathematical Olympiad",
+  "gold_final_answer": "Odd number of vertices: first player wins. Even number of vertices: second player wins.",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Games / greedy algorithms",
+    "Discrete Mathematics > Combinatorics > Invariants / monovariants",
+    "Discrete Mathematics > Combinatorics > Induction / smoothing"
+  ],
+  "prompt": "The vertices of the regular $n$-gon are marked. Two players play the following game: they, in turn, select a vertex and connect it by a segment to either the adjacent vertex or the center of the $n$-gon. The winner is a player if after his move it is possible to get any vertex from any other vertex moving along segments.\nFor each integer $n \\ge 3$ determine who has a winning strategy.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let us view the chosen segments as edges of a graph on the \\(n\\) vertices plus the center. A player wins immediately after his move if this graph is connected.\n\n## Key observations\n\n- The center can connect to a chosen vertex, and any vertex can also connect to one of its two neighboring vertices on the polygon.\n- To make all vertices mutually reachable, it is enough to create a connected graph spanning all \\(n\\) vertices. The center may or may not be used.\n- Initially no edges are present.\n\n## When can a player force a win?\n\nA connected graph on the \\(n\\) vertices of the polygon needs at least \\(n-1\\) edges if the center is not used, and at least \\(n\\) vertices total if the center is used. But since each move adds only one edge, the game is essentially about who makes the final necessary connection.\n\nThe crucial point is that the polygon vertices form a cycle, so:\n- If we choose only adjacent-vertex edges, then \\(n-1\\) such edges are needed to connect all \\(n\\) vertices.\n- If the center is used, then at least one center-edge is needed, but this does not reduce the total number of moves needed below \\(n-1\\) for connectivity of all vertices.\n\nThus the earliest possible win occurs on move \\(n-1\\), and the parity of \\(n-1\\) determines who makes that move.\n\n- If \\(n-1\\) is odd, the first player makes move \\(n-1\\).\n- If \\(n-1\\) is even, the second player makes move \\(n-1\\).\n\nSo:\n- If \\(n\\) is even, then \\(n-1\\) is odd, and the first player has a winning strategy.\n- If \\(n\\) is odd, then \\(n-1\\) is even, and the second player has a winning strategy.\n\n## Why this is optimal\n\nEach move can increase the connected component structure by at most one edge, and before connectivity is achieved, at least \\(n-1\\) “useful” edges are required to connect all polygon vertices. Hence neither player can win earlier, and the parity argument decides the winner.\n\nTherefore the winner is determined solely by the parity of \\(n\\).\n\nFinal answer: The first player wins iff \\(n\\) is even; the second player wins iff \\(n\\) is odd.",
+  "usage": {
+    "input_tokens": 139,
+    "output_tokens": 509,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 4.496554845944047,
+  "cached": false
+}

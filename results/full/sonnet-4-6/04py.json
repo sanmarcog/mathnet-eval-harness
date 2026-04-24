@@ -1,0 +1,19 @@
+{
+  "id": "04py",
+  "country": "Croatia",
+  "competition": "Croatian Mathematical Society Competitions",
+  "gold_final_answer": "2019",
+  "topics_flat": [
+    "Algebra > Intermediate Algebra > Complex numbers"
+  ],
+  "prompt": "Determine the number of complex solutions of the equation\n$$\nz^{2019} = z + \\bar{z}.\n$$",
+  "model": "claude-sonnet-4-6",
+  "response_text": "I need to find all complex solutions to $z^{2019} = z + \\bar{z}$.\n\n## Setting Up\n\nLet $z = x + iy$ where $x, y \\in \\mathbb{R}$. Then $z + \\bar{z} = 2x$ (real number).\n\nSo the equation becomes $z^{2019} = 2x$, where the right side is real.\n\n## Case 1: z is real (y = 0)\n\nThen $z = x$ and the equation becomes $x^{2019} = 2x$, so $x^{2019} - 2x = 0$, giving $x(x^{2018} - 2) = 0$.\n\nSolutions: $x = 0$ or $x^{2018} = 2$, so $x = \\pm 2^{1/2018}$.\n\nThis gives **3 real solutions**.\n\n## Case 2: z is not real (y ≠ 0)\n\nSince $z^{2019} = 2x$ is real, $z^{2019}$ must be real. \n\nWrite $z = re^{i\\theta}$ with $r > 0$ and $\\theta \\notin \\{0, \\pi\\}$ (since $y \\neq 0$).\n\nFor $z^{2019} = r^{2019}e^{i \\cdot 2019\\theta}$ to be real: $2019\\theta = k\\pi$ for some integer $k$.\n\nSo $\\theta = \\frac{k\\pi}{2019}$ for integer $k$, with $\\theta \\notin \\{0, \\pi\\} \\pmod{2\\pi}$.\n\nThe values $k = 0, 2019$ give $\\theta = 0, \\pi$ (excluded). So $k \\in \\{1, 2, \\ldots, 2018\\}$ gives valid angles (mod $2\\pi$, these are distinct since $k$ ranges over $2018$ values with $k \\neq 0, 2019$).\n\nFor each valid $\\theta = \\frac{k\\pi}{2019}$, we need $z^{2019} = 2x = 2r\\cos\\theta$.\n\nSo $r^{2019}e^{i \\cdot 2019\\theta} = 2r\\cos\\theta$.\n\nSince $e^{i \\cdot 2019\\theta} = e^{ik\\pi} = (-1)^k$, we get:\n$$r^{2019}(-1)^k = 2r\\cos\\theta$$\n\nSince $r > 0$, divide by $r$:\n$$r^{2018} = \\frac{2\\cos\\theta}{(-1)^k} = 2(-1)^k\\cos\\theta$$\n\nWe need $r^{2018} > 0$, so we need $(-1)^k \\cos\\theta > 0$.\n\nWith $\\theta = \\frac{k\\pi}{2019}$:\n- $\\cos\\frac{k\\pi}{2019} > 0$ when $k < \\frac{2019}{2}$, i.e., $k \\leq 1009$\n- $\\cos\\frac{k\\pi}{2019} < 0$ when $k > 1009$, i.e., $k \\geq 1010$\n\nCheck $(-1)^k \\cos\\frac{k\\pi}{2019} > 0$:\n- **Even $k$, $k \\leq 1009$**: $(-1)^k = 1 > 0$ and $\\cos > 0$ ✓. Even $k$ in $\\{1,\\ldots,1009\\}$: $k = 2,4,\\ldots,1008$ → **504 values**\n- **Odd $k$, $k \\geq 1010$**: $(-1)^k = -1$ and $\\cos < 0$, so product $> 0$ ✓. Odd $k$ in $\\{1010,\\ldots,2018\\}$: $k = 1011, 1013, \\ldots, 2017$ → **504 values**\n- **Even $k$, $k \\geq 1010$**: $(-1)^k = 1$, $\\cos < 0$ ✗\n- **Odd $k$, $k \\leq 1009$**: $(-1)^k = -1$, $\\cos > 0$ ✗\n- **$k = 1009$ (odd, $\\leq 1009$)**: excluded ✗\n- **$k = 1010$ (even, $\\geq 1010$)**: excluded ✗\n\nWait, check $k=1009$: odd, $\\cos\\frac{1009\\pi}{2019} > 0$ (since $1009 < 2019/2$), $(-1)^{1009} = -1$: product $< 0$ ✗.\n\nTotal non-real solutions: $504 + 504 = 1008$.\n\nEach valid $k$ gives exactly one $r > 0$, hence one solution $z = re^{ik\\pi/2019}$.\n\n## Total\n\n$3 + 1008 = \\boxed{1011}$\n\nFinal answer: 1011",
+  "usage": {
+    "input_tokens": 75,
+    "output_tokens": 1319,
+    "thinking_tokens": 0
+  },
+  "latency_s": 17.609030454070307,
+  "cached": false
+}

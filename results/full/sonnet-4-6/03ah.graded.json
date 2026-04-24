@@ -1,0 +1,25 @@
+{
+  "id": "03ah",
+  "country": "Bulgaria",
+  "competition": "58. National mathematical olympiad Final round",
+  "gold_final_answer": "(a, b, c) with a | b and b | c",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments",
+    "Number Theory > Other"
+  ],
+  "prompt": "Planes through the points with integer coordinates in the three dimensional Euclidean space partition the space into unit cubes. Find all triples $(a, b, c)$, $a \\le b \\le c$, of positive integers such that the cubes can be colored in $abc$ colors in such a way that every parallelepiped of dimensions $a \\times b \\times c$, integer vertices and faces parallel to the coordinate planes does not contain cubes of the same color.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Solution\n\nWe need to find all triples $(a, b, c)$ with $a \\leq b \\leq c$ of positive integers such that we can color unit cubes with $abc$ colors where every $a \\times b \\times c$ rectangular parallelepiped (with integer vertices, faces parallel to coordinate planes) contains no two cubes of the same color.\n\n**Setting up the coloring:**\n\nEach unit cube can be identified by its corner $(x, y, z)$ with $x, y, z \\in \\mathbb{Z}$. An $a \\times b \\times c$ parallelepiped contains exactly $abc$ unit cubes, so we need each color to appear exactly once in every such parallelepiped.\n\nA natural coloring is: assign color $(x \\bmod a, y \\bmod b, z \\bmod c)$ to the cube at position $(x, y, z)$. This gives $abc$ colors, and in any $a \\times b \\times c$ parallelepiped, each residue triple appears exactly once. This works for **any** triple $(a, b, c)$.\n\n**But we need to check if other colorings are possible, and more importantly, what triples allow such a coloring.**\n\nWait — the problem asks to **find all triples** for which such a coloring exists. The natural coloring above works for every $(a, b, c)$. So we need to verify whether the problem is asking something more restrictive.\n\nRe-reading: the coloring must work for **every** $a \\times b \\times c$ parallelepiped. The natural coloring $(x \\bmod a, y \\bmod b, z \\bmod c)$ satisfies this for any $(a,b,c)$.\n\n**However**, the problem likely requires that the coloring is consistent — meaning the same coloring works simultaneously for all such parallelepipeds. The natural coloring does this.\n\nSo all triples $(a, b, c)$ of positive integers work? Let me reconsider whether there's an additional constraint.\n\nActually, the problem says \"planes through points with integer coordinates partition space into unit cubes\" — these are the planes $x = n$, $y = n$, $z = n$ for integers $n$. The coloring assigns a color to each unit cube.\n\nThe condition: every $a \\times b \\times c$ parallelepiped with integer vertices contains no two cubes of the same color. Since there are $abc$ cubes and $abc$ colors, each color appears exactly once.\n\nThe natural coloring works for all $(a,b,c)$. So **all triples** $(a,b,c)$ of positive integers work.\n\nBut this seems too easy for an olympiad. Let me reconsider — perhaps the problem requires the coloring to work for parallelepipeds of dimensions $a \\times b \\times c$ in **any orientation** (permutation of dimensions). \n\nIf the parallelepiped can be $a \\times b \\times c$ in any assignment of dimensions to axes, then we need the coloring to work for all permutations. The natural coloring $(x \\bmod a, y \\bmod b, z \\bmod c)$ works for $a \\times b \\times c$ aligned with axes, but for a $b \\times a \\times c$ parallelepiped (swapping $x$ and $y$ dimensions), we need $a = b$ for the same coloring to work, unless we use a different coloring.\n\nFor the coloring to work for all permutations of $(a,b,c)$, we need $a = b = c$, OR we need a coloring that handles all permutations simultaneously.\n\nIf $a = b = c$, the coloring $(x \\bmod a, y \\bmod a, z \\bmod a)$ works for all orientations.\n\nFor the coloring to work for all axis-aligned parallelepipeds of dimensions $a \\times b \\times c$ (in the given orientation), any triple works via the natural coloring.\n\nGiven the olympiad context, the answer is likely that **all triples $(a, b, c)$** of positive integers work, since the natural coloring always suffices.\n\nFinal answer: All triples $(a, b, c)$ of positive integers with $a \\leq b \\leq c$ work. The answer is $\\boxed{(a, b, c)}$ for all positive integers $a \\leq b \\leq c$.\n\nFinal answer: All triples $(a,b,c)$ of positive integers (with $a\\le b\\le c$).",
+  "usage": {
+    "input_tokens": 151,
+    "output_tokens": 1063,
+    "thinking_tokens": 0
+  },
+  "latency_s": 15.849480922915973,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "All triples $(a,b,c)$ of positive integers (with $a\\le b\\le c$)."
+  }
+}

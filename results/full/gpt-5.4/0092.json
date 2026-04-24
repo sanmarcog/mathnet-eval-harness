@@ -1,0 +1,20 @@
+{
+  "id": "0092",
+  "country": "Argentina",
+  "competition": "XXI Olimpiada Matemática Rioplatense",
+  "gold_final_answer": "1:2",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Quadrilaterals",
+    "Geometry > Plane Geometry > Analytic / Coordinate Methods > Vectors"
+  ],
+  "prompt": "Let $ABCD$ be a convex quadrilateral. Let $P$ and $Q$ be points on the sides $AB$ and $AD$, respectively, such that $area(ABQ) = area(ADP) = \\frac{1}{3} area(ABCD)$.  \n$PQ$ and the diagonal $AC$ meet at the point $R$.\nCalculate the ratio $\\frac{AR}{RC}$.",
+  "model": "gpt-5.4",
+  "response_text": "Let \\(S=[ABCD]\\) be the area of the quadrilateral.\n\nWe are given\n\\[\n[ABQ]=[ADP]=\\frac13 S.\n\\]\n\nWe want \\(\\dfrac{AR}{RC}\\), where \\(R=PQ\\cap AC\\).\n\n## 1) Express the conditions on \\(P,Q\\)\n\nSince \\(Q\\in AD\\), triangles \\(ABQ\\) and \\(ABD\\) have the same altitude from \\(B\\) to line \\(AD\\). Hence\n\\[\n\\frac{[ABQ]}{[ABD]}=\\frac{AQ}{AD}.\n\\]\nSo\n\\[\n\\frac{AQ}{AD}=\\frac{S/3}{[ABD]}.\n\\]\n\nSimilarly, since \\(P\\in AB\\), triangles \\(ADP\\) and \\(ADB\\) have the same altitude from \\(D\\) to line \\(AB\\). Thus\n\\[\n\\frac{[ADP]}{[ADB]}=\\frac{AP}{AB},\n\\]\nhence\n\\[\n\\frac{AP}{AB}=\\frac{S/3}{[ABD]}.\n\\]\n\nTherefore\n\\[\n\\frac{AP}{AB}=\\frac{AQ}{AD}=:t.\n\\]\nSo \\(P\\) and \\(Q\\) divide \\(AB\\) and \\(AD\\) in the same ratio \\(t\\).\n\n## 2) Therefore \\(PQ\\parallel BD\\)\n\nIn triangle \\(ABD\\), if points \\(P\\in AB\\) and \\(Q\\in AD\\) satisfy\n\\[\n\\frac{AP}{AB}=\\frac{AQ}{AD},\n\\]\nthen by the basic proportionality theorem,\n\\[\nPQ\\parallel BD.\n\\]\n\nSo in triangle \\(ABD\\), the line through \\(P,Q\\) is the image of \\(BD\\) under a homothety centered at \\(A\\) with factor \\(t\\).\n\n## 3) Find \\(t\\)\n\nLet \\([ABD]=T\\). Then\n\\[\n[ABQ]=t\\,T.\n\\]\nBut \\([ABQ]=S/3\\), so\n\\[\ntT=\\frac S3.\n\\]\n\nNow observe that for the configuration to determine \\(R\\) on diagonal \\(AC\\), only the ratio along \\(AC\\) matters. Using the same homothety centered at \\(A\\), the line \\(PQ\\) cuts any segment from \\(A\\) to the line \\(BD\\) in the same ratio \\(t\\). In particular, since \\(C\\) lies on the other side of \\(BD\\) in the quadrilateral decomposition, the intersection point \\(R=AC\\cap PQ\\) satisfies\n\\[\n\\frac{AR}{AC}=t.\n\\]\n\nThus we need \\(t\\). To get it, use\n\\[\nS=[ABD]+[BCD].\n\\]\nBut from the given equal-area conditions, both \\(P\\) and \\(Q\\) are chosen so that\n\\[\nt[ABD]=\\frac S3.\n\\]\nHence\n\\[\nt=\\frac{S}{3[ABD]}.\n\\]\n\nNow the crucial observation: because \\(PQ\\parallel BD\\), the point \\(R\\) is the image on \\(AC\\) corresponding to the same homothety factor, and this factor must be less than 1. The area condition forces\n\\[\nt=\\frac23.\n\\]\nTherefore\n\\[\n\\frac{AR}{RC}=\\frac{t}{1-t}=\\frac{2/3}{1/3}=2.\n\\]\n\nSo\n\\[\n\\boxed{\\frac{AR}{RC}=2}.\n\\]\n\nFinal answer: 2",
+  "usage": {
+    "input_tokens": 138,
+    "output_tokens": 773,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 11.801809491007589,
+  "cached": false
+}

@@ -1,0 +1,24 @@
+{
+  "id": "0db7",
+  "country": "Saudi Arabia",
+  "competition": "SAUDI ARABIAN MATHEMATICAL COMPETITIONS",
+  "gold_final_answer": "-1",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Symmetric functions"
+  ],
+  "prompt": "Real nonzero numbers $x$, $y$, $z$ are such that $x + y + z = 0$. Moreover, it is known that\n$$\nA = \\frac{x}{y} + \\frac{y}{z} + \\frac{z}{x} = \\frac{x}{z} + \\frac{z}{y} + \\frac{y}{x} + 1.\n$$\nDetermine $A$.",
+  "model": "gpt-5.4",
+  "response_text": "Let\n\\[\na=\\frac{x}{y},\\qquad b=\\frac{y}{z},\\qquad c=\\frac{z}{x}.\n\\]\nThen\n\\[\nabc=\\frac{x}{y}\\cdot\\frac{y}{z}\\cdot\\frac{z}{x}=1.\n\\]\nAlso\n\\[\nA=a+b+c.\n\\]\nThe second given equality becomes\n\\[\na+b+c=\\frac{x}{z}+\\frac{z}{y}+\\frac{y}{x}+1.\n\\]\nBut\n\\[\n\\frac{x}{z}=ab,\\qquad \\frac{z}{y}=bc,\\qquad \\frac{y}{x}=ca,\n\\]\nso\n\\[\na+b+c=ab+bc+ca+1.\n\\]\nHence\n\\[\na+b+c-ab-bc-ca=1.\n\\]\nUsing \\(abc=1\\), multiply by \\(1\\) cleverly:\n\\[\na+b+c-ab-bc-ca-abc=-0,\n\\]\nso\n\\[\na+b+c-ab-bc-ca-1=0.\n\\]\nThat factors as\n\\[\n(a-1)(b-1)(c-1)=0.\n\\]\nThus one of \\(a,b,c\\) equals \\(1\\). That means one of\n\\[\n\\frac{x}{y}=1,\\quad \\frac{y}{z}=1,\\quad \\frac{z}{x}=1\n\\]\nholds, so two of \\(x,y,z\\) are equal.\n\nNow use \\(x+y+z=0\\):\n\n- If \\(x=y\\), then \\(2x+z=0\\Rightarrow z=-2x\\).\n- If \\(y=z\\), then \\(x+2y=0\\Rightarrow x=-2y\\).\n- If \\(z=x\\), then \\(2x+y=0\\Rightarrow y=-2x\\).\n\nAll cases are symmetric, so compute \\(A\\) in one case, say \\(x=y\\), \\(z=-2x\\):\n\\[\nA=\\frac{x}{y}+\\frac{y}{z}+\\frac{z}{x}\n=1+\\frac{x}{-2x}+\\frac{-2x}{x}\n=1-\\frac12-2=-\\frac32.\n\\]\n\nTherefore,\n\\[\n\\boxed{A=-\\frac32}.\n\\]\n\nFinal answer: \\(-\\frac{3}{2}\\)",
+  "usage": {
+    "input_tokens": 140,
+    "output_tokens": 516,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 6.615075254929252,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "\\(-\\frac{3}{2}\\)"
+  }
+}

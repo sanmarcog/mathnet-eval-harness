@@ -1,0 +1,19 @@
+{
+  "id": "09v3",
+  "country": "Netherlands",
+  "competition": "Junior Mathematical Olympiad, September 2019",
+  "gold_final_answer": "D) 3",
+  "topics_flat": [
+    "Discrete Mathematics > Logic"
+  ],
+  "prompt": "Five smart students are sitting in a circle. The teacher gives one or more marbles to each of them. He explains that he has handed out a total of 18 marbles, and that everyone got a different number of marbles. Each student is allowed to see his own number of marbles, as well as the number of marbles of his neighbour on the left and his neighbour on the right.\n\nUsing only this information, each student must try to logically deduce the difference between the numbers of marbles of the two students opposite to him. The teacher has distributed the marbles in such a way as to minimise the number of students that are able to do this. How many students can do it?\nA) 0  B) 1  C) 2  D) 3  E) 5",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let the five numbers of marbles be distinct positive integers summing to \\(18\\).\n\nA student can determine the two opposite students’ numbers if the visible three numbers force a unique completion of the total \\(18\\). So we want a distribution that makes this as hard as possible.\n\n## Step 1: Find the possible number sets\nWe need 5 distinct positive integers summing to 18. The only possibilities are:\n- \\(1,2,3,4,8\\)\n- \\(1,2,3,5,7\\)\n- \\(1,2,4,5,6\\)\n\n## Step 2: Make the circle hardest to analyze\nThe teacher can arrange the numbers around the circle so that for as many students as possible, their own number plus the two neighbors’ numbers do not uniquely determine the remaining two numbers.\n\nA key observation: if a student sees three numbers whose sum is \\(s\\), then the opposite pair must sum to \\(18-s\\). If there are multiple ways to choose two distinct unused numbers with that sum, then the student cannot deduce the difference uniquely.\n\nThe hardest arrangement is for the set\n\\[\n1,2,4,5,6\n\\]\nplaced in circular order as\n\\[\n1,4,2,6,5\n\\]\n(or similar). Then each student sees two neighbors whose values leave ambiguity about the opposite pair, except for exactly two students.\n\nOne can check that in this arrangement:\n- 2 students can deduce the opposite difference,\n- 3 students cannot.\n\nThus the teacher can minimize the number of successful students to **2**.\n\nFinal answer: 2",
+  "usage": {
+    "input_tokens": 215,
+    "output_tokens": 347,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.0995875970693305,
+  "cached": false
+}

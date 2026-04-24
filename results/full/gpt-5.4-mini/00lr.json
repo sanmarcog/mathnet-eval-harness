@@ -1,0 +1,20 @@
+{
+  "id": "00lr",
+  "country": "Austria",
+  "competition": "48th Austrian Mathematical Olympiad",
+  "gold_final_answer": "3026",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Inclusion-exclusion",
+    "Number Theory > Divisibility / Factorization > Least common multiples (lcm)"
+  ],
+  "prompt": "Anthony writes down in order all positive integers which are divisible by $2$. Bertha writes down in order all positive integers which are divisible by $3$. Claire writes down in order all positive integers which are divisible by $4$. Orderly Dora writes all numbers written by the other three. Thereby she puts them in order by size and does not repeat a number. What is the $2017$th number in her list?\n(Richard Henner)",
+  "model": "gpt-5.4-mini",
+  "response_text": "Dora’s list consists of all positive integers divisible by \\(2\\) or \\(3\\) or \\(4\\). Since every multiple of \\(4\\) is already a multiple of \\(2\\), this is just the set of positive integers divisible by \\(2\\) or \\(3\\).\n\nSo we need the \\(2017\\)th positive integer that is divisible by \\(2\\) or \\(3\\).\n\nCount numbers \\(\\le n\\) divisible by \\(2\\) or \\(3\\):\n\\[\n\\left\\lfloor \\frac n2\\right\\rfloor+\\left\\lfloor \\frac n3\\right\\rfloor-\\left\\lfloor \\frac n6\\right\\rfloor.\n\\]\nWe want this to equal \\(2017\\).\n\nNow among every \\(6\\) consecutive integers, exactly \\(4\\) are divisible by \\(2\\) or \\(3\\). Thus the count up to \\(6k\\) is \\(4k\\). Since\n\\[\n2017 = 4\\cdot 504 + 1,\n\\]\nthe first \\(2016\\) such numbers occur up to \\(6\\cdot 504=3024\\), and the next one is the first number after \\(3024\\) divisible by \\(2\\) or \\(3\\), namely \\(3026\\).\n\nFinal answer: \\(\\boxed{3026}\\)",
+  "usage": {
+    "input_tokens": 141,
+    "output_tokens": 300,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 2.4204734649974853,
+  "cached": false
+}

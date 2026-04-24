@@ -1,0 +1,19 @@
+{
+  "id": "09yk",
+  "country": "Netherlands",
+  "competition": "Junior Mathematical Olympiad",
+  "gold_final_answer": "C",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Invariants / monovariants"
+  ],
+  "prompt": "Joah has a very long liquorice lace. He keeps taking bites out of the lace (but not from the very beginning or end of the lace), each time eating $2$ cm of the liquorice, creating two smaller pieces in the process. He repeats this several times. At the end, he is left with pieces of liquorice lace of $1$, $2$, $3$, $4$, $5$, $6$, $7$, $8$, $9$, and $10$ cm.\nHow long (in cm) was his liquorice lace originally?\nA) $55$ \nB) $66$ \nC) $73$ \nD) $75$ \nE) $81$",
+  "model": "gpt-5.4-mini",
+  "response_text": "Each bite removes a middle piece of length \\(2\\) cm and increases the total number of pieces by \\(1\\).\n\nHe ends with pieces of lengths \\(1,2,3,\\dots,10\\), so the total remaining liquorice is\n\n\\[\n1+2+3+\\cdots+10=\\frac{10\\cdot 11}{2}=55.\n\\]\n\nTo get from the original lace to these 10 pieces, Joah must have made \\(9\\) bites, since each bite creates one extra piece.  \nSo he removed\n\n\\[\n9 \\times 2 = 18\n\\]\n\ncm in total.\n\nThus the original length was\n\n\\[\n55+18=73.\n\\]\n\nFinal answer: 73",
+  "usage": {
+    "input_tokens": 194,
+    "output_tokens": 162,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 1.5760072149569169,
+  "cached": false
+}

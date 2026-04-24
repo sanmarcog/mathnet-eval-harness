@@ -1,0 +1,20 @@
+{
+  "id": "0d9o",
+  "country": "Saudi Arabia",
+  "competition": "Team selection tests for BMO 2018",
+  "gold_final_answer": "11",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Factorization techniques",
+    "Algebra > Algebraic Expressions > Sequences and Series > Sums and products"
+  ],
+  "prompt": "Find the smallest positive integer $n$ which can not be expressed as $n=\\frac{2^{a}-2^{b}}{2^{c}-2^{d}}$ for some positive integers $a, b, c, d$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Write\n\\[\nn=\\frac{2^a-2^b}{2^c-2^d}\n=\\frac{2^b(2^{a-b}-1)}{2^d(2^{c-d}-1)}.\n\\]\nSince \\(2^k-1\\) is odd, the exact power of \\(2\\) dividing a term like \\(2^u-2^v\\) is the smaller exponent. So the \\(2\\)-adic valuation gives\n\\[\nv_2(n)= (b-d),\n\\]\nand the odd part of \\(n\\) must be a ratio of numbers of the form \\(2^r-1\\).\n\nNow check small positive integers:\n\n- \\(1\\) is possible: take \\(a=2,b=1,c=2,d=1\\), giving\n  \\[\n  \\frac{4-2}{4-2}=1.\n  \\]\n- \\(2\\) is possible: take \\(a=3,b=1,c=2,d=1\\), giving\n  \\[\n  \\frac{8-2}{4-2}=3,\\]\n  not \\(2\\). But take \\(a=4,b=2,c=2,d=1\\):\n  \\[\n  \\frac{16-4}{4-2}=6.\n  \\]\n  So we need a systematic approach.\n\nObserve that\n\\[\n2^a-2^b = 2^b(2^{a-b}-1),\n\\]\nso any such quotient is of the form\n\\[\n2^k\\cdot \\frac{2^u-1}{2^v-1}.\n\\]\nThus the odd part must be a quotient of Mersenne numbers.\n\nFor \\(n=2\\), this would require the odd part to be \\(1\\) and \\(v_2(n)=1\\), so we need\n\\[\n\\frac{2^u-1}{2^v-1}=1,\n\\]\nwhich forces \\(u=v\\), impossible because then the original numerator and denominator would be equal, giving \\(1\\), not \\(2\\). Hence \\(2\\) is not attainable.\n\nAnd indeed \\(1\\) is attainable, so the smallest positive integer not expressible is\n\\[\n\\boxed{2}.\n\\]\n\nFinal answer: 2",
+  "usage": {
+    "input_tokens": 98,
+    "output_tokens": 497,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.5089381500147283,
+  "cached": false
+}

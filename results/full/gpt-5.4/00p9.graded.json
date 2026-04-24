@@ -1,0 +1,26 @@
+{
+  "id": "00p9",
+  "country": "Balkan Mathematical Olympiad",
+  "competition": "shortlistBMO 2011",
+  "gold_final_answer": "1/(n-1)^n",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Symmetric functions",
+    "Algebra > Algebraic Expressions > Polynomials > Polynomial operations",
+    "Algebra > Equations and Inequalities > QM-AM-GM-HM / Power Mean"
+  ],
+  "prompt": "Given an integer number $n \\ge 3$, determine the maximum value the product of $n$ non-negative real numbers $x_1, x_2, \\dots, x_n$ may achieve, subject to\n$$\n\\frac{x_1}{1+x_1} + \\frac{x_2}{1+x_2} + \\dots + \\frac{x_n}{1+x_n} = 1.\n$$",
+  "model": "gpt-5.4",
+  "response_text": "Let\n\\[\ny_i=\\frac{x_i}{1+x_i}\\qquad (i=1,\\dots,n).\n\\]\nThen \\(0\\le y_i<1\\), and the condition becomes\n\\[\ny_1+y_2+\\cdots+y_n=1.\n\\]\nAlso, solving for \\(x_i\\),\n\\[\nx_i=\\frac{y_i}{1-y_i}.\n\\]\nHence\n\\[\nx_1x_2\\cdots x_n=\\prod_{i=1}^n \\frac{y_i}{1-y_i}.\n\\]\n\nSo we must maximize\n\\[\n\\prod_{i=1}^n \\frac{y_i}{1-y_i}\n\\quad\\text{subject to}\\quad\ny_i\\ge 0,\\ \\sum y_i=1.\n\\]\n\nTake logs:\n\\[\n\\log\\Bigl(\\prod_{i=1}^n \\frac{y_i}{1-y_i}\\Bigr)\n=\\sum_{i=1}^n \\left(\\ln y_i-\\ln(1-y_i)\\right).\n\\]\nDefine\n\\[\nf(t)=\\ln\\frac{t}{1-t},\\qquad 0<t<1.\n\\]\nThen\n\\[\nf''(t)= -\\frac1{t^2}+\\frac1{(1-t)^2}\n= \\frac{2t-1}{t^2(1-t)^2}.\n\\]\nThis is not globally concave, so instead use Lagrange multipliers on\n\\[\n\\sum f(y_i),\\qquad \\sum y_i=1.\n\\]\nWe get\n\\[\nf'(y_i)=\\frac1{y_i}+\\frac1{1-y_i}=\\lambda\n\\]\nfor all \\(i\\), so all \\(y_i\\) are equal:\n\\[\ny_1=\\cdots=y_n=\\frac1n.\n\\]\nThus\n\\[\nx_i=\\frac{1/n}{1-1/n}=\\frac1{n-1}.\n\\]\nTherefore\n\\[\nx_1x_2\\cdots x_n=\\left(\\frac1{n-1}\\right)^n.\n\\]\n\nIt remains to justify this gives the maximum. Since the problem is symmetric and the objective tends to \\(0\\) when any \\(y_i\\to 0\\), the maximum occurs in the interior, where the above critical point is the only one; hence it is the global maximum.\n\nSo the maximum product is\n\\[\n\\boxed{\\frac1{(n-1)^n}}.\n\\]\n\nFinal answer: \\(\\displaystyle \\frac{1}{(n-1)^n}\\)",
+  "usage": {
+    "input_tokens": 137,
+    "output_tokens": 570,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 7.071109346929006,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "\\(\\displaystyle \\frac{1}{(n-1)^n}\\)"
+  }
+}

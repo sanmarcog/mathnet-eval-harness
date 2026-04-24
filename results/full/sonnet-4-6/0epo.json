@@ -1,0 +1,20 @@
+{
+  "id": "0epo",
+  "country": "South Africa",
+  "competition": "South African Mathematics Olympiad",
+  "gold_final_answer": "20",
+  "topics_flat": [
+    "Algebra > Prealgebra / Basic Algebra > Simple Equations",
+    "Algebra > Prealgebra / Basic Algebra > Decimals"
+  ],
+  "prompt": "Steve was sorting $1\\,000$ eggs into sizes. He got paid $20$ cents for each egg that he sorted. For each egg that he broke while sorting he did not get paid and had to pay his employer $R1$. Steve was paid $R176$. How many eggs did Steve break?",
+  "model": "claude-sonnet-4-6",
+  "response_text": "Let b = number of broken eggs, s = number of successfully sorted eggs.\n\ns + b = 1000\n\nPayment: 20 cents per sorted egg, minus R1 (= 100 cents) per broken egg.\n\nTotal pay = 20s - 100b = 17600 cents (R176)\n\nFrom s = 1000 - b:\n20(1000 - b) - 100b = 17600\n20000 - 20b - 100b = 17600\n20000 - 120b = 17600\n120b = 2400\nb = 20\n\nFinal answer: 20",
+  "usage": {
+    "input_tokens": 112,
+    "output_tokens": 148,
+    "thinking_tokens": 0
+  },
+  "latency_s": 3.110048519913107,
+  "cached": false
+}

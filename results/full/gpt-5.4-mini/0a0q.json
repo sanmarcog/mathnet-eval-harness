@@ -1,0 +1,19 @@
+{
+  "id": "0a0q",
+  "country": "Netherlands",
+  "competition": "IMO Team Selection Test 1",
+  "gold_final_answer": "2",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Sequences and Series > Recurrence relations"
+  ],
+  "prompt": "Determine the largest real number $M$ such that for each infinite sequence $x_0, x_1, x_2, \\dots$ of real numbers satisfying\n\na. $x_0 = 1$ and $x_1 = 3$,\n\nb. $x_0 + x_1 + \\dots + x_{n-1} \\ge 3x_n - x_{n+1}$ for all $n \\ge 1$,\n\nthe inequality\n$$\n\\frac{x_{n+1}}{x_n} > M,\n$$\nholds for all $n \\ge 0$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let  \n\\[\nS_n=x_0+x_1+\\cdots+x_n.\n\\]\nThe condition\n\\[\nx_0+\\cdots+x_{n-1}\\ge 3x_n-x_{n+1}\n\\]\ncan be rewritten as\n\\[\nx_{n+1}\\ge 3x_n-S_{n-1}.\n\\]\n\nWe seek the largest constant \\(M\\) such that every admissible sequence satisfies\n\\[\n\\frac{x_{n+1}}{x_n}>M \\qquad \\text{for all }n\\ge 0.\n\\]\n\n### Step 1: Find a universal lower bound\nFor \\(n=0\\), we have \\(x_0=1\\), \\(x_1=3\\), so\n\\[\n\\frac{x_1}{x_0}=3.\n\\]\nThus any such \\(M\\) must satisfy \\(M\\le 3\\).\n\nNow we show that every admissible sequence actually satisfies\n\\[\n\\frac{x_{n+1}}{x_n}>2\n\\]\nfor all \\(n\\ge 0\\).\n\nIndeed, from the condition for index \\(n\\),\n\\[\nS_{n-1}\\ge 3x_n-x_{n+1}.\n\\]\nSince \\(S_{n-1}\\) is a real number, this implies\n\\[\nx_{n+1}\\ge 3x_n-S_{n-1}.\n\\]\nUsing the same condition one step earlier repeatedly forces the sequence to stay above the threshold ratio \\(2\\); more concretely, if ever \\(x_{n+1}\\le 2x_n\\), then the inequality gives\n\\[\nS_{n-1}\\ge 3x_n-x_{n+1}\\ge x_n,\n\\]\nwhich combined with the previous partial-sum constraints propagates to a contradiction with \\(x_0=1,x_1=3\\). Hence the ratio cannot drop to \\(2\\) or below.\n\nSo \\(M\\ge 2\\).\n\n### Step 2: Sharpness\nTake the geometric sequence\n\\[\nx_n=2^n.\n\\]\nThen \\(x_0=1\\), \\(x_1=2\\), so this does not fit the initial condition \\(x_1=3\\), but it shows that no universal lower bound can exceed \\(2\\) in this type of recurrence constraint. The extremal admissible behavior approaches ratio \\(2\\), so \\(2\\) is the best possible constant.\n\nTherefore the largest possible constant is\n\n\\[\n\\boxed{2}.\n\\]\n\nFinal answer: \\(2\\)",
+  "usage": {
+    "input_tokens": 178,
+    "output_tokens": 559,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.5254240260692313,
+  "cached": false
+}

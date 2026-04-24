@@ -1,0 +1,21 @@
+{
+  "id": "00j3",
+  "country": "Austria",
+  "competition": "AustriaMO2011",
+  "gold_final_answer": "Minimum: all points on the short edge common to the two isosceles faces. Maximum: all points on the edge common to the two equilateral faces.",
+  "topics_flat": [
+    "Geometry > Solid Geometry > Volume",
+    "Geometry > Solid Geometry > 3D Shapes",
+    "Geometry > Solid Geometry > Other 3D problems"
+  ],
+  "prompt": "We are given a tetrahedron with 5 edges of length $2$ and one of length $1$. A point $P$ either in the interior of the tetrahedron or on its surface (but not outside the tetrahedron) has distances from the surfaces of the tetrahedron we name $a, b, c$ and $d$. For which points $P$ is the value of $a+b+c+d$ minimal and for which is maximal?",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find the points $P$ that minimize and maximize the sum of the distances to the faces of the tetrahedron, we can use the volume of the tetrahedron. \n\nLet the vertices of the tetrahedron be $A, B, C,$ and $D$, where the edge of length 1 is $AB=1$, and all other edges are of length 2 ($AC=AD=BC=BD=CD=2$).\nThe four faces of the tetrahedron have the following areas:\n- $\\triangle ACD$ and $\\triangle BCD$ are equilateral triangles with side length 2. Their areas are $S_1 = S_2 = \\frac{\\sqrt{3}}{4}(2^2) = \\sqrt{3}$.\n- $\\triangle ABC$ and $\\triangle ABD$ are isosceles triangles with side lengths 1, 2, and 2. Their areas are $S_3 = S_4 = \\frac{1}{2}(1)\\sqrt{2^2 - (1/2)^2} = \\frac{\\sqrt{15}}{4}$.\n\nNotice that $S_1 = S_2 > S_3 = S_4$ because $\\sqrt{3} = \\frac{\\sqrt{48}}{4} > \\frac{\\sqrt{15}}{4}$.\n\nLet $a, b, c,$ and $d$ be the distances from a point $P$ to the faces $ACD, BCD, ABC,$ and $ABD$ respectively. The sum of the volumes of the four smaller tetrahedra formed by $P$ and the faces of $ABCD$ equals the total volume $V$ of the tetrahedron:\n$$a S_1 + b S_2 + c S_3 + d S_4 = 3V$$\n\nSince $S_1 = S_2$ and $S_3 = S_4$, we can write:\n$$S_1(a + b) + S_3(c + d) = 3V$$\nWe want to optimize the sum of the distances $S = a + b + c + d$. From the volume equation, we can express $a + b$ as:\n$$a + b = \\frac{3V - S_3(c + d)}{S_1}$$\nSubstitute this into the sum $S$:\n$$S = \\frac{3V - S_3(c + d)}{S_1} + c + d = \\frac{3V}{S_1} + (c + d)\\left(1 - \\frac{S_3}{S_1}\\right)$$\n\nSince $S_1 > S_3$, the term $\\left(1 - \\frac{S_3}{S_1}\\right)$ is strictly positive. Therefore, $S$ is a linear function of $(c+d)$ with a positive coefficient. \n- To **minimize** $S$, we must minimize $c + d$. Since distances cannot be negative, the minimum is $c + d = 0$, which implies $c = 0$ and $d = 0$. This means $P$ must lie on the intersection of the faces $ABC$ and $ABD$, which is the edge $AB$ (the edge of length 1).\n- To **maximize** $S$, we must maximize $c + d$, which is equivalent to minimizing $a + b$. The minimum is $a + b = 0$, which implies $a = 0$ and $b = 0$. This means $P$ must lie on the intersection of the faces $ACD$ and $BCD$, which is the edge $CD$ (the edge of length 2 opposite to the edge of length 1).\n\nFinal answer: minimal on the edge of length 1, maximal on the opposite edge",
+  "usage": {
+    "input_tokens": 130,
+    "output_tokens": 805,
+    "thoughts_tokens": 3506
+  },
+  "latency_s": 33.62210719496943,
+  "cached": false
+}

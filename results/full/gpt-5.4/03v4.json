@@ -1,0 +1,21 @@
+{
+  "id": "03v4",
+  "country": "China",
+  "competition": "China Southeastern Mathematical Olympiad",
+  "gold_final_answer": "a_n = 2^{n-2}(n^2 - n + 6) - n - 1 (n ≥ 2)",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Sequences and Series > Recurrence relations",
+    "Algebra > Algebraic Expressions > Sequences and Series > Telescoping series",
+    "Algebra > Algebraic Expressions > Sequences and Series > Sums and products"
+  ],
+  "prompt": "It is given the sequence $\\{a_n\\}$: $a_1 = 1$,\n$$\na_{n+1} = 2a_n + n \\cdot (1 + 2^n), \\quad n = 1, 2, 3, \\dots\n$$\n\nFind the general term $a_n$.",
+  "model": "gpt-5.4",
+  "response_text": "We solve the linear recurrence\n\\[\na_{n+1}=2a_n+n(1+2^n),\\qquad a_1=1.\n\\]\n\nWe want a closed formula for \\(a_n\\).\n\n## 1. Split the recurrence\nRewrite:\n\\[\na_{n+1}-2a_n=n+n2^n.\n\\]\n\nSince the homogeneous recurrence is\n\\[\na_{n+1}=2a_n,\n\\]\nits solution is of the form\n\\[\na_n^{(h)}=C2^{\\,n-1}.\n\\]\n\nNow find a particular solution for the nonhomogeneous part\n\\[\nn+n2^n.\n\\]\n\nWe handle the two terms separately.\n\n---\n\n## 2. Particular solution for the term \\(n\\)\nTry\n\\[\nu_n=An+B.\n\\]\nThen\n\\[\nu_{n+1}-2u_n = A(n+1)+B-2(An+B)\n= -An+(A-B).\n\\]\nWe want this to equal \\(n\\), so\n\\[\n-A=1,\\qquad A-B=0.\n\\]\nThus\n\\[\nA=-1,\\quad B=-1,\n\\]\nand\n\\[\nu_n=-n-1.\n\\]\n\n---\n\n## 3. Particular solution for the term \\(n2^n\\)\nBecause \\(2^n\\) is part of the homogeneous solution, try\n\\[\nv_n=2^n(Cn^2+Dn).\n\\]\nThen\n\\[\nv_{n+1}=2^{n+1}\\big(C(n+1)^2+D(n+1)\\big),\n\\]\nso\n\\[\nv_{n+1}-2v_n\n=2^{n+1}\\big(C(n+1)^2+D(n+1)-Cn^2-Dn\\big).\n\\]\nInside the brackets:\n\\[\nC((n+1)^2-n^2)+D((n+1)-n)=C(2n+1)+D.\n\\]\nHence\n\\[\nv_{n+1}-2v_n=2^{n+1}(2Cn+C+D).\n\\]\nWe want this to equal\n\\[\nn2^n.\n\\]\nSo\n\\[\n2(2Cn+C+D)=n.\n\\]\nEquating coefficients:\n\\[\n4C=1,\\qquad 2(C+D)=0.\n\\]\nThus\n\\[\nC=\\frac14,\\qquad D=-\\frac14.\n\\]\nTherefore\n\\[\nv_n=2^n\\left(\\frac14 n^2-\\frac14 n\\right)=2^{n-2}(n^2-n).\n\\]\n\n---\n\n## 4. Combine\nSo the general solution is\n\\[\na_n=C2^{n-1}+(-n-1)+2^{n-2}(n^2-n).\n\\]\n\nUse \\(a_1=1\\):\n\\[\n1=C2^0-2+2^{-1}(1-1)=C-2.\n\\]\nSo\n\\[\nC=3.\n\\]\n\nHence\n\\[\na_n=3\\cdot 2^{n-1}-n-1+2^{n-2}(n^2-n).\n\\]\n\nFactor the powers of \\(2\\):\n\\[\n3\\cdot 2^{n-1}=2^{n-2}\\cdot 6,\n\\]\nso\n\\[\na_n=2^{n-2}(n^2-n+6)-n-1.\n\\]\n\nFinal answer: \\(\\displaystyle a_n=2^{\\,n-2}(n^2-n+6)-n-1\\).",
+  "usage": {
+    "input_tokens": 121,
+    "output_tokens": 774,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 11.528563639963977,
+  "cached": false
+}

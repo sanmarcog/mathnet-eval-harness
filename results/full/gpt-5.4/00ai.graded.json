@@ -1,0 +1,25 @@
+{
+  "id": "00ai",
+  "country": "Argentina",
+  "competition": "Argentine National Olympiad 2016",
+  "gold_final_answer": "S(nk) < S(n) + S(k)",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Sequences and Series > Telescoping series",
+    "Algebra > Algebraic Expressions > Sequences and Series > Sums and products"
+  ],
+  "prompt": "For an integer $m \\ge 3$ set $S(m) = 1 + \\frac{1}{3} + \\dots + \\frac{1}{m}$ (the fraction $1/m$ does not participate in the sum). Let $n \\ge 3$ and $k \\ge 3$. Compare the numbers $S(nk)$ and $S(n) + S(k)$.",
+  "model": "gpt-5.4",
+  "response_text": "Let  \n\\[\nS(m)=1+\\frac13+\\frac14+\\cdots+\\frac1{m-1}\n\\]\nfor integers \\(m\\ge 3\\).  \nSo \\(S(m)\\) is the harmonic sum from \\(1\\) to \\(m-1\\), except that \\(\\frac12\\) is omitted:\n\\[\nS(m)=H_{m-1}-\\frac12,\n\\]\nwhere \\(H_r=1+\\frac12+\\cdots+\\frac1r\\).\n\nWe must compare \\(S(nk)\\) and \\(S(n)+S(k)\\) for \\(n,k\\ge 3\\).\n\n## Rewrite in terms of harmonic numbers\n\\[\nS(nk)=H_{nk-1}-\\frac12,\n\\qquad\nS(n)+S(k)=H_{n-1}+H_{k-1}-1.\n\\]\nHence\n\\[\nS(nk)-S(n)-S(k)\n=H_{nk-1}-H_{n-1}-H_{k-1}+\\frac12.\n\\]\nSo it suffices to determine the sign of\n\\[\nD:=H_{nk-1}-H_{n-1}-H_{k-1}+\\frac12.\n\\]\n\n## A useful lower bound\nWe write\n\\[\nH_{nk-1}-H_{n-1}\n=\\sum_{j=n}^{nk-1}\\frac1j.\n\\]\nGroup these terms into blocks:\n\\[\n\\sum_{j=n}^{2n-1}\\frac1j+\\sum_{j=2n}^{3n-1}\\frac1j+\\cdots+\\sum_{j=(k-1)n}^{kn-1}\\frac1j.\n\\]\nThere are \\(k-1\\) blocks, and in the \\(r\\)-th block (\\(r=1,\\dots,k-1\\)) each term is at least \\(\\frac1{(r+1)n}\\), with \\(n\\) terms. Therefore\n\\[\n\\sum_{j=rn}^{(r+1)n-1}\\frac1j \\ge \\frac{n}{(r+1)n}=\\frac1{r+1}.\n\\]\nSumming,\n\\[\nH_{nk-1}-H_{n-1}\\ge \\frac12+\\frac13+\\cdots+\\frac1k=H_k-1.\n\\]\nThus\n\\[\nD\\ge (H_k-1)-H_{k-1}+\\frac12\n=\\frac1k-\\frac12+\\frac12\n=\\frac1k>0.\n\\]\n\nSo\n\\[\nS(nk)-S(n)-S(k)>0.\n\\]\n\nTherefore,\n\\[\n\\boxed{S(nk)>S(n)+S(k)\\qquad\\text{for all }n,k\\ge 3.}\n\\]\n\nFinal answer: \\(\\boxed{S(nk)>S(n)+S(k)\\text{ for all integers }n,k\\ge 3}\\).",
+  "usage": {
+    "input_tokens": 133,
+    "output_tokens": 630,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 7.424908654997125,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "S(nk)>S(n)+S(k)\\text{ for all integers }n,k\\ge 3"
+  }
+}

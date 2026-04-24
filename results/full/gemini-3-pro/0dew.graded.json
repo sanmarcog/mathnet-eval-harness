@@ -1,0 +1,25 @@
+{
+  "id": "0dew",
+  "country": "Saudi Arabia",
+  "competition": "Saudi Arabian IMO Booklet",
+  "gold_final_answer": "0, 3, 4, 5, 8",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Polynomial operations",
+    "Algebra > Algebraic Expressions > Polynomials > Vieta's formulas"
+  ],
+  "prompt": "Let $x, y \\in \\mathbb{R}$ be such that $x = y(3 - y)^2$ and $y = x(3 - x)^2$. Find all possible values of $x + y$.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find all possible values of $x + y$, we start with the given system of equations:\n1) $x = y(3 - y)^2$\n2) $y = x(3 - x)^2$\n\nLet $S = x + y$ and $P = xy$. \nSubtracting the second equation from the first gives:\n$x - y = y(9 - 6y + y^2) - x(9 - 6x + x^2)$\n$x - y = -9(x - y) + 6(x^2 - y^2) - (x^3 - y^3)$\n$x - y = (x - y)[-9 + 6(x + y) - (x^2 + xy + y^2)]$\n\nThis gives two cases:\n**Case 1:** $x - y = 0 \\implies x = y$\nSubstitute $y = x$ into the first equation:\n$x = x(3 - x)^2$\n$x = x(9 - 6x + x^2)$\n$x(x^2 - 6x + 8) = 0$\n$x(x - 2)(x - 4) = 0$\nThus, $x \\in \\{0, 2, 4\\}$. Since $y = x$, the possible values for $S = x + y$ are $0, 4, 8$.\n\n**Case 2:** $x - y \\neq 0$\nDividing by $x - y$, we get:\n$1 = -9 + 6(x + y) - (x^2 + xy + y^2)$\n$1 = -9 + 6S - (S^2 - P)$\n$P = S^2 - 6S + 10$\n\nNow, add the two original equations:\n$x + y = y(3 - y)^2 + x(3 - x)^2$\n$S = 9(x + y) - 6(x^2 + y^2) + (x^3 + y^3)$\nExpressing in terms of $S$ and $P$:\n$S = 9S - 6(S^2 - 2P) + S(S^2 - 3P)$\n$0 = S^3 - 6S^2 + 8S + 3P(4 - S)$\n\nSubstitute $P = S^2 - 6S + 10$ into the equation:\n$0 = S^3 - 6S^2 + 8S + 3(S^2 - 6S + 10)(4 - S)$\n$0 = S^3 - 6S^2 + 8S + 3(-S^3 + 10S^2 - 34S + 40)$\n$0 = -2S^3 + 24S^2 - 94S + 120$\nDividing by $-2$, we get:\n$S^3 - 12S^2 + 47S - 60 = 0$\n\nWe can factor this cubic equation by testing small integers. We find that $S = 3$ is a root ($27 - 108 + 141 - 60 = 0$). Factoring out $(S - 3)$:\n$(S - 3)(S^2 - 9S + 20) = 0$\n$(S - 3)(S - 4)(S - 5) = 0$\nThus, $S \\in \\{3, 4, 5\\}$. \n\nTo ensure $x$ and $y$ are real numbers, we check the discriminant $\\Delta = S^2 - 4P \\ge 0$:\n- For $S = 3$, $P = 3^2 - 6(3) + 10 = 1$. $\\Delta = 3^2 - 4(1) = 5 \\ge 0$. (Valid)\n- For $S = 4$, $P = 4^2 - 6(4) + 10 = 2$. $\\Delta = 4^2 - 4(2) = 8 \\ge 0$. (Valid)\n- For $S = 5$, $P = 5^2 - 6(5) + 10 = 5$. $\\Delta = 5^2 - 4(5) = 5 \\ge 0$. (Valid)\n\nCombining the valid sums from both cases, the possible values for $x + y$ are $0, 3, 4, 5,$ and $8$.\n\nFinal answer: 0, 3, 4, 5, 8",
+  "usage": {
+    "input_tokens": 87,
+    "output_tokens": 1063,
+    "thoughts_tokens": 3074
+  },
+  "latency_s": 29.447212580009364,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "exact",
+    "predicted": "0, 3, 4, 5, 8"
+  }
+}

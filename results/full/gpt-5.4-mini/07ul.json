@@ -1,0 +1,19 @@
+{
+  "id": "07ul",
+  "country": "Ireland",
+  "competition": "IRL_ABooklet",
+  "gold_final_answer": "Equality holds if and only if x = y = √3 or x = y = −√3.",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities > QM-AM-GM-HM / Power Mean"
+  ],
+  "prompt": "Show that for all $x, y \\in \\mathbb{R}$:\n$$\nx^4 + y^4 + 18 \\ge 12xy.\n$$\nWhen do we get equality?",
+  "model": "gpt-5.4-mini",
+  "response_text": "Use the basic inequality\n\\[\nx^4+y^4 \\ge 2x^2y^2\n\\]\nso\n\\[\nx^4+y^4+18-12xy \\ge 2x^2y^2+18-12xy.\n\\]\nNow set \\(t=xy\\). Then\n\\[\n2t^2-12t+18 = 2(t^2-6t+9)=2(t-3)^2\\ge 0.\n\\]\nHence\n\\[\nx^4+y^4+18-12xy\\ge 0,\n\\]\nwhich proves\n\\[\nx^4+y^4+18\\ge 12xy.\n\\]\n\nFor equality, we need both\n\\[\nx^4+y^4=2x^2y^2 \\quad\\text{and}\\quad xy=3.\n\\]\nThe first gives \\(x^2=y^2\\), and together with \\(xy=3\\) this forces\n\\[\nx=y=\\sqrt3 \\quad\\text{or}\\quad x=y=-\\sqrt3.\n\\]\n\nFinal answer: Equality holds exactly when \\((x,y)=(\\sqrt3,\\sqrt3)\\) or \\((-\\sqrt3,-\\sqrt3)\\).",
+  "usage": {
+    "input_tokens": 91,
+    "output_tokens": 275,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 2.0314368770923465,
+  "cached": false
+}

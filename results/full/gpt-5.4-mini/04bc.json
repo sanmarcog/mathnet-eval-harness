@@ -1,0 +1,21 @@
+{
+  "id": "04bc",
+  "country": "Croatia",
+  "competition": "Mathematica competitions in Croatia",
+  "gold_final_answer": "30",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Factorization techniques",
+    "Number Theory > Number-Theoretic Functions > τ (number of divisors)",
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities"
+  ],
+  "prompt": "Determine the number of pairs of integers $(x, y)$ that satisfy the equality:\n$$\n(x + y + 2012)^2 = x^2 + y^2 + 2012^2 .\n$$",
+  "model": "gpt-5.4-mini",
+  "response_text": "Expand the left-hand side:\n\\[\n(x+y+2012)^2=x^2+y^2+2012^2+2xy+4024x+4024y+2\\cdot 2012(x+y).\n\\]\nA cleaner way is to move terms:\n\\[\n(x+y+2012)^2=x^2+y^2+2012^2\n\\]\n\\[\nx^2+y^2+2xy+4024(x+y)+2012^2=x^2+y^2+2012^2.\n\\]\nSo\n\\[\n2xy+4024(x+y)=0\n\\]\n\\[\nxy+2012x+2012y=0.\n\\]\nAdd \\(2012^2\\) to both sides:\n\\[\nxy+2012x+2012y+2012^2=2012^2\n\\]\n\\[\n(x+2012)(y+2012)=2012^2.\n\\]\n\nSo the number of integer pairs \\((x,y)\\) equals the number of ordered factor pairs of \\(2012^2\\).\n\nNow factor:\n\\[\n2012=2^2\\cdot 503\n\\]\nso\n\\[\n2012^2=2^4\\cdot 503^2.\n\\]\nThe number of positive divisors is\n\\[\n(4+1)(2+1)=15.\n\\]\nSince every divisor \\(d\\) gives an ordered pair \\((d,2012^2/d)\\), the number of ordered integer pairs \\((x,y)\\) is \\(15\\).\n\nFinal answer: 15",
+  "usage": {
+    "input_tokens": 92,
+    "output_tokens": 347,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 2.189524161047302,
+  "cached": false
+}

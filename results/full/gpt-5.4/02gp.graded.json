@@ -1,0 +1,24 @@
+{
+  "id": "02gp",
+  "country": "Brazil",
+  "competition": "XXV OBM",
+  "gold_final_answer": "the smallest k such that 2^k > n (equivalently, floor(log2 n) + 1)",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Pigeonhole principle"
+  ],
+  "prompt": "Let $S$ be a set with $n$ elements. Take a positive integer $k$. Let $A_1, A_2, \\dots, A_k$ be any distinct subsets of $S$. For each $i$ take $B_i = A_i$ or $B_i = S - A_i$. Find the smallest $k$ such that we can always choose $B_i$ so that $\\bigcup_{1 \\le i \\le k} B_i = S$.",
+  "model": "gpt-5.4",
+  "response_text": "Let \\(S\\) have \\(|S|=n\\). We want the smallest \\(k\\) such that for **every** choice of distinct subsets\n\\[\nA_1,\\dots,A_k\\subseteq S,\n\\]\nwe can choose for each \\(i\\) either \\(B_i=A_i\\) or \\(B_i=S\\setminus A_i\\), and make\n\\[\n\\bigcup_{i=1}^k B_i=S.\n\\]\n\nWe will show the answer is\n\\[\nk=\\left\\lceil \\log_2(n+1)\\right\\rceil.\n\\]\n\n## Key reformulation\n\nFix distinct subsets \\(A_1,\\dots,A_k\\). For each element \\(x\\in S\\), record its membership pattern:\n\\[\nv(x)=(\\mathbf 1_{x\\in A_1},\\dots,\\mathbf 1_{x\\in A_k})\\in\\{0,1\\}^k.\n\\]\nSo each element of \\(S\\) gives a binary vector of length \\(k\\).\n\nChoosing \\(B_i=A_i\\) or \\(S\\setminus A_i\\) is equivalent to choosing a bit \\(c_i\\in\\{0,1\\}\\), where \\(c_i=0\\) means \\(B_i=A_i\\) and \\(c_i=1\\) means \\(B_i=S\\setminus A_i\\).\n\nThen an element \\(x\\) is **not** covered by \\(B_i\\) exactly when its \\(i\\)-th bit equals \\(c_i\\). Hence \\(x\\) is uncovered by the whole union \\(\\bigcup B_i\\) iff\n\\[\nv(x)=(c_1,\\dots,c_k).\n\\]\nSo the union covers all of \\(S\\) iff the chosen vector \\(c\\in\\{0,1\\}^k\\) is **not equal** to any of the vectors \\(v(x)\\) arising from elements \\(x\\in S\\).\n\nTherefore, such a choice is possible iff among the \\(2^k\\) binary vectors, at least one is missing from \\(\\{v(x):x\\in S\\}\\).\n\nSince there are only \\(n\\) elements, at most \\(n\\) patterns occur. Thus if\n\\[\n2^k>n,\n\\]\nsome pattern is missing, and we can choose that pattern as \\(c\\).\n\nSo it is sufficient that\n\\[\n2^k\\ge n+1,\n\\]\ni.e.\n\\[\nk\\ge \\lceil \\log_2(n+1)\\rceil.\n\\]\n\n## Sharpness\n\nNow show this is necessary. Suppose \\(2^k\\le n\\). We construct distinct subsets \\(A_1,\\dots,A_k\\) for which no choice works.\n\nPick \\(2^k\\) distinct elements of \\(S\\), one for each binary vector in \\(\\{0,1\\}^k\\). Define \\(A_i\\) so that the \\(i\\)-th coordinate of the vector assigned to \\(x\\) tells whether \\(x\\in A_i\\). For the remaining elements of \\(S\\), define membership arbitrarily.\n\nThen every binary vector occurs as some \\(v(x)\\). Hence for every choice of \\(c\\in\\{0,1\\}^k\\), there is an element \\(x\\) with \\(v(x)=c\\), and that \\(x\\) is uncovered by \\(\\bigcup B_i\\). So no choice of complements covers \\(S\\).\n\nAlso these \\(A_i\\) are distinct: for \\(i\\ne j\\), there are vectors differing in coordinates \\(i\\) and \\(j\\), so \\(A_i\\neq A_j\\).\n\nThus if \\(2^k\\le n\\), the desired property fails for some family of distinct subsets. Therefore we must have\n\\[\n2^k>n.\n\\]\n\nCombining both parts, the smallest such \\(k\\) is\n\\[\n\\boxed{\\lceil \\log_2(n+1)\\rceil}.\n\\]\n\nFinal answer: \\(\\boxed{\\left\\lceil \\log_2(n+1)\\right\\rceil}\\)",
+  "usage": {
+    "input_tokens": 150,
+    "output_tokens": 886,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 12.812210710020736,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "\\left\\lceil \\log_2(n+1)\\right\\rceil"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "id": "06av",
+  "country": "Greece",
+  "competition": "40th Hellenic Mathematical Olympiad",
+  "gold_final_answer": "(3, 2), (10, 9), (13, 6)",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Factorization techniques",
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities"
+  ],
+  "prompt": "Determine all positive integers $\\alpha, \\beta$ with $\\alpha > 1$ such that $\\beta$ divides $\\alpha - 1$ and $2\\alpha + 1$ divides $5\\beta - 3$.\n(A. Fellouris)",
+  "model": "gpt-5.4",
+  "response_text": "Let\n\\[\n\\beta \\mid (\\alpha-1)\\qquad\\text{and}\\qquad 2\\alpha+1 \\mid 5\\beta-3,\n\\]\nwith positive integers \\(\\alpha,\\beta\\) and \\(\\alpha>1\\).\n\nWe determine all such pairs \\((\\alpha,\\beta)\\).\n\n## Step 1: Use the first divisibility\nSince \\(\\beta\\mid \\alpha-1\\), write\n\\[\n\\alpha-1=k\\beta\n\\]\nfor some integer \\(k\\ge 0\\). Since \\(\\alpha>1\\), actually \\(k\\ge 1\\). Thus\n\\[\n\\alpha=k\\beta+1.\n\\]\n\n## Step 2: Substitute into the second divisibility\nThen\n\\[\n2\\alpha+1=2(k\\beta+1)+1=2k\\beta+3.\n\\]\nThe second condition becomes\n\\[\n2k\\beta+3 \\mid 5\\beta-3.\n\\]\n\nBut for \\(k\\ge 1\\),\n\\[\n2k\\beta+3 \\ge 2\\beta+3.\n\\]\nSo if \\(\\beta\\ge 1\\), compare \\(2\\beta+3\\) and \\(5\\beta-3\\):\n\\[\n(5\\beta-3)-(2\\beta+3)=3\\beta-6.\n\\]\nFor \\(\\beta\\ge 3\\), we have \\(5\\beta-3\\ge 2\\beta+3\\), so divisibility is possible only with\n\\[\n2k\\beta+3 \\le 5\\beta-3.\n\\]\nHence\n\\[\n2k\\beta \\le 5\\beta-6.\n\\]\nSince \\(k\\ge 1\\), this strongly restricts \\(k\\). In fact if \\(k\\ge 3\\), then\n\\[\n2k\\beta+3 \\ge 6\\beta+3 > 5\\beta-3,\n\\]\nimpossible. So only \\(k=1,2\\) are possible.\n\nWe check cases.\n\n---\n\n## Case 1: \\(k=1\\)\nThen\n\\[\n\\alpha=\\beta+1,\\qquad 2\\alpha+1=2\\beta+3.\n\\]\nSo\n\\[\n2\\beta+3 \\mid 5\\beta-3.\n\\]\nNow compute\n\\[\n2(2\\beta+3)=4\\beta+6,\n\\]\nhence\n\\[\n(5\\beta-3)-(4\\beta+6)=\\beta-9.\n\\]\nTherefore\n\\[\n2\\beta+3 \\mid \\beta-9.\n\\]\nBut then also\n\\[\n2\\beta+3 \\mid 2(\\beta-9)-(2\\beta+3)=-21.\n\\]\nSo \\(2\\beta+3\\) is a positive divisor of \\(21\\):\n\\[\n2\\beta+3\\in\\{1,3,7,21\\}.\n\\]\nSince \\(\\beta\\ge 1\\), \\(2\\beta+3\\ge 5\\), so\n\\[\n2\\beta+3\\in\\{7,21\\}.\n\\]\nThus\n\\[\n\\beta=2 \\quad\\text{or}\\quad \\beta=9.\n\\]\nThen\n\\[\n\\alpha=\\beta+1,\n\\]\ngiving\n\\[\n(\\alpha,\\beta)=(3,2),\\ (10,9).\n\\]\n\n---\n\n## Case 2: \\(k=2\\)\nThen\n\\[\n\\alpha=2\\beta+1,\\qquad 2\\alpha+1=4\\beta+3.\n\\]\nSo\n\\[\n4\\beta+3 \\mid 5\\beta-3.\n\\]\nSubtract:\n\\[\n(5\\beta-3)-(4\\beta+3)=\\beta-6,\n\\]\nso\n\\[\n4\\beta+3 \\mid \\beta-6.\n\\]\nBut for \\(\\beta\\ge 1\\),\n\\[\n4\\beta+3 > |\\beta-6|\n\\]\nexcept possibly when \\(\\beta-6=0\\). Thus we must have\n\\[\n\\beta-6=0,\n\\]\nso \\(\\beta=6\\). Then\n\\[\n\\alpha=2\\beta+1=13.\n\\]\nThis gives\n\\[\n(\\alpha,\\beta)=(13,6).\n\\]\n\n---\n\n## Case 3: \\(\\beta=1\\)\nWe should separately check \\(\\beta=1\\), since above inequalities were rough.\n\nIf \\(\\beta=1\\), then \\(\\beta\\mid \\alpha-1\\) is automatic, and\n\\[\n2\\alpha+1 \\mid 5(1)-3=2.\n\\]\nBut \\(2\\alpha+1\\ge 5\\) since \\(\\alpha>1\\), impossible.\n\nSo no solutions here.\n\n---\n\n## Verification\n- \\((3,2)\\): \\(2\\mid 2\\), and \\(2\\cdot 3+1=7\\mid 10-3=7\\).\n- \\((10,9)\\): \\(9\\mid 9\\), and \\(21\\mid 45-3=42\\).\n- \\((13,6)\\): \\(6\\mid 12\\), and \\(27\\mid 30-3=27\\).\n\nAll work.\n\nFinal answer: \\((\\alpha,\\beta)=(3,2),\\ (10,9),\\ (13,6)\\).",
+  "usage": {
+    "input_tokens": 102,
+    "output_tokens": 1176,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 14.859202982042916,
+  "cached": false
+}

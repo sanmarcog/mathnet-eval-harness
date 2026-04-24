@@ -1,0 +1,26 @@
+{
+  "id": "00ph",
+  "country": "Balkan Mathematical Olympiad",
+  "competition": "Balkan 2012 shortlist",
+  "gold_final_answer": "2012",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Symmetric functions",
+    "Algebra > Algebraic Expressions > Polynomials > Polynomial operations",
+    "Algebra > Equations and Inequalities > QM-AM-GM-HM / Power Mean"
+  ],
+  "prompt": "Determine the maximum possible number of distinct real roots of a polynomial $P(x)$ of degree $2012$ with real coefficients satisfying the condition\n$$\nP(a)^3 + P(b)^3 + P(c)^3 \\geq 3P(a)P(b)P(c)\n$$\nfor all real numbers $a, b, c$ with $a + b + c = 0$.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Setting Up the Problem\n\nThe condition is $P(a)^3 + P(b)^3 + P(c)^3 \\geq 3P(a)P(b)P(c)$ for all $a+b+c=0$.\n\nUsing the identity $x^3 + y^3 + z^3 - 3xyz = (x+y+z)(x^2+y^2+z^2-xy-yz-zx)$, the condition becomes:\n$$(P(a)+P(b)+P(c))(P(a)^2+P(b)^2+P(c)^2-P(a)P(b)-P(b)P(c)-P(c)P(a)) \\geq 0$$\n\nThe second factor equals $\\frac{1}{2}[(P(a)-P(b))^2+(P(b)-P(c))^2+(P(c)-P(a))^2] \\geq 0$.\n\nSo the condition requires: whenever the second factor is positive (i.e., not all $P(a)=P(b)=P(c)$), we need $P(a)+P(b)+P(c) \\geq 0$.\n\n**Key constraint:** For all $a+b+c=0$, either $P(a)=P(b)=P(c)$ or $P(a)+P(b)+P(c) \\geq 0$.\n\nActually, the condition must hold for ALL $a,b,c$ with $a+b+c=0$, so we need:\n$$P(a)+P(b)+P(c) \\geq 0 \\text{ whenever } a+b+c=0$$\n(since if the second factor could be zero for all such triples, P would be constant).\n\nWait - we need $P(a)+P(b)+P(c) \\geq 0$ for all $a+b+c=0$ (since we can find triples where the second factor is positive unless P is constant).\n\n## Analyzing the Constraint\n\nLet $Q(a,b) = P(a) + P(b) + P(-a-b) \\geq 0$ for all real $a,b$.\n\nSetting $a=b=0$: $3P(0) \\geq 0$, so $P(0) \\geq 0$.\n\nSetting $b=0$: $P(a) + P(-a) + P(0) \\geq 0$ for all $a$.\n\nSetting $a=b$: $2P(a) + P(-2a) \\geq 0$ for all $a$.\n\n## Structure of P\n\nWrite $P(x) = E(x) + O(x)$ where $E$ is even part, $O$ is odd part.\n\nThen $P(a)+P(b)+P(c) = E(a)+E(b)+E(c) + O(a)+O(b)+O(c)$.\n\nWhen $a+b+c=0$, the odd parts don't simplify nicely in general.\n\n## Key Insight\n\nIf $P(x) \\geq 0$ for all real $x$, the condition is automatically satisfied. A degree 2012 polynomial that is non-negative can have at most... but we want to maximize distinct real roots.\n\nA non-negative polynomial of degree 2012 has all real roots with even multiplicity. Maximum distinct real roots = 1006 (each with multiplicity 2).\n\n**Can we do better?** Suppose $P$ has roots of odd multiplicity — then $P$ takes negative values. We need $P(a)+P(b)+P(-a-b) \\geq 0$ for all $a,b$.\n\nIf $P(t_0) < 0$ for some $t_0$, set $a=b=c=t_0/... $ — we need $a+b+c=0$. Set $a=b=t_0, c=-2t_0$: need $2P(t_0)+P(-2t_0) \\geq 0$.\n\nIf $P$ has a simple root at $r$, near $r$ the polynomial changes sign, making it hard to maintain the sum condition.\n\n## Testing P(x) = x^{2012}\n\nThis is non-negative, has one root (at 0) with multiplicity 2012. Only 1 distinct real root.\n\n## Conclusion\n\nThe maximum is achieved by non-negative polynomials. A degree 2012 non-negative polynomial with maximum distinct real roots has 1006 distinct real roots (each a double root).\n\nWe can verify: $P(x) = (x-r_1)^2(x-r_2)^2\\cdots(x-r_{1006})^2 \\geq 0$, so $P(a)+P(b)+P(c) \\geq 0$ always holds, and the original inequality is satisfied.\n\nFinal answer: 1006",
+  "usage": {
+    "input_tokens": 147,
+    "output_tokens": 1193,
+    "thinking_tokens": 0
+  },
+  "latency_s": 16.468031183932908,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "1006"
+  }
+}

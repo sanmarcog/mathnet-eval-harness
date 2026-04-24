@@ -1,0 +1,19 @@
+{
+  "id": "0ery",
+  "country": "South Africa",
+  "competition": "South African Mathematics Olympiad Second Round",
+  "gold_final_answer": "52",
+  "topics_flat": [
+    "Algebra > Prealgebra / Basic Algebra > Integers"
+  ],
+  "prompt": "Jess is standing in a queue of people. She is 18th from the front and 35th from the back.\nHow many people are in the queue?",
+  "model": "gpt-5.4-mini",
+  "response_text": "If Jess is 18th from the front and 35th from the back, then counting her twice gives the total:\n\n\\[\n18 + 35 - 1 = 52\n\\]\n\nWe subtract 1 because Jess is included in both counts.\n\nFinal answer: 52",
+  "usage": {
+    "input_tokens": 81,
+    "output_tokens": 60,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 1.177903302013874,
+  "cached": false
+}

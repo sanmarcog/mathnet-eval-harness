@@ -1,0 +1,19 @@
+{
+  "id": "04ol",
+  "country": "Croatia",
+  "competition": "Croatian Mathematical Society Competitions",
+  "gold_final_answer": "16",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Transformations > Homothety"
+  ],
+  "prompt": "Points $P_1$, $P_2$ and $P_3$ are located on the side $AB$ of the triangle $ABC$ so that\n$$\n|AP_1| = |P_1P_2| = |P_2P_3| = |P_3B| = \\frac{1}{4}|AB|.\n$$\nParallels with the side $BC$ are drawn through those points and divide the triangle $ABC$ into four parts. The area of the part between the parallels through $P_2$ and $P_3$ equals $5$.\nWhat is the area of the triangle $ABC$? (Purple Comet! Math Meet)",
+  "model": "gpt-5.4-mini",
+  "response_text": "Since the lines through \\(P_1,P_2,P_3\\) are parallel to \\(BC\\), the small triangles at \\(A\\) are similar to \\(\\triangle ABC\\).\n\nLet the area of \\(\\triangle ABC\\) be \\(S\\).\n\nBecause \\(AP_2=\\frac12 AB\\), the triangle cut off by the parallel through \\(P_2\\) has area\n\\[\n\\left(\\frac12\\right)^2 S=\\frac14 S.\n\\]\n\nBecause \\(AP_3=\\frac34 AB\\), the triangle cut off by the parallel through \\(P_3\\) has area\n\\[\n\\left(\\frac34\\right)^2 S=\\frac{9}{16}S.\n\\]\n\nSo the region between the parallels through \\(P_2\\) and \\(P_3\\) has area\n\\[\n\\frac{9}{16}S-\\frac14 S=\\frac{9}{16}S-\\frac{4}{16}S=\\frac{5}{16}S.\n\\]\nWe are told this area equals \\(5\\), so\n\\[\n\\frac{5}{16}S=5 \\quad\\Rightarrow\\quad S=16.\n\\]\n\nFinal answer: \\(16\\)",
+  "usage": {
+    "input_tokens": 195,
+    "output_tokens": 270,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 2.5531977229984477,
+  "cached": false
+}

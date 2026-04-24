@@ -1,0 +1,25 @@
+{
+  "id": "0evi",
+  "country": "South Korea",
+  "competition": "Korean Mathematical Olympiad",
+  "gold_final_answer": "1/8",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities > QM-AM-GM-HM / Power Mean",
+    "Algebra > Algebraic Expressions > Polynomials > Symmetric functions"
+  ],
+  "prompt": "Find the maximum value of $(x^2 - yz)(y^2 - zx)(z^2 - xy)$ given that $x, y, z$ are real numbers satisfying $x^2 + y^2 + z^2 = 1$.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Setting Up the Problem\n\nWe need to maximize $(x^2 - yz)(y^2 - zx)(z^2 - xy)$ subject to $x^2 + y^2 + z^2 = 1$.\n\n## Exploring Symmetric Cases\n\n**Case: $z = 0$, $x^2 + y^2 = 1$**\n\nThe expression becomes $(x^2)(y^2)(-xy) = -x^3y^3$.\n\nTo maximize $-x^3y^3$, we want $xy < 0$. Let $x = \\cos\\theta$, $y = \\sin\\theta$.\n\nThen $-x^3y^3 = -\\cos^3\\theta\\sin^3\\theta = -\\frac{1}{8}\\sin^3(2\\theta)$.\n\nMaximum is $\\frac{1}{8}$ when $\\sin(2\\theta) = -1$, i.e., $\\theta = -\\pi/4$, giving $x = 1/\\sqrt{2}$, $y = -1/\\sqrt{2}$.\n\n**Checking this value:** $x = 1/\\sqrt{2}$, $y = -1/\\sqrt{2}$, $z = 0$:\n- $x^2 - yz = 1/2 - 0 = 1/2$\n- $y^2 - zx = 1/2 - 0 = 1/2$  \n- $z^2 - xy = 0 - (-1/2) = 1/2$\n\nProduct $= (1/2)^3 = 1/8$.\n\n## Checking Other Cases\n\n**Case: $x = y = z$:** Then $3x^2 = 1$, so $x = 1/\\sqrt{3}$.\n- Each factor: $x^2 - x^2 = 0$. Product $= 0$.\n\n**Case: $x = y$, $z = 0$:** $2x^2 = 1$, $x = 1/\\sqrt{2}$.\n- $(x^2)(x^2)(-x^2) = -x^6 = -1/8$. Negative.\n\n**Case: $x = y = t$, $z = s$ with $2t^2 + s^2 = 1$:**\n\nExpression: $(t^2 - ts)^2(s^2 - t^2) = t^2(t-s)^2(s^2-t^2) = t^2(t-s)^2(s-t)(s+t) = -t^2(t-s)^3(s+t)$.\n\nLet me try $t = 1/\\sqrt{2}$, $s = 0$: gives $-(1/2)(1/\\sqrt{2})^3(1/\\sqrt{2}) = -(1/2)(1/4) = -1/8$.\n\nTry $t = 1/2$, $s = 1/\\sqrt{2}$: $2(1/4) + 1/2 = 1$. ✓\n- $-t^2(t-s)^3(s+t) = -(1/4)(1/2 - 1/\\sqrt{2})^3(1/\\sqrt{2} + 1/2)$\n- $(1/2 - 1/\\sqrt{2}) \\approx -0.207$, cubed $\\approx -0.00887$\n- $(1/\\sqrt{2} + 1/2) \\approx 1.207$\n- $-(1/4)(-0.00887)(1.207) \\approx 0.00268$. Less than $1/8$.\n\n## Verifying the Maximum\n\nThe value $1/8$ achieved at $(1/\\sqrt{2}, -1/\\sqrt{2}, 0)$ and permutations seems to be the maximum. Let me verify no other configuration beats it by trying $x = 1, y = z = 0$:\n- $(1)(0)(0) = 0$.\n\nTry $x = \\sqrt{2/3}$, $y = -\\sqrt{1/6}$, $z = -\\sqrt{1/6}$... this gets complicated. The symmetric case with $z=0$ giving all three factors equal to $1/2$ is elegant and likely optimal by AM-GM reasoning (equal factors maximize the product for fixed sum).\n\nSum of factors: $(x^2-yz)+(y^2-zx)+(z^2-xy) = x^2+y^2+z^2 - (xy+yz+zx) = 1 - (xy+yz+zx)$.\n\nAt our point: $xy+yz+zx = -1/2$, so sum $= 3/2$, each factor $= 1/2$. By AM-GM, product $\\leq (1/2)^3 = 1/8$ when all factors are equal and positive.\n\n## Conclusion\n\nThe maximum value is $\\boxed{\\dfrac{1}{8}}$.\n\nFinal answer: $\\dfrac{1}{8}$",
+  "usage": {
+    "input_tokens": 109,
+    "output_tokens": 1265,
+    "thinking_tokens": 0
+  },
+  "latency_s": 15.213072966085747,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "symbolic",
+    "predicted": "$\\dfrac{1}{8}$"
+  }
+}

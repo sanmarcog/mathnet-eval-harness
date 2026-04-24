@@ -1,0 +1,25 @@
+{
+  "id": "0d0t",
+  "country": "Saudi Arabia",
+  "competition": "Saudi Arabia Mathematical Competitions 2012",
+  "gold_final_answer": "n!·(n−1)^n",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities > Combinatorial optimization",
+    "Discrete Mathematics > Combinatorics > Induction / smoothing"
+  ],
+  "prompt": "In an $n \\times n$ board, the numbers $0$ through $n^2 - 1$ are written so that the number in row $i$ and column $j$ is equal to\n$$\n(i-1) + n(j-1) \\text{ where } 1 \\le i, j \\le n.\n$$\nSuppose we select $n$ different cells of the board, where no two cells are in the same row or column. Find the maximum possible product of the numbers in the $n$ cells.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find the maximum possible product of the numbers in the $n$ selected cells, we can analyze the given formula for the number in row $i$ and column $j$:\n$$ A_{i,j} = (i-1) + n(j-1) $$\nLet $x_i = i-1$ and $y_j = n(j-1)$. Then $A_{i,j} = x_i + y_j$. \nSelecting $n$ cells such that no two are in the same row or column is equivalent to choosing a permutation $\\pi$ of the columns $\\{1, 2, \\dots, n\\}$ for each row $i \\in \\{1, 2, \\dots, n\\}$. The product of the numbers in these cells is:\n$$ P(\\pi) = \\prod_{i=1}^n (x_i + y_{\\pi(i)}) $$\nWe want to maximize this product. Consider any two pairs $(x_1, y_1)$ and $(x_2, y_2)$ such that $x_1 < x_2$ and $y_1 < y_2$. If we compare the products of their sums when paired directly versus cross-paired, we get:\n$$ (x_1 + y_2)(x_2 + y_1) - (x_1 + y_1)(x_2 + y_2) = x_1 y_2 + x_2 y_1 - x_1 y_1 - x_2 y_2 = (x_2 - x_1)(y_1 - y_2) $$\nSince $x_1 < x_2$ and $y_1 < y_2$, we have $x_2 - x_1 > 0$ and $y_1 - y_2 < 0$, which means the difference is strictly negative. Therefore:\n$$ (x_1 + y_2)(x_2 + y_1) > (x_1 + y_1)(x_2 + y_2) $$\nThis inequality tells us that to maximize the product of the sums, we should pair the largest $x_i$ with the smallest $y_j$, the second largest with the second smallest, and so on. Since $x_i$ is strictly increasing with $i$ and $y_j$ is strictly increasing with $j$, the optimal permutation reverses the order, meaning $\\pi(i) = n - i + 1$.\n\nSubstituting $\\pi(i) = n - i + 1$ into our formula for the cell values, the terms in the product become:\n$$ A_{i, n-i+1} = (i-1) + n(n - i + 1 - 1) = (i-1) + n(n-i) $$\nWe can factor this expression:\n$$ (i-1) + n^2 - ni = n^2 - n - ni + i = n(n-1) - i(n-1) = (n-1)(n-i+1) $$\nNow, we take the product of these $n$ terms from $i = 1$ to $n$:\n$$ \\prod_{i=1}^n (n-1)(n-i+1) = (n-1)^n \\prod_{i=1}^n (n-i+1) $$\nNotice that as $i$ ranges from $1$ to $n$, the expression $(n-i+1)$ takes on the values $n, n-1, \\dots, 1$, which is exactly $n!$. \n\nThus, the maximum possible product is $(n-1)^n n!$.\n\nFinal answer: (n-1)^n n!",
+  "usage": {
+    "input_tokens": 155,
+    "output_tokens": 815,
+    "thoughts_tokens": 3198
+  },
+  "latency_s": 28.606641502934508,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "(n-1)^n n!"
+  }
+}

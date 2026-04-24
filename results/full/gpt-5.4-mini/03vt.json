@@ -1,0 +1,21 @@
+{
+  "id": "03vt",
+  "country": "China",
+  "competition": "China Western Mathematical Olympiad",
+  "gold_final_answer": "floor(2n/3) + 1",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments",
+    "Algebra > Algebraic Expressions > Sequences and Series > Sums and products",
+    "Algebra > Prealgebra / Basic Algebra > Integers"
+  ],
+  "prompt": "For a given positive integer $n$, find the greatest positive integer $k$, such that there exist three sets of $k$ distinct nonnegative integers, $A = \\{x_1, x_2, \\dots, x_k\\}$, $B = \\{y_1, y_2, \\dots, y_k\\}$ and $C = \\{z_1, z_2, \\dots, z_k\\}$ with $x_j + y_j + z_j = n$ for any $1 \\leq j \\leq k$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "For each triple \\((x_j,y_j,z_j)\\) of nonnegative integers with\n\\[\nx_j+y_j+z_j=n,\n\\]\nwe can view it as a point in the lattice triangle\n\\[\nx+y+z=n,\\quad x,y,z\\ge 0.\n\\]\n\nWe need the largest \\(k\\) such that we can choose \\(k\\) distinct integers in each of the three sets \\(A,B,C\\), and pair them up so that every pair of corresponding elements sums to \\(n\\) with the third element.\n\nA natural upper bound comes from the fact that each of \\(A,B,C\\) has \\(k\\) distinct nonnegative integers, so across all three sets we need \\(3k\\) distinct “slots” in a way compatible with the equation. The classical extremal construction is to use the triples\n\\[\n(0,n,0),\\ (1,n-1,0),\\ (2,n-2,0),\\dots\n\\]\nbut because each set must consist of distinct integers, the maximal number of such triples is achieved by taking all integers from \\(0\\) up to \\(\\lfloor n/2\\rfloor\\) appropriately.\n\nIn fact, the maximum possible \\(k\\) is\n\\[\n\\left\\lfloor \\frac{n+2}{3}\\right\\rfloor.\n\\]\n\nA quick way to see this is:\n\n- In each triple, the sum of the three numbers is \\(n\\).\n- Since all numbers are nonnegative integers, the smallest possible average value in each set grows with \\(k\\).\n- The extremal construction packs as many distinct values as possible by taking \\(k\\) consecutive integers in each set and arranging them so the three numbers in each triple add to \\(n\\).\n\nThis bound is attainable, so it is the maximum.\n\nFinal answer: \\(\\left\\lfloor \\dfrac{n+2}{3}\\right\\rfloor\\)",
+  "usage": {
+    "input_tokens": 167,
+    "output_tokens": 418,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.5022516230819747,
+  "cached": false
+}

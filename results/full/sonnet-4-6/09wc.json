@@ -1,0 +1,21 @@
+{
+  "id": "09wc",
+  "country": "Netherlands",
+  "competition": "Final Round",
+  "gold_final_answer": "(1, 2), (2, 1), (-1, -2), (-2, -1)",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Prime numbers",
+    "Number Theory > Divisibility / Factorization > Factorization techniques",
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities"
+  ],
+  "prompt": "Determine all pairs of integers $(x, y)$ such that $2xy$ is a perfect square and $x^2 + y^2$ is a prime number.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Setting Up the Problem\n\nWe need pairs of integers $(x, y)$ such that:\n1. $2xy$ is a perfect square\n2. $x^2 + y^2$ is prime\n\n## Analysis\n\n**Step 1: Consider the sign constraints.**\n\nSince $2xy$ must be a perfect square (non-negative), we need $xy \\geq 0$, so $x$ and $y$ have the same sign (or one is zero).\n\nIf $x = 0$: then $2xy = 0$ (perfect square ✓), but $x^2 + y^2 = y^2$ which is a perfect square, not prime (unless... $y^2$ is prime, impossible for integers). So $x = 0$ gives no solutions. Similarly $y = 0$.\n\n**Step 2: Assume $x, y > 0$ (handle negatives at the end).**\n\nLet $d = \\gcd(x, y)$, so $x = da$, $y = db$ with $\\gcd(a,b) = 1$.\n\nThen $2xy = 2d^2ab$. For this to be a perfect square, since $\\gcd(a,b)=1$, we need $2ab$ to be a perfect square.\n\nSince $\\gcd(a,b) = 1$, the factors $a$ and $b$ are coprime. For $2ab$ to be a perfect square with $\\gcd(a,b)=1$:\n- Either $a = 2s^2$ and $b = t^2$, or $a = s^2$ and $b = 2t^2$ for some positive integers $s, t$.\n\n**Step 3: Check $x^2 + y^2$ is prime.**\n\n**Case 1:** $a = 2s^2$, $b = t^2$. Then:\n$$x^2 + y^2 = d^2(4s^4 + t^4)$$\n\nFor this to be prime, we need $d = 1$ and $4s^4 + t^4$ prime.\n\nWith $\\gcd(a,b) = \\gcd(2s^2, t^2) = 1$, so $t$ is odd and $\\gcd(s,t)=1$.\n\nTry $s=1, t=1$: $4+1=5$ ✓ (prime). So $(x,y) = (2,1)$.\nTry $s=1, t=3$: $4+81=85=5\\times17$ ✗\nTry $s=2, t=1$: $64+1=65=5\\times13$ ✗\nTry $s=1, t=5$: $4+625=629=17\\times37$ ✗\n\n**Case 2:** $a = s^2$, $b = 2t^2$. Then:\n$$x^2 + y^2 = d^2(s^4 + 4t^4)$$\n\nSophie Germain identity: $s^4 + 4t^4 = (s^2+2t^2+2st)(s^2+2t^2-2st)$.\n\nFor this to be prime, one factor must be 1. The smaller factor is $s^2 + 2t^2 - 2st = (s-t)^2 + t^2 \\geq 1$.\n\nSet $(s-t)^2 + t^2 = 1$: requires $t=1, s=1$ (giving $0+1=1$) or $t=0$ (excluded).\n\nWith $s=t=1$: $s^4+4t^4 = 1+4=5$ ✓. So $(x,y)=(1,2)$.\n\n**Step 4: Verify $(x,y) = (2,1)$ and $(1,2)$:**\n- $2(2)(1) = 4 = 2^2$ ✓, $4+1=5$ prime ✓\n- $2(1)(2) = 4 = 2^2$ ✓, $1+4=5$ prime ✓\n\n**Step 5: Include negative pairs.**\n\nIf both $x,y < 0$: $x^2+y^2$ same value (prime ✓), $2xy = 2(-a)(-b) = 2ab$ same (perfect square ✓).\n\nSo $(-2,-1)$ and $(-1,-2)$ also work.\n\n## Solutions\n\nThe pairs of integers $(x,y)$ are:\n\n$$\\boxed{(1,\\,2),\\;(2,\\,1),\\;(-1,\\,-2),\\;(-2,\\,-1)}$$\n\nFinal answer: $(x, y) \\in \\{(1, 2),\\ (2, 1),\\ (-1, -2),\\ (-2, -1)\\}$",
+  "usage": {
+    "input_tokens": 84,
+    "output_tokens": 1201,
+    "thinking_tokens": 0
+  },
+  "latency_s": 15.040206579957157,
+  "cached": false
+}

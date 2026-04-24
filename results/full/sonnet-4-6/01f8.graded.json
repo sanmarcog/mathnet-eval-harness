@@ -1,0 +1,25 @@
+{
+  "id": "01f8",
+  "country": "Baltic Way",
+  "competition": "Baltic Way 2019",
+  "gold_final_answer": "f(x) = 0 for all x; f(x) = x + 1 for all x",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Functional Equations > Existential quantifiers",
+    "Algebra > Algebraic Expressions > Functional Equations > Injectivity / surjectivity"
+  ],
+  "prompt": "Find all functions $f: \\mathbb{R} \\to \\mathbb{R}$ such that\n$$\nf(xf(y) - y^2) = (y + 1)f(x - y)\n$$\nholds for all $x, y \\in \\mathbb{R}$.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "Let me denote the functional equation as $f(xf(y) - y^2) = (y+1)f(x-y)$.\n\n**Step 1: Initial substitutions**\n\nLet $x = y$: $f(yf(y) - y^2) = (y+1)f(0)$\n\nLet $x = 0$: $f(-y^2) = (y+1)f(-y)$\n\nLet $y = 0$: $f(xf(0)) = f(x)$\n\n**Step 2: Analyze $f(xf(0)) = f(x)$**\n\nIf $f(0) = 1$, this is consistent. If $f(0) = 0$, then $f(x) = 0$ for all $x$ (constant zero function). Check: $0 = (y+1)\\cdot 0$ ✓. So $f \\equiv 0$ is a solution.\n\n**Step 3: Assume $f(0) \\neq 0$, so $f(0) = 1$ (from $f(xf(0)) = f(x)$ with $f(0) \\neq 0$ implying $f(0)^2 = f(0)$, so $f(0) = 1$).**\n\nFrom $x = 0$: $f(-y^2) = (y+1)f(-y)$.\n\nLet $y = -1$: $f(-1) = 0 \\cdot f(1) = 0$.\n\n**Step 4: Try $f(x) = x + 1$**\n\nCheck: $f(xf(y) - y^2) = f(x(y+1) - y^2) = x(y+1) - y^2 + 1$\n\nRHS: $(y+1)f(x-y) = (y+1)(x-y+1) = (y+1)x - y(y+1) + (y+1) = x(y+1) - y^2 - y + y + 1 = x(y+1) - y^2 + 1$ ✓\n\n**Step 5: Try $f(x) = x^2 - 1$ or other forms**\n\nTry $f(x) = x^2$: $f(0) = 0$, leads to zero function case.\n\n**Step 6: Try $f(x) = c(x+1)$ for constant $c$**\n\n$f(0) = c$, and $f(xf(0)) = f(cx) = c(cx+1)$, but $f(x) = c(x+1) = cx + c$. Need $c(cx+1) = cx+c$, so $c^2 x + c = cx + c$, giving $c^2 = c$, so $c = 0$ or $c = 1$.\n\n$c = 0$: zero function. $c = 1$: $f(x) = x+1$.\n\n**Step 7: Verify no other solutions**\n\nFrom $f(-y^2) = (y+1)f(-y)$, substituting $y \\to -y$: $f(-y^2) = (1-y)f(y)$.\n\nSo $(y+1)f(-y) = (1-y)f(y)$, meaning $f(-y)/f(y) = (1-y)/(1+y)$ when $f(y) \\neq 0$.\n\nFor $f(x) = x+1$: $f(-y) = 1-y$, $f(y) = 1+y$, ratio $(1-y)/(1+y)$ ✓.\n\nNow from $y = x$ substitution: $f(yf(y) - y^2) = (y+1)f(0) = y+1$.\n\nWith $f(x) = x+1$: $f(yf(y)-y^2) = f(y(y+1)-y^2) = f(y) = y+1$ ✓.\n\nLet me try $y = 1$ in original: $f(xf(1) - 1) = 2f(x-1)$.\n\nWith $f(1) = 2$: $f(2x-1) = 2f(x-1)$. For $f(x) = x+1$: $2x = 2(x-1+1) = 2x$ ✓.\n\nThe solutions are $f \\equiv 0$ and $f(x) = x + 1$.\n\nFinal answer: $f(x) = 0$ and $f(x) = x + 1$",
+  "usage": {
+    "input_tokens": 116,
+    "output_tokens": 1148,
+    "thinking_tokens": 0
+  },
+  "latency_s": 16.13370980101172,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "$f(x) = 0$ and $f(x) = x + 1$"
+  }
+}

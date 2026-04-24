@@ -1,0 +1,27 @@
+{
+  "id": "03qk",
+  "country": "China",
+  "competition": "China Mathematical Competition (Hainan)",
+  "gold_final_answer": "g(t) = 8 sqrt(t^2 + 1) (2 t^2 + 5) / (16 t^2 + 25), and for acute u1, u2, u3 with sin u1 + sin u2 + sin u3 = 1: 1/g(tan u1) + 1/g(tan u2) + 1/g(tan u3) < (3/4) sqrt(6).",
+  "topics_flat": [
+    "Algebra > Intermediate Algebra > Quadratic functions",
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities",
+    "Algebra > Equations and Inequalities > QM-AM-GM-HM / Power Mean",
+    "Algebra > Equations and Inequalities > Cauchy-Schwarz"
+  ],
+  "prompt": "Suppose that $\\alpha$ and $\\beta$ are different real roots of the equation $4x^2 - 4tx - 1 = 0$ ($t \\in \\mathbb{R}$). $[\\alpha, \\beta]$ is the domain of the function $f(x) = \\frac{2x-t}{x^2+1}$.\n\n(1) Find $g(t) = \\max f(x) - \\min f(x)$.\n\n(2) Prove that for $u_i \\in (0, \\frac{\\pi}{2})$ ($i = 1, 2, 3$), if $\\sin u_1 + \\sin u_2 + \\sin u_3 = 1$, then:\n$$\n\\frac{1}{g(\\tan u_1)} + \\frac{1}{g(\\tan u_2)} + \\frac{1}{g(\\tan u_3)} < \\frac{3}{4}\\sqrt{6}.\n$$",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let  \n\\[\n4x^2-4tx-1=0\n\\]\nhave two distinct real roots \\(\\alpha<\\beta\\). Then\n\\[\n\\alpha,\\beta=t\\pm \\frac{\\sqrt{4t^2+4}}2=t\\pm \\sqrt{t^2+1}.\n\\]\nAlso\n\\[\nf(x)=\\frac{2x-t}{x^2+1}.\n\\]\n\n## (1) Find \\(g(t)=\\max_{[\\alpha,\\beta]} f(x)-\\min_{[\\alpha,\\beta]} f(x)\\)\n\nDifferentiate:\n\\[\nf'(x)=\\frac{2(x^2+1)-(2x-t)2x}{(x^2+1)^2}\n=\\frac{-2x^2+2tx+2}{(x^2+1)^2}\n=\\frac{-2(x-\\alpha)(x-\\beta)}{(x^2+1)^2}.\n\\]\nSince \\(\\alpha<\\beta\\), \\(f'(x)\\ge 0\\) on \\([\\alpha,\\beta]\\), so \\(f\\) is increasing there. Hence\n\\[\n\\min f=f(\\alpha),\\qquad \\max f=f(\\beta).\n\\]\n\nNow use \\(4\\alpha^2-4t\\alpha-1=0\\), i.e.\n\\[\nt=\\frac{4\\alpha^2-1}{4\\alpha}.\n\\]\nThen\n\\[\n2\\alpha-t=2\\alpha-\\frac{4\\alpha^2-1}{4\\alpha}\n=\\frac{4\\alpha^2+1}{4\\alpha},\n\\]\nso\n\\[\nf(\\alpha)=\\frac{(4\\alpha^2+1)/(4\\alpha)}{\\alpha^2+1}\n=\\frac1{4\\alpha}.\n\\]\nSimilarly,\n\\[\nf(\\beta)=\\frac1{4\\beta}.\n\\]\nTherefore\n\\[\ng(t)=f(\\beta)-f(\\alpha)=\\frac1{4\\beta}-\\frac1{4\\alpha}\n=\\frac{\\alpha-\\beta}{4\\alpha\\beta}.\n\\]\nFrom the quadratic, \\(\\alpha\\beta=-\\frac14\\), and \\(\\beta-\\alpha=2\\sqrt{t^2+1}\\). So\n\\[\ng(t)=\\frac{\\beta-\\alpha}{4(-\\alpha\\beta)}=\\beta-\\alpha=2\\sqrt{t^2+1}.\n\\]\n\nThus\n\\[\n\\boxed{g(t)=2\\sqrt{t^2+1}}.\n\\]\n\n---\n\n## (2) Show the inequality\n\nSince \\(u_i\\in(0,\\frac\\pi2)\\), we have \\(\\tan u_i>0\\), and from (1),\n\\[\ng(\\tan u_i)=2\\sqrt{1+\\tan^2 u_i}=2\\sec u_i.\n\\]\nHence\n\\[\n\\frac1{g(\\tan u_i)}=\\frac{\\cos u_i}{2}.\n\\]\nSo the left-hand side becomes\n\\[\n\\frac12(\\cos u_1+\\cos u_2+\\cos u_3).\n\\]\nWe need to prove\n\\[\n\\cos u_1+\\cos u_2+\\cos u_3<\\frac{3}{2}\\sqrt6.\n\\]\n\nNow use the condition\n\\[\n\\sin u_1+\\sin u_2+\\sin u_3=1.\n\\]\nSince \\(0<\\sin u_i<1\\), we have\n\\[\n\\cos u_i=\\sqrt{1-\\sin^2 u_i}.\n\\]\nThe function \\(\\sqrt{1-x^2}\\) is concave on \\((0,1)\\), so by Jensen,\n\\[\n\\frac{\\cos u_1+\\cos u_2+\\cos u_3}{3}\n\\le \\sqrt{1-\\left(\\frac{\\sin u_1+\\sin u_2+\\sin u_3}{3}\\right)^2}\n=\\sqrt{1-\\frac19}\n=\\frac{2\\sqrt2}{3}.\n\\]\nTherefore\n\\[\n\\cos u_1+\\cos u_2+\\cos u_3\\le 2\\sqrt2.\n\\]\nSo\n\\[\n\\frac1{g(\\tan u_1)}+\\frac1{g(\\tan u_2)}+\\frac1{g(\\tan u_3)}\n=\\frac12(\\cos u_1+\\cos u_2+\\cos u_3)\n\\le \\sqrt2.\n\\]\nAnd since\n\\[\n\\sqrt2<\\frac{3}{4}\\sqrt6,\n\\]\nwe get the desired strict inequality:\n\\[\n\\boxed{\\frac{1}{g(\\tan u_1)}+\\frac{1}{g(\\tan u_2)}+\\frac{1}{g(\\tan u_3)}\n<\\frac{3}{4}\\sqrt6 }.\n\\]\n\nFinal answer: \\(\\;g(t)=2\\sqrt{t^2+1}\\), and therefore \\(\\displaystyle \\frac1{g(\\tan u_1)}+\\frac1{g(\\tan u_2)}+\\frac1{g(\\tan u_3)}<\\frac34\\sqrt6\\).",
+  "usage": {
+    "input_tokens": 259,
+    "output_tokens": 1119,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 6.088342481991276,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "\\(\\;g(t)=2\\sqrt{t^2+1}\\), and therefore \\(\\displaystyle \\frac1{g(\\tan u_1)}+\\frac1{g(\\tan u_2)}+\\frac1{g(\\tan u_3)}<\\frac34\\sqrt6\\)."
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "id": "04oi",
+  "country": "Croatia",
+  "competition": "Croatian Mathematical Olympiad",
+  "gold_final_answer": "All prime numbers",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Prime numbers",
+    "Number Theory > Divisibility / Factorization > Factorization techniques",
+    "Discrete Mathematics > Combinatorics > Counting two ways"
+  ],
+  "prompt": "Determine all positive integers $n \\ge 2$ which satisfy the following condition: For all integers $a_1, a_2, \\dots, a_n$ such that their sum is not divisible by $n$, there exists an integer $i \\in \\{1, 2, \\dots, n\\}$ such that none of the $n$ numbers\n\n$$\na_i,\\ a_i + a_{i+1},\\ \\dots,\\ a_i + a_{i+1} + \\dots + a_{i+n-1}\n$$\nis divisible by $n$, where we define $a_i = a_{i-n}$ for the case $i > n$.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find all positive integers $n \\ge 2$ satisfying the condition, we can test if composite numbers and prime numbers work.\n\n**Case 1: $n$ is composite.**\nLet $n = p \\cdot q$ where $p, q \\ge 2$ are integers. \nConsider the sequence $a_1, a_2, \\dots, a_n$ defined by:\n$a_k = p$ for $k = 1, 2, \\dots, n-1$, and $a_n = 0$.\nThe sum of the sequence is $S = (n-1)p = np - p \\equiv -p \\pmod n$. Since $p < n$, the sum $S$ is not divisible by $n$.\n\nLet's check the condition for each starting index $i \\in \\{1, 2, \\dots, n\\}$:\n- If $i = n$, the first term of the partial sums is $a_n = 0$, which is divisible by $n$.\n- If $1 \\le i < n$, the sequence of $n$ partial sums starting at $a_i$ is:\n  $p, 2p, \\dots, (n-i)p, (n-i)p, (n-i+1)p, \\dots, (n-1)p$.\n  Notice that the set of these partial sums is exactly $\\{p, 2p, \\dots, (n-1)p\\}$. \n  Because $n = pq$ and $q \\ge 2$, we have $1 \\le q \\le n-1$. Thus, the value $q \\cdot p = n \\equiv 0 \\pmod n$ must appear in this sequence of partial sums.\nTherefore, for every index $i$, there is a partial sum divisible by $n$. This means no composite number satisfies the condition.\n\n**Case 2: $n$ is prime.**\nLet $n$ be a prime and $S = a_1 + a_2 + \\dots + a_n \\not\\equiv 0 \\pmod n$. \nDefine the prefix sums $P_k = a_1 + a_2 + \\dots + a_k$ for all $k \\ge 0$, with $P_0 = 0$. \nThe condition that a partial sum starting at $i$ and of length $\\le n$ is divisible by $n$ is equivalent to $P_k \\equiv P_{i-1} \\pmod n$ for some $k \\in \\{i, i+1, \\dots, i+n-1\\}$.\nWe want to find an $i \\in \\{1, \\dots, n\\}$ such that $P_{i-1} \\not\\equiv P_k \\pmod n$ for all $i \\le k \\le i+n-1$.\n\nConsider the values $P_k - k \\frac{S}{n}$ for $k = 0, 1, \\dots, n-1$. Since $n$ is prime and $S$ is not a multiple of $n$, $\\gcd(S, n) = 1$. \nLet $i-1$ be the index in $\\{0, 1, \\dots, n-1\\}$ that minimizes the sequence $P_k - k \\frac{S}{n}$. \nFor any $k > i-1$, we have $P_k - k \\frac{S}{n} \\ge P_{i-1} - (i-1) \\frac{S}{n}$, which rearranges to:\n$P_k - P_{i-1} \\ge (k - i + 1) \\frac{S}{n}$.\nBecause $\\gcd(S, n) = 1$, the fractional parts of $k \\frac{S}{n}$ are all distinct for $k = 0, 1, \\dots, n-1$. Thus, the minimum is unique, and the inequality is strict for $i \\le k \\le i+n-1$. \nThis strict inequality, combined with the fact that $P_{i+n-1} - P_{i-1} = S$, guarantees by Raney's Lemma that $P_k - P_{i-1}$ cannot be a multiple of $n$ for any $k \\in \\{i, \\dots, i+n-1\\}$. \nThus, every prime $n$ satisfies the condition.\n\nFinal answer: All primes",
+  "usage": {
+    "input_tokens": 187,
+    "output_tokens": 976,
+    "thoughts_tokens": 5602
+  },
+  "latency_s": 53.618729752954096,
+  "cached": false
+}

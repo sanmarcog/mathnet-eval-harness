@@ -1,0 +1,20 @@
+{
+  "id": "09jw",
+  "country": "Mongolia",
+  "competition": "Mongolian Mathematical Olympiad",
+  "gold_final_answer": "All solutions are the permutations of either (2, 3, n) for any positive integer n, or (1, 1, c) with c in {1, 2, 4, 8}.",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Factorization techniques",
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities"
+  ],
+  "prompt": "Find all triples of positive integers $a$, $b$ and $c$, for which the expression\n$$\nT = \\frac{(a + 1)(b + 1)(c + 1) - 12}{abc}\n$$\nis an integer.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "We need to find all triples of positive integers $a, b, c$ such that $abc \\mid (a+1)(b+1)(c+1) - 12$.\n\nWithout loss of generality, assume $a \\leq b \\leq c$.\n\nNote that $(a+1)(b+1)(c+1) - 12 = abc \\cdot T$, so we need $T$ to be a positive integer (or possibly 0, but let's check).\n\nFirst, let's bound $T$. We have:\n$$T = \\frac{(a+1)(b+1)(c+1)}{abc} - \\frac{12}{abc}$$\n\nNote $\\frac{(a+1)(b+1)(c+1)}{abc} = \\left(1+\\frac{1}{a}\\right)\\left(1+\\frac{1}{b}\\right)\\left(1+\\frac{1}{c}\\right)$\n\nSince $a \\leq b \\leq c$ and $a \\geq 1$:\n- If $a = 1$: factor is at most $2 \\cdot 2 \\cdot 2 = 8$, so $T \\leq 8 - 12/abc$. Since $abc \\geq 1$, $T < 8$.\n- The expression $\\frac{(a+1)(b+1)(c+1)}{abc}$ decreases as $a,b,c$ grow.\n\n**Case $a = 1$:**\n$T = \\frac{2(b+1)(c+1) - 12}{bc} = \\frac{2bc + 2b + 2c + 2 - 12}{bc} = 2 + \\frac{2}{c} + \\frac{2}{b} - \\frac{10}{bc}$\n\nFor this to be integer: $bc \\mid 2bc + 2b + 2c - 10$, i.e., $bc \\mid 2b + 2c - 10$.\n\nSince $b \\leq c$ and $b \\geq 1$: $2b + 2c - 10 \\geq 0$ requires $b + c \\geq 5$.\n\nAlso $bc \\leq 2b + 2c - 10 \\leq 4c - 10$ (using $b \\leq c$), so $bc \\leq 4c - 10$, giving $b \\leq 4 - 10/c < 4$, so $b \\leq 3$.\n\n- **$b = 1$:** $c \\mid 2 + 2c - 10 = 2c - 8$, so $c \\mid 8$. With $c \\geq 1$: $c \\in \\{1,2,4,8\\}$. Check $T \\geq 1$: $2(1)(c) \\mid 2+2c-10$... Let me recheck: $bc \\mid 2b+2c-10$: $c \\mid 2+2c-10 = 2c-8$, so $c \\mid 8$. Values: $c=1$: $T = 2+2+2-10 = -4 < 0$. $c=2$: $T = 2+1+1-10/2 = 2+1+1-5 = -1 < 0$. $c=4$: $T = 2+2/4+2/1-10/4 = 2+0.5+2-2.5 = 2$. ✓ Triple $(1,1,4)$. $c=8$: $T = 2+2/8+2-10/8 = 2+0.25+2-1.25 = 3$. ✓ Triple $(1,1,8)$.\n\n- **$b = 2$:** $2c \\mid 4+2c-10 = 2c-6$, so $2c \\mid 6$, giving $c \\in \\{1,3\\}$. Since $c \\geq b=2$: $c=3$: $T = 2+2/3+1-10/6 = 2+2/3+1-5/3 = 3 - 1 = 2$. Wait: $T = 2 + 2/c + 2/b - 10/(bc) = 2 + 2/3 + 1 - 10/6 = 3 + 2/3 - 5/3 = 3 - 1 = 2$. ✓ Triple $(1,2,3)$.\n\n- **$b = 3$:** $3c \\mid 6+2c-10 = 2c-4$. Since $3c > 2c-4$ for $c \\geq 3$, no solution.\n\n**Case $a = 2$:** $\\frac{3(b+1)(c+1)}{2bc} - \\frac{12}{2bc}$. With $b=2$: $\\frac{9(c+1)}{4c} - \\frac{3}{c}$. For $b=c=2$: $T = (3\\cdot3\\cdot3-12)/8 = 15/8$, not integer. $b=2,c=3$: $(3\\cdot3\\cdot4-12)/12 = 24/12=2$. ✓ Triple $(2,2,3)$.\n\nCheck $b=2,c=4$: $(3\\cdot3\\cdot5-12)/16=33/16$, no. $b=3,c=3$: $(3\\cdot4\\cdot4-12)/18=36/18=2$. ✓ Triple $(2,3,3)$.\n\n**Case $a=3,b=3,c=3$:** $(4^3-12)/27=52/27$, no.\n\nCollecting all solutions (up to permutation): $(1,1,4), (1,1,8), (1,2,3), (2,2,3), (2,3,3)$.\n\nFinal answer: All permutations of $(1,1,4)$, $(1,1,8)$, $(1,2,3)$, $(2,2,3)$, and $(2,3,3)$.",
+  "usage": {
+    "input_tokens": 107,
+    "output_tokens": 1570,
+    "thinking_tokens": 0
+  },
+  "latency_s": 20.325492068077438,
+  "cached": false
+}

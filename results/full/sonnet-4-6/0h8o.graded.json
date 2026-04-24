@@ -1,0 +1,25 @@
+{
+  "id": "0h8o",
+  "country": "Ukraine",
+  "competition": "58th Ukrainian National Mathematical Olympiad",
+  "gold_final_answer": "No such function exists.",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Functional Equations > Injectivity / surjectivity",
+    "Algebra > Algebraic Expressions > Functional Equations > Existential quantifiers"
+  ],
+  "prompt": "Determine if there exist a function $f : (0; 1) \\rightarrow (2018; +\\infty)$, so that the following conditions hold:\n* $f(x \\cdot y) = f(x) \\cdot f(y)$ for any $x, y \\in (0; 1)$;\n* for any $y \\in (2018; +\\infty)$ there exists $x \\in (0; 1)$ such that $f(x) = y$?",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Solution\n\nWe need to find a function $f: (0,1) \\to (2018, +\\infty)$ satisfying:\n1. $f(xy) = f(x) \\cdot f(y)$ for all $x, y \\in (0,1)$\n2. $f$ is surjective onto $(2018, +\\infty)$\n\n**Setting up the functional equation:**\n\nThe multiplicative Cauchy equation $f(xy) = f(x)f(y)$ on $(0,1)$ suggests looking at $f(x) = x^\\alpha$ for some $\\alpha$, but we need $f: (0,1) \\to (2018, +\\infty)$.\n\nLet me try $f(x) = C \\cdot x^\\alpha$ for some constants. Check: $f(xy) = C(xy)^\\alpha = Cx^\\alpha \\cdot y^\\alpha$, while $f(x)f(y) = Cx^\\alpha \\cdot Cy^\\alpha = C^2 x^\\alpha y^\\alpha$. This requires $C = C^2$, so $C = 1$, giving $f(x) = x^\\alpha$.\n\nFor $x \\in (0,1)$ and $\\alpha < 0$: $x^\\alpha \\in (1, +\\infty)$. We need the range to be $(2018, +\\infty)$, not $(1,+\\infty)$.\n\n**Modified approach:** Consider $f(x) = g(x)^k$ where $g$ satisfies the multiplicative equation. More generally, let's try $f(x) = |x|^{-\\alpha}$ for $\\alpha > 0$, giving range $(1,+\\infty)$ — still not right.\n\n**Using a Hamel basis construction:** Write $(0,1)$ multiplicatively as $\\mathbb{R}_{<0}$ via logarithm. Let $t = -\\ln x > 0$ for $x \\in (0,1)$. Then $f(xy) = f(x)f(y)$ becomes $g(s+t) = g(s)g(t)$ where $g(t) = f(e^{-t})$, $t > 0$.\n\nWe need $g: (0,+\\infty) \\to (2018,+\\infty)$ with $g(s+t) = g(s)g(t)$ and $g$ surjective onto $(2018,+\\infty)$.\n\nTaking logarithm: let $h(t) = \\ln g(t)$. Then $h(s+t) = h(s) + h(t)$ (additive Cauchy on $(0,+\\infty)$) and $h(t) > \\ln 2018$ for all $t > 0$, with $h$ surjective onto $(\\ln 2018, +\\infty)$.\n\nBut additive functions $h: (0,+\\infty) \\to \\mathbb{R}$ satisfying $h(s+t) = h(s)+h(t)$ with $h(t) > \\ln 2018 > 0$ for all $t > 0$: if $h(t) > 0$ for all $t > 0$, then for any $t > 0$, $h(t/n) = h(t)/n$, so $h(t/n) \\to 0$ as $n \\to \\infty$. But we need $h(t/n) > \\ln 2018 > 0$ for all $n$, which is a contradiction since $h(t)/n \\to 0$.\n\n**Conclusion:** There is no such function.\n\nThe key argument: Suppose $f$ satisfies both conditions. From $f(xy) = f(x)f(y)$, setting $x = y$: $f(x^2) = f(x)^2$. More generally, $f(x^n) = f(x)^n$ for positive integers $n$. For $x \\in (0,1)$, $x^n \\in (0,1)$, so $f(x^n) > 2018$, meaning $f(x)^n > 2018$ for all $n$, which gives $f(x) \\geq 1$. But also $f(x^{1/n}) = f(x)^{1/n}$, and $x^{1/n} \\in (0,1)$, so $f(x)^{1/n} > 2018$, meaning $f(x) > 2018^n$ for all $n \\in \\mathbb{N}$. This would require $f(x) = +\\infty$, a contradiction.\n\nWait — $f(x^{1/n})$ requires $x^{1/n} \\in (0,1)$, which holds. And $f(x^{1/n})^n = f((x^{1/n})^n) = f(x)$, so $f(x^{1/n}) = f(x)^{1/n}$. For surjectivity, we need values arbitrarily close to $2018$, but $f(x)^{1/n} > 2018$ implies $f(x) > 2018^n$ for all $n$, impossible for finite $f(x)$.\n\n**No such function exists.**\n\nFinal answer: No, such a function does not exist.",
+  "usage": {
+    "input_tokens": 166,
+    "output_tokens": 1330,
+    "thinking_tokens": 0
+  },
+  "latency_s": 19.49539920000825,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "No, such a function does not exist."
+  }
+}

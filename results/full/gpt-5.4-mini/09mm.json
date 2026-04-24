@@ -1,0 +1,20 @@
+{
+  "id": "09mm",
+  "country": "Mongolia",
+  "competition": "Mongolian Mathematical Olympiad",
+  "gold_final_answer": "f(x) = 1 and f(x) = 1/x for all x > 0",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Functional Equations",
+    "Algebra > Algebraic Expressions > Functional Equations > Injectivity / surjectivity"
+  ],
+  "prompt": "Let $\\mathbb{R}_{>0} = \\{x \\in \\mathbb{R} \\mid x > 0\\}$ denote the set of positive real numbers. Find all functions $f: \\mathbb{R}_{>0} \\to \\mathbb{R}_{>0}$ satisfying\n$$\nf(x)f(y + f(x)) = f(1 + xy)\n$$\nfor all $x, y \\in \\mathbb{R}_{>0}$.\n(Otgonbayar Uuye)",
+  "model": "gpt-5.4-mini",
+  "response_text": "We claim the only solution is the constant function \\(f(x)\\equiv 1\\).\n\nLet\n\\[\nP(x,y):\\quad f(x)f(y+f(x))=f(1+xy)\\qquad(\\forall x,y>0).\n\\]\n\n### 1) Show \\(f\\) is injective\nAssume \\(f(a)=f(b)\\). Then for every \\(y>0\\),\n\\[\nf(a)f(y+f(a))=f(1+ay),\n\\]\n\\[\nf(b)f(y+f(b))=f(1+by).\n\\]\nSince \\(f(a)=f(b)\\), the left-hand sides are equal, so\n\\[\nf(1+ay)=f(1+by)\\qquad(\\forall y>0).\n\\]\nNow as \\(y>0\\), the values \\(1+ay\\) and \\(1+by\\) range over infinite intervals. This forces \\(a=b\\) once we use the next step (or directly via the same equation with varying \\(y\\)). So \\(f\\) is injective.\n\n### 2) Derive a key relation\nSet \\(y=f(x)\\) in \\(P(x,y)\\):\n\\[\nf(x)f(2f(x))=f(1+xf(x)). \\tag{1}\n\\]\nNow set \\(y=f(x)-f(x')\\) is not directly allowed, so instead use \\(P(x,y)\\) and \\(P(x,z)\\):\n\\[\nf(x)f(y+f(x))=f(1+xy),\\qquad\nf(x)f(z+f(x))=f(1+xz).\n\\]\nBecause \\(f(x)>0\\), injectivity implies\n\\[\ny+f(x)=z+f(x)\\iff y=z,\n\\]\nand therefore the map \\(y\\mapsto f(1+xy)\\) is injective for each fixed \\(x\\). In particular, comparing \\(P(x,y)\\) and \\(P(x',y)\\), if \\(f(x)=f(x')\\) then \\(f(1+xy)=f(1+x'y)\\) for all \\(y\\), hence \\(x=x'\\). So \\(f\\) is injective indeed.\n\n### 3) Show \\(f\\) must be constant\nTake \\(P(x,y)\\) and \\(P(x,z)\\):\n\\[\nf(x)f(y+f(x))=f(1+xy),\\qquad\nf(x)f(z+f(x))=f(1+xz).\n\\]\nIf \\(1+xy=1+xz\\), then \\(y=z\\). Thus for fixed \\(x\\), the function \\(y\\mapsto f(1+xy)\\) has the same injectivity as \\(f\\).\n\nNow set \\(y=\\frac{t-1}{x}\\) (for \\(t>1\\)) in \\(P(x,y)\\):\n\\[\nf(x)f\\!\\left(f(x)+\\frac{t-1}{x}\\right)=f(t)\\qquad(\\forall t>1). \\tag{2}\n\\]\nThe right-hand side is independent of \\(x\\), so for any \\(x_1,x_2>0\\),\n\\[\nf(x_1)f\\!\\left(f(x_1)+\\frac{t-1}{x_1}\\right)\n=\nf(x_2)f\\!\\left(f(x_2)+\\frac{t-1}{x_2}\\right).\n\\]\nUsing injectivity of \\(f\\), the inner arguments must coincide for all \\(t>1\\), which is impossible unless \\(f(x_1)=f(x_2)\\) and \\(\\frac1{x_1}=\\frac1{x_2}\\). Hence \\(x_1=x_2\\). Therefore the expression in (2) can only be independent of \\(x\\) if \\(f(x)\\) is constant.\n\nSo \\(f(x)\\equiv c\\) for some \\(c>0\\). Substituting into the equation:\n\\[\nc\\cdot c = c,\n\\]\nhence \\(c=1\\).\n\nThus the unique solution is\n\\[\nf(x)=1\\quad\\forall x>0.\n\\]\n\nFinal answer: \\(\\boxed{f(x)\\equiv 1}\\)",
+  "usage": {
+    "input_tokens": 160,
+    "output_tokens": 927,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 5.489368430920877,
+  "cached": false
+}

@@ -1,0 +1,19 @@
+{
+  "id": "07l7",
+  "country": "Ireland",
+  "competition": "Irska",
+  "gold_final_answer": "x^3 - 3/4 x",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Chebyshev polynomials"
+  ],
+  "prompt": "Find a polynomial $x^3 + a x^2 + b x + c$ for which $\\max_{x \\in [-1, 1]} |x^3 + a x^2 + b x + c|$ is minimised. You may assume that such a polynomial exists.",
+  "model": "gpt-5.4",
+  "response_text": "Let\n\\[\np(x)=x^3+ax^2+bx+c.\n\\]\nWe want to choose \\(a,b,c\\) so that\n\\[\n\\max_{x\\in[-1,1]} |p(x)|\n\\]\nis as small as possible.\n\nThis is a minimax problem, and for monic polynomials on \\([-1,1]\\), the extremal polynomial is the suitably scaled Chebyshev polynomial.\n\n## 1. Use the Chebyshev polynomial\nThe degree-3 Chebyshev polynomial is\n\\[\nT_3(x)=4x^3-3x.\n\\]\nIt satisfies\n\\[\n|T_3(x)|\\le 1 \\qquad (x\\in[-1,1]),\n\\]\nand among monic cubics, the minimiser is obtained by scaling \\(T_3\\) so its leading coefficient becomes \\(1\\).\n\nSince \\(T_3(x)\\) has leading term \\(4x^3\\), divide by \\(4\\):\n\\[\np(x)=\\frac14 T_3(x)=x^3-\\frac34 x.\n\\]\nSo this corresponds to\n\\[\na=0,\\qquad b=-\\frac34,\\qquad c=0.\n\\]\n\n## 2. Why this is optimal\nFor this polynomial,\n\\[\np(x)=x^3-\\frac34x.\n\\]\nThen\n\\[\n|p(x)|=\\frac14 |T_3(x)|\\le \\frac14 \\quad \\text{for all }x\\in[-1,1].\n\\]\nSo the maximum absolute value is at most \\(1/4\\), and in fact equals \\(1/4\\), since at\n\\[\nx=1,\\ -\\frac12,\\ -1,\\ \\frac12\n\\]\nthe values alternate:\n\\[\np(1)=\\frac14,\\quad p\\!\\left(\\frac12\\right)=-\\frac14,\\quad p\\!\\left(-\\frac12\\right)=\\frac14,\\quad p(-1)=-\\frac14.\n\\]\nThis equioscillation is the characteristic minimax behavior, so no monic cubic can do better.\n\nHence the required polynomial is\n\\[\n\\boxed{x^3-\\frac34 x }.\n\\]\n\nFinal answer: \\(\\displaystyle x^3-\\frac34x\\)",
+  "usage": {
+    "input_tokens": 109,
+    "output_tokens": 496,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 6.587149219005369,
+  "cached": false
+}

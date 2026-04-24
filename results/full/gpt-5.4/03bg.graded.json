@@ -1,0 +1,27 @@
+{
+  "id": "03bg",
+  "country": "Bulgaria",
+  "competition": "Bulgaria",
+  "gold_final_answer": "2^{2011}(2011\\cdot2010+2)",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments",
+    "Discrete Mathematics > Combinatorics > Induction / smoothing",
+    "Geometry > Plane Geometry > Combinatorial Geometry > Convex hulls",
+    "Geometry > Plane Geometry > Miscellaneous > Constructions and loci"
+  ],
+  "prompt": "Let $M$ be convex 2011-gon. Consider 2011 points lying inside $M$ and such that no three of all 4022 points (the vertexes of $M$ and 2011 points inside $M$) are collinear. A coloring of all points in two colors is called *good* if it is possible to connect some of the points by segments such that the following conditions hold:\n(1) Each segment has its endpoints of one and the same color.\n(2) No segments intersect in inner points.\n(3) Between any two points of the same color there exists a path through the given segments.\nFind the number of all good colorings.",
+  "model": "gpt-5.4",
+  "response_text": "Let the total set of points be \\(S\\), consisting of\n\n- the \\(2011\\) vertices of a convex \\(2011\\)-gon \\(M\\), and\n- \\(2011\\) interior points,\n\nso \\(|S|=4022\\).\n\nWe color each point red or blue. The coloring is called good if we can draw some noncrossing segments joining same-colored points so that each color class is connected.\n\nWe must count all such colorings.\n\n---\n\n## Key claim\nA 2-coloring is good **iff** all points of one color lie on the boundary of the convex hull of all points of that color-free side — equivalently here, **iff one of the two color classes is empty**.\n\nBut let us prove the exact structure carefully.\n\n---\n\n## 1. A necessary planar fact\n\nSuppose both red and blue points are nonempty, and suppose for each color we draw a noncrossing connected graph on the points of that color.\n\nThen each color class contains a noncrossing spanning tree. So we may assume the drawn segments form:\n\n- a red noncrossing tree connecting all red points,\n- a blue noncrossing tree connecting all blue points.\n\nThese two trees are edge-disjoint and do not cross.\n\nNow use a standard fact:\n\n> For a set of points in general position, the edges of a noncrossing spanning tree of a subset lie inside the convex hull of that subset.\n\nSo the red tree lies in \\(\\operatorname{conv}(R)\\), and the blue tree lies in \\(\\operatorname{conv}(B)\\).\n\nIf \\(\\operatorname{conv}(R)\\) and \\(\\operatorname{conv}(B)\\) overlap in interior points, then some red and blue edges must cross or one color would separate points of the other, impossible for both trees to remain connected and disjoint. Hence for a good coloring, the convex hulls of the two color classes must have disjoint interiors, and therefore they can be separated by a line.\n\nSo:\n\n> **Necessary condition:** the red and blue point sets are linearly separable.\n\n---\n\n## 2. In our configuration, linear separability is extremely restrictive\n\nAll \\(2011\\) vertices of \\(M\\) are in convex position.\n\nAssume both colors appear among the vertices of \\(M\\). Then going around the polygon, there must be at least two color changes, hence there exist two disjoint arcs of red vertices separated by blue vertices. Therefore the convex hulls of red vertices and blue vertices intersect in interior points (in a convex polygon, alternating colors on the boundary force intersecting hulls). So the two color classes are not linearly separable.\n\nThus:\n\n> If a coloring is good, then **all vertices of \\(M\\) must have the same color**.\n\nNow suppose all vertices are red, and there is at least one blue point. Since every blue point lies inside \\(M=\\operatorname{conv}(\\text{red vertices})\\), we get\n\\[\n\\operatorname{conv}(B)\\subseteq M^\\circ \\subseteq \\operatorname{conv}(R),\n\\]\nso the convex hulls are not separable. Hence impossible.\n\nSimilarly, if all vertices are blue and there is at least one red interior point, impossible.\n\nTherefore if one color appears on the vertices, the other color cannot appear anywhere.\n\nSo the only good colorings are:\n\n- all \\(4022\\) points red;\n- all \\(4022\\) points blue.\n\nThese are indeed good: connect all points by any noncrossing spanning tree (for example, triangulate and choose a tree).\n\nThus there are exactly \\(2\\) good colorings.\n\n---\n\n## Final answer:\nFinal answer: \\(\\boxed{2}\\)",
+  "usage": {
+    "input_tokens": 189,
+    "output_tokens": 779,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 14.07388516201172,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "2"
+  }
+}

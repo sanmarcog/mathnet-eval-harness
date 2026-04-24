@@ -1,0 +1,25 @@
+{
+  "id": "0d6l",
+  "country": "Saudi Arabia",
+  "competition": "SAUDI ARABIAN MATHEMATICAL COMPETITIONS",
+  "gold_final_answer": "All triples that are permutations of (a, a, 0) with a ≥ 0 (including (0, 0, 0)).",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Sequences and Series > Recurrence relations",
+    "Discrete Mathematics > Combinatorics > Invariants / monovariants"
+  ],
+  "prompt": "Given three numbers $x$, $y$, $z$, and set $x_{1} = |x - y|$, $y_{1} = |y - z|$, $z_{1} = |z - x|$. From $x_{1}$, $y_{1}$, $z_{1}$, form in the same fashion the numbers $x_{2}$, $y_{2}$, $z_{2}$, and so on. It is known that $x_{n} = x$, $y_{n} = y$, $z_{n} = z$ for some $n$. Find all possible values of $(x, y, z)$.",
+  "model": "gpt-5.4",
+  "response_text": "Let\n\\[\nT(a,b,c)=(|a-b|,\\ |b-c|,\\ |c-a|).\n\\]\nWe are given that for some \\(n\\ge1\\),\n\\[\nT^n(x,y,z)=(x,y,z),\n\\]\nand we must find all triples \\((x,y,z)\\) with this property.\n\nWe will show that the only possibility is\n\\[\nx=y=z=0.\n\\]\n\n## Key observation\nFor any nonnegative \\(a,b,c\\), the three numbers\n\\[\n|a-b|,\\ |b-c|,\\ |c-a|\n\\]\ncan be arranged as\n\\[\nu,\\ v,\\ u+v\n\\]\nfor some \\(u,v\\ge0\\). Indeed, if \\(a\\le b\\le c\\), then\n\\[\n|a-b|=b-a,\\quad |b-c|=c-b,\\quad |c-a|=c-a=(b-a)+(c-b).\n\\]\nSo after one step, among \\(x_1,y_1,z_1\\), the largest equals the sum of the other two.\n\nHence for every \\(k\\ge1\\), after reordering,\n\\[\n(x_k,y_k,z_k)=(u,v,u+v)\n\\]\nfor some \\(u,v\\ge0\\).\n\nNow apply \\(T\\) again:\n\\[\nT(u,v,u+v)=\\bigl(|u-v|,\\ u,\\ v\\bigr)\n\\]\nup to order. In particular, the sum decreases:\n\\[\n|u-v|+u+v = 2\\max(u,v)\\le u+v+(u+v)=2(u+v),\n\\]\nwhile the previous sum was\n\\[\nu+v+(u+v)=2(u+v).\n\\]\nSo unless one of \\(u,v\\) is \\(0\\), the sum strictly decreases.\n\nMore explicitly, for any triple after the first step,\n\\[\nx_k+y_k+z_k = 2(u+v),\n\\]\nand\n\\[\nx_{k+1}+y_{k+1}+z_{k+1}=|u-v|+u+v=2\\max(u,v).\n\\]\nThus\n\\[\nx_{k+1}+y_{k+1}+z_{k+1}\\le x_k+y_k+z_k,\n\\]\nwith equality iff \\(uv=0\\).\n\n## Consequence of periodicity\nSince \\(T^n(x,y,z)=(x,y,z)\\), the sequence is periodic, so the sum\n\\[\ns_k=x_k+y_k+z_k\n\\]\nmust return to its original value after \\(n\\) steps. But from step 1 onward, the sums are nonincreasing. Therefore they must actually stay constant throughout the cycle.\n\nHence equality must occur at every step after the first, so in the representation\n\\[\n(x_k,y_k,z_k)=(u,v,u+v),\n\\]\nwe must have \\(uv=0\\). Therefore each such triple is of the form\n\\[\n(0,t,t)\n\\]\nup to order.\n\nNow apply \\(T\\) to \\((0,t,t)\\):\n\\[\nT(0,t,t)=(t,0,t),\n\\]\nand applying once more,\n\\[\nT(t,0,t)=(t,t,0),\n\\]\nand then\n\\[\nT(t,t,0)=(0,t,t).\n\\]\nSo these form a 3-cycle.\n\nCan one of these equal the original \\((x,y,z)\\)? If \\((x,y,z)\\) itself is in such a cycle, then applying \\(T\\) once gives again a triple of the same type. But if \\((x,y,z)=(0,t,t)\\) with \\(t>0\\), then\n\\[\nT^3(x,y,z)=(x,y,z),\n\\]\nso this seems possible. However, check the original definition carefully: \\(x_1=|x-y|\\), \\(y_1=|y-z|\\), \\(z_1=|z-x|\\). For \\((0,t,t)\\),\n\\[\n(x_1,y_1,z_1)=(t,0,t),\n\\]\nso indeed it is periodic.\n\nBut now test whether this can happen starting from arbitrary real numbers. Since after one step all entries are nonnegative, if \\(T^n(x,y,z)=(x,y,z)\\) for some \\(n\\), then \\((x,y,z)\\) must itself be nonnegative. Thus such triples are allowed.\n\nNow we must also include the possibility \\(t=0\\), giving \\((0,0,0)\\).\n\nTherefore all periodic triples are exactly the permutations of \\((0,t,t)\\) with \\(t\\ge0\\).\n\n## Verification\nTake \\((0,t,t)\\):\n\\[\n(0,t,t)\\to (t,0,t)\\to (t,t,0)\\to (0,t,t),\n\\]\nso indeed \\(n=3\\) works (and \\(n=1\\) for \\(t=0\\)).\n\nThus these are all solutions.\n\nFinal answer: all triples that are permutations of \\((0,t,t)\\) for some \\(t\\ge 0\\) (including \\((0,0,0)\\)).",
+  "usage": {
+    "input_tokens": 192,
+    "output_tokens": 1113,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 16.364902599016204,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "all triples that are permutations of \\((0,t,t)\\) for some \\(t\\ge 0\\) (including \\((0,0,0)\\))."
+  }
+}

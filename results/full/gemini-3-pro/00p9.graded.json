@@ -1,0 +1,26 @@
+{
+  "id": "00p9",
+  "country": "Balkan Mathematical Olympiad",
+  "competition": "shortlistBMO 2011",
+  "gold_final_answer": "1/(n-1)^n",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Symmetric functions",
+    "Algebra > Algebraic Expressions > Polynomials > Polynomial operations",
+    "Algebra > Equations and Inequalities > QM-AM-GM-HM / Power Mean"
+  ],
+  "prompt": "Given an integer number $n \\ge 3$, determine the maximum value the product of $n$ non-negative real numbers $x_1, x_2, \\dots, x_n$ may achieve, subject to\n$$\n\\frac{x_1}{1+x_1} + \\frac{x_2}{1+x_2} + \\dots + \\frac{x_n}{1+x_n} = 1.\n$$",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find the maximum value of the product $P = x_1 x_2 \\dots x_n$, we can use the substitution $y_i = \\frac{x_i}{1+x_i}$. \nSince $x_i \\ge 0$, we have $0 \\le y_i < 1$. \nThe given condition simplifies to:\n$$ \\sum_{i=1}^n y_i = 1 $$\nWe can express $x_i$ in terms of $y_i$ as $x_i = \\frac{y_i}{1-y_i}$. \nThus, the product we want to maximize is:\n$$ P = \\prod_{i=1}^n \\frac{y_i}{1-y_i} $$\nNotice that for each $i$, we can write $1 - y_i$ as the sum of the other $n-1$ variables:\n$$ 1 - y_i = \\sum_{j \\neq i} y_j $$\nApplying the AM-GM (Arithmetic Mean - Geometric Mean) inequality to the $n-1$ terms in the sum, we get:\n$$ \\sum_{j \\neq i} y_j \\ge (n-1) \\left( \\prod_{j \\neq i} y_j \\right)^{\\frac{1}{n-1}} $$\nTherefore, we have:\n$$ 1 - y_i \\ge (n-1) \\left( \\prod_{j \\neq i} y_j \\right)^{\\frac{1}{n-1}} $$\nMultiplying these inequalities for all $i = 1, 2, \\dots, n$, we obtain:\n$$ \\prod_{i=1}^n (1 - y_i) \\ge (n-1)^n \\prod_{i=1}^n \\left( \\prod_{j \\neq i} y_j \\right)^{\\frac{1}{n-1}} $$\nIn the product on the right side, each $y_k$ appears exactly $n-1$ times (in every term except when $i=k$). Therefore, the exponent of each $y_k$ becomes $\\frac{n-1}{n-1} = 1$. This simplifies the inequality to:\n$$ \\prod_{i=1}^n (1 - y_i) \\ge (n-1)^n \\prod_{i=1}^n y_i $$\nRearranging the terms to form our product $P$, we get:\n$$ P = \\prod_{i=1}^n \\frac{y_i}{1-y_i} \\le \\frac{1}{(n-1)^n} $$\nEquality holds if and only if all $y_i$ are equal, which means $y_1 = y_2 = \\dots = y_n = \\frac{1}{n}$. This corresponds to $x_1 = x_2 = \\dots = x_n = \\frac{1}{n-1}$.\n\nFinal answer: \\frac{1}{(n-1)^n}",
+  "usage": {
+    "input_tokens": 139,
+    "output_tokens": 669,
+    "thoughts_tokens": 2018
+  },
+  "latency_s": 20.624178385944106,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "symbolic",
+    "predicted": "\\frac{1}{(n-1)^n}"
+  }
+}

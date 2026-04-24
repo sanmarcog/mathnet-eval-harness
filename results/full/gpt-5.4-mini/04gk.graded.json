@@ -1,0 +1,25 @@
+{
+  "id": "04gk",
+  "country": "Croatia",
+  "competition": "Mathematica competitions in Croatia",
+  "gold_final_answer": "a^3/8",
+  "topics_flat": [
+    "Geometry > Solid Geometry > Volume",
+    "Geometry > Solid Geometry > Other 3D problems"
+  ],
+  "prompt": "Let $ABCD A_1 B_1 C_1 D_1$ be a rectangular cuboid with edge-lengths $|AB| = |AD| = a$ and $|AA_1| = 2a$. Let $A', B', C'$ and $D'$ be the midpoints of $AA_1, BB_1, CC_1$ and $DD_1$ respectively.\nFind the volume of the intersection of the cube $ABCD A'B'C'D'$ and the pyramid $A_1A'B'B_1D$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Set coordinates\n\\[\nA=(0,0,0),\\quad B=(a,0,0),\\quad D=(0,a,0),\\quad A_1=(0,0,2a),\n\\]\nso\n\\[\nA'=(0,0,a),\\quad B'=(a,0,a),\\quad D'=(0,a,a).\n\\]\n\nThe cube \\(ABCD A'B'C'D'\\) is just\n\\[\n0\\le x,y,z\\le a.\n\\]\n\nNow consider the pyramid \\(A_1A'B'B_1D\\). Its base is the triangle \\(A'B'D\\) in the plane \\(z=a\\), and its apex is \\(A_1\\).\n\nA point \\((x,y,z)\\) in the intersection must lie in the cube, so \\(0\\le x,y,z\\le a\\), and also in the pyramid.  \nFor each fixed \\(z\\in[0,a]\\), the cross-section of the pyramid is similar to the base triangle \\(A'B'D\\), scaled linearly by factor\n\\[\n\\frac{2a-z}{a}\n\\]\nalong the direction toward \\(A_1\\). Since we only need the part inside the cube, it is enough to describe the pyramid region by the inequalities\n\\[\nx\\ge 0,\\quad y\\ge 0,\\quad x+y\\le a,\\quad z\\ge x+y.\n\\]\nIndeed, this is the tetrahedral region under the plane \\(z=x+y\\) above the triangle \\(x\\ge0,y\\ge0,x+y\\le a\\), within \\(0\\le z\\le a\\).\n\nSo the intersection is\n\\[\n\\{(x,y,z): x\\ge0,\\ y\\ge0,\\ x+y\\le a,\\ x+y\\le z\\le a\\}.\n\\]\nIts volume is\n\\[\nV=\\int_0^a\\int_0^{a-x}(a-(x+y))\\,dy\\,dx.\n\\]\nCompute:\n\\[\nV=\\int_0^a \\left[(a-x)y-\\frac{y^2}{2}\\right]_{0}^{a-x}dx\n=\\int_0^a \\frac{(a-x)^2}{2}\\,dx\n=\\frac12\\cdot\\frac{a^3}{3}\n=\\frac{a^3}{6}.\n\\]\n\nFinal answer: \\(\\displaystyle \\frac{a^3}{6}\\).",
+  "usage": {
+    "input_tokens": 169,
+    "output_tokens": 537,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.8257227829890326,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "\\(\\displaystyle \\frac{a^3}{6}\\)."
+  }
+}

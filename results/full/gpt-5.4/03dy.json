@@ -1,0 +1,21 @@
+{
+  "id": "03dy",
+  "country": "Bulgaria",
+  "competition": "Autumn tournament",
+  "gold_final_answer": "(2x - 1)^3(2x + 1)",
+  "topics_flat": [
+    "Algebra > Intermediate Algebra > Quadratic functions",
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities",
+    "Algebra > Algebraic Expressions > Polynomials > Polynomial operations"
+  ],
+  "prompt": "Let $a$ be the largest value of the expression $24y-9y^2$, where $y$ is a rational number and $b$ is the smallest integer satisfying the inequality\n$$\n(t+3)^3 - (6t-7)^2 - (t-9)^3 < 3.\n$$\nFactor into irreducible factors with integer coefficients the expression\n$$\na(x-1)x^3 + bx - 2x - 1.\n$$",
+  "model": "gpt-5.4",
+  "response_text": "First find \\(a\\).\n\n\\[\n24y-9y^2=-9\\left(y^2-\\frac{8}{3}y\\right)\n= -9\\left[\\left(y-\\frac43\\right)^2-\\frac{16}{9}\\right]\n=16-9\\left(y-\\frac43\\right)^2.\n\\]\n\nThis is maximized when \\(y=\\frac43\\), which is rational, so\n\n\\[\na=16.\n\\]\n\nNow find \\(b\\), the smallest integer satisfying\n\n\\[\n(t+3)^3-(6t-7)^2-(t-9)^3<3.\n\\]\n\nSimplify the left side:\n\n\\[\n(t+3)^3-(t-9)^3\n= \\bigl(t^3+9t^2+27t+27\\bigr)-\\bigl(t^3-27t^2+243t-729\\bigr)\n=36t^2-216t+756.\n\\]\n\nAlso,\n\n\\[\n(6t-7)^2=36t^2-84t+49.\n\\]\n\nSo\n\n\\[\n(t+3)^3-(6t-7)^2-(t-9)^3\n=(36t^2-216t+756)-(36t^2-84t+49)\n=-132t+707.\n\\]\n\nThus the inequality becomes\n\n\\[\n-132t+707<3\n\\]\n\n\\[\n-132t<-704\n\\]\n\n\\[\nt>\\frac{704}{132}=\\frac{176}{33}.\n\\]\n\nThe smallest integer satisfying this is\n\n\\[\nb=6.\n\\]\n\nNow factor\n\n\\[\na(x-1)x^3+bx-2x-1.\n\\]\n\nSubstitute \\(a=16,\\ b=6\\):\n\n\\[\n16(x-1)x^3+6x-2x-1\n=16x^4-16x^3+4x-1.\n\\]\n\nFactor it:\n\n\\[\n16x^4-16x^3+4x-1\n=(4x-1)(4x^3-1).\n\\]\n\nNow factor the difference of cubes:\n\n\\[\n4x^3-1=(\\sqrt[3]{4}x-1)(\\cdots)\n\\]\n\nbut over the integers, \\(4x^3-1\\) is irreducible. So the factorization into irreducible factors with integer coefficients is\n\n\\[\n(4x-1)(4x^3-1).\n\\]\n\nFinal answer: \\((4x-1)(4x^3-1)\\)",
+  "usage": {
+    "input_tokens": 148,
+    "output_tokens": 560,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 8.575258945929818,
+  "cached": false
+}

@@ -1,0 +1,25 @@
+{
+  "id": "01v1",
+  "country": "Belarus",
+  "competition": "Belarusian Mathematical Olympiad",
+  "gold_final_answer": "No such function exists.",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Functional Equations > Existential quantifiers",
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities"
+  ],
+  "prompt": "Determine, whether there exists a function $f$ defined on the set of all positive real numbers and taking positive values such that\n$$\nf(x + y) \\geq y f(x) + f(f(x))\n$$\nfor all positive $x$ and $y$?",
+  "model": "claude-sonnet-4-6",
+  "response_text": "Suppose such a function $f$ exists. Fix $x > 0$ and consider the inequality for all $y > 0$:\n$$f(x+y) \\geq yf(x) + f(f(x)).$$\n\nSince $f(x) > 0$ and $f(f(x)) > 0$, the right side grows without bound as $y \\to \\infty$. This means $f(x+y) \\to \\infty$ as $y \\to \\infty$, which is consistent so far.\n\nNow let's derive a contradiction. Apply the inequality with $x$ replaced by $x+y$ and some $z > 0$:\n$$f(x+y+z) \\geq z f(x+y) + f(f(x+y)).$$\n\nFrom the original inequality: $f(x+y) \\geq yf(x) + f(f(x))$.\n\nSo: $f(x+y+z) \\geq z(yf(x) + f(f(x))) + f(f(x+y))$.\n\nSince $f(f(x+y)) > 0$:\n$$f(x+y+z) \\geq zy \\cdot f(x) + z \\cdot f(f(x)).$$\n\nNow apply the original inequality with $x$ fixed and $y$ replaced by $y+z$:\n$$f(x+y+z) \\geq (y+z)f(x) + f(f(x)).$$\n\nLet me try a different approach. Fix $x_0 > 0$. Let $a = f(x_0) > 0$ and $b = f(f(x_0)) > 0$.\n\nFor all $y > 0$: $f(x_0 + y) \\geq ay + b$.\n\nNow apply the inequality at $x = x_0 + y$ with increment $t > 0$:\n$$f(x_0 + y + t) \\geq t \\cdot f(x_0 + y) + f(f(x_0+y)).$$\n\nSince $f(x_0+y) \\geq ay + b$, we get $f(x_0+y+t) \\geq t(ay+b) + f(f(x_0+y))$.\n\nAlso, $f(x_0+y) \\geq ay + b$, so $f(f(x_0+y)) \\geq f(ay+b)$ only if $f$ is increasing — we can't assume that directly.\n\nLet me use the bound more carefully. We have $f(x_0+y) \\geq ay + b$ for all $y > 0$.\n\nApply the original inequality with $x = x_0 + y$ (for large $y$) and increment $t$:\n$$f(x_0+y+t) \\geq t \\cdot f(x_0+y) + f(f(x_0+y)) \\geq t(ay+b) + f(f(x_0+y)).$$\n\nNow, $f(x_0+y) \\geq ay+b$. Apply the original inequality to get $f$ at $f(x_0+y)$: since $f(x_0+y) \\geq ay+b$, write $f(x_0+y) = x_0 + s$ for some $s$ (this may not simplify nicely).\n\nInstead, note: from $f(x_0+y) \\geq ay + b$ for all $y > 0$, setting $u = x_0 + y$ (so $u > x_0$), we have $f(u) \\geq a(u - x_0) + b = au + (b - ax_0)$ for $u > x_0$.\n\nFor large $u$, $f(u) \\geq au - C$ for some constant $C$. Now apply the inequality at $x = u$, increment $y$:\n$$f(u+y) \\geq y f(u) + f(f(u)) \\geq y(au - C) + f(f(u)).$$\n\nSince $f(u) \\geq au - C$ for large $u$, and $f(v) \\geq av - C$ for large $v$, we get $f(f(u)) \\geq a(au-C) - C = a^2 u - aC - C$.\n\nSo $f(u+y) \\geq y(au-C) + a^2 u - aC - C$.\n\nBut also $f(u+y) \\geq a(u+y) - C$ (from our linear bound). So:\n$$a(u+y) - C \\geq y(au - C) + a^2 u - aC - C.$$\n$$au + ay - C \\geq auy - Cy + a^2 u - aC - C.$$\n$$au + ay \\geq auy - Cy + a^2 u - aC.$$\n\nFor fixed $a > 0$ and large $u, y$, the term $auy$ on the right dominates, giving a contradiction.\n\nTherefore, no such function exists.\n\nFinal answer: No, such a function does not exist.",
+  "usage": {
+    "input_tokens": 110,
+    "output_tokens": 1263,
+    "thinking_tokens": 0
+  },
+  "latency_s": 17.28221323096659,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "No, such a function does not exist."
+  }
+}

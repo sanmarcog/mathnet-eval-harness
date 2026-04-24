@@ -1,0 +1,25 @@
+{
+  "id": "0651",
+  "country": "Greece",
+  "competition": "24th Balkan Mathematical Olympiad",
+  "gold_final_answer": "n = 1 or n = 3",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities",
+    "Algebra > Prealgebra / Basic Algebra > Integers"
+  ],
+  "prompt": "Find all positive integers $n$ such that there is a permutation $\\sigma$ of the set $\\{1,2,...,n\\}$ for which $\\sqrt{\\sigma(1)+\\sigma(2)+\\dots+\\sigma(n)}$ is a rational number.\n\n*: A permutation of the set $\\{1,2,...,n\\}$ is a one-to-one function of this set to itself.*",
+  "model": "gpt-5.4",
+  "response_text": "For any permutation \\(\\sigma\\) of \\(\\{1,2,\\dots,n\\}\\), the sum\n\\[\n\\sigma(1)+\\sigma(2)+\\cdots+\\sigma(n)\n\\]\nis just the sum of all numbers from \\(1\\) to \\(n\\), since a permutation only reorders them. So the condition is simply that\n\\[\n\\sqrt{1+2+\\cdots+n}\n\\]\nbe rational.\n\nNow\n\\[\n1+2+\\cdots+n=\\frac{n(n+1)}2.\n\\]\nSince this is an integer, its square root is rational iff it is actually an integer, i.e. iff\n\\[\n\\frac{n(n+1)}2\n\\]\nis a perfect square.\n\nSo we must solve\n\\[\n\\frac{n(n+1)}2=m^2\n\\]\nin positive integers \\(n,m\\).\n\nThis is a classical Pell-type equation. Rewrite:\n\\[\nn(n+1)=2m^2\n\\]\n\\[\n4n^2+4n=8m^2\n\\]\n\\[\n(2n+1)^2-8m^2=1.\n\\]\nThus with\n\\[\nx=2n+1,\\qquad y=m,\n\\]\nwe need positive integer solutions of\n\\[\nx^2-8y^2=1\n\\]\nwith \\(x\\) odd, and then\n\\[\nn=\\frac{x-1}{2}.\n\\]\n\nAll solutions of \\(x^2-8y^2=1\\) are given by\n\\[\nx+y\\sqrt8=(3+\\sqrt8)^k,\\qquad k\\ge 0.\n\\]\nHence all valid \\(n\\) are exactly\n\\[\nn=\\frac{x_k-1}{2},\n\\]\nwhere \\(x_k\\) is the \\(x\\)-coordinate of a solution to \\(x^2-8y^2=1\\).\n\nEquivalently, starting from \\(n_1=1\\), the values of \\(n\\) are\n\\[\n1,\\,8,\\,49,\\,288,\\,1681,\\dots\n\\]\nand satisfy the recurrence\n\\[\nn_{k+2}=6n_{k+1}-n_k+2\n\\]\nor, more explicitly via Pell,\n\\[\n2n+1+y\\sqrt8=(3+\\sqrt8)^k \\quad (k\\ge 1).\n\\]\n\nTherefore the sought \\(n\\) are precisely the positive integers for which \\(\\frac{n(n+1)}2\\) is a square, i.e. the square triangular numbers.\n\nFinal answer: All positive integers \\(n\\) such that \\(\\frac{n(n+1)}2\\) is a perfect square; equivalently, \\(n=\\frac{x-1}{2}\\) where \\(x^2-8y^2=1\\) for some integers \\(x,y\\). The sequence is \\(1,8,49,288,1681,\\dots\\).",
+  "usage": {
+    "input_tokens": 131,
+    "output_tokens": 643,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 9.723676149966195,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "All positive integers \\(n\\) such that \\(\\frac{n(n+1)}2\\) is a perfect square; equivalently, \\(n=\\frac{x-1}{2}\\) where \\(x^2-8y^2=1\\) for some integers \\(x,y\\). The sequence is \\(1,8,49,288,1681,\\dots\\)."
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "id": "0cgr",
+  "country": "Romania",
+  "competition": "74th Romanian Mathematical Olympiad",
+  "gold_final_answer": "8",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Greatest common divisors (gcd)",
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities",
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities"
+  ],
+  "prompt": "a) Prove that $12n+13$ and $13n+14$ are coprime, for every natural $n$.\n\nb) Find the number of the pairs $(a, b)$ of natural numbers for which there exists a natural number $n$ so that $\\frac{a}{b} = \\frac{12n+13}{13n+14}$ and $17a + 19b < 2024$.",
+  "model": "gpt-5.4",
+  "response_text": "Let\n\\[\na=12n+13,\\qquad b=13n+14.\n\\]\n\nWe solve the two parts in order.\n\n---\n\n### a) Prove that \\(12n+13\\) and \\(13n+14\\) are coprime\n\nLet\n\\[\nd=\\gcd(12n+13,\\,13n+14).\n\\]\nThen \\(d\\) divides any integer linear combination of these two numbers. Compute:\n\\[\n13(12n+13)-12(13n+14)=156n+169-(156n+168)=1.\n\\]\nSo \\(d\\mid 1\\), hence \\(d=1\\).\n\nTherefore\n\\[\n\\gcd(12n+13,\\,13n+14)=1\n\\]\nfor every natural \\(n\\).\n\n---\n\n### b) Count pairs \\((a,b)\\in \\mathbb N^2\\) such that for some natural \\(n\\),\n\\[\n\\frac ab=\\frac{12n+13}{13n+14},\\qquad 17a+19b<2024.\n\\]\n\nSince part (a) shows \\(\\gcd(12n+13,13n+14)=1\\), any fraction equal to\n\\[\n\\frac{12n+13}{13n+14}\n\\]\nmust be of the form\n\\[\na=k(12n+13),\\qquad b=k(13n+14)\n\\]\nfor some natural \\(k\\).\n\nSo the inequality becomes\n\\[\n17a+19b=k\\bigl(17(12n+13)+19(13n+14)\\bigr)<2024.\n\\]\nNow\n\\[\n17(12n+13)+19(13n+14)=204n+221+247n+266=451n+487.\n\\]\nThus we need\n\\[\nk(451n+487)<2024.\n\\]\n\nSo for each natural \\(n\\), the number of possible \\(k\\)'s is\n\\[\n\\left\\lfloor \\frac{2023}{451n+487}\\right\\rfloor.\n\\]\n\nNow determine which \\(n\\) are possible. Since \\(451n+487<2024\\),\n\\[\n451n<1537.\n\\]\nHence \\(n\\le 3\\) (if naturals include \\(0\\)), or \\(n\\le 3\\) with \\(n\\ge1\\) otherwise. We check:\n\n- \\(n=0\\): \\(451n+487=487\\), so\n  \\[\n  k\\le \\left\\lfloor \\frac{2023}{487}\\right\\rfloor=4.\n  \\]\n  Gives \\(4\\) pairs.\n\n- \\(n=1\\): \\(451+487=938\\), so\n  \\[\n  k\\le \\left\\lfloor \\frac{2023}{938}\\right\\rfloor=2.\n  \\]\n  Gives \\(2\\) pairs.\n\n- \\(n=2\\): \\(902+487=1389\\), so\n  \\[\n  k\\le \\left\\lfloor \\frac{2023}{1389}\\right\\rfloor=1.\n  \\]\n  Gives \\(1\\) pair.\n\n- \\(n=3\\): \\(1353+487=1840\\), so\n  \\[\n  k\\le \\left\\lfloor \\frac{2023}{1840}\\right\\rfloor=1.\n  \\]\n  Gives \\(1\\) pair.\n\n- \\(n\\ge4\\): impossible.\n\nTotal:\n\\[\n4+2+1+1=8.\n\\]\n\nSo there are **8** such pairs \\((a,b)\\) (taking \\(0\\in\\mathbb N\\)).\n\nIf one uses the convention \\(\\mathbb N=\\{1,2,3,\\dots\\}\\), then \\(n=0\\) is excluded, and the count is\n\\[\n2+1+1=4.\n\\]\n\nIn olympiad settings, “natural numbers” often means positive integers, so the intended answer is usually **4**.\n\nFinal answer: a) \\(\\gcd(12n+13,13n+14)=1\\) for all \\(n\\). b) The number of pairs is \\(4\\) if \\(\\mathbb N=\\{1,2,3,\\dots\\}\\), and \\(8\\) if \\(0\\in\\mathbb N\\).",
+  "usage": {
+    "input_tokens": 140,
+    "output_tokens": 952,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 13.086279883980751,
+  "cached": false
+}

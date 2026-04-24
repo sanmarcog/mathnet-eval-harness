@@ -1,0 +1,19 @@
+{
+  "id": "0gw2",
+  "country": "Ukraine",
+  "competition": "Ukrainian Mathematical Olympiad",
+  "gold_final_answer": "x = y = z = √2",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities > Cauchy-Schwarz"
+  ],
+  "prompt": "Find all triplets of real positive numbers $x$, $y$ and $z$ such that\n$$\n\\begin{cases}\n\\sqrt{2x - \\frac{2}{y}} + \\sqrt{2y - \\frac{2}{z}} + \\sqrt{2z - \\frac{2}{x}} = \\sqrt{3(x + y + z)}, \\\\\nx^2 + y^2 + z^2 = 6.\n\\end{cases}\n$$",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Setting Up the Solution\n\nLet me denote $S = x + y + z$ and analyze the first equation.\n\n**Applying Cauchy-Schwarz:**\n\nBy Cauchy-Schwarz inequality:\n$$\\left(\\sqrt{2x - \\frac{2}{y}} + \\sqrt{2y - \\frac{2}{z}} + \\sqrt{2z - \\frac{2}{x}}\\right)^2 \\leq 3\\left(2x - \\frac{2}{y} + 2y - \\frac{2}{z} + 2z - \\frac{2}{x}\\right)$$\n\nSo the right side squared is $3(x+y+z)$, giving:\n$$3(x+y+z) \\leq 3\\left(2(x+y+z) - 2\\left(\\frac{1}{x}+\\frac{1}{y}+\\frac{1}{z}\\right)\\right)$$\n\nWait, let me reconsider. The equation states equality, so:\n$$\\left(\\sum \\sqrt{2x - \\frac{2}{y}}\\right)^2 = 3(x+y+z)$$\n\nBy Cauchy-Schwarz: $\\left(\\sum \\sqrt{a_i}\\right)^2 \\leq 3\\sum a_i$, with equality iff all $a_i$ are equal.\n\nSo equality holds when:\n$$2x - \\frac{2}{y} = 2y - \\frac{2}{z} = 2z - \\frac{2}{x}$$\n\nAlso, the equation requires:\n$$3\\left(2x - \\frac{2}{y} + 2y - \\frac{2}{z} + 2z - \\frac{2}{x}\\right) = 3(x+y+z)$$\n\nThis gives:\n$$2(x+y+z) - 2\\left(\\frac{1}{x}+\\frac{1}{y}+\\frac{1}{z}\\right) = x+y+z$$\n\n$$x+y+z = 2\\left(\\frac{1}{x}+\\frac{1}{y}+\\frac{1}{z}\\right)$$\n\n**Testing $x = y = z$:**\n\nFrom $x^2 + y^2 + z^2 = 6$: $3x^2 = 6$, so $x = \\sqrt{2}$.\n\nCheck: $x + y + z = 3\\sqrt{2}$ and $2\\left(\\frac{1}{x}+\\frac{1}{y}+\\frac{1}{z}\\right) = \\frac{6}{x} = \\frac{6}{\\sqrt{2}} = 3\\sqrt{2}$. ✓\n\n**Verifying the first equation with $x=y=z=\\sqrt{2}$:**\n\n$$2x - \\frac{2}{y} = 2\\sqrt{2} - \\frac{2}{\\sqrt{2}} = 2\\sqrt{2} - \\sqrt{2} = \\sqrt{2}$$\n\n$$\\sqrt{2x-\\frac{2}{y}} + \\sqrt{2y-\\frac{2}{z}} + \\sqrt{2z-\\frac{2}{x}} = 3\\cdot 2^{1/4}$$\n\n$$\\sqrt{3(x+y+z)} = \\sqrt{3 \\cdot 3\\sqrt{2}} = \\sqrt{9\\sqrt{2}} = 3 \\cdot 2^{1/4}$$ ✓\n\n**Proving uniqueness:**\n\nFrom the equality condition of Cauchy-Schwarz, we need $2x - \\frac{2}{y} = 2y - \\frac{2}{z} = 2z - \\frac{2}{x}$.\n\nFrom $2x - \\frac{2}{y} = 2y - \\frac{2}{z}$: $x - y = \\frac{1}{y} - \\frac{1}{z} = \\frac{z-y}{yz}$\n\nFrom $2y - \\frac{2}{z} = 2z - \\frac{2}{x}$: $y - z = \\frac{1}{z} - \\frac{1}{x} = \\frac{x-z}{xz}$\n\nSuppose $x \\geq y \\geq z$. Then $x - y \\geq 0$ and $\\frac{z-y}{yz} \\leq 0$, so $x = y$. Similarly $y = z$. Thus $x = y = z$.\n\nCombined with $x^2 + y^2 + z^2 = 6$, we get $x = y = z = \\sqrt{2}$.\n\nFinal answer: $x = y = z = \\sqrt{2}$",
+  "usage": {
+    "input_tokens": 162,
+    "output_tokens": 1193,
+    "thinking_tokens": 0
+  },
+  "latency_s": 14.363870471017435,
+  "cached": false
+}

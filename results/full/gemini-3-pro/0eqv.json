@@ -1,0 +1,19 @@
+{
+  "id": "0eqv",
+  "country": "South Africa",
+  "competition": "South African Mathematics Olympiad First Round",
+  "gold_final_answer": "E",
+  "topics_flat": [
+    "Algebra > Prealgebra / Basic Algebra > Simple Equations"
+  ],
+  "prompt": "Water pours into a tank at a constant rate. After 2 hours the tank was 36% full and after 10 hours it is 100% full. How full was the tank to begin with?\n(A) 10%\n(B) 12%\n(C) 15%\n(D) 18%\n(E) 20%",
+  "model": "gemini-3-pro-preview",
+  "response_text": "Let $P_0$ be the initial percentage of water in the tank, and let $R$ be the constant rate at which water pours into the tank in percent per hour. \n\nFrom the problem, we can set up the following system of linear equations based on the given information:\n1) After 2 hours, the tank is 36% full:\n$P_0 + 2R = 36$\n\n2) After 10 hours, the tank is 100% full:\n$P_0 + 10R = 100$\n\nTo find the rate $R$, we can subtract the first equation from the second equation:\n$(P_0 + 10R) - (P_0 + 2R) = 100 - 36$\n$8R = 64$\n$R = 8$\n\nThis means water is pouring into the tank at a rate of 8% per hour. Now, we can substitute $R = 8$ back into the first equation to find the initial percentage $P_0$:\n$P_0 + 2(8) = 36$\n$P_0 + 16 = 36$\n$P_0 = 20$\n\nThe tank was 20% full to begin with.\n\nFinal answer: 20%",
+  "usage": {
+    "input_tokens": 125,
+    "output_tokens": 297,
+    "thoughts_tokens": 377
+  },
+  "latency_s": 6.400068223942071,
+  "cached": false
+}

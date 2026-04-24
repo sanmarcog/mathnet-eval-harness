@@ -1,0 +1,24 @@
+{
+  "id": "00ka",
+  "country": "Austria",
+  "competition": "Austria 2014",
+  "gold_final_answer": "(3, 5, 7, 9); (t, -t, t, -t) for any real t; (-9, 5, -5, 9); (3, -3, 7, -7)",
+  "topics_flat": [
+    "Algebra > Prealgebra / Basic Algebra > Simple Equations"
+  ],
+  "prompt": "Determine all quadruples $(a, b, c, d)$ of real numbers satisfying the following system of equations.\n$$\n\\begin{aligned}\n ab + ac &= 3b + 3c \\\\\n bc + bd &= 5c + 5d \\\\\n ac + cd &= 7a + 7d \\\\\n ad + bd &= 9a + 9b\n\\end{aligned}\n$$",
+  "model": "gpt-5.4",
+  "response_text": "Rewrite each equation by factoring:\n\\[\n\\begin{aligned}\nab+ac&=a(b+c)=3(b+c),\\\\\nbc+bd&=b(c+d)=5(c+d),\\\\\nac+cd&=c(a+d)=7(a+d),\\\\\nad+bd&=d(a+b)=9(a+b).\n\\end{aligned}\n\\]\nSo the system is equivalent to\n\\[\n(a-3)(b+c)=0,\\quad (b-5)(c+d)=0,\\quad (c-7)(a+d)=0,\\quad (d-9)(a+b)=0.\n\\]\n\nWe now solve by cases.\n\nA useful observation: if none of \\(a,b,c,d\\) equals \\(3,5,7,9\\) respectively, then we must have\n\\[\nb+c=0,\\quad c+d=0,\\quad a+d=0,\\quad a+b=0.\n\\]\nFrom these,\n\\[\nb=-c,\\ d=-c,\\ a=c,\\ a=-b=c,\n\\]\nso \\(a=c\\) and \\(b=d=-a\\). Then \\(c+d=a-a=0\\), forcing \\(b=5\\) or \\(a=0\\); similarly from the other equations one gets inconsistency unless \\(a=0\\), giving\n\\[\n(a,b,c,d)=(0,0,0,0).\n\\]\nIndeed \\((0,0,0,0)\\) works.\n\nNow consider cases where some variable equals its special value.\n\nBecause each equation is of the form \\((x-\\text{const})(\\text{sum})=0\\), one easy family comes from making all the sums zero:\n\\[\nb+c=0,\\quad c+d=0,\\quad a+d=0,\\quad a+b=0.\n\\]\nThis gives \\(a=c,\\ b=d=-a\\), i.e.\n\\[\n(a,b,c,d)=(t,-t,t,-t).\n\\]\nSubstitute into the second equation:\n\\[\nbc+bd=t(-t)+(-t)(-t)=0,\\qquad 5(c+d)=0,\n\\]\nso it always works only when the factored form is satisfied. Checking the first gives\n\\[\n(a-3)(b+c)=0\n\\]\nautomatically, and similarly all four, so actually every \\((t,-t,t,-t)\\) with all sums zero must also satisfy all original equations. But \\(c+d=t-t=0\\), \\(a+d=t-t=0\\), etc., so indeed all equations hold. Thus one family is\n\\[\n(t,-t,t,-t)\\quad (t\\in\\mathbb R).\n\\]\n\nNow we find any additional solutions where some factor vanishes by taking \\(a=3\\), \\(b=5\\), \\(c=7\\), \\(d=9\\) in combinations.\n\nIf \\(a=3\\), then the remaining equations are\n\\[\n(b-5)(c+d)=0,\\quad (c-7)(d+3)=0,\\quad (d-9)(b+3)=0.\n\\]\nSystematically checking possibilities:\n\n- If \\(c+d=0\\), \\(d=-c\\). Then from \\((c-7)(3+d)=0\\) and \\((d-9)(b+3)=0\\):\n  - \\(c=7\\Rightarrow d=-7\\), and then \\((-16)(b+3)=0\\Rightarrow b=-3\\). So \\((3,-3,7,-7)\\).\n  - \\(d=-3\\Rightarrow c=3\\), and then \\((-12)(b+3)=0\\Rightarrow b=-3\\). So \\((3,-3,3,-3)\\).\n\n- If \\(b=5\\), then\n  \\[\n  (c-7)(d+3)=0,\\quad (d-9)(8)=0,\n  \\]\n  so \\(d=9\\), and then \\((c-7)(12)=0\\Rightarrow c=7\\). So \\((3,5,7,9)\\).\n\nThese are all with \\(a=3\\).\n\nBy symmetry of the same cyclic structure, the only solutions obtained are\n\\[\n(0,0,0,0),\\quad (3,-3,3,-3),\\quad (3,-3,7,-7),\\quad (3,5,7,9).\n\\]\n\nNow verify:\n- \\((0,0,0,0)\\): obvious.\n- \\((3,-3,3,-3)\\): each side is \\(0\\).\n- \\((3,-3,7,-7)\\):\n\\[\nab+ac=3(-3)+3(7)=12=3(-3)+3(7),\n\\]\n\\[\nbc+bd=(-3)(7)+(-3)(-7)=0=5(7-7),\n\\]\n\\[\nac+cd=3\\cdot7+7(-7)= -28=7(3-7),\n\\]\n\\[\nad+bd=3(-7)+(-3)(-7)=0=9(3-3).\n\\]\n- \\((3,5,7,9)\\): obvious since\n\\[\na=3,\\ b=5,\\ c=7,\\ d=9.\n\\]\n\nHence all solutions are exactly these four quadruples.\n\nFinal answer: \\((a,b,c,d)=(0,0,0,0),\\ (3,-3,3,-3),\\ (3,-3,7,-7),\\ (3,5,7,9)\\)",
+  "usage": {
+    "input_tokens": 135,
+    "output_tokens": 1189,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 15.295238488935865,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "\\((a,b,c,d)=(0,0,0,0),\\ (3,-3,3,-3),\\ (3,-3,7,-7),\\ (3,5,7,9)\\)"
+  }
+}

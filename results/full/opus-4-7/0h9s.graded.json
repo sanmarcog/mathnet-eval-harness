@@ -1,0 +1,24 @@
+{
+  "id": "0h9s",
+  "country": "Ukraine",
+  "competition": "58th Ukrainian National Mathematical Olympiad",
+  "gold_final_answer": "5, 6, 8",
+  "topics_flat": [
+    "Discrete Mathematics > Graph Theory"
+  ],
+  "prompt": "There are several gentlemen in the club.\nEvery two are either friends, or enemies. It is known that each of the gentlemen has exactly $4$ enemies. In addition, for each of them, the enemy of his friend is his enemy. How many gentlemen can be present at the club?",
+  "model": "claude-opus-4-7",
+  "response_text": "Friends form equivalence classes (groups), enemies between groups. Each person has 4 enemies = total outside their group. So n - |group| = 4, meaning all groups have same size k, and n-k=4.\n\nGroup sizes equal, say k, number of groups m, n=mk, and k(m-1)=... wait, enemies = n-k = 4, so n = k+4.\n\nAlso need consistency: m groups each of size k, n=mk=k+4, so k(m-1)=4.\n\nPossibilities: k=1,m=5,n=5; k=2,m=3,n=6; k=4,m=2,n=8.\n\nFinal answer: 5, 6, or 8",
+  "usage": {
+    "input_tokens": 153,
+    "output_tokens": 216,
+    "thinking_tokens": 0
+  },
+  "latency_s": 4.166575637995265,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "5, 6, or 8"
+  }
+}

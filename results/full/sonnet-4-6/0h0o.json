@@ -1,0 +1,20 @@
+{
+  "id": "0h0o",
+  "country": "Ukraine",
+  "competition": "51st Ukrainian National Mathematical Olympiad, 3rd Round",
+  "gold_final_answer": "20",
+  "topics_flat": [
+    "Algebra > Prealgebra / Basic Algebra > Fractions",
+    "Number Theory > Divisibility / Factorization"
+  ],
+  "prompt": "Olesya wrote down a natural number $N$. After this, Andriy wrote down one sixth, one fifth, one fourth, one third and a half of $N$. It turns out that the sum of all numbers that are written is integer. What is the least possible number that Olesya could write?",
+  "model": "claude-sonnet-4-6",
+  "response_text": "We need N + N/6 + N/5 + N/4 + N/3 + N/2 to be an integer.\n\nN(1 + 1/6 + 1/5 + 1/4 + 1/3 + 1/2) = N · (60 + 10 + 12 + 15 + 20 + 30)/60 = N · 147/60 = N · 49/20\n\nFor N · 49/20 to be an integer, since gcd(49, 20) = 1, we need 20 | N.\n\nBut we also need each of N/6, N/5, N/4, N/3, N/2 to be... wait, the problem says \"the sum of all numbers that are written is integer.\" It doesn't say each fraction individually is an integer.\n\nSo we just need N · 49/20 to be an integer, which requires 20 | N.\n\nThe least natural number is N = 20.\n\nLet me verify: 20 + 20/6 + 20/5 + 20/4 + 20/3 + 20/2 = 20 + 10/3 + 4 + 5 + 20/3 + 10 = 39 + 30/3 = 39 + 10 = 49. ✓\n\nFinal answer: 20",
+  "usage": {
+    "input_tokens": 115,
+    "output_tokens": 340,
+    "thinking_tokens": 0
+  },
+  "latency_s": 4.24107156007085,
+  "cached": false
+}

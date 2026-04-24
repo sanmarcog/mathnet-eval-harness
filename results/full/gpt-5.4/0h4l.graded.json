@@ -1,0 +1,24 @@
+{
+  "id": "0h4l",
+  "country": "Ukraine",
+  "competition": "Ukrainian National Mathematical Olympiad",
+  "gold_final_answer": "2013 or 2021",
+  "topics_flat": [
+    "Algebra > Intermediate Algebra > Quadratic functions"
+  ],
+  "prompt": "Find all values of the parameter $a$ such that the parabolas $y = x^2 + 2013x + a$ and $y = -x^2 + ax + 2013$ are tangent to each other.",
+  "model": "gpt-5.4",
+  "response_text": "For the two parabolas to be tangent to each other, they must have a common point where their slopes are equal.\n\nLet\n\\[\nf(x)=x^2+2013x+a,\\qquad g(x)=-x^2+ax+2013.\n\\]\n\nWe need some \\(x\\) such that:\n\n1. \\(f(x)=g(x)\\)\n2. \\(f'(x)=g'(x)\\)\n\n## 1) Equal slopes\n\\[\nf'(x)=2x+2013,\\qquad g'(x)=-2x+a.\n\\]\nSo tangency requires\n\\[\n2x+2013=-2x+a\n\\]\n\\[\n4x=a-2013\n\\]\n\\[\nx=\\frac{a-2013}{4}.\n\\]\n\n## 2) Equal values\nSet the equations equal:\n\\[\nx^2+2013x+a=-x^2+ax+2013\n\\]\n\\[\n2x^2+(2013-a)x+(a-2013)=0.\n\\]\n\nSubstitute \\(x=\\frac{a-2013}{4}\\). Let\n\\[\nd=a-2013.\n\\]\nThen \\(x=\\frac d4\\), and the equation becomes\n\\[\n2\\left(\\frac d4\\right)^2+(2013-a)\\left(\\frac d4\\right)+(a-2013)=0.\n\\]\nSince \\(2013-a=-d\\), this is\n\\[\n2\\cdot \\frac{d^2}{16}-d\\cdot \\frac d4+d=0\n\\]\n\\[\n\\frac{d^2}{8}-\\frac{d^2}{4}+d=0\n\\]\n\\[\n-\\frac{d^2}{8}+d=0\n\\]\n\\[\nd\\left(1-\\frac d8\\right)=0.\n\\]\nHence\n\\[\nd=0 \\quad \\text{or} \\quad d=8.\n\\]\nSo\n\\[\na-2013=0 \\quad \\text{or} \\quad a-2013=8,\n\\]\ngiving\n\\[\na=2013 \\quad \\text{or} \\quad a=2021.\n\\]\n\nFinal answer: \\(\\boxed{2013,\\ 2021}\\)",
+  "usage": {
+    "input_tokens": 98,
+    "output_tokens": 492,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 9.01730524096638,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "2013,\\ 2021"
+  }
+}

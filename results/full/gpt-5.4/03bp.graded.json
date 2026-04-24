@@ -1,0 +1,25 @@
+{
+  "id": "03bp",
+  "country": "Bulgaria",
+  "competition": "Team selection test for the 54th IMO",
+  "gold_final_answer": "(mn+mr+2r)(n-r)",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Pigeonhole principle",
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments"
+  ],
+  "prompt": "Let $m$, $n$ and $r$ be positive integers with $n \\ge 2$ and $1 \\le r \\le n-1$. Consider a square table of size $(mn+r) \\times (mn+r)$. The table is covered by squares of size $n \\times n$ with sides parallel to the sides of the table. Each unit square is covered at least once and some unit squares are covered multiple times. Find the minimum possible number of unit squares covered at least two times.",
+  "model": "gpt-5.4",
+  "response_text": "Partition the big square into the obvious \\(m\\times m\\) grid of \\(n\\times n\\) blocks, with a remaining strip of width \\(r\\) on the right, a strip of width \\(r\\) on the bottom, and an \\(r\\times r\\) corner.\n\nWe want to cover the \\((mn+r)\\times(mn+r)\\) board by \\(n\\times n\\) squares and minimize the area covered at least twice.\n\n## 1. A construction\n\nFirst place \\(m^2\\) disjoint \\(n\\times n\\) squares covering the top-left \\(mn\\times mn\\) part exactly.\n\nIt remains to cover:\n\n- the right strip of size \\(mn\\times r\\),\n- the bottom strip of size \\(r\\times mn\\),\n- the corner \\(r\\times r\\).\n\nTo cover the right strip, in each of the \\(m\\) block-rows place one more \\(n\\times n\\) square shifted to the right edge. Each such square covers an \\(n\\times r\\) part of the strip, but also overlaps the already covered part in an \\(n\\times (n-r)\\) rectangle. So this contributes\n\\[\nm\\cdot n(n-r)\n\\]\ndoubly covered unit squares.\n\nSimilarly, to cover the bottom strip, use \\(m\\) more squares, contributing another\n\\[\nm\\cdot n(n-r).\n\\]\n\nFinally, cover the bottom-right corner \\(r\\times r\\) by one \\(n\\times n\\) square in the corner. This square overlaps previously covered cells in two rectangles:\n- \\((n-r)\\times n\\) with the square above/beside,\n- \\(n\\times (n-r)\\),\nwhile their intersection \\((n-r)\\times(n-r)\\) was counted twice, so the *new* doubly covered area added is\n\\[\nn^2-r^2.\n\\]\n\nThus total doubly covered area is\n\\[\n2mn(n-r)+(n^2-r^2)=(n-r)(2mn+n+r).\n\\]\n\n## 2. Why this is minimal\n\nLook at the \\(m\\) horizontal strips of height \\(n\\) that lie in the first \\(mn\\) rows. In each such strip, the rightmost \\(r\\) columns must be covered. Any \\(n\\times n\\) square covering cells there must extend at least \\(n-r\\) columns into the already covered \\(mn\\times mn\\) part. Hence in each strip, at least \\(n(n-r)\\) unit squares must be covered twice. Over all \\(m\\) strips, this gives at least\n\\[\nm n(n-r).\n\\]\n\nSimilarly, from the bottom strip of height \\(r\\), considering the \\(m\\) vertical \\(n\\)-blocks, we get another necessary\n\\[\nm n(n-r).\n\\]\n\nNow consider the bottom-right \\(r\\times r\\) corner. Any \\(n\\times n\\) square covering it must extend \\(n-r\\) rows upward and \\(n-r\\) columns leftward, so besides the corner itself it covers at least\n\\[\nn^2-r^2\n\\]\ncells outside the corner, all of which are already forced to be covered by other squares. Hence these are also doubly covered.\n\nTherefore any covering has at least\n\\[\n2mn(n-r)+(n^2-r^2)\n\\]\nunit squares covered at least twice.\n\nSince the construction attains this bound, the minimum is exactly\n\\[\n2mn(n-r)+(n^2-r^2)=(n-r)(2mn+n+r).\n\\]\n\nFinal answer: \\((n-r)(2mn+n+r)\\)",
+  "usage": {
+    "input_tokens": 154,
+    "output_tokens": 785,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 13.557167683029547,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "\\((n-r)(2mn+n+r)\\)"
+  }
+}

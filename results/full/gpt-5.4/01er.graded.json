@@ -1,0 +1,26 @@
+{
+  "id": "01er",
+  "country": "Baltic Way",
+  "competition": "Baltic Way shortlist",
+  "gold_final_answer": "0",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization",
+    "Number Theory > Modular Arithmetic",
+    "Discrete Mathematics > Combinatorics > Pigeonhole principle"
+  ],
+  "prompt": "Let's say that a digit is *eternal* for a positive integer $n$, if it is contained in every multiple of $n$. Find all digits which are eternal for at least one positive integer.",
+  "model": "gpt-5.4",
+  "response_text": "Let \\(d\\in\\{0,1,2,\\dots,9\\}\\). We call \\(d\\) **eternal** for a positive integer \\(n\\) if **every** positive multiple of \\(n\\) contains the digit \\(d\\) somewhere in its decimal representation.\n\nWe must determine which digits are eternal for at least one \\(n\\).\n\n---\n\n## Claim\nThe only such digit is \\(\\boxed{0}\\).\n\nSo we must show:\n\n1. \\(0\\) is eternal for some \\(n\\).\n2. No digit \\(1,2,\\dots,9\\) can be eternal for any \\(n\\).\n\n---\n\n## 1. The digit \\(0\\) is eternal for some \\(n\\)\n\nTake \\(n=10\\). Every positive multiple of \\(10\\) ends in \\(0\\), so every multiple contains the digit \\(0\\).\n\nThus \\(0\\) is eternal.\n\n---\n\n## 2. No nonzero digit can be eternal\n\nFix a digit \\(d\\in\\{1,2,\\dots,9\\}\\), and let \\(n\\) be any positive integer. We will produce a multiple of \\(n\\) whose decimal expansion does **not** contain \\(d\\).\n\nThe idea is to build a number using only two allowed digits, chosen to avoid \\(d\\), and force it to be divisible by \\(n\\).\n\n### Step 1: Choose a nonzero digit \\(a\\neq d\\)\nSince \\(d\\neq 0\\), we can choose some digit\n\\[\na\\in\\{1,2,\\dots,9\\}\\setminus\\{d\\}.\n\\]\n\nWe will consider numbers made only of the digits \\(0\\) and \\(a\\). Such numbers certainly avoid the digit \\(d\\).\n\n### Step 2: Use powers of \\(10\\) modulo a suitable modulus\nWrite\n\\[\nn=2^\\alpha 5^\\beta m,\n\\]\nwhere \\(\\gcd(m,10)=1\\). Let\n\\[\nk=\\max(\\alpha,\\beta).\n\\]\nThen it is enough to make a number divisible by \\(10^k m\\), i.e. by \\(n\\).\n\nBecause \\(\\gcd(10,m)=1\\), the powers \\(10^0,10^1,10^2,\\dots\\) are invertible modulo \\(m\\).\n\nConsider the \\(m+1\\) numbers\n\\[\n0,\\ a,\\ a(1+10),\\ a(1+10+10^2),\\ \\dots,\\ a(1+10+\\cdots+10^{m-1}).\n\\]\nReduce them modulo \\(m\\). There are only \\(m\\) residue classes mod \\(m\\), so two of these have the same residue. Subtracting, we get that for some \\(r>s\\),\n\\[\na(10^s+10^{s+1}+\\cdots+10^{r-1})\\equiv 0 \\pmod m.\n\\]\nThus\n\\[\na\\underbrace{11\\cdots 1100\\cdots 0}_{\\text{digits only }a\\text{ and }0}\n\\]\nis divisible by \\(m\\) after scaling by \\(a\\), more concretely the number\n\\[\nN=a(10^s+10^{s+1}+\\cdots+10^{r-1})\n\\]\nis divisible by \\(m\\), and its decimal digits are only \\(a\\) and \\(0\\).\n\nNow multiply by a suitable power of \\(10\\), namely \\(10^k\\). Then\n\\[\n10^kN\n\\]\nis divisible by \\(10^k m\\), hence by \\(n\\), and its decimal representation still uses only the digits \\(a\\) and \\(0\\).\n\nSince \\(a\\neq d\\) and \\(d\\neq 0\\), this multiple contains no digit \\(d\\).\n\nTherefore \\(d\\) is not eternal for \\(n\\).\n\nSince \\(n\\) was arbitrary, no nonzero digit is eternal for any positive integer.\n\n---\n\nHence the only digit eternal for at least one positive integer is\n\nFinal answer: \\(\\boxed{0}\\)",
+  "usage": {
+    "input_tokens": 89,
+    "output_tokens": 892,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 13.669861088041216,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "exact",
+    "predicted": "0"
+  }
+}

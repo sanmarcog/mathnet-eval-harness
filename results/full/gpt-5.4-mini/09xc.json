@@ -1,0 +1,20 @@
+{
+  "id": "09xc",
+  "country": "Netherlands",
+  "competition": "BxMO Team Selection Test",
+  "gold_final_answer": "All permutations of (4/3, 4/3, -5/3) and (5/3, -4/3, -4/3).",
+  "topics_flat": [
+    "Algebra > Prealgebra / Basic Algebra > Simple Equations",
+    "Algebra > Intermediate Algebra > Quadratic functions"
+  ],
+  "prompt": "Determine all triples $(x, y, z)$ of real numbers satisfying:\n$$\n\\begin{aligned}\nx^2 - yz &= |y - z| + 1, \\\\\ny^2 - zx &= |z - x| + 1, \\\\\nz^2 - xy &= |x - y| + 1.\n\\end{aligned}\n$$",
+  "model": "gpt-5.4-mini",
+  "response_text": "We will show that the only real solution is  \n\\[\n(x,y,z)=(1,1,1).\n\\]\n\nLet\n\\[\n\\begin{aligned}\nx^2-yz&=|y-z|+1,\\\\\ny^2-zx&=|z-x|+1,\\\\\nz^2-xy&=|x-y|+1.\n\\end{aligned}\n\\]\n\n### 1) Sum the equations\nAdding them gives\n\\[\nx^2+y^2+z^2-xy-yz-zx\n=|x-y|+|y-z|+|z-x|+3.\n\\]\nNow\n\\[\nx^2+y^2+z^2-xy-yz-zx\n=\\frac12\\big((x-y)^2+(y-z)^2+(z-x)^2\\big)\\ge 0,\n\\]\nso the left side is nonnegative.\n\nAlso, by the triangle inequality,\n\\[\n|x-y|+|y-z|+|z-x|\\ge 0.\n\\]\nHence the right side is at least \\(3\\), so the left side is at least \\(3\\). Therefore\n\\[\nx^2+y^2+z^2-xy-yz-zx \\ge 3.\n\\]\n\n### 2) Use the equations individually\nFrom the first equation,\n\\[\nx^2-yz=|y-z|+1\\ge 1.\n\\]\nSimilarly,\n\\[\ny^2-zx\\ge 1,\\qquad z^2-xy\\ge 1.\n\\]\nAdding these,\n\\[\nx^2+y^2+z^2-xy-yz-zx\\ge 3.\n\\]\n\nBut we can sharpen this by noting that equality in the sum above requires\n\\[\n|x-y|=|y-z|=|z-x|=0,\n\\]\nsince the only way for\n\\[\n\\frac12\\big((x-y)^2+(y-z)^2+(z-x)^2\\big)\n\\]\nto be as small as possible while still matching the structure of the system is when all differences vanish. So\n\\[\nx=y=z.\n\\]\n\nLet \\(x=y=z=t\\). Then each equation becomes\n\\[\nt^2-t^2=|0|+1,\n\\]\nwhich is impossible as written unless we check carefully: substituting \\(x=y=z=t\\) gives\n\\[\nt^2-t^2=1,\n\\]\ni.e. \\(0=1\\), impossible.\n\nSo we need a different route: instead, use the fact that among the equations, if \\(x=y=z\\), then the system cannot hold unless the absolute-value terms contribute differently. Hence we test the natural candidate from the structure \\(x^2-yz=1\\) when all absolute values vanish.\n\nTry \\(x=y=z=1\\):\n\\[\n1^2-1\\cdot1=0\\neq 1,\n\\]\nso this also fails. Let’s look more carefully.\n\n### 3) A better symmetric argument\nSubtract the first two equations:\n\\[\nx^2-y^2-yz+zx = |y-z|-|z-x|.\n\\]\nFactor:\n\\[\n(x-y)(x+y+z)=|y-z|-|z-x|.\n\\]\nSimilarly,\n\\[\n(y-z)(x+y+z)=|z-x|-|x-y|,\n\\]\n\\[\n(z-x)(x+y+z)=|x-y|-|y-z|.\n\\]\nAdding these three identities gives \\(0=0\\), but comparing them shows that if \\(s=x+y+z\\neq 0\\), then the signs of \\(x-y,y-z,z-x\\) must align with the differences of absolute values. This forces a cyclic ordering, which is impossible unless all differences are zero. Hence\n\\[\nx=y=z=t.\n\\]\n\nThen the original equations reduce to\n\\[\nt^2-t^2=1,\n\\]\na contradiction.\n\nSo there are **no real solutions**.\n\nBut we must check consistency carefully: if \\(x=y=z\\), then indeed the system gives \\(0=1\\), impossible. Therefore the system has no real triple at all.\n\nThus the solution set is empty.\n\nFinal answer: No real solutions.",
+  "usage": {
+    "input_tokens": 125,
+    "output_tokens": 912,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 6.546221768017858,
+  "cached": false
+}

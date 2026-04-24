@@ -1,0 +1,20 @@
+{
+  "id": "0cfe",
+  "country": "Romania",
+  "competition": "74th NMO Shortlisted Problems",
+  "gold_final_answer": "No solutions",
+  "topics_flat": [
+    "Number Theory > Modular Arithmetic",
+    "Number Theory > Divisibility / Factorization"
+  ],
+  "prompt": "Find all the positive integers $m$ and $n$ so that $n = 3^m + s(n) + 35$, where $s(n)$ is the sum of the digits of $n$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "We are given\n\\[\nn=3^m+s(n)+35,\n\\]\nwhere \\(s(n)\\) is the sum of the decimal digits of \\(n\\).\n\nLet\n\\[\nd=s(n).\n\\]\nThen the equation becomes\n\\[\nn=3^m+d+35.\n\\]\nTaking digit sums of both sides is the key. Since \\(n\\) is a positive integer, we have the standard bound\n\\[\ns(n)\\le n.\n\\]\nMore importantly, because \\(n=3^m+d+35\\), the number \\(n\\) is only slightly larger than \\(3^m\\), so \\(s(n)\\) cannot be too large.\n\nWe now test small values of \\(m\\), and then eliminate all larger ones.\n\n### Step 1: Small \\(m\\)\n\n- \\(m=1\\): \\(3^m=3\\), so\n  \\[\n  n=3+d+35=38+d.\n  \\]\n  Then \\(d=s(n)=s(38+d)\\). Checking \\(d\\in\\{1,2,\\dots\\}\\), no value works.\n\n- \\(m=2\\): \\(3^m=9\\), so\n  \\[\n  n=44+d.\n  \\]\n  Then \\(d=s(n)=s(44+d)\\). Again, no solution.\n\n- \\(m=3\\): \\(3^m=27\\), so\n  \\[\n  n=62+d.\n  \\]\n  Then \\(d=s(n)=s(62+d)\\). No solution.\n\n- \\(m=4\\): \\(3^m=81\\), so\n  \\[\n  n=116+d.\n  \\]\n  Then \\(d=s(n)=s(116+d)\\). No solution.\n\nNow we show no larger \\(m\\) work.\n\n### Step 2: Eliminate \\(m\\ge 5\\)\n\nFor \\(m\\ge 5\\), we have \\(3^m\\ge 243\\), so \\(n=3^m+d+35\\) is at least 278. Also, \\(s(n)\\) is at most a few times the number of digits of \\(n\\), hence much smaller than \\(3^m\\). In particular, the equality\n\\[\nd=s(3^m+d+35)\n\\]\nwould force \\(d\\) to be very small compared to \\(3^m\\), but then the right-hand side changes only slightly with \\(d\\), and a direct modular check shows no fixed point exists.\n\nA cleaner way is to use the fact that\n\\[\ns(x)\\equiv x \\pmod 9.\n\\]\nApplying this to the equation \\(n=3^m+s(n)+35\\), we get\n\\[\nn\\equiv 3^m+s(n)+35 \\pmod 9.\n\\]\nBut \\(s(n)\\equiv n\\pmod 9\\), so\n\\[\nn\\equiv 3^m+n+35 \\pmod 9,\n\\]\nhence\n\\[\n3^m+35\\equiv 0\\pmod 9.\n\\]\nNow \\(3^m\\equiv 0\\pmod 9\\) for \\(m\\ge 2\\), so this gives\n\\[\n35\\equiv 0\\pmod 9,\n\\]\nwhich is false since \\(35\\equiv 8\\pmod 9\\).\n\nTherefore no \\(m\\ge 2\\) can work.\n\nChecking \\(m=1\\) separately also fails, so there are no solutions.\n\nFinal answer: There are no positive integers \\(m,n\\) satisfying the equation.",
+  "usage": {
+    "input_tokens": 92,
+    "output_tokens": 782,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 5.095668965019286,
+  "cached": false
+}

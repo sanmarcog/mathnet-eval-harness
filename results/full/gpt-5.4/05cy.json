@@ -1,0 +1,20 @@
+{
+  "id": "05cy",
+  "country": "Estonia",
+  "competition": "Estonian Mathematical Olympiad",
+  "gold_final_answer": "(184, 88)",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Least common multiples (lcm)",
+    "Number Theory > Divisibility / Factorization > Factorization techniques"
+  ],
+  "prompt": "Determine all pairs $(m, n)$ of natural numbers that satisfy $m - n = 96$ and $\\text{lcm}(m, n) = 2024$.",
+  "model": "gpt-5.4",
+  "response_text": "Let\n\\[\nm-n=96,\\qquad \\operatorname{lcm}(m,n)=2024.\n\\]\n\nWe seek all natural-number pairs \\((m,n)\\).\n\n## Step 1: Factor the lcm\n\\[\n2024=2^3\\cdot 11\\cdot 23.\n\\]\n\nSince \\(\\operatorname{lcm}(m,n)=2024\\), both \\(m\\) and \\(n\\) must be divisors of \\(2024\\).\n\nAlso,\n\\[\nm=n+96.\n\\]\nSo both \\(n\\) and \\(n+96\\) must divide \\(2024\\).\n\n## Step 2: Use gcd/lcm structure\nLet\n\\[\nm=ga,\\quad n=gb,\\quad \\gcd(a,b)=1.\n\\]\nThen\n\\[\n\\operatorname{lcm}(m,n)=gab=2024,\n\\]\nand\n\\[\nm-n=g(a-b)=96.\n\\]\nSo \\(g\\mid 96\\) and also \\(g\\mid 2024\\). Hence\n\\[\ng\\mid \\gcd(96,2024).\n\\]\nNow\n\\[\n96=2^5\\cdot 3,\\qquad 2024=2^3\\cdot 11\\cdot 23,\n\\]\nso\n\\[\n\\gcd(96,2024)=8.\n\\]\nThus\n\\[\ng\\in\\{1,2,4,8\\}.\n\\]\n\nSince \\(gab=2024\\),\n\\[\nab=\\frac{2024}{g}.\n\\]\nAnd since \\(g(a-b)=96\\),\n\\[\na-b=\\frac{96}{g}.\n\\]\n\nWe test the four possibilities.\n\n### Case 1: \\(g=1\\)\nThen\n\\[\nab=2024,\\quad a-b=96.\n\\]\nSo \\(b(b+96)=2024\\), i.e.\n\\[\nb^2+96b-2024=0.\n\\]\nDiscriminant:\n\\[\n96^2+4\\cdot 2024=9216+8096=17312,\n\\]\nnot a perfect square. No solution.\n\n### Case 2: \\(g=2\\)\nThen\n\\[\nab=1012,\\quad a-b=48.\n\\]\nSo \\(b(b+48)=1012\\), i.e.\n\\[\nb^2+48b-1012=0.\n\\]\nDiscriminant:\n\\[\n48^2+4\\cdot 1012=2304+4048=6352,\n\\]\nnot a perfect square. No solution.\n\n### Case 3: \\(g=4\\)\nThen\n\\[\nab=506,\\quad a-b=24.\n\\]\nSo \\(b(b+24)=506\\), i.e.\n\\[\nb^2+24b-506=0.\n\\]\nDiscriminant:\n\\[\n24^2+4\\cdot 506=576+2024=2600,\n\\]\nnot a perfect square. No solution.\n\n### Case 4: \\(g=8\\)\nThen\n\\[\nab=253,\\quad a-b=12.\n\\]\nSince \\(253=11\\cdot 23\\), and \\(\\gcd(a,b)=1\\), the only possible positive coprime factor pairs are\n\\[\n(a,b)=(253,1),\\ (23,11)\n\\]\n(up to order). Their differences are \\(252\\) and \\(12\\), respectively. Thus\n\\[\n(a,b)=(23,11).\n\\]\nHence\n\\[\nm=ga=8\\cdot 23=184,\\qquad n=gb=8\\cdot 11=88.\n\\]\n\nCheck:\n\\[\n184-88=96,\n\\]\nand\n\\[\n184=2^3\\cdot 23,\\qquad 88=2^3\\cdot 11,\n\\]\nso\n\\[\n\\operatorname{lcm}(184,88)=2^3\\cdot 11\\cdot 23=2024.\n\\]\n\nTherefore the only pair is\n\nFinal answer: \\((184,88)\\)",
+  "usage": {
+    "input_tokens": 85,
+    "output_tokens": 889,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 14.1125332970405,
+  "cached": false
+}

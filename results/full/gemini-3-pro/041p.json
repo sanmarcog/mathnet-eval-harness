@@ -1,0 +1,20 @@
+{
+  "id": "041p",
+  "country": "China",
+  "competition": "China Mathematical Olympiad",
+  "gold_final_answer": "(0, 1/2)",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities",
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments"
+  ],
+  "prompt": "Find all positive real numbers $t$ with the following property: there exists an infinite set $X$ of real numbers such that the inequality\n$$\n\\max\\{|x-(a-d)|, |y-a|, |z-(a+d)|\\} > td\n$$\nholds for all (not necessarily distinct) $x, y, z \\in X$, all real numbers $a$ and all positive real numbers $d$.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find all positive real numbers $t$ satisfying the given property, we analyze the condition $\\max\\{|x-(a-d)|, |y-a|, |z-(a+d)|\\} > td$. \nThis inequality means that there are no $a \\in \\mathbb{R}$ and $d > 0$ such that the following three inequalities hold simultaneously:\n1. $a - d(1+t) \\le x \\le a - d(1-t)$\n2. $a - dt \\le y \\le a + dt$\n3. $a + d(1-t) \\le z \\le a + d(1+t)$\n\nBy eliminating $a$, these inequalities require that for $x, y, z \\in X$, there must exist a $d > 0$ such that:\n$d(1-2t) \\le y - x \\le d(1+2t)$\n$d(1-2t) \\le z - y \\le d(1+2t)$\n$2d(1-t) \\le z - x \\le 2d(1+t)$\n\nIf $t \\ge 1/2$, then $1-2t \\le 0$. For any infinite set $X$, we can always choose three distinct elements such that $x < y < z$. Then $y-x > 0$ and $z-y > 0$, so the lower bounds involving $1-2t$ are trivially satisfied (as they are $\\le 0$). We can simply choose $d = z - x$. It is easy to verify that for $t \\ge 1/2$, this choice of $d$ (or a sufficiently large $d$) will always satisfy the upper bounds and the third inequality. Thus, for $t \\ge 1/2$, no such set $X$ can exist.\n\nIf $t < 1/2$, then $1-2t > 0$. The conditions imply that $x < y < z$ must hold for any valid $d > 0$ (otherwise $y-x \\le 0$ or $z-y \\le 0$, which contradicts $d(1-2t) > 0$). \nFor $x < y < z$, the existence of $d$ requires that the intervals for $d$:\n$\\left[ \\frac{y-x}{1+2t}, \\frac{y-x}{1-2t} \\right]$ and $\\left[ \\frac{z-y}{1+2t}, \\frac{z-y}{1-2t} \\right]$\nmust intersect. \nWe can prevent these intervals from intersecting for all triplets in $X$ by constructing a sequence that grows sufficiently fast. Let $X = \\{R^n \\mid n \\in \\mathbb{N}\\}$. For any $x_i < x_j < x_k$ in $X$, the ratio of the differences is:\n$\\frac{x_k - x_j}{x_j - x_i} \\ge \\frac{R^{j+1} - R^j}{R^j} = R - 1$\nIf we choose $R > 1 + \\frac{1+2t}{1-2t}$, then $\\frac{x_k - x_j}{x_j - x_i} > \\frac{1+2t}{1-2t}$. \nThis guarantees that the maximum possible value of the first interval for $d$ is strictly less than the minimum possible value of the second interval. Hence, no such $d > 0$ can exist for any $x, y, z \\in X$. \n\nTherefore, such a set $X$ exists if and only if $t < 1/2$.\n\nFinal answer: t < 1/2",
+  "usage": {
+    "input_tokens": 131,
+    "output_tokens": 834,
+    "thoughts_tokens": 6305
+  },
+  "latency_s": 53.61211856396403,
+  "cached": false
+}

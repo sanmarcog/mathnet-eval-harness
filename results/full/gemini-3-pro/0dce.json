@@ -1,0 +1,20 @@
+{
+  "id": "0dce",
+  "country": "Saudi Arabia",
+  "competition": "SAUDI ARABIAN MATHEMATICAL COMPETITIONS",
+  "gold_final_answer": "If n is even: P(x) = x^m for some positive integer m. If n is odd: P(x) = ± x^m for some positive integer m.",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Polynomial operations",
+    "Algebra > Algebraic Expressions > Functional Equations"
+  ],
+  "prompt": "Let be given a positive integer $n > 1$. Find all polynomials $P(x)$ non constant, with real coefficients such that\n$$\nP(x) P\\left(x^{2}\\right) \\ldots P\\left(x^{n}\\right) = P\\left(x^{\\frac{n(n+1)}{2}}\\right)\n$$\nfor all $x \\in \\mathbb{R}$.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find all non-constant polynomials $P(x)$ with real coefficients satisfying the given equation:\n$$ P(x) P\\left(x^{2}\\right) \\ldots P\\left(x^{n}\\right) = P\\left(x^{\\frac{n(n+1)}{2}}\\right) $$\n\nLet $P(x) = x^k Q(x)$, where $k \\ge 0$ is an integer and $Q(x)$ is a polynomial such that $Q(0) = c \\neq 0$. \nSubstituting this into the given equation, we get:\n$$ x^k Q(x) \\cdot x^{2k} Q(x^2) \\cdots x^{nk} Q(x^n) = \\left(x^{\\frac{n(n+1)}{2}}\\right)^k Q\\left(x^{\\frac{n(n+1)}{2}}\\right) $$\nSince $1 + 2 + \\dots + n = \\frac{n(n+1)}{2}$, the powers of $x$ on both sides cancel out perfectly, leaving:\n$$ Q(x) Q(x^2) \\ldots Q(x^n) = Q\\left(x^{\\frac{n(n+1)}{2}}\\right) $$\n\nAssume for the sake of contradiction that $Q(x)$ is not a constant polynomial. Then we can write $Q(x) = c + a x^m + \\dots$, where $a \\neq 0$ and $m \\ge 1$ is the degree of the lowest non-constant term.\nExpanding the left side, we have:\n$$ (c + a x^m + \\dots)(c + a x^{2m} + \\dots) \\cdots (c + a x^{nm} + \\dots) = c^n + c^{n-1} a x^m + \\dots $$\nThe lowest degree non-constant term on the left side is $c^{n-1} a x^m$.\nOn the right side, we have:\n$$ Q\\left(x^{\\frac{n(n+1)}{2}}\\right) = c + a x^{m \\frac{n(n+1)}{2}} + \\dots $$\nSince $n > 1$, we have $\\frac{n(n+1)}{2} \\ge 3 > 1$, meaning the lowest degree non-constant term on the right side has a degree strictly greater than $m$. \nFor the two sides to be equal, the coefficient of $x^m$ on the left side must be zero, so $c^{n-1} a = 0$. Since $c \\neq 0$ and $a \\neq 0$, this is a contradiction. \n\nThus, $Q(x)$ must be a constant polynomial, $Q(x) = c$. \nSubstituting this back into the equation for $Q$, we get:\n$$ c^n = c \\implies c(c^{n-1} - 1) = 0 $$\nSince $c \\neq 0$, we must have $c^{n-1} = 1$. Because $P(x)$ has real coefficients, $c$ must be real. \n- If $n$ is even, $n-1$ is odd, so the only real solution is $c = 1$.\n- If $n$ is odd, $n-1$ is even, so the real solutions are $c = 1$ and $c = -1$.\n\nTherefore, $P(x) = c x^k$. Since $P(x)$ is non-constant, we must have $k \\ge 1$.\n\nFinal answer: P(x) = c x^k \\text{ where } k \\ge 1 \\text{ is an integer, and } c \\in \\mathbb{R} \\text{ satisfies } c^{n-1} = 1",
+  "usage": {
+    "input_tokens": 129,
+    "output_tokens": 856,
+    "thoughts_tokens": 3312
+  },
+  "latency_s": 33.31983420008328,
+  "cached": false
+}

@@ -1,0 +1,21 @@
+{
+  "id": "0dt8",
+  "country": "Singapore",
+  "competition": "Singapore Mathematical Olympiad (SMO)",
+  "gold_final_answer": "{13,53}, {19,47}, {23,43}, {29,37}",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Prime numbers",
+    "Number Theory > Divisibility / Factorization > Greatest common divisors (gcd)",
+    "Number Theory > Divisibility / Factorization > Factorization techniques"
+  ],
+  "prompt": "Two distinct 2-digit prime numbers $p$, $q$ can be written one after the other in 2 different ways to form two 4-digit numbers. For example, $11$ and $13$ yield $1113$ and $1311$. If the two 4-digit numbers formed are both divisible by the average value of $p$ and $q$, find all possible pairs \\{$p, q$\\}.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Setting Up the Problem\n\nLet p and q be two distinct 2-digit primes. Writing them one after the other gives:\n- pq = 100p + q\n- qp = 100q + p\n\nThe average of p and q is (p+q)/2. For this to divide both numbers, (p+q)/2 must be an integer, so p+q must be even, meaning p and q are both odd (since they're both 2-digit primes, neither is 2, so they're both odd — this is automatic).\n\nLet m = (p+q)/2. We need m | (100p + q) and m | (100q + p).\n\n## Finding Divisibility Conditions\n\nSince m | (100p + q) and m | (100q + p), m divides their sum and difference.\n\n**Sum:** (100p + q) + (100q + p) = 101(p + q) = 101 · 2m\nSo m | 202m ✓ (automatically satisfied)\n\n**Difference:** (100p + q) - (100q + p) = 99(p - q)\nSo m | 99(p - q).\n\nAlso, m | (100p + q). Since p + q = 2m, we have q = 2m - p.\nSo 100p + q = 100p + 2m - p = 99p + 2m.\nThus m | 99p.\n\nSimilarly, m | 99q.\n\nSince m | 99p and m | 99q, and m = (p+q)/2:\n\n**m | 99p:** Let d = gcd(m, p). Write m = d·m', p = d·p' with gcd(m', p') = 1.\nThen m | 99p means d·m' | 99·d·p', so m' | 99.\n\nSimilarly m' | 99 from the condition on q.\n\nSo m/(gcd(m,p)) divides 99, meaning m | 99·gcd(m,p).\n\n## Systematic Approach\n\nWe need m | 99p where m = (p+q)/2.\n\nSince gcd(p, m): p is prime. Either p | m or gcd(p,m) = 1.\n\n**Case 1: p ∤ m and q ∤ m**\nThen m | 99. So (p+q)/2 | 99. Divisors of 99: 1,3,9,11,33,99.\nSince p,q are 2-digit primes, p+q ≥ 22, so m ≥ 11.\nPossible m: 11, 33, 99.\n\n- m = 11: p+q = 22. Two 2-digit primes summing to 22: {11,11} — not distinct. No solution.\n- m = 33: p+q = 66. Pairs of distinct 2-digit primes: {13,53}, {19,47}, {23,43}, {29,37}.\n  Check p∤33 and q∤33: 33 = 3·11, so exclude primes 3,11. All pairs above are fine.\n  Verify: m=33 | 99p means 33|99p → 1|3p ✓. So all pairs work!\n- m = 99: p+q = 198. Max sum of two 2-digit primes = 97+89 = 186 < 198. No solution.\n\n**Case 2: p | m** (p is prime and p | (p+q)/2)\nThen p | (p+q)/2 implies p | q/2... wait: 2m = p+q, p|m means p|2m=p+q, so p|q. Since q is prime and p≠q, impossible.\n\nSo only Case 1 applies, giving m = 33.\n\n## Verifying the Pairs for m = 33\n\nCheck {13, 53}: 100(13)+53 = 1353 = 33×41 ✓; 100(53)+13 = 5313 = 33×161 ✓\nCheck {19, 47}: 1947 = 33×59 ✓; 4719 = 33×143 ✓\nCheck {23, 43}: 2343 = 33×71 ✓; 4323 = 33×131 ✓\nCheck {29, 37}: 2937 = 33×89 ✓; 3729 = 33×113 ✓\n\nAll four pairs work!\n\n## Answer\n\nFinal answer: {13, 53}, {19, 47}, {23, 43}, {29, 37}",
+  "usage": {
+    "input_tokens": 143,
+    "output_tokens": 1145,
+    "thinking_tokens": 0
+  },
+  "latency_s": 16.215990820899606,
+  "cached": false
+}

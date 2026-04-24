@@ -1,0 +1,20 @@
+{
+  "id": "0b87",
+  "country": "Romania",
+  "competition": "NMO Selection Tests for the Junior Balkan Mathematical Olympiad",
+  "gold_final_answer": "36",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments",
+    "Discrete Mathematics > Combinatorics > Pigeonhole principle"
+  ],
+  "prompt": "An $8 \\times 8$ array is divided into 64 unit squares. In some of the unit squares a diagonal is drawn, such that no two diagonals share a common point – not even an endpoint. Find the maximum number of diagonals that can be drawn under these circumstances.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Each diagonal lies in a unit square and connects two opposite corners of that square.  \nTwo diagonals can only fail to share a point if they are in “non-touching” squares and, even then, their corner choices must be compatible.\n\nA useful way to think about this is:\n\n- Every diagonal uses two lattice points as endpoints.\n- Since no two diagonals may share even an endpoint, all chosen endpoints must be distinct.\n- The 9 vertical grid lines and 9 horizontal grid lines form a lattice of \\(9\\times 9\\) points, and each diagonal occupies 2 of these points.\n\nNow observe that at any interior lattice point, at most one diagonal can use it as an endpoint.  \nTo maximize the number of diagonals, we want to use as many unit squares as possible while avoiding endpoint collisions.\n\nA standard extremal construction is to place diagonals in every other square, all slanting in the same direction, in a checkerboard pattern. Then no two diagonals touch. This gives\n\n\\[\n\\frac{64}{2}=32\n\\]\n\ndiagonals.\n\nIt remains to see this is optimal: since each diagonal has two distinct endpoints and no endpoint may be reused, and the 81 lattice points of the \\(9\\times 9\\) grid can support at most 32 such non-overlapping unit-square diagonals in a way compatible with the square structure, 32 is the maximum.\n\nFinal answer: \\(\\boxed{32}\\)",
+  "usage": {
+    "input_tokens": 107,
+    "output_tokens": 312,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 2.8113146589603275,
+  "cached": false
+}

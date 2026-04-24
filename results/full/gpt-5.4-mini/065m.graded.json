@@ -1,0 +1,25 @@
+{
+  "id": "065m",
+  "country": "Greece",
+  "competition": "SELECTION EXAMINATION",
+  "gold_final_answer": "(10, 8, 6)",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities > Cauchy-Schwarz",
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities"
+  ],
+  "prompt": "Find all triples of real numbers $(x, y, z)$ which are greater than $3$ and satisfy the equality:\n$$\n\\frac{(x+2)^2}{y+z-2} + \\frac{(y+4)^2}{z+x-4} + \\frac{(z+6)^2}{x+y-6} = 36.\n$$",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let  \n\\[\na=x-3,\\quad b=y-3,\\quad c=z-3,\n\\]\nso \\(a,b,c>0\\). Then\n\\[\nx=a+3,\\ y=b+3,\\ z=c+3.\n\\]\nRewrite the denominators:\n\\[\ny+z-2=(b+3)+(c+3)-2=b+c+4,\n\\]\n\\[\nz+x-4=(c+3)+(a+3)-4=a+c+2,\n\\]\n\\[\nx+y-6=(a+3)+(b+3)-6=a+b.\n\\]\nAlso the numerators become\n\\[\n(x+2)^2=(a+5)^2,\\quad (y+4)^2=(b+7)^2,\\quad (z+6)^2=(c+9)^2.\n\\]\nSo the equation is\n\\[\n\\frac{(a+5)^2}{b+c+4}+\\frac{(b+7)^2}{a+c+2}+\\frac{(c+9)^2}{a+b}=36.\n\\]\n\nNow compare each numerator with a suitable multiple of its denominator:\n\\[\n(a+5)^2 \\ge 4(b+c+4)\\ ? \n\\]\nThis is not directly symmetric, so instead observe that the given constants are tuned for the identity\n\\[\nx+2 = (y+z-2) + (x-y-z+4),\n\\]\netc., but the clean way is to use Cauchy–Schwarz / AM-GM in the form\n\\[\n\\frac{u^2}{p}\\ge 4u-4p \\quad (p>0),\n\\]\nand apply it to each term with the specific choices\n\\[\nu=x+2,\\ p=y+z-2,\\quad\nu=y+4,\\ p=z+x-4,\\quad\nu=z+6,\\ p=x+y-6.\n\\]\nThen\n\\[\n\\frac{(x+2)^2}{y+z-2}\\ge 4(x+2)-4(y+z-2),\n\\]\n\\[\n\\frac{(y+4)^2}{z+x-4}\\ge 4(y+4)-4(z+x-4),\n\\]\n\\[\n\\frac{(z+6)^2}{x+y-6}\\ge 4(z+6)-4(x+y-6).\n\\]\nSumming gives\n\\[\n\\text{LHS}\\ge 4[(x+2)+(y+4)+(z+6)]-4[(y+z-2)+(z+x-4)+(x+y-6)].\n\\]\nThe right-hand side simplifies to\n\\[\n4(x+y+z+12)-4(2x+2y+2z-12)=96-4(x+y+z).\n\\]\nBut since \\(x,y,z>3\\), the only way the sum can equal \\(36\\) is for equality to hold in each AM-GM step, which forces\n\\[\n\\frac{x+2}{y+z-2}=\\frac{y+4}{z+x-4}=\\frac{z+6}{x+y-6}=2.\n\\]\nHence\n\\[\nx+2=2(y+z-2),\\quad y+4=2(z+x-4),\\quad z+6=2(x+y-6).\n\\]\nSolving:\n\\[\nx=2y+2z-6,\\quad y=2z+2x-12,\\quad z=2x+2y-18.\n\\]\nSubtracting suitable equations yields\n\\[\nx-y=2,\\quad y-z=2,\n\\]\nso\n\\[\nx=z+4,\\quad y=z+2.\n\\]\nSubstitute into \\(x+2=2(y+z-2)\\):\n\\[\nz+6=2((z+2)+z-2)=4z,\n\\]\nso \\(z=2\\), contradicting \\(z>3\\).\n\nTherefore no such real triple exists.\n\nFinal answer: There are no real triples \\((x,y,z)\\) with \\(x,y,z>3\\) satisfying the equation.",
+  "usage": {
+    "input_tokens": 128,
+    "output_tokens": 889,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 5.226832996937446,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "There are no real triples \\((x,y,z)\\) with \\(x,y,z>3\\) satisfying the equation."
+  }
+}

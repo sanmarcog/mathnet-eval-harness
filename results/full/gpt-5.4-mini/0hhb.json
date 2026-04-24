@@ -1,0 +1,19 @@
+{
+  "id": "0hhb",
+  "country": "Ukraine",
+  "competition": "62nd Ukrainian National Mathematical Olympiad",
+  "gold_final_answer": "No",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Polynomial operations"
+  ],
+  "prompt": "We call a polynomial *mixed* if it has both positive and negative coefficients (we do not consider zero to be either positive or negative). Is it true that the product of two mixed polynomials is always a mixed polynomial?",
+  "model": "gpt-5.4-mini",
+  "response_text": "No.\n\nA counterexample is\n\\[\nf(x)=1+x-2x^2,\\qquad g(x)=1+x-2x^2.\n\\]\nEach is mixed, since its coefficients are \\(1,1,-2\\), containing both positive and negative terms.\n\nBut\n\\[\nf(x)g(x)=(1+x-2x^2)^2\n=1+2x-3x^2-4x^3+4x^4.\n\\]\nThis product is still mixed, so let’s adjust to get a non-mixed product.\n\nTake instead\n\\[\nf(x)=1+x-2x^2,\\qquad g(x)=1-x+2x^2.\n\\]\nBoth are mixed. Their product is\n\\[\n(1+x-2x^2)(1-x+2x^2)=1-3x^2+4x^4,\n\\]\nwhich is still mixed. So that also does not work.\n\nA correct counterexample is:\n\\[\nf(x)=1+x- x^2,\\qquad g(x)=1+x- x^2.\n\\]\nThen both are mixed, but\n\\[\n(1+x-x^2)^2=1+2x-x^2-2x^3+x^4,\n\\]\nagain mixed.\n\nSo we need a product with all coefficients nonnegative or all nonpositive. Consider\n\\[\nf(x)=1-x,\\qquad g(x)=1-x+x^2.\n\\]\nBoth are mixed, and\n\\[\n(1-x)(1-x+x^2)=1-2x+2x^2-x^3,\n\\]\nstill mixed.\n\nHowever, the statement is in fact **false**, and here is a valid counterexample:\n\\[\nf(x)=1-x+x^2-x^3,\\qquad g(x)=1-x+x^2.\n\\]\nBoth are mixed, but\n\\[\nf(x)g(x)=1-2x+3x^2-4x^3+3x^4-2x^5+x^6,\n\\]\nwhich is mixed again.\n\nSo let me give the actual correct conclusion: **yes, the product of two mixed polynomials can fail to be mixed?** No—this is not enough.\n\nIn fact, the statement is **false** because if we allow zero coefficients to count as neither positive nor negative, we can have mixed polynomials whose product has all coefficients nonnegative?  \nExample:\n\\[\n(1-x)(1-x)=1-2x+x^2\n\\]\nis mixed, not a counterexample.\n\nThus, after checking, the claim is actually **true**: the product of two mixed polynomials is always mixed.\n\nReason: if\n\\[\nf(x)=\\sum a_i x^i,\\qquad g(x)=\\sum b_j x^j\n\\]\neach has at least one positive and one negative coefficient. Let \\(a_r\\) be the first nonzero coefficient of \\(f\\) and \\(b_s\\) the first nonzero coefficient of \\(g\\). Then the lowest-degree nonzero term of \\(fg\\) is \\(a_rb_s x^{r+s}\\), and similarly the highest-degree nonzero term is the product of the highest-degree nonzero coefficients. Since each polynomial has both signs among its coefficients, the product has coefficients of both signs as well.\n\nFinal answer: Yes, the product of two mixed polynomials is always mixed.",
+  "usage": {
+    "input_tokens": 93,
+    "output_tokens": 730,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 4.989124721032567,
+  "cached": false
+}

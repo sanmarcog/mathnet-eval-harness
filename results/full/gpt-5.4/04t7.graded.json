@@ -1,0 +1,26 @@
+{
+  "id": "04t7",
+  "country": "Czech Republic",
+  "competition": "65th Czech and Slovak Mathematical Olympiad",
+  "gold_final_answer": "p + 2 if p ≡ 1 (mod 3); p + 1 if p ≡ 2 (mod 3)",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Prime numbers",
+    "Number Theory > Divisibility / Factorization > Factorization techniques",
+    "Number Theory > Modular Arithmetic"
+  ],
+  "prompt": "Let $p > 3$ be a prime. Find the number of ordered sextuples $(a, b, c, d, e, f)$ of positive integers, whose sum is $3p$, and all the fractions\n$$\n\\frac{a+b}{c+d}, \\quad \\frac{b+c}{d+e}, \\quad \\frac{c+d}{e+f}, \\quad \\frac{d+e}{f+a}, \\quad \\frac{e+f}{a+b}\n$$\nare integers.",
+  "model": "gpt-5.4",
+  "response_text": "Let\n\\[\nx_1=a+b,\\quad x_2=b+c,\\quad x_3=c+d,\\quad x_4=d+e,\\quad x_5=e+f,\\quad x_6=f+a.\n\\]\nThen the conditions say\n\\[\n\\frac{x_1}{x_3},\\ \\frac{x_2}{x_4},\\ \\frac{x_3}{x_5},\\ \\frac{x_4}{x_6},\\ \\frac{x_5}{x_1}\n\\]\nare all positive integers.\n\nAlso,\n\\[\nx_1+x_3+x_5=(a+b)+(c+d)+(e+f)=3p,\n\\]\nand similarly\n\\[\nx_2+x_4+x_6=3p.\n\\]\n\nWe first analyze the divisibility cycle\n\\[\nx_5\\mid x_3\\mid x_1\\mid x_5.\n\\]\nHence\n\\[\nx_1=x_3=x_5.\n\\]\nSince their sum is \\(3p\\), we get\n\\[\nx_1=x_3=x_5=p.\n\\]\n\nLikewise, from\n\\[\nx_6\\mid x_4\\mid x_2\n\\]\nwe only get\n\\[\nx_2=kx_4,\\quad x_4=\\ell x_6\n\\]\nfor some positive integers \\(k,\\ell\\), so\n\\[\nx_2+x_4+x_6=(k\\ell+\\ell+1)x_6=3p.\n\\]\nBecause \\(p>3\\) is prime, \\(3p\\) has divisors \\(1,3,p,3p\\). Also \\(k\\ell+\\ell+1\\ge 3\\). Thus\n\\[\nk\\ell+\\ell+1\\in\\{3,p,3p\\}.\n\\]\n\nBut we also need the original \\(a,b,c,d,e,f\\) to exist. From\n\\[\na+b=x_1,\\ b+c=x_2,\\ c+d=x_3,\\ d+e=x_4,\\ e+f=x_5,\\ f+a=x_6,\n\\]\none gets by solving alternately:\n\\[\na-c=x_1-x_2,\\quad c-e=x_3-x_4,\\quad e-a=x_5-x_6.\n\\]\nAdding gives the necessary condition\n\\[\nx_1+x_3+x_5=x_2+x_4+x_6.\n\\]\nThis already holds (= \\(3p\\)). Then all solutions are given by one free parameter, and positivity must be checked.\n\nSince \\(x_1=x_3=x_5=p\\), solve explicitly:\n\\[\na+b=p,\\quad c+d=p,\\quad e+f=p.\n\\]\nAlso\n\\[\nb+c=x_2,\\quad d+e=x_4,\\quad f+a=x_6.\n\\]\nFrom the linear system,\n\\[\na=c+ (p-x_2),\\qquad e=c+(x_4-p),\\qquad a=e+(x_6-p).\n\\]\nThis is consistent exactly because \\(x_2+x_4+x_6=3p\\).\n\nA cleaner formula comes from expressing everything in terms of \\(b\\):\n\\[\na=p-b,\\quad c=x_2-b,\\quad d=p-x_2+b,\\quad e=x_4-p+x_2-b,\\quad f=2p-x_4-x_2+b.\n\\]\nUsing \\(x_2+x_4+x_6=3p\\), this is\n\\[\nf=x_6-p+b.\n\\]\nPositivity requires\n\\[\n1\\le b\\le p-1,\\quad 1\\le x_2-b,\\quad 1\\le p-x_2+b,\\quad 1\\le x_4-p+x_2-b,\\quad 1\\le x_6-p+b.\n\\]\nThese simplify to\n\\[\n\\max(1,p-x_6+1)\\le b\\le \\min(p-1,x_2-1,x_2+x_4-p-1).\n\\]\nSince \\(x_6=3p-x_2-x_4\\), this becomes\n\\[\np-x_6+1=x_2+x_4-2p+1.\n\\]\n\nNow determine possible triples \\((x_2,x_4,x_6)\\) with \\(x_6\\mid x_4\\mid x_2\\) and sum \\(3p\\).\n\nBecause \\(x_2=kx_4,\\ x_4=\\ell x_6\\), we have\n\\[\n(k\\ell+\\ell+1)x_6=3p.\n\\]\n\n### Case 1: \\(k\\ell+\\ell+1=3\\)\nThen \\(\\ell(k+1)=2\\), so only \\(\\ell=1,k=1\\). Hence\n\\[\nx_2=x_4=x_6=p.\n\\]\nThen all adjacent sums equal \\(p\\), so\n\\[\na+b=b+c=c+d=d+e=e+f=f+a=p.\n\\]\nSubtracting consecutive equalities gives\n\\[\na=c=e,\\quad b=d=f.\n\\]\nAnd \\(a+b=p\\). Number of positive solutions:\n\\[\np-1.\n\\]\n\n### Case 2: \\(k\\ell+\\ell+1=p\\)\nThen \\(x_6=3\\), and\n\\[\nx_4=3\\ell,\\quad x_2=3k\\ell,\n\\]\nwith\n\\[\n\\ell(k+1)+1=p.\n\\]\nEquivalently,\n\\[\n\\ell(k+1)=p-1.\n\\]\nSo \\(\\ell\\) is any positive divisor of \\(p-1\\), and \\(k+1=\\frac{p-1}{\\ell}\\). Since \\(k\\ge1\\), we need \\(\\ell\\le \\frac{p-1}{2}\\). Put\n\\[\nm=k+1\\ge 2,\\qquad \\ell m=p-1.\n\\]\nThen\n\\[\nx_6=3,\\quad x_4=3\\ell,\\quad x_2=3\\ell(m-1)=3(p-1-\\ell).\n\\]\n\nNow count \\(b\\). The bounds become\n\\[\np-2\\le b\\le \\min(p-1,x_2-1,p-x_6? )\n\\]\nbut since \\(x_6=3\\), the lower bound from \\(f\\ge1\\) is \\(b\\ge p-2\\). Also\n\\[\nc=x_2-b\\ge1,\\qquad e=x_2+x_4-p-b = (2p-2)-p-b=p-2-b+? \n\\]\nActually,\n\\[\nx_2+x_4=3(p-1),\n\\]\nso\n\\[\ne\\ge1 \\iff b\\le 2p-4-p = p-4.\n\\]\nThus we need\n\\[\np-2\\le b\\le p-4,\n\\]\nimpossible. So no solutions.\n\n### Case 3: \\(k\\ell+\\ell+1=3p\\)\nThen \\(x_6=1\\), impossible since \\(x_4,x_2\\) are positive and sum with \\(1\\) to \\(3p\\), but more importantly positivity of variables fails similarly; indeed \\(f+a=1\\) with positive integers is impossible.\n\nSo only Case 1 contributes.\n\nHence the number of ordered sextuples is\n\\[\np-1.\n\\]\n\nFinal answer: \\(\\boxed{p-1}\\)",
+  "usage": {
+    "input_tokens": 159,
+    "output_tokens": 1625,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 21.65129241195973,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "p-1"
+  }
+}

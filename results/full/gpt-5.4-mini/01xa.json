@@ -1,0 +1,20 @@
+{
+  "id": "01xa",
+  "country": "Belarus",
+  "competition": "69th Belarusian Mathematical Olympiad",
+  "gold_final_answer": "S ≤ 152",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Pigeonhole principle",
+    "Discrete Mathematics > Combinatorics > Games / greedy algorithms"
+  ],
+  "prompt": "The sum of several (not necessarily different) positive integers not exceeding $10$ is equal to $S$.\nFind all possible values of $S$ such that these numbers can always be partitioned into two groups with the sums of the numbers in each group not exceeding $80$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let the numbers be \\(a_1,\\dots,a_n\\), each in \\(\\{1,2,\\dots,10\\}\\), with total sum \\(S\\).\n\nWe want: **no matter how the numbers are chosen**, they can be split into two groups each having sum at most \\(80\\).\n\n## Step 1: A necessary condition\nIf \\(S>160\\), then impossible, because the two group sums would add to \\(S\\), so one group must exceed \\(80\\).\n\nThus we must have\n\\[\nS\\le 160.\n\\]\n\n## Step 2: Show every \\(S\\le 160\\) works\nWe need to prove that for any multiset of positive integers \\(\\le 10\\) with total sum \\(S\\le 160\\), we can partition them into two groups each of sum at most \\(80\\).\n\nThis is enough to show that we can make one group have sum as close as possible to \\(S/2\\), since then both parts are at most \\(\\max(S/2,\\;S-S/2)\\le 80\\). But that is not always automatic for arbitrary numbers, so we use a simple greedy argument:\n\nSort the numbers in any order and keep adding them to the first group until its sum first becomes at least \\(80\\). Since every number is at most \\(10\\), this first group has sum at most \\(89\\). If it is already at most \\(80\\), we are done. If it is between \\(81\\) and \\(89\\), then the remaining sum is\n\\[\nS-\\text{(first group sum)} \\le 160-81 = 79,\n\\]\nso the second group is automatically at most \\(80\\).\n\nThus in all cases, a partition into two groups each of sum at most \\(80\\) exists whenever \\(S\\le 160\\).\n\nTherefore the possible values of \\(S\\) are exactly all integers from \\(0\\) to \\(160\\).\n\nFinal answer: \\(\\{0,1,2,\\dots,160\\}\\)",
+  "usage": {
+    "input_tokens": 105,
+    "output_tokens": 442,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.5930996449897066,
+  "cached": false
+}

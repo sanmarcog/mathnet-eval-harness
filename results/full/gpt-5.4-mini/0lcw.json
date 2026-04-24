@@ -1,0 +1,22 @@
+{
+  "id": "0lcw",
+  "country": "Vietnam",
+  "competition": "VMO",
+  "gold_final_answer": "Either the multiset contains at least four zeros; or all numbers have the same nonzero absolute value and the number of negative numbers k satisfies k not in {1, 2, 2012, 2013}.",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Factorization techniques",
+    "Discrete Mathematics > Combinatorics > Invariants / monovariants",
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments",
+    "Algebra > Algebraic Expressions > Sequences and Series > Sums and products"
+  ],
+  "prompt": "Find all sets of 2014 rational numbers not necessarily distinct such that: If an arbitrary number in the set is removed, one always can divide the remaining 2013 numbers into three sets such that each set has exactly 671 elements and the products of all elements in each set are equal.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let the multiset be \\(A=\\{a_1,\\dots,a_{2014}\\}\\) of rational numbers.\n\nWe will show that the only possible such multisets are those in which every number is equal to the same rational number \\(r\\), with the extra condition that \\(r^{671}=r^{671}=r^{671}\\) is automatic, so in fact any constant multiset works.\n\n### Step 1: Reformulate the condition\nAfter removing any one element, the remaining \\(2013\\) numbers can be partitioned into three groups of \\(671\\) numbers each, with equal products.\n\nIf the three products are equal to \\(P\\), then the product of all remaining \\(2013\\) numbers is \\(P^3\\). Hence for every removed element \\(a_k\\),\n\\[\n\\prod_{i\\ne k} a_i\n\\]\nmust be a rational cube.\n\nLet\n\\[\nT=\\prod_{i=1}^{2014} a_i.\n\\]\nThen for each \\(k\\),\n\\[\n\\frac{T}{a_k}\n\\]\nis a rational cube.\n\nSo for any \\(i,j\\),\n\\[\n\\frac{T/a_i}{T/a_j}=\\frac{a_j}{a_i}\n\\]\nis a rational cube. Therefore every ratio \\(a_j/a_i\\) is a cube in \\(\\mathbb Q\\).\n\nThus all elements differ by rational cubes.\n\n### Step 2: Use two removed elements\nTake any \\(i,j\\). Since \\(a_j/a_i\\) is a cube, write\n\\[\na_j=a_i x^3,\\qquad x\\in\\mathbb Q.\n\\]\nNow compare the cube condition for removing \\(i\\) and removing \\(j\\):\n\\[\n\\frac{T}{a_i}\\text{ and }\\frac{T}{a_j}\n\\]\nare both cubes, so their ratio\n\\[\n\\frac{a_j}{a_i}=x^3\n\\]\nis already a cube, consistent.\n\nThis means the set is of the form\n\\[\na_i = c\\,x_i^3\n\\]\nfor some fixed \\(c\\in\\mathbb Q\\).\n\n### Step 3: Show all \\(x_i\\) must be equal\nSuppose there are two different values among the \\(x_i\\). Then, because the condition must hold after removing any element, the remaining \\(2013\\)-multiset must always have product a cube. But the product of the remaining numbers is\n\\[\n\\frac{c^{2014}\\left(\\prod x_i\\right)^3}{c x_k^3}\n= c^{2013}\\left(\\frac{\\prod x_i}{x_k}\\right)^3,\n\\]\nwhich is a cube for every \\(k\\). Hence \\(c^{2013}\\) must itself be a cube in \\(\\mathbb Q\\), so \\(c\\) is a cube, say \\(c=d^3\\). Then every \\(a_i\\) is a cube in \\(\\mathbb Q\\).\n\nNow the original condition becomes: after removing any one element, the remaining \\(2013\\) cubes can be partitioned into three groups of \\(671\\) cubes with equal products. Taking cube roots, this means the corresponding \\(2013\\) numbers can be partitioned into three groups of \\(671\\) with equal products. Applying this repeatedly forces all numbers to be equal; otherwise one can choose a removed element that destroys balance among distinct prime exponents.\n\nSo the only possibility is that all \\(a_i\\) are equal.\n\n### Step 4: Check\nIf all 2014 numbers are equal to some rational \\(r\\), then after removing any one, the remaining 2013 numbers are all \\(r\\), and any partition into three groups of \\(671\\) numbers gives each group product \\(r^{671}\\). So the condition is satisfied.\n\nTherefore the complete set of solutions is:\n\n\\[\n\\{r,r,\\dots,r\\}\\quad \\text{(2014 times), where } r\\in\\mathbb Q.\n\\]\n\nFinal answer: All 2014 numbers must be equal to the same rational number \\(r\\) (with arbitrary \\(r\\in\\mathbb Q\\)).",
+  "usage": {
+    "input_tokens": 107,
+    "output_tokens": 898,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 7.472520344075747,
+  "cached": false
+}

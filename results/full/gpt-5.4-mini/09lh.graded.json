@@ -1,0 +1,26 @@
+{
+  "id": "09lh",
+  "country": "Mongolia",
+  "competition": "Mongolian Mathematical Olympiad",
+  "gold_final_answer": "90°",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Analytic / Coordinate Methods > Cartesian coordinates",
+    "Geometry > Plane Geometry > Analytic / Coordinate Methods > Vectors",
+    "Algebra > Equations and Inequalities > QM-AM-GM-HM / Power Mean"
+  ],
+  "prompt": "Consider the points $A(-1, 0)$ and $B(1, 0)$ on the coordinate plane. Find the maximum possible value of the angle $\\angle ACB$ where $C$ moves along the hyperbola with equation $2xy = 1$. Note that angles are measured in degrees and lie in the interval $[0^\\circ, 180^\\circ]$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let \\(C=(x,y)\\) lie on \\(2xy=1\\), so \\(y=\\frac1{2x}\\) with \\(x\\neq 0\\).\n\nWe want to maximize \\(\\angle ACB\\), the angle subtended by segment \\(AB\\) at \\(C\\). Since \\(A(-1,0)\\) and \\(B(1,0)\\), the vectors are\n\\[\n\\overrightarrow{CA}=(-1-x,\\,-y),\\qquad \\overrightarrow{CB}=(1-x,\\,-y).\n\\]\nA standard way is to use the tangent of the angle via slopes. The slopes of \\(CA\\) and \\(CB\\) are\n\\[\nm_A=\\frac{0-y}{-1-x}=\\frac{y}{1+x},\\qquad\nm_B=\\frac{0-y}{1-x}=-\\frac{y}{1-x}.\n\\]\nThus\n\\[\n\\tan\\angle ACB=\\left|\\frac{m_B-m_A}{1+m_Am_B}\\right|.\n\\]\nUsing \\(y=\\frac1{2x}\\), this simplifies to\n\\[\n\\tan\\angle ACB=\\frac{2y}{|1-(x^2+y^2)|}.\n\\]\nNow substitute \\(y=\\frac1{2x}\\):\n\\[\nx^2+y^2=x^2+\\frac1{4x^2}\\ge 1\n\\]\nby AM-GM, with equality when\n\\[\nx^2=\\frac1{4x^2}\\quad\\Longrightarrow\\quad x^2=\\frac12.\n\\]\nSo the denominator \\(x^2+y^2-1\\) is minimized at \\(x^2=\\frac12\\), making the angle largest there.\n\nAt \\(x=\\pm \\frac1{\\sqrt2}\\), we get \\(y=\\pm \\frac1{\\sqrt2}\\) (with matching sign from \\(2xy=1\\)), and then\n\\[\nx^2+y^2=1.\n\\]\nSo the denominator becomes \\(0\\), hence \\(\\tan\\angle ACB\\) is infinite, meaning\n\\[\n\\angle ACB=90^\\circ.\n\\]\n\nThis is the maximum possible value.\n\nFinal answer: \\(90^\\circ\\)",
+  "usage": {
+    "input_tokens": 128,
+    "output_tokens": 490,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.289202059037052,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "\\(90^\\circ\\)"
+  }
+}

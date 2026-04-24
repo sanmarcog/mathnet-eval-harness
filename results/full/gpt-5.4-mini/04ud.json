@@ -1,0 +1,20 @@
+{
+  "id": "04ud",
+  "country": "Czech Republic",
+  "competition": "67th Czech and Slovak Mathematical Olympiad",
+  "gold_final_answer": "No",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Greatest common divisors (gcd)",
+    "Number Theory > Residues and Primitive Roots > Quadratic residues"
+  ],
+  "prompt": "Do there exist positive integers $n$, $k$ such that\n$$\n\\frac{n}{11^k - n}\n$$\nis a square of an integer?",
+  "model": "gpt-5.4-mini",
+  "response_text": "Yes.\n\nWe want positive integers \\(n,k\\) such that\n\\[\n\\frac{n}{11^k-n}=m^2\n\\]\nfor some integer \\(m\\ge 1\\). Rearranging,\n\\[\nn=m^2(11^k-n)\n\\quad\\Longrightarrow\\quad\nn(1+m^2)=m^2\\cdot 11^k.\n\\]\nSo we need \\(1+m^2\\) to divide \\(m^2\\cdot 11^k\\), equivalently\n\\[\nn=\\frac{m^2}{1+m^2}\\,11^k.\n\\]\n\nA simple choice is \\(m=1\\). Then we need\n\\[\nn=\\frac{1}{2}\\,11^k,\n\\]\nso \\(11^k\\) must be even, impossible. So \\(m=1\\) does not work.\n\nNow try \\(m=2\\):\n\\[\nn=\\frac{4}{5}\\,11^k.\n\\]\nWe need \\(5\\mid 11^k\\), impossible.\n\nIn fact, for any \\(m\\), since \\(\\gcd(m^2,1+m^2)=1\\), the denominator \\(1+m^2\\) must divide \\(11^k\\). Thus \\(1+m^2\\) must be a power of \\(11\\). So we need\n\\[\nm^2+1=11^t\n\\]\nfor some \\(t\\ge 1\\).\n\nTaking \\(t=1\\) gives \\(m^2=10\\), impossible.  \nTaking \\(t=2\\) gives \\(m^2=120\\), impossible.  \nBut \\(t=3\\) gives \\(m^2=1330\\), impossible as well.\n\nMore generally, modulo \\(4\\), squares are \\(0,1\\), so \\(m^2+1\\equiv 1,2\\pmod 4\\), while \\(11^t\\equiv 3^t\\pmod 4\\) is \\(3\\) if \\(t\\) odd and \\(1\\) if \\(t\\) even. Hence \\(m^2+1\\) cannot equal \\(11^t\\) for odd \\(t\\), and for even \\(t\\), \\(11^t\\equiv 1\\pmod 8\\), so \\(m^2\\equiv 0\\pmod 8\\), forcing \\(m\\) even, which makes \\(m^2+1\\equiv 1\\pmod 4\\) consistent but still requires an actual square one less than a power of \\(11\\), which does not occur.\n\nA simpler complete argument is to look modulo \\(11\\): if \\(m^2+1=11^t\\), then\n\\[\nm^2\\equiv -1 \\pmod{11},\n\\]\nbut \\(-1\\) is not a quadratic residue mod \\(11\\) because \\(11\\equiv 3\\pmod 4\\). Contradiction.\n\nTherefore no such positive integers \\(n,k\\) exist.\n\nFinal answer: No, there do not exist positive integers \\(n,k\\) for which \\(\\frac{n}{11^k-n}\\) is a perfect square.",
+  "usage": {
+    "input_tokens": 84,
+    "output_tokens": 705,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 5.505654972977936,
+  "cached": false
+}

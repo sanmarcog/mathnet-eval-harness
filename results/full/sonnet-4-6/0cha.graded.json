@@ -1,0 +1,26 @@
+{
+  "id": "0cha",
+  "country": "Romania",
+  "competition": "74th Romanian Mathematical Olympiad",
+  "gold_final_answer": "2\\int_{0}^{1} x f(x) \\, dx",
+  "topics_flat": [
+    "Calculus > Integral Calculus > Techniques > Single-variable",
+    "Calculus > Differential Calculus > Applications",
+    "Precalculus > Limits"
+  ],
+  "prompt": "Consider a continuous function $f : [0, 1] \\to \\mathbb{R}$ with $f(1) = 0$. Prove that the following limit exists and calculate its value:\n$$\n\\lim_{t \\to 1^+} \\left( \\frac{1}{1-t} \\cdot \\int_{0}^{1} x(f(tx) - f(x)) \\, dx \\right).\n$$",
+  "model": "claude-sonnet-4-6",
+  "response_text": "We need to find $\\lim_{t \\to 1^+} \\frac{1}{1-t} \\int_0^1 x(f(tx) - f(x))\\,dx$.\n\n**Setting up the expression:**\n\nLet $I(t) = \\int_0^1 x f(tx)\\,dx - \\int_0^1 x f(x)\\,dx$.\n\nThe second integral is a constant. For the first integral, substitute $u = tx$, so $x = u/t$, $dx = du/t$:\n$$\\int_0^1 x f(tx)\\,dx = \\int_0^t \\frac{u}{t} f(u) \\frac{du}{t} = \\frac{1}{t^2}\\int_0^t u f(u)\\,du.$$\n\nSo $I(t) = \\frac{1}{t^2}\\int_0^t u f(u)\\,du - \\int_0^1 u f(u)\\,du$.\n\nLet $F(t) = \\int_0^t u f(u)\\,du$. Then:\n$$I(t) = \\frac{F(t)}{t^2} - F(1).$$\n\nWe need:\n$$\\lim_{t\\to 1^+} \\frac{I(t)}{1-t} = \\lim_{t\\to 1^+} \\frac{\\frac{F(t)}{t^2} - F(1)}{1-t}.$$\n\n**Applying L'Hôpital's Rule:**\n\nAs $t \\to 1^+$, both numerator and denominator approach $0$ (since $F(1)/1^2 - F(1) = 0$). So we apply L'Hôpital's rule:\n\n$$\\lim_{t\\to 1^+} \\frac{\\frac{F(t)}{t^2} - F(1)}{1-t} = \\lim_{t\\to 1^+} \\frac{\\frac{d}{dt}\\left(\\frac{F(t)}{t^2}\\right)}{\\frac{d}{dt}(1-t)} = \\lim_{t\\to 1^+} \\frac{\\frac{d}{dt}\\left(\\frac{F(t)}{t^2}\\right)}{-1}.$$\n\nCompute the derivative:\n$$\\frac{d}{dt}\\left(\\frac{F(t)}{t^2}\\right) = \\frac{F'(t)\\cdot t^2 - 2t\\cdot F(t)}{t^4} = \\frac{t^2 \\cdot t f(t) - 2t F(t)}{t^4} = \\frac{t^3 f(t) - 2t F(t)}{t^4} = \\frac{t^2 f(t) - 2F(t)}{t^3}.$$\n\nAt $t = 1$:\n$$\\frac{1^2 f(1) - 2F(1)}{1^3} = f(1) - 2F(1) = 0 - 2\\int_0^1 u f(u)\\,du = -2\\int_0^1 u f(u)\\,du.$$\n\nTherefore:\n$$\\lim_{t\\to 1^+} \\frac{I(t)}{1-t} = \\frac{-2\\int_0^1 u f(u)\\,du}{-1} = 2\\int_0^1 u f(u)\\,du.$$\n\n**Justification of L'Hôpital:** Since $f$ is continuous on $[0,1]$, $F(t) = \\int_0^t u f(u)\\,du$ is $C^1$ on $[0,1]$, so $G(t) = F(t)/t^2$ is $C^1$ on $(0,1]$ and continuous at $t=1$. The numerator $G(t) - G(1) \\to 0$ and denominator $1-t \\to 0$ as $t\\to 1^+$, and $G'(t)$ has a limit as $t\\to 1^+$ (namely $f(1) - 2F(1) = -2\\int_0^1 uf(u)\\,du$). L'Hôpital's rule applies.\n\n**Conclusion:**\n\nThe limit exists and equals:\n\n$$\\lim_{t \\to 1^+} \\frac{1}{1-t} \\int_0^1 x(f(tx)-f(x))\\,dx = 2\\int_0^1 x f(x)\\,dx.$$\n\nFinal answer: $2\\displaystyle\\int_0^1 x\\,f(x)\\,dx$",
+  "usage": {
+    "input_tokens": 150,
+    "output_tokens": 1194,
+    "thinking_tokens": 0
+  },
+  "latency_s": 12.473296707030386,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "$2\\displaystyle\\int_0^1 x\\,f(x)\\,dx$"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "id": "0cgi",
+  "country": "Romania",
+  "competition": "74th Romanian Mathematical Olympiad",
+  "gold_final_answer": "a) x ∈ [0, 1) ∪ {−4, −9/2}.\nb) All y of the form y = sqrt(k^2 + 4) with integers k ≥ 2.",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Sequences and Series > Floors and ceilings",
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities"
+  ],
+  "prompt": "For any real number $x$, let $A(x) = x^2 + 4\\lfloor x \\rfloor$.\n\na) Find the real numbers $x$ for which $A(x) = \\{x\\}^2$.\n\nb) Find the real numbers $y > 0$ for which $A(y)$ is the square of a natural number.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let \\(x=n+f\\), where \\(n=\\lfloor x\\rfloor\\in\\mathbb Z\\) and \\(f=\\{x\\}\\in[0,1)\\). Then\n\\[\nA(x)=x^2+4\\lfloor x\\rfloor=(n+f)^2+4n=n^2+2nf+f^2+4n.\n\\]\n\n## a) Solve \\(A(x)=\\{x\\}^2\\)\n\nWe require\n\\[\n(n+f)^2+4n=f^2.\n\\]\nSo\n\\[\nn^2+2nf+4n=0\n\\]\n\\[\nn(n+2f+4)=0.\n\\]\n\nThus either:\n\n1. \\(n=0\\), giving any \\(x=f\\in[0,1)\\);\n2. \\(n+2f+4=0\\). Since \\(f\\in[0,1)\\), this forces \\(n\\le -4\\). But also \\(f=-\\frac{n+4}{2}\\).  \n   Checking \\(0\\le f<1\\), we get only \\(n=-4\\), \\(f=0\\), i.e. \\(x=-4\\).\n\nSo the solutions are\n\\[\nx\\in[0,1)\\ \\text{or}\\ x=-4.\n\\]\n\n## b) Find \\(y>0\\) such that \\(A(y)\\) is a square of a natural number\n\nAgain write \\(y=n+f\\), with \\(n\\in\\mathbb Z_{\\ge 0}\\) since \\(y>0\\) and \\(f\\in[0,1)\\). Then\n\\[\nA(y)=y^2+4\\lfloor y\\rfloor=(n+f)^2+4n.\n\\]\n\nWe want \\(A(y)=m^2\\) for some \\(m\\in\\mathbb N\\). Then\n\\[\nm^2-(n+f)^2=4n\n\\]\n\\[\n(m-y)(m+y)=4n.\n\\]\n\nA simpler route is to note that for integer \\(n\\), if \\(f\\neq 0\\), then \\(A(y)\\) is not generally an integer square unless the expression matches perfectly. Let’s use the same expansion:\n\\[\nA(y)=n^2+2nf+f^2+4n.\n\\]\nIf this equals \\(m^2\\), then since \\(0\\le f<1\\), the only way this can be a perfect square for all \\(f\\) is to examine the integer cases. In fact, from part (a),\n\\[\nA(y)=\\{y\\}^2\n\\]\nonly when \\(y\\in[0,1)\\) or \\(y=-4\\), but here we need a square of a natural number, i.e. a nonnegative integer square.\n\nCheck \\(y\\in[0,1)\\): then \\(\\lfloor y\\rfloor=0\\), so\n\\[\nA(y)=y^2.\n\\]\nThis is a square of a natural number only when \\(y\\) itself is a natural number. Since \\(0<y<1\\) gives no such values, the only possible point is \\(y=0\\), but \\(y>0\\) excludes it.\n\nNow let \\(y\\ge 1\\), so \\(n\\ge 1\\). Then\n\\[\nA(y)=y^2+4n > y^2.\n\\]\nFor \\(A(y)\\) to be a square, the clean integer solutions come from \\(f=0\\), i.e. \\(y=n\\in\\mathbb N\\). Then\n\\[\nA(n)=n^2+4n=n(n+4).\n\\]\nWe need\n\\[\nn^2+4n=m^2.\n\\]\nSo\n\\[\nm^2-(n+2)^2=4\n\\]\n\\[\n(m-n-2)(m+n+2)=4.\n\\]\nSince \\(m+n+2>0\\), the only positive factorization is\n\\[\nm-n-2=1,\\quad m+n+2=4,\n\\]\nwhich gives \\(n=0\\), impossible for \\(y>0\\) with \\(n\\ge1\\). Hence no such \\(y\\ge1\\).\n\nTherefore there are no positive real numbers \\(y\\) such that \\(A(y)\\) is the square of a natural number.\n\nFinal answer:  \na) \\(x=-4\\) or \\(0\\le x<1\\).  \nb) No such \\(y>0\\).",
+  "usage": {
+    "input_tokens": 127,
+    "output_tokens": 990,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 7.071111753000878,
+  "cached": false
+}

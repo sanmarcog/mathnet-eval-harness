@@ -1,0 +1,24 @@
+{
+  "id": "040y",
+  "country": "China",
+  "competition": "China Mathematical Competition",
+  "gold_final_answer": "61/243",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Sequences and Series > Recurrence relations"
+  ],
+  "prompt": "An information station employs four different codes, $A$, $B$, $C$ and $D$, for communication, but each week uses only one of them. The code used in a definite week is randomly selected with equal chance among the three ones that have not been used in the last week. Suppose the code used in the first week is $A$. Then the probability that $A$ is also used in the seventh week is _______. (expressed as an irreducible fraction)",
+  "model": "claude-sonnet-4-6",
+  "response_text": "Let me find the probability that code A is used in week 7, given it's used in week 1.\n\nLet $a_n$ = probability that A is used in week n.\nLet $b_n$ = probability that a specific non-A code is used in week n.\n\nBy symmetry, each non-A code has equal probability, so $a_n + 3b_n = 1$.\n\n**Recurrence relations:**\n\nIf A is used in week n, then in week n+1, A is NOT used (probability 0 of staying on A), and each other code has probability 1/3.\n\nIf a non-A code is used in week n, then A is used in week n+1 with probability 1/3.\n\nSo:\n$$a_{n+1} = 0 \\cdot a_n + \\frac{1}{3} \\cdot 3b_n = b_n \\cdot 3 \\cdot \\frac{1}{3} = b_n \\cdot 1$$\n\nWait, let me be careful:\n$$a_{n+1} = \\frac{1}{3}(1 - a_n)$$\n\nSince from any non-A state, A is chosen with probability 1/3, and from A, A cannot be chosen.\n\n$$a_{n+1} = \\frac{1}{3}(1 - a_n)$$\n\n**Initial condition:** $a_1 = 1$\n\n**Solving the recurrence:**\n\nThe fixed point: $a^* = \\frac{1}{3}(1 - a^*)$ → $a^* = \\frac{1}{4}$\n\nLet $d_n = a_n - \\frac{1}{4}$:\n$$d_{n+1} = a_{n+1} - \\frac{1}{4} = \\frac{1}{3}(1-a_n) - \\frac{1}{4} = \\frac{1}{3} - \\frac{a_n}{3} - \\frac{1}{4} = \\frac{1}{12} - \\frac{a_n}{3}$$\n$$= \\frac{1}{12} - \\frac{1}{3}\\left(d_n + \\frac{1}{4}\\right) = \\frac{1}{12} - \\frac{d_n}{3} - \\frac{1}{12} = -\\frac{d_n}{3}$$\n\nSo $d_n = d_1 \\cdot \\left(-\\frac{1}{3}\\right)^{n-1}$\n\n$d_1 = 1 - \\frac{1}{4} = \\frac{3}{4}$\n\n$$a_n = \\frac{1}{4} + \\frac{3}{4}\\left(-\\frac{1}{3}\\right)^{n-1}$$\n\n**For n = 7:**\n$$a_7 = \\frac{1}{4} + \\frac{3}{4}\\left(-\\frac{1}{3}\\right)^6 = \\frac{1}{4} + \\frac{3}{4} \\cdot \\frac{1}{729}$$\n$$= \\frac{1}{4} + \\frac{3}{2916} = \\frac{1}{4} + \\frac{1}{972}$$\n$$= \\frac{243}{972} + \\frac{1}{972} = \\frac{244}{972} = \\frac{61}{243}$$\n\n**Verification:** $\\gcd(61, 243)$: 243 = 3^5, 61 is prime and not 3, so this is irreducible.\n\nFinal answer: $\\dfrac{61}{243}$",
+  "usage": {
+    "input_tokens": 152,
+    "output_tokens": 909,
+    "thinking_tokens": 0
+  },
+  "latency_s": 12.605501518002711,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "symbolic",
+    "predicted": "$\\dfrac{61}{243}$"
+  }
+}

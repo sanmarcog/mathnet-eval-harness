@@ -1,0 +1,19 @@
+{
+  "id": "0hbp",
+  "country": "Ukraine",
+  "competition": "59th Ukrainian National Mathematical Olympiad",
+  "gold_final_answer": "No",
+  "topics_flat": [
+    "Number Theory > Modular Arithmetic"
+  ],
+  "prompt": "Three numbers $2^{100}$, $3^{100}$ and $5^{100}$ are written on a long paper strip without any space in-between, thus, creating one big number $N$. Arsenii claims that he can change the last digit of number $N$ so that the new number is a power of $13$. Is he right?",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To determine if Arsenii is right, we need to find the number of digits of the newly formed number $N$ and compare it with the possible powers of $13$.\n\nFirst, let's find the number of digits of $2^{100}$, $3^{100}$, and $5^{100}$. The number of digits of an integer $x$ is given by $\\lfloor \\log_{10} x \\rfloor + 1$.\n- For $2^{100}$: $100 \\log_{10} 2 \\approx 100 \\times 0.30103 = 30.103$, so it has $31$ digits.\n- For $3^{100}$: $100 \\log_{10} 3 \\approx 100 \\times 0.47712 = 47.712$, so it has $48$ digits.\n- For $5^{100}$: $100 \\log_{10} 5 = 100 \\times (1 - \\log_{10} 2) \\approx 100 \\times 0.69897 = 69.897$, so it has $70$ digits.\n\nWhen these three numbers are written next to each other, the total number of digits of the resulting number $N$ is:\n$31 + 48 + 70 = 149 \\text{ digits.}$\n\nIf Arsenii changes only the last digit of $N$, the new number $M$ will also have exactly $149$ digits and will share the first $148$ digits with $N$. \nLet's find which power of $13$ has $149$ digits. We need $k$ such that $13^k$ has $149$ digits, meaning:\n$148 \\le k \\log_{10} 13 < 149$\nUsing $\\log_{10} 13 \\approx 1.11394$:\n$148 / 1.11394 \\approx 132.86 \\quad \\text{and} \\quad 149 / 1.11394 \\approx 133.76$\nThe only integer $k$ in this range is $k = 133$. Thus, the only power of $13$ with $149$ digits is $13^{133}$.\n\nNow let's look at the leading digits of $13^{133}$:\n$133 \\log_{10} 13 \\approx 133 \\times 1.113943 = 148.1544$\nThis means $13^{133} = 10^{0.1544} \\times 10^{148} \\approx 1.427 \\times 10^{148}$.\nSo, $13^{133}$ starts with the digits **142...**\n\nNow let's check the leading digits of $N$. Depending on which number was written first, $N$ will start with the leading digits of $2^{100}$, $3^{100}$, or $5^{100}$:\n- $2^{100} = 10^{30.103} \\approx 1.26 \\times 10^{30}$ (starts with **126...**)\n- $3^{100} = 10^{47.712} \\approx 5.15 \\times 10^{47}$ (starts with **515...**)\n- $5^{100} = 10^{69.897} \\approx 7.88 \\times 10^{69}$ (starts with **788...**)\n\nNo matter what order the numbers are written in, the number $N$ will never start with **142...**. Since changing the last digit of $N$ does not affect its leading digits, it is impossible for the new number to be $13^{133}$. Because $13^{133}$ is the only power of $13$ with the correct number of digits, Arsenii cannot obtain a power of $13$.\n\nFinal answer: No",
+  "usage": {
+    "input_tokens": 118,
+    "output_tokens": 990,
+    "thoughts_tokens": 3763
+  },
+  "latency_s": 34.99192655098159,
+  "cached": false
+}

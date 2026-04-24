@@ -1,0 +1,25 @@
+{
+  "id": "06hg",
+  "country": "Hong Kong",
+  "competition": "Hong Kong Preliminary Selection Contest",
+  "gold_final_answer": "15",
+  "topics_flat": [
+    "Number Theory > Modular Arithmetic > Fermat / Euler / Wilson theorems",
+    "Algebra > Algebraic Expressions > Sequences and Series > Sums and products"
+  ],
+  "prompt": "Let $\\lfloor x \\rfloor$ denote the greatest integer not exceeding $x$. Find the last two digits of\n$$\n\\left\\lfloor \\frac{1}{3} \\right\\rfloor + \\left\\lfloor \\frac{2}{3} \\right\\rfloor + \\left\\lfloor \\frac{2^2}{3} \\right\\rfloor + \\cdots + \\left\\lfloor \\frac{2^{2^{2^{14}}}}{3} \\right\\rfloor\n$$",
+  "model": "claude-sonnet-4-6",
+  "response_text": "I need to find the last two digits of $\\sum_{k=0}^{2^{2^{14}}} \\left\\lfloor \\frac{2^k}{3} \\right\\rfloor$.\n\n## Setting Up the Pattern\n\nNote that $2^k \\mod 3$ alternates: $2^k \\equiv (-1)^k \\pmod{3}$.\n\nSo $\\lfloor \\frac{2^k}{3} \\rfloor = \\frac{2^k - (2^k \\mod 3)}{3}$.\n\nWhen $k$ is even: $2^k \\equiv 1 \\pmod{3}$, so $\\lfloor \\frac{2^k}{3} \\rfloor = \\frac{2^k - 1}{3}$.\nWhen $k$ is odd: $2^k \\equiv 2 \\pmod{3}$, so $\\lfloor \\frac{2^k}{3} \\rfloor = \\frac{2^k - 2}{3}$.\n\n## Computing the Sum\n\nLet $N = 2^{2^{14}}$. The sum is $S = \\sum_{k=0}^{N} \\lfloor \\frac{2^k}{3} \\rfloor$.\n\n$$S = \\frac{1}{3}\\left(\\sum_{k=0}^{N} 2^k - \\sum_{k=0}^{N}(2^k \\bmod 3)\\right)$$\n\n$$= \\frac{1}{3}\\left(2^{N+1} - 1 - \\sum_{k=0}^{N}(2^k \\bmod 3)\\right)$$\n\nThe remainders alternate: $1, 2, 1, 2, \\ldots$ starting at $k=0$.\n\nSince $N = 2^{2^{14}}$ is even, the terms go from $k=0$ to $k=N$ (that's $N+1$ terms, which is odd).\n- Even $k$: contributes 1, count = $\\frac{N}{2}+1$ terms\n- Odd $k$: contributes 2, count = $\\frac{N}{2}$ terms\n\nSum of remainders $= 1\\cdot(\\frac{N}{2}+1) + 2\\cdot\\frac{N}{2} = \\frac{N}{2} + 1 + N = \\frac{3N}{2} + 1$.\n\n$$S = \\frac{1}{3}\\left(2^{N+1} - 1 - \\frac{3N}{2} - 1\\right) = \\frac{2^{N+1} - 2 - \\frac{3N}{2}}{3} = \\frac{2(2^N - 1)}{3} - \\frac{N}{2}$$\n\nSince $N = 2^{2^{14}}$, we have $\\frac{N}{2} = 2^{2^{14}-1}$.\n\n$$S = \\frac{2(2^N-1)}{3} - 2^{2^{14}-1}$$\n\n## Finding Last Two Digits (mod 100)\n\n**Computing $2^N \\pmod{150}$** (needed since $\\frac{2(2^N-1)}{3} \\pmod{100}$ requires $2^N \\pmod{300}$):\n\nWe need $S \\pmod{100}$. Let me compute $\\frac{2(2^N-1)}{3} \\pmod{100}$ and $2^{2^{14}-1} \\pmod{100}$.\n\n**$2^{2^{14}-1} \\pmod{100}$:** The order of 2 mod 25 is 20. $2^{14}-1 \\pmod{20}$: $2^{14} = 16384$, $16384 \\mod 20 = 4$, so $2^{14}-1 \\equiv 3 \\pmod{20}$. Thus $2^{2^{14}-1} \\equiv 2^3 = 8 \\pmod{25}$, and $\\equiv 0 \\pmod{4}$. So $2^{2^{14}-1} \\equiv 8 \\pmod{100}$ (since $8 \\equiv 0 \\pmod 4$ and $8 \\pmod{25}$). Wait: CRT gives $x \\equiv 0\\pmod{4}$, $x\\equiv 8\\pmod{25}$: $x = 8$.\n\n**$2^N \\pmod{300}$:** $N = 2^{2^{14}}$. Order of 2 mod 75 is 20 (since ord mod 25 is 20). $2^{14} \\mod 20 = 4$, so $2^N \\equiv 2^4 = 16 \\pmod{75}$. Also $2^N \\equiv 0 \\pmod 4$. CRT mod 300: $x \\equiv 0\\pmod{4}$, $x\\equiv 16\\pmod{75}$: $x = 16$.\n\nSo $\\frac{2(16-1)}{3} = \\frac{30}{3} = 10 \\pmod{100}$.\n\n$$S \\equiv 10 - 8 = 2 \\pmod{100}$$\n\nFinal answer: 02",
+  "usage": {
+    "input_tokens": 181,
+    "output_tokens": 1353,
+    "thinking_tokens": 0
+  },
+  "latency_s": 16.314731969032437,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "02"
+  }
+}

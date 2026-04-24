@@ -1,0 +1,20 @@
+{
+  "id": "04sk",
+  "country": "Czech Republic",
+  "competition": "15th Czech-Polish-Slovak Mathematics Competition",
+  "gold_final_answer": "sqrt(3)",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities",
+    "Algebra > Intermediate Algebra > Quadratic functions"
+  ],
+  "prompt": "Real numbers $x, y, z$ satisfy\n$$\n\\frac{1}{x} + \\frac{1}{y} + \\frac{1}{z} + x + y + z = 0\n$$\nand none of them lies in the open interval $(-1, 1)$. Find the maximum value of $x+y+z$.",
+  "model": "gpt-5.4",
+  "response_text": "Let\n\\[\ns=x+y+z,\\qquad t=\\frac1x+\\frac1y+\\frac1z.\n\\]\nThe condition is\n\\[\ns+t=0,\n\\]\nso\n\\[\nx+y+z=-\\left(\\frac1x+\\frac1y+\\frac1z\\right).\n\\]\n\nWe want to maximize \\(s\\), given that each of \\(x,y,z\\) is **not** in \\((-1,1)\\). Since none lies in the open interval \\((-1,1)\\), we have\n\\[\n|x|\\ge 1,\\quad |y|\\ge 1,\\quad |z|\\ge 1.\n\\]\n\n## Key inequality\nFor any real \\(u\\) with \\(|u|\\ge 1\\),\n\\[\nu+\\frac1u\\ge 2 \\quad \\text{if } u\\ge 1,\n\\]\nand\n\\[\nu+\\frac1u\\le -2 \\quad \\text{if } u\\le -1.\n\\]\n\nNow write\n\\[\n\\left(x+\\frac1x\\right)+\\left(y+\\frac1y\\right)+\\left(z+\\frac1z\\right)=0.\n\\]\nWe must maximize \\(s=x+y+z\\).\n\nTo make \\(s\\) large, positive variables help. But every positive variable \\(u\\ge1\\) contributes at least \\(2\\) to \\(u+\\frac1u\\), so to keep the total sum \\(0\\), we need some negative contribution.\n\n### Case 1: all three are positive\nThen each \\(u+\\frac1u\\ge2\\), so the total is at least \\(6\\), impossible.\n\n### Case 2: exactly two are positive, one is negative\nLet \\(x,y\\ge1\\) and \\(z\\le-1\\). Then\n\\[\n\\left(x+\\frac1x\\right)+\\left(y+\\frac1y\\right)= -\\left(z+\\frac1z\\right).\n\\]\nSince \\(x+\\frac1x\\ge2\\) and \\(y+\\frac1y\\ge2\\),\n\\[\n-\\left(z+\\frac1z\\right)\\ge4.\n\\]\nFor \\(z\\le-1\\), put \\(w=-z\\ge1\\). Then\n\\[\n-\\left(z+\\frac1z\\right)=w+\\frac1w.\n\\]\nSo \\(w+\\frac1w\\ge4\\), i.e.\n\\[\n-z-\\frac1z\\ge4.\n\\]\n\nNow\n\\[\ns=x+y+z.\n\\]\nFor fixed values of \\(x+\\frac1x\\) and \\(y+\\frac1y\\), the quantity \\(x+y\\) is maximized when \\(x=y=1\\), because increasing a positive variable beyond \\(1\\) increases \\(x+\\frac1x\\) but also forces a more negative \\(z\\). So the best chance is at the boundary\n\\[\nx=y=1.\n\\]\nThen the equation becomes\n\\[\n1+1+z+1+1+\\frac1z=0\n\\]\nso\n\\[\nz+\\frac1z=-4.\n\\]\nThus\n\\[\nz^2+4z+1=0,\n\\]\ngiving\n\\[\nz=-2\\pm\\sqrt3.\n\\]\nSince \\(z\\le -1\\), only\n\\[\nz=-2-\\sqrt3\n\\]\nis allowed.\n\nHence\n\\[\ns=1+1+(-2-\\sqrt3)=-\\sqrt3.\n\\]\n\n### Case 3: exactly one is positive, two are negative\nThen \\(s\\) is clearly smaller than in Case 2, since two terms are \\(\\le -1\\). So it cannot beat \\(-\\sqrt3\\).\n\n### Case 4: all three are negative\nThen \\(s\\le -3<-\\sqrt3\\).\n\nThus the maximum is\n\\[\n\\boxed{-\\sqrt3}.\n\\]\n\nFinal answer: \\(-\\sqrt3\\)",
+  "usage": {
+    "input_tokens": 124,
+    "output_tokens": 862,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 10.335943888057955,
+  "cached": false
+}

@@ -1,0 +1,21 @@
+{
+  "id": "06b0",
+  "country": "Greece",
+  "competition": "Selection Examination",
+  "gold_final_answer": "[-72, -26, -16, -8, -2, 6, 16, 62]",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Factorization techniques",
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities",
+    "Algebra > Intermediate Algebra > Quadratic functions"
+  ],
+  "prompt": "Determine all values of the integer $v$ for which the number $v^2 + 10v + 160$ is a perfect square.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find all integer values of $v$ for which $v^2 + 10v + 160$ is a perfect square, we can set the expression equal to $k^2$ for some non-negative integer $k$:\n$$v^2 + 10v + 160 = k^2$$\n\nNext, we complete the square on the left side:\n$$v^2 + 10v + 25 + 135 = k^2$$\n$$(v + 5)^2 + 135 = k^2$$\n\nRearranging the equation gives a difference of squares:\n$$k^2 - (v + 5)^2 = 135$$\n$$(k - v - 5)(k + v + 5) = 135$$\n\nSince $v$ and $k$ are integers, both factors $(k - v - 5)$ and $(k + v + 5)$ must be integers that multiply to $135$. The pairs of factors of $135$ are:\n$$\\pm(1, 135), \\pm(3, 45), \\pm(5, 27), \\pm(9, 15)$$\n\nNotice that the difference between the second factor and the first factor is:\n$$(k + v + 5) - (k - v - 5) = 2v + 10$$\n\nWe can calculate $2v + 10$ for each pair of factors $(a, b)$ where $a \\cdot b = 135$ and $b - a = 2v + 10$:\n1. For factors $1$ and $135$: $2v + 10 = \\pm(135 - 1) = \\pm 134 \\implies v + 5 = \\pm 67 \\implies v = 62 \\text{ or } -72$\n2. For factors $3$ and $45$: $2v + 10 = \\pm(45 - 3) = \\pm 42 \\implies v + 5 = \\pm 21 \\implies v = 16 \\text{ or } -26$\n3. For factors $5$ and $27$: $2v + 10 = \\pm(27 - 5) = \\pm 22 \\implies v + 5 = \\pm 11 \\implies v = 6 \\text{ or } -16$\n4. For factors $9$ and $15$: $2v + 10 = \\pm(15 - 9) = \\pm 6 \\implies v + 5 = \\pm 3 \\implies v = -2 \\text{ or } -8$\n\nThus, the possible values for $v$ are $-72, -26, -16, -8, -2, 6, 16,$ and $62$.\n\nFinal answer: -72, -26, -16, -8, -2, 6, 16, 62",
+  "usage": {
+    "input_tokens": 72,
+    "output_tokens": 690,
+    "thoughts_tokens": 1615
+  },
+  "latency_s": 16.971443825983442,
+  "cached": false
+}

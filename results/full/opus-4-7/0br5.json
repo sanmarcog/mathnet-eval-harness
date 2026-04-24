@@ -1,0 +1,19 @@
+{
+  "id": "0br5",
+  "country": "Romania",
+  "competition": "67th Romanian Mathematical Olympiad",
+  "gold_final_answer": "3",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Prime numbers"
+  ],
+  "prompt": "How many three-digit primes can be turned into perfect cubes with a permutation of their digits?",
+  "model": "claude-opus-4-7",
+  "response_text": "<think>\nThree-digit cubes: 125, 216, 343, 512, 729.\n\nCheck permutations of each for primes.\n\n125: digits 1,2,5. Permutations: 125,152,215,251,512,521. Primes: 251, 521. That's 2.\n\n216: 2,1,6. Perms: 126,162,216,261,612,621. None prime (all even or div by 3? 261=9·29, 621=27·23, 126 even, 162 even, 216 even, 612 even). Sum=9, all divisible by 3. None prime.\n\n343: 3,4,3. Perms: 334, 343, 433. 433 prime? Yes. 334=2·167. So 1 prime.\n\n512: same digits as 125. Already counted: 251, 521.\n\nWait, 512's digit permutations are same set as 125. So we shouldn't double count — but question asks how many three-digit primes can be turned into perfect cubes. Each prime counted once regardless of which cube.\n\nPrimes found: 251 (→125 or 512), 521 (→125 or 512), 433 (→343). Total 3.\n\n729: 7,2,9. Perms: 279,297,729,792,927,972. Sum=18, divisible by 9. None prime.\n\nAnswer: 3.\n</think>\n\nThree-digit cubes: 125, 216, 343, 512, 729.\n\n- **125 / 512** (digits 1,2,5): Permutations include primes **251** and **521**.\n- **216** (digits 2,1,6): digit sum 9, all permutations divisible by 3 — no primes.\n- **343** (digits 3,4,3): Permutations 334, 343, 433 — only **433** is prime.\n- **729** (digits 7,2,9): digit sum 18, all permutations divisible by 9 — no primes.\n\nPrimes obtained: 251, 521, 433.\n\nFinal answer: 3",
+  "usage": {
+    "input_tokens": 95,
+    "output_tokens": 610,
+    "thinking_tokens": 0
+  },
+  "latency_s": 8.686731735011563,
+  "cached": false
+}

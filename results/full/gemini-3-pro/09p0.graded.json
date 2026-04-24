@@ -1,0 +1,25 @@
+{
+  "id": "09p0",
+  "country": "Mongolia",
+  "competition": "MMO2025 Round 2",
+  "gold_final_answer": "157152",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Inclusion-exclusion",
+    "Discrete Mathematics > Combinatorics > Counting two ways"
+  ],
+  "prompt": "Problem:\n\nHow many ways can three distinct bishops be placed on an $8 \\times 8$ chessboard such that no two of them attack each other?",
+  "model": "gemini-3-pro-preview",
+  "response_text": "Final answer: 157152",
+  "usage": {
+    "input_tokens": 71,
+    "output_tokens": 10,
+    "thoughts_tokens": 7862
+  },
+  "latency_s": 60.40689381107222,
+  "cached": true,
+  "grade": {
+    "correct": true,
+    "method": "exact",
+    "predicted": "157152"
+  }
+}

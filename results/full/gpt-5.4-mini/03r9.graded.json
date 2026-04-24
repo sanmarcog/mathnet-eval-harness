@@ -1,0 +1,25 @@
+{
+  "id": "03r9",
+  "country": "China",
+  "competition": "China Girls' Mathematical Olympiad",
+  "gold_final_answer": "Let r = max{p, q}. The number is s_n = ((n+1)(n+2))/2 for n < r, and s_n = (r(2n - r + 3))/2 for n ≥ r.",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Recursion, bijection",
+    "Algebra > Algebraic Expressions > Sequences and Series > Telescoping series"
+  ],
+  "prompt": "Let $p$ and $q$ be two coprime positive integers, and let $n$ be a nonnegative integer. Determine the number of integers that can be written in the form $ip + jq$, where $i$ and $j$ are nonnegative integers with $i + j \\le n$. (posed by Li Weigu)",
+  "model": "gpt-5.4-mini",
+  "response_text": "For each \\(k=0,1,\\dots,n\\), consider representations with \\(i+j=k\\). Then\n\\[\nip+jq = i p + (k-i)q = kq + i(p-q),\n\\]\nwhere \\(i=0,1,\\dots,k\\). Since \\(p,q\\) are coprime, the values coming from different pairs \\((i,j)\\) with the same \\(k\\) are distinct.\n\nSo for fixed \\(k\\), there are exactly \\(k+1\\) integers of the form \\(ip+jq\\) with \\(i+j=k\\).\n\nIt remains to check that integers coming from different values of \\(k\\) cannot coincide. If\n\\[\nip+jq=i'p+j'q\n\\]\nwith \\(i+j=k\\) and \\(i'+j'=k'\\), then\n\\[\n(i-i')p=(j'-j)q.\n\\]\nSince \\(\\gcd(p,q)=1\\), we get \\(p\\mid (j'-j)\\) and \\(q\\mid (i-i')\\). But\n\\[\n|i-i'|\\le n,\\qquad |j-j'|\\le n,\n\\]\nand more importantly, within the region \\(i+j\\le n\\), two different pairs cannot produce the same value unless they are equal, because the equation above forces a shift by a multiple of both \\(p\\) and \\(q\\), which is impossible for nonnegative pairs in this bounded simplex. Hence all sums are distinct.\n\nTherefore the total number is\n\\[\n\\sum_{k=0}^n (k+1)=\\frac{(n+1)(n+2)}{2}.\n\\]\n\nFinal answer: \\(\\displaystyle \\frac{(n+1)(n+2)}{2}\\).",
+  "usage": {
+    "input_tokens": 120,
+    "output_tokens": 386,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.3104832760291174,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "\\(\\displaystyle \\frac{(n+1)(n+2)}{2}\\)."
+  }
+}

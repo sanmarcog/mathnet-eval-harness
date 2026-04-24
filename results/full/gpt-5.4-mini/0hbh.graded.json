@@ -1,0 +1,25 @@
+{
+  "id": "0hbh",
+  "country": "Ukraine",
+  "competition": "59th Ukrainian National Mathematical Olympiad",
+  "gold_final_answer": "k ≥ 3",
+  "topics_flat": [
+    "Discrete Mathematics > Graph Theory",
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments"
+  ],
+  "prompt": "There is a group of $2n$ people, among whom there are couples of friends. It is known that every person in this group has exactly $k \\ge 1$ friends (if \"A\" is familiar with \"B\", then conversely, \"B\" is familiar with \"A\"). Find such a number $k$ for which this group can always be divided into two subgroups of $n$ people so that in both subgroups each person has at least one friend?\n(Bogdan Rublyov)",
+  "model": "gpt-5.4-mini",
+  "response_text": "Model the people as a graph on \\(2n\\) vertices, where each person is a vertex and friendships are edges. We are asked for which \\(k\\) it is always possible to split the vertices into two parts of size \\(n\\) so that every vertex has at least one neighbor in its own part.\n\nA sufficient and necessary answer is:\n\n- such a \\(k\\) exists **only for \\(k=2n-2\\)**, i.e. when everyone is friends with everyone except exactly one person.\n\nWhy?\n\n- If \\(k=2n-2\\), then the friendship graph is complete minus a perfect matching or similar; in particular, each person has only one non-friend. We can pair each person with a friend, and then split into two groups of size \\(n\\) so that every person still has a friend inside their group.\n- For any \\(k<2n-2\\), there are graphs of degree \\(k\\) for which this is impossible. For example, if the friendship graph is \\(k\\)-regular but disconnected in a way that forces one part to contain isolated vertices or if it is bipartite and \\(k\\) is small, no such partition can always be guaranteed.\n\nA cleaner way to see the exact value is to use the complement graph: each person has exactly \\(2n-1-k\\) non-friends. To guarantee a split into two size-\\(n\\) groups with no isolated vertex in either group, the only universally safe case is when there is at most one non-friend per person, i.e. \\(2n-1-k=1\\).\n\nThus \\(k=2n-2\\).\n\nFinal answer: \\(\\boxed{2n-2}\\)",
+  "usage": {
+    "input_tokens": 155,
+    "output_tokens": 369,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.7461277700494975,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "2n-2"
+  }
+}

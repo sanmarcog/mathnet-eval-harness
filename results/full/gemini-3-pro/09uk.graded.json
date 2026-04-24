@@ -1,0 +1,25 @@
+{
+  "id": "09uk",
+  "country": "Netherlands",
+  "competition": "First Round, January 2019",
+  "gold_final_answer": "B",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Invariants / monovariants",
+    "Discrete Mathematics > Algorithms"
+  ],
+  "prompt": "There are $13$ distinct multiples of $7$ that consist of two digits. You want to create a longest possible chain consisting of these multiples, where two multiples can only be adjacent if the last digit of the left multiple equals the first digit of the right multiple. You can use each multiple at most once. For example, $21$ – $14$ – $49$ is an admissible chain of length $3$. What is the maximum length of an admissible chain?\nA) $6$  B) $7$  C) $8$  D) $9$  E) $10$",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find the maximum length of an admissible chain, we can represent the problem as finding the longest path in a directed graph. The vertices are the digits $0-9$, and the directed edges are the two-digit multiples of $7$. \n\nThe $13$ two-digit multiples of $7$ are:\n$14, 21, 28, 35, 42, 49, 56, 63, 70, 77, 84, 91, 98$.\n\nLet's group these into connected components based on their starting and ending digits:\n1. **Component 1:** $35, 56, 63$ (uses digits $3, 5, 6$). This forms a closed cycle $3 \\to 5 \\to 6 \\to 3$. The maximum chain length here is $3$.\n2. **Component 2:** $77, 70$ (uses digits $7, 0$). This forms a path $7 \\to 7 \\to 0$. The maximum chain length here is $2$.\n3. **Component 3:** $14, 21, 28, 42, 49, 84, 91, 98$ (uses digits $1, 2, 4, 8, 9$). \n\nSince the components share no digits, a chain can only consist of edges from a single component. We must find the longest path in Component 3, which has $8$ edges. \n\nLet's calculate the out-degree minus the in-degree for each vertex in Component 3:\n- Digit $1$: in $2$, out $1$ (Difference: $-1$)\n- Digit $2$: in $1$, out $2$ (Difference: $+1$)\n- Digit $4$: in $2$, out $2$ (Difference: $0$)\n- Digit $8$: in $2$, out $1$ (Difference: $-1$)\n- Digit $9$: in $1$, out $2$ (Difference: $+1$)\n\nFor a graph to have an Eulerian path (a path that visits every edge exactly once), it must have at most one vertex with a difference of $+1$ (the start) and at most one with a difference of $-1$ (the end). Here, we have two vertices with $+1$ (digits $2$ and $9$) and two with $-1$ (digits $1$ and $8$). \n\nBecause of this, we cannot use all $8$ edges in a single continuous chain. We must remove at least one edge to satisfy the condition for a path. \nIf we remove the edge $98$ ($9 \\to 8$), the differences for $9$ and $8$ both become $0$. The only unbalanced vertices are now $2$ (start) and $1$ (end). \n\nThis leaves us with $7$ edges, and we can easily form a valid chain of length $7$:\n$28 \\to 84 \\to 49 \\to 91 \\to 14 \\to 42 \\to 21$\n(which corresponds to the sequence $28 - 84 - 49 - 91 - 14 - 42 - 21$).\n\nThus, the maximum length of an admissible chain is $7$.\n\nFinal answer: 7",
+  "usage": {
+    "input_tokens": 170,
+    "output_tokens": 753,
+    "thoughts_tokens": 3517
+  },
+  "latency_s": 33.54353762906976,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "7"
+  }
+}

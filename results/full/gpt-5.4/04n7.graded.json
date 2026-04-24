@@ -1,0 +1,24 @@
+{
+  "id": "04n7",
+  "country": "Croatia",
+  "competition": "Croatia_2018",
+  "gold_final_answer": "All real x with sin x in [0, 1/2], i.e., for any integer k: x in [2kπ, 2kπ + π/6] ∪ [2kπ + 5π/6, 2kπ + π].",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities"
+  ],
+  "prompt": "Determine all real numbers $x$ such that\n$$\n1 \\le \\frac{1 + \\sin x}{1 - \\sin x} \\le 3.\n$$",
+  "model": "gpt-5.4",
+  "response_text": "Let\n\\[\ny=\\frac{1+\\sin x}{1-\\sin x}.\n\\]\nWe want\n\\[\n1\\le y\\le 3.\n\\]\n\nSince \\(-1\\le \\sin x\\le 1\\), the denominator \\(1-\\sin x\\ge 0\\), and it is zero only when \\(\\sin x=1\\), where the expression is undefined. So for valid \\(x\\), we have \\(1-\\sin x>0\\), and we may multiply inequalities safely.\n\nWe solve the two parts:\n\n### 1) Lower bound\n\\[\n1\\le \\frac{1+\\sin x}{1-\\sin x}\n\\]\n\\[\n1-\\sin x\\le 1+\\sin x\n\\]\n\\[\n0\\le 2\\sin x\n\\]\n\\[\n\\sin x\\ge 0.\n\\]\n\n### 2) Upper bound\n\\[\n\\frac{1+\\sin x}{1-\\sin x}\\le 3\n\\]\n\\[\n1+\\sin x\\le 3(1-\\sin x)\n\\]\n\\[\n1+\\sin x\\le 3-3\\sin x\n\\]\n\\[\n4\\sin x\\le 2\n\\]\n\\[\n\\sin x\\le \\frac12.\n\\]\n\nCombining:\n\\[\n0\\le \\sin x\\le \\frac12.\n\\]\n\nNow convert this to \\(x\\)-values. Over one period \\(0\\le x<2\\pi\\), this means\n\\[\nx\\in \\left[0,\\frac{\\pi}{6}\\right]\\cup \\left[\\frac{5\\pi}{6},\\pi\\right].\n\\]\nAdding all periods, the full solution is\n\\[\nx\\in \\bigcup_{k\\in\\mathbb Z}\\left([2k\\pi,\\,2k\\pi+\\tfrac{\\pi}{6}] \\cup [2k\\pi+\\tfrac{5\\pi}{6},\\,2k\\pi+\\pi]\\right).\n\\]\n\nFinal answer: \\(\\displaystyle x\\in \\bigcup_{k\\in\\mathbb Z}\\left([2k\\pi,\\,2k\\pi+\\frac{\\pi}{6}] \\cup [2k\\pi+\\frac{5\\pi}{6},\\,2k\\pi+\\pi]\\right)\\).",
+  "usage": {
+    "input_tokens": 84,
+    "output_tokens": 501,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 6.451187142985873,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "\\(\\displaystyle x\\in \\bigcup_{k\\in\\mathbb Z}\\left([2k\\pi,\\,2k\\pi+\\frac{\\pi}{6}] \\cup [2k\\pi+\\frac{5\\pi}{6},\\,2k\\pi+\\pi]\\right)\\)."
+  }
+}

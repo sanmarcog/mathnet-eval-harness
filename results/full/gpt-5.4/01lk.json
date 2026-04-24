@@ -1,0 +1,19 @@
+{
+  "id": "01lk",
+  "country": "Belarus",
+  "competition": "61st Belarusian Mathematical Olympiad",
+  "gold_final_answer": "9",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Polynomial operations"
+  ],
+  "prompt": "Non-zero real numbers $a, b, c$ satisfy the equality\n$$\n\\frac{ab}{b-c} + \\frac{bc}{c-a} + \\frac{ca}{a-b} = \\frac{ab}{b+c} + \\frac{bc}{c+a} + \\frac{ca}{a+b} + 6abc.\n$$\nFind all possible values of the expression\n$$\n\\frac{1}{(a^2 - b^2)^2} + \\frac{1}{(b^2 - c^2)^2} + \\frac{1}{(c^2 - a^2)^2}\n$$",
+  "model": "gpt-5.4",
+  "response_text": "Let\n\\[\n\\frac{ab}{b-c}+\\frac{bc}{c-a}+\\frac{ca}{a-b}\n=\n\\frac{ab}{b+c}+\\frac{bc}{c+a}+\\frac{ca}{a+b}+6abc.\n\\]\nWe seek all possible values of\n\\[\nS=\\frac1{(a^2-b^2)^2}+\\frac1{(b^2-c^2)^2}+\\frac1{(c^2-a^2)^2}.\n\\]\n\nWe will simplify the given condition first.\n\n---\n\n## 1) Rewrite the equation\n\nMove the right-hand fractional terms to the left:\n\\[\nab\\!\\left(\\frac1{b-c}-\\frac1{b+c}\\right)\n+\nbc\\!\\left(\\frac1{c-a}-\\frac1{c+a}\\right)\n+\nca\\!\\left(\\frac1{a-b}-\\frac1{a+b}\\right)\n=6abc.\n\\]\nEach difference simplifies as\n\\[\n\\frac1{x-y}-\\frac1{x+y}=\\frac{2y}{x^2-y^2}.\n\\]\nSo\n\\[\nab\\cdot \\frac{2c}{b^2-c^2}\n+\nbc\\cdot \\frac{2a}{c^2-a^2}\n+\nca\\cdot \\frac{2b}{a^2-b^2}\n=6abc.\n\\]\nSince \\(abc\\neq 0\\), divide by \\(2abc\\):\n\\[\n\\frac1{b^2-c^2}+\\frac1{c^2-a^2}+\\frac1{a^2-b^2}=3.\n\\]\n\nNow set\n\\[\nx=a^2-b^2,\\qquad y=b^2-c^2,\\qquad z=c^2-a^2.\n\\]\nThen\n\\[\nx+y+z=0,\n\\]\nand the condition becomes\n\\[\n\\frac1x+\\frac1y+\\frac1z=3.\n\\]\n\nWe need\n\\[\nS=\\frac1{x^2}+\\frac1{y^2}+\\frac1{z^2}.\n\\]\n\n---\n\n## 2) Use \\(x+y+z=0\\)\n\nA standard identity says that if \\(x+y+z=0\\), then\n\\[\n\\frac1x+\\frac1y+\\frac1z=\\frac{xy+yz+zx}{xyz}.\n\\]\nAlso from \\((x+y+z)^2=0\\),\n\\[\nx^2+y^2+z^2=-2(xy+yz+zx).\n\\]\n\nBut there is an even more useful identity:\n\\[\n(x+y+z)^2=x^2+y^2+z^2+2(xy+yz+zx)=0\n\\]\nso\n\\[\nxy+yz+zx=-\\frac{x^2+y^2+z^2}{2}.\n\\]\n\nNow,\n\\[\n\\frac1x+\\frac1y+\\frac1z=3\n\\quad\\Longrightarrow\\quad\n\\frac{xy+yz+zx}{xyz}=3.\n\\]\nSince \\(x+y+z=0\\), we also know\n\\[\nx^3+y^3+z^3=3xyz.\n\\]\n\nLet\n\\[\np=\\frac1x,\\quad q=\\frac1y,\\quad r=\\frac1z.\n\\]\nThen\n\\[\npq+qr+rp=\\frac{x+y+z}{xyz}=0,\n\\]\nbecause\n\\[\npq+qr+rp=\\frac1{xy}+\\frac1{yz}+\\frac1{zx}=\\frac{x+y+z}{xyz}=0.\n\\]\nAlso\n\\[\np+q+r=3.\n\\]\nWe want\n\\[\nS=p^2+q^2+r^2.\n\\]\nUsing\n\\[\n(p+q+r)^2=p^2+q^2+r^2+2(pq+qr+rp),\n\\]\nand \\(pq+qr+rp=0\\), we get\n\\[\nS=(p+q+r)^2=3^2=9.\n\\]\n\nSo the expression has only one possible value.\n\n---\n\nFinal answer: \\(9\\)",
+  "usage": {
+    "input_tokens": 186,
+    "output_tokens": 905,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 11.613786367001012,
+  "cached": false
+}

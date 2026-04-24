@@ -1,0 +1,20 @@
+{
+  "id": "0cjq",
+  "country": "Romania",
+  "competition": "75th NMO Selection Tests",
+  "gold_final_answer": "n-1",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Induction / smoothing",
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments"
+  ],
+  "prompt": "Turbo the snail is in the lower left cell of an $n \\times n$ array, $n \\ge 2$, and aims to reach the upper right cell by moving one cell rightwards or one cell upwards. Some cells contain monsters, visible to Turbo, and they must be avoided. Assume there is a unique way for Turbo to achieve his goal. In terms of $n$, determine the smallest possible number of monsters such an array may contain. (The minimum is over all configurations satisfying the unique path condition.)",
+  "model": "gpt-5.4",
+  "response_text": "Let the start be the lower-left corner \\((1,1)\\) and the finish the upper-right corner \\((n,n)\\). Turbo may move only **right** or **up**.\n\nWe seek the minimum number of blocked cells (“monsters”) so that there is **exactly one** valid path from start to finish.\n\n## 1. A lower bound\n\nA path from \\((1,1)\\) to \\((n,n)\\) has length\n\\[\n( n-1 )+( n-1 )=2n-2\n\\]\nmoves, so it visits\n\\[\n2n-1\n\\]\ncells.\n\nSince the board has \\(n^2\\) cells, the number of cells not on the unique path is\n\\[\nn^2-(2n-1)=(n-1)^2.\n\\]\nBut not all those cells must be monsters; some may simply be unreachable because of other monsters.\n\nWe need a sharper argument.\n\nConsider the unique path \\(P\\). At each interior step of the path, Turbo moves either right or up. Suppose at some point the path goes through a cell \\(C\\), and both the cell to the right of \\(C\\) and the cell above \\(C\\) were available and could still lead to the finish. Then there would be two choices, producing at least two distinct valid paths. So uniqueness requires that whenever the path “turns” or continues, any alternative branch that could reconnect to the finish must be blocked somewhere immediately enough to prevent a second path.\n\nA clean way to count is by looking at the \\(n-1\\) diagonals\n\\[\nx+y=3,4,\\dots,n+1\n\\]\nnear the start and symmetrically the \\(n-1\\) diagonals near the end. For each of the \\(n-1\\) “decision levels” between successive antidiagonals, uniqueness forces at least one cell off the chosen path to be blocked; otherwise one could switch there and later rejoin, giving another monotone path. This yields at least\n\\[\nn-1\n\\]\nmonsters.\n\nSo the minimum is at least \\(n-1\\).\n\n## 2. Construction with \\(n-1\\) monsters\n\nWe now show \\(n-1\\) monsters suffice.\n\nPlace monsters in all cells\n\\[\n(2,1),(3,2),(4,3),\\dots,(n,n-1),\n\\]\ni.e. the cells just **below** the main diagonal (using coordinates \\((x,y)\\) from lower-left).\n\nThere are exactly \\(n-1\\) such cells.\n\nNow consider any path from \\((1,1)\\) to \\((n,n)\\). To avoid these monsters, Turbo cannot ever move to a cell with \\(x=y+1\\). Starting at \\((1,1)\\), this means the very first move cannot be right (since \\((2,1)\\) is blocked), so it must be up. Inductively, whenever Turbo is on the diagonal \\(x=y\\), the right move is blocked, so he must go up; and between diagonals, the only way to proceed without hitting a blocked cell forces him along the path\n\\[\n(1,1)\\to(1,2)\\to(2,2)\\to(2,3)\\to(3,3)\\to\\cdots\\to(n,n),\n\\]\nwhich is unique.\n\nThus \\(n-1\\) monsters are enough.\n\nCombining the lower bound and the construction, the minimum is\n\\[\n\\boxed{n-1}.\n\\]\n\nFinal answer: \\(\\boxed{n-1}\\)",
+  "usage": {
+    "input_tokens": 153,
+    "output_tokens": 765,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 13.719691021018662,
+  "cached": false
+}

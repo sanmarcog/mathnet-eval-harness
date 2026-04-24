@@ -1,0 +1,25 @@
+{
+  "id": "04v3",
+  "country": "Czech Republic",
+  "competition": "Final Round",
+  "gold_final_answer": "minimum 600, maximum 5400",
+  "topics_flat": [
+    "Discrete Mathematics > Graph Theory > Turán's theorem",
+    "Discrete Mathematics > Combinatorics > Counting two ways"
+  ],
+  "prompt": "Consider any graph with $50$ vertices and $225$ edges. We say that a triplet of its (mutually distinct) vertices is *connected* if the three vertices determine at least two edges. Determine the smallest and the largest possible number of connected triples.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Setting Up the Problem\n\nWe need to find the minimum and maximum number of \"connected triples\" in a graph with 50 vertices and 225 edges, where a connected triple is a set of 3 vertices with at least 2 edges among them.\n\n**Counting connected triples:** For 3 vertices, the possible edge counts are 0, 1, 2, or 3. A triple is connected if it has 2 or 3 edges. \n\nFor each vertex $v$ with degree $d_v$, the number of pairs of neighbors of $v$ is $\\binom{d_v}{2}$. Each path of length 2 centered at $v$ contributes to a triple with at least 1 edge (the two edges of the path). \n\nActually, let me count directly. The number of triples with **at least 2 edges** equals (triples with exactly 2 edges) + (triples with exactly 3 edges).\n\nNote: $\\sum_v \\binom{d_v}{2}$ counts the number of \"paths of length 2\" (or cherries), which equals the number of triples with **at least 2 edges** counted with multiplicity... \n\nActually, $\\sum_v \\binom{d_v}{2}$ counts pairs of edges sharing a vertex. Each triple with exactly 2 edges contributes exactly 1 to this sum (the middle vertex), and each triangle contributes exactly 3. So:\n\n$$\\sum_v \\binom{d_v}{2} = T_2 + 3T_3$$\n\nwhere $T_2$ = triples with exactly 2 edges, $T_3$ = triangles.\n\nThe number of connected triples is $C = T_2 + T_3 = \\sum_v \\binom{d_v}{2} - 2T_3$.\n\n## Finding the Maximum\n\nTo maximize $C = \\sum_v \\binom{d_v}{2} - 2T_3$: maximize $\\sum \\binom{d_v}{2}$ and minimize $T_3$.\n\nTo maximize $\\sum \\binom{d_v}{2}$ with $\\sum d_v = 450$: concentrate degrees. Use a complete bipartite graph or similar. With 50 vertices and 225 edges, consider $K_{15,15}$ has 225 edges with 30 vertices... \n\nConsider a graph where some vertices have high degree. A complete graph $K_{r}$ has $\\binom{r}{2}$ edges. For $r=22$: $\\binom{22}{2}=231>225$. For $r=21$: $\\binom{21}{2}=210$, need 15 more edges from vertex 22 to others.\n\nFor the complete bipartite graph $K_{a,b}$ with $ab = 225$: e.g., $K_{9,25}$ (9+25=34 vertices, 225 edges, no triangles). Then $\\sum \\binom{d_v}{2} = 9\\binom{25}{2} + 25\\binom{9}{2} = 9 \\cdot 300 + 25 \\cdot 36 = 2700 + 900 = 3600$. With $T_3=0$, $C = 3600$.\n\nCan we do better? Try $K_{1,225}$... but only 50 vertices. Try making degrees as unequal as possible: one vertex of degree 49, rest adjusted. With a star $K_{1,49}$: only 49 edges.\n\nFor maximum $\\sum \\binom{d_v}{2}$ with no triangles: use complete bipartite. $K_{9,25}$ uses 34 vertices, add 16 isolated vertices: $C = 3600$.\n\nTry $K_{15,15}$: $\\sum \\binom{d_v}{2} = 30\\binom{15}{2} = 30 \\cdot 105 = 3150 < 3600$.\n\nSo maximum is **3600**.\n\n## Finding the Minimum\n\nTo minimize connected triples, make the graph as \"regular\" as possible (minimizes $\\sum \\binom{d_v}{2}$) and maximize triangles.\n\nWith 50 vertices, 225 edges: average degree = 9. A 9-regular graph gives $\\sum \\binom{d_v}{2} = 50 \\cdot 36 = 1800$.\n\nThen $C = 1800 - 2T_3$. To minimize $C$, maximize $T_3$.\n\nIn a 9-regular graph on 50 vertices, the maximum number of triangles: each edge is in at most 8 triangles, total $\\leq 225 \\cdot 8/3 = 600$ triangles. \n\nConsider the complete graph $K_{10}$ (9-regular, 45 edges, $\\binom{10}{3}=120$ triangles). Take 5 disjoint $K_{10}$'s: 50 vertices, 225 edges, 600 triangles, 9-regular. Then $C = 1800 - 1200 = 600$.\n\nCan we do better (fewer connected triples)? With 5 disjoint $K_{10}$: $C = 600$.\n\n## Final Answers\n\n**Minimum: 600, Maximum: 3600**\n\nFinal answer: The minimum number of connected triples is $\\boxed{600}$ and the maximum is $3600$.",
+  "usage": {
+    "input_tokens": 102,
+    "output_tokens": 1330,
+    "thinking_tokens": 0
+  },
+  "latency_s": 19.262430766015314,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "600"
+  }
+}

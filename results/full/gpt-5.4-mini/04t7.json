@@ -1,0 +1,21 @@
+{
+  "id": "04t7",
+  "country": "Czech Republic",
+  "competition": "65th Czech and Slovak Mathematical Olympiad",
+  "gold_final_answer": "p + 2 if p ≡ 1 (mod 3); p + 1 if p ≡ 2 (mod 3)",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Prime numbers",
+    "Number Theory > Divisibility / Factorization > Factorization techniques",
+    "Number Theory > Modular Arithmetic"
+  ],
+  "prompt": "Let $p > 3$ be a prime. Find the number of ordered sextuples $(a, b, c, d, e, f)$ of positive integers, whose sum is $3p$, and all the fractions\n$$\n\\frac{a+b}{c+d}, \\quad \\frac{b+c}{d+e}, \\quad \\frac{c+d}{e+f}, \\quad \\frac{d+e}{f+a}, \\quad \\frac{e+f}{a+b}\n$$\nare integers.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let\n\\[\nx_1=\\frac{a+b}{c+d},\\ x_2=\\frac{b+c}{d+e},\\ x_3=\\frac{c+d}{e+f},\\ x_4=\\frac{d+e}{f+a},\\ x_5=\\frac{e+f}{a+b},\n\\]\nso each \\(x_i\\) is a positive integer.\n\nBecause\n\\[\n(a+b)+(c+d)+(e+f)=3p\n\\]\nand\n\\[\n(c+d)+(e+f)+(a+b)=3p\n\\]\nas well, we can set\n\\[\nu=a+b,\\quad v=c+d,\\quad w=e+f.\n\\]\nThen \\(u+v+w=3p\\), and the conditions imply\n\\[\nu = x_1v,\\quad v=x_3w,\\quad w=x_5u.\n\\]\nMultiplying,\n\\[\nx_1x_3x_5=1,\n\\]\nso\n\\[\nx_1=x_3=x_5=1.\n\\]\nThus\n\\[\na+b=c+d=e+f.\n\\]\nSimilarly, from the other three fractions we get\n\\[\nb+c=d+e=f+a.\n\\]\nSo all six pairwise sums around the cycle are equal in opposite positions.\n\nLet\n\\[\na+b=c+d=e+f = S,\\qquad b+c=d+e=f+a = T.\n\\]\nAdding all three equalities in each group gives\n\\[\n2(a+b+c+d+e+f)=3S+3T,\n\\]\nhence\n\\[\n6p = 3(S+T)\\implies S+T=2p.\n\\]\nBut also from\n\\[\n(a+b)+(d+e)= (c+d)+(f+a)\n\\]\nwe get \\(a+e=b+c\\), and cycling similarly shows all variables must be equal in a consistent way. A cleaner way is to solve the linear system:\n\\[\na+b=S,\\quad b+c=T,\\quad c+d=S,\\quad d+e=T,\\quad e+f=S,\\quad f+a=T.\n\\]\nSubtracting consecutive equations gives\n\\[\na-c=S-T,\\quad b-d=T-S,\\quad c-e=S-T,\\quad d-f=T-S,\\quad e-a=S-T,\\quad f-b=T-S.\n\\]\nSumming alternatingly forces \\(S=T\\), hence all six pair sums are equal:\n\\[\na+b=b+c=\\cdots=f+a=p.\n\\]\nThen\n\\[\na=b=c=d=e=f=\\frac p2\n\\]\nwould follow, impossible since \\(p\\) is an odd prime.\n\nSo the above direct route shows there is no solution unless we revisit the integrality more carefully. In fact, the product of the five given fractions is\n\\[\n\\frac{(a+b)(b+c)(c+d)(d+e)(e+f)}{(c+d)(d+e)(e+f)(f+a)(a+b)}\n=\\frac{b+c}{f+a},\n\\]\nwhich is an integer and also its reciprocal appears by cyclic symmetry, so it must be \\(1\\). Hence\n\\[\nb+c=f+a.\n\\]\nThen all five fractions are \\(1\\), so\n\\[\na+b=c+d=d+e=e+f=f+a=b+c.\n\\]\nTherefore all adjacent sums are equal; call the common value \\(S\\). Summing the six equalities\n\\[\n(a+b)+(b+c)+\\cdots +(f+a)=6S\n\\]\ngives\n\\[\n2(a+b+c+d+e+f)=6S \\implies 6p=6S \\implies S=p.\n\\]\nNow the equations\n\\[\na+b=b+c=\\cdots=f+a=p\n\\]\nimply\n\\[\na=c=e,\\qquad b=d=f,\n\\]\nand since \\(a+b=p\\), every choice of \\(a\\in\\{1,2,\\dots,p-1\\}\\) determines a unique sextuple:\n\\[\n(a,b,c,d,e,f)=(a,p-a,a,p-a,a,p-a).\n\\]\nThere are \\(p-1\\) such ordered sextuples.\n\nFinal answer: \\(p-1\\)",
+  "usage": {
+    "input_tokens": 159,
+    "output_tokens": 907,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 6.6666465470334515,
+  "cached": false
+}

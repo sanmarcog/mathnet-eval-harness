@@ -1,0 +1,20 @@
+{
+  "id": "0d0t",
+  "country": "Saudi Arabia",
+  "competition": "Saudi Arabia Mathematical Competitions 2012",
+  "gold_final_answer": "n!·(n−1)^n",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities > Combinatorial optimization",
+    "Discrete Mathematics > Combinatorics > Induction / smoothing"
+  ],
+  "prompt": "In an $n \\times n$ board, the numbers $0$ through $n^2 - 1$ are written so that the number in row $i$ and column $j$ is equal to\n$$\n(i-1) + n(j-1) \\text{ where } 1 \\le i, j \\le n.\n$$\nSuppose we select $n$ different cells of the board, where no two cells are in the same row or column. Find the maximum possible product of the numbers in the $n$ cells.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Setting Up the Problem\n\nThe number in row $i$, column $j$ is $(i-1) + n(j-1)$.\n\nWe need to select $n$ cells, one from each row and one from each column (a permutation). For permutation $\\sigma$ (where we pick cell $(i, \\sigma(i))$ for each row $i$), the product is:\n\n$$P(\\sigma) = \\prod_{i=1}^{n} \\left[(i-1) + n(\\sigma(i)-1)\\right]$$\n\nLet me substitute $a_i = i-1 \\in \\{0, 1, \\ldots, n-1\\}$ and $b_j = n(j-1) \\in \\{0, n, 2n, \\ldots, n(n-1)\\}$.\n\nThe values selected are $\\{(i-1) + n(\\sigma(i)-1)\\}$ for a permutation $\\sigma$.\n\n## Finding the Maximum\n\nThe values in the board are $0, 1, 2, \\ldots, n^2-1$. We want to maximize the product of $n$ values, one from each row and column.\n\n**Key observation:** The value in row $i$, column $j$ is $(i-1) + n(j-1)$. For column $j$, the values are $n(j-1), n(j-1)+1, \\ldots, n(j-1)+(n-1)$, i.e., $\\{n(j-1), \\ldots, nj-1\\}$.\n\nTo maximize the product, we want large values. The largest values are in column $n$: $\\{n(n-1), n(n-1)+1, \\ldots, n^2-1\\}$.\n\n**Strategy:** Assign column $n$ to some row, column $n-1$ to another, etc. To maximize, we want to pick the largest element from each column.\n\nIf we assign column $j$ to row $i$, the value is $(i-1) + n(j-1)$. To maximize the value from column $j$, pick the largest row available.\n\n**Greedy approach:** Assign the largest column to the largest available row.\n- Column $n$ → Row $n$: value $= (n-1) + n(n-1) = (n-1)(n+1) = n^2-1$\n- Column $n-1$ → Row $n-1$: value $= (n-2) + n(n-2) = (n-2)(n+1)$\n- Column $j$ → Row $j$: value $= (j-1) + n(j-1) = (j-1)(n+1)$\n\nThis gives the identity permutation $\\sigma(i) = i$, with values $(i-1)(n+1)$ for $i = 1, \\ldots, n$.\n\nThe product is:\n$$P = \\prod_{i=1}^{n} (i-1)(n+1) = (n+1)^n \\cdot \\prod_{i=1}^{n}(i-1) = (n+1)^n \\cdot 0 \\cdot 1 \\cdot 2 \\cdots (n-1)$$\n\nThis equals **0** since $i=1$ gives value $0$.\n\n**Avoiding zero:** We must avoid row 1, column 1 (value 0). Consider permutations that don't pick cell $(1,1)$.\n\nTo maximize, try $\\sigma$ where row 1 gets column 2, and row 2 gets column 1, rest identity:\n- Row 1, Col 2: $0 + n(1) = n$\n- Row 2, Col 1: $1 + 0 = 1$  \n- Row $i$, Col $i$ for $i \\geq 3$: $(i-1)(n+1)$\n\nProduct: $n \\cdot 1 \\cdot \\prod_{i=3}^{n}(i-1)(n+1) = n \\cdot (n+1)^{n-2} \\cdot (n-1)!/ 1$\n\n$= n \\cdot (n+1)^{n-2} \\cdot \\frac{(n-1)!}{2!} \\cdot 2 = n \\cdot (n+1)^{n-2} \\cdot \\frac{(n-1)!}{1}$\n\nWait: $\\prod_{i=3}^{n}(i-1) = 2 \\cdot 3 \\cdots (n-1) = (n-1)!/1! = (n-1)!$... $= \\frac{(n-1)!}{1}$\n\nProduct $= n \\cdot (n+1)^{n-2} \\cdot (n-1)!$\n\nSince $(n-1)! \\cdot n = n!$, this equals:\n\n$$\\boxed{n! \\cdot (n+1)^{n-2}}$$\n\nFinal answer: $n!\\,(n+1)^{n-2}$",
+  "usage": {
+    "input_tokens": 165,
+    "output_tokens": 1247,
+    "thinking_tokens": 0
+  },
+  "latency_s": 18.421124386950396,
+  "cached": false
+}

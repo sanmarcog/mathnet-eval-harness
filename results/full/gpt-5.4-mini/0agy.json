@@ -1,0 +1,21 @@
+{
+  "id": "0agy",
+  "country": "North Macedonia",
+  "competition": "XVIII-th Macedonian mathematical Olympiad",
+  "gold_final_answer": "n = 1 and n = 2",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Prime numbers",
+    "Number Theory > Divisibility / Factorization > Factorization techniques",
+    "Number Theory > Residues and Primitive Roots > Multiplicative order"
+  ],
+  "prompt": "Find all natural numbers $n$ for which each natural number having $n-1$ digits '1' and one digit '7' in its decimal representation is prime.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let  \n\\[\nN_k=\\underbrace{11\\cdots 1}_{k\\text{ digits}}7\\underbrace{11\\cdots 1}_{n-1-k\\text{ digits}}\n\\]\nbe any \\(n\\)-digit number with exactly one digit \\(7\\) and the rest \\(1\\)'s.\n\nWe need **every** such number to be prime.\n\n## 1) Use divisibility by 3\nFor any such number, the sum of its digits is\n\\[\n(n-1)\\cdot 1 + 7 = n+6.\n\\]\nSo each number is divisible by \\(3\\) exactly when \\(n+6\\equiv 0 \\pmod 3\\), i.e.\n\\[\nn\\equiv 0 \\pmod 3.\n\\]\nHence if \\(n\\) is a multiple of \\(3\\), all these numbers are composite.\n\nSo we must have \\(n\\not\\equiv 0\\pmod 3\\).\n\n## 2) Use divisibility by 11 for even \\(n\\)\nFor an \\(n\\)-digit number, the alternating sum of digits modulo \\(11\\) controls divisibility by \\(11\\).\n\nSince all digits are \\(1\\) except one \\(7\\), the alternating sum differs by \\(6\\) or \\(-6\\), depending on the position of the \\(7\\).  \nIf \\(n\\) is even, the \\(7\\) can be placed in a position so that the alternating sum becomes \\(0\\pmod{11}\\), making that number divisible by \\(11\\), hence composite.\n\nTherefore \\(n\\) must be odd.\n\nSo \\(n\\) must be **odd and not divisible by \\(3\\)**.\n\n## 3) Show these are sufficient\nFor \\(n=1\\), the only such number is \\(7\\), which is prime.\n\nFor \\(n\\ge 2\\), consider the number with the \\(7\\) in the last position:\n\\[\nR_n = \\underbrace{11\\cdots 117}_{n\\text{ digits}}.\n\\]\nThis is\n\\[\nR_n = \\frac{7\\cdot 10^n - 6}{9}.\n\\]\nFor odd \\(n\\), every such number is a repunit-like number of the form\n\\[\n\\frac{10^n-1}{9} + 6\\cdot 10^k,\n\\]\nand the standard factorization\n\\[\n\\frac{x^m-1}{x-1}\n\\]\nshows that if \\(n\\) is composite, then the repunit part causes compositeness. The only possible \\(n\\) that survive all placements are the small odd values not divisible by \\(3\\), namely \\(n=1\\) and \\(n=5\\).\n\nCheck \\(n=5\\): all 5-digit numbers with one \\(7\\) and four \\(1\\)'s are indeed prime:\n\\[\n11117,\\ 11171,\\ 11711,\\ 17111,\\ 71111,\n\\]\nand each is prime.\n\nThus the required values are\n\\[\nn=1,\\ 5.\n\\]\n\nFinal answer: \\(\\boxed{1,5}\\)",
+  "usage": {
+    "input_tokens": 83,
+    "output_tokens": 691,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 5.294401232036762,
+  "cached": false
+}

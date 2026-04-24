@@ -1,0 +1,26 @@
+{
+  "id": "09ym",
+  "country": "Netherlands",
+  "competition": "Junior Mathematical Olympiad",
+  "gold_final_answer": "1/4",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Geometric Inequalities > Optimization in geometry",
+    "Geometry > Plane Geometry > Miscellaneous > Constructions and loci",
+    "Discrete Mathematics > Combinatorics > Counting two ways"
+  ],
+  "prompt": "Eleonora has a piece of paper in the shape of an equilateral triangle with an area of $1$. She folds the piece several times and puts it flat on the table. It turns out that the figure on the table is not more than four layers thick anywhere.\nWhat is the minimum area of the figure lying on the table?",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Setting Up the Problem\n\nWe have an equilateral triangle with area 1. We fold it several times, and the resulting figure on the table has at most 4 layers everywhere. We want to minimize the area of the figure on the table.\n\n## Key Insight\n\nWhen we fold a shape, the total \"area × layers\" is conserved. Since the original triangle has area 1 and 1 layer, the total layer-area product is 1.\n\nIf the figure on the table has area $A$ and at most 4 layers everywhere, then:\n$$\\text{Total layer-area} = 1$$\n\nSince every point has at most 4 layers: $1 \\leq 4A$, giving $A \\geq \\frac{1}{4}$.\n\n## Achieving the Minimum\n\nWe need to show we can achieve area $\\frac{1}{4}$ with at most 4 layers everywhere.\n\n**Fold the equilateral triangle into 4 equal parts:**\n\nFold the equilateral triangle by connecting the midpoints of all three sides. This divides the original triangle into 4 congruent equilateral triangles, each with area $\\frac{1}{4}$.\n\nThe standard way to fold: fold each corner triangle onto the central triangle. \n\n- Fold the bottom-left corner triangle up onto the center: now the center region has 2 layers.\n- Fold the bottom-right corner triangle up onto the center: now the center region has 3 layers.  \n- Fold the top corner triangle down onto the center: now the center region has 4 layers.\n\nAfter these three folds, the figure on the table is the central equilateral triangle with area $\\frac{1}{4}$, and it has exactly 4 layers everywhere (the center triangle itself plus the three folded corners, all perfectly overlapping).\n\n**Verification:** \n- Area of figure = $\\frac{1}{4}$\n- Layers everywhere = 4\n- Total layer-area = $4 \\times \\frac{1}{4} = 1$ ✓\n- Maximum layers = 4 ✓\n\n## Conclusion\n\nThe minimum area is $\\frac{1}{4}$, achieved by folding the three corner triangles onto the central triangle.\n\nFinal answer: $\\dfrac{1}{4}$",
+  "usage": {
+    "input_tokens": 119,
+    "output_tokens": 545,
+    "thinking_tokens": 0
+  },
+  "latency_s": 9.01121023693122,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "symbolic",
+    "predicted": "$\\dfrac{1}{4}$"
+  }
+}

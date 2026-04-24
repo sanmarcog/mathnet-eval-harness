@@ -1,0 +1,19 @@
+{
+  "id": "056l",
+  "country": "Estonia",
+  "competition": "IMO Team Selection Contest",
+  "gold_final_answer": "f(x) = 0 for all x; f(x) = x for all x",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Functional Equations"
+  ],
+  "prompt": "Find all functions $f : \\mathbb{R} \\to \\mathbb{R}$ that satisfy $f(xy + f(xy)) = 2x f(y)$ for all $x, y \\in \\mathbb{R}$.",
+  "model": "gpt-5.4",
+  "response_text": "Let\n\\[\nP(x,y):\\qquad f\\bigl(xy+f(xy)\\bigr)=2x\\,f(y)\\qquad(\\forall x,y\\in\\mathbb R).\n\\]\nWe seek all \\(f:\\mathbb R\\to\\mathbb R\\) satisfying \\(P(x,y)\\) for all real \\(x,y\\).\n\nWe will show the only solution is\n\\[\nf(x)\\equiv 0.\n\\]\n\n---\n\n## Step 1: Rewrite in terms of a single variable\n\nSince \\(xy\\) can be any real number, let \\(t=xy\\). Then for any fixed \\(x\\neq 0\\), choosing \\(y=t/x\\) gives\n\\[\nf\\bigl(t+f(t)\\bigr)=2x\\,f(t/x)\\qquad (\\forall t\\in\\mathbb R).\n\\]\nThe left side depends only on \\(t\\), so for fixed \\(t\\), the quantity \\(x f(t/x)\\) is constant for all \\(x\\neq 0\\).\n\nThis observation will force strong restrictions.\n\n---\n\n## Step 2: Basic substitutions\n\nWe now use some standard specializations.\n\n### (i) Put \\(x=0\\)\nFrom \\(P(0,y)\\),\n\\[\nf(f(0))=0 \\qquad (\\forall y),\n\\]\nso\n\\[\nf(f(0))=0.\n\\]\n\n### (ii) Put \\(y=0\\)\nFrom \\(P(x,0)\\),\n\\[\nf(f(0))=2x f(0)\\qquad (\\forall x).\n\\]\nBut the left side is constant, so necessarily\n\\[\nf(0)=0.\n\\]\nThen indeed \\(f(f(0))=f(0)=0\\).\n\nSo we have\n\\[\nf(0)=0.\n\\]\n\n---\n\n## Step 3: A key identity\n\nLet \\(u=xy\\). Then \\(P(x,y)\\) becomes\n\\[\nf(u+f(u))=2x f(u/x)\\qquad (x\\neq 0).\n\\]\nNow fix \\(u\\). Since the left side is independent of \\(x\\), for all \\(a,b\\neq 0\\),\n\\[\n2a\\,f(u/a)=2b\\,f(u/b).\n\\]\nLet \\(s=u/a\\). Then \\(a=u/s\\) (for \\(u\\neq 0\\)), and we get\n\\[\n\\frac{u}{s}f(s)=\\text{constant in }s.\n\\]\nHence for each fixed \\(u\\neq 0\\), the quantity \\(f(s)/s\\) is constant over all \\(s\\neq 0\\). Therefore there exists a constant \\(c\\) such that\n\\[\nf(x)=cx \\qquad (\\forall x\\neq 0).\n\\]\nTogether with \\(f(0)=0\\), this means\n\\[\nf(x)=cx \\qquad (\\forall x\\in\\mathbb R).\n\\]\n\nSo any solution must be linear through the origin.\n\n---\n\n## Step 4: Substitute \\(f(x)=cx\\)\n\nPlug into the equation:\n\\[\nf(xy+f(xy))=f(xy+cxy)=f((1+c)xy)=c(1+c)xy.\n\\]\nThe right side is\n\\[\n2x f(y)=2x(cy)=2cxy.\n\\]\nThus for all \\(x,y\\),\n\\[\nc(1+c)xy=2cxy.\n\\]\nSo\n\\[\nc(1+c)=2c.\n\\]\nHence\n\\[\nc^2-c=0,\n\\]\nso\n\\[\nc=0 \\quad\\text{or}\\quad c=1.\n\\]\n\nThus the only possible candidates are\n\\[\nf(x)=0 \\quad\\text{or}\\quad f(x)=x.\n\\]\n\n---\n\n## Step 5: Check candidates\n\n### Candidate 1: \\(f(x)=0\\)\nThen\n\\[\nf(xy+f(xy))=f(xy)=0,\n\\]\nand\n\\[\n2x f(y)=2x\\cdot 0=0.\n\\]\nWorks.\n\n### Candidate 2: \\(f(x)=x\\)\nThen\n\\[\nf(xy+f(xy))=f(2xy)=2xy,\n\\]\nwhile\n\\[\n2x f(y)=2xy.\n\\]\nAlso works.\n\nSo both satisfy the equation.\n\n---\n\n## Conclusion\n\nAll such functions are\n\\[\nf(x)\\equiv 0 \\qquad\\text{and}\\qquad f(x)=x.\n\\]\n\nFinal answer: \\(\\boxed{f(x)=0\\ \\text{for all }x\\in\\mathbb R\\ \\text{or}\\ f(x)=x\\ \\text{for all }x\\in\\mathbb R}\\).",
+  "usage": {
+    "input_tokens": 101,
+    "output_tokens": 1032,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 15.571544436039403,
+  "cached": false
+}

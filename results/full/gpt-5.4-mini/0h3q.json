@@ -1,0 +1,19 @@
+{
+  "id": "0h3q",
+  "country": "Ukraine",
+  "competition": "Ukrainian Mathematical Olympiad",
+  "gold_final_answer": "501",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments"
+  ],
+  "prompt": "Each of $1005$ citizens of the Emerald city wears glasses (with two lenses). The lenses in the glasses are colored rose, blue and green evenly: in total there are $670$ lenses of each color. All citizens composed a circle so that no two neighbors in this circle have lenses of a common color. What is the maximum possible number of citizens wearing glasses with lenses of different color?",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let \\(x\\) be the number of citizens whose two lenses have different colors. We want the maximum possible \\(x\\).\n\nEach citizen wears 2 lenses, so the total number of lenses is\n\\[\n1005\\cdot 2=2010.\n\\]\nSince there are \\(670\\) lenses of each of the 3 colors, the counts are balanced.\n\n### Step 1: Classify citizens\nA citizen is either:\n\n- **monochromatic**: both lenses same color, or\n- **bichromatic**: two different colors.\n\nLet\n\\[\na,b,c\n\\]\nbe the numbers of monochromatic citizens wearing rose, blue, green respectively, and let \\(x\\) be the number of bichromatic citizens.\n\nThen\n\\[\na+b+c+x=1005.\n\\]\n\n### Step 2: Count lenses of each color\nLet \\(rb, rg, bg\\) be the numbers of bichromatic citizens with those color pairs. Then\n\\[\nrb+rg+bg=x.\n\\]\nCounting rose lenses:\n\\[\n2a+rb+rg=670.\n\\]\nSimilarly,\n\\[\n2b+rb+bg=670,\\qquad 2c+rg+bg=670.\n\\]\n\nAdding these three equations gives\n\\[\n2(a+b+c)+2(rb+rg+bg)=2010,\n\\]\nwhich is just the total lens count.\n\nNow notice: for each bichromatic citizen, the two lenses contribute to two different colors, while each monochromatic citizen contributes 2 to one color. To maximize \\(x\\), we want as few monochromatic citizens as possible.\n\n### Step 3: Parity obstruction\nSince each color appears \\(670\\) times, all three counts are even. In a bichromatic pair, two colors are affected by \\(1\\) each. Thus the parity of each color count is determined by the number of monochromatic citizens of that color.\n\nBecause \\(670\\) is even, the number of monochromatic citizens of each color must be even. Hence \\(a,b,c\\) are all even, so\n\\[\na+b+c\n\\]\nis even.\n\nSince\n\\[\nx=1005-(a+b+c),\n\\]\nwe see \\(x\\) has opposite parity to \\(1005\\), so \\(x\\) must be even.\n\nThus the largest possible \\(x\\le 1005\\) is at most \\(1004\\).\n\n### Step 4: Show \\(1004\\) is achievable\nTake\n\\[\na=b=c=0,\\qquad x=1005\n\\]\nis impossible because \\(x\\) must be even. So try \\(x=1004\\), meaning exactly one monochromatic citizen.\n\nBut \\(a,b,c\\) must all be even, so the smallest possible total \\(a+b+c\\) is actually \\(0\\) or at least \\(2\\) depending on the exact distribution. Since \\(1004\\) is even, we need \\(a+b+c=1\\), impossible. Therefore the next possible value is \\(1003\\), but \\(1003\\) is odd, impossible. Continuing, the maximum even \\(x\\) compatible with parity is \\(1002\\).\n\nAnd \\(x=1002\\) is achievable, for example by taking:\n- \\(501\\) citizens with rose-blue lenses,\n- \\(501\\) citizens with rose-green lenses,\n- \\(3\\) monochromatic citizens, one of each color.\n\nThen the color counts can be adjusted to give exactly \\(670\\) of each color, and the circle condition can be arranged.\n\nSo the maximum number of citizens with different-colored lenses is\n\n\\[\n\\boxed{1002}.\n\\]\n\nFinal answer: 1002",
+  "usage": {
+    "input_tokens": 128,
+    "output_tokens": 782,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 5.996490365942009,
+  "cached": false
+}

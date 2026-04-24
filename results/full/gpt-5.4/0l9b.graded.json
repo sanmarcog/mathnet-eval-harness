@@ -1,0 +1,25 @@
+{
+  "id": "0l9b",
+  "country": "Vietnam",
+  "competition": "2003 Vietnamese Mathematical Olympiad",
+  "gold_final_answer": "P(x) = c(x - 1)x(x + 1)(x + 2)(x^2 + x + 1), where c is any real constant",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Polynomial operations",
+    "Algebra > Algebraic Expressions > Functional Equations"
+  ],
+  "prompt": "Find all polynomials $P(x)$ with real coefficients, satisfying the relation\n$$\n(x^3 + 3x^2 + 3x + 2)P(x - 1) = (x^3 - 3x^2 + 3x - 2)P(x)\n$$\nfor every real number $x$.",
+  "model": "gpt-5.4",
+  "response_text": "Let\n\\[\nA(x)=x^3+3x^2+3x+2=(x+1)^3+1,\\qquad B(x)=x^3-3x^2+3x-2=(x-1)^3-1.\n\\]\nWe want all real polynomials \\(P\\) such that\n\\[\nA(x)P(x-1)=B(x)P(x)\\qquad \\forall x\\in\\mathbb R.\n\\]\n\nWe will show the only such polynomial is the zero polynomial.\n\n## 1. Factor the cubic terms\nNotice\n\\[\nx^3+3x^2+3x+2=(x+1)^3+1=(x+2)(x^2+x+1),\n\\]\nand\n\\[\nx^3-3x^2+3x-2=(x-1)^3-1=(x-2)(x^2-x+1).\n\\]\nSo the equation becomes\n\\[\n(x+2)(x^2+x+1)P(x-1)=(x-2)(x^2-x+1)P(x).\n\\]\n\n## 2. Use special values to force infinitely many roots\nSet \\(x=2\\). Then\n\\[\n(2+2)(2^2+2+1)P(1)=(2-2)(2^2-2+1)P(2)=0,\n\\]\nso\n\\[\nP(1)=0.\n\\]\n\nNow set \\(x=1\\):\n\\[\n(1+2)(1^2+1+1)P(0)=(1-2)(1^2-1+1)P(1).\n\\]\nSince \\(P(1)=0\\), this gives\n\\[\n9P(0)=0 \\implies P(0)=0.\n\\]\n\nNow set \\(x=0\\):\n\\[\n(0+2)(0^2+0+1)P(-1)=(0-2)(0^2-0+1)P(0),\n\\]\nhence\n\\[\n2P(-1)=-2P(0)=0 \\implies P(-1)=0.\n\\]\n\nContinuing this way, if \\(P(k)=0\\) for some integer \\(k\\le 1\\), then substituting \\(x=k\\) gives\n\\[\n(k+2)(k^2+k+1)P(k-1)=(k-2)(k^2-k+1)P(k)=0.\n\\]\nNow \\(k^2+k+1>0\\) for all real \\(k\\), and for integers \\(k\\le 1\\), \\(k+2\\neq 0\\) except possibly \\(k=-2\\). But even at \\(k=-2\\), the relation gives no issue; we can proceed stepwise:\n- from \\(P(1)=0\\) got \\(P(0)=0\\),\n- from \\(P(0)=0\\) got \\(P(-1)=0\\),\n- from \\(x=-1\\): since \\((-1+2)((-1)^2+(-1)+1)=1\\neq0\\), we get \\(P(-2)=0\\),\n- from \\(x=-2\\): left coefficient vanishes, but then\n  \\[\n  0=(-4)(7)P(-2),\n  \\]\n  consistent,\n- from \\(x=-1\\) already got \\(P(-2)=0\\), then \\(x=-2\\) gives nothing, but \\(x=-2\\) is not needed,\n- from \\(x=-2\\) no new info, yet from \\(x=-2\\) and known \\(P(-2)=0\\), substitute \\(x=-1\\) gave previous step; then \\(x=-3\\) gives \\(P(-4)=0\\) once \\(P(-3)=0\\), etc.\n\nA cleaner induction is to go upward instead.\n\nFrom \\(x=2\\), \\(P(1)=0\\).\n\nSuppose \\(P(n)=0\\) for some integer \\(n\\). Put \\(x=n+1\\). Then\n\\[\n(n+3)(n^2+3n+3)P(n)=(n-1)(n^2+n+1)P(n+1).\n\\]\nSince \\(P(n)=0\\), we get\n\\[\n(n-1)(n^2+n+1)P(n+1)=0.\n\\]\nFor all integers \\(n\\neq 1\\), the factor \\((n-1)(n^2+n+1)\\neq 0\\), so \\(P(n+1)=0\\).\n\nStarting from \\(P(1)=0\\), this gives\n\\[\nP(2)=P(3)=P(4)=\\cdots =0.\n\\]\nIndeed, for \\(n=1\\), use \\(x=3\\) directly:\n\\[\n(5)(13)P(2)=0 \\implies P(2)=0,\n\\]\nthen induction continues.\n\nThus \\(P\\) has infinitely many real roots \\(1,2,3,\\dots\\), so \\(P\\equiv 0\\).\n\n## 3. Check\nThe zero polynomial clearly satisfies the equation.\n\nTherefore the only solution is\n\\[\nP(x)\\equiv 0.\n\\]\n\nFinal answer: \\(\\boxed{P(x)\\equiv 0}\\)",
+  "usage": {
+    "input_tokens": 120,
+    "output_tokens": 1150,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 16.962893112096936,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "P(x)\\equiv 0"
+  }
+}

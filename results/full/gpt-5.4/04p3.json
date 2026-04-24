@@ -1,0 +1,19 @@
+{
+  "id": "04p3",
+  "country": "Croatia",
+  "competition": "Croatian Mathematical Society Competitions",
+  "gold_final_answer": "Equality holds if and only if a = b (which, under the given constraint, means a = b in the interval from zero to one).",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities > QM-AM-GM-HM / Power Mean"
+  ],
+  "prompt": "Prove that for non-negative real numbers $a$ and $b$ such that $a + b \\le 2$ the inequality\n$$\n\\frac{1}{1+a^2} + \\frac{1}{1+b^2} \\le \\frac{2}{1+ab}\n$$\nholds. When is the equality attained? (Austria 2018)",
+  "model": "gpt-5.4",
+  "response_text": "Let  \n\\[\nx=\\frac{1}{1+a^2},\\qquad y=\\frac{1}{1+b^2}.\n\\]\nWe want to prove\n\\[\nx+y\\le \\frac{2}{1+ab}\n\\]\nfor \\(a,b\\ge 0\\) with \\(a+b\\le 2\\).\n\nA direct algebraic approach works well.\n\n\\[\n\\frac{2}{1+ab}-\\left(\\frac{1}{1+a^2}+\\frac{1}{1+b^2}\\right)\n\\]\nhas common denominator \\((1+ab)(1+a^2)(1+b^2)\\), so its numerator is\n\\[\n2(1+a^2)(1+b^2)-(1+ab)(1+b^2)-(1+ab)(1+a^2).\n\\]\nExpand:\n\\[\n2(1+a^2+b^2+a^2b^2)-\\bigl(1+b^2+ab+ab^3\\bigr)-\\bigl(1+a^2+ab+a^3b\\bigr).\n\\]\nThis simplifies to\n\\[\na^2+b^2-2ab+2a^2b^2-a^3b-ab^3.\n\\]\nFactor:\n\\[\n(a-b)^2+ab(2ab-a^2-b^2).\n\\]\nSince\n\\[\n2ab-a^2-b^2=-(a-b)^2,\n\\]\nthe numerator becomes\n\\[\n(a-b)^2-ab(a-b)^2=(a-b)^2(1-ab).\n\\]\nHence\n\\[\n\\frac{2}{1+ab}-\\left(\\frac{1}{1+a^2}+\\frac{1}{1+b^2}\\right)\n=\n\\frac{(a-b)^2(1-ab)}{(1+ab)(1+a^2)(1+b^2)}.\n\\]\n\nSo it remains to show \\(1-ab\\ge 0\\). But from \\(a,b\\ge 0\\) and \\(a+b\\le 2\\),\n\\[\nab\\le \\left(\\frac{a+b}{2}\\right)^2\\le 1.\n\\]\nThus \\(1-ab\\ge 0\\), and therefore the whole expression is nonnegative. This proves\n\\[\n\\frac{1}{1+a^2}+\\frac{1}{1+b^2}\\le \\frac{2}{1+ab}.\n\\]\n\nEquality holds iff\n\\[\n(a-b)^2(1-ab)=0,\n\\]\nthat is, iff either\n\n1. \\(a=b\\), or  \n2. \\(ab=1\\).\n\nUnder the condition \\(a+b\\le 2\\), the second case \\(ab=1\\) forces \\(a+b\\ge 2\\) by AM-GM, hence \\(a+b=2\\) and \\(a=b=1\\), which is already contained in case 1.\n\nTherefore equality is attained exactly when\n\\[\na=b \\quad\\text{and}\\quad 0\\le a=b\\le 1.\n\\]\n\nFinal answer: \n\\[\n\\frac{1}{1+a^2}+\\frac{1}{1+b^2}\\le \\frac{2}{1+ab}\n\\]\nbecause\n\\[\n\\frac{2}{1+ab}-\\frac{1}{1+a^2}-\\frac{1}{1+b^2}\n=\n\\frac{(a-b)^2(1-ab)}{(1+ab)(1+a^2)(1+b^2)}\\ge 0,\n\\]\nusing \\(ab\\le \\left(\\frac{a+b}{2}\\right)^2\\le 1\\). Equality holds exactly for \\(a=b\\) (necessarily \\(0\\le a=b\\le 1\\)).",
+  "usage": {
+    "input_tokens": 128,
+    "output_tokens": 811,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 11.766179495025426,
+  "cached": false
+}

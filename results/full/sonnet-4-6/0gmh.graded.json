@@ -1,0 +1,25 @@
+{
+  "id": "0gmh",
+  "country": "Turkey",
+  "competition": "X. NATIONAL MATHEMATICAL OLYMPIAD",
+  "gold_final_answer": "p = 2 and all odd primes congruent to 3 modulo 4",
+  "topics_flat": [
+    "Number Theory > Residues and Primitive Roots > Quadratic residues",
+    "Number Theory > Modular Arithmetic > Polynomials mod p"
+  ],
+  "prompt": "Find all prime numbers $p$ for which the number of ordered pairs of integers $(x, y)$ satisfying the conditions $y^2 \\equiv x^3 - x \\pmod p$ and $0 \\le x, y < p$ is exactly $p$.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "We need to find all prime numbers $p$ for which the number of solutions to $y^2 \\equiv x^3 - x \\pmod{p}$ with $0 \\le x, y < p$ is exactly $p$.\n\nThe number of solutions is:\n$$N = \\sum_{x=0}^{p-1} \\#\\{y : y^2 \\equiv x^3 - x \\pmod{p}\\}$$\n\nFor each $x$, the number of $y$ solutions is $1 + \\left(\\frac{x^3-x}{p}\\right)$ where $\\left(\\frac{\\cdot}{p}\\right)$ is the Legendre symbol (with the convention that the symbol is 0 when $x^3-x \\equiv 0$).\n\nSo $N = \\sum_{x=0}^{p-1} \\left(1 + \\left(\\frac{x^3-x}{p}\\right)\\right) = p + \\sum_{x=0}^{p-1} \\left(\\frac{x^3-x}{p}\\right)$.\n\nWe need $N = p$, so we need $\\sum_{x=0}^{p-1} \\left(\\frac{x^3-x}{p}\\right) = 0$.\n\nNote $x^3 - x = x(x-1)(x+1)$.\n\n**Check small primes:**\n\n**$p = 2$:** $x \\in \\{0,1\\}$. $x=0$: $y^2 \\equiv 0$, so $y=0$. $x=1$: $y^2 \\equiv 0$, so $y=0$. Total: 2 solutions = $p$. ✓\n\n**$p = 3$:** $x \\in \\{0,1,2\\}$. \n- $x=0$: $y^2 \\equiv 0$, $y=0$. (1 solution)\n- $x=1$: $y^2 \\equiv 0$, $y=0$. (1 solution)  \n- $x=2$: $y^2 \\equiv 6 \\equiv 0$, $y=0$. (1 solution)\nTotal: 3 = $p$. ✓\n\n**$p = 5$:** $x^3 - x$ values: $x=0:0$, $x=1:0$, $x=2:6\\equiv1$, $x=3:24\\equiv4$, $x=4:60\\equiv0$.\nLegendre symbols: $0,0,1,1,0$. Sum = 2 ≠ 0. So $N = 5 + 2 = 7 \\neq 5$. ✗\n\n**$p = 7$:** $x^3-x$: $x=0:0$, $x=1:0$, $x=2:6$, $x=3:24\\equiv3$, $x=4:60\\equiv4$, $x=5:120\\equiv1$, $x=6:210\\equiv0$.\nQR mod 7: $1,2,4$ are QR. Legendre symbols: $0,0,-1,1,1,1,0$. Sum = 2 ≠ 0. $N = 9 \\neq 7$. ✗\n\n**$p = 13$:** The curve $y^2 = x^3 - x$ is an elliptic curve. The number of points on the projective curve over $\\mathbb{F}_p$ is $p + 1 - a_p$ where $a_p$ is the trace of Frobenius. The affine count is $p - a_p$ (subtracting the point at infinity). We need $p - a_p = p$, so $a_p = 0$.\n\nFor $y^2 = x^3 - x$, this curve has CM by $\\mathbb{Z}[i]$. The trace $a_p = 0$ when $p \\equiv 3 \\pmod{4}$.\n\nFor $p \\equiv 1 \\pmod{4}$, write $p = a^2 + b^2$ with $a$ odd, and $a_p = \\pm 2a \\neq 0$ generally.\n\nSo $a_p = 0$ for $p \\equiv 3 \\pmod{4}$.\n\nCheck $p=3$: $3 \\equiv 3 \\pmod 4$ ✓ (verified above)\nCheck $p=7$: $7 \\equiv 3 \\pmod 4$ but we got $N=9$... Let me recount. Affine solutions = $p + \\sum \\left(\\frac{x^3-x}{p}\\right)$. For $p=7$, sum=2, so $N=9\\neq 7$. \n\nHmm, let me recheck $p=7$: QR mod 7 are $\\{1,2,4\\}$. $x=2$: $6$ — is 6 a QR? $6 \\equiv -1$, $\\left(\\frac{-1}{7}\\right) = (-1)^3 = -1$. So symbol is $-1$. Sum: $0+0-1+1+1+1+0 = 2$. So $N=9$. But $p\\equiv 3\\pmod 4$... The formula gives $a_p=0$ for $p\\equiv 3\\pmod 4$, meaning projective count = $p+1$, affine = $p$. Let me recheck $p=7$ more carefully — I think I made an error. $x=3$: $24 = 3\\cdot7+3$, so $3$. Is $3$ a QR mod 7? $1^2=1,2^2=4,3^2=2$. QRs are $\\{1,2,4\\}$. So $3$ is NR, symbol $=-1$. Sum: $0+0-1-1+1+1+0=0$. So $N=7$. ✓\n\nThe answer is all primes $p \\equiv 3 \\pmod{4}$, plus $p=2$.\n\nFinal answer: $p = 2$ and all primes $p \\equiv 3 \\pmod{4}$",
+  "usage": {
+    "input_tokens": 107,
+    "output_tokens": 1576,
+    "thinking_tokens": 0
+  },
+  "latency_s": 18.732506311964244,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "$p = 2$ and all primes $p \\equiv 3 \\pmod{4}$"
+  }
+}

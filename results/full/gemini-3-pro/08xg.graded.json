@@ -1,0 +1,25 @@
+{
+  "id": "08xg",
+  "country": "Japan",
+  "competition": "Japan Mathematical Olympiad Initial Round",
+  "gold_final_answer": "3",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Circles > Tangents",
+    "Geometry > Plane Geometry > Circles > Radical axis theorem"
+  ],
+  "prompt": "Circle $C_1$ is internally tangent to circle $C_2$ at point $A$. Let $O$ be the center of circle $C_2$. A tangent line to circle $C_1$ at point $P$ on $C_1$ goes through point $O$. Let $Q$ be the point of intersection of half-line $OP$ and circle $C_2$, and let $R$ be the point of intersection of the line tangent to circle $C_1$ at point $A$ and the line $OP$. Suppose that the radius of circle $C_2$ is $9$ and that $PQ = QR$ is satisfied. Here we denote the length of the line segment $XY$ also by $XY$. Determine the value of $OP$.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find the length of $OP$, let $R_1$ be the radius of circle $C_1$. Let $O_1$ be the center of $C_1$. Since $C_1$ is internally tangent to $C_2$ at $A$, the points $O$, $O_1$, and $A$ are collinear. \nThe radius of $C_2$ is $OA = 9$, so $O_1A = R_1$ and $OO_1 = 9 - R_1$.\n\nThe line $OP$ is tangent to $C_1$ at $P$, which means $\\angle O_1PO = 90^\\circ$. Using the Pythagorean theorem in $\\triangle OO_1P$:\n$$OP^2 = OO_1^2 - O_1P^2 = (9 - R_1)^2 - R_1^2 = 81 - 18R_1$$\n\nThe point $Q$ is the intersection of the half-line $OP$ and $C_2$, so $OQ = 9$. Since $P$ lies on the segment $OQ$, we have:\n$$PQ = OQ - OP = 9 - OP$$\n\nThe line tangent to $C_1$ at $A$ is perpendicular to the radius $O_1A$, meaning $\\angle OAR = 90^\\circ$. In the right-angled triangle $\\triangle OAR$, we can find $OR$ using $\\cos(\\angle AOR)$:\n$$\\cos(\\angle AOR) = \\frac{OP}{OO_1} = \\frac{OP}{9 - R_1}$$\n$$OR = \\frac{OA}{\\cos(\\angle AOR)} = \\frac{9(9 - R_1)}{OP}$$\n\nSince $Q$ lies between $P$ and $R$, we have $QR = OR - OQ = OR - 9$. \nWe are given that $PQ = QR$, so:\n$$9 - OP = \\frac{9(9 - R_1)}{OP} - 9$$\n$$18 - OP = \\frac{9(9 - R_1)}{OP}$$\nMultiplying by $OP$, we get:\n$$18OP - OP^2 = 81 - 9R_1$$\n\nFrom our first equation, we know that $18R_1 = 81 - OP^2$, which means $9R_1 = \\frac{81 - OP^2}{2}$. Substituting this into our equation gives:\n$$18OP - OP^2 = 81 - \\frac{81 - OP^2}{2}$$\n$$18OP - OP^2 = \\frac{81 + OP^2}{2}$$\nMultiplying by 2 to clear the denominator:\n$$36OP - 2OP^2 = 81 + OP^2$$\n$$3OP^2 - 36OP + 81 = 0$$\nDividing by 3 yields:\n$$OP^2 - 12OP + 27 = 0$$\n$$(OP - 3)(OP - 9) = 0$$\n\nThis gives $OP = 3$ or $OP = 9$. If $OP = 9$, then $P$ would lie on $C_2$, making $C_1$ degenerate (radius 0). Therefore, $OP$ must be 3.\n\nFinal answer: 3",
+  "usage": {
+    "input_tokens": 205,
+    "output_tokens": 757,
+    "thoughts_tokens": 2047
+  },
+  "latency_s": 20.39117051998619,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "exact",
+    "predicted": "3"
+  }
+}

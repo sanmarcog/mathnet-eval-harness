@@ -1,0 +1,24 @@
+{
+  "id": "0h5s",
+  "country": "Ukraine",
+  "competition": "55rd Ukrainian National Mathematical Olympiad - Fourth Round",
+  "gold_final_answer": "x = pi/2 + pi*k, where k is any integer",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Sequences and Series > Floors and ceilings"
+  ],
+  "prompt": "$$\n\\operatorname{ctg}[x] \\cdot \\operatorname{ctg}\\{x\\} = 1.\n$$\nWhere $[a]$ is the integer part of $a$, and $\\{a\\} = a - [a]$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let  \n\\[\nn=[x],\\qquad \\{x\\}=x-n \\in [0,1).\n\\]\nThen the equation becomes\n\\[\n\\cot n\\cdot \\cot\\{x\\}=1.\n\\]\nSince \\(\\cot n\\) is defined only when \\(n\\neq k\\pi\\), and \\(\\cot\\{x\\}\\) is defined only when \\(\\{x\\}\\neq 0\\).\n\nNow use\n\\[\n\\cot a\\cot b=1 \\iff \\tan a=\\cot b=\\tan\\left(\\frac{\\pi}{2}-b\\right),\n\\]\nso\n\\[\na+b \\equiv \\frac{\\pi}{2}\\pmod{\\pi}.\n\\]\nThus\n\\[\nn+\\{x\\}\\equiv \\frac{\\pi}{2}\\pmod{\\pi}.\n\\]\nBut \\(n+\\{x\\}=x\\), hence\n\\[\nx \\equiv \\frac{\\pi}{2}\\pmod{\\pi}.\n\\]\n\nSo the solutions are all numbers of the form\n\\[\nx=\\frac{\\pi}{2}+k\\pi,\\qquad k\\in\\mathbb Z,\n\\]\nprovided \\(x\\) is not an integer (which it is not, since \\(\\pi\\) is irrational).\n\nFinal answer: \\(\\boxed{x=\\frac{\\pi}{2}+k\\pi,\\ k\\in\\mathbb Z}\\).",
+  "usage": {
+    "input_tokens": 106,
+    "output_tokens": 312,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 2.6779448370216414,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "x=\\frac{\\pi}{2}+k\\pi,\\ k\\in\\mathbb Z"
+  }
+}

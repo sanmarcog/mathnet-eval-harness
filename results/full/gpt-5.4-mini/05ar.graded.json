@@ -1,0 +1,25 @@
+{
+  "id": "05ar",
+  "country": "Estonia",
+  "competition": "Estonian Mathematical Olympiad",
+  "gold_final_answer": "a) Yes; for example n = 100010001. b) No; such an integer does not exist.",
+  "topics_flat": [
+    "Number Theory > Modular Arithmetic",
+    "Number Theory > Divisibility / Factorization"
+  ],
+  "prompt": "a. Does there exist a positive integer $n$ such that the eight last digits of the number $n^2 + 1$ are the same as in the number $2n$, but the ninth digit from the end of these two numbers are different?\n\nb. Does there exist a positive integer $n$ such that the nine last digits of the number $n^2 + 1$ are the same as in the number $2n$, but the tenth digit from the end of these two numbers are different?",
+  "model": "gpt-5.4-mini",
+  "response_text": "We want the last \\(k\\) digits of \\(n^2+1\\) and \\(2n\\) to agree, but the next digit to differ.\n\nThis means for some \\(k\\):\n\n\\[\nn^2+1 \\equiv 2n \\pmod{10^k},\n\\]\nbut not mod \\(10^{k+1}\\).\n\nRewriting,\n\n\\[\nn^2-2n+1 \\equiv 0 \\pmod{10^k}\n\\quad\\Longleftrightarrow\\quad\n(n-1)^2 \\equiv 0 \\pmod{10^k}.\n\\]\n\nSo the condition is about how large a power of 10 divides \\((n-1)^2\\).\n\n---\n\n### a) Last 8 digits same, 9th different\nWe need\n\\[\n10^8 \\mid (n-1)^2 \\quad \\text{but} \\quad 10^9 \\nmid (n-1)^2.\n\\]\n\nNow \\(10^8=2^8\\cdot 5^8\\). If \\(v_2(n-1)=a\\) and \\(v_5(n-1)=b\\), then\n\\[\nv_{10}\\big((n-1)^2\\big)=\\min(2a,2b).\n\\]\nTo get exactly 8, we need \\(\\min(2a,2b)=8\\), so \\(\\min(a,b)=4\\). Hence we can choose \\(n-1\\) divisible by \\(10^4\\) but not by \\(10^5\\). For example,\n\n\\[\nn=10001.\n\\]\n\nThen \\(n-1=10000\\), so\n\\[\n(n-1)^2=10^8,\n\\]\nwhich is divisible by \\(10^8\\) but not by \\(10^9\\). Thus the last 8 digits match, and the 9th from the end differs.\n\nSo the answer to (a) is **yes**.\n\n---\n\n### b) Last 9 digits same, 10th different\nSimilarly, we need\n\\[\n10^9 \\mid (n-1)^2 \\quad \\text{but} \\quad 10^{10} \\nmid (n-1)^2.\n\\]\n\nThis means \\(\\min(2a,2b)=9\\), impossible because \\(2a\\) and \\(2b\\) are both even, so \\(\\min(2a,2b)\\) must be even. Therefore \\((n-1)^2\\) can never be divisible by \\(10^9\\) without being divisible by \\(10^{10}\\) in the precise “exactly 9 digits” sense.\n\nEquivalently, the 10-adic valuation of a square is always even, so it cannot be exactly \\(9\\).\n\nSo the answer to (b) is **no**.\n\nFinal answer: (a) Yes, for example \\(n=10001\\). (b) No, because \\((n-1)^2\\) is a square and its \\(10\\)-adic valuation must be even.",
+  "usage": {
+    "input_tokens": 154,
+    "output_tokens": 671,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 4.387492140987888,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "(a) Yes, for example \\(n=10001\\). (b) No, because \\((n-1)^2\\) is a square and its \\(10\\)-adic valuation must be even."
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "id": "03sa",
+  "country": "China",
+  "competition": "China Mathematical Competition (Jiangxi)",
+  "gold_final_answer": "4π/3",
+  "topics_flat": [
+    "Precalculus > Trigonometric functions"
+  ],
+  "prompt": "Assume that $\\alpha, \\beta, \\gamma$ satisfy $0 < \\alpha < \\beta < \\gamma < 2\\pi$. If\n$$\n\\cos(x + \\alpha) + \\cos(x + \\beta) + \\cos(x + \\gamma) = 0\n$$\nfor arbitrary $x \\in \\mathbb{R}$, then $\\gamma - \\alpha = \\underline{\\hspace{2cm}}$.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "We need the sum cos(x+α) + cos(x+β) + cos(x+γ) = 0 for all x.\n\nExpanding: cos x(cos α + cos β + cos γ) - sin x(sin α + sin β + sin γ) = 0 for all x.\n\nThis requires:\n- cos α + cos β + cos γ = 0\n- sin α + sin β + sin γ = 0\n\nThese mean the three unit vectors at angles α, β, γ sum to zero. This happens when the angles are equally spaced by 2π/3, or in some other symmetric configuration.\n\nIf equally spaced: β = α + 2π/3, γ = α + 4π/3. Then γ - α = 4π/3.\n\nBut we need to check if other configurations are possible. The three unit vectors summing to zero means they form a triangle - specifically an equilateral triangle on the unit circle, so they must be equally spaced by 2π/3.\n\nWait, actually they could also be arranged differently. Let me think more carefully.\n\nIf three unit vectors sum to zero, they must form an equilateral triangle arrangement (each separated by 2π/3). This is because if we have vectors e^{iα} + e^{iβ} + e^{iγ} = 0, this is equivalent to the three vectors being the cube roots of some complex number (rotated equally spaced).\n\nSo the angles must be α, α + 2π/3, α + 4π/3 in some order.\n\nGiven 0 < α < β < γ < 2π, we need to assign these. The three values are α, α + 2π/3, α + 4π/3. For these to satisfy 0 < α < β < γ < 2π, we need α + 4π/3 < 2π, so α < 2π/3.\n\nThus γ - α = 4π/3.\n\nBut wait - could the ordering be different? The three equally spaced angles are some θ, θ + 2π/3, θ + 4π/3. The smallest is θ (assuming θ is the smallest), and γ - α = 4π/3.\n\nHowever, what if α is not the \"base\" angle? For example, if the three angles are θ, θ+2π/3, θ+4π/3 but we need them all in (0, 2π). If θ+4π/3 ≥ 2π, we'd wrap around, but then the ordering changes. Let's say the three angles in increasing order are a < b < c, all in (0,2π). They differ by 2π/3 each: b = a + 2π/3, c = a + 4π/3. So c - a = 4π/3.\n\nFinal answer: $\\dfrac{4\\pi}{3}$",
+  "usage": {
+    "input_tokens": 148,
+    "output_tokens": 696,
+    "thinking_tokens": 0
+  },
+  "latency_s": 12.51139012700878,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "$\\dfrac{4\\pi}{3}$"
+  }
+}

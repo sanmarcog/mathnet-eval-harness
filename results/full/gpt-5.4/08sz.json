@@ -1,0 +1,21 @@
+{
+  "id": "08sz",
+  "country": "Japan",
+  "competition": "Japan Mathematical Olympiad",
+  "gold_final_answer": "650",
+  "topics_flat": [
+    "Algebra > Prealgebra / Basic Algebra > Integers",
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities",
+    "Number Theory > Other"
+  ],
+  "prompt": "How many 3-digit numbers are there that can appear as the top three digits of a 6-digit number, which is a perfect square?",
+  "model": "gpt-5.4",
+  "response_text": "Let the 6-digit square be \\(n^2\\). We want to know how many different 3-digit blocks can occur as its first three digits.\n\nIf the first three digits are \\(k\\), then the square lies in the interval\n\\[\n1000k \\le n^2 \\le 1000k+999.\n\\]\nSo we want the number of integers \\(k\\in\\{100,\\dots,999\\}\\) for which this interval contains at least one perfect square.\n\nEquivalently, among all 6-digit squares, how many different values of\n\\[\n\\left\\lfloor \\frac{n^2}{1000}\\right\\rfloor\n\\]\noccur?\n\nNow 6-digit squares are \\(n^2\\) with\n\\[\n317^2=100489 \\le n^2 \\le 999^2=998001,\n\\]\nso \\(317\\le n\\le 999\\).\n\nConsider consecutive squares:\n\\[\n(n+1)^2-n^2=2n+1.\n\\]\nFor \\(n\\ge 500\\), this gap is at least \\(1001\\), so consecutive squares are more than 1000 apart. Hence from \\(500^2\\) onward, no two squares can lie in the same 1000-block, and also no 1000-block can contain more than one square.\n\nThus:\n\n- For \\(317\\le n\\le 499\\), count how many 1000-blocks are hit by the squares.\n- For \\(500\\le n\\le 999\\), each square contributes a distinct leading 3-digit number, so that gives \\(999-500+1=500\\).\n\nNow check the lower range \\(317\\le n\\le 499\\):\n\\[\n317^2=100489,\\qquad 499^2=249001.\n\\]\nThese squares run from the 100-block up through the 249-block, i.e. potentially\n\\[\n249-100+1=150\n\\]\ndifferent leading 3-digit numbers.\n\nWe must see whether every block from 100 to 249 is actually hit. Since gaps between consecutive squares here are\n\\[\n2n+1\\le 999 \\quad (\\text{for } n\\le 499),\n\\]\nconsecutive squares are never more than 999 apart. Therefore, as the squares increase from \\(100489\\) to \\(249001\\), they cannot skip over an entire 1000-block. So every block from 100 through 249 contains at least one square.\n\nHence the total number of possible first-three-digit values is\n\\[\n150+500=650.\n\\]\n\nFinal answer: 650",
+  "usage": {
+    "input_tokens": 77,
+    "output_tokens": 568,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 9.507132153958082,
+  "cached": false
+}

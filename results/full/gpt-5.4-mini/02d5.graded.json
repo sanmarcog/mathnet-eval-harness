@@ -1,0 +1,26 @@
+{
+  "id": "02d5",
+  "country": "Brazil",
+  "competition": "I OBM",
+  "gold_final_answer": "The locus is the entire parabola b y = a^2 − x^2, in coordinates with A = (−a, 0), B = (a, 0), and C moving along y = b.",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Triangles > Triangle centers: centroid, incenter, circumcenter, orthocenter, Euler line, nine-point circle",
+    "Geometry > Plane Geometry > Analytic / Coordinate Methods > Cartesian coordinates",
+    "Geometry > Plane Geometry > Miscellaneous > Constructions and loci"
+  ],
+  "prompt": "The vertex $C$ of the triangle $ABC$ is allowed to vary along a line parallel to $AB$. Find the locus of the orthocenter.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let \\(AB\\) be fixed and let \\(C\\) move along a line \\(\\ell\\) parallel to \\(AB\\).\n\nSet up coordinates so that\n\\[\nA=(0,0),\\qquad B=(b,0),\n\\]\nhence \\(AB\\) is the \\(x\\)-axis. Since \\(C\\) lies on a line parallel to \\(AB\\), write\n\\[\nC=(x,h)\n\\]\nfor a fixed constant \\(h\\) and variable \\(x\\).\n\nNow find the orthocenter \\(H\\).\n\n- The altitude from \\(C\\) is perpendicular to \\(AB\\), so it is the vertical line\n  \\[\n  x=\\text{constant } = x.\n  \\]\n- The slope of \\(BC\\) is\n  \\[\n  \\frac{h-0}{x-b}=\\frac{h}{x-b},\n  \\]\n  so the altitude from \\(A\\), being perpendicular to \\(BC\\), has slope\n  \\[\n  -\\frac{x-b}{h}.\n  \\]\n  Its equation is\n  \\[\n  y=-\\frac{x-b}{h}\\,X\n  \\]\n  if we denote a variable point by \\((X,Y)\\).\n\nSince \\(H\\) lies on the altitude from \\(C\\), its \\(X\\)-coordinate is \\(x\\). Substituting \\(X=x\\) into the altitude from \\(A\\),\n\\[\nY=-\\frac{x-b}{h}\\,x.\n\\]\nBut this depends on \\(x\\) in a way that simplifies geometrically if we use the standard orthocenter formula: the orthocenter of triangle \\(A(0,0), B(b,0), C(x,h)\\) is\n\\[\nH=(x,\\; \\frac{x(b-x)}{h}).\n\\]\nAs \\(x\\) varies, the first coordinate of \\(H\\) equals the first coordinate of \\(C\\), so the orthocenter moves along a line parallel to the altitude from \\(C\\), i.e. perpendicular to \\(AB\\).\n\nTherefore, the locus of the orthocenter is the line perpendicular to \\(AB\\) passing through the orthocenter corresponding to any one position of \\(C\\); equivalently, it is a line parallel to the altitudes from \\(C\\), hence perpendicular to \\(AB\\).\n\nFinal answer: A straight line perpendicular to \\(AB\\).",
+  "usage": {
+    "input_tokens": 80,
+    "output_tokens": 512,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 4.208702948060818,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "A straight line perpendicular to \\(AB\\)."
+  }
+}

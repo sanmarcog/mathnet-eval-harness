@@ -1,0 +1,27 @@
+{
+  "id": "0522",
+  "country": "Estonia",
+  "competition": "Final Round of National Olympiad",
+  "gold_final_answer": "No",
+  "topics_flat": [
+    "Number Theory > Modular Arithmetic > Polynomials mod p",
+    "Algebra > Algebraic Expressions > Polynomials > Polynomial operations",
+    "Number Theory > Divisibility / Factorization > Factorization techniques",
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities"
+  ],
+  "prompt": "Can $2013$ be represented as the difference of two cubes of integers?",
+  "model": "claude-sonnet-4-6",
+  "response_text": "We need to find integers $a$ and $b$ such that $a^3 - b^3 = 2013$.\n\nFactor: $a^3 - b^3 = (a-b)(a^2 + ab + b^2) = 2013$.\n\nFactor 2013: $2013 = 3 \\times 671 = 3 \\times 11 \\times 61$.\n\nLet $a - b = d$ and $a^2 + ab + b^2 = k$, where $dk = 2013$.\n\nWith $a = b + d$:\n$a^2 + ab + b^2 = (b+d)^2 + (b+d)b + b^2 = b^2 + 2bd + d^2 + b^2 + bd + b^2 = 3b^2 + 3bd + d^2$\n\nSo $3b^2 + 3bd + d^2 = k = 2013/d$.\n\nFor each divisor $d$ of 2013, we need $3b^2 + 3bd + d^2 = 2013/d$ to have an integer solution.\n\nThis gives: $3b(b+d) = 2013/d - d^2$, so $b = \\frac{-3d \\pm \\sqrt{9d^2 - 12(d^2 - 2013/d)}}{6} = \\frac{-3d \\pm \\sqrt{-3d^2 + 4 \\cdot 2013/d}}{6}$.\n\nThe discriminant must be a perfect square: $\\Delta = -3d^2 + 8052/d \\geq 0$, so $d^3 \\leq 2684$, meaning $d \\leq 13$.\n\nDivisors of 2013 that are ≤ 13: $d = 1, 3$.\n\n**Case $d = 1$:** $\\Delta = -3 + 8052 = 8049$. $\\sqrt{8049} \\approx 89.7$. $89^2 = 7921$, $90^2 = 8100$. Not a perfect square.\n\n**Case $d = 3$:** $\\Delta = -27 + 2684 = 2657$. $\\sqrt{2657} \\approx 51.5$. $51^2 = 2601$, $52^2 = 2704$. Not a perfect square.\n\nNow check negative divisors. If $d < 0$, let $d = -e$ where $e > 0$:\n$3b^2 - 3be + e^2 = -2013/e$ (need $e | 2013$ and $-2013/e < 0$, so $k < 0$).\n\nBut $a^2 + ab + b^2 = (a + b/2)^2 + 3b^2/4 \\geq 0$, so $k \\geq 0$. This means $d < 0$ requires $k < 0$, which is impossible unless $k = 0$.\n\nIf $k = 0$: then $a^2 + ab + b^2 = 0$ implies $a = b = 0$, giving difference 0, not 2013.\n\nSo we need to check if there are solutions with $d$ negative more carefully. Actually $dk = 2013 > 0$ requires $d$ and $k$ have the same sign. Since $k \\geq 0$, we need $d > 0$.\n\nSo only $d = 1$ and $d = 3$ are possible, and neither gives a perfect square discriminant.\n\nTherefore, **2013 cannot** be represented as the difference of two cubes of integers.\n\nFinal answer: No",
+  "usage": {
+    "input_tokens": 63,
+    "output_tokens": 933,
+    "thinking_tokens": 0
+  },
+  "latency_s": 12.31336845899932,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "exact",
+    "predicted": "No"
+  }
+}

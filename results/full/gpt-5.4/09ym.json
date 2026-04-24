@@ -1,0 +1,21 @@
+{
+  "id": "09ym",
+  "country": "Netherlands",
+  "competition": "Junior Mathematical Olympiad",
+  "gold_final_answer": "1/4",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Geometric Inequalities > Optimization in geometry",
+    "Geometry > Plane Geometry > Miscellaneous > Constructions and loci",
+    "Discrete Mathematics > Combinatorics > Counting two ways"
+  ],
+  "prompt": "Eleonora has a piece of paper in the shape of an equilateral triangle with an area of $1$. She folds the piece several times and puts it flat on the table. It turns out that the figure on the table is not more than four layers thick anywhere.\nWhat is the minimum area of the figure lying on the table?",
+  "model": "gpt-5.4",
+  "response_text": "Let the final flat figure have area \\(A\\). Each point of this figure is covered by some number of layers, and by the condition this number is at most \\(4\\).\n\nNow compare total “paper area counted with multiplicity.”\n\n- The original paper has area \\(1\\).\n- Folding does not change the total amount of paper, it only stacks it.\n- So if we integrate the layer count over the final figure, we get total area \\(1\\).\n\nIf everywhere the thickness is at most \\(4\\), then\n\n\\[\n1=\\int_{\\text{figure}}(\\text{number of layers})\\,dA \\le 4A.\n\\]\n\nHence\n\n\\[\nA\\ge \\frac14.\n\\]\n\nSo the area on the table cannot be smaller than \\(\\frac14\\).\n\nIt remains to show that \\(\\frac14\\) is achievable.\n\nTake the equilateral triangle and fold each side to the midline in the standard way so that the large triangle is folded into the central equilateral triangle formed by joining the midpoints of the sides. That medial triangle has side length half the original, hence area\n\n\\[\n\\left(\\frac12\\right)^2\\cdot 1=\\frac14.\n\\]\n\nAfter these folds, every point of that small central triangle is covered by exactly \\(4\\) layers: one from the original central triangle and one from each of the three corner triangles. Thus the thickness is everywhere \\(4\\), satisfying the condition.\n\nTherefore the minimum possible area is\n\nFinal answer: \\(\\frac14\\)",
+  "usage": {
+    "input_tokens": 116,
+    "output_tokens": 323,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 6.026490268064663,
+  "cached": false
+}

@@ -1,0 +1,25 @@
+{
+  "id": "0092",
+  "country": "Argentina",
+  "competition": "XXI Olimpiada Matemática Rioplatense",
+  "gold_final_answer": "1:2",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Quadrilaterals",
+    "Geometry > Plane Geometry > Analytic / Coordinate Methods > Vectors"
+  ],
+  "prompt": "Let $ABCD$ be a convex quadrilateral. Let $P$ and $Q$ be points on the sides $AB$ and $AD$, respectively, such that $area(ABQ) = area(ADP) = \\frac{1}{3} area(ABCD)$.  \n$PQ$ and the diagonal $AC$ meet at the point $R$.\nCalculate the ratio $\\frac{AR}{RC}$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let\n\\[\n[ABCD]=S.\n\\]\nSince \\(Q\\in AD\\) and\n\\[\n[ABQ]=\\frac13S,\n\\]\nthe triangles \\(ABQ\\) and \\(ABD\\) have the same base \\(AB\\), so their heights from \\(Q\\) and \\(D\\) to \\(AB\\) are in ratio \\(1:3\\). Hence\n\\[\n\\frac{AQ}{AD}=\\frac13.\n\\]\nSimilarly, from\n\\[\n[ADP]=\\frac13S\n\\]\nand the common base \\(AD\\), we get\n\\[\n\\frac{AP}{AB}=\\frac13.\n\\]\n\nNow use coordinates. Set\n\\[\nA=(0,0),\\quad B=(3,0),\\quad D=(0,3),\n\\]\nso that \\(P=(1,0)\\) and \\(Q=(0,1)\\). Let \\(C=(u,v)\\) be any point making \\(ABCD\\) convex. Then the line \\(AC\\) can be parametrized as\n\\[\n( tu, tv),\n\\]\nand the line \\(PQ\\) is\n\\[\nx+y=1.\n\\]\nTheir intersection \\(R\\) satisfies\n\\[\ntu+tv=1 \\quad\\Rightarrow\\quad t(u+v)=1.\n\\]\nBut on the diagonal \\(AC\\), the parameter \\(t\\) is exactly\n\\[\n\\frac{AR}{AC}=t,\\qquad \\frac{RC}{AC}=1-t,\n\\]\nso\n\\[\n\\frac{AR}{RC}=\\frac{t}{1-t}.\n\\]\n\nSince \\(P\\) and \\(Q\\) divide \\(AB\\) and \\(AD\\) in the same ratio \\(1:2\\), the cevian \\(PQ\\) cuts diagonal \\(AC\\) in the fixed ratio \\(1:2\\) by affine invariance. Thus\n\\[\n\\frac{AR}{RC}=\\frac12.\n\\]\n\nFinal answer: \\(\\boxed{\\frac12}\\)",
+  "usage": {
+    "input_tokens": 138,
+    "output_tokens": 435,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.3416240439983085,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "\\frac12"
+  }
+}

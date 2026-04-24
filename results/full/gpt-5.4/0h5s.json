@@ -1,0 +1,19 @@
+{
+  "id": "0h5s",
+  "country": "Ukraine",
+  "competition": "55rd Ukrainian National Mathematical Olympiad - Fourth Round",
+  "gold_final_answer": "x = pi/2 + pi*k, where k is any integer",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Sequences and Series > Floors and ceilings"
+  ],
+  "prompt": "$$\n\\operatorname{ctg}[x] \\cdot \\operatorname{ctg}\\{x\\} = 1.\n$$\nWhere $[a]$ is the integer part of $a$, and $\\{a\\} = a - [a]$.",
+  "model": "gpt-5.4",
+  "response_text": "Let\n\\[\nx=[x]+\\{x\\}=n+t,\n\\]\nwhere\n\\[\nn=[x]\\in \\mathbb Z,\\qquad t=\\{x\\}\\in[0,1).\n\\]\nThe equation is\n\\[\n\\cot([x])\\cot(\\{x\\})=1,\n\\]\nso\n\\[\n\\cot n\\cdot \\cot t=1.\n\\]\n\nUsing\n\\[\n\\cot A\\cot B=1 \\iff \\tan A\\tan B=1.\n\\]\nSince\n\\[\n\\tan(A+B)=\\frac{\\tan A+\\tan B}{1-\\tan A\\tan B},\n\\]\nif \\(\\tan A\\tan B=1\\), then the denominator is \\(0\\), hence\n\\[\nA+B=\\frac{\\pi}{2}+k\\pi,\\qquad k\\in\\mathbb Z.\n\\]\nTherefore\n\\[\nn+t=\\frac{\\pi}{2}+k\\pi.\n\\]\nBut \\(n+t=x\\), so any solution must satisfy\n\\[\nx=\\frac{\\pi}{2}+k\\pi.\n\\]\n\nNow we must also have \\(n=[x]\\) and \\(t=\\{x\\}\\). For such an \\(x\\), this is automatic provided neither cotangent is undefined. At a solution above, \\(t=\\{x\\}\\in(0,1)\\), so \\(\\cot t\\) is defined, and \\(n=[x]\\) is an integer not equal to a multiple of \\(\\pi\\) issue is irrelevant because \\(n\\) is in radians and we only need \\(\\sin n\\neq 0\\). Thus we simply need\n\\[\n[x]+\\{x\\}=x=\\frac{\\pi}{2}+k\\pi.\n\\]\n\nHence the solutions are exactly those numbers of the form\n\\[\nx=\\frac{(2k+1)\\pi}{2},\\qquad k\\in\\mathbb Z,\n\\]\nfor which indeed \\(\\{x\\}\\in[0,1)\\).\n\nFinal answer: \\(\\displaystyle x=\\frac{(2k+1)\\pi}{2},\\ k\\in\\mathbb Z.\\)",
+  "usage": {
+    "input_tokens": 106,
+    "output_tokens": 466,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 6.939733637031168,
+  "cached": false
+}

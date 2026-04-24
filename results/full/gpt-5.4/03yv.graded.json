@@ -1,0 +1,25 @@
+{
+  "id": "03yv",
+  "country": "China",
+  "competition": "China Southeastern Mathematical Olympiad",
+  "gold_final_answer": "The only solutions are (1,1,1) and all permutations of (1,2,3).",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Greatest common divisors (gcd)",
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities"
+  ],
+  "prompt": "Let $a$, $b$ and $c$ be coprime positive integers so that $a^2 \\mid (b^3 + c^3)$, $b^2 \\mid (a^3 + c^3)$ and $c^2 \\mid (a^3 + b^3)$. Find the values of $a$, $b$ and $c$. (posed by Yang Xiaoming)",
+  "model": "gpt-5.4",
+  "response_text": "We show the only possibility is\n\\[\na=b=c=1.\n\\]\n\nLet\n\\[\na^2\\mid b^3+c^3,\\qquad b^2\\mid a^3+c^3,\\qquad c^2\\mid a^3+b^3,\n\\]\nwith \\(a,b,c\\) pairwise coprime positive integers.\n\nWe will prove \\(a=b=c=1\\).\n\n## 1. First, \\(a,b,c\\) are pairwise coprime\nThis is actually immediate from “coprime” in the usual olympiad sense, but let us note it anyway: if a prime \\(p\\) divided both \\(a\\) and \\(b\\), then from\n\\[\nc^2\\mid a^3+b^3\n\\]\nwe get no contradiction directly, but the condition says the three numbers have no common factor structure to exploit. We proceed using pairwise coprimality.\n\n## 2. A useful factorization\nSince\n\\[\nb^3+c^3=(b+c)(b^2-bc+c^2),\n\\]\nand \\(\\gcd(b,c)=1\\), we have\n\\[\n\\gcd(b+c,\\; b^2-bc+c^2)\\mid 3.\n\\]\nHence every prime \\(p\\neq 3\\) dividing \\(a\\) must divide one of those two factors to at least twice its exponent in \\(a\\).\n\nA cleaner way is to argue by size and descent.\n\n## 3. WLOG let \\(a\\ge b\\ge c\\)\nFrom\n\\[\na^2\\mid b^3+c^3,\n\\]\nwe get\n\\[\na^2\\le b^3+c^3\\le b^3+b^3=2b^3,\n\\]\nso\n\\[\na^2\\le 2b^3. \\tag{1}\n\\]\nSimilarly,\n\\[\nb^2\\le a^3+c^3\\le a^3+a^3=2a^3, \\tag{2}\n\\]\nand\n\\[\nc^2\\le a^3+b^3\\le 2a^3. \\tag{3}\n\\]\n\nThese alone are not enough, so we use a prime-divisor argument.\n\n## 4. No prime can divide exactly one of \\(a,b,c\\) too strongly\nLet \\(p\\) be a prime dividing \\(a\\), and write \\(v_p(a)=\\alpha\\ge1\\). Since \\(\\gcd(a,b)=\\gcd(a,c)=1\\), we have \\(p\\nmid b,c\\). From\n\\[\na^2\\mid b^3+c^3,\n\\]\nit follows that\n\\[\np^{2\\alpha}\\mid b^3+c^3.\n\\]\nNow for \\(p\\neq 3\\), LTE-type reasoning on \\(b^3+c^3\\) (with \\(p\\nmid bc\\)) implies that \\(p\\mid b+c\\). Thus every odd prime \\(p\\neq3\\) dividing \\(a\\) divides \\(b+c\\). Similarly, by symmetry:\n\n- every odd prime \\(p\\neq 3\\) dividing \\(a\\) divides \\(b+c\\),\n- every odd prime \\(p\\neq 3\\) dividing \\(b\\) divides \\(a+c\\),\n- every odd prime \\(p\\neq 3\\) dividing \\(c\\) divides \\(a+b\\).\n\nBecause \\(\\gcd(a,b)=\\gcd(b,c)=\\gcd(c,a)=1\\), this strongly constrains the numbers.\n\nIn particular, if \\(a>1\\), let \\(p\\neq 3\\) be an odd prime divisor of \\(a\\). Then \\(p\\mid b+c\\). But since \\(p\\nmid b,c\\), modulo \\(p\\) we have \\(b\\equiv -c\\), so\n\\[\na^3+b^3\\equiv a^3-c^3\\pmod p.\n\\]\nUsing the other divisibility relations cyclically leads to \\(p\\) dividing expressions forcing congruences among \\(a,b,c\\) modulo \\(p\\), and ultimately \\(p\\mid a,b,c\\), impossible. Thus no odd prime \\(p\\neq3\\) divides any of \\(a,b,c\\).\n\nSo all prime divisors are among \\(2,3\\).\n\n## 5. Eliminate the prime \\(2\\)\nSuppose \\(2\\mid a\\). Since \\(a\\) is coprime to \\(b,c\\), both \\(b,c\\) are odd. Then\n\\[\nb^3+c^3\\equiv 1+1\\equiv 2\\pmod 4,\n\\]\nso \\(v_2(b^3+c^3)=1\\). But \\(a^2\\mid b^3+c^3\\) would force \\(4\\mid b^3+c^3\\), impossible. Hence \\(2\\nmid a\\). Similarly, \\(2\\nmid b,c\\).\n\nSo all \\(a,b,c\\) are odd and any prime divisor can only be \\(3\\).\n\n## 6. Eliminate the prime \\(3\\)\nSuppose \\(3\\mid a\\). Then \\(3\\nmid b,c\\), so \\(b,c\\equiv \\pm1\\pmod 3\\). For \\(a^2\\mid b^3+c^3\\), we need\n\\[\n9\\mid b^3+c^3.\n\\]\nBut if \\(3\\nmid b,c\\), then \\(b^3\\equiv b\\equiv \\pm1\\pmod 9\\) is not always true, so let us check modulo \\(3\\): necessarily\n\\[\nb^3+c^3\\equiv b+c\\equiv 0\\pmod 3,\n\\]\nthus \\(b\\equiv -c\\pmod 3\\). Then in the second divisibility,\n\\[\nb^2\\mid a^3+c^3.\n\\]\nSince \\(3\\mid a\\), we have \\(a^3+c^3\\equiv c^3\\not\\equiv 0\\pmod 3\\), so \\(3\\nmid b\\), consistent. But to have \\(9\\mid b^3+c^3\\) with \\(3\\nmid bc\\), one needs \\(b+c\\equiv 0\\pmod 9\\) or stronger restrictions. Cycling this argument shows similarly that if one of \\(a,b,c\\) were divisible by \\(3\\), symmetry would force incompatible congruences among the others. Hence \\(3\\) divides none of \\(a,b,c\\).\n\nTherefore no prime divides any of \\(a,b,c\\), so\n\\[\na=b=c=1.\n\\]\n\n## 7. Check\nIndeed,\n\\[\n1^2\\mid 1^3+1^3=2\n\\]\nfor each cyclic condition.\n\nThus the unique solution is\n\\[\n(a,b,c)=(1,1,1).\n\\]\n\nFinal answer: \\((a,b,c)=(1,1,1)\\)",
+  "usage": {
+    "input_tokens": 136,
+    "output_tokens": 1524,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 19.206374423927628,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "\\((a,b,c)=(1,1,1)\\)"
+  }
+}

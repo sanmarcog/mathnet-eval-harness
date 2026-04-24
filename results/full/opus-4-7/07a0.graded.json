@@ -1,0 +1,25 @@
+{
+  "id": "07a0",
+  "country": "Iran",
+  "competition": "Iranian Mathematical Olympiad",
+  "gold_final_answer": "a_n = n for all n",
+  "topics_flat": [
+    "Number Theory > Number-Theoretic Functions > τ (number of divisors)",
+    "Number Theory > Divisibility / Factorization > Prime numbers"
+  ],
+  "prompt": "Determine all increasing sequence $a_1, a_2, a_3, \\ldots$ of positive integers such that for every $i, j \\in \\mathbb{N}$, the number of positive divisors of $i + j$ and $a_i + a_j$ are equal (A sequence $a_1, a_2, a_3, \\ldots$ is increasing if $i \\le j$ implies $a_i \\le a_j$).",
+  "model": "claude-opus-4-7",
+  "response_text": "Final answer: <a_n = n>",
+  "usage": {
+    "input_tokens": 198,
+    "output_tokens": 16,
+    "thinking_tokens": 0
+  },
+  "latency_s": 1.2042789640836418,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "<a_n = n>"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "id": "0bx3",
+  "country": "Romania",
+  "competition": "THE 68th ROMANIAN MATHEMATICAL OLYMPIAD",
+  "gold_final_answer": "All real solutions are x = n + a^n for positive integers n.",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Functional Equations > Injectivity / surjectivity",
+    "Algebra > Intermediate Algebra > Exponential functions",
+    "Algebra > Intermediate Algebra > Logarithmic functions"
+  ],
+  "prompt": "Let $a \\in (0, 1)$. Solve in $\\mathbb{R}$ the equation $a^{[x]} + \\log_a\\{x\\} = x$.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "Let me denote $x = n + f$ where $n = [x]$ is the integer part and $f = \\{x\\}$ is the fractional part, so $n \\in \\mathbb{Z}$ and $f \\in [0, 1)$.\n\nThe equation becomes:\n$$a^n + \\log_a f = n + f$$\n\nNote: $\\{x\\} \\in [0,1)$, and $\\log_a f$ requires $f > 0$, so $f \\in (0, 1)$.\n\nRearranging:\n$$a^n - n = f - \\log_a f$$\n\nLet me analyze the right side. Let $g(f) = f - \\log_a f$ for $f \\in (0, 1)$.\n\nSince $a \\in (0,1)$, $\\log_a f > 0$ for $f \\in (0,1)$, so $-\\log_a f < 0$... wait, $\\log_a f > 0$ when $f \\in (0,1)$ since $a \\in (0,1)$.\n\nSo $g(f) = f - \\log_a f$ where $-\\log_a f < 0$ (since $\\log_a f > 0$).\n\nActually: $g(f) = f - \\log_a f$. Since $\\log_a f > 0$ for $f \\in (0,1)$, we have $g(f) = f - \\log_a f$.\n\n$g'(f) = 1 - \\frac{1}{f \\ln a}$. Since $\\ln a < 0$, we get $g'(f) = 1 - \\frac{1}{f\\ln a} = 1 + \\frac{1}{f|\\ln a|} > 1 > 0$.\n\nSo $g$ is strictly increasing on $(0,1)$.\n\nAs $f \\to 0^+$: $\\log_a f \\to +\\infty$ (since $a < 1$), so $g(f) \\to -\\infty$.\nAs $f \\to 1^-$: $\\log_a f \\to 0$, so $g(f) \\to 1$.\n\nSo $g(f)$ ranges over $(-\\infty, 1)$ as $f \\in (0,1)$.\n\nNow the left side: $h(n) = a^n - n$ for integer $n$.\n\nWe need $h(n) \\in (-\\infty, 1)$, i.e., $a^n - n < 1$.\n\nFor each valid $n$, there's a unique $f \\in (0,1)$ satisfying $g(f) = a^n - n$.\n\n**Finding valid integers $n$:**\n\nWe need $a^n - n < 1$, i.e., $a^n < n + 1$.\n\n- For $n \\geq 0$: $a^n \\leq 1$ and $n+1 \\geq 1$, so $a^n \\leq 1 \\leq n+1$. Equality $a^n = 1$ only when $n=0$, but then $n+1=1$, so $a^0 = 1 = 0+1$... this gives $g(f) = 0$, meaning $f - \\log_a f = 0$, so $f = \\log_a f$, i.e., $a^f = f$. But for $a \\in (0,1)$ and $f \\in (0,1)$: $a^f > a^1 = a$ and we need $a^f = f$. This could have a solution, but let me check: we need $a^n - n < 1$ strictly. For $n=0$: $a^0 - 0 = 1$, which is NOT $< 1$. So $n=0$ gives $g(f) = 1$, which is not achieved (open interval).\n\n- For $n \\geq 1$: $a^n < 1 \\leq n$, so $a^n - n < 0 < 1$. ✓\n\n- For $n \\leq -1$: $a^n > 1$ and $-n \\geq 1$, so $a^n - n > 2 > 1$... wait, $a^n - n = a^n + |n|$. For $n = -1$: $a^{-1} - (-1) = 1/a + 1 > 2 > 1$. So these don't work.\n\nSo valid integers are $n \\geq 1$.\n\nFor each integer $n \\geq 1$, there exists a unique $f \\in (0,1)$ such that $f - \\log_a f = a^n - n$, giving $x = n + f$.\n\nBut the problem likely expects a specific solution. Let me try $f = a^n$: then $g(a^n) = a^n - \\log_a(a^n) = a^n - n$. ✓\n\nSo $f = a^n$ works! And $a^n \\in (0,1)$ for $n \\geq 1$. ✓\n\nTherefore $x = n + a^n$ for each positive integer $n$.\n\nFinal answer: $x = n + a^n$ for any positive integer $n$ (i.e., $x \\in \\{n + a^n : n \\in \\mathbb{Z}, n \\geq 1\\}$).",
+  "usage": {
+    "input_tokens": 92,
+    "output_tokens": 1372,
+    "thinking_tokens": 0
+  },
+  "latency_s": 18.95750911196228,
+  "cached": false
+}

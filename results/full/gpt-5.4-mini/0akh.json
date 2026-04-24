@@ -1,0 +1,21 @@
+{
+  "id": "0akh",
+  "country": "North Macedonia",
+  "competition": "Balkan Mathematical Olympiad",
+  "gold_final_answer": "Bob has a winning strategy exactly when both piles have the same highest power of two dividing their sizes and this common exponent is even.",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Invariants / monovariants",
+    "Discrete Mathematics > Combinatorics > Games / greedy algorithms",
+    "Number Theory > Divisibility / Factorization > Factorization techniques"
+  ],
+  "prompt": "Alice and Bob play the following game: They start with two non-empty piles of coins. Taking turns, with Alice playing first, each player chooses a pile with an even number of coins and moves half of this pile to the other pile. The game ends if a player cannot move, in which case the other player wins.\nDetermine all pairs $(a,b)$ of positive integers such that if initially the two piles have $a$ and $b$ coins respectively, then Bob has a winning strategy.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let the state be \\((x,y)\\), with \\(x+y\\) invariant.\n\nA move is possible exactly when one pile is even:\n- if \\(x\\) is even, you may replace \\((x,y)\\) by \\(\\left(\\frac x2,\\; y+\\frac x2\\right)\\),\n- if \\(y\\) is even, you may replace \\((x,y)\\) by \\(\\left(x+\\frac y2,\\; \\frac y2\\right)\\).\n\n## Key observation\nIf both piles are odd, then no move is possible, so the player to move loses.\n\nNow examine parity:\n- If both piles are odd, game ends.\n- If exactly one pile is even, after a move the new state has one pile odd and the other maybe odd/even; parity changes in a controlled way.\n- If both piles are even, after any move both resulting piles are still integers, but the total number of factors of \\(2\\) in the pair decreases in a way that forces eventual termination.\n\nThe crucial invariant is the parity of \\(a+b\\):\n- If \\(a+b\\) is **odd**, then one pile is even and the other odd initially. After any move, the sum stays odd, so the game can never reach a state with both piles odd (since that would make the sum even). Hence every position with odd sum has at least one move until the game ends by the current player being stuck? More precisely, the game proceeds deterministically in the sense that the player with odd-sum state always has exactly one even pile available, and eventually the player who is forced to move from a position with both piles odd loses.\n- If \\(a+b\\) is **even**, then both piles have the same parity initially. In this case Bob can mirror Alice’s play by always moving on the same side of the parity structure, and eventually Alice is the one to face a position with both piles odd.\n\nA cleaner way to state the winning criterion is:\n\n- Positions with \\(a\\) and \\(b\\) both odd are terminal, so the player to move loses.\n- From any nonterminal position, the move preserves the gcd-structure and reduces \\(a+b\\), so the game must end.\n- The first player loses exactly when the initial position is a previous-player winning position, which occurs when \\(a\\) and \\(b\\) are both odd.\n\nIndeed, if \\(a,b\\) are both odd, Alice has no move and Bob wins immediately.\n\nConversely, if at least one of \\(a,b\\) is even, Alice has a move, and one can show by induction on \\(a+b\\) that the next player can always force a win from some resulting position, so Bob does not have a universal winning strategy from such starts.\n\nTherefore Bob has a winning strategy exactly when Alice has no move at the start, i.e. when both piles are odd.\n\nFinal answer: \\((a,b)\\) with \\(a\\) and \\(b\\) both odd.",
+  "usage": {
+    "input_tokens": 148,
+    "output_tokens": 631,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 5.532902664970607,
+  "cached": false
+}

@@ -1,0 +1,22 @@
+{
+  "id": "00u9",
+  "country": "Balkan Mathematical Olympiad",
+  "competition": "BMO 2022 shortlist",
+  "gold_final_answer": "1/8, 1/7, 1/5, 3/23",
+  "topics_flat": [
+    "Number Theory > Modular Arithmetic > Chinese remainder theorem",
+    "Number Theory > Divisibility / Factorization > Greatest common divisors (gcd)",
+    "Algebra > Algebraic Expressions > Sequences and Series > Sums and products",
+    "Discrete Mathematics > Other"
+  ],
+  "prompt": "A hare and a tortoise run in the same direction, at constant but different speeds, around the base of a tall square tower. They start together at the same vertex, and the run ends when both return to the initial vertex simultaneously for the first time. Suppose the hare runs with speed $1$, and the tortoise with speed less than $1$. For what rational numbers $x$ is it true that, if the tortoise runs with speed $x$, the fraction of the entire run for which the tortoise can see the hare is also $x$?",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find the rational numbers $x \\in (0, 1)$ such that the tortoise and the hare can see each other for exactly a fraction $x$ of the time, we can analyze their relative positions. \n\nLet the perimeter of the square tower be 1. The hare's position at time $t$ is $u = t \\pmod 1$, and the tortoise's position is $v = xt \\pmod 1$. They can see each other if and only if they are on the same side of the square, which means $u$ and $v$ fall into the same interval of the form $[i/4, (i+1)/4)$ for $i \\in \\{0, 1, 2, 3\\}$.\n\nLet $x = n/m$ where $n$ and $m$ are coprime positive integers with $n < m$. The run ends at time $t = m$, when both return to the starting vertex simultaneously.\nWe can express the fraction of time they spend on the same side using Fourier series on the torus $[0,1] \\times [0,1]$. The indicator function $I(u,v)$ for the event that they are on the same side is the union of 4 squares of side length $1/4$ along the diagonal. \n\nIntegrating $I(t, xt)$ over $t \\in [0, m]$ and dividing by $m$ gives the fraction of time they see each other. Expanding $I(u,v)$ into its Fourier series and integrating",
+  "usage": {
+    "input_tokens": 149,
+    "output_tokens": 325,
+    "thoughts_tokens": 7863
+  },
+  "latency_s": 65.98643120203633,
+  "cached": false
+}

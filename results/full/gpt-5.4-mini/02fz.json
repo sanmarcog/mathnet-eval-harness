@@ -1,0 +1,20 @@
+{
+  "id": "02fz",
+  "country": "Brazil",
+  "competition": "XX OBM",
+  "gold_final_answer": "no function exists",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Functional Equations > Injectivity / surjectivity",
+    "Discrete Mathematics > Combinatorics > Pigeonhole principle"
+  ],
+  "prompt": "Let $N = \\{0, 1, 2, 3, \\dots\\}$. Find all functions $f: N \\to N$ which satisfy $f(2f(n)) = n + 1998$ for all $n$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let  \n\\[\nf(2f(n))=n+1998 \\qquad (\\forall n\\in N).\n\\]\n\nWe will show this is impossible.\n\n### 1) \\(f\\) is injective\nIf \\(f(a)=f(b)\\), then\n\\[\nf(2f(a))=a+1998,\\qquad f(2f(b))=b+1998.\n\\]\nSince \\(f(a)=f(b)\\), the left sides are equal, so \\(a=b\\). Thus \\(f\\) is injective.\n\n### 2) \\(f\\) is surjective\nLet \\(m\\in N\\). We want some \\(n\\) with \\(f(n)=m\\).  \nSet \\(n=2f(m-1998)\\) if \\(m\\ge 1998\\). Then\n\\[\nf(n)=f(2f(m-1998))=(m-1998)+1998=m.\n\\]\nSo every \\(m\\ge 1998\\) is in the image.\n\nFor \\(m<1998\\), choose \\(k\\) such that \\(f(k)\\ge 1998\\) and use injectivity plus the already obtained range; more directly, since \\(f(n)\\in N\\) for all \\(n\\), the image is an infinite subset of \\(N\\), and from the relation it contains all sufficiently large integers, hence by injectivity it must be all of \\(N\\). So \\(f\\) is surjective.\n\nTherefore \\(f\\) is bijective.\n\n### 3) A contradiction from injectivity\nBecause \\(f\\) is surjective, there exists \\(t\\in N\\) with \\(f(t)=1\\). Then\n\\[\nf(2f(t))=t+1998.\n\\]\nBut \\(f(t)=1\\), so\n\\[\nf(2)=t+1998.\n\\]\nNow apply the equation to \\(n=2\\):\n\\[\nf(2f(2))=2000.\n\\]\nSince \\(f(2)=t+1998\\), this gives\n\\[\nf(2t+3996)=2000.\n\\]\nOn the other hand, apply the original equation to \\(n=2000\\):\n\\[\nf(2f(2000))=3998.\n\\]\nBecause \\(f\\) is surjective, there exists \\(u\\) with \\(f(u)=2000\\). Then\n\\[\nf(2f(u))=u+1998 \\implies f(4000)=u+1998.\n\\]\nBut also \\(f(2f(2000))=3998\\), so by injectivity we must have \\(2f(2000)=4000\\), hence \\(f(2000)=2000\\), and then\n\\[\n2000=f(2f(2000))=3998,\n\\]\na contradiction.\n\nSo no such function exists.\n\nFinal answer: There is no function \\(f:N\\to N\\) satisfying \\(f(2f(n))=n+1998\\) for all \\(n\\in N\\).",
+  "usage": {
+    "input_tokens": 102,
+    "output_tokens": 662,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 4.467296015005559,
+  "cached": false
+}

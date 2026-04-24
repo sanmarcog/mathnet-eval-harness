@@ -1,0 +1,25 @@
+{
+  "id": "09l4",
+  "country": "Mongolia",
+  "competition": "Mongolian Mathematical Olympiad",
+  "gold_final_answer": "2026",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Miscellaneous > Angle chasing",
+    "Geometry > Plane Geometry > Geometric Inequalities > Optimization in geometry"
+  ],
+  "prompt": "A convex polygon has exactly $2023$ obtuse angles. Determine the maximum possible number of angles that this polygon can have.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let the polygon have \\(n\\) angles. Since it is convex, every interior angle is less than \\(180^\\circ\\).\n\nAn obtuse angle is between \\(90^\\circ\\) and \\(180^\\circ\\). To maximize the number of angles, we want as many angles as possible to be obtuse, while still keeping the sum of the interior angles equal to\n\\[\n(n-2)180^\\circ.\n\\]\n\nIf all \\(n\\) angles were obtuse, then every angle would be \\(>90^\\circ\\), so the sum would be \\(>90n^\\circ\\). But for a convex \\(n\\)-gon,\n\\[\n(n-2)180^\\circ > 90n^\\circ \\quad \\Longleftrightarrow \\quad 180n-360 > 90n \\quad \\Longleftrightarrow \\quad n>4.\n\\]\nSo there is no immediate obstruction from the average angle alone.\n\nNow we need exactly \\(2023\\) obtuse angles. Suppose there are \\(k\\) non-obtuse angles (each at most \\(90^\\circ\\)), so \\(n=2023+k\\). To maximize \\(n\\), we want \\(k\\) as large as possible, but the sum condition limits this.\n\nThe total angle sum is\n\\[\n(n-2)180 = (2021+k)180.\n\\]\nIf we make the \\(2023\\) obtuse angles as close to \\(180^\\circ\\) as possible and the \\(k\\) remaining angles as close to \\(0^\\circ\\) as possible, we can approach a sum near\n\\[\n2023\\cdot 180 = 364140,\n\\]\nso we need\n\\[\n(2021+k)180 \\le 2023\\cdot 180,\n\\]\nwhich gives\n\\[\n2021+k \\le 2023 \\quad \\Rightarrow \\quad k\\le 2.\n\\]\nThus\n\\[\nn=2023+k\\le 2025.\n\\]\n\nIt remains to see that \\(2025\\) is achievable. For a \\(2025\\)-gon, the angle sum is\n\\[\n(2025-2)180 = 2023\\cdot 180.\n\\]\nSo we can take \\(2023\\) angles slightly bigger than \\(90^\\circ\\), and the remaining 2 angles slightly smaller than \\(90^\\circ\\), adjusting them so the total sum is exactly \\(2023\\cdot 180^\\circ\\). This is possible in a convex polygon.\n\nTherefore the maximum number of angles is\n\nFinal answer: \\(2025\\)",
+  "usage": {
+    "input_tokens": 74,
+    "output_tokens": 559,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.9392423540120944,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "\\(2025\\)"
+  }
+}

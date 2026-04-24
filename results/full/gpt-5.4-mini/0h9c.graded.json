@@ -1,0 +1,26 @@
+{
+  "id": "0h9c",
+  "country": "Ukraine",
+  "competition": "58th Ukrainian National Mathematical Olympiad",
+  "gold_final_answer": "Olesya",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Games / greedy algorithms",
+    "Discrete Mathematics > Combinatorics > Invariants / monovariants",
+    "Number Theory > Divisibility / Factorization"
+  ],
+  "prompt": "The teacher wrote digits $123\\ldots9123\\ldots9123\\ldots$ on the board until a $2018$-digit number was formed. After that Andriy and Olesya played a game as follows. Alternately (after Andriy begins) they cross out $2$ digits as follows: either the first two digits of the number remaining after the previous move, or the last two digits, or the first and last digits of that number. The game ends when the two-digit number is left. Olesya wins, if this number is a multiple of $3$, otherwise Andriy wins. Who will win if both players play according to the best strategy?\n\n(Bogdan Rublyov)",
+  "model": "gpt-5.4-mini",
+  "response_text": "Work modulo \\(3\\).\n\nThe original 2018-digit number is\n\\[\n123123123\\cdots 123\n\\]\nwith \\(2018=3\\cdot 672+2\\), so it ends with \\(12\\).  \nThe sum of all its digits is\n\\[\n(1+2+3)\\cdot 672 + (1+2)=3\\cdot 672+3=2019,\n\\]\nwhich is divisible by \\(3\\). Hence the whole number is divisible by \\(3\\).\n\nNow observe: each move deletes two digits, and the only possible deletions are\n\n- first two digits,\n- last two digits,\n- first and last digits.\n\nIn every case, the sum of the deleted digits is either\n- \\(1+2=3\\),\n- \\(2+3=5\\), or\n- \\(1+3=4\\),\n\ndepending on where the move is made in the repeating pattern. So the total digit sum of the remaining number changes by a known amount mod \\(3\\), but more importantly, the player moving can always choose a move so that the remaining number has the same residue mod \\(3\\) as before. Indeed, among the three possible deletions, the residues removed mod \\(3\\) are \\(0,2,1\\), so one can preserve the current residue.\n\nThus Andriy can always maintain the invariant that the remaining number is divisible by \\(3\\). Since the initial number is divisible by \\(3\\), he can keep it so until the end. The final two-digit number will then also be divisible by \\(3\\), so Olesya wins.\n\nFinal answer: Olesya",
+  "usage": {
+    "input_tokens": 196,
+    "output_tokens": 356,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.0526879159733653,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "exact",
+    "predicted": "Olesya"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "id": "09m9",
+  "country": "Mongolia",
+  "competition": "Mongolian Mathematical Olympiad",
+  "gold_final_answer": "{4,5,6,7}",
+  "topics_flat": [
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities"
+  ],
+  "prompt": "Find all positive integer solutions to the equation\n$$\n2^a + 2^b + 2^c + 2^d = 60 \\cdot \\min\\{a, b, c, d\\},\n$$\nwhere $\\min\\{a, b, c, d\\}$ denotes the minimum of the numbers $a, b, c, d$.",
+  "model": "gpt-5.4",
+  "response_text": "Let\n\\[\nm=\\min\\{a,b,c,d\\}.\n\\]\nWe seek positive integers \\(a,b,c,d\\) such that\n\\[\n2^a+2^b+2^c+2^d=60m.\n\\]\n\nWe will determine all possibilities.\n\n## 1. Factor out the minimum exponent\nSince each of \\(a,b,c,d\\) is at least \\(m\\), write\n\\[\na=m+x,\\quad b=m+y,\\quad c=m+z,\\quad d=m+t,\n\\]\nwhere \\(x,y,z,t\\ge 0\\), and at least one of them is \\(0\\).\n\nThen\n\\[\n2^a+2^b+2^c+2^d\n=2^m\\bigl(2^x+2^y+2^z+2^t\\bigr).\n\\]\nSo the equation becomes\n\\[\n2^m\\bigl(2^x+2^y+2^z+2^t\\bigr)=60m.\n\\]\nSince \\(60=2^2\\cdot 3\\cdot 5\\), the right side has \\(2\\)-adic valuation\n\\[\nv_2(60m)=2+v_2(m).\n\\]\nHence we must have\n\\[\nm\\le 2+v_2(m).\n\\]\n\nLet us solve this inequality for positive integers \\(m\\).\n\n- If \\(m\\) is odd, then \\(v_2(m)=0\\), so \\(m\\le 2\\), hence \\(m=1\\).\n- If \\(m=2k\\), then \\(v_2(m)\\le \\log_2 m\\), and one quickly checks only small \\(m\\) can work.\n\nTest directly:\n- \\(m=1\\): \\(1\\le 2\\), possible.\n- \\(m=2\\): \\(2\\le 3\\), possible.\n- \\(m=3\\): \\(3\\le 2\\), impossible.\n- \\(m=4\\): \\(4\\le 4\\), possible.\n- \\(m\\ge 5\\): impossible.\n\nSo only\n\\[\nm\\in\\{1,2,4\\}.\n\\]\n\n---\n\n## 2. Check each possible minimum\n\n### Case 1: \\(m=1\\)\nThen\n\\[\n2^a+2^b+2^c+2^d=60.\n\\]\nSince the minimum exponent is \\(1\\), factor out \\(2\\):\n\\[\n2\\left(2^{a-1}+2^{b-1}+2^{c-1}+2^{d-1}\\right)=60,\n\\]\nso\n\\[\n2^{a-1}+2^{b-1}+2^{c-1}+2^{d-1}=30.\n\\]\nAt least one exponent among \\(a-1,b-1,c-1,d-1\\) is \\(0\\), so at least one term is \\(1\\).\n\nNow write \\(30\\) as a sum of four powers of \\(2\\), with at least one \\(1\\):\n\\[\n30=16+8+4+2.\n\\]\nThis uses no \\(1\\), so impossible.\n\nCould there be another representation with four powers of \\(2\\)? If one term is \\(1\\), the remaining three must sum to \\(29\\), impossible since a sum of three powers of \\(2\\) cannot be \\(29\\) (binary \\(11101\\) has four \\(1\\)'s). Thus no solutions for \\(m=1\\).\n\n---\n\n### Case 2: \\(m=2\\)\nThen\n\\[\n2^a+2^b+2^c+2^d=120.\n\\]\nFactor out \\(2^2=4\\):\n\\[\n2^{a-2}+2^{b-2}+2^{c-2}+2^{d-2}=30.\n\\]\nAt least one exponent here is \\(0\\), so at least one term is \\(1\\).\n\nAgain we need \\(30\\) as a sum of four powers of \\(2\\), with at least one \\(1\\). As above, impossible.\n\nSo no solutions for \\(m=2\\).\n\n---\n\n### Case 3: \\(m=4\\)\nThen\n\\[\n2^a+2^b+2^c+2^d=240.\n\\]\nFactor out \\(2^4=16\\):\n\\[\n2^{a-4}+2^{b-4}+2^{c-4}+2^{d-4}=15.\n\\]\nAt least one exponent is \\(0\\), so at least one term is \\(1\\).\n\nNow \\(15\\) can be written as a sum of four powers of \\(2\\):\n\\[\n15=8+4+2+1.\n\\]\nThis works and includes a \\(1\\), exactly what we need.\n\nThus\n\\[\n\\{a-4,b-4,c-4,d-4\\}=\\{3,2,1,0\\},\n\\]\nso\n\\[\n\\{a,b,c,d\\}=\\{7,6,5,4\\}.\n\\]\n\nIndeed,\n\\[\n2^7+2^6+2^5+2^4=128+64+32+16=240=60\\cdot 4.\n\\]\n\nTherefore all ordered solutions are precisely the permutations of \\((4,5,6,7)\\).\n\nFinal answer: \\((a,b,c,d)\\) are exactly all permutations of \\((4,5,6,7)\\).",
+  "usage": {
+    "input_tokens": 127,
+    "output_tokens": 1186,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 15.010732221999206,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "\\((a,b,c,d)\\) are exactly all permutations of \\((4,5,6,7)\\)."
+  }
+}

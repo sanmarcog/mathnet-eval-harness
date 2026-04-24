@@ -1,0 +1,28 @@
+{
+  "id": "01iv",
+  "country": "Baltic Way",
+  "competition": "Baltic Way 2023 Shortlist",
+  "gold_final_answer": "a. No. b. Yes.",
+  "topics_flat": [
+    "Number Theory > Residues and Primitive Roots > Primitive roots mod p / p^n",
+    "Number Theory > Residues and Primitive Roots > Multiplicative order",
+    "Number Theory > Modular Arithmetic > Fermat / Euler / Wilson theorems",
+    "Discrete Mathematics > Graph Theory > Matchings, Marriage Lemma, Tutte's theorem",
+    "Algebra > Linear Algebra > Matrices"
+  ],
+  "prompt": "Let $n$ be a positive integer. In this problem, we consider labellings of the squares of a chessboard of size $n \\times n$ with the natural numbers from $1$ to $n^2$ such that every number is used exactly once. Given such a labelling, we say a positive integer is a *rook product* if it is the product of the labels of $n$ squares which have the property that if you place a rook on each of them, no two rooks will attack each other.\n(Two rooks are attacking each other, if and only if they are in the same row or column.)\n\na. Let $n = 8$. Determine whether there exists a labelling of an $8 \\times 8$ chessboard such that the following condition is fulfilled: The difference of any two rook products is always divisible by $65$.\n\nb. Let $n = 10$. Determine whether there exists a labelling of a $10 \\times 10$ chessboard such that the following condition is fulfilled: The difference of any two rook products is always divisible by $101$.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To determine whether such labellings exist, we analyze the conditions modulo $n^2+1$.\n\n**Part a: $n=8$**\nWe want the difference of any two rook products to be divisible by $8^2+1 = 65$. This implies that all rook products must be congruent modulo 13 (since $65 = 5 \\times 13$). \nThe labels used are the integers from $1$ to $64$. Among these, there are exactly $4$ multiples of $13$ (which are $13, 26, 39, 52$).\nLet $c$ be the common residue of all rook products modulo 13. \n- **Case 1: $c \\equiv 0 \\pmod{13}$**\nIf all rook products are $0 \\pmod{13}$, then every transversal (rook placement) must contain at least one multiple of 13. By König's Theorem, if every transversal of a bipartite graph contains a multiple of 13, the minimum number of lines (rows and columns) needed to cover all non-multiples of 13 is at most 7. However, there are $64 - 4 = 60$ non-multiples of 13, and 7 lines can cover at most $7 \\times 8 = 56$ cells. Thus, it is impossible to cover all non-multiples of 13 with 7 lines, meaning there exists a transversal consisting entirely of non-multiples of 13. This contradicts $c \\equiv 0 \\pmod{13}$.\n\n- **Case 2: $c \\not\\equiv 0 \\pmod{13}$**\nIf all rook products are non-zero modulo 13, then no transversal can contain a multiple of 13. This means that if we pick any of the 4 multiples of 13, it cannot be extended to a transversal using only non-multiples of 13. Suppose we pick the multiple of 13 at $(i, j)$. The remaining $7 \\times 7$ matrix (deleting row $i$ and column $j$) must not contain any transversal of non-multiples of 13. By König's Theorem, the non-multiples of 13 in this $7 \\times 7$ matrix can be covered by at most 6 lines. These 6 lines can cover at most $6 \\times 7 = 42$ cells, leaving at least $49 - 42 = 7$ cells uncovered. These 7 uncovered cells must be multiples of 13. But there are only 4 multiples of 13 in the entire $8 \\times 8$ board, which is a contradiction.\n\nThus, no such labelling exists for $n=8$.\n\n**Part b: $n=10$**\nWe want the difference of any two rook products to be divisible by $10^2+1 = 101$. Since 101 is prime, we can work in the finite field $\\mathbb{F}_{101}$. The labels are $1, 2, \\dots, 100$, which correspond exactly to the elements of the multiplicative group $\\mathbb{F}_{101}^\\times$.\nThis group is cyclic and isomorphic to the additive group $\\mathbb{Z}_{100}$. Let $g$ be a primitive root modulo 101. We want to assign each cell $(i, j)$ a label $a_{i,j} = g^{x_i + y_j} \\pmod{101}$ such that all 100 labels are distinct.\nThis requires finding two subsets $X, Y \\subset \\mathbb{Z}_{100}$ of size 10 such that their sumset $X + Y$ gives exactly all 100 elements of $\\mathbb{Z}_{100}$. We can simply choose:\n$X = \\{0, 1, 2, 3, 4, 5, 6, 7, 8, 9\\}$\n$Y = \\{0, 10, 20, 30, 40, 50, 60, 70, 80, 90\\}$\nEvery element in $\\mathbb{Z}_{100}$ can be uniquely expressed as $x + y$ with $x \\in X$ and $y \\in Y$. Thus, the matrix entries $a_{i,j} = g^{x_i + y_j} \\pmod{101}$ will be exactly the numbers $1$ to $100$ in some order.\nFor any rook placement corresponding to a permutation $\\sigma$, the rook product modulo 101 is:\n$\\prod_{i=1}^{10} a_{i, \\sigma(i)} \\equiv g^{\\sum_{i=1}^{10} (x_i + y_{\\sigma(i)})} \\equiv g^{\\sum_{i=1}^{10} x_i + \\sum_{j=1}^{10} y_j} \\pmod{101}$\nThis product is a constant independent of the permutation $\\sigma$. Therefore, all rook products are congruent modulo 101, meaning the difference of any two rook products is always divisible by 101.\n\nThus, such a labelling exists for $n=10$.\n\nFinal answer: a. No, b. Yes",
+  "usage": {
+    "input_tokens": 272,
+    "output_tokens": 1192,
+    "thoughts_tokens": 6264
+  },
+  "latency_s": 61.105356569984,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "a. No, b. Yes"
+  }
+}

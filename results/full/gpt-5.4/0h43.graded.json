@@ -1,0 +1,25 @@
+{
+  "id": "0h43",
+  "country": "Ukraine",
+  "competition": "Ukrainian Mathematical Olympiad",
+  "gold_final_answer": "First player",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Games / greedy algorithms",
+    "Discrete Mathematics > Combinatorics > Invariants / monovariants"
+  ],
+  "prompt": "Positive integers are written on $2012$ cards, one number on each side. On the first card, numbers $1$ and $2$ are written, on the second, $3$ and $4$, ..., on the $2012$th, $4023$ and $4024$. All cards are arranged in line along a table. Two players play the following game. During each move a player chooses $5$ cards and swaps them. If after his move the set of numbers face up is the same as after one of previous turns, he loses. Which of the players has a winning strategy?",
+  "model": "gpt-5.4",
+  "response_text": "Let the state of the game be the set of numbers showing face up. Since on each card exactly one of its two numbers is visible, a state is equivalent to choosing, for each of the \\(2012\\) cards, which side is up.\n\nSo we may encode each position by a binary string of length \\(2012\\):\n- \\(0\\): the smaller number on that card is up,\n- \\(1\\): the larger number on that card is up.\n\nInitially all cards show the first side, so the initial position is\n\\[\n(0,0,\\dots,0).\n\\]\n\nA move consists of choosing \\(5\\) cards and flipping them. Thus in the binary encoding, a move changes exactly \\(5\\) bits.\n\nThe losing condition says: if after your move the resulting position has appeared before, you lose. So the game is exactly: starting from \\(0^{2012}\\), players alternately move along edges of the graph whose vertices are all binary strings of length \\(2012\\), where two vertices are adjacent iff they differ in exactly \\(5\\) coordinates; revisiting a vertex loses.\n\nHence the game ends when the current player has no legal move to an unvisited vertex. We must determine which player can force this.\n\n## Key invariant: parity of the number of 1's\nEach move flips exactly \\(5\\) bits, i.e. an odd number of bits. Therefore the parity of the Hamming weight changes every move:\n- after Player 1's moves, the position has odd weight;\n- after Player 2's moves, the position has even weight.\n\nSo Player 1 always visits odd vertices, Player 2 always visits even vertices.\n\nNow consider the graph \\(G\\) on all \\(2^{2012}\\) binary strings, with edges joining strings at Hamming distance \\(5\\). This graph is bipartite:\n- one part = even-weight strings,\n- the other part = odd-weight strings.\n\nMoreover, \\(G\\) is regular: from any vertex, you may choose any \\(5\\) coordinates to flip, so every vertex has degree\n\\[\n\\binom{2012}{5}.\n\\]\n\nA standard fact: in a finite regular bipartite graph, the two parts have the same size, and there exists a perfect matching between them. (Indeed here both parts have size \\(2^{2011}\\).)\n\nSo there is a perfect matching \\(M\\) pairing each even vertex with a unique adjacent odd vertex.\n\n## Winning strategy for Player 2\nFix such a perfect matching \\(M\\), with the initial vertex \\(0^{2012}\\) matched to some odd vertex.\n\nPlayer 2 uses the strategy:\n> whenever Player 1 moves to some odd vertex \\(v\\), Player 2 moves to the unique vertex \\(M(v)\\) matched with \\(v\\).\n\nWhy is this legal?\n\nSuppose Player 1 has just moved to \\(v\\). Since \\(M(v)\\) is adjacent to \\(v\\), Player 2 can indeed move there in one move.\n\nCould \\(M(v)\\) have appeared earlier? If it had, then since Player 2 always moves by matching, its partner \\(v\\) would also already have appeared earlier (matched pairs are used together in this strategy). But then Player 1's move to \\(v\\) would already be a repeat, and Player 1 would have lost immediately. Therefore \\(M(v)\\) is always new when Player 2 uses it.\n\nThus Player 2 can always respond legally as long as Player 1 has not already lost.\n\nSince the graph is finite, eventually Player 1 will be unable to move to a new vertex; then Player 1 loses. Therefore Player 2 has a winning strategy.\n\nFinal answer: The second player has a winning strategy.",
+  "usage": {
+    "input_tokens": 173,
+    "output_tokens": 792,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 12.129206666955724,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "The second player has a winning strategy."
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "id": "09lh",
+  "country": "Mongolia",
+  "competition": "Mongolian Mathematical Olympiad",
+  "gold_final_answer": "90°",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Analytic / Coordinate Methods > Cartesian coordinates",
+    "Geometry > Plane Geometry > Analytic / Coordinate Methods > Vectors",
+    "Algebra > Equations and Inequalities > QM-AM-GM-HM / Power Mean"
+  ],
+  "prompt": "Consider the points $A(-1, 0)$ and $B(1, 0)$ on the coordinate plane. Find the maximum possible value of the angle $\\angle ACB$ where $C$ moves along the hyperbola with equation $2xy = 1$. Note that angles are measured in degrees and lie in the interval $[0^\\circ, 180^\\circ]$.",
+  "model": "gpt-5.4",
+  "response_text": "Let \\(C=(x,y)\\) lie on the hyperbola\n\\[\n2xy=1 \\quad\\Longrightarrow\\quad y=\\frac1{2x},\\qquad x\\neq 0.\n\\]\n\nWe want to maximize \\(\\angle ACB\\), where\n\\[\nA=(-1,0),\\qquad B=(1,0).\n\\]\n\n## 1) Express the angle using vectors\nAt point \\(C\\), the two relevant vectors are\n\\[\n\\overrightarrow{CA}=(-1-x,\\,-y),\\qquad \\overrightarrow{CB}=(1-x,\\,-y).\n\\]\nThus\n\\[\n\\cos\\angle ACB\n=\\frac{\\overrightarrow{CA}\\cdot \\overrightarrow{CB}}{|\\overrightarrow{CA}||\\overrightarrow{CB}|}.\n\\]\n\nCompute the dot product:\n\\[\n\\overrightarrow{CA}\\cdot \\overrightarrow{CB}\n=(-1-x)(1-x)+y^2\n= x^2-1+y^2.\n\\]\n\nSince \\(y=\\frac1{2x}\\), we get\n\\[\nx^2+y^2=x^2+\\frac1{4x^2}.\n\\]\nSo\n\\[\n\\overrightarrow{CA}\\cdot \\overrightarrow{CB}\n= x^2+\\frac1{4x^2}-1.\n\\]\n\nTo maximize the angle, we minimize its cosine. Since the denominator is positive, it is enough to make the numerator as small as possible.\n\n## 2) Minimize the numerator\nLet\n\\[\nf(x)=x^2+\\frac1{4x^2}.\n\\]\nBy AM-GM,\n\\[\nx^2+\\frac1{4x^2}\\ge 2\\sqrt{x^2\\cdot \\frac1{4x^2}}=1.\n\\]\nHence\n\\[\nx^2+\\frac1{4x^2}-1\\ge 0.\n\\]\nSo\n\\[\n\\overrightarrow{CA}\\cdot \\overrightarrow{CB}\\ge 0,\n\\]\nwhich means\n\\[\n\\cos\\angle ACB\\ge 0\n\\quad\\Rightarrow\\quad\n\\angle ACB\\le 90^\\circ.\n\\]\n\nEquality occurs when\n\\[\nx^2=\\frac1{2}\n\\quad\\Longrightarrow\\quad\nx=\\pm\\frac1{\\sqrt2},\n\\]\nand then\n\\[\ny=\\frac1{2x}=\\pm\\frac1{\\sqrt2}\n\\]\n(with the same sign as \\(x\\)). For these points,\n\\[\n\\overrightarrow{CA}\\cdot \\overrightarrow{CB}=0,\n\\]\nso \\(\\angle ACB=90^\\circ\\).\n\nTherefore the maximum possible angle is\n\nFinal answer: \\(90^\\circ\\)",
+  "usage": {
+    "input_tokens": 128,
+    "output_tokens": 608,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 8.161386946914718,
+  "cached": false
+}

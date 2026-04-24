@@ -1,0 +1,26 @@
+{
+  "id": "0d8l",
+  "country": "Saudi Arabia",
+  "competition": "SAUDI ARABIAN MATHEMATICAL COMPETITIONS",
+  "gold_final_answer": "(4, 4), (5, 6), (6, 5)",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Vieta's formulas",
+    "Algebra > Intermediate Algebra > Quadratic functions",
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities"
+  ],
+  "prompt": "Find all pairs of positive integers ($p$, $q$) such that both equations $x^{2} - p x + q = 0$ and $x^{2} - q x + p = 0$ have integral solutions.",
+  "model": "gpt-5.4",
+  "response_text": "Let the roots of  \n\\[\nx^2-px+q=0\n\\]\nbe integers \\(a,b\\), and the roots of  \n\\[\nx^2-qx+p=0\n\\]\nbe integers \\(c,d\\).\n\nBy Vieta:\n\\[\na+b=p,\\qquad ab=q\n\\]\nand\n\\[\nc+d=q,\\qquad cd=p.\n\\]\n\nSo we need positive integers \\(p,q\\) such that there exist integers \\(a,b,c,d\\) with\n\\[\np=a+b=cd,\\qquad q=ab=c+d.\n\\]\n\nWe will solve this systematically.\n\n## 1. Express everything using \\(a,b\\)\n\nSince \\(p=a+b\\) and \\(q=ab\\), the second quadratic becomes\n\\[\nx^2-abx+(a+b)=0.\n\\]\nFor this to have integer roots, its discriminant must be a perfect square:\n\\[\n\\Delta=(ab)^2-4(a+b).\n\\]\nSo we need\n\\[\n(ab)^2-4(a+b)=k^2\n\\]\nfor some integer \\(k\\).\n\nAlso, because \\(q=ab>0\\) and \\(p=a+b>0\\), and \\(a,b\\) are integers, we can assume \\(a,b>0\\) or both negative. But if both were negative then \\(a+b<0\\), impossible since \\(p>0\\). Hence\n\\[\na,b\\in \\mathbb Z_{>0}.\n\\]\n\nSo \\(a,b\\) are positive integers satisfying\n\\[\n(ab)^2-4(a+b)\\ge 0\n\\]\nand is a square.\n\n## 2. Use the fact that \\(c,d\\) are roots of \\(x^2-abx+(a+b)\\)\n\nSince \\(c,d\\) are integers and\n\\[\nc+d=ab,\\qquad cd=a+b,\n\\]\nthe positive integers \\(c,d\\) multiply to \\(a+b\\). Hence\n\\[\na+b=cd\\ge c+d=ab\n\\]\nis not always true, so that route is not immediate. Instead, compare sizes.\n\nAssume \\(a\\le b\\).\n\n### Case 1: \\(a\\ge 3\\)\n\nThen\n\\[\nab \\ge 3b \\ge a+b+1\n\\]\nfor all \\(b\\ge 3\\), and in particular \\(ab>a+b\\) except possibly very small values. But since \\(c+d=ab\\) and \\(cd=a+b\\), the product \\(cd\\) is much smaller than the sum \\(c+d\\). For positive integers this is very restrictive.\n\nIndeed, for positive integers \\(c,d\\),\n\\[\ncd \\ge c+d\n\\]\nwhenever \\(c,d\\ge 2\\), because\n\\[\ncd-c-d=(c-1)(d-1)-1\\ge 0\n\\]\nexcept for small cases. Since \\(cd=a+b\\) and \\(c+d=ab\\), if \\(ab>a+b\\), then we must have at least one of \\(c,d=1\\).\n\nSo one of \\(c,d\\) is \\(1\\). Then from\n\\[\ncd=a+b,\n\\]\nthe other root is \\(a+b\\), and thus\n\\[\nc+d=a+b+1=ab.\n\\]\nTherefore\n\\[\nab-a-b=1 \\iff (a-1)(b-1)=2.\n\\]\nThis gives only\n\\[\n(a,b)=(2,3)\\ \\text{or}\\ (3,2).\n\\]\n\nThese yield\n\\[\np=a+b=5,\\qquad q=ab=6.\n\\]\n\n### Case 2: \\(a=1\\)\n\nThen\n\\[\np=1+b,\\qquad q=b.\n\\]\nThe second equation is\n\\[\nx^2-bx+(b+1)=0.\n\\]\nIts discriminant is\n\\[\nb^2-4b-4.\n\\]\nWe need\n\\[\nb^2-4b-4=k^2.\n\\]\nRewrite:\n\\[\n(b-2)^2-k^2=8\n\\]\nso\n\\[\n(b-2-k)(b-2+k)=8.\n\\]\nBoth factors have same parity, hence both even. The even factor pairs of \\(8\\) are\n\\[\n(2,4),\\ (4,2),\\ (-2,-4),\\ (-4,-2).\n\\]\nFrom \\((2,4)\\),\n\\[\nb-2=\\frac{2+4}{2}=3 \\implies b=5.\n\\]\nThus\n\\[\n(a,b)=(1,5)\\ \\text{or}\\ (5,1),\n\\]\ngiving\n\\[\np=6,\\qquad q=5.\n\\]\n\n### Case 3: \\(a=2\\)\n\nThen\n\\[\np=b+2,\\qquad q=2b.\n\\]\nThe second equation is\n\\[\nx^2-2bx+(b+2)=0\n\\]\nwith discriminant\n\\[\n4b^2-4b-8=4(b^2-b-2)=4(b-2)(b+1).\n\\]\nSo we need\n\\[\n(b-2)(b+1)=m^2.\n\\]\nBut\n\\[\n\\gcd(b-2,b+1)=\\gcd(b-2,3)\\in\\{1,3\\}.\n\\]\nTesting small possibilities gives only \\(b=3\\), since then\n\\[\n(b-2)(b+1)=1\\cdot 4=4.\n\\]\nThus again\n\\[\n(a,b)=(2,3)\\ \\text{or}\\ (3,2),\n\\]\ngiving\n\\[\n(p,q)=(5,6).\n\\]\n\nSo the only candidates are\n\\[\n(p,q)=(5,6),\\ (6,5).\n\\]\n\n## 3. Check\n\n- For \\((p,q)=(5,6)\\):\n  \\[\n  x^2-5x+6=0 \\implies (x-2)(x-3)=0,\n  \\]\n  \\[\n  x^2-6x+5=0 \\implies (x-1)(x-5)=0.\n  \\]\n  Both have integer roots.\n\n- For \\((p,q)=(6,5)\\):\n  \\[\n  x^2-6x+5=0 \\implies (x-1)(x-5)=0,\n  \\]\n  \\[\n  x^2-5x+6=0 \\implies (x-2)(x-3)=0.\n  \\]\n  Both have integer roots.\n\nHence these are exactly all solutions.\n\nFinal answer: \\((p,q)=(5,6)\\) and \\((6,5)\\).",
+  "usage": {
+    "input_tokens": 98,
+    "output_tokens": 1451,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 19.519904437009245,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "\\((p,q)=(5,6)\\) and \\((6,5)\\)."
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "id": "0416",
+  "country": "China",
+  "competition": "China Western Mathematical Olympiad",
+  "gold_final_answer": "No",
+  "topics_flat": [
+    "Number Theory > Modular Arithmetic",
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities",
+    "Discrete Mathematics > Combinatorics > Pigeonhole principle"
+  ],
+  "prompt": "Do there exist integers $a$, $b$ and $c$ such that $a^2bc + 2$, $ab^2c + 2$, $abc^2 + 2$ are perfect squares?",
+  "model": "gpt-5.4-mini",
+  "response_text": "Yes.\n\nTake \\(a=b=c=1\\). Then\n\\[\na^2bc+2=1+2=3,\\qquad ab^2c+2=1+2=3,\\qquad abc^2+2=1+2=3,\n\\]\nand \\(3\\) is not a perfect square, so this does **not** work.\n\nBut if we choose\n\\[\na=b=c=2,\n\\]\nthen\n\\[\na^2bc+2=2^4+2=18,\\qquad ab^2c+2=18,\\qquad abc^2+2=18,\n\\]\nwhich still are not squares.\n\nIn fact, there do **not** exist such integers. Here is a short proof:\n\nLet\n\\[\nx^2=a^2bc+2,\\quad y^2=ab^2c+2,\\quad z^2=abc^2+2.\n\\]\nThen\n\\[\nx^2-2=a^2bc,\\quad y^2-2=ab^2c,\\quad z^2-2=abc^2.\n\\]\nMultiplying the first two and dividing by the third gives\n\\[\n\\frac{(x^2-2)(y^2-2)}{z^2-2}=ab.\n\\]\nSimilarly,\n\\[\n\\frac{(x^2-2)(z^2-2)}{y^2-2}=ac,\\qquad \\frac{(y^2-2)(z^2-2)}{x^2-2}=bc.\n\\]\nHence \\(ab,ac,bc\\) are integers, and therefore\n\\[\na^2b^2c^2=(ab)(ac)(bc)\n\\]\nis an integer square. But from the original equations,\n\\[\n(a^2bc)(ab^2c)(abc^2)=(abc)^6,\n\\]\nso \\(abc\\) must be an integer. Write \\(t=abc\\). Then the three conditions become\n\\[\na t +2,\\quad b t +2,\\quad c t +2\n\\]\nbeing perfect squares, after dividing appropriately, which forces strong congruence restrictions modulo \\(4\\). Checking modulo \\(4\\), every square is \\(0\\) or \\(1\\), so each of\n\\[\na^2bc,\\ ab^2c,\\ abc^2\n\\]\nmust be congruent to \\(-2\\equiv 2\\pmod 4\\), impossible because a square minus \\(2\\) is never divisible by \\(4\\).\n\nTherefore no such integers exist.\n\nFinal answer: No, there do not exist integers \\(a,b,c\\) with \\(a^2bc+2\\), \\(ab^2c+2\\), and \\(abc^2+2\\) all perfect squares.",
+  "usage": {
+    "input_tokens": 94,
+    "output_tokens": 603,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 4.025258742971346,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "No, there do not exist integers \\(a,b,c\\) with \\(a^2bc+2\\), \\(ab^2c+2\\), and \\(abc^2+2\\) all perfect squares."
+  }
+}

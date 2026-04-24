@@ -1,0 +1,27 @@
+{
+  "id": "0dct",
+  "country": "Saudi Arabia",
+  "competition": "SAUDI ARABIAN MATHEMATICAL COMPETITIONS",
+  "gold_final_answer": "10",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments",
+    "Discrete Mathematics > Combinatorics > Invariants / monovariants",
+    "Number Theory > Divisibility / Factorization > Prime numbers",
+    "Number Theory > Divisibility / Factorization > Factorization techniques"
+  ],
+  "prompt": "Let $n$ be a positive integer. Each number from $1, 2, 3, \\ldots, 1000$ was painted one of $n$ colors. It turned out that every two distinct numbers, one of which is a divisor of the other one, have different colors. Find the smallest $n$ for which such situation is possible.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "We need to find the smallest number of colors needed to color {1, 2, ..., 1000} such that if a | b (and a ≠ b), then a and b have different colors.\n\nThis is equivalent to finding the chromatic number of the divisibility poset on {1, ..., 1000}, which equals the length of the longest chain (by Dilworth's theorem applied to antichains, but actually for posets, the chromatic number equals the length of the longest chain).\n\nThe longest chain in {1, 2, ..., 1000} under divisibility is a sequence 1 = a₀ | a₁ | a₂ | ... | aₖ where each divides the next and all are ≤ 1000.\n\nThe longest such chain: we want to maximize the number of elements. Starting from 1 and repeatedly multiplying by 2:\n1, 2, 4, 8, 16, 32, 64, 128, 256, 512\n\nThat's 10 elements (since 2⁹ = 512 ≤ 1000, 2¹⁰ = 1024 > 1000).\n\nSo the longest chain has length 10, meaning we need at least 10 colors.\n\nNow we need to verify that 10 colors suffice. We can color each number by the length of the longest chain ending at that number (i.e., the number of times you can divide by any integer > 1, which is related to Ω(n), the number of prime factors with multiplicity, plus 1).\n\nDefine the color of n as Ω(n) + 1, where Ω(n) is the number of prime factors of n counted with multiplicity (Ω(1) = 0).\n\nIf a | b and a ≠ b, then b = a·k for some k > 1, so Ω(b) = Ω(a) + Ω(k) ≥ Ω(a) + 1. Thus they get different colors.\n\nThe maximum value of Ω(n) for n ≤ 1000: 2⁹ = 512 ≤ 1000, 2¹⁰ = 1024 > 1000, so max Ω(n) = 9, giving color 10.\n\nThe colors used are 1 through 10, so exactly 10 colors suffice.\n\nFinal answer: 10",
+  "usage": {
+    "input_tokens": 122,
+    "output_tokens": 589,
+    "thinking_tokens": 0
+  },
+  "latency_s": 8.418930866988376,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "exact",
+    "predicted": "10"
+  }
+}

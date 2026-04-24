@@ -1,0 +1,21 @@
+{
+  "id": "09wc",
+  "country": "Netherlands",
+  "competition": "Final Round",
+  "gold_final_answer": "(1, 2), (2, 1), (-1, -2), (-2, -1)",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Prime numbers",
+    "Number Theory > Divisibility / Factorization > Factorization techniques",
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities"
+  ],
+  "prompt": "Determine all pairs of integers $(x, y)$ such that $2xy$ is a perfect square and $x^2 + y^2$ is a prime number.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let\n\\[\n2xy = n^2\n\\]\nfor some integer \\(n\\), and let\n\\[\nx^2+y^2=p\n\\]\nwhere \\(p\\) is prime.\n\nWe will show the only possibilities are\n\\[\n(x,y)=(\\pm 1,\\pm 1).\n\\]\n\n---\n\nSince \\(2xy\\) is a perfect square, \\(2xy\\ge 0\\), so \\(xy\\ge 0\\). Also \\(x^2+y^2\\) is prime, hence positive, so \\((x,y)\\neq(0,0)\\).\n\nNow consider the prime \\(p=x^2+y^2\\).\n\nIf \\(|x|\\ge 2\\) and \\(|y|\\ge 1\\), then\n\\[\nx^2+y^2 \\ge 4+1=5.\n\\]\nBut also from \\(2xy\\) being a square, the parity of \\(x\\) and \\(y\\) must be the same:\n- If one is even and the other odd, then \\(2xy\\equiv 2 \\pmod 4\\), impossible for a square.\n- So both are odd or both even.\n\nIf both are even, then \\(x^2+y^2\\) is divisible by \\(4\\), hence cannot be prime unless it equals \\(4\\), impossible here.\n\nSo \\(x,y\\) must both be odd.\n\nNow if \\(|x|\\ge 3\\) or \\(|y|\\ge 3\\), then \\(x^2+y^2\\ge 9+1=10\\), and since both are odd, \\(x^2+y^2\\) is even, hence at least \\(10\\), so it cannot be prime unless it is \\(2\\), impossible.\n\nThus the only possible odd values are \\(|x|=|y|=1\\). Indeed,\n\\[\nx^2+y^2=1+1=2,\n\\]\nwhich is prime, and\n\\[\n2xy=\\pm 2.\n\\]\nFor this to be a perfect square, we need \\(2xy=2\\), so \\(xy=1\\), meaning \\(x\\) and \\(y\\) have the same sign.\n\nTherefore the integer pairs are\n\\[\n(1,1)\\quad \\text{and}\\quad (-1,-1).\n\\]\n\nFinal answer: \\((1,1)\\) and \\((-1,-1)\\)",
+  "usage": {
+    "input_tokens": 83,
+    "output_tokens": 524,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.2116028290474787,
+  "cached": false
+}

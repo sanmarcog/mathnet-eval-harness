@@ -1,0 +1,20 @@
+{
+  "id": "05ce",
+  "country": "Estonia",
+  "competition": "Estonian Mathematical Olympiad",
+  "gold_final_answer": "625, 3125, 9375",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Factorization techniques",
+    "Algebra > Prealgebra / Basic Algebra > Integers"
+  ],
+  "prompt": "Find all natural numbers whose last digit is not zero and deleting the first digit of which gives a number exactly 25 times smaller.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let the number be \\(N\\), and let its decimal representation be\n\n\\[\nN = a\\cdot 10^k + b\n\\]\n\nwhere:\n- \\(a\\) is the first digit, so \\(1 \\le a \\le 9\\),\n- \\(b\\) is the number obtained by deleting the first digit,\n- \\(b\\) has \\(k\\) digits,\n- and the last digit of \\(N\\) is not zero, so \\(b \\neq 0\\) and does not end in 0.\n\nThe condition says that deleting the first digit makes the number exactly 25 times smaller, so\n\n\\[\nb = \\frac{N}{25}.\n\\]\n\nThus\n\n\\[\nN = 25b.\n\\]\n\nBut also \\(N = a\\cdot 10^k + b\\), so\n\n\\[\na\\cdot 10^k + b = 25b\n\\]\n\n\\[\na\\cdot 10^k = 24b\n\\]\n\n\\[\nb = \\frac{a\\cdot 10^k}{24}.\n\\]\n\nSince \\(b\\) is an integer, \\(24\\mid a\\cdot 10^k\\). Because \\(10^k\\) has only factors \\(2\\) and \\(5\\), the factor \\(3\\) must come from \\(a\\). Hence \\(a\\in\\{3,6,9\\}\\).\n\nNow write \\(k=1\\) first. Then\n\n\\[\nb=\\frac{a\\cdot 10}{24}=\\frac{5a}{12},\n\\]\n\nnot an integer for any \\(a\\in\\{3,6,9\\}\\).\n\nFor \\(k\\ge 2\\), \\(10^k\\) contributes enough factors of 2, but we still need \\(24\\mid a\\cdot 10^k\\). Checking the structure of \\(b\\):\n\n\\[\nN=25b\n\\]\n\nmeans that \\(N\\) is obtained by multiplying \\(b\\) by 25, so the first digit of \\(N\\) and the rest must align accordingly. A direct digit check shows the only possibilities are numbers of the form\n\n\\[\nN = 25\\cdot \\underbrace{11\\ldots1}_{\\text{some number of 1s}},\n\\]\n\nsince shifting by one digit and multiplying by 25 forces the tail to repeat. But these numbers end in \\(5\\), contradicting the requirement that the last digit is not zero is satisfied but the deletion condition must produce a number exactly 25 times smaller. Testing the recurrence gives no valid finite decimal other than the trivial impossible case.\n\nSo there are no natural numbers satisfying the condition.\n\nFinal answer: No such natural number exists.",
+  "usage": {
+    "input_tokens": 74,
+    "output_tokens": 590,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 4.808428256073967,
+  "cached": false
+}

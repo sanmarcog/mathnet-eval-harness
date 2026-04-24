@@ -1,0 +1,25 @@
+{
+  "id": "0epf",
+  "country": "South Africa",
+  "competition": "South African Mathematics Olympiad",
+  "gold_final_answer": "2, 6, 12",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization",
+    "Number Theory > Number-Theoretic Functions > τ (number of divisors)"
+  ],
+  "prompt": "We call a divisor $d$ of a positive integer $n$ *special* if $d + 1$ is also a divisor of $n$. Prove: at most half the positive divisors of a positive integer can be special. Determine all positive integers for which exactly half the positive divisors are special.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To prove that at most half the positive divisors of a positive integer $n$ can be special, we analyze the properties of special divisors. \n\nLet $n = 2^k m$, where $m$ is an odd integer and $k \\ge 0$. The total number of positive divisors of $n$ is $|D(n)| = (k+1)|D(m)|$.\nA divisor $d$ of $n$ is special if $d+1$ is also a divisor of $n$. This implies that $d$ and $d+1$ are coprime, so their product $d(d+1)$ must divide $n$. \nSince $d$ and $d+1$ are consecutive integers, exactly one of them is odd and the other is even. We can partition the set of special divisors $S$ into two subsets:\n1. $S_{\\text{even}}$: the set of special divisors $d$ that are even.\n2. $S_{\\text{odd}}$: the set of special divisors $d$ that are odd.\n\n**Case 1: $d \\in S_{\\text{even}}$**\nIf $d$ is even, then $d+1$ is odd. Since $d(d+1) \\mid n$, the odd integer $d+1$ must divide the odd part of $n$, which is $m$. \nThus, the map $d \\mapsto d+1$ is an injection from $S_{\\text{even}}$ to the",
+  "usage": {
+    "input_tokens": 101,
+    "output_tokens": 323,
+    "thoughts_tokens": 7865
+  },
+  "latency_s": 74.56787144695409,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": null
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "id": "01vw",
+  "country": "Belarus",
+  "competition": "69th Belarusian Mathematical Olympiad",
+  "gold_final_answer": "(-11/8, 2)",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Analytic / Coordinate Methods > Cartesian coordinates",
+    "Geometry > Plane Geometry > Triangles > Triangle centers: centroid, incenter, circumcenter, orthocenter, Euler line, nine-point circle"
+  ],
+  "prompt": "The point $C$ with an abscissa $-2$ lie on the hyperbola $y = 1/x$. Two lines with slopes $2$ and $1/2$ passes through $C$ and intersect the hyperbola for the second time at the points $A$ and $B$.\nFind the coordinates of the circumcenter of the triangle $ABC$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Since \\(C\\) lies on \\(y=\\frac1x\\) with abscissa \\(-2\\), we have\n\\[\nC=\\left(-2,-\\frac12\\right).\n\\]\n\n### 1) Find \\(A\\) and \\(B\\)\n\n**Line through \\(C\\) with slope \\(2\\):**\n\\[\ny+\\frac12=2(x+2)\\quad\\Rightarrow\\quad y=2x+\\frac72.\n\\]\nIntersect with \\(y=\\frac1x\\):\n\\[\n\\frac1x=2x+\\frac72\n\\;\\Rightarrow\\;\n1=2x^2+\\frac72x\n\\;\\Rightarrow\\;\n4x^2+7x-2=0.\n\\]\nOne root is \\(x=-2\\) (point \\(C\\)), so the other is\n\\[\nx=\\frac12.\n\\]\nThen\n\\[\ny=\\frac1x=2,\n\\]\nso\n\\[\nA=\\left(\\frac12,2\\right).\n\\]\n\n**Line through \\(C\\) with slope \\(\\frac12\\):**\n\\[\ny+\\frac12=\\frac12(x+2)\\quad\\Rightarrow\\quad y=\\frac x2+\\frac12.\n\\]\nIntersect with \\(y=\\frac1x\\):\n\\[\n\\frac1x=\\frac x2+\\frac12\n\\;\\Rightarrow\\;\n2=x^2+x\n\\;\\Rightarrow\\;\nx^2+x-2=0.\n\\]\nOne root is \\(x=-2\\), so the other is\n\\[\nx=1.\n\\]\nThen\n\\[\ny=1,\n\\]\nso\n\\[\nB=(1,1).\n\\]\n\n### 2) Circumcenter of \\(\\triangle ABC\\)\n\nWe compute distances:\n\n\\[\nAB^2=\\left(\\frac12-1\\right)^2+(2-1)^2=\\frac14+1=\\frac54,\n\\]\n\\[\nBC^2=(1+2)^2+\\left(1+\\frac12\\right)^2=9+\\frac94=\\frac{45}{4},\n\\]\n\\[\nCA^2=\\left(\\frac12+2\\right)^2+\\left(2+\\frac12\\right)^2=\\left(\\frac52\\right)^2+\\left(\\frac52\\right)^2=\\frac{25}{2}.\n\\]\n\nCheck:\n\\[\nAB^2+BC^2=\\frac54+\\frac{45}{4}=\\frac{50}{4}=\\frac{25}{2}=CA^2.\n\\]\nSo \\(\\triangle ABC\\) is right-angled at \\(B\\), hence the circumcenter is the midpoint of the hypotenuse \\(AC\\).\n\nMidpoint of \\(A\\left(\\frac12,2\\right)\\) and \\(C\\left(-2,-\\frac12\\right)\\):\n\\[\n\\left(\\frac{\\frac12-2}{2},\\frac{2-\\frac12}{2}\\right)\n=\n\\left(-\\frac34,\\frac34\\right).\n\\]\n\nFinal answer: \\(\\left(-\\frac34,\\frac34\\right)\\)",
+  "usage": {
+    "input_tokens": 125,
+    "output_tokens": 674,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 4.008501837030053,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "\\(\\left(-\\frac34,\\frac34\\right)\\)"
+  }
+}

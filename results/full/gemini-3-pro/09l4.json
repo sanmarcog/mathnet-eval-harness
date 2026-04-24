@@ -1,0 +1,20 @@
+{
+  "id": "09l4",
+  "country": "Mongolia",
+  "competition": "Mongolian Mathematical Olympiad",
+  "gold_final_answer": "2026",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Miscellaneous > Angle chasing",
+    "Geometry > Plane Geometry > Geometric Inequalities > Optimization in geometry"
+  ],
+  "prompt": "A convex polygon has exactly $2023$ obtuse angles. Determine the maximum possible number of angles that this polygon can have.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find the maximum possible number of angles a convex polygon can have given that exactly 2023 of its angles are obtuse, we can look at the exterior angles of the polygon.\n\nFor any convex $n$-sided polygon, the sum of its exterior angles is always exactly $360^\\circ$. \nAn interior angle is obtuse (strictly between $90^\\circ$ and $180^\\circ$) if and only if its corresponding exterior angle is acute (strictly between $0^\\circ$ and $90^\\circ$). \nSimilarly, an interior angle is non-obtuse (less than or equal to $90^\\circ$) if and only if its corresponding exterior angle is greater than or equal to $90^\\circ$.\n\nLet $k$ be the number of non-obtuse interior angles. The exterior angles corresponding to these $k$ interior angles must each be at least $90^\\circ$. \nTherefore, the sum of these $k$ exterior angles is at least $k \\times 90^\\circ$.\n\nSince the sum of all $n$ exterior angles of the convex polygon is $360^\\circ$, and all exterior angles must be strictly positive, we have:\n$k \\times 90^\\circ < 360^\\circ$\n(The inequality is strict because there are other vertices in the polygon, specifically the 2023 obtuse angles, which contribute positive amounts to the sum of the exterior angles).\n\nDividing by $90^\\circ$, we get:\n$k < 4$\n\nSince $k$ must be an integer, the maximum possible number of non-obtuse angles is $k = 3$. \n\nWe are given that the polygon has exactly 2023 obtuse angles. Therefore, the maximum total number of angles $n$ the polygon can have is the sum of the obtuse angles and the maximum number of non-obtuse angles:\n$n = 2023 + 3 = 2026$\n\n(This maximum can be achieved by taking an acute triangle and slightly \"bending\" one of its sides outward into a polygonal chain of 2023 segments, creating 2023 obtuse angles while keeping the original 3 angles acute.)\n\nFinal answer: 2026",
+  "usage": {
+    "input_tokens": 66,
+    "output_tokens": 488,
+    "thoughts_tokens": 1636
+  },
+  "latency_s": 18.15154176997021,
+  "cached": false
+}

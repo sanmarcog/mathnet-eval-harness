@@ -1,0 +1,25 @@
+{
+  "id": "01fg",
+  "country": "Baltic Way",
+  "competition": "Baltic Way 2019",
+  "gold_final_answer": "A",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Games / greedy algorithms",
+    "Discrete Mathematics > Combinatorics > Invariants / monovariants"
+  ],
+  "prompt": "On a board the numbers $1, 2, 3, \\ldots, 500$ are written. In a game two players $A$ and $B$ take turns alternately and $A$ starts. In each turn they have to erase two numbers $n$ and $2n$ on the board. If a player can not take a turn, the player loses. Determine who has a winning strategy.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "I need to find who has a winning strategy in this game where players alternately remove pairs (n, 2n) from {1, 2, ..., 500}.\n\n## Setting Up the Structure\n\nFirst, I'll identify which pairs (n, 2n) can be removed. We need both n and 2n to be on the board, with 2n ≤ 500, so n ≤ 250.\n\nLet me analyze the structure by looking at chains. Each number can be written as m·2^k where m is odd. Group numbers by their odd part.\n\n**Chains:** For each odd number m, the chain is {m, 2m, 4m, 8m, ...} ∩ {1,...,500}.\n\nFor odd m, the chain has elements m·2^0, m·2^1, ..., m·2^k where m·2^k ≤ 500.\n\nA move consists of removing two consecutive elements in a chain (n and 2n are adjacent in the chain).\n\n## Analyzing Chains as Nim-like Games\n\nEach chain of length L is an independent game where a move removes two consecutive elements. This is equivalent to a combinatorial game on a path.\n\nFor a chain of length L (elements at positions 0,1,...,L-1), a move removes positions i and i+1 (consecutive). This is the game of removing a domino from a 1×L strip.\n\nThe Sprague-Grundy value of a 1×L strip (domino removal) is:\n- L=1: no moves, G=0\n- L=2: one move (remove both), G=1  \n- L=3: moves leave strips of length 1, G=mex{0}=1... \n\nWait, let me reconsider. Removing positions i and i+1 from a chain of length L splits it into a left part of length i and right part of length L-2-i.\n\nGrundy values for strip of length L:\n- G(0)=0, G(1)=0\n- G(2)=mex{G(0)+G(0)}=mex{0}=1\n- G(3)=mex{G(0)+G(1), G(1)+G(0)}=mex{0}=1\n- G(4)=mex{G(0)+G(2), G(1)+G(1), G(2)+G(0)}=mex{1,0,1}=mex{0,1}=2\n- G(5)=mex{G(0)+G(3),G(1)+G(2),G(2)+G(1),G(3)+G(0)}=mex{1,1,1,1}=mex{1}=0\n- G(6)=mex{G(0)+G(4),G(1)+G(3),G(2)+G(2),G(3)+G(1),G(4)+G(0)}=mex{2,1,2,1,2}=mex{1,2}=0... wait mex{0}? No: mex{2,1,2,1,2}=mex{1,2}=0\n- G(7)=mex{G(0)+G(5),...}=mex{0,0,0,0,0,0}... G(0)+G(5)=0, G(1)+G(4)=2, G(2)+G(3)=2, G(3)+G(2)=2, G(4)+G(1)=2, G(5)+G(0)=0. mex{0,2}=1\n\nPattern: 0,0,1,1,2,0,0,1,1,2,... with period 5? Let me recheck G(5)=0, G(6)=0, G(7)=1...\n\nThe pattern seems: L mod 5: 0→0,1→0,2→1,3→1,4→2.\n\n## Counting Chain Lengths\n\nFor odd m from 1 to 499, chain length = floor(log2(500/m)) + 1.\n\nI need XOR of all Grundy values. The key insight: count chains of each length.\n\nChains of length 1: m odd, m > 250, so m ∈ {251,253,...,499}: **125 chains**\nChains of length 2: m odd, 125 < m ≤ 250: m ∈ {127,129,...,249}: **62 chains**\nChains of length 3: m odd, 63 < m ≤ 125: **32 chains** (63 to 125 odd: 32 values)\nChains of length 4: m odd, 32 < m ≤ 63: **16 chains**\nChains of length 5: m odd, 16 < m ≤ 31: **8 chains**\nChains of length 6: m odd, 8 < m ≤ 15: **4 chains**\nChains of length 7: m odd, 4 < m ≤ 7: m=5,7: **2 chains**\nChains of length 8: m odd, 2 < m ≤ 4: m=3: **1 chain**\nChains of length 9: m=1: **1 chain**\n\nGrundy values: G(1)=0,G(2)=1,G(3)=1,G(4)=2,G(5)=0,G(6)=0,G(7)=1,G(8)=1,G(9)=2.\n\nXOR: 125×0 ⊕ 62×1 ⊕ 32×1 ⊕ 16×2 ⊕ 8×0 ⊕ 4×0 ⊕ 2×1 ⊕ 1×1 ⊕ 1×2\n\n= 0 ⊕ (62⊕32⊕2⊕1)×... XOR of (62+32+2+1)=97 ones = 1 (odd), XOR of (16+1)=17 twos = 2 (odd×2=2).\n\nTotal XOR = 1 ⊕ 2 = 3 ≠ 0.\n\n**Player A (first player) has a winning strategy.**\n\nFinal answer: A",
+  "usage": {
+    "input_tokens": 135,
+    "output_tokens": 1578,
+    "thinking_tokens": 0
+  },
+  "latency_s": 19.716571638011374,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "exact",
+    "predicted": "A"
+  }
+}

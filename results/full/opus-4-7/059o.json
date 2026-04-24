@@ -1,0 +1,20 @@
+{
+  "id": "059o",
+  "country": "Estonia",
+  "competition": "Estonian Math Competitions",
+  "gold_final_answer": "10^{2^{2020}} + 33",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Sequences and Series > Recurrence relations",
+    "Algebra > Intermediate Algebra > Quadratic functions"
+  ],
+  "prompt": "On the first line of a notebook Juku writes the number $43$. On every following line he writes the number $x^2 - 66x + 1122$, where $x$ is the number on the previous line. Find the number that Juku will write on the $2021$st line.",
+  "model": "claude-opus-4-7",
+  "response_text": "f(x) = x²-66x+1122. f(43) = 1849 - 2838 + 1122 = 133. f(133) = 17689 - 8778 + 1122 = 10033. Hmm let me try substitution: let y = x-33. Then x²-66x+1122 = (x-33)²+33 = y²+33. New value's y' = f(x)-33 = y²... wait: new x' = y²+33, so new y' = x'-33 = y².\n\nStart: x=43, y=10. Then y_n = 10^(2^(n-1)).\nLine 2021: y = 10^(2^2020), number = 10^(2^2020) + 33.\n\nFinal answer: <10^(2^{2020})+33>",
+  "usage": {
+    "input_tokens": 143,
+    "output_tokens": 234,
+    "thinking_tokens": 0
+  },
+  "latency_s": 4.74154436099343,
+  "cached": false
+}

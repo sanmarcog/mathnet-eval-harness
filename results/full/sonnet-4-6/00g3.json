@@ -1,0 +1,20 @@
+{
+  "id": "00g3",
+  "country": "Asia Pacific Mathematics Olympiad (APMO)",
+  "competition": "XIV APMO",
+  "gold_final_answer": "f(x) = x",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Functional Equations",
+    "Algebra > Algebraic Expressions > Functional Equations > Injectivity / surjectivity"
+  ],
+  "prompt": "Let $\\mathbb{R}$ denote the set of all real numbers. Find all functions $f$ from $\\mathbb{R}$ to $\\mathbb{R}$ satisfying:\n(i) there are only finitely many $s$ in $\\mathbb{R}$ such that $f(s)=0$, and\n(ii) $f\\left(x^{4}+y\\right)=x^{3} f(x)+f(f(y))$ for all $x, y$ in $\\mathbb{R}$.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "Let me find all functions satisfying the given conditions.\n\n**Setting up equations:**\n\nLet P(x,y) denote the assertion f(x⁴+y) = x³f(x) + f(f(y)).\n\n**P(0,y):** f(y) = f(f(y)) for all y. So f∘f = f (f is a \"retraction\").\n\nThis simplifies the functional equation to:\nf(x⁴+y) = x³f(x) + f(y)\n\n**P(x,0):** f(x⁴) = x³f(x) + f(0)\n\n**P(0,0):** f(0) = f(f(0)) = f(0), consistent.\n\nFrom f(f(y)) = f(y), applying f to both sides: f(f(f(y))) = f(f(y)), which is consistent.\n\n**Finding f(0):**\n\nFrom f(x⁴+y) = x³f(x) + f(y), set y = -x⁴:\nf(0) = x³f(x) + f(-x⁴)\n\nAlso from the formula: f(-x⁴) = f(0 + (-x⁴)) ... let me use P(x, -x⁴):\nf(0) = x³f(x) + f(-x⁴)\n\nAnd P(-x, -x⁴): f(x⁴ + (-x⁴)) = (-x)³f(-x) + f(-x⁴)\nf(0) = -x³f(-x) + f(-x⁴)\n\nSubtracting: 0 = x³f(x) + x³f(-x), so f(-x) = -f(x) for x ≠ 0. Since f is odd (and f(0) must be checked):\n\nSetting x=0 in oddness: f(0) = -f(0), so f(0) = 0.\n\n**Simplified equation:** f(x⁴+y) = x³f(x) + f(y), with f(0) = 0.\n\nFrom f(x⁴) = x³f(x) (setting y=0).\n\n**Testing f(x) = x³:**\n- f(x⁴+y) = (x⁴+y)³ ... this doesn't simplify nicely. Let me try f(x) = cx.\n\n**Testing f(x) = cx:**\n- f(x⁴+y) = c(x⁴+y)\n- x³f(x) + f(y) = cx⁴ + cy\n\nThis works! So f(x) = cx is a solution for any c. But we need finitely many zeros, so c ≠ 0.\n\nCheck f(f(y)) = f(cy) = c²y, and we need f(f(y)) = f(y) = cy, so c² = c, giving c = 1 (since c ≠ 0).\n\n**So f(x) = x is a candidate.**\n\n**Testing f(x) = x³:**\n- f(x⁴+y) = (x⁴+y)³\n- x³f(x) + f(y) = x⁶ + y³\nThese aren't equal in general.\n\n**Back to constraints:** From f(x⁴) = x³f(x) and f odd.\n\nLet me try f(x) = x|x|^(α-1) type. Actually from f(x⁴) = x³f(x):\nIf f(x) = x^n for x > 0: x^(4n) = x³ · x^n = x^(n+3), so 4n = n+3, giving n=1.\n\nSo f(x) = x for x > 0, and by oddness f(x) = x for all x, i.e., **f(x) = x**.\n\n**Verification of f(x) = x:**\n- f(x⁴+y) = x⁴+y\n- x³f(x) + f(f(y)) = x⁴ + f(y) = x⁴ + y ✓\n- Finitely many zeros: only s=0 ✓\n\n**Checking uniqueness:** The functional equation f(x⁴+y) = x³f(x)+f(y) with f odd and f(x⁴)=x³f(x). For any t > 0, write t = x⁴ where x = t^(1/4): f(t) = t^(3/4)f(t^(1/4)). Iterating: f(t) = t^(3/4+3/16+...)·f(1)^{...} → f(t) = t·f(1) as the iteration converges (exponent sum = 1). With f(f(y))=f(y) giving f(1)=1 (since f(f(1))=f(1) and f(1)=f(1)·1). So f(x)=x uniquely.\n\nFinal answer: $f(x) = x$",
+  "usage": {
+    "input_tokens": 177,
+    "output_tokens": 1271,
+    "thinking_tokens": 0
+  },
+  "latency_s": 17.32467673299834,
+  "cached": false
+}

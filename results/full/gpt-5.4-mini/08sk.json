@@ -1,0 +1,21 @@
+{
+  "id": "08sk",
+  "country": "Japan",
+  "competition": "Japan Mathematical Olympiad",
+  "gold_final_answer": "2 + 4√2",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Triangles > Triangle trigonometry",
+    "Geometry > Plane Geometry > Analytic / Coordinate Methods > Trigonometry",
+    "Geometry > Plane Geometry > Miscellaneous > Constructions and loci"
+  ],
+  "prompt": "For a convex quadrilateral $ABCD$, the conditions $AB = BC = 2$, $CD = 2\\sqrt{3}$, $DA = 2\\sqrt{5}$ are satisfied. Also, if we let $M$, $N$ be the midpoint of $AC$ and $BD$, respectively, then $MN = \\sqrt{2}$. Determine the area of the quadrilateral $ABCD$. Here, by $XY$ we are representing the length of the line segment $XY$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let \\(E\\) be the intersection point of the diagonals \\(AC\\) and \\(BD\\), and set\n\\[\nAE=x,\\quad CE=y,\\quad BE=u,\\quad DE=v.\n\\]\nSince \\(M,N\\) are the midpoints of the diagonals, in vectors the segment joining the midpoints satisfies\n\\[\nMN=\\frac12\\,|\\,\\overrightarrow{AC}-\\overrightarrow{BD}\\,|.\n\\]\nEquivalently, if we place the quadrilateral with diagonals intersecting at the origin, then\n\\[\n4MN^2=AC^2+BD^2-2\\,AC\\cdot BD\\cos\\theta,\n\\]\nwhere \\(\\theta\\) is the angle between the diagonals. But a cleaner route is to use the standard area formula in terms of the diagonal halves and the angles at \\(E\\).\n\nLet the diagonals make angles \\(\\alpha,\\beta,\\gamma,\\delta\\) with the sides so that the four triangles give:\n\\[\nAB^2=x^2+u^2-2xu\\cos\\angle AEB,\\quad BC^2=y^2+u^2-2yu\\cos\\angle BEC,\n\\]\n\\[\nCD^2=y^2+v^2-2yv\\cos\\angle CED,\\quad DA^2=x^2+v^2-2xv\\cos\\angle DEA.\n\\]\nAlso, since \\(M,N\\) are midpoints, one gets\n\\[\nMN^2=\\frac14\\,(AC^2+BD^2-2\\,\\vec{AC}\\cdot\\vec{BD}).\n\\]\n\nA much simpler invariant method is to use the identity for a convex quadrilateral:\n\\[\nAB^2+CD^2-BC^2-DA^2=2(AC\\cdot BD)\\cos\\phi,\n\\]\nwhere \\(\\phi\\) is the angle between diagonals, and\n\\[\nMN=\\frac12\\sqrt{AC^2+BD^2-2AC\\cdot BD\\cos\\phi}.\n\\]\nThe given side lengths are\n\\[\nAB^2=4,\\quad BC^2=4,\\quad CD^2=12,\\quad DA^2=20,\n\\]\nso\n\\[\nAB^2+CD^2-BC^2-DA^2=4+12-4-20=-8.\n\\]\nThus\n\\[\nAC\\cdot BD\\cos\\phi=-4.\n\\]\nNow\n\\[\n4MN^2=4\\cdot 2=8=AC^2+BD^2-2AC\\cdot BD\\cos\\phi\n=AC^2+BD^2+8,\n\\]\nso\n\\[\nAC^2+BD^2=0,\n\\]\nwhich is impossible as written, indicating the direct vector relation above was misapplied to the diagonals as vectors rather than lengths.\n\nInstead, use the well-known formula for the midpoint segment in a quadrilateral:\n\\[\nMN^2=\\frac14\\left(AB^2+CD^2+2\\cdot AC\\cdot BD\\cos\\phi\\right)-\\frac14\\left(BC^2+DA^2\\right),\n\\]\nwhich simplifies here to\n\\[\n4MN^2 = \\frac12\\left(AB^2+CD^2+BC^2+DA^2\\right)-2[ABCD].\n\\]\nSince \\(MN=\\sqrt2\\),\n\\[\n8=\\frac12(4+12+4+20)-2[ABCD]\n=\\frac12(40)-2[ABCD]=20-2[ABCD].\n\\]\nHence\n\\[\n2[ABCD]=12,\\qquad [ABCD]=6.\n\\]\n\nSo the area of \\(ABCD\\) is\n\n**Final answer: \\(6\\)**",
+  "usage": {
+    "input_tokens": 154,
+    "output_tokens": 831,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 5.362577432999387,
+  "cached": false
+}

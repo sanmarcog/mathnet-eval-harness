@@ -1,0 +1,20 @@
+{
+  "id": "02dc",
+  "country": "Brazil",
+  "competition": "III OBM",
+  "gold_final_answer": "(1) Two solutions: k = ±√2. (2) Three solutions: k = ±1.",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Analytic / Coordinate Methods > Cartesian coordinates",
+    "Algebra > Intermediate Algebra > Quadratic functions"
+  ],
+  "prompt": "For which $k$ does the system $x^2 - y^2 = 0$, $(x - k)^2 + y^2 = 1$ have exactly\n(1) two, (2) three real solutions?",
+  "model": "gpt-5.4",
+  "response_text": "From\n\\[\nx^2-y^2=0\n\\]\nwe get\n\\[\n(x-y)(x+y)=0 \\quad\\Longrightarrow\\quad y=x \\ \\text{or}\\ y=-x.\n\\]\n\nSo the solutions of the system are the intersection points of the circle\n\\[\n(x-k)^2+y^2=1\n\\]\nwith the two lines \\(y=x\\) and \\(y=-x\\).\n\nSubstitute each line into the circle.\n\n### 1) On the line \\(y=x\\)\n\\[\n(x-k)^2+x^2=1\n\\]\n\\[\nx^2-2kx+k^2+x^2=1\n\\]\n\\[\n2x^2-2kx+(k^2-1)=0.\n\\]\nIts discriminant is\n\\[\n\\Delta_1=(-2k)^2-4\\cdot 2\\cdot (k^2-1)=4k^2-8k^2+8=4(2-k^2).\n\\]\nSo intersections here occur when\n\\[\n2-k^2\\ge 0 \\quad\\Longrightarrow\\quad |k|\\le \\sqrt2.\n\\]\nThey are:\n- 2 points if \\(|k|<\\sqrt2\\),\n- 1 point if \\(|k|=\\sqrt2\\),\n- 0 points if \\(|k|>\\sqrt2\\).\n\n### 2) On the line \\(y=-x\\)\nSubstituting gives the same equation:\n\\[\n(x-k)^2+x^2=1,\n\\]\nso the same count applies.\n\n---\n\nHowever, the two lines meet at \\((0,0)\\), so if \\((0,0)\\) lies on the circle, that point is counted in both substitutions but is only one solution of the system.\n\nCheck when \\((0,0)\\) is on the circle:\n\\[\n(0-k)^2+0^2=1 \\quad\\Longrightarrow\\quad k^2=1 \\quad\\Longrightarrow\\quad k=\\pm1.\n\\]\n\nSo the total number of distinct real solutions is:\n\n- If \\(|k|>\\sqrt2\\): \\(0\\).\n- If \\(|k|=\\sqrt2\\): one tangent point on each line, hence \\(2\\) distinct solutions.\n- If \\(|k|<\\sqrt2\\) and \\(k\\neq \\pm1\\): \\(2+2=4\\) distinct solutions.\n- If \\(k=\\pm1\\): each line contributes 2 intersections, but one is the common point \\((0,0)\\), so total \\(4-1=3\\).\n\nTherefore:\n\n- exactly **two** real solutions when\n\\[\nk=\\pm\\sqrt2;\n\\]\n- exactly **three** real solutions when\n\\[\nk=\\pm1.\n\\]\n\nFinal answer: (1) \\(k=\\pm\\sqrt2\\); \\quad (2) \\(k=\\pm1\\).",
+  "usage": {
+    "input_tokens": 97,
+    "output_tokens": 630,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 7.536412160960026,
+  "cached": false
+}

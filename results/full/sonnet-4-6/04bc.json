@@ -1,0 +1,21 @@
+{
+  "id": "04bc",
+  "country": "Croatia",
+  "competition": "Mathematica competitions in Croatia",
+  "gold_final_answer": "30",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Factorization techniques",
+    "Number Theory > Number-Theoretic Functions > τ (number of divisors)",
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities"
+  ],
+  "prompt": "Determine the number of pairs of integers $(x, y)$ that satisfy the equality:\n$$\n(x + y + 2012)^2 = x^2 + y^2 + 2012^2 .\n$$",
+  "model": "claude-sonnet-4-6",
+  "response_text": "Expand the left side:\n$(x + y + 2012)^2 = x^2 + y^2 + 2012^2 + 2xy + 2\\cdot2012x + 2\\cdot2012y$\n\nSetting equal to $x^2 + y^2 + 2012^2$:\n$2xy + 2\\cdot2012x + 2\\cdot2012y = 0$\n\nDivide by 2:\n$xy + 2012x + 2012y = 0$\n\nAdd $2012^2$ to both sides:\n$(x + 2012)(y + 2012) = 2012^2$\n\nLet $a = x + 2012$, $b = y + 2012$. We need $ab = 2012^2$ where $a, b$ are integers.\n\nThe number of integer pairs $(a, b)$ with $ab = 2012^2$ equals the number of integer divisors of $2012^2$.\n\n$2012 = 4 \\times 503 = 2^2 \\times 503$\n\nCheck if 503 is prime: 503/7 ≈ 71.8, 503/11 ≈ 45.7, 503/13 ≈ 38.7, 503/17 ≈ 29.6, 503/19 ≈ 26.5, 503/23 ≈ 21.9, $\\sqrt{503} \\approx 22.4$. So 503 is prime.\n\n$2012^2 = 2^4 \\times 503^2$\n\nNumber of positive divisors: $(4+1)(2+1) = 15$\n\nEach positive divisor $d$ gives pairs $(d, 2012^2/d)$ and $(-d, -2012^2/d)$, so total integer divisor pairs = $2 \\times 15 = 30$.\n\nEach such pair $(a,b)$ gives a unique integer pair $(x,y) = (a-2012, b-2012)$.\n\nFinal answer: 30",
+  "usage": {
+    "input_tokens": 100,
+    "output_tokens": 520,
+    "thinking_tokens": 0
+  },
+  "latency_s": 6.314672551932745,
+  "cached": false
+}

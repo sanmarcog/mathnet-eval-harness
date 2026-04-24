@@ -1,0 +1,20 @@
+{
+  "id": "065m",
+  "country": "Greece",
+  "competition": "SELECTION EXAMINATION",
+  "gold_final_answer": "(10, 8, 6)",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities > Cauchy-Schwarz",
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities"
+  ],
+  "prompt": "Find all triples of real numbers $(x, y, z)$ which are greater than $3$ and satisfy the equality:\n$$\n\\frac{(x+2)^2}{y+z-2} + \\frac{(y+4)^2}{z+x-4} + \\frac{(z+6)^2}{x+y-6} = 36.\n$$",
+  "model": "claude-sonnet-4-6",
+  "response_text": "Let me denote the three fractions and look for when equality holds in Cauchy-Schwarz or similar.\n\nBy Cauchy-Schwarz (Titu's lemma):\n$$\\frac{(x+2)^2}{y+z-2} + \\frac{(y+4)^2}{z+x-4} + \\frac{(z+6)^2}{x+y-6} \\geq \\frac{(x+2+y+4+z+6)^2}{(y+z-2)+(z+x-4)+(x+y-6)}$$\n\nThe denominator sum: $(y+z-2)+(z+x-4)+(x+y-6) = 2(x+y+z) - 12$\n\nThe numerator: $(x+y+z+12)^2$\n\nSo the expression $\\geq \\frac{(x+y+z+12)^2}{2(x+y+z)-12}$\n\nLet $s = x+y+z$. We need:\n$$\\frac{(s+12)^2}{2s-12} \\leq 36$$\n\nCheck when $\\frac{(s+12)^2}{2s-12} = 36$:\n$(s+12)^2 = 36(2s-12)$\n$s^2 + 24s + 144 = 72s - 432$\n$s^2 - 48s + 576 = 0$\n$(s-24)^2 = 0$\n$s = 24$\n\nSo equality in Cauchy-Schwarz requires $s = 24$, and equality in Titu's lemma requires:\n$$\\frac{x+2}{y+z-2} = \\frac{y+4}{z+x-4} = \\frac{z+6}{x+y-6}$$\n\nLet this common ratio be $k$. Then:\n- $x+2 = k(y+z-2)$\n- $y+4 = k(z+x-4)$\n- $z+6 = k(x+y-6)$\n\nSum: $(x+y+z+12) = k \\cdot 2(x+y+z-6)$... wait, let me recompute.\n\nSum of right sides: $k[(y+z-2)+(z+x-4)+(x+y-6)] = k[2s-12]$\nSum of left sides: $s+12$\n\nSo $k = \\frac{s+12}{2s-12} = \\frac{36}{36} = 1$ when $s=24$.\n\nWith $k=1$:\n- $x+2 = y+z-2 \\Rightarrow x+2 = (24-x)-2 = 22-x \\Rightarrow 2x = 20 \\Rightarrow x = 10$\n- $y+4 = z+x-4 \\Rightarrow y+4 = (24-y)-4 = 20-y \\Rightarrow 2y = 16 \\Rightarrow y = 8$\n- $z+6 = x+y-6 \\Rightarrow z+6 = (24-z)-6 = 18-z \\Rightarrow 2z = 12 \\Rightarrow z = 6$\n\nCheck: $x=10, y=8, z=6$, all greater than 3. ✓\n$s = 24$ ✓\n\nVerify the original equation:\n- $\\frac{(10+2)^2}{8+6-2} + \\frac{(8+4)^2}{6+10-4} + \\frac{(6+6)^2}{10+8-6}$\n- $= \\frac{144}{12} + \\frac{144}{12} + \\frac{144}{12}$\n- $= 12 + 12 + 12 = 36$ ✓\n\nFinal answer: $(x, y, z) = (10, 8, 6)$",
+  "usage": {
+    "input_tokens": 138,
+    "output_tokens": 1010,
+    "thinking_tokens": 0
+  },
+  "latency_s": 10.175135959987529,
+  "cached": false
+}

@@ -1,0 +1,24 @@
+{
+  "id": "00h7",
+  "country": "Asia Pacific Mathematics Olympiad (APMO)",
+  "competition": "APMO",
+  "gold_final_answer": "No",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Functional Equations > Existential quantifiers"
+  ],
+  "prompt": "Let $S=\\{2,3,4, \\ldots\\}$ denote the set of integers that are greater than or equal to $2$. Does there exist a function $f: S \\rightarrow S$ such that\n$$\nf(a) f(b) = f\\left(a^{2} b^{2}\\right) \\text{ for all } a, b \\in S \\text{ with } a \\neq b?\n$$",
+  "model": "gpt-5.4",
+  "response_text": "Assume such a function \\(f:S\\to S\\) exists, where \\(S=\\{2,3,4,\\dots\\}\\), and\n\\[\nf(a)f(b)=f(a^2b^2)\\qquad\\text{for all }a\\ne b.\n\\]\nWe will derive a contradiction.\n\nLet\n\\[\nP(a,b):\\quad f(a)f(b)=f(a^2b^2)\\qquad (a\\ne b).\n\\]\n\nWe seek to show no such \\(f\\) can exist.\n\n## 1. First identities\n\nTake three distinct elements \\(a,b,c\\in S\\). Then\n\\[\nP(a,b):\\ f(a)f(b)=f(a^2b^2),\n\\]\nand since \\(a^2b^2\\neq c\\), also\n\\[\nP(a^2b^2,c):\\ f(a^2b^2)f(c)=f(a^4b^4c^2).\n\\]\nHence\n\\[\nf(a)f(b)f(c)=f(a^4b^4c^2).\n\\]\nBy symmetry,\n\\[\nf(a)f(b)f(c)=f(a^4c^4b^2)=f(b^4c^4a^2),\n\\]\nso for all distinct \\(a,b,c\\),\n\\[\nf(a^4b^4c^2)=f(a^4c^4b^2)=f(b^4c^4a^2).\n\\]\n\nNow choose \\(a,b,c\\) distinct and compare\n\\[\nf(a)f(b)f(c)=f(a^4b^4c^2)\n\\]\nwith\n\\[\nf(a)f(c)f(b)=f(a^4c^4b^2).\n\\]\nThese are equal trivially, so this gives many equal values of \\(f\\).\n\n## 2. A key relation: \\(f(n)=f(n^2)\\)\n\nFix \\(x\\in S\\). Choose \\(u,v\\in S\\) distinct from each other and from \\(x\\). Then\n\\[\nf(x)f(u)=f(x^2u^2),\n\\qquad\nf(x^2u^2)f(v)=f(x^4u^4v^2).\n\\]\nThus\n\\[\nf(x)f(u)f(v)=f(x^4u^4v^2).\n\\]\nBut also\n\\[\nf(x^2)f(u) = f(x^4u^2),\n\\qquad\nf(x^4u^2)f(v)=f(x^8u^4v^2),\n\\]\nwhich is not directly comparable. So we use a better substitution.\n\nTake distinct \\(p,q,r\\). Then\n\\[\nf(p)f(q)f(r)=f(p^4q^4r^2).\n\\]\nNow replace \\(r\\) by another distinct \\(s\\):\n\\[\nf(p)f(q)f(s)=f(p^4q^4s^2).\n\\]\nIf \\(f(r)=f(s)\\), then \\(f(p^4q^4r^2)=f(p^4q^4s^2)\\). This suggests \\(f\\) has many collisions.\n\nA cleaner route is to exploit special factorizations.\n\n## 3. Constant on many values\n\nTake any distinct \\(a,b\\). Then\n\\[\nf(a)f(b)=f(a^2b^2)=f((ab)^2).\n\\]\nNow choose \\(c\\neq ab\\). Then\n\\[\nf(ab)f(c)=f(a^2b^2c^2)=f((ac)^2b^2).\n\\]\nBut also\n\\[\nf(ac)f(b)=f(a^2b^2c^2).\n\\]\nHence\n\\[\nf(ab)f(c)=f(ac)f(b)\n\\]\nfor all \\(a,b,c\\) with the needed distinctness conditions.\n\nFix \\(a\\), and choose \\(b,c\\) all distinct with \\(ab\\neq c\\) and \\(ac\\neq b\\). Then\n\\[\n\\frac{f(ab)}{f(b)}=\\frac{f(ac)}{f(c)}.\n\\]\nSo for fixed \\(a\\), the ratio \\(f(ax)/f(x)\\) is constant (for all admissible \\(x\\)). Denote it by \\(k_a\\). Thus\n\\[\nf(ax)=k_a f(x).\n\\]\nNow choose \\(x,y\\) so that all conditions hold. Then\n\\[\nf(axy)=k_a f(xy)=k_a k_x f(y),\n\\]\nbut also\n\\[\nf(axy)=k_{ax}f(y).\n\\]\nHence\n\\[\nk_{ax}=k_a k_x.\n\\]\nSo \\(a\\mapsto k_a\\) is multiplicative.\n\nAlso, taking \\(x\\neq a\\),\n\\[\nf(a)f(x)=f(a^2x^2)=f(ax\\cdot ax)=k_{ax}f(ax).\n\\]\nBut \\(f(ax)=k_a f(x)\\), and \\(k_{ax}=k_a k_x\\), so\n\\[\nf(a)f(x)=k_ak_x\\cdot k_a f(x)=k_a^2k_x f(x).\n\\]\nCancelling \\(f(x)\\neq0\\),\n\\[\nf(a)=k_a^2k_x.\n\\]\nThe left side is independent of \\(x\\), so \\(k_x\\) is constant for all admissible \\(x\\). Therefore all \\(k_x\\) are equal to some constant \\(t\\).\n\nSince \\(k_{xy}=k_xk_y\\), we get\n\\[\nt=t^2.\n\\]\nThus \\(t=1\\) (as values lie in positive integers, not \\(0\\)). Therefore\n\\[\nk_a=1\\quad\\text{for all }a,\n\\]\nso\n\\[\nf(ax)=f(x)\\quad\\text{for all admissible }a,x.\n\\]\nHence \\(f\\) is constant: say \\(f(n)=c\\) for all \\(n\\in S\\).\n\n## 4. Contradiction\n\nIf \\(f\\equiv c\\), then the defining equation becomes\n\\[\nc\\cdot c=c,\n\\]\nso \\(c^2=c\\), hence \\(c=1\\). But \\(1\\notin S\\), since \\(S=\\{2,3,4,\\dots\\}\\).\n\nContradiction.\n\nTherefore such a function does not exist.\n\nFinal answer: No, there does not exist any function \\(f:S\\to S\\) satisfying \\(f(a)f(b)=f(a^2b^2)\\) for all distinct \\(a,b\\in S\\).",
+  "usage": {
+    "input_tokens": 140,
+    "output_tokens": 1453,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 19.770634089014493,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "No, there does not exist any function \\(f:S\\to S\\) satisfying \\(f(a)f(b)=f(a^2b^2)\\) for all distinct \\(a,b\\in S\\)."
+  }
+}

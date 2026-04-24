@@ -1,0 +1,20 @@
+{
+  "id": "00ek",
+  "country": "Argentina",
+  "competition": "Rioplatense Mathematical Olympiad",
+  "gold_final_answer": "a: no; b: 64",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Invariants / monovariants",
+    "Discrete Mathematics > Combinatorics > Counting two ways"
+  ],
+  "prompt": "In each cell of a $3 \\times 3$ board, there is a lamp and a button. Pressing the button in a cell changes the state of the lamps in its neighboring cells (those that are on turn off and vice versa). The lamp in the same cell as the button does not change its state. Initially, all lamps are *off*.\n\na. Is it possible, after pressing some buttons, to ensure that all lamps are turned on?\n\nb. How many different board states can be achieved?\n\n*Remark:* Two cells are considered neighbors if they share a common side. Two board states are different if there is at least one lamp that is *on* in one state and *off* in the other.",
+  "model": "gpt-5.4",
+  "response_text": "Work over \\(\\mathbb F_2\\), where each lamp state is \\(0\\) (off) or \\(1\\) (on), and pressing a button means “add 1 mod 2” to each neighboring lamp.\n\nLet the cells be\n\n\\[\n\\begin{matrix}\n1&2&3\\\\\n4&5&6\\\\\n7&8&9\n\\end{matrix}\n\\]\n\nand let \\(x_i\\in \\mathbb F_2\\) indicate whether button \\(i\\) is pressed.\n\nThen the resulting lamp states \\(y_i\\) are:\n\n\\[\n\\begin{aligned}\ny_1&=x_2+x_4,\\\\\ny_2&=x_1+x_3+x_5,\\\\\ny_3&=x_2+x_6,\\\\\ny_4&=x_1+x_5+x_7,\\\\\ny_5&=x_2+x_4+x_6+x_8,\\\\\ny_6&=x_3+x_5+x_9,\\\\\ny_7&=x_4+x_8,\\\\\ny_8&=x_5+x_7+x_9,\\\\\ny_9&=x_6+x_8.\n\\end{aligned}\n\\]\n\nWe must study the linear map \\(x\\mapsto y\\).\n\n## a) Can all lamps be turned on?\n\nThis asks whether the system\n\n\\[\ny_1=y_2=\\cdots=y_9=1\n\\]\n\nhas a solution.\n\nSo:\n\n\\[\n\\begin{aligned}\nx_2+x_4&=1 \\\\\nx_1+x_3+x_5&=1 \\\\\nx_2+x_6&=1 \\\\\nx_1+x_5+x_7&=1 \\\\\nx_2+x_4+x_6+x_8&=1 \\\\\nx_3+x_5+x_9&=1 \\\\\nx_4+x_8&=1 \\\\\nx_5+x_7+x_9&=1 \\\\\nx_6+x_8&=1\n\\end{aligned}\n\\]\n\nFrom the 1st and 3rd equations,\n\\[\nx_4=x_6.\n\\]\nFrom the 7th and 9th,\n\\[\nx_4=x_6\n\\]\nagain.\n\nNow add equations 1, 3, 7, 9:\n\\[\n(x_2+x_4)+(x_2+x_6)+(x_4+x_8)+(x_6+x_8)=1+1+1+1=0.\n\\]\nLeft side is \\(0\\), so no contradiction there.\n\nBut equation 5 gives\n\\[\nx_2+x_4+x_6+x_8=1.\n\\]\nUsing \\(x_4=x_6\\), this becomes\n\\[\nx_2+x_8=1.\n\\]\nFrom equation 1: \\(x_2=1+x_4\\), and from 7: \\(x_8=1+x_4\\). Hence\n\\[\nx_2+x_8=(1+x_4)+(1+x_4)=0,\n\\]\ncontradicting \\(x_2+x_8=1\\).\n\nSo the all-on state is impossible.\n\n## b) How many board states are achievable?\n\nThe number of reachable states equals the size of the image of the linear map, i.e. \\(2^{\\text{rank}}\\).\n\nSo we find the rank. It is enough to find the dimension of the kernel.\n\nWe solve \\(y_1=\\cdots=y_9=0\\):\n\n\\[\n\\begin{aligned}\nx_2+x_4&=0 \\\\\nx_1+x_3+x_5&=0 \\\\\nx_2+x_6&=0 \\\\\nx_1+x_5+x_7&=0 \\\\\nx_2+x_4+x_6+x_8&=0 \\\\\nx_3+x_5+x_9&=0 \\\\\nx_4+x_8&=0 \\\\\nx_5+x_7+x_9&=0 \\\\\nx_6+x_8&=0\n\\end{aligned}\n\\]\n\nFrom the first, third, seventh, ninth equations,\n\\[\nx_2=x_4=x_6=x_8=:a.\n\\]\nThen equation 5 becomes\n\\[\na+a+a+a=0,\n\\]\nautomatically true.\n\nFrom equations 2,4,6,8:\n\\[\n\\begin{aligned}\nx_1+x_3+x_5&=0,\\\\\nx_1+x_5+x_7&=0,\\\\\nx_3+x_5+x_9&=0,\\\\\nx_5+x_7+x_9&=0.\n\\end{aligned}\n\\]\n\nSubtracting pairs gives\n\\[\nx_3=x_7,\\qquad x_1=x_9.\n\\]\nThen equation 2 says\n\\[\nx_1+x_3+x_5=0 \\implies x_5=x_1+x_3.\n\\]\nThus the odd-position variables are determined by two free parameters \\(x_1,x_3\\), and the even-position variables by one free parameter \\(a\\).\n\nSo \\(\\dim\\ker = 3\\). Therefore\n\\[\n\\text{rank}=9-3=6.\n\\]\nHence the number of reachable states is\n\\[\n2^6=64.\n\\]\n\nTherefore:\n\n- all lamps on is **not possible**;\n- the number of achievable states is **64**.\n\nFinal answer: a) No.  b) \\(64\\).",
+  "usage": {
+    "input_tokens": 196,
+    "output_tokens": 1224,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 15.39757075405214,
+  "cached": false
+}

@@ -1,0 +1,24 @@
+{
+  "id": "09v3",
+  "country": "Netherlands",
+  "competition": "Junior Mathematical Olympiad, September 2019",
+  "gold_final_answer": "D) 3",
+  "topics_flat": [
+    "Discrete Mathematics > Logic"
+  ],
+  "prompt": "Five smart students are sitting in a circle. The teacher gives one or more marbles to each of them. He explains that he has handed out a total of 18 marbles, and that everyone got a different number of marbles. Each student is allowed to see his own number of marbles, as well as the number of marbles of his neighbour on the left and his neighbour on the right.\n\nUsing only this information, each student must try to logically deduce the difference between the numbers of marbles of the two students opposite to him. The teacher has distributed the marbles in such a way as to minimise the number of students that are able to do this. How many students can do it?\nA) 0  B) 1  C) 2  D) 3  E) 5",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find the minimum number of students who can logically deduce the difference between the numbers of marbles of the two students opposite to them, we first need to determine the possible distributions of the 18 marbles among the 5 students. \n\nSince each student receives a different positive integer number of marbles, we are looking for sets of 5 distinct positive integers that sum to 18. There are exactly three such sets:\n1) {1, 2, 3, 4, 8}\n2) {1, 2, 3, 5, 7}\n3) {1, 2, 4, 5, 6}\n\nA student can see their own marbles and the marbles of their left and right neighbors. Therefore, they know the sum of the marbles of the three adjacent students. By subtracting this sum from the total of 18, the student can determine the sum $S$ of the marbles held by the two students opposite to them. \n\nThe student will be able to deduce the difference between these two numbers if and only if there is exactly one valid pair of distinct positive integers that sum to $S$ and does not include any of the three numbers the student can already see.\n\nLet's analyze the third set {1, 2, 4, 5, 6} as an example (the logic holds similarly for the other two sets):\n- If the opposite students have 4 and 6, their sum is $S = 10$. The observing student sees {1, 2, 5}. The possible pairs summing to 10 are {1, 9}, {2, 8}, {3, 7}, and {4, 6}. Since 1 and 2 are seen, {1, 9} and {2, 8} are eliminated. This leaves {3, 7} and {4, 6} as valid possibilities. Because there is more than one valid pair (with differences of 4 and 2 respectively), this student **cannot** deduce the difference.\n- If the opposite students have 5 and 6, their sum is $S = 11$. The observing student sees {1, 2, 4}. The possible pairs summing to 11 are {1, 10}, {2, 9}, {3, 8}, {4, 7}, and {5, 6}. Since 1, 2, and 4 are seen, the remaining valid pairs are {3, 8} and {5, 6}. Again, the student **cannot** deduce the difference.\n- For all other pairs in this set (e.g., 1+2=3, 1+4=5, etc.), after eliminating the numbers the student sees, there is only exactly 1 valid pair left. Thus, for all other pairs, the student **can** deduce the difference.\n\nIn all three possible sets of marbles, there are exactly 2 pairs of numbers that result in an ambiguous difference for the observing student. To minimize the number of students who can deduce the difference, the teacher must arrange the students such that these 2 pairs are the ones sitting opposite to the observers. \n\nSince there are exactly 2 such pairs available in any valid set, at most 2 students will be unable to deduce the difference. \n\nTherefore, the remaining students will always be able to figure it out. \nTotal students (5) - Students who cannot deduce (2) = 3 students who can deduce.\n\nFinal answer: 3",
+  "usage": {
+    "input_tokens": 201,
+    "output_tokens": 752,
+    "thoughts_tokens": 6554
+  },
+  "latency_s": 56.79420461691916,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "3"
+  }
+}

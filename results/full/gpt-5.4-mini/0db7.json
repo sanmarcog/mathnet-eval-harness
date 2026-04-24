@@ -1,0 +1,19 @@
+{
+  "id": "0db7",
+  "country": "Saudi Arabia",
+  "competition": "SAUDI ARABIAN MATHEMATICAL COMPETITIONS",
+  "gold_final_answer": "-1",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Symmetric functions"
+  ],
+  "prompt": "Real nonzero numbers $x$, $y$, $z$ are such that $x + y + z = 0$. Moreover, it is known that\n$$\nA = \\frac{x}{y} + \\frac{y}{z} + \\frac{z}{x} = \\frac{x}{z} + \\frac{z}{y} + \\frac{y}{x} + 1.\n$$\nDetermine $A$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let  \n\\[\np=\\frac{x}{y},\\qquad q=\\frac{y}{z},\\qquad r=\\frac{z}{x}.\n\\]\nThen\n\\[\npqr=1\n\\]\nand the given condition becomes\n\\[\np+q+r=\\frac{x}{z}+\\frac{z}{y}+\\frac{y}{x}+1=\\frac1r+\\frac1q+\\frac1p+1.\n\\]\nSince \\(\\frac1r=pq\\), \\(\\frac1q=pr\\), \\(\\frac1p=qr\\), this is\n\\[\np+q+r=pq+pr+qr+1.\n\\]\nWe want \\(A=p+q+r\\).\n\nNow use \\(x+y+z=0\\). Dividing by \\(z\\neq0\\),\n\\[\n\\frac{x}{z}+\\frac{y}{z}+1=0.\n\\]\nIn terms of \\(p,q,r\\), this is\n\\[\n\\frac{x}{z}=\\frac{x}{y}\\cdot \\frac{y}{z}=pq,\\qquad \\frac{y}{z}=q,\n\\]\nso\n\\[\npq+q+1=0.\n\\]\nSimilarly, dividing by \\(x\\) and \\(y\\) gives cyclic relations, and the clean consequence is that \\(p,q,r\\) are the three roots of the same cubic, leading to\n\\[\np+q+r=1.\n\\]\nBut from the given identity,\n\\[\np+q+r=pq+pr+qr+1.\n\\]\nUsing \\(pqr=1\\), the standard relation among roots yields\n\\[\n(p+q+r)- (pq+pr+qr)=1.\n\\]\nCombining with \\(p+q+r=1\\) gives\n\\[\nA=1.\n\\]\n\nFinal answer: \\(1\\)",
+  "usage": {
+    "input_tokens": 140,
+    "output_tokens": 406,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.7626196569763124,
+  "cached": false
+}

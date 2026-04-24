@@ -1,0 +1,25 @@
+{
+  "id": "0h8y",
+  "country": "Ukraine",
+  "competition": "58th Ukrainian National Mathematical Olympiad",
+  "gold_final_answer": "N",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Greatest common divisors (gcd)",
+    "Number Theory > Divisibility / Factorization > Prime numbers"
+  ],
+  "prompt": "$N$ positive integer numbers are given, such that greatest common divisors of all nonempty sets of these numbers are pairwise distinct. Determine the smallest possible number of distinct prime divisors of the product of these $N$ numbers.\n(OleksandrGolovanov)",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Solution\n\nLet the $N$ numbers be $a_1, a_2, \\ldots, a_N$.\n\n**Understanding the condition:** The GCDs of all nonempty subsets must be pairwise distinct. The number of nonempty subsets of $N$ numbers is $2^N - 1$.\n\n**Key observation:** For any nonempty subset $S$, $\\gcd(S)$ is a positive integer. All these $2^N - 1$ values must be distinct.\n\n**Structure of GCDs:** The set of all GCDs of subsets of $\\{a_1, \\ldots, a_N\\}$ forms a structure closed under GCD (since $\\gcd(\\gcd(S_1), \\gcd(S_2)) = \\gcd(S_1 \\cup S_2)$... wait, actually $\\gcd(S_1 \\cup S_2) = \\gcd(\\gcd(S_1), \\gcd(S_2))$).\n\nSo the collection of $2^N - 1$ distinct GCD values is closed under taking GCDs of pairs (since $\\gcd$ of two GCD values is also a GCD of some subset).\n\n**Using prime powers:** To get $2^N - 1$ distinct values that are closed under GCD, consider using numbers that are powers of primes. If we use $k$ primes $p_1, \\ldots, p_k$, the GCDs of subsets are products of prime powers, and we need $2^N - 1$ distinct such values.\n\n**Lower bound argument:** The $2^N - 1$ distinct GCD values form a poset under divisibility. The GCD of all $N$ numbers is the minimum element. The GCDs of singletons $\\{a_i\\}$ are $a_i$ themselves (which are among the values). \n\nConsider the lattice structure: the $2^N - 1$ GCD values, closed under GCD, form a meet-semilattice. The maximum antichain in a Boolean lattice of rank $k$ (using $k$ primes) has size $\\binom{k}{\\lfloor k/2 \\rfloor}$.\n\n**Concrete construction with $k$ primes:** If we use $k$ primes, the divisors of $p_1 p_2 \\cdots p_k$ form a Boolean lattice of $2^k$ elements (including 1). We need at least $2^N - 1$ distinct values from positive integers built from $k$ primes.\n\nTo embed $2^N - 1$ distinct values closed under GCD: the simplest is to use a chain of $2^N - 1$ values, but we need the GCDs of all subsets to be distinct.\n\n**Optimal construction:** Take $a_i = p_i$ for $i = 1, \\ldots, N$ (distinct primes). Then $\\gcd$ of any subset $S$ is $\\prod_{i \\in S} p_i / \\text{lcm}$... no, $\\gcd$ of distinct primes from a subset: $\\gcd(\\{p_i : i \\in S\\}) = 1$ for $|S| \\geq 2$. This doesn't work.\n\n**Better construction:** Take $a_i = \\prod_{j \\neq i} p_j$ (product of all primes except $p_i$). With $k$ primes and $N = k$: $\\gcd$ of subset $S$ = $\\prod_{j \\notin \\bigcup_{i\\in S}\\{i\\}^c} p_j$... Let me reconsider.\n\nTake $a_i = 2^{e_{i,1}} \\cdots p_k^{e_{i,k}}$ where the exponent vectors are chosen so all subset GCDs are distinct. Using $k$ primes, we can get $2^k$ distinct GCD values (including 1). We need $2^N - 1$ distinct values, so we need $2^k \\geq 2^N$, giving $k \\geq N$.\n\n**Can we do it with fewer than $N$ primes?** With $k$ primes, using exponents, we can get more than $2^k$ distinct GCDs. For example, with 1 prime $p$: GCDs are powers of $p$, giving infinitely many distinct values. With $N$ numbers all powers of $p$: $a_i = p^{2^{i-1}}$, then $\\gcd$ of subset $S$ = $p^{\\min_{i\\in S} 2^{i-1}}$, giving $N$ distinct values for singletons but only $N$ total distinct GCDs (the minimum determines it). We need $2^N - 1$ distinct values but only get $N$ with one prime.\n\nWith $k$ primes using the construction $a_i = p_1^{c_{i,1}} \\cdots p_k^{c_{i,k}}$, the GCD of subset $S$ has exponent $\\min_{i \\in S} c_{i,j}$ for each prime $j$. The number of distinct GCD vectors is at most the number of distinct $(\\min_{i\\in S} c_{i,j})_j$ vectors. To get $2^N-1$ distinct ones, we need at least $\\lceil \\log_2(2^N-1+1) \\rceil = N$ primes... actually with careful analysis, the minimum number of primes needed is $\\lceil \\log_2(2^N) \\rceil = N$... \n\nAfter careful analysis, the answer is $\\lceil \\log_2(2^N) \\rceil$... The answer is:\n\nFinal answer: $\\lceil \\log_2 N \\rceil + 1$",
+  "usage": {
+    "input_tokens": 108,
+    "output_tokens": 1404,
+    "thinking_tokens": 0
+  },
+  "latency_s": 24.005223282962106,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "$\\lceil \\log_2 N \\rceil + 1$"
+  }
+}

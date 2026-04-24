@@ -1,0 +1,24 @@
+{
+  "id": "0c70",
+  "country": "Romania",
+  "competition": "2019 ROMANIAN MATHEMATICAL OLYMPIAD",
+  "gold_final_answer": "90",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments"
+  ],
+  "prompt": "Find the greatest integer $n$ for which the following condition holds: one can find $n$ distinct lines starting at the same point such that the angle made by any two of them, measured in degrees, is an integer that is not a prime.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find the greatest integer $n$ for which one can find $n$ distinct rays (lines starting at the same point) such that the angle between any two of them is an integer degree that is not a prime, we can model the problem using graph theory.\n\nLet the angles of the $n$ rays with respect to the first ray be $a_1, a_2, \\dots, a_n$, where $0 \\le a_i < 360$ and each $a_i$ is an integer. The angle between ray $i$ and ray $j$ is given by the shortest distance on the circle:\n$$ d(a_i, a_j) = \\min(|a_i - a_j|, 360 - |a_i - a_j|) $$\nWe are given that for all $i \\neq j$, $d(a_i, a_j)$ is not a prime number. We want to find the maximum size of a subset $A \\subset \\{0, 1, \\dots, 359\\}$ such that no two elements have a prime distance.\n\nConsider the set of four angles $C_x = \\{x, x+2, x+5, x+7\\} \\pmod{360}$ for any integer $x$. Let's look at the pairwise distances between the elements of $C_x$:\n- $(x+2) - x = 2$\n- $(x+5) - x = 5$\n- $(x+7) - x = 7$\n- $(x+5) - (x+2) = 3$\n- $(x+7) - (x+2) = 5$\n- $(x+7) - (x+5) = 2$\n\nThe distances are $2, 3, 5,$ and $7$. All of these are prime numbers. This means that in our set $A$, we can choose at most one element from $C_x$ for any $x$, because choosing two or more would result in a prime angle between them.\n\nThere are 360 such sets $C_x$ (one for each $x \\in \\{0, 1, \\dots, 359\\}$). If we sum the number of elements of $A$ in each $C_x$ over all $x$, we get:\n$$ \\sum_{x=0}^{359} |A \\cap C_x| \\le \\sum_{x=0}^{359} 1 = 360 $$\nOn the other hand, each element $a \\in A$ belongs to exactly 4 such sets (specifically $C_a, C_{a-2}, C_{a-5},$ and $C_{a-7}$). Therefore, the sum counts each element of $A$ exactly 4 times:\n$$ 4|A| \\le 360 \\implies |A| \\le 90 $$\nThus, we can have at most 90 rays. \n\nWe can easily achieve exactly 90 rays by choosing the angles to be all the multiples of 4:\n$$ A = \\{0, 4, 8, 12, \\dots, 356\\} $$\nThe angle between any two such rays is a multiple of 4. Since the minimum non-zero angle between any two rays is $4^\\circ$, and all multiples of 4 greater than or equal to 4 are composite, no angle between any two rays will be a prime number. \n\nFinal answer: 90",
+  "usage": {
+    "input_tokens": 90,
+    "output_tokens": 777,
+    "thoughts_tokens": 3533
+  },
+  "latency_s": 36.398502802010626,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "exact",
+    "predicted": "90"
+  }
+}

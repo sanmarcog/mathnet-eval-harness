@@ -1,0 +1,25 @@
+{
+  "id": "04w9",
+  "country": "Czech Republic",
+  "competition": "National Round",
+  "gold_final_answer": "3",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Vieta's formulas",
+    "Algebra > Algebraic Expressions > Polynomials > Symmetric functions"
+  ],
+  "prompt": "Real numbers $a, b, c, d$ are such that\n$$\na + b + c + d = 0 \\quad \\text{and} \\quad \\frac{1}{a} + \\frac{1}{b} + \\frac{1}{c} + \\frac{1}{d} = 0.\n$$\nHow many of the equalities\n$$ab = cd, \\quad ac = bd, \\quad ad = bc$$\ncan hold simultaneously?",
+  "model": "gpt-5.4",
+  "response_text": "Let\n\\[\ns_1=a+b+c+d=0,\\qquad \\frac1a+\\frac1b+\\frac1c+\\frac1d=0.\n\\]\nSince the reciprocals are defined, \\(abcd\\neq 0\\). Multiplying the second equation by \\(abcd\\) gives\n\\[\nbcd+acd+abd+abc=0.\n\\]\nFactor:\n\\[\nab(c+d)+cd(a+b)=0.\n\\]\nBut \\(a+b+c+d=0\\) implies \\(c+d=-(a+b)\\), so\n\\[\nab(-(a+b))+cd(a+b)=0\n\\]\nand hence\n\\[\n(a+b)(cd-ab)=0.\n\\]\nTherefore\n\\[\na+b=0 \\quad\\text{or}\\quad ab=cd.\n\\]\n\nSimilarly, grouping in the other ways gives\n\\[\n(a+c)(bd-ac)=0,\\qquad (a+d)(bc-ad)=0.\n\\]\n\nSo each of the three equalities corresponds to one of these alternatives.\n\nNow check how many can hold at once.\n\n- If all three hold:\n  \\[\n  ab=cd,\\quad ac=bd,\\quad ad=bc.\n  \\]\n  Since \\(a,b,c,d\\neq 0\\), divide:\n  \\[\n  \\frac{ab}{ac}=\\frac{cd}{bd}\\implies \\frac bc=\\frac cb \\implies b^2=c^2.\n  \\]\n  Similarly one gets \\(b^2=d^2\\), so \\(b=\\pm c,\\ b=\\pm d\\). This can happen; for example\n  \\[\n  (a,b,c,d)=(1,1,-1,-1),\n  \\]\n  for which\n  \\[\n  a+b+c+d=0,\\qquad 1+\\!1-\\!1-\\!1=0,\n  \\]\n  and also\n  \\[\n  \\frac11+\\frac11+\\frac1{-1}+\\frac1{-1}=0.\n  \\]\n  Then\n  \\[\n  ab=1=cd,\\quad ac=-1=bd,\\quad ad=-1=bc.\n  \\]\n  So all three can hold simultaneously.\n\nThus the maximum possible number is \\(3\\).\n\nFinal answer: 3",
+  "usage": {
+    "input_tokens": 150,
+    "output_tokens": 481,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 6.67342236591503,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "exact",
+    "predicted": "3"
+  }
+}

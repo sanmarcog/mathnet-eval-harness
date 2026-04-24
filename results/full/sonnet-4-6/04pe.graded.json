@@ -1,0 +1,24 @@
+{
+  "id": "04pe",
+  "country": "Croatia",
+  "competition": "Croatian Mathematical Society Competitions",
+  "gold_final_answer": "sqrt(3)",
+  "topics_flat": [
+    "Precalculus > Trigonometric functions"
+  ],
+  "prompt": "Calculate\n$$\n\\frac{\\tan 192^\\circ + \\tan 48^\\circ}{1 + \\tan 168^\\circ \\cdot \\tan 408^\\circ}\n$$",
+  "model": "claude-sonnet-4-6",
+  "response_text": "We need to calculate $\\frac{\\tan 192° + \\tan 48°}{1 + \\tan 168° \\cdot \\tan 408°}$.\n\n**Simplify the angles:**\n- $\\tan 192° = \\tan(180° + 12°) = \\tan 12°$\n- $\\tan 48° = \\tan 48°$\n- $\\tan 168° = \\tan(180° - 12°) = -\\tan 12°$\n- $\\tan 408° = \\tan(360° + 48°) = \\tan 48°$\n\n**Substitute:**\n\nNumerator: $\\tan 12° + \\tan 48°$\n\nDenominator: $1 + (-\\tan 12°)(\\tan 48°) = 1 - \\tan 12° \\tan 48°$\n\n**Recognize the tangent addition formula:**\n\n$$\\frac{\\tan 12° + \\tan 48°}{1 - \\tan 12° \\tan 48°} = \\tan(12° + 48°) = \\tan 60° = \\sqrt{3}$$\n\nFinal answer: $\\sqrt{3}$",
+  "usage": {
+    "input_tokens": 92,
+    "output_tokens": 280,
+    "thinking_tokens": 0
+  },
+  "latency_s": 3.839070784044452,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "symbolic",
+    "predicted": "$\\sqrt{3}$"
+  }
+}

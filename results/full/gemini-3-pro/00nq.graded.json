@@ -1,0 +1,25 @@
+{
+  "id": "00nq",
+  "country": "Austria",
+  "competition": "Austrian Mathematical Olympiad",
+  "gold_final_answer": "All cyclic permutations of (1,1,1), (1,1,2), (1,3,2), (3,5,4). Equivalently, the ten triples: (1,1,1), (1,1,2), (1,2,1), (2,1,1), (1,3,2), (3,2,1), (2,1,3), (3,5,4), (5,4,3), (4,3,5).",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization",
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities"
+  ],
+  "prompt": "Determine all triples $(x, y, z)$ of positive integers satisfying\n$$\nx \\mid (y+1), \\quad y \\mid (z+1) \\quad \\text{and} \\quad z \\mid (x+1).\n$$",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find all triples $(x, y, z)$ of positive integers satisfying $x \\mid (y+1)$, $y \\mid (z+1)$, and $z \\mid (x+1)$, we can use symmetry and assume without loss of generality that $x$ is the maximum of the three integers, so $x \\ge y$ and $x \\ge z$.\n\nSince $x \\mid (y+1)$, we must have $x \\le y+1$. Because $x \\ge y$, there are only two possibilities for $x$: $x = y$ or $x = y+1$.\n\n**Case 1: $x = y$**\nIf $x = y$, the condition $x \\mid (y+1)$ becomes $x \\mid (x+1)$, which implies $x \\mid 1$. Thus, $x = 1$, and so $y = 1$.\nNow we need $z \\mid (x+1)$, which means $z \\mid 2$. This gives $z \\in \\{1, 2\\}$.\n- If $z = 1$, we get the triple $(1, 1, 1)$.\n- If $z = 2$, this contradicts our assumption that $x$ is the maximum. However, it gives us a valid triple $(1, 1, 2)$ where $z$ is the maximum.\n\n**Case 2: $x = y+1$**\nHere, $x \\mid (y+1)$ is trivially satisfied since $y+1 \\mid y+1$.\nWe are left with the conditions $y \\mid (z+1)$ and $z \\mid (x+1) \\implies z \\mid (y+2)$.\nSince $x$ is the maximum, $z \\le x = y+1$, which means $z+1 \\le y+2$.\nBecause $y \\mid (z+1)$, the only possible positive multiples of $y$ that $z+1$ can take are $y$ and $2y$.\n\n- **Subcase 2a: $z+1 = y \\implies z = y-1$**\nSubstitute $z$ into the last condition: $y-1 \\mid y+2$.\nNotice that $y+2 = (y-1) + 3$, so we must have $y-1 \\mid 3$.\nThis means $y-1 \\in \\{1, 3\\}$, giving $y \\in \\{2, 4\\}$.\nIf $y = 2$, then $x = 3$ and $z = 1$. This gives the triple $(3, 2, 1)$.\nIf $y = 4$, then $x = 5$ and $z = 3$. This gives the triple $(5, 4, 3)$.\n\n- **Subcase 2b: $z+1 = 2y$**\nSince $z+1 \\le y+2$, we have $2y \\le y+2 \\implies y \\le 2$.\nIf $y = 1$, then $z+1 = 2 \\implies z = 1$. Then $x = y+1 = 2$. This gives the triple $(2, 1, 1)$.\nIf $y = 2$, then $z+1 = 4 \\implies z = 3$. Then $x = y+1 = 3$. We check the last condition $z \\mid (x+1) \\implies 3 \\mid 4$, which is false.\n\nThus, the solutions where $x = \\max(x, y, z)$ are $(1, 1, 1)$, $(2, 1, 1)$, $(3, 2, 1)$, and $(5, 4, 3)$. \n\nBecause the given system of divisibility conditions is invariant under cyclic permutations of $(x, y, z)$, any cyclic permutation of a solution is also a solution. Finding all cyclic permutations of the above triples yields the complete set of solutions.\n\nFinal answer: (1,1,1), (2,1,1), (1,2,1), (1,1,2), (3,2,1), (1,3,2), (2,1,3), (5,4,3), (3,5,4), (4,3,5)",
+  "usage": {
+    "input_tokens": 93,
+    "output_tokens": 947,
+    "thoughts_tokens": 5248
+  },
+  "latency_s": 47.03826535504777,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "(1,1,1), (2,1,1), (1,2,1), (1,1,2), (3,2,1), (1,3,2), (2,1,3), (5,4,3), (3,5,4), (4,3,5)"
+  }
+}

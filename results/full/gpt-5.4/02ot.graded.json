@@ -1,0 +1,26 @@
+{
+  "id": "02ot",
+  "country": "Brazil",
+  "competition": "Brazilian Math Olympiad",
+  "gold_final_answer": "3",
+  "topics_flat": [
+    "Number Theory > Modular Arithmetic",
+    "Number Theory > Divisibility / Factorization",
+    "Discrete Mathematics > Combinatorics > Pigeonhole principle"
+  ],
+  "prompt": "Emerald wrote a list of positive integers. Renan noticed that each number in the list and any sum of any quantity of distinct numbers from the list were square-free (that is, not divisible by any perfect square except, of course, 1). What is the maximum quantity of numbers that Emerald's list can have?",
+  "model": "gpt-5.4",
+  "response_text": "Let the list be \\(a_1,a_2,\\dots,a_n\\), all positive integers.\n\nWe are told:\n\n- each \\(a_i\\) is square-free;\n- and **every sum of distinct elements** is also square-free.\n\nWe want the largest possible \\(n\\).\n\n## Key idea: look modulo \\(4\\)\n\nA square-free integer cannot be divisible by \\(4\\), so no allowed sum can be \\(0 \\pmod 4\\).\n\nNow classify the list elements by parity.\n\n### 1) No element can be \\(0 \\pmod 4\\)\nObvious, since each individual element is square-free.\n\nSo every even element must be \\(2 \\pmod 4\\), and odd elements are \\(1\\) or \\(3 \\pmod 4\\).\n\n### 2) There cannot be two even elements\nIf \\(x\\equiv y\\equiv 2\\pmod 4\\), then\n\\[\nx+y\\equiv 0\\pmod 4,\n\\]\nso \\(x+y\\) is divisible by \\(4\\), hence not square-free. Impossible.\n\nSo there is **at most one even number**.\n\n### 3) Among odd elements, there cannot be both a \\(1\\pmod 4\\) and a \\(3\\pmod 4\\)\nBecause then their sum is\n\\[\n1+3\\equiv 0\\pmod 4,\n\\]\nagain impossible.\n\nSo all odd elements must be congruent to the same odd residue mod \\(4\\).\n\n### 4) There cannot be 4 odd elements\nIf all odd elements are congruent to the same odd residue \\(r\\in\\{1,3\\}\\pmod4\\), then the sum of any 4 of them is\n\\[\n4r\\equiv 0\\pmod 4,\n\\]\nnot square-free. So there are at most **3 odd elements**.\n\nCombining these:\n- at most 3 odd elements,\n- at most 1 even element,\n\nhence\n\\[\nn\\le 4.\n\\]\n\n## Can 4 actually be achieved?\n\nYes. Take\n\\[\n1,\\,3,\\,5,\\,2.\n\\]\nCheck all sums of distinct elements:\n\n- singles: \\(1,2,3,5\\) — square-free;\n- pairs: \\(1+3=4\\) — oops, not square-free.\n\nSo that doesn’t work. We need a better example.\n\nTry three odd numbers all congruent mod \\(4\\), plus one even number \\(2\\pmod4\\). A good choice is\n\\[\n1,\\ 5,\\ 13,\\ 2.\n\\]\nNow all distinct sums are:\n\n- singles: \\(1,5,13,2\\);\n- pairs: \\(6,14,3,18,7,15\\);\n- triples: \\(8,16,20,19\\);\n\nBut \\(8,16,20\\) are divisible by \\(4\\), so this also fails.\n\nSo we must think more carefully: if there is one even number and three odd numbers, then the sum of the even number with any two odd numbers is\n\\[\n2 + \\text{odd} + \\text{odd} \\equiv 2+1+1 \\equiv 0 \\pmod 4\n\\]\nor similarly with \\(3,3\\). Thus such a triple sum is divisible by \\(4\\), impossible.\n\nTherefore we cannot have \\(1\\) even + \\(3\\) odd.\n\nSo possibilities are:\n- 3 odd and 0 even, or\n- 2 odd and 1 even, etc.\n\nCan we get 3 numbers? Yes:\n\\[\n1,2,6.\n\\]\nCheck:\n- singles: \\(1,2,6\\) square-free;\n- pair sums: \\(3,7,8\\) — but \\(8\\) is not square-free.\n\nSo not that.\n\nTry\n\\[\n1,3,5.\n\\]\nThen \\(1+3=4\\), bad.\n\nTry\n\\[\n1,10,15.\n\\]\nCheck:\n- singles: \\(1,10,15\\) square-free;\n- pairs: \\(11,16,25\\), bad.\n\nNeed a valid example.\n\nTake\n\\[\n2,3,10.\n\\]\nCheck:\n- singles: \\(2,3,10\\) square-free;\n- pairs: \\(5,12,13\\), but \\(12\\) is square-free? No, \\(12\\) is divisible by \\(4\\), so bad.\n\nLet us instead use powers mod \\(4\\) cleverly:\nthree odd numbers all same mod \\(4\\) fail, since sum of all three is odd, but pair sums may still be okay. Try\n\\[\n1,17,21.\n\\]\nThen \\(1+17=18\\), \\(1+21=22\\), \\(17+21=38\\), and \\(1+17+21=39\\), all square-free. Also \\(1,17,21\\) themselves are square-free.\n\nSo 3 is achievable.\n\nHence the maximum is \\(3\\).\n\nFinal answer: 3",
+  "usage": {
+    "input_tokens": 113,
+    "output_tokens": 1092,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 14.969521844061092,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "exact",
+    "predicted": "3"
+  }
+}

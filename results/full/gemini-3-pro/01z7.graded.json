@@ -1,0 +1,27 @@
+{
+  "id": "01z7",
+  "country": "Belarus",
+  "competition": "Belarus2022",
+  "gold_final_answer": "1/3",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Circles > Tangents",
+    "Geometry > Plane Geometry > Triangles > Triangle trigonometry",
+    "Geometry > Plane Geometry > Geometric Inequalities > Optimization in geometry",
+    "Geometry > Plane Geometry > Miscellaneous > Constructions and loci"
+  ],
+  "prompt": "Three non-intersecting circles of radius $1$ are placed inside the triangle $ABC$. (Circles can touch each other and the sides of a triangle, but cannot share interior points.)\nFind the largest value of $r$ for which we can be sure that inside the triangle it is possible to draw a fourth circle of radius $r$ that doesn't intersect with three circles already drawn.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find the largest value of $r$ for which we can always draw a fourth circle of radius $r$ inside the triangle without intersecting the three existing circles of radius $1$, we can analyze the corners of the triangle.\n\n1. **Angle Property of Triangles:**\nThe sum of the interior angles of any triangle is $180^\\circ$. Therefore, every triangle must have at least one angle $\\alpha$ that is less than or equal to $60^\\circ$. \n\n2. **Placing the Fourth Circle:**\nLet's attempt to place our fourth circle of radius $r$ into the corner of the triangle with this angle $\\alpha \\le 60^\\circ$, such that it is tangent to the two sides forming the angle. \nThe distance from the vertex of this angle to the center of this new circle will be:\n$$d_{new} = \\frac{r}{\\sin(\\alpha/2)}$$\n\n3. **Distance to Existing Circles:**\nAny of the three existing circles has a radius of $1$ and lies completely inside the triangle. Thus, the distance from the center of any existing circle to the sides of the triangle is at least $1$. \nFor the angle $\\alpha$, the closest an existing circle's center can be to the vertex is when it is also tangent to the two sides forming the angle. The distance from the vertex to the center of such a circle would be:\n$$d_{exist} = \\frac{1}{\\sin(\\alpha/2)}$$\nFor any other position inside the triangle, the center of the existing circle will be strictly further away from the vertex and the new circle.\n\n4. **Non-intersection Condition:**\nTo ensure the new circle does not intersect any existing circle, the distance between their centers must be at least the sum of their radii ($1 + r$). \nUsing the minimum possible distance between their centers (when both lie on the angle bisector):\n$$d_{exist} - d_{new} \\ge 1 + r$$\n$$\\frac{1}{\\sin(\\alpha/2)} - \\frac{r}{\\sin(\\alpha/2)} \\ge 1 + r$$\n$$1 - r \\ge \\sin(\\alpha/2) + r\\sin(\\alpha/2)$$\n$$r(1 + \\sin(\\alpha/2)) \\le 1 - \\sin(\\alpha/2)$$\n$$r \\le \\frac{1 - \\sin(\\alpha/2)}{1 + \\sin(\\alpha/2)}$$\n\n5. **Maximizing $r$:**\nBecause $\\alpha \\le 60^\\circ$, we have $\\sin(\\alpha/2) \\le \\sin(30^\\circ) = \\frac{1}{2}$. \nThe function $f(x) = \\frac{1-x}{1+x}$ is strictly decreasing for $x > 0$. Thus, substituting the maximum possible value for $\\sin(\\alpha/2)$ gives the minimum guaranteed space in that corner:\n$$r \\ge \\frac{1 - 1/2}{1 + 1/2} = \\frac{1/2}{3/2} = \\frac{1}{3}$$\nThis proves we can always place a circle of radius $1/3$ in the corner with the smallest angle. (It will not cross the opposite side of the triangle because a triangle containing three non-intersecting circles of radius 1 has an inradius strictly greater than 1, meaning a circle of radius $1/3$ easily fits).\n\n6. **Tightest Configuration:**\nIf the triangle is an equilateral triangle tightly bounding three mutually tangent circles of radius $1$ (each pushed into a $60^\\circ$ corner), the available spaces for a fourth circle are:\n- In the corners: $r = 1/3$\n- In the center: $r = \\frac{2}{\\sqrt{3}} - 1 \\approx 0.154$\n- Between two circles and a side: $r = 1/4 = 0.25$\nThe largest of these is $1/3$.\n\nFinal answer: 1/3",
+  "usage": {
+    "input_tokens": 120,
+    "output_tokens": 885,
+    "thoughts_tokens": 6459
+  },
+  "latency_s": 62.58351800404489,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "exact",
+    "predicted": "1/3"
+  }
+}

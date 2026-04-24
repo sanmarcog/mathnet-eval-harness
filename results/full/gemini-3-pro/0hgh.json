@@ -1,0 +1,21 @@
+{
+  "id": "0hgh",
+  "country": "Ukraine",
+  "competition": "62nd Ukrainian National Mathematical Olympiad, Third Round, First Tour",
+  "gold_final_answer": "2021",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Greatest common divisors (gcd)",
+    "Algebra > Prealgebra / Basic Algebra > Integers",
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities"
+  ],
+  "prompt": "The sum of coprime integers $m$ and $n$ equals $90$. What largest possible value can be attained by the product $mn$ of these integers?",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find the largest possible value of the product $mn$ given that $m$ and $n$ are coprime integers and $m + n = 90$, we want to make $m$ and $n$ as close to each other as possible. This is because the product of two numbers with a fixed sum is maximized when the numbers are equal (or as close to equal as possible).\n\nThe two numbers that sum to 90 and are exactly equal are $45$ and $45$. However, $\\gcd(45, 45) = 45 \\neq 1$, so they are not coprime.\n\nWe can check pairs of integers moving away from 45:\n- $46$ and $44$: $\\gcd(46, 44) = 2 \\neq 1$\n- $47$ and $43$: $\\gcd(47, 43) = 1$ (both are prime numbers)\n\nSince $47$ and $43$ are the closest pair of coprime integers that sum to 90, their product will be the maximum possible. \n\nWe calculate their product:\n$mn = 47 \\times 43 = (45 + 2)(45 - 2) = 45^2 - 2^2 = 2025 - 4 = 2021$\n\nFinal answer: 2021",
+  "usage": {
+    "input_tokens": 73,
+    "output_tokens": 308,
+    "thoughts_tokens": 675
+  },
+  "latency_s": 10.06564487295691,
+  "cached": false
+}

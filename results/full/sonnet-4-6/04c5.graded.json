@@ -1,0 +1,26 @@
+{
+  "id": "04c5",
+  "country": "Croatia",
+  "competition": "Mathematica competitions in Croatia",
+  "gold_final_answer": "For any prime p, the solutions are n = 0 and n = -p. If p is odd (p > 2), there are two additional solutions: n = ((p−1)/2)^2 and n = −((p+1)/2)^2.",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Prime numbers",
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities",
+    "Algebra > Intermediate Algebra > Quadratic functions"
+  ],
+  "prompt": "For a given prime number $p$ determine all integers $n$ such that $\\sqrt{n^2 + pn}$ is an integer.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "We need $n^2 + pn = k^2$ for some non-negative integer $k$.\n\nSo $n^2 + pn - k^2 = 0$, or equivalently:\n$$n(n+p) = k^2$$\n\n**Setting up the equation:**\n\nWe need $n^2 + pn = k^2$, which gives:\n$$4k^2 = 4n^2 + 4pn = (2n+p)^2 - p^2$$\n\nSo $(2n+p)^2 - (2k)^2 = p^2$, meaning:\n$$(2n+p-2k)(2n+p+2k) = p^2$$\n\nLet $a = 2n+p-2k$ and $b = 2n+p+2k$, so $ab = p^2$ and $b \\geq a$ (since $k \\geq 0$), and $a+b = 2(2n+p)$, $b-a = 4k$.\n\nNote $a$ and $b$ have the same parity (since $a+b = 4n+2p$ is even, and $b-a = 4k$ is even — both are even). Also $ab = p^2 > 0$, so $a$ and $b$ have the same sign.\n\n**Case 1: Both positive.** Factor pairs of $p^2$ with same parity:\n- $(a,b) = (1, p^2)$: different parity (1 is odd, $p^2$ is odd if $p$ is odd, even if $p=2$). For odd $p$: both odd, same parity. Then $2n+p = \\frac{a+b}{2} = \\frac{1+p^2}{2}$, so $n = \\frac{p^2+1-2p}{4} = \\frac{(p-1)^2}{4}$. This is an integer when $p$ is odd (since $p-1$ is even). Also $k = \\frac{b-a}{4} = \\frac{p^2-1}{4}$.\n- $(a,b) = (p, p)$: Then $2k = 0$, so $k=0$, and $2n+p = p$, giving $n=0$.\n- $(a,b) = (p^2, 1)$: same as $(1,p^2)$ by symmetry but $b \\geq a$ required, skip.\n\nFor $p=2$: $(a,b)=(1,4)$ have different parity, $(2,2)$: $k=0$, $n=0$. $(4,1)$ skip. So for $p=2$, only $n=0$ from positive case... wait, let me check $(a,b)=(1,4)$: $a+b=5$, not even, so invalid. $(a,b)=(2,2)$: $n=0$, $k=0$. $(a,b)=(4,1)$: skip.\n\n**Case 2: Both negative.** Then $ab = p^2 > 0$, $a < 0, b < 0$. Let $a = -b'$, $b = -a'$ with $a', b' > 0$, $a'b' = p^2$. Then $2n+p = \\frac{a+b}{2} < 0$.\n- $(a,b) = (-p^2, -1)$: $2n+p = \\frac{-p^2-1}{2}$, $n = \\frac{-p^2-1-2p}{4} = \\frac{-(p+1)^2}{4}$. Integer when $p$ is odd: $n = -\\frac{(p+1)^2}{4}$.\n- $(a,b) = (-p,-p)$: $n = -p$, $k=0$.\n- For $p=2$: $(-4,-1)$: $a+b=-5$, not even. $(-2,-2)$: $n=-2$, $k=0$.\n\n**Checking $n=0$:** $\\sqrt{0} = 0$. ✓  \n**Checking $n=-p$:** $\\sqrt{p^2 - p^2} = 0$. ✓  \n**Checking $n = \\frac{(p-1)^2}{4}$ (odd $p$):** $n(n+p) = \\frac{(p-1)^2}{4} \\cdot \\frac{(p+1)^2}{4} = \\left(\\frac{p^2-1}{4}\\right)^2$. ✓  \n**Checking $n = -\\frac{(p+1)^2}{4}$ (odd $p$):** $n(n+p) = -\\frac{(p+1)^2}{4} \\cdot \\frac{(p-1)^2 - (p+1)^2 + 4p \\cdot ... }{...}$ — let me just verify: $n+p = p - \\frac{(p+1)^2}{4} = \\frac{4p - p^2 - 2p - 1}{4} = \\frac{-(p-1)^2}{4}$. So $n(n+p) = \\left(\\frac{(p+1)(p-1)}{4}\\right)^2$. ✓\n\n**Summary:** For $p=2$: $n \\in \\{0, -2\\}$. For odd prime $p$: $n \\in \\left\\{0,\\ -p,\\ \\dfrac{(p-1)^2}{4},\\ -\\dfrac{(p+1)^2}{4}\\right\\}$.\n\nFinal answer: $n \\in \\left\\{0,\\ -p,\\ \\dfrac{(p-1)^2}{4},\\ -\\dfrac{(p+1)^2}{4}\\right\\}$ for odd prime $p$, and $n \\in \\{0, -2\\}$ for $p=2$.",
+  "usage": {
+    "input_tokens": 79,
+    "output_tokens": 1531,
+    "thinking_tokens": 0
+  },
+  "latency_s": 21.848065536934882,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "$n \\in \\left\\{0,\\ -p,\\ \\dfrac{(p-1)^2}{4},\\ -\\dfrac{(p+1)^2}{4}\\right\\}$ for odd prime $p$, and $n \\in \\{0, -2\\}$ for $p=2$."
+  }
+}

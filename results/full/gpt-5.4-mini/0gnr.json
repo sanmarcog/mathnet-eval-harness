@@ -1,0 +1,21 @@
+{
+  "id": "0gnr",
+  "country": "Turkey",
+  "competition": "16th Turkish Mathematical Olympiad",
+  "gold_final_answer": "671",
+  "topics_flat": [
+    "Discrete Mathematics > Graph Theory",
+    "Discrete Mathematics > Combinatorics > Games / greedy algorithms",
+    "Discrete Mathematics > Combinatorics > Pigeonhole principle"
+  ],
+  "prompt": "In a computer network consisting of $2008$ computers no two cycles intersect. At time $t = 0$, a hacker hacks into a computer in this network; and at time $t = 1$, the network administrator installs a protective software to an unhacked computer. For each positive integer $k$, at time $t = 2k$, the hacker hacks into another computer, if there is one, that is not protected and that is directly connected to a hacked computer; and at time $t = 2k + 1$, the administrator installs the protective software to another computer, if there is one, that is not hacked and that is directly connected to a protected computer. Determine the maximum number of computers the hacker can guarantee to hack into no matter how the network is configured.\n\n[For $m \\ge 3$, $\\{C_1, C_2, \\dots, C_m\\}$ is a cycle if the computers $C_1$ and $C_m$ and, for all $2 \\le i \\le m$, the computers $C_{i-1}$ and $C_i$ are directly connected.]",
+  "model": "gpt-5.4-mini",
+  "response_text": "Because no two cycles intersect, the graph is a **cactus**: each edge belongs to at most one cycle, and the block structure is tree-like.\n\nLet the hacker’s first computer be \\(v\\). The key idea is to use a strategy that guarantees infection of at least one entire “branch” before the administrator can block it.\n\n### 1) A lower bound: the hacker can guarantee 1004 computers\nA tree on 2008 vertices has a bipartition into two parts. In general, in a cactus, the administrator can prevent the hacker from spreading into all branches only by protecting along the unique paths in the block tree, but since the graph has 2008 vertices, the hacker can always force infection of at least half of them by choosing a starting vertex in a largest branch and always moving toward the largest unprotected adjacent region.\n\nMore concretely, the game alternates:\n- hacker infects a vertex adjacent to the infected set,\n- administrator protects a vertex adjacent to the protected set.\n\nSince the underlying graph has no intersecting cycles, each move of the administrator can block at most one “frontier” direction, while the hacker can always continue along another. The maximal guaranteed number is therefore at least the size of a largest connected region that cannot be cut off faster than one vertex per turn, which in a 2008-vertex cactus is at least\n\\[\n\\left\\lceil \\frac{2008}{2}\\right\\rceil=1004.\n\\]\n\n### 2) An upper bound: the administrator can always keep at least 1004 safe\nThe administrator can defend a set of vertices so that every hacked vertex has at most one new unprotected neighbor available at each stage. In a cactus, because cycles do not intersect, the administrator can always “mirror” the hacker’s spread in the block tree and force the infection to advance along at most one new vertex every two turns. Thus the hacker cannot guarantee more than half the vertices:\n\\[\n\\le 1004.\n\\]\n\nCombining both bounds, the maximum guaranteed number is exactly\n\\[\n1004.\n\\]\n\nFinal answer: 1004",
+  "usage": {
+    "input_tokens": 282,
+    "output_tokens": 447,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.9788124329643324,
+  "cached": false
+}

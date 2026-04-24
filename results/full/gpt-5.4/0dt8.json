@@ -1,0 +1,21 @@
+{
+  "id": "0dt8",
+  "country": "Singapore",
+  "competition": "Singapore Mathematical Olympiad (SMO)",
+  "gold_final_answer": "{13,53}, {19,47}, {23,43}, {29,37}",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Prime numbers",
+    "Number Theory > Divisibility / Factorization > Greatest common divisors (gcd)",
+    "Number Theory > Divisibility / Factorization > Factorization techniques"
+  ],
+  "prompt": "Two distinct 2-digit prime numbers $p$, $q$ can be written one after the other in 2 different ways to form two 4-digit numbers. For example, $11$ and $13$ yield $1113$ and $1311$. If the two 4-digit numbers formed are both divisible by the average value of $p$ and $q$, find all possible pairs \\{$p, q$\\}.",
+  "model": "gpt-5.4",
+  "response_text": "Let\n\\[\nN_1=100p+q,\\qquad N_2=100q+p\n\\]\nbe the two 4-digit numbers formed from the two-digit primes \\(p,q\\).\n\nWe are told both are divisible by the average of \\(p\\) and \\(q\\), i.e.\n\\[\n\\frac{p+q}{2}.\n\\]\nSince \\(p,q\\) are distinct two-digit primes, they are odd, so \\(\\frac{p+q}{2}\\) is an integer.\n\nLet\n\\[\nm=\\frac{p+q}{2}.\n\\]\nThen \\(p+q=2m\\), so \\(q=2m-p\\).\n\nWe want\n\\[\n100p+q \\equiv 0 \\pmod m,\\qquad 100q+p\\equiv 0\\pmod m.\n\\]\n\nSubstitute \\(q\\equiv -p \\pmod m\\) (because \\(p+q=2m\\)):\n\\[\n100p+q \\equiv 100p-p=99p \\equiv 0 \\pmod m,\n\\]\nand similarly\n\\[\n100q+p \\equiv 100(-p)+p=-99p \\equiv 0 \\pmod m.\n\\]\nSo both conditions are equivalent to\n\\[\nm\\mid 99p.\n\\]\n\nAlso, since \\(m=\\frac{p+q}{2}\\) lies strictly between \\(p\\) and \\(q\\), and \\(p,q\\) are distinct primes, \\(m\\neq p\\). Hence \\(\\gcd(m,p)=1\\). Therefore from \\(m\\mid 99p\\), we get\n\\[\nm\\mid 99.\n\\]\n\nNow \\(m\\) is the average of two distinct two-digit primes, so \\(m\\) is an integer between 10 and 99. The divisors of \\(99\\) in this range are\n\\[\n11,\\ 33,\\ 99.\n\\]\nBut \\(m=99\\) is impossible as an average of two two-digit numbers. So:\n\n### Case 1: \\(m=11\\)\nThen\n\\[\np+q=22.\n\\]\nThe two distinct two-digit primes summing to 22 are\n\\[\n11,\\ 11\n\\]\nonly, but they are not distinct. So no solution.\n\n### Case 2: \\(m=33\\)\nThen\n\\[\np+q=66.\n\\]\nWe need distinct two-digit primes summing to 66. Checking prime pairs:\n\\[\n(13,53),\\ (19,47),\\ (23,43),\\ (29,37).\n\\]\nAll are valid two-digit distinct primes.\n\nIt remains to verify divisibility by \\(33\\). But since \\(m=33\\mid 99\\), our earlier argument already guarantees both concatenations are divisible by \\(33\\). For example, \\(1353,5313\\) are both divisible by \\(33\\), etc.\n\nTherefore all possible pairs are\n\\[\n\\{13,53\\},\\ \\{19,47\\},\\ \\{23,43\\},\\ \\{29,37\\}.\n\\]\n\nFinal answer: \\(\\{13,53\\},\\ \\{19,47\\},\\ \\{23,43\\},\\ \\{29,37\\}\\)",
+  "usage": {
+    "input_tokens": 135,
+    "output_tokens": 710,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 10.32089462399017,
+  "cached": false
+}

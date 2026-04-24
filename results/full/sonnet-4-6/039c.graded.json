@@ -1,0 +1,27 @@
+{
+  "id": "039c",
+  "country": "Bulgaria",
+  "competition": "Bulgarian National Olympiad",
+  "gold_final_answer": "7",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Analytic / Coordinate Methods > Trigonometry",
+    "Algebra > Algebraic Expressions > Polynomials > Irreducibility: Rational Root Theorem, Gauss's Lemma, Eisenstein",
+    "Algebra > Abstract Algebra > Field Theory",
+    "Algebra > Algebraic Expressions > Polynomials > Polynomial operations"
+  ],
+  "prompt": "Find the least natural number $n$ for which $\\cos \\frac{\\pi}{n}$ can not be expressed in the form $p + \\sqrt{q} + \\sqrt[3]{r}$, where $p, q$ and $r$ are rational numbers.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "I need to find the least natural number $n$ for which $\\cos(\\pi/n)$ cannot be expressed as $p + \\sqrt{q} + \\sqrt[3]{r}$ with $p, q, r \\in \\mathbb{Q}$.\n\n## Setting Up the Framework\n\nThe expression $p + \\sqrt{q} + \\sqrt[3]{r}$ lies in a field extension of $\\mathbb{Q}$ of degree at most 6 (degree 2 from square root, degree 3 from cube root, combined gives degree dividing 6).\n\nFor $\\cos(\\pi/n)$ to be expressible in this form, it must lie in some extension of $\\mathbb{Q}$ that can be embedded in a field of the form $\\mathbb{Q}(\\sqrt{q}, \\sqrt[3]{r})$, which has degree dividing 6 over $\\mathbb{Q}$.\n\n## Analyzing $\\cos(\\pi/n)$\n\nThe minimal polynomial of $\\cos(\\pi/n)$ over $\\mathbb{Q}$ has degree $\\phi(2n)/2$ (related to cyclotomic polynomials). Specifically, $[\\mathbb{Q}(\\cos(\\pi/n)):\\mathbb{Q}] = \\phi(2n)/2$.\n\nFor $\\cos(\\pi/n)$ to be expressible as $p + \\sqrt{q} + \\sqrt[3]{r}$, we need the minimal polynomial's degree to divide 6, AND the splitting structure must be compatible.\n\n## Checking Small Values\n\n- $n=1$: $\\cos(\\pi) = -1$ ✓ (rational)\n- $n=2$: $\\cos(\\pi/2) = 0$ ✓\n- $n=3$: $\\cos(\\pi/3) = 1/2$ ✓\n- $n=4$: $\\cos(\\pi/4) = \\sqrt{2}/2$ ✓\n- $n=5$: $\\cos(\\pi/5) = (1+\\sqrt{5})/4$ ✓ (degree 2)\n- $n=6$: $\\cos(\\pi/6) = \\sqrt{3}/2$ ✓\n- $n=7$: $\\cos(\\pi/7)$ has degree 3 (since $\\phi(14)/2 = 3$). The minimal polynomial is $8x^3 - 4x^2 - 4x + 1 = 0$. This is a cubic with discriminant... The splitting field of this cubic: discriminant is $49$, so $\\sqrt{\\Delta} = 7 \\in \\mathbb{Q}$. This means the Galois group is $\\mathbb{Z}/3\\mathbb{Z}$, so the cubic is cyclic. A cyclic cubic can be expressed using cube roots: $\\cos(\\pi/7)$ can be written as $p + \\sqrt[3]{r}$ form (possibly with complex intermediates, but the result is real). Actually for cyclic cubics, the roots can be expressed via cube roots of rationals (possibly complex). Since $\\cos(\\pi/7)$ is real and the cubic has rational discriminant, it fits in $\\mathbb{Q}(\\sqrt[3]{r})$ for some rational $r$ (allowing complex cube roots that combine to real). So $n=7$ works ✓.\n\n- $n=9$: $\\cos(\\pi/9)$ has degree 3. Minimal polynomial: $8x^3 - 6x - 1 = 0$ (from $\\cos(3\\theta) = -1/2$ with $\\theta = \\pi/9$). Discriminant: $\\Delta = 18(8)(-6)(-1) - 4(-6)^3 - (8)^2(-1)^2 - ... $ Using $\\Delta = -4p^3 - 27q^2$ for $x^3 + px + q$: here $x^3 - (3/4)x - 1/8$, so $\\Delta = -4(-3/4)^3 - 27(-1/8)^2 = 4(27/64) - 27/64 = 108/64 - 27/64 = 81/64$. So $\\sqrt{\\Delta} = 9/8 \\in \\mathbb{Q}$, cyclic cubic. So $\\cos(\\pi/9)$ can be expressed with cube roots ✓.\n\n- $n=11$: $\\phi(22)/2 = 5$. Degree 5 over $\\mathbb{Q}$. The expression $p+\\sqrt{q}+\\sqrt[3]{r}$ generates an extension of degree dividing 6. A degree-5 element cannot lie in a degree-6 extension unless 5|6, which it doesn't. So $\\cos(\\pi/11)$ **cannot** be expressed in this form.\n\n## Verification\n\nFor $n=8,9,10$: degrees are $\\phi(16)/2=4$, $\\phi(18)/2=3$, $\\phi(20)/2=4$. Degree 4 can fit in degree 6 extension if the degree-4 subfield is compatible. For $n=8$: $\\cos(\\pi/8) = \\sqrt{(2+\\sqrt{2})/2}$ which is $\\sqrt{q}$ form ✓. For $n=10$: $\\cos(\\pi/10) = (1+\\sqrt{5})/4$... actually $\\cos(\\pi/10) = \\sqrt{(2+\\sqrt{5})/4}$... degree 4 but expressible ✓.\n\nFor $n=11$: degree 5, impossible.\n\nFinal answer: **11**",
+  "usage": {
+    "input_tokens": 107,
+    "output_tokens": 1393,
+    "thinking_tokens": 0
+  },
+  "latency_s": 19.707892973907292,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "**11**"
+  }
+}

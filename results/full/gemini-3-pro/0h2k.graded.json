@@ -1,0 +1,25 @@
+{
+  "id": "0h2k",
+  "country": "Ukraine",
+  "competition": "51st Ukrainian National Mathematical Olympiad, 4th Round",
+  "gold_final_answer": "There are more twin numbers than non-twin numbers among the first 20112012 natural numbers.",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Least common multiples (lcm)",
+    "Discrete Mathematics > Combinatorics > Inclusion-exclusion"
+  ],
+  "prompt": "We call a natural number a *twin* if it has two natural divisors whose difference is equal to $2$. Determine whether there are more twin numbers or the numbers that are not twin among the first $20112012$ natural numbers.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To determine whether there are more twin numbers or non-twin numbers, let's analyze the condition for a natural number $n$ to be a twin. \n\nA number $n$ is a twin if it has two natural divisors, say $d$ and $d+2$. \nIf $d$ and $d+2$ are both divisors of $n$, then their least common multiple (LCM) must also be a divisor of $n$.\n- If $d$ is odd, then $d$ and $d+2$ are coprime, so their LCM is $d(d+2)$.\n- If $d$ is even, then $d$ and $d+2$ share a greatest common divisor of $2$, so their LCM is $\\frac{d(d+2)}{2}$.\n\nThus, $n$ is a twin number if and only if it is a multiple of $d(d+2)$ for some odd $d$, or $\\frac{d(d+2)}{2}$ for some even $d$.\n\nLet's look at the first two possible values for $d$:\n1. For $d = 1$ (odd), the LCM is $1(1+2) = 3$. So, all multiples of $3$ are twin numbers.\n2. For $d = 2$ (even), the LCM is $\\frac{2(2+2)}{2} = 4$. So, all multiples of $4$ are twin numbers.\n\nNow, let's find the proportion of numbers that are multiples of $3$ or $4$. Using the Principle of Inclusion-Exclusion, the fraction of such numbers in the natural numbers is:\n$$ \\frac{1}{3} + \\frac{1}{4} - \\frac{1}{12} = \\frac{6}{12} = \\frac{1}{2} $$\n\nThe number $20112012$ is a multiple of $12$ (since $20112012 = 12 \\times 1676001$). Therefore, exactly half of the first $20112012$ natural numbers are multiples of $3$ or $4$. This gives us exactly $10056006$ twin numbers just from these two conditions.\n\nHowever, there are other twin numbers that are neither multiples of $3$ nor $4$. For example, if we take $d = 5$ (odd), the LCM is $5(5+2) = 35$. The number $35$ is a twin number (its divisors $5$ and $7$ have a difference of $2$), and it is not divisible by $3$ or $4$. \n\nSince $35 \\le 20112012$, there is at least one twin number (and in fact, many more, such as $35, 70, 77, \\dots$) that is not accounted for by the multiples of $3$ and $4$. \n\nThis means the total number of twin numbers among the first $20112012$ natural numbers is strictly greater than half of $20112012$. Consequently, the number of non-twin numbers must be strictly less than half.\n\nFinal answer: more twin numbers",
+  "usage": {
+    "input_tokens": 92,
+    "output_tokens": 722,
+    "thoughts_tokens": 2943
+  },
+  "latency_s": 29.49109150096774,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "more twin numbers"
+  }
+}

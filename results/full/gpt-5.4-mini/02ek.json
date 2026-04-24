@@ -1,0 +1,20 @@
+{
+  "id": "02ek",
+  "country": "Brazil",
+  "competition": "XI OBM",
+  "gold_final_answer": "With ten tokens on rows of lengths one thousand four hundred ninety two and one thousand nine hundred eighty nine, player B has a winning strategy. For k tokens on this board, B wins if k is at most ten and A wins if k is greater than ten. If both rows are all integers, B has a winning strategy. If both rows are all rationals, B has a winning strategy.",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Games / greedy algorithms",
+    "Discrete Mathematics > Combinatorics > Invariants / monovariants"
+  ],
+  "prompt": "$A$ and $B$ play a game. Each has $10$ tokens numbered from $1$ to $10$. The board is two rows of squares. The first row is numbered $1$ to $1492$ and the second row is numbered $1$ to $1989$. On the $n$th turn, $A$ places his token number $n$ on any empty square in either row and $B$ places his token on any empty square in the other row. $B$ wins if the order of the tokens is the same in the two rows, otherwise $A$ wins. Which player has a winning strategy? Suppose each player has $k$ tokens, numbered from $1$ to $k$. Who has the winning strategy? What if both rows are all the integers? Or both all the rationals?",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let us encode each row by the order in which the tokens appear from left to right.\n\nSince token \\(n\\) is placed on the \\(n\\)th turn by both players, each player is building a sequence of length \\(k\\) in his row.  \n\\(B\\) wins exactly when the two rows end up with the same relative order; equivalently, the two sequences represent the same permutation pattern.\n\n## Key observation\nWhen \\(A\\) places token \\(n\\), he chooses a new position in one row; then \\(B\\) places token \\(n\\) in the other row.  \nSo after both moves, one row may get a new token inserted in an arbitrary place relative to its current tokens, while the other row gets a corresponding insertion.\n\nThus the game is about whether \\(B\\) can keep the two rows order-isomorphic.\n\n---\n\n## Finite rows of lengths \\(1492\\) and \\(1989\\), with \\(10\\) tokens\n\nBecause each player has only \\(10\\) tokens, each row will contain at most \\(10\\) occupied squares.  \nSince both rows are much longer than \\(10\\), there is always plenty of room to place any token in any desired relative position without being blocked by fullness.\n\nSo \\(B\\) can simply mirror \\(A\\)’s pattern:\n\n- whenever \\(A\\) inserts token \\(n\\) into some position relative to the already placed tokens in one row,\n- \\(B\\) inserts token \\(n\\) into the corresponding position relative to the already placed tokens in the other row.\n\nBy induction, after every turn the two rows have the same relative order.\n\nSo \\(B\\) has a winning strategy.\n\n---\n\n## General case: each player has \\(k\\) tokens\n\nThe same argument works for any finite \\(k\\), provided both rows have at least \\(k\\) available places.\n\n- \\(A\\) cannot force a mismatch, because \\(B\\) can always match the insertion pattern.\n- Therefore \\(B\\) has a winning strategy.\n\nSo for any finite \\(k\\), **\\(B\\) wins**.\n\n---\n\n## If both rows are all the integers\n\nNow there is no boundary issue at all. There are infinitely many empty squares on both sides, so \\(B\\) can still mirror \\(A\\)’s moves exactly as above.\n\nThus again **\\(B\\) wins**.\n\n---\n\n## If both rows are all the rationals\n\nThe rational numbers are densely ordered, but that does not change the strategy: between any two occupied positions there are infinitely many unused positions, so there is even more freedom.\n\n\\(B\\) can still preserve the same relative order of the two rows throughout the game.\n\nSo again **\\(B\\) wins**.\n\n---\n\nIn all versions of the game, the second player can maintain an order-isomorphism between the two rows.\n\nFinal answer: \\(B\\) has a winning strategy in all cases.",
+  "usage": {
+    "input_tokens": 221,
+    "output_tokens": 615,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 5.197910975082777,
+  "cached": false
+}

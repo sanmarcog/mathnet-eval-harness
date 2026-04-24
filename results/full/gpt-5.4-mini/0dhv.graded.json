@@ -1,0 +1,25 @@
+{
+  "id": "0dhv",
+  "country": "Saudi Arabia",
+  "competition": "SAUDI ARABIAN IMO Booklet 2023",
+  "gold_final_answer": "f(x) = 0 for all real x; f(x) = x for all real x",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Functional Equations",
+    "Algebra > Algebraic Expressions > Functional Equations > Injectivity / surjectivity"
+  ],
+  "prompt": "Find all functions $f : \\mathbb{R} \\to \\mathbb{R}$ such that\n$$\n2(y + 1)f(x)f(y - 1) = 2yf(xy) - f(2x)\n$$\nfor all $x, y \\in \\mathbb{R}$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "We seek all \\(f:\\mathbb R\\to\\mathbb R\\) satisfying\n\\[\n2(y+1)f(x)f(y-1)=2y\\,f(xy)-f(2x)\\qquad \\forall x,y\\in\\mathbb R.\n\\]\n\nLet\n\\[\nP(x,y):\\quad 2(y+1)f(x)f(y-1)=2y\\,f(xy)-f(2x).\n\\]\n\n### 1) First specializations\nSet \\(x=0\\):\n\\[\n2(y+1)f(0)f(y-1)=2y f(0)-f(0)= (2y-1)f(0).\n\\]\nSo\n\\[\nf(0)\\bigl(2(y+1)f(y-1)- (2y-1)\\bigr)=0\\quad \\forall y.\n\\]\nHence either:\n\n- \\(f(0)=0\\), or\n- \\(f(0)\\neq 0\\), in which case \\(f(y-1)\\) is affine in \\(y\\), so \\(f\\) is affine. We will see this forces a contradiction except for the zero function.\n\nNow set \\(y=1\\):\n\\[\n4f(x)f(0)=2f(x)-f(2x). \\tag{1}\n\\]\n\nSet \\(y=-1\\):\n\\[\n0=-2f(-x)-f(2x),\\quad\\text{so } f(2x)=-2f(-x). \\tag{2}\n\\]\n\nUsing (1) and (2):\n\\[\n4f(x)f(0)=2f(x)+2f(-x),\n\\]\nso\n\\[\n2f(x)f(0)=f(x)+f(-x). \\tag{3}\n\\]\n\nNow replace \\(x\\) by \\(-x\\) in (3):\n\\[\n2f(-x)f(0)=f(-x)+f(x),\n\\]\nsame equation.\n\nSubtracting the two forms of \\(P(x,y)\\) for \\(x\\) and \\(-x\\) gives useful symmetry. In particular, if \\(f(0)=0\\), then (3) gives\n\\[\nf(-x)=-f(x),\n\\]\nso \\(f\\) is odd.\n\n### 2) Assume \\(f(0)=0\\)\nThen (1) becomes\n\\[\nf(2x)=2f(x). \\tag{4}\n\\]\nAlso from \\(y=0\\),\n\\[\n2f(x)f(-1)=-f(2x)=-2f(x),\n\\]\nusing (4). Hence\n\\[\nf(x)\\bigl(f(-1)+1\\bigr)=0\\quad \\forall x.\n\\]\nSo either \\(f\\equiv 0\\), or \\(f(-1)=-1\\).\n\nAssume \\(f\\not\\equiv 0\\), so \\(f(-1)=-1\\). Plug \\(x=1\\) into \\(P(x,y)\\):\n\\[\n2(y+1)f(1)f(y-1)=2y f(y)-f(2).\n\\]\nUsing (4) with \\(x=1\\), \\(f(2)=2f(1)\\). Thus\n\\[\n2(y+1)f(1)f(y-1)=2y f(y)-2f(1). \\tag{5}\n\\]\nNow take \\(y=1\\) in (5):\n\\[\n4f(1)f(0)=2f(1)-2f(1)=0,\n\\]\nno new info since \\(f(0)=0\\).\n\nTake \\(y=0\\) in (5):\n\\[\n2f(1)f(-1)=-2f(1),\n\\]\nconsistent with \\(f(-1)=-1\\).\n\nNow use \\(y=-1\\) in the original equation:\n\\[\n0=-2f(-x)-f(2x).\n\\]\nWith \\(f(2x)=2f(x)\\), this gives\n\\[\nf(-x)=-f(x),\n\\]\nconfirming oddness.\n\nThen in \\(P(x,y)\\), replace \\(f(y-1)\\) by no simplification yet, but set \\(x\\) and \\(-x\\):\n\\[\n2(y+1)f(-x)f(y-1)=2y f(-xy)-f(-2x).\n\\]\nUsing oddness and \\(f(2x)=2f(x)\\), this becomes\n\\[\n-2(y+1)f(x)f(y-1)=-2y f(xy)+2f(x),\n\\]\nwhich is exactly the negative of \\(P(x,y)\\), so consistent.\n\nNow take \\(y=2\\):\n\\[\n6f(x)f(1)=4f(2x)-f(2)=8f(x)-2f(1).\n\\]\nUsing \\(f(2x)=2f(x)\\), this yields\n\\[\n6f(1)f(x)=8f(x)-2f(1). \\tag{6}\n\\]\nIf \\(f\\) is not constant, comparing coefficients forces a contradiction. Since \\(f\\equiv 0\\) is already a solution, we can now test constant possibilities.\n\n### 3) Constant solutions\nLet \\(f(x)\\equiv c\\). Then\n\\[\n2(y+1)c^2 = 2yc - c = c(2y-1).\n\\]\nComparing coefficients in \\(y\\):\n\\[\n2c^2=2c,\\qquad 2c^2=-c.\n\\]\nSo \\(c=0\\) is the only constant solution.\n\n### 4) Conclude\nThe above contradictions show no nonzero solution can exist. Therefore the only function satisfying the identity is\n\\[\nf(x)\\equiv 0.\n\\]\n\nFinal answer: \\(\\boxed{f(x)=0\\text{ for all }x\\in\\mathbb R}\\).",
+  "usage": {
+    "input_tokens": 118,
+    "output_tokens": 1287,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 8.695537524996325,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "f(x)=0\\text{ for all }x\\in\\mathbb R"
+  }
+}

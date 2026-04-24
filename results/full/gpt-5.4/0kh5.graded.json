@@ -1,0 +1,25 @@
+{
+  "id": "0kh5",
+  "country": "United States",
+  "competition": "Fall 2021 AMC 10 B",
+  "gold_final_answer": "D",
+  "topics_flat": [
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities",
+    "Algebra > Prealgebra / Basic Algebra > Simple Equations"
+  ],
+  "prompt": "Which of the following conditions is sufficient to guarantee that integers $x$, $y$, and $z$ satisfy the equation\n$$\nx(x - y) + y(y - z) + z(z - x) = 1?\n$$\n(A) $x > y$ and $y = z$\n(B) $x = y - 1$ and $y = z - 1$\n(C) $x = z + 1$ and $y = x + 1$\n(D) $x = z$ and $y - 1 = x$\n(E) $x + y + z = 1$",
+  "model": "gpt-5.4",
+  "response_text": "Let\n\\[\nS=x(x-y)+y(y-z)+z(z-x).\n\\]\nWe test each condition to see whether it forces \\(S=1\\).\n\nFirst simplify:\n\\[\nS=x^2-xy+y^2-yz+z^2-zx.\n\\]\n\nNow check the choices.\n\n### (A) \\(x>y\\) and \\(y=z\\)\nIf \\(y=z\\), then\n\\[\nS=x(x-y)+y(y-y)+y(y-x)=x(x-y)+0+y(y-x).\n\\]\nThis becomes\n\\[\nx^2-xy+y^2-xy=(x-y)^2.\n\\]\nSince \\(x>y\\), \\(x-y\\ge1\\), but this need not equal \\(1\\) always. For example \\(x=3,y=z=1\\) gives \\(S=4\\). Not sufficient.\n\n### (B) \\(x=y-1\\) and \\(y=z-1\\)\nThen \\(y=x+1,\\ z=x+2\\). Substitute:\n\\[\nS=x(x-(x+1))+(x+1)((x+1)-(x+2))+(x+2)((x+2)-x).\n\\]\n\\[\nS=x(-1)+(x+1)(-1)+(x+2)(2)\n=-x-(x+1)+2x+4=3.\n\\]\nNot sufficient.\n\n### (C) \\(x=z+1\\) and \\(y=x+1\\)\nThen let \\(z=t\\). So \\(x=t+1,\\ y=t+2\\). Then\n\\[\nS=(t+1)((t+1)-(t+2))+(t+2)((t+2)-t)+t(t-(t+1)).\n\\]\n\\[\nS=(t+1)(-1)+(t+2)(2)+t(-1)\n=-(t+1)+2t+4-t=3.\n\\]\nNot sufficient.\n\n### (D) \\(x=z\\) and \\(y-1=x\\)\nSo \\(y=x+1\\) and \\(z=x\\). Then\n\\[\nS=x(x-(x+1))+(x+1)((x+1)-x)+x(x-x).\n\\]\n\\[\nS=x(-1)+(x+1)(1)+0=-x+x+1=1.\n\\]\nThis always works, so it is sufficient.\n\n### (E) \\(x+y+z=1\\)\nThis does not force \\(S=1\\). For example \\((x,y,z)=(1,0,0)\\) gives\n\\[\nS=1(1-0)+0+0=1,\n\\]\nbut \\((2,-1,0)\\) also has sum \\(1\\), and\n\\[\nS=2(3)+(-1)(-1)+0=7\\neq1.\n\\]\nNot sufficient.\n\nTherefore the correct choice is **(D)**.\n\nFinal answer: \\(\\boxed{\\text{D}}\\)",
+  "usage": {
+    "input_tokens": 177,
+    "output_tokens": 633,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 10.31099262891803,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "\\text{D}"
+  }
+}

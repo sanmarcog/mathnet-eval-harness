@@ -1,0 +1,25 @@
+{
+  "id": "0hd3",
+  "country": "Ukraine",
+  "competition": "59th Ukrainian National Mathematical Olympiad",
+  "gold_final_answer": "(x, y, z) = (t, 2t, 2t), (t, 0, 0), (0, t, 0), (0, 0, t) for any real t",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities",
+    "Algebra > Intermediate Algebra > Quadratic functions"
+  ],
+  "prompt": "Prove that for any real numbers $x, y, z$ the following inequality is true:\n$$\nx^2(3y^2 + 3z^2 - 2yz) \\geq yz(2xy + 2xz - yz).\n$$\nFind the triples that turn it into equality.",
+  "model": "gpt-5.4",
+  "response_text": "We want to prove\n\\[\nx^2(3y^2+3z^2-2yz)\\ge yz(2xy+2xz-yz)\n\\]\nfor all real \\(x,y,z\\), and determine when equality holds.\n\n## Step 1: Bring everything to one side\nConsider\n\\[\nx^2(3y^2+3z^2-2yz)-yz(2xy+2xz-yz).\n\\]\nExpand the right part:\n\\[\n=3x^2y^2+3x^2z^2-2x^2yz-2xyz(y+z)+y^2z^2.\n\\]\nSo\n\\[\n=3x^2y^2+3x^2z^2-2x^2yz-2xy^2z-2xyz^2+y^2z^2.\n\\]\n\n## Step 2: Factor nicely\nNotice that\n\\[\n(xy-xz)^2=x^2y^2-2x^2yz+x^2z^2,\n\\]\nand\n\\[\n( y-z)^2x^2=x^2y^2-2x^2yz+x^2z^2\n\\]\nis the same expression. A better grouping is:\n\\[\n3x^2y^2+3x^2z^2-2x^2yz-2xy^2z-2xyz^2+y^2z^2\n\\]\n\\[\n=(xy+xz-yz)^2+2x^2(y-z)^2.\n\\]\nIndeed,\n\\[\n(xy+xz-yz)^2\n= x^2y^2+x^2z^2+y^2z^2+2x^2yz-2xy^2z-2xyz^2,\n\\]\nso adding \\(2x^2(y-z)^2=2x^2y^2-4x^2yz+2x^2z^2\\) gives exactly\n\\[\n3x^2y^2+3x^2z^2-2x^2yz-2xy^2z-2xyz^2+y^2z^2.\n\\]\n\nHence\n\\[\nx^2(3y^2+3z^2-2yz)-yz(2xy+2xz-yz)\n=(xy+xz-yz)^2+2x^2(y-z)^2\\ge 0.\n\\]\nTherefore the inequality is true for all real \\(x,y,z\\).\n\n## Step 3: Equality case\nEquality holds iff both squares vanish:\n\\[\nxy+xz-yz=0,\\qquad x(y-z)=0.\n\\]\n\nSo either:\n\n### Case 1: \\(x=0\\)\nThen the first equation becomes\n\\[\n-yz=0 \\quad\\Rightarrow\\quad yz=0.\n\\]\nThus equality holds for\n\\[\n(0,y,0)\\quad\\text{or}\\quad (0,0,z).\n\\]\n\n### Case 2: \\(y=z\\)\nThen the first equation becomes\n\\[\n2xy-y^2=0 \\quad\\Rightarrow\\quad y(2x-y)=0.\n\\]\nSo either\n\n- \\(y=z=0\\), giving any \\((x,0,0)\\), or\n- \\(y=z=2x\\), i.e.\n\\[\n(x,2x,2x).\n\\]\n\nCombining everything, equality holds exactly for:\n\\[\n(x,0,0)\\ \\text{for any }x,\\qquad (0,y,0),\\qquad (0,0,z),\\qquad (t,2t,2t)\\ \\text{for any }t\\in\\mathbb R.\n\\]\n\n(These overlap at \\((0,0,0)\\).)\n\nFinal answer: \n\\[\nx^2(3y^2+3z^2-2yz)-yz(2xy+2xz-yz)=(xy+xz-yz)^2+2x^2(y-z)^2\\ge 0,\n\\]\nso the inequality is always true. Equality holds exactly for\n\\[\n(x,0,0),\\ (0,y,0),\\ (0,0,z)\\quad\\text{or}\\quad (t,2t,2t)\\qquad (x,y,z,t\\in\\mathbb R).\n\\]",
+  "usage": {
+    "input_tokens": 114,
+    "output_tokens": 939,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 11.638102637953125,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "\\["
+  }
+}

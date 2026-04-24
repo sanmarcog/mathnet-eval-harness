@@ -1,0 +1,21 @@
+{
+  "id": "06x1",
+  "country": "IMO",
+  "competition": "International Mathematical Olympiad",
+  "gold_final_answer": "3",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Invariants / monovariants",
+    "Discrete Mathematics > Combinatorics > Pigeonhole principle",
+    "Algebra > Linear Algebra > Vectors"
+  ],
+  "prompt": "Lucy starts by writing $s$ integer-valued 2022-tuples on a blackboard. After doing that, she can take any two (not necessarily distinct) tuples $\\mathbf{v} = (v_1, \\ldots, v_{2022})$ and $\\mathbf{w} = (w_1, \\ldots, w_{2022})$ that she has already written, and apply one of the following operations to obtain a new tuple:\n$$\n\\begin{aligned}\n& \\mathbf{v} + \\mathbf{w} = (v_1 + w_1, \\ldots, v_{2022} + w_{2022}) \\\\\n& \\mathbf{v} \\vee \\mathbf{w} = (\\max(v_1, w_1), \\ldots, \\max(v_{2022}, w_{2022}))\n\\end{aligned}\n$$\nand then write this tuple on the blackboard.\nIt turns out that, in this way, Lucy can write any integer-valued 2022-tuple on the blackboard after finitely many steps. What is the smallest possible number $s$ of tuples that she initially wrote?",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let the initial tuples be \\(a^{(1)},\\dots,a^{(s)}\\in \\mathbb Z^{2022}\\).\n\nWe will show that the minimum possible \\(s\\) is\n\n\\[\n\\boxed{2023}.\n\\]\n\n## Why at least \\(2023\\)?\n\nThink about what kind of set of tuples can be generated using only coordinatewise addition and coordinatewise maximum.\n\nA key observation is that every tuple generated from the initial ones is **coordinatewise dominated** by some tuple formed from the initial ones in a very structured way. In particular, to be able to produce **every** integer \\(2022\\)-tuple, the initial tuples must already contain enough freedom to independently control all \\(2022\\) coordinates, plus one extra “direction” to allow arbitrary negative values as well.\n\nA clean way to see the lower bound is to look at the following:\n\n- For each coordinate \\(i\\), we need some initial tuple that can be made large in the \\(i\\)-th coordinate without forcing the other coordinates to fail.\n- Since operations are only \\(+\\) and \\(\\vee\\), no new tuple can create a fundamentally new “independent sign pattern” beyond what is present in the initial set.\n- To generate all of \\(\\mathbb Z^{2022}\\), one needs at least \\(2022\\) tuples to independently cover the \\(2022\\) coordinates, and one additional tuple to handle translation / negative direction.\n\nThus \\(s\\ge 2023\\).\n\n## Why \\(2023\\) is enough\n\nTake the following \\(2023\\) initial tuples:\n\n- the \\(2022\\) standard basis vectors\n  \\[\n  e_1=(1,0,\\dots,0),\\ e_2=(0,1,0,\\dots,0),\\ \\dots,\\ e_{2022},\n  \\]\n- and the tuple\n  \\[\n  (-1,-1,\\dots,-1).\n  \\]\n\nNow we can generate any integer tuple \\((x_1,\\dots,x_{2022})\\):\n\n- First, using repeated addition of the \\(e_i\\), we can build any tuple with nonnegative coordinates.\n- Using \\((-1,-1,\\dots,-1)\\), repeated addition gives arbitrarily negative uniform shifts.\n- The operation \\(\\vee\\) lets us combine coordinatewise maxima, so we can assemble the desired coordinates one by one and then shift as needed.\n\nConcretely, from these tuples we can produce any integer \\(x_i\\) in each coordinate, and then combine them into the full vector.\n\nSo \\(s=2023\\) suffices.\n\nTherefore the smallest possible number is\n\n\\[\n\\boxed{2023}.\n\\]\n\nFinal answer: 2023",
+  "usage": {
+    "input_tokens": 295,
+    "output_tokens": 575,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 4.837089685024694,
+  "cached": false
+}

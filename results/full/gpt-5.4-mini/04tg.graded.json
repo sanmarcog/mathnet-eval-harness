@@ -1,0 +1,26 @@
+{
+  "id": "04tg",
+  "country": "Czech Republic",
+  "competition": "66th Czech and Slovak Mathematical Olympiad",
+  "gold_final_answer": "The unique function is given by f(n) = p if n is a positive power of a prime p, and f(n) = 1 otherwise (in particular f(1) = 1).",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Factorization techniques",
+    "Number Theory > Divisibility / Factorization > Prime numbers",
+    "Algebra > Algebraic Expressions > Functional Equations"
+  ],
+  "prompt": "**Find all functions $f: \\mathbb{N} \\to \\mathbb{N}$ such that for every positive integer $m$ the following is true: If we denote by $d_1, d_2, \\dots, d_n$ all the divisors of number $m$ then**\n$$\nf(d_1) \\cdot f(d_2) \\cdots f(d_n) = m.\n$$",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let \\(P(m)\\) denote the property:\n\nIf \\(d_1,\\dots,d_n\\) are all positive divisors of \\(m\\), then\n\\[\n\\prod_{i=1}^n f(d_i)=m.\n\\]\n\nWe will show the only such function is\n\\[\nf(n)=1 \\quad \\text{for all } n\\in \\mathbb N.\n\\]\n\n### Step 1: Use \\(m=1\\)\nThe only divisor of \\(1\\) is \\(1\\), so\n\\[\nf(1)=1.\n\\]\n\n### Step 2: Use prime numbers\nLet \\(p\\) be prime. Its divisors are \\(1,p\\). Hence\n\\[\nf(1)f(p)=p.\n\\]\nSince \\(f(1)=1\\), we get\n\\[\nf(p)=p.\n\\]\n\n### Step 3: Use \\(m=p^2\\)\nThe divisors are \\(1,p,p^2\\), so\n\\[\nf(1)f(p)f(p^2)=p^2.\n\\]\nThus\n\\[\n1\\cdot p \\cdot f(p^2)=p^2 \\quad\\Rightarrow\\quad f(p^2)=p.\n\\]\n\n### Step 4: Use \\(m=p^3\\)\nThe divisors are \\(1,p,p^2,p^3\\), so\n\\[\nf(1)f(p)f(p^2)f(p^3)=p^3.\n\\]\nSubstitute the known values:\n\\[\n1\\cdot p\\cdot p\\cdot f(p^3)=p^3\n\\]\nhence\n\\[\nf(p^3)=p.\n\\]\n\nContinuing this way, for every \\(k\\ge 1\\),\n\\[\nf(p^k)=p.\n\\]\n\n### Step 5: Contradiction from \\(m=pq\\) for distinct primes \\(p,q\\)\nThe divisors are \\(1,p,q,pq\\). So\n\\[\nf(1)f(p)f(q)f(pq)=pq.\n\\]\nUsing \\(f(1)=1,\\ f(p)=p,\\ f(q)=q\\),\n\\[\n1\\cdot p\\cdot q\\cdot f(pq)=pq,\n\\]\nso\n\\[\nf(pq)=1.\n\\]\n\n### Step 6: Now use \\(m=p^2q\\)\nIts divisors are \\(1,p,p^2,q,pq,p^2q\\). Then\n\\[\nf(1)f(p)f(p^2)f(q)f(pq)f(p^2q)=p^2q.\n\\]\nSubstitute the known values:\n\\[\n1\\cdot p\\cdot p\\cdot q\\cdot 1\\cdot f(p^2q)=p^2q,\n\\]\nso\n\\[\nf(p^2q)=1.\n\\]\n\nRepeating this kind of argument for all prime-power combinations forces\n\\[\nf(n)=1 \\quad \\text{for every } n.\n\\]\n\n### Verification\nIf \\(f(n)=1\\) for all \\(n\\), then for any \\(m\\),\n\\[\n\\prod_{d\\mid m} f(d)=\\prod_{d\\mid m}1=1,\n\\]\nwhich equals \\(m\\) only when \\(m=1\\). So this does **not** satisfy the condition.\n\nHence we must look more carefully.\n\n---\n\nActually, the condition is extremely restrictive. Let us compute the product over all divisors in terms of \\(f\\). A standard trick is to test prime powers.\n\nFor \\(m=p^k\\), the divisors are \\(1,p,\\dots,p^k\\), so\n\\[\n\\prod_{i=0}^k f(p^i)=p^k.\n\\]\nLet\n\\[\nA_k:=\\prod_{i=0}^k f(p^i).\n\\]\nThen \\(A_k=p^k\\). Dividing \\(A_k\\) by \\(A_{k-1}\\),\n\\[\nf(p^k)=\\frac{p^k}{p^{k-1}}=p \\quad (k\\ge1).\n\\]\nSo indeed \\(f(p^k)=p\\) for all primes \\(p\\) and \\(k\\ge1\\).\n\nNow take \\(m=pq\\) with distinct primes \\(p,q\\):\n\\[\nf(1)f(p)f(q)f(pq)=pq\n\\]\ngives\n\\[\n1\\cdot p\\cdot q\\cdot f(pq)=pq,\n\\]\nso \\(f(pq)=1\\).\n\nThen for \\(m=p^2q\\):\n\\[\nf(1)f(p)f(p^2)f(q)f(pq)f(p^2q)=p^2q,\n\\]\nhence\n\\[\n1\\cdot p\\cdot p\\cdot q\\cdot 1\\cdot f(p^2q)=p^2q,\n\\]\nso \\(f(p^2q)=1\\).\n\nSimilarly, for any \\(a,b\\ge1\\),\n\\[\nf(p^a q^b)=1.\n\\]\nBut taking \\(m=p^a q^b\\), the product of all divisor-values includes many factors equal to \\(1\\), while factors from pure prime powers are \\(p\\) or \\(q\\), making the total impossible unless \\(p=q\\). Contradiction.\n\nTherefore no such function exists.\n\nSo the set of all functions is empty.\n\nFinal answer: There is no function \\(f:\\mathbb N\\to\\mathbb N\\) satisfying the condition.",
+  "usage": {
+    "input_tokens": 139,
+    "output_tokens": 1224,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 6.219018395990133,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "There is no function \\(f:\\mathbb N\\to\\mathbb N\\) satisfying the condition."
+  }
+}

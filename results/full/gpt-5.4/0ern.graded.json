@@ -1,0 +1,26 @@
+{
+  "id": "0ern",
+  "country": "South Africa",
+  "competition": "South African Mathematics Olympiad First Round",
+  "gold_final_answer": "E",
+  "topics_flat": [
+    "Algebra > Prealgebra / Basic Algebra > Fractions",
+    "Algebra > Prealgebra / Basic Algebra > Decimals",
+    "Algebra > Prealgebra / Basic Algebra > Simple Equations"
+  ],
+  "prompt": "How many grams of pure gold must be added to five grams of a mixture that consists of 10% gold and 90% of some other metal so that the mixture will contain 20% gold?\n(A) 0.125 (B) 0.25 (C) 0.375 (D) 0.5 (E) 0.625",
+  "model": "gpt-5.4",
+  "response_text": "The 5 grams of mixture contains:\n\n- Gold: \\(10\\%\\) of \\(5 = 0.5\\) grams\n- Other metal: \\(4.5\\) grams\n\nLet \\(x\\) grams of pure gold be added. Then:\n\n- Total gold becomes \\(0.5 + x\\)\n- Total mixture becomes \\(5 + x\\)\n\nWe want the new mixture to be \\(20\\%\\) gold, so:\n\n\\[\n\\frac{0.5 + x}{5 + x} = 0.2\n\\]\n\nSolve:\n\n\\[\n0.5 + x = 0.2(5 + x)\n\\]\n\\[\n0.5 + x = 1 + 0.2x\n\\]\n\\[\n0.8x = 0.5\n\\]\n\\[\nx = \\frac{0.5}{0.8} = 0.625\n\\]\n\nFinal answer: 0.625",
+  "usage": {
+    "input_tokens": 123,
+    "output_tokens": 202,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 4.077461238950491,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "0.625"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "id": "03sa",
+  "country": "China",
+  "competition": "China Mathematical Competition (Jiangxi)",
+  "gold_final_answer": "4π/3",
+  "topics_flat": [
+    "Precalculus > Trigonometric functions"
+  ],
+  "prompt": "Assume that $\\alpha, \\beta, \\gamma$ satisfy $0 < \\alpha < \\beta < \\gamma < 2\\pi$. If\n$$\n\\cos(x + \\alpha) + \\cos(x + \\beta) + \\cos(x + \\gamma) = 0\n$$\nfor arbitrary $x \\in \\mathbb{R}$, then $\\gamma - \\alpha = \\underline{\\hspace{2cm}}$.",
+  "model": "claude-opus-4-7",
+  "response_text": "4π/3\n\nFinal answer: $\\frac{4\\pi}{3}$",
+  "usage": {
+    "input_tokens": 209,
+    "output_tokens": 29,
+    "thinking_tokens": 0
+  },
+  "latency_s": 1.650263789924793,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "$\\frac{4\\pi}{3}$"
+  }
+}

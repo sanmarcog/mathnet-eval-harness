@@ -1,0 +1,26 @@
+{
+  "id": "0lev",
+  "country": "Vietnam",
+  "competition": "VMO",
+  "gold_final_answer": "7, 17, 289",
+  "topics_flat": [
+    "Number Theory > Number-Theoretic Functions > φ (Euler's totient)",
+    "Number Theory > Modular Arithmetic > Fermat / Euler / Wilson theorems",
+    "Number Theory > Divisibility / Factorization > Prime numbers"
+  ],
+  "prompt": "For every pair of positive integers $n, m$ with $n < m$, denote $s(n, m)$ as the number of positive integers in the range $[n, m]$ that are coprime with $m$. Find all positive integers $m \\ge 2$ such that $m$ satisfies these conditions\n\ni) $\\frac{s(n, m)}{m-n} \\ge \\frac{s(1, m)}{m}$ for all $n = 1, 2, \\dots, m-1$.\nii) $2022^m + 1$ is divisible by $m^2$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let \\(\\varphi(m)=s(1,m)\\).  \nCondition (i) says that for every \\(n<m\\),\n\\[\n\\frac{s(n,m)}{m-n}\\ge \\frac{\\varphi(m)}m.\n\\]\nBut \\(s(n,m)\\) counts the integers in \\([n,m]\\) coprime to \\(m\\). Since among the \\(m\\) numbers \\(1,2,\\dots,m\\), exactly \\(\\varphi(m)\\) are coprime to \\(m\\), the average density of coprime numbers in the tail \\([n,m]\\) is never smaller than the global density \\(\\varphi(m)/m\\).\n\nA standard way to test this is to choose \\(n=m-p\\), where \\(p\\mid m\\) is a prime divisor of \\(m\\). Then the interval \\([m-p,m]\\) contains exactly one multiple of \\(p\\), namely \\(m\\), so among these \\(p+1\\) numbers there are at most \\(p\\) numbers coprime to \\(m\\). Condition (i) forces strong restrictions; in fact it implies \\(m\\) must be prime.  \nIndeed, if \\(m\\) is composite, taking \\(n=m-p\\) for the smallest prime divisor \\(p\\mid m\\) gives\n\\[\n\\frac{s(m-p,m)}{p}\\le \\frac{p}{p}=1,\n\\]\nwhile \\(\\varphi(m)/m\\le 1-\\frac1p\\), and the inequality fails unless \\(m\\) is prime. So (i) implies \\(m\\) is prime.\n\nNow use (ii):\n\\[\n2022^m+1 \\equiv 0 \\pmod{m^2}.\n\\]\nIf \\(m\\) is an odd prime, then by Fermat,\n\\[\n2022^m \\equiv 2022 \\pmod m,\n\\]\nso\n\\[\n2022^m+1 \\equiv 2023 \\pmod m.\n\\]\nThus \\(m\\mid 2023\\). Since \\(2023=7\\cdot 17^2\\), the prime possibilities are \\(m=7\\) or \\(m=17\\).\n\nCheck \\(m=7\\):\n\\[\n2022 \\equiv 1 \\pmod 7 \\implies 2022^7+1 \\equiv 2 \\not\\equiv 0 \\pmod{49},\n\\]\nso \\(m=7\\) fails.\n\nCheck \\(m=17\\):\n\\[\n2022 \\equiv 2 \\pmod{17},\\qquad 2^{16}\\equiv 1 \\pmod{17},\n\\]\nhence\n\\[\n2^{17}+1 = 131073 \\equiv 1 \\pmod{17},\n\\]\nso \\(17\\nmid 2022^{17}+1\\), and \\(m=17\\) fails too.\n\nTherefore there is no positive integer \\(m\\ge 2\\) satisfying both conditions.\n\nFinal answer: \\(\\boxed{\\text{no such }m}\\)",
+  "usage": {
+    "input_tokens": 181,
+    "output_tokens": 666,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 4.736904165009037,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "\\text{no such }m"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "id": "04cg",
+  "country": "Croatia",
+  "competition": "Mathematica competitions in Croatia",
+  "gold_final_answer": "1456",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Inclusion-exclusion",
+    "Discrete Mathematics > Other"
+  ],
+  "prompt": "Determine the smallest integer $N$ larger than $1000$ such that exactly half of the numbers from $1$ to $N$ have at least one digit $1$ in their decimal notation.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "I need to find the smallest integer N > 1000 where exactly half the numbers from 1 to N contain at least one digit '1'.\n\n## Setting Up the Count\n\nLet f(N) = count of numbers from 1 to N containing at least one digit '1'.\nI need f(N) = N/2, so N must be even.\n\n## Counting Numbers with at Least One '1'\n\nIt's easier to count numbers WITHOUT any digit '1', then subtract.\n\nLet g(N) = count of numbers from 1 to N with NO digit '1'.\nThen f(N) = N - g(N), and I need N - g(N) = N/2, so g(N) = N/2.\n\n## Counting Numbers Without Digit '1' up to N\n\nFor numbers from 1 to 9999 (4-digit range), I'll work systematically.\n\n**Numbers from 1 to 999 without digit '1':**\n- 1-digit: {2,3,4,5,6,7,8,9} = 8 numbers\n- 2-digit: first digit ∈ {2,...,9} (8 choices), second ∈ {0,2,...,9} (9 choices) = 72\n- 3-digit: 8 × 9 × 9 = 648\n- Total: 8 + 72 + 648 = 728\n\n**Numbers from 1000 to N without digit '1':**\nFor 4-digit numbers, the thousands digit can be 2-9 (not 1), or if thousands digit is 1, the whole number contains a '1'.\n\nSince N > 1000, and 1000 itself contains '1', numbers from 1000-1999 all contain '1' (thousands digit is 1).\n\nFor 2000-9999: thousands digit ∈ {2,...,9} (8 choices), each remaining digit ∈ {0,2,...,9} (9 choices).\n\n**For N in range [1000, 1999]:** All numbers 1000-N have a '1', so g(N) = 728 (same as up to 999).\n\nWe need g(N) = N/2, so N = 2 × 728 = 1456. But 1456 is in [1000,1999], and g(1456) = 728. Check: 728 = 1456/2 ✓\n\nWait, let me verify this is correct. Numbers from 1 to 1456:\n- Numbers without digit '1': these must all be in 1-999 (since 1000-1456 all have thousands digit 1).\n- g(1456) = 728\n\nAnd 1456/2 = 728. ✓\n\nSo f(1456) = 1456 - 728 = 728 = 1456/2. ✓\n\n## Verification\n\nLet me verify g(999) = 728:\n- 1-digit without '1': 2,3,4,5,6,7,8,9 → 8\n- 2-digit without '1': first digit {2-9}: 8, second digit {0,2-9}: 9 → 72\n- 3-digit without '1': 8 × 9 × 9 = 648\n- Total: 728 ✓\n\nNumbers 1000-1456: all contain digit '1' (thousands digit = 1), so none are in g(1456).\nThus g(1456) = 728 = 1456/2. ✓\n\n## Checking N > 1000\n\nThe problem asks for N > 1000. Is 1456 > 1000? Yes.\n\nAlso checking there's no smaller solution: For N in (1000, 1456), g(N) = 728 but N/2 < 728, so g(N) > N/2, meaning too few numbers have a '1'. At N = 1456, we get equality.\n\nActually wait - I should check if N could equal 1000 or just above. At N = 1000: g(1000) = 728, need 728 = 500. No. As N increases from 1000 to 1999, g(N) stays at 728 while N/2 increases from 500 to 999.5. So g(N) = N/2 when N/2 = 728, i.e., N = 1456.\n\nFinal answer: **1456**\n\nFinal answer: 1456",
+  "usage": {
+    "input_tokens": 88,
+    "output_tokens": 1091,
+    "thinking_tokens": 0
+  },
+  "latency_s": 16.619911018991843,
+  "cached": false
+}

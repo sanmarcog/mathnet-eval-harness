@@ -1,0 +1,27 @@
+{
+  "id": "04bo",
+  "country": "Croatia",
+  "competition": "Mathematica competitions in Croatia",
+  "gold_final_answer": "1.5 cm, 2 cm, 2.5 cm",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Triangles",
+    "Geometry > Plane Geometry > Circles",
+    "Geometry > Plane Geometry > Miscellaneous > Angle chasing",
+    "Algebra > Prealgebra / Basic Algebra > Simple Equations"
+  ],
+  "prompt": "A triangle with an area of $1.5 \\text{ cm}^2$ is inscribed in a circle of radius $1.25$ cm, with one side of the triangle as the diameter of the circle. What are the lengths of the sides of the triangle?",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let the diameter be \\(AB\\). Since \\(AB\\) is a diameter of the circumcircle, \\(\\angle C = 90^\\circ\\) by Thales’ theorem.\n\nThe circle has radius \\(1.25\\), so the diameter is\n\n\\[\nAB = 2(1.25)=2.5\\text{ cm}.\n\\]\n\nLet the other sides be \\(AC=x\\) and \\(BC=y\\). Then:\n\n1. By the Pythagorean theorem,\n\\[\nx^2+y^2=2.5^2=6.25.\n\\]\n\n2. The area of the right triangle is\n\\[\n\\frac12 xy = 1.5,\n\\]\nso\n\\[\nxy=3.\n\\]\n\nNow use\n\\[\n(x+y)^2=x^2+y^2+2xy=6.25+6=12.25,\n\\]\nhence\n\\[\nx+y=3.5.\n\\]\n\nSo \\(x\\) and \\(y\\) are the roots of\n\\[\nt^2-3.5t+3=0.\n\\]\n\nSolving:\n\\[\nt=\\frac{3.5\\pm\\sqrt{3.5^2-12}}{2}\n=\\frac{3.5\\pm\\sqrt{0.25}}{2}\n=\\frac{3.5\\pm 0.5}{2}.\n\\]\n\nThus\n\\[\nt=2 \\quad \\text{or} \\quad 1.5.\n\\]\n\nSo the triangle’s side lengths are:\n\n\\[\n\\boxed{1.5\\text{ cm},\\ 2\\text{ cm},\\ 2.5\\text{ cm}}.\n\\]\n\nFinal answer: \\(1.5\\text{ cm}, 2\\text{ cm}, 2.5\\text{ cm}\\)",
+  "usage": {
+    "input_tokens": 105,
+    "output_tokens": 400,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.2848816900514066,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "\\(1.5\\text{ cm}, 2\\text{ cm}, 2.5\\text{ cm}\\)"
+  }
+}

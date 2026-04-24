@@ -1,0 +1,25 @@
+{
+  "id": "0a0x",
+  "country": "Netherlands",
+  "competition": "Dutch Mathematical Olympiad",
+  "gold_final_answer": "Each vase contains the note equal to its own label; that is, for every k from 1 to 2023, vase k contains k.",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Functional equations",
+    "Discrete Mathematics > Combinatorics > Induction / smoothing"
+  ],
+  "prompt": "In a room there are $2023$ vases numbered from $1$ to $2023$. In each vase we want to put a note with a positive integer from $1, 2, \\ldots, 2023$ on it. The numbers on the notes do *not* necessarily have to be distinct. The following should now apply to each vase. Look at the note inside the vase, find the (not necessarily different) vase with the number written on the note, and look at the note inside this vase. Then the average of the numbers on the two notes must be exactly equal to the number of the first selected vase. For example, if we put a note with the number $5$ in vase $13$, then vase $5$ should contain a note with the number $21$ on it: after all, the average of $5$ and $21$ is $13$.\n\nDetermine all possible ways to provide each vase with a note.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let the note in vase \\(i\\) be \\(f(i)\\in\\{1,\\dots,2023\\}\\).  \nThe condition says:\n\n\\[\n\\frac{f(i)+f(f(i))}{2}=i \\qquad\\text{for all } i,\n\\]\n\nso equivalently\n\n\\[\nf(f(i))=2i-f(i). \\tag{1}\n\\]\n\nWe will determine all functions \\(f:\\{1,\\dots,2023\\}\\to\\{1,\\dots,2023\\}\\) satisfying this.\n\n## 1) A useful consequence\nApply \\(f\\) to both sides of (1) indirectly by plugging in \\(f(i)\\):\n\n\\[\nf(f(f(i)))=2f(i)-f(f(i)).\n\\]\n\nUsing (1) again on \\(f(i)\\),\n\n\\[\nf(f(f(i)))=2f(i)-(2i-f(i))=3f(i)-2i.\n\\]\n\nBut also from (1) with \\(i\\) replaced by \\(f(i)\\),\n\n\\[\nf(f(f(i)))=2f(i)-f(f(i)).\n\\]\n\nThis is consistent, and from (1) we can rewrite:\n\n\\[\nf(f(i)) = 2i-f(i).\n\\]\n\nSo if we set \\(a_i=f(i)\\), then \\(f(a_i)=2i-a_i\\). In particular, along the chain \\(i \\mapsto f(i)\\mapsto f(f(i))\\), the values are in arithmetic progression with common difference \\(f(i)-i\\).\n\n## 2) Iterating once more\nNow compute\n\n\\[\nf(f(f(i))) = 3f(i)-2i.\n\\]\n\nSince \\(f(i)\\in\\{1,\\dots,2023\\}\\), the value \\(3f(i)-2i\\) must also lie in \\(\\{1,\\dots,2023\\}\\). But the structure is stronger if we look at differences.\n\nFrom (1), define \\(d_i=f(i)-i\\). Then\n\n\\[\nf(f(i))=2i-f(i)=i-d_i.\n\\]\n\nHence\n\n\\[\nd_{f(i)}=f(f(i))-f(i)=(i-d_i)-(i+d_i)=-2d_i.\n\\]\n\nSo along the arrow \\(i\\to f(i)\\), the difference doubles and changes sign. Iterating again,\n\n\\[\nd_{f(f(i))} = -2d_{f(i)} = 4d_i.\n\\]\n\nThus on the orbit of any \\(i\\), the differences are multiplied by powers of \\(-2\\). Since there are only finitely many vases, every orbit eventually repeats, so some power of \\(-2\\) must preserve a difference value. The only integer \\(d\\) satisfying \\(d, -2d, 4d,\\dots\\) all remaining within the finite set of possible differences \\([-(2022),2022]\\) under repetition is \\(d=0\\).\n\nMore concretely: if \\(d_i\\neq 0\\), then \\(|d_{f^k(i)}|=2^k|d_i|\\), which becomes larger than \\(2022\\) for large \\(k\\), impossible because \\(|d_j|\\le 2022\\) for all \\(j\\). Therefore\n\n\\[\nd_i=0 \\quad\\text{for all } i.\n\\]\n\nSo \\(f(i)=i\\) for every \\(i\\).\n\n## 3) Check\nIf \\(f(i)=i\\) for all \\(i\\), then the note in vase \\(i\\) points to vase \\(i\\), whose note is also \\(i\\), and the average is indeed \\(i\\). So this works.\n\nThus the only possible arrangement is the trivial one: every vase contains its own number.\n\nFinal answer: For every vase \\(i\\), put the note \\(i\\) in vase \\(i\\) and only this arrangement is possible.",
+  "usage": {
+    "input_tokens": 247,
+    "output_tokens": 842,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 5.952054522000253,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "For every vase \\(i\\), put the note \\(i\\) in vase \\(i\\) and only this arrangement is possible."
+  }
+}

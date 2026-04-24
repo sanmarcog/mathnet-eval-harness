@@ -1,0 +1,25 @@
+{
+  "id": "04ud",
+  "country": "Czech Republic",
+  "competition": "67th Czech and Slovak Mathematical Olympiad",
+  "gold_final_answer": "No",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Greatest common divisors (gcd)",
+    "Number Theory > Residues and Primitive Roots > Quadratic residues"
+  ],
+  "prompt": "Do there exist positive integers $n$, $k$ such that\n$$\n\\frac{n}{11^k - n}\n$$\nis a square of an integer?",
+  "model": "claude-sonnet-4-6",
+  "response_text": "We need positive integers $n$, $k$ such that $\\frac{n}{11^k - n}$ is a perfect square.\n\nLet $\\frac{n}{11^k - n} = m^2$ for some positive integer $m$.\n\nThen $n = m^2(11^k - n)$, so $n(1 + m^2) = m^2 \\cdot 11^k$, giving:\n$$n = \\frac{m^2 \\cdot 11^k}{1 + m^2}$$\n\nFor $n$ to be a positive integer, we need $(1 + m^2) \\mid m^2 \\cdot 11^k$.\n\nSince $\\gcd(m^2, 1+m^2) = 1$, we need $(1 + m^2) \\mid 11^k$.\n\nSo $1 + m^2$ must be a power of 11. We need $1 + m^2 = 11^j$ for some $j \\leq k$.\n\nWe need to find a positive integer $m$ such that $m^2 + 1$ is a power of 11.\n\nCheck small values:\n- $m = 1$: $1 + 1 = 2$ — no\n- $m = 2$: $4 + 1 = 5$ — no\n- $m = 3$: $9 + 1 = 10$ — no\n- $m = 4$: $16 + 1 = 17$ — no\n- $m = 5$: $25 + 1 = 26$ — no\n- $m = 10$: $100 + 1 = 101$ — no\n- $m = 11$: $121 + 1 = 122$ — no\n\nWe need $m^2 \\equiv -1 \\pmod{11}$. Check: $m^2 \\equiv -1 \\equiv 10 \\pmod{11}$. The quadratic residues mod 11 are $1, 4, 9, 5, 3$ (i.e., $1^2, 2^2, 3^2, 4^2, 5^2$). Since 10 is not among them, $m^2 \\equiv -1 \\pmod{11}$ has no solution.\n\nThis means $11 \\nmid (m^2 + 1)$ for any integer $m$. Therefore $m^2 + 1$ cannot be a power of 11 (since it's not divisible by 11).\n\nWait, but $m^2 + 1 = 11^0 = 1$ would require $m = 0$, which isn't positive. So there's no solution with $1 + m^2$ being a power of 11.\n\nBut wait — we also need $n < 11^k$ (so that $11^k - n > 0$), and $n$ must be a positive integer. The condition was $(1+m^2) \\mid 11^k$, which requires $1 + m^2$ to be a power of 11 (including $11^0 = 1$, but that gives $m=0$). Since $-1$ is not a quadratic residue mod 11, no positive integer $m$ satisfies this.\n\nTherefore, **no** such positive integers $n$, $k$ exist.\n\nFinal answer: No",
+  "usage": {
+    "input_tokens": 85,
+    "output_tokens": 830,
+    "thinking_tokens": 0
+  },
+  "latency_s": 9.81911277200561,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "exact",
+    "predicted": "No"
+  }
+}

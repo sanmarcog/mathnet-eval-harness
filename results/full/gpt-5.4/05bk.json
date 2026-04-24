@@ -1,0 +1,21 @@
+{
+  "id": "05bk",
+  "country": "Estonia",
+  "competition": "Estonian Mathematical Olympiad",
+  "gold_final_answer": "a) 4; b) 3",
+  "topics_flat": [
+    "Number Theory > Modular Arithmetic > Chinese remainder theorem",
+    "Number Theory > Divisibility / Factorization > Greatest common divisors (gcd)",
+    "Algebra > Algebraic Expressions > Sequences and Series > Sums and products"
+  ],
+  "prompt": "How many integers $k$ are there for which $1 \\le k \\le n$ and the sum $1 + 2 + \\dots + k$ is divisible by $n$, if\n\na) $n = 2023^{2024}$;\nb) $n = 2024^{2023}$?",
+  "model": "gpt-5.4",
+  "response_text": "We want the number of integers \\(k\\) with \\(1\\le k\\le n\\) such that\n\\[\n1+2+\\cdots+k=\\frac{k(k+1)}2\n\\]\nis divisible by \\(n\\).\n\nSo we need\n\\[\nn \\mid \\frac{k(k+1)}2.\n\\]\n\nWe will count solutions \\(k \\pmod n\\), and since \\(1\\le k\\le n\\), each residue class mod \\(n\\) gives exactly one candidate.\n\n---\n\n## Key fact\n\nLet\n\\[\nn=2^a\\prod_{i=1}^r p_i^{e_i}\n\\]\nwith \\(p_i\\) odd primes.\n\nWe want\n\\[\nn \\mid \\frac{k(k+1)}2\n\\quad\\Longleftrightarrow\\quad\n2n \\mid k(k+1).\n\\]\n\nSince \\(\\gcd(k,k+1)=1\\), every prime power dividing \\(2n\\) must divide entirely one of \\(k\\) or \\(k+1\\).\n\n- For each odd prime power \\(p_i^{e_i}\\), we must have either\n  \\[\n  k\\equiv 0 \\pmod{p_i^{e_i}}\n  \\quad\\text{or}\\quad\n  k\\equiv -1 \\pmod{p_i^{e_i}}.\n  \\]\n  So each odd prime power contributes **2 choices**.\n\n- For the 2-part:\n  \\[\n  n=2^a m,\\quad m\\text{ odd}.\n  \\]\n  Then\n  \\[\n  n\\mid \\frac{k(k+1)}2 \\iff 2^{a+1}m\\mid k(k+1).\n  \\]\n  Since among two consecutive integers only one is even, we need the full factor \\(2^{a+1}\\) to divide the even one. Thus modulo \\(2^{a+1}\\),\n  \\[\n  k\\equiv 0 \\pmod{2^{a+1}}\n  \\quad\\text{or}\\quad\n  k\\equiv -1 \\pmod{2^{a+1}}.\n  \\]\n  But we are counting residues mod \\(n=2^am\\), not mod \\(2^{a+1}m\\). Modulo \\(2^a\\), these become:\n  - \\(k\\equiv 0 \\pmod{2^a}\\) always works;\n  - \\(k\\equiv -1 \\pmod{2^a}\\) works only when in fact \\(k\\equiv -1\\pmod{2^{a+1}}\\), i.e. only half of those lifts.\n\nA cleaner way is to count directly modulo \\(n\\):\n\n- If \\(n\\) is odd (\\(a=0\\)), then \\(2\\) is invertible mod \\(n\\), so we need\n  \\[\n  k(k+1)\\equiv 0\\pmod n,\n  \\]\n  and each prime power gives 2 choices. Hence number of solutions is\n  \\[\n  2^{\\omega(n)},\n  \\]\n  where \\(\\omega(n)\\) is the number of distinct prime divisors.\n\n- If \\(n\\) is even (\\(a\\ge1\\)), then the 2-part contributes only **1 effective binary choice** together with the odd prime powers, so the total number is still\n  \\[\n  2^{\\omega(n)},\n  \\]\n  where now \\(2\\) counts as one distinct prime divisor.\n\nThis can also be checked on small examples: \\(n=4,6,8,12\\) give \\(2,4,2,4\\) solutions respectively.\n\nSo the answer is:\n\n> The number of \\(k\\) is \\(2^{\\omega(n)}\\), where \\(\\omega(n)\\) is the number of distinct prime factors of \\(n\\).\n\n---\n\n## a) \\(n=2023^{2024}\\)\n\nFactor:\n\\[\n2023=7\\cdot 17^2.\n\\]\nSo \\(2023\\) has distinct prime divisors \\(7,17\\), hence\n\\[\n\\omega(n)=2.\n\\]\nTherefore the number of \\(k\\) is\n\\[\n2^{\\omega(n)}=2^2=4.\n\\]\n\n---\n\n## b) \\(n=2024^{2023}\\)\n\nFactor:\n\\[\n2024=2^3\\cdot 11\\cdot 23.\n\\]\nSo the distinct prime divisors are \\(2,11,23\\), hence\n\\[\n\\omega(n)=3.\n\\]\nTherefore the number of \\(k\\) is\n\\[\n2^{\\omega(n)}=2^3=8.\n\\]\n\nFinal answer: a) 4; b) 8",
+  "usage": {
+    "input_tokens": 115,
+    "output_tokens": 1027,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 14.706208675983362,
+  "cached": false
+}

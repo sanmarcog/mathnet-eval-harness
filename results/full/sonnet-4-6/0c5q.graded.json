@@ -1,0 +1,25 @@
+{
+  "id": "0c5q",
+  "country": "Romania",
+  "competition": "2019 ROMANIAN MATHEMATICAL OLYMPIAD",
+  "gold_final_answer": "a) 9 degrees; b) n = 18, 19, 20, 21, 22, 23, 24, 25",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Miscellaneous > Angle chasing",
+    "Algebra > Algebraic Expressions > Sequences and Series > Sums and products"
+  ],
+  "prompt": "Around point $O$ one considers the angles $\\widehat{A_0OA_1} = 1^\\circ$, $\\widehat{A_1OA_2} = 2^\\circ$, $\\widehat{A_2OA_3} = 3^\\circ, \\dots, \\widehat{A_{25}OA_{26}} = 26^\\circ$ and $\\widehat{A_{26}OA_0}$.\n\na) Determine the measure of $\\widehat{A_{26}OA_0}$.\n\nb) For what integers $n$, such that $1 \\le n \\le 25$, one has $\\widehat{A_0OA_n} > \\widehat{A_0OA_{n+1}}$?",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Part a)\n\nThe angles around point O must sum to 360°.\n\nThe given angles are: 1°, 2°, 3°, ..., 26°, and $\\widehat{A_{26}OA_0}$.\n\nSum of 1° + 2° + ... + 26° = 26·27/2 = 351°\n\nTherefore: $\\widehat{A_{26}OA_0} = 360° - 351° = 9°$\n\n## Part b)\n\nThe angle $\\widehat{A_0OA_n}$ is the angle from ray $OA_0$ to ray $OA_n$, measured going around through $A_1, A_2, \\ldots, A_n$.\n\nGoing from $A_0$ to $A_n$ by adding consecutive angles:\n$$\\widehat{A_0OA_n} = 1° + 2° + \\cdots + n° = \\frac{n(n+1)}{2}$$\n\nBut we need to be careful: these are angles around a point, so we must consider them modulo 360°. However, since the total is 360°, we need to think about whether the angle $\\widehat{A_0OA_n}$ refers to the \"short way\" or the accumulated angle.\n\nActually, the angle $\\widehat{A_0OA_n}$ as a geometric angle (between 0° and 360°) going in the direction $A_0 \\to A_1 \\to \\cdots \\to A_n$ is:\n$$S_n = \\frac{n(n+1)}{2}$$\n\nFor $n = 1$ to $25$, let's check: $S_{25} = \\frac{25 \\cdot 26}{2} = 325°$, and $S_{26} = 351°$, which are all less than 360°, so no wraparound issues for $n \\leq 26$.\n\nWe want $\\widehat{A_0OA_n} > \\widehat{A_0OA_{n+1}}$.\n\nIf these are measured as the actual geometric angle (taking the minimum of the two arcs, i.e., the angle between 0° and 180°), then:\n\nThe accumulated angle going forward is $S_n = \\frac{n(n+1)}{2}$.\n\nThe geometric angle $\\widehat{A_0OA_n}$ = min($S_n$, 360° - $S_n$).\n\nWe need $\\widehat{A_0OA_n} > \\widehat{A_0OA_{n+1}}$, i.e., min($S_n$, 360°-$S_n$) > min($S_{n+1}$, 360°-$S_{n+1}$).\n\nNote $S_{n+1} = S_n + (n+1)$.\n\nCases:\n- If $S_n < 180°$: $\\widehat{A_0OA_n} = S_n$\n- If $S_n > 180°$: $\\widehat{A_0OA_n} = 360° - S_n$\n\nFind when $S_n = 180°$: $n(n+1)/2 = 180 \\Rightarrow n(n+1) = 360$. Between $n=18$ ($S_{18}=171°$) and $n=19$ ($S_{19}=190°$).\n\nFor $n \\leq 18$: $S_n \\leq 171° < 180°$, so $\\widehat{A_0OA_n} = S_n$ (increasing in $n$).\nFor $n \\geq 19$: $S_n \\geq 190° > 180°$, so $\\widehat{A_0OA_n} = 360° - S_n$ (decreasing in $n$).\n\nFor $\\widehat{A_0OA_n} > \\widehat{A_0OA_{n+1}}$:\n\n**Case $n \\leq 17$:** Both $S_n, S_{n+1} < 180°$, so $\\widehat{A_0OA_n} = S_n < S_{n+1} = \\widehat{A_0OA_{n+1}}$. Not satisfied.\n\n**Case $n = 18$:** $\\widehat{A_0OA_{18}} = 171°$, $\\widehat{A_0OA_{19}} = 360° - 190° = 170°$. So $171° > 170°$. ✓\n\n**Case $n \\geq 19$:** Both give $360° - S_n > 360° - S_{n+1}$ since $S_n < S_{n+1}$. So $\\widehat{A_0OA_n} > \\widehat{A_0OA_{n+1}}$. ✓ for $n = 19, 20, \\ldots, 25$.\n\nSo the condition holds for $n = 18, 19, 20, 21, 22, 23, 24, 25$.\n\nFinal answer: \n\na) $\\widehat{A_{26}OA_0} = 9°$\n\nb) $n \\in \\{18, 19, 20, 21, 22, 23, 24, 25\\}$",
+  "usage": {
+    "input_tokens": 243,
+    "output_tokens": 1350,
+    "thinking_tokens": 0
+  },
+  "latency_s": 17.78220523602795,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "a) $\\widehat{A_{26}OA_0} = 9°$"
+  }
+}

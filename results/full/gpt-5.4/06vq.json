@@ -1,0 +1,21 @@
+{
+  "id": "06vq",
+  "country": "IMO",
+  "competition": "IMO 2019 Shortlisted Problems",
+  "gold_final_answer": "(1,1), (3,2)",
+  "topics_flat": [
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities",
+    "Number Theory > Divisibility / Factorization > Factorization techniques",
+    "Algebra > Algebraic Expressions > Sequences and Series > Floors and ceilings"
+  ],
+  "prompt": "Find all pairs $(m, n)$ of positive integers satisfying the equation\n$$\n\\left(2^{n}-1\\right)\\left(2^{n}-2\\right)\\left(2^{n}-4\\right) \\cdots\\left(2^{n}-2^{n-1}\\right)=m!\n$$",
+  "model": "gpt-5.4",
+  "response_text": "Let\n\\[\nP_n=(2^{n}-1)(2^{n}-2)(2^{n}-4)\\cdots(2^{n}-2^{n-1}).\n\\]\nWe seek all positive integers \\((m,n)\\) such that\n\\[\nP_n=m!.\n\\]\n\nWe will show the only solution is \\((m,n)=(1,1)\\).\n\n## 1) Rewrite the product\nSince the factors are \\(2^n-2^k\\) for \\(k=0,1,\\dots,n-1\\),\n\\[\nP_n=\\prod_{k=0}^{n-1}(2^n-2^k).\n\\]\nFor \\(k\\ge1\\),\n\\[\n2^n-2^k=2^k(2^{n-k}-1).\n\\]\nHence\n\\[\nP_n=(2^n-1)\\prod_{k=1}^{n-1}2^k(2^{n-k}-1).\n\\]\nNow \\(\\prod_{k=1}^{n-1}(2^{n-k}-1)=\\prod_{j=1}^{n-1}(2^j-1)\\), so\n\\[\nP_n=2^{1+2+\\cdots+(n-1)}\\prod_{j=1}^{n}(2^j-1)\n=2^{\\frac{n(n-1)}2}\\prod_{j=1}^{n}(2^j-1).\n\\]\nTherefore\n\\[\nm!=2^{\\frac{n(n-1)}2}\\prod_{j=1}^{n}(2^j-1).\n\\]\n\n## 2) Compare the exponent of \\(2\\)\nLet \\(v_2(x)\\) be the exponent of \\(2\\) in \\(x\\). Since each \\(2^j-1\\) is odd,\n\\[\nv_2(m!)=\\frac{n(n-1)}2.\n\\]\nBut by Legendre’s formula,\n\\[\nv_2(m!)=m-s_2(m),\n\\]\nwhere \\(s_2(m)\\) is the sum of binary digits of \\(m\\). In particular,\n\\[\nv_2(m!)<m.\n\\]\nSo\n\\[\nm>\\frac{n(n-1)}2.\n\\]\n\nAlso, since \\(2^n-1\\) is one of the factors of \\(m!\\), we must have\n\\[\nm\\ge 2^n-1.\n\\]\nThus for \\(n\\ge 2\\),\n\\[\nm\\ge 2^n-1.\n\\]\n\n## 3) Use an odd prime factor too large to fit correctly\nFor \\(n\\ge2\\), consider a prime divisor \\(p\\) of \\(2^n-1\\). Then \\(p\\le m\\), since \\(2^n-1\\mid m!\\).\n\nNow use a standard primitive prime divisor idea in an elementary way: for \\(n\\ge 2\\), choose a prime \\(p\\) dividing \\(2^n-1\\) with maximal possible order of \\(2\\) mod \\(p\\). Then \\(\\operatorname{ord}_p(2)\\mid n\\), so in particular \\(p\\equiv1\\pmod d\\) for some divisor \\(d\\) of \\(n\\). A cleaner route is to inspect small \\(n\\) first and then handle \\(n\\ge 6\\) by size.\n\n### Small values\n- \\(n=1\\): product is \\(2^1-1=1\\), so \\(m!=1\\), hence \\(m=1\\).\n- \\(n=2\\): product \\(=(4-1)(4-2)=3\\cdot2=6=3!\\), so \\((m,n)=(3,2)\\) seems to work.\n\nBut check the original product carefully:\n\\[\n(2^2-1)(2^2-2)=3\\cdot2=6,\n\\]\nindeed \\(m=3\\). So \\((3,2)\\) is a solution.\n\n- \\(n=3\\): product \\(=(8-1)(8-2)(8-4)=7\\cdot6\\cdot4=168\\), not a factorial.\n- \\(n=4\\): product \\(=15\\cdot14\\cdot12\\cdot8=20160\\), and\n\\[\n8!=40320,\\quad 7!=5040,\n\\]\nso not a factorial.\n- \\(n=5\\): product \\(=31\\cdot30\\cdot28\\cdot24\\cdot16\\), clearly between \\(10!\\) and \\(11!\\), not equal to a factorial.\n\nSo it remains to exclude \\(n\\ge6\\).\n\n## 4) Exclude \\(n\\ge 6\\) by a gap argument\nFrom\n\\[\nm\\ge 2^n-1,\n\\]\nwe have\n\\[\nv_2(m!)\\ge v_2((2^n-1)!)=(2^n-1)-s_2(2^n-1)=(2^n-1)-n.\n\\]\nBut here \\(v_2(m!)=\\frac{n(n-1)}2\\). Hence\n\\[\n\\frac{n(n-1)}2 \\ge 2^n-1-n.\n\\]\nRearrange:\n\\[\nn^2+n+2 \\ge 2^{n+1}.\n\\]\nThis is false for all \\(n\\ge6\\) (easy check: at \\(n=6\\), \\(44<128\\), and the gap only grows).\n\nSo no solutions for \\(n\\ge6\\).\n\nWe already checked \\(n=1,2,3,4,5\\), and only \\(n=1,2\\) work.\n\nTherefore the solutions are\n\\[\n(m,n)=(1,1),\\ (3,2).\n\\]\n\nFinal answer: \\((m,n)=(1,1)\\) and \\((3,2)\\).",
+  "usage": {
+    "input_tokens": 117,
+    "output_tokens": 1286,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 16.55535038805101,
+  "cached": false
+}

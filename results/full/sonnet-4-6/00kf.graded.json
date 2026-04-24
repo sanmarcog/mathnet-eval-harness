@@ -1,0 +1,25 @@
+{
+  "id": "00kf",
+  "country": "Austria",
+  "competition": "Austria 2014",
+  "gold_final_answer": "y < z < x",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities",
+    "Algebra > Equations and Inequalities > Muirhead / majorization"
+  ],
+  "prompt": "Let $a$, $b$, $c$ and $d$ be real numbers with $a < b < c < d$.\nSort the numbers $x = a b + c d$, $y = b c + a d$ and $z = c a + b d$ in ascending order and prove the correctness of your result.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Setting Up\n\nLet me compute the differences between these expressions.\n\n**Compute $y - x$:**\n$$y - x = (bc + ad) - (ab + cd) = bc + ad - ab - cd = b(c-a) - d(c-a) = (b-d)(c-a)$$\n\nSince $b < d$ we have $b - d < 0$, and since $a < c$ we have $c - a > 0$.\nThus $y - x = (b-d)(c-a) < 0$, so $y < x$.\n\n**Compute $z - x$:**\n$$z - x = (ca + bd) - (ab + cd) = ca + bd - ab - cd = a(c-b) - d(c-b) = (a-d)(c-b)$$\n\nSince $a < d$ we have $a - d < 0$, and since $b < c$ we have $c - b > 0$.\nThus $z - x = (a-d)(c-b) < 0$, so $z < x$.\n\n**Compute $z - y$:**\n$$z - y = (ca + bd) - (bc + ad) = ca + bd - bc - ad = c(a-b) - d(a-b) = (c-d)(a-b)$$\n\nSince $c < d$ we have $c - d < 0$, and since $a < b$ we have $a - b < 0$.\nThus $z - y = (c-d)(a-b) = (\\text{negative})(\\text{negative}) > 0$, so $z > y$.\n\n## Conclusion\n\nWe have $y < z < x$, i.e.:\n\n$$\\boxed{y < z < x}$$\n\nthat is $bc + ad < ca + bd < ab + cd$.\n\n**Proof summary:**\n\n- $y - x = (b-d)(c-a) < 0$ since $b < d$ and $a < c$, giving $y < x$.\n- $z - x = (a-d)(c-b) < 0$ since $a < d$ and $b < c$, giving $z < x$.\n- $z - y = (c-d)(a-b) > 0$ since $c < d$ and $a < b$ (both differences negative, product positive), giving $z > y$.\n\nTherefore $y < z < x$, i.e., $bc + ad < ca + bd < ab + cd$. $\\blacksquare$\n\nFinal answer: $y < z < x$, i.e., $bc+ad < ca+bd < ab+cd$.",
+  "usage": {
+    "input_tokens": 120,
+    "output_tokens": 636,
+    "thinking_tokens": 0
+  },
+  "latency_s": 6.972419649944641,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "$y < z < x$, i.e., $bc+ad < ca+bd < ab+cd$."
+  }
+}

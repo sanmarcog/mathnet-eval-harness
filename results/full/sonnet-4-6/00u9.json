@@ -1,0 +1,22 @@
+{
+  "id": "00u9",
+  "country": "Balkan Mathematical Olympiad",
+  "competition": "BMO 2022 shortlist",
+  "gold_final_answer": "1/8, 1/7, 1/5, 3/23",
+  "topics_flat": [
+    "Number Theory > Modular Arithmetic > Chinese remainder theorem",
+    "Number Theory > Divisibility / Factorization > Greatest common divisors (gcd)",
+    "Algebra > Algebraic Expressions > Sequences and Series > Sums and products",
+    "Discrete Mathematics > Other"
+  ],
+  "prompt": "A hare and a tortoise run in the same direction, at constant but different speeds, around the base of a tall square tower. They start together at the same vertex, and the run ends when both return to the initial vertex simultaneously for the first time. Suppose the hare runs with speed $1$, and the tortoise with speed less than $1$. For what rational numbers $x$ is it true that, if the tortoise runs with speed $x$, the fraction of the entire run for which the tortoise can see the hare is also $x$?",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Setting Up the Problem\n\nLet the square tower have side length 1, so the perimeter is 4. The hare runs at speed 1, tortoise at speed $x < 1$ (rational).\n\nThe run ends when both return to the starting vertex simultaneously. The hare completes laps at times $4, 8, 12, \\ldots$ and the tortoise at times $4/x, 8/x, \\ldots$ The run ends at time $T = \\text{lcm}(4, 4/x)$. Since $x$ is rational, write $x = p/q$ in lowest terms, so $T = 4q$.\n\nDuring time $T$: hare completes $q$ laps, tortoise completes $p$ laps.\n\n## When Can the Tortoise See the Hare?\n\nThe tortoise can see the hare when they are on the same side of the square (since the tower blocks views across it). Two runners on a square perimeter can see each other if and only if they are on the same side (same edge segment).\n\n**Position functions:** At time $t$, hare is at position $t \\pmod{4}$ and tortoise at position $xt \\pmod{4}$ along the perimeter.\n\nThe hare and tortoise are on the same side when their positions (mod 4) lie in the same interval $[k, k+1]$ for $k = 0, 1, 2, 3$.\n\n## Computing the Fraction\n\nLet $h(t) = t \\pmod 4$ and $\\tau(t) = xt \\pmod 4$. The difference $d(t) = (1-x)t \\pmod 4$ increases from 0 to $4(1-x) \\cdot T/4$... \n\nLet me think in terms of one hare lap. The relative speed is $1 - x$, so the hare gains one full lap (perimeter 4) over time $4/(1-x)$.\n\nConsider the positions modulo 4. They're on the same side when $\\lfloor h(t) \\rfloor = \\lfloor \\tau(t) \\rfloor$ (same unit interval).\n\nThe fraction of time they're on the same side: Since the relative motion is uniform with relative speed $1-x$ around the perimeter of length 4, we can analyze one relative cycle of length $4/(1-x)$.\n\nIn one relative cycle, the difference $\\delta = (h - \\tau) \\pmod 4$ goes from 0 to 4. They're on the same side when $\\delta \\pmod 4$ is such that $\\lfloor h \\rfloor = \\lfloor \\tau \\rfloor$.\n\nFor fixed $\\delta = h - \\tau$, they share a side when $h$ and $h - \\delta$ are in the same unit interval. The measure of $h \\in [0,4)$ where this happens is $\\max(0, 1 - |\\delta'|)$ where $\\delta' = \\delta \\pmod 1$ adjusted... \n\nActually for each unit interval, $h$ and $\\tau = h - \\delta$ are in the same interval $[k,k+1]$ when $h \\in [k + \\{\\delta\\}, k+1]$ if $\\{\\delta\\} > 0$, giving length $1 - \\{\\delta\\}$ per interval, total $4(1-\\{\\delta\\})$ out of 4. Wait, let me be careful.\n\nFor fixed fractional part $\\{\\delta\\}$ of $\\delta \\pmod 1$ (where $\\delta \\in [0,4)$): the fraction of positions where they share a side is $1 - \\{\\delta \\pmod 1\\}$... \n\nAveraging over $\\delta$ uniform in $[0,4)$: the average of $(1 - \\{\\delta\\})$ over $\\delta \\in [0,1)$ is $1/2$, and this repeats 4 times, so the overall fraction is $1/2$.\n\nWait, but this gives fraction = 1/2 regardless of $x$! Let me verify: the fraction of time tortoise sees hare is always $1/2$.\n\nWe need this fraction to equal $x$, so $x = 1/2$.\n\n## Verification\n\nAt $x = 1/2$: tortoise speed is $1/2$. The relative speed is $1/2$, and by symmetry the fraction of time on the same side is indeed $1/2 = x$. ✓\n\nThe calculation shows the fraction is always $1/2$ for any $x \\in (0,1)$, so the only solution is $x = 1/2$.\n\nFinal answer: $x = \\dfrac{1}{2}$",
+  "usage": {
+    "input_tokens": 168,
+    "output_tokens": 1143,
+    "thinking_tokens": 0
+  },
+  "latency_s": 20.362437178962864,
+  "cached": false
+}

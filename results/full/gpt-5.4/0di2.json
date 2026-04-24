@@ -1,0 +1,21 @@
+{
+  "id": "0di2",
+  "country": "Saudi Arabia",
+  "competition": "SAUDI ARABIAN IMO Booklet 2023",
+  "gold_final_answer": "No",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Invariants / monovariants",
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments",
+    "Algebra > Algebraic Expressions > Sequences and Series > Sums and products"
+  ],
+  "prompt": "Determine whether or not it is possible to partition the set of positive integers in infinite subsets $A_1, A_2, \\dots$ such that for every positive integer $k$, the sum of elements of $A_k$ is $k + 2023$.\n\n*Remark*: a partition of a set $X$ is a collection of subsets of $X$ such that every element of $X$ is contained in exactly one the subsets.",
+  "model": "gpt-5.4",
+  "response_text": "No such partition exists.\n\nLet\n\\[\ns_k=\\sum_{a\\in A_k} a.\n\\]\nThe condition says\n\\[\ns_k=k+2023\\qquad (k\\ge 1).\n\\]\n\nWe will derive a contradiction by summing over the first \\(n\\) parts.\n\nDefine\n\\[\nB_n=A_1\\cup A_2\\cup\\cdots\\cup A_n.\n\\]\nSince the \\(A_k\\) form a partition of the positive integers, the sets are disjoint, so\n\\[\n\\sum_{x\\in B_n} x=\\sum_{k=1}^n s_k=\\sum_{k=1}^n (k+2023)\n=\\frac{n(n+1)}2+2023n.\n\\]\nCall this quantity \\(T_n\\):\n\\[\nT_n=\\frac{n(n+1)}2+2023n.\n\\]\n\nNow \\(B_n\\) contains exactly all elements belonging to the first \\(n\\) parts. Since all positive integers are partitioned among the \\(A_k\\), the set \\(B_n\\) is some subset of \\(\\mathbb Z_{>0}\\) with finite total sum \\(T_n\\). Among all subsets of positive integers with sum \\(T_n\\), the largest possible number of elements is achieved by taking the smallest positive integers \\(1,2,\\dots,m\\), where\n\\[\n\\frac{m(m+1)}2\\le T_n.\n\\]\nHence \\(B_n\\) has at most about \\(\\sqrt{2T_n}\\) elements. Since \\(T_n\\sim \\frac12 n^2\\), this gives\n\\[\n|B_n|=O(n).\n\\]\n\nBut each \\(A_k\\) is infinite, so \\(B_n\\), being the union of \\(n\\) infinite sets, must itself be infinite. That is impossible, because a set of positive integers with finite sum must be finite.\n\nThis contradiction already appears even more simply: each \\(A_k\\subset \\mathbb Z_{>0}\\) is an infinite set of positive integers, so\n\\[\n\\sum_{a\\in A_k} a\n\\]\nmust diverge to \\(+\\infty\\). It cannot equal the finite number \\(k+2023\\).\n\nTherefore such a partition cannot exist.\n\nFinal answer: It is impossible; no such partition exists.",
+  "usage": {
+    "input_tokens": 140,
+    "output_tokens": 508,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 8.359310833038762,
+  "cached": false
+}

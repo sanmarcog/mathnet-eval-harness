@@ -1,0 +1,21 @@
+{
+  "id": "090p",
+  "country": "Japan",
+  "competition": "The 35th Japanese Mathematical Olympiad",
+  "gold_final_answer": "20!^3",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Recursion, bijection",
+    "Discrete Mathematics > Combinatorics > Invariants / monovariants",
+    "Discrete Mathematics > Combinatorics > Games / greedy algorithms"
+  ],
+  "prompt": "Alice plays a game using a board with 20 rows and 25 columns. Initially, no number is written in any of the $20 \\times 25$ cells. The game proceeds in several turns, and on the $n$-th turn, the following operation is performed:\nChoose a positive integer $k$ and $k$ empty cells $A_1, A_2, \\dots, A_k$ such that for every integer $i$ with $1 \\le i \\le k-1$, the cell $A_{i+1}$ is adjacent to $A_i$ either to the right or above. Write the number $n$ in each of these $k$ cells.\nThe game ends when all cells on the board are filled with some numbers. When Alice plays optimally to minimize the number of turns until the game ends, how many different possible numberings of the board can be obtained when the game ends?\nNote: Numberings that are identical under rotation or reflection are considered distinct and counted as different.",
+  "model": "gpt-5.4-mini",
+  "response_text": "A key observation is that on each turn, the filled cells are exactly a “north-east path” segment: a connected chain using only steps right or up. Thus the numbers on the board encode a partition of the grid into such chains, one chain per turn, with earlier turns having smaller numbers.\n\nFor an optimal play, Alice should clearly use the fewest possible turns. The minimum number of turns is the length of the longest chain needed to cover the board under these rules, and by a standard Dilworth/Mirsky-type argument for the poset\n\\[\n(r,c)\\prec (r',c') \\iff r\\le r',\\ c\\le c',\\ \\text{not equal},\n\\]\nthis minimum equals the size of a largest antichain, which here is\n\\[\n20+25-1=44.\n\\]\nSo optimal play uses exactly 44 turns.\n\nNow consider any final numbering produced by such an optimal play. A cell’s number is determined by the turn on which it is filled, so the problem becomes: how many ways are there to partition the \\(20\\times 25\\) rectangle into 44 valid right/up chains?\n\nFor a rectangular grid, the optimal partition is forced: each turn must fill exactly one cell from each antidiagonal \\(r+c=\\text{const}\\), and to achieve the minimum number of turns, each turn’s cells must form a maximal chain across the Ferrers shape. This is equivalent to a unique monotone layering by the value of \\(r+c\\). Hence the numbering is forced: every cell on the same antidiagonal must receive the same number, and the numbers increase by 1 from the southwest corner to the northeast corner.\n\nTherefore there is exactly one possible final numbering.\n\nFinal answer: 1",
+  "usage": {
+    "input_tokens": 259,
+    "output_tokens": 372,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 4.604690165957436,
+  "cached": false
+}

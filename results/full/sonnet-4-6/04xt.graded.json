@@ -1,0 +1,25 @@
+{
+  "id": "04xt",
+  "country": "Czech-Polish-Slovak Mathematical Match",
+  "competition": "12th Czech-Polish-Slovak Mathematics Competition",
+  "gold_final_answer": "sqrt(82)",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities > QM-AM-GM-HM / Power Mean",
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities"
+  ],
+  "prompt": "Positive real numbers $a$, $b$, $c$, $d$ satisfy the relations\n$$\nabcd = 4, \\quad a^2 + b^2 + c^2 + d^2 = 10.\n$$\nDetermine the largest possible value of the expression $ab + bc + cd + da$.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Setting Up the Problem\n\nWe need to maximize $ab + bc + cd + da = (a+c)(b+d)$ subject to $abcd = 4$ and $a^2 + b^2 + c^2 + d^2 = 10$.\n\nNote that $ab + bc + cd + da = b(a+c) + d(a+c) = (a+c)(b+d)$.\n\nLet me set $s = a + c$ and $t = b + d$.\n\nBy AM-GM: $ac \\leq s^2/4$ and $bd \\leq t^2/4$.\n\nAlso: $a^2 + c^2 = s^2 - 2ac \\geq s^2/2$ and $b^2 + d^2 = t^2 - 2bd \\geq t^2/2$.\n\nWe have $a^2 + b^2 + c^2 + d^2 = 10$, so $(a^2+c^2) + (b^2+d^2) = 10$.\n\n## Trying Symmetric Cases\n\nLet me try $a = c$ and $b = d$. Then:\n- $a^2 b^2 \\cdot a^2 b^2 = a^4 b^4 = 4$, so $a^2 b^2 = 2$, meaning $ab = \\sqrt{2}$\n- $2a^2 + 2b^2 = 10$, so $a^2 + b^2 = 5$\n\nWith $ab = \\sqrt{2}$ and $a^2 + b^2 = 5$: $(a+b)^2 = 5 + 2\\sqrt{2}$.\n\nThe expression becomes $(a+c)(b+d) = 2a \\cdot 2b = 4ab = 4\\sqrt{2} \\approx 5.657$.\n\n## Trying Another Configuration\n\nLet me try $a = c$ but $b \\neq d$. The expression is $(2a)(b+d)$.\n\nWith $a = c$: $a^2 b d \\cdot a^2 = a^4 bd = 4$ and $2a^2 + b^2 + d^2 = 10$.\n\nLet $p = b+d$, $q = bd$. Then $a^4 q = 4$ and $2a^2 + p^2 - 2q = 10$.\n\nMaximize $2ap$. From constraint: $q = 4/a^4$ and $p^2 = 10 - 2a^2 + 2q = 10 - 2a^2 + 8/a^4$.\n\nNeed $p^2 \\geq 4q$ (for real $b,d$): $10 - 2a^2 + 8/a^4 \\geq 16/a^4$, so $10 - 2a^2 \\geq 8/a^4$.\n\nMaximize $f(a) = 4a^2 p^2 = 4a^2(10 - 2a^2 + 8/a^4) = 40a^2 - 8a^4 + 32/a^2$.\n\nSetting $f'(a) = 0$: $80a - 32a^3 - 64/a^3 = 0$, multiply by $a^3$:\n$80a^4 - 32a^6 - 64 = 0$, so $32a^6 - 80a^4 + 64 = 0$, i.e., $2a^6 - 5a^4 + 4 = 0$.\n\nFactor: Try $a^2 = 1$: $2 - 5 + 4 = 1 \\neq 0$. Try $a^2 = 2$: $16 - 20 + 4 = 0$. ✓\n\nSo $a^2 = 2$, giving $a = \\sqrt{2}$. Then $q = 4/4 = 1$, $p^2 = 10 - 4 + 2 = 8$, $p = 2\\sqrt{2}$.\n\nCheck: $p^2 = 8 \\geq 4q = 4$. ✓ And $b, d$ are real with $b+d = 2\\sqrt{2}$, $bd = 1$.\n\nExpression value: $2a \\cdot p = 2\\sqrt{2} \\cdot 2\\sqrt{2} = 8$.\n\nCheck: $b, d$ satisfy $x^2 - 2\\sqrt{2}x + 1 = 0$, giving $x = \\sqrt{2} \\pm 1$. All positive. ✓\n\nVerify: $abcd = \\sqrt{2} \\cdot (\\sqrt{2}+1) \\cdot \\sqrt{2} \\cdot (\\sqrt{2}-1) = 2 \\cdot (2-1) \\cdot 2 = 4$. ✓\n$a^2+b^2+c^2+d^2 = 2 + (3+2\\sqrt{2}) + 2 + (3-2\\sqrt{2}) = 10$. ✓\n\nFinal answer: $\\boxed{8}$",
+  "usage": {
+    "input_tokens": 123,
+    "output_tokens": 1338,
+    "thinking_tokens": 0
+  },
+  "latency_s": 16.573727097013034,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "8"
+  }
+}

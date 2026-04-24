@@ -1,0 +1,21 @@
+{
+  "id": "08sz",
+  "country": "Japan",
+  "competition": "Japan Mathematical Olympiad",
+  "gold_final_answer": "650",
+  "topics_flat": [
+    "Algebra > Prealgebra / Basic Algebra > Integers",
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities",
+    "Number Theory > Other"
+  ],
+  "prompt": "How many 3-digit numbers are there that can appear as the top three digits of a 6-digit number, which is a perfect square?",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find the number of 3-digit numbers that can appear as the top three digits of a 6-digit perfect square, we can represent the 6-digit perfect square as $n^2$. \nSince $n^2$ is a 6-digit number, we have:\n$100000 \\le n^2 \\le 999999$\nTaking the square root, we find the possible values for $n$:\n$317 \\le n \\le 999$\n\nThe top three digits of $n^2$ can be extracted by taking the floor of $n^2 / 1000$. We want to find the number of distinct values in the set:\n$S = \\{ \\lfloor n^2 / 1000 \\rfloor \\mid 317 \\le n \\le 999 \\}$\n\nConsider the difference between consecutive values of $n^2 / 1000$:\n$\\frac{(n+1)^2}{1000} - \\frac{n^2}{1000} = \\frac{2n+1}{1000}$\n\nWe can split the values of $n$ into two ranges based on whether this difference is less than 1 or greater than 1:\n1. **For $317 \\le n \\le 499$:**\nThe difference $\\frac{2n+1}{1000}$ is strictly less than 1 (the maximum difference is $\\frac{2(499)+1}{1000} = 0.999$). Because the sequence $n^2 / 1000$ increases by less than 1 at each step, its floor increases by at most 1. This means no integer values are skipped.\nThe starting value is $\\lfloor 317^2 / 1000 \\rfloor = \\lfloor 100489 / 1000 \\rfloor = 100$.\nThe ending value for this continuous range (including $n=500$) is $\\lfloor 500^2 / 1000 \\rfloor = \\lfloor 250000 / 1000 \\rfloor = 250$.\nThus, every integer from 100 to 250 is generated. \nThe number of distinct 3-digit numbers in this range is $250 - 100 + 1 = 151$.\n\n2. **For $501 \\le n \\le 999$:**\nThe difference $\\frac{2n+1}{1000}$ is strictly greater than 1 (the minimum difference is $\\frac{2(500)+1}{1000} = 1.001$). Because the sequence increases by more than 1 at each step, the floor of the sequence strictly increases. This means every $n$ in this range produces a distinct 3-digit number.\nThe first value in this range is $\\lfloor 501^2 / 1000 \\rfloor = 251$, which continues strictly above our previous range, meaning there is no overlap.\nThe number of distinct 3-digit numbers generated in this range is simply the number of integers from 501 to 999, which is $999 - 501 + 1 = 499$.\n\nAdding the distinct values from both ranges together, we get the total number of possible 3-digit numbers:\n$151 + 499 = 650$\n\nFinal answer: 650",
+  "usage": {
+    "input_tokens": 70,
+    "output_tokens": 800,
+    "thoughts_tokens": 4115
+  },
+  "latency_s": 36.310172877972946,
+  "cached": false
+}

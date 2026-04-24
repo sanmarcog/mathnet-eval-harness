@@ -1,0 +1,21 @@
+{
+  "id": "09o9",
+  "country": "Mongolia",
+  "competition": "MMO2025 Round 3",
+  "gold_final_answer": "no solutions",
+  "topics_flat": [
+    "Number Theory > Other",
+    "Algebra > Prealgebra / Basic Algebra > Integers",
+    "Algebra > Algebraic Expressions > Sequences and Series > Sums and products"
+  ],
+  "prompt": "Let $S(N)$ denote the sum of the digits of a positive integer $N$. Find all positive integers $n$ such that\n$$\nS(n) + S(2n) + S(3n) + \\dots + S(n^2) = \\frac{4n^2}{15} + 9.\n$$\n(Nursoltan Khavalbolot)",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find the positive integers $n$ satisfying the given equation, we first note that the right-hand side must be an integer. \nThe right-hand side is given by:\n$$ \\frac{4n^2}{15} + 9 $$\nFor this to be an integer, $4n^2$ must be divisible by 15. Since $\\gcd(4, 15) = 1$, $n^2$ must be a multiple of 15, which implies that $n$ itself must be a multiple of 15.\n\nLet's test the first few multiples of 15:\n1. **For $n = 15$:**\nThe right-hand side is $\\frac{4(15^2)}{15} + 9 = 60 + 9 = 69$.\nThe left-hand side is $\\sum_{k=1}^{15} S(15k)$. Calculating the sum of the digits of $15, 30, 45, \\dots, 225$, we get $117$.\nSince $117 \\neq 69$, $n=15$ is not a solution.\n\n2. **For $n = 30$:**\nThe right-hand side is $\\frac{4(30^2)}{15} + 9 = 240 + 9 = 249$.\nThe left-hand side is $\\sum_{k=1}^{",
+  "usage": {
+    "input_tokens": 126,
+    "output_tokens": 327,
+    "thoughts_tokens": 7861
+  },
+  "latency_s": 57.84018755296711,
+  "cached": false
+}

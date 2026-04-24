@@ -1,0 +1,25 @@
+{
+  "id": "01x2",
+  "country": "Belarus",
+  "competition": "69th Belarusian Mathematical Olympiad",
+  "gold_final_answer": "11.2",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments",
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities"
+  ],
+  "prompt": "The sum of several (not necessarily different) real numbers from $[0, 1]$ does not exceed $S$.\nFind the maximal value of $S$ such that these numbers can always be partitioned into two groups with sums $A \\le 8$ and $B \\le 4$.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find the maximal value of $S$ such that any collection of real numbers from $[0, 1]$ with sum at most $S$ can be partitioned into two groups with sums $A \\le 8$ and $B \\le 4$, we can analyze the worst-case scenario.\n\nWe want to find a set of numbers that are as difficult to partition as possible. This happens when the numbers are just slightly larger than a fraction of the group limits. \nLet's test numbers of the form $x = 0.8 + \\epsilon$ for a very small $\\epsilon > 0$.\n- The maximum number of such elements we can put in group $B$ (sum $\\le 4$) is $\\lfloor 4 / (0.8 + \\epsilon) \\rfloor = 4$.\n- The maximum number of such elements we can put in group $A$ (sum $\\le 8$) is $\\lfloor 8 / (0.8 + \\epsilon) \\rfloor = 9$.\n\nThus, the maximum number of elements of size $0.8 + \\epsilon$ we can successfully partition is $4 + 9 = 13$. \nIf we have 14 such elements, we cannot partition them into groups of sums $\\le 8$ and $\\le 4$. \nThe sum of these 14 elements is $14 \\times (0.8 + \\epsilon) = 11.2 + 14\\epsilon$. \nSince this cannot be partitioned for any $\\epsilon > 0$, we must have $S \\le 11.2$.\n\nNow we prove that $S = 11.2$ is always achievable. We want to find a subset $B$ such that its sum is in the interval $[S - 8, 4]$. If we can do this, the remaining elements will have a sum of at most $S - (S - 8) = 8$, which can go to group $A$.\nFor $S = 11.2$, the target interval for the sum of group $B$ is $[3.2, 4]$, which has a length of $0.8$.\n\nWe divide the problem into two cases based on the sizes of the numbers in our collection:\n1. **All numbers are $\\le 0.8$:** \n   We can greedily add numbers to group $B$. Since we start at a sum of 0 and each number is at most $0.8$, we can never \"jump over\" the interval $[3.2, 4]$ without landing inside it. Thus, we will always find a valid group $B$.\n\n2. **There are some numbers $> 0.8$:**\n   Let's call these large numbers. \n   - If there are 4 or more large numbers, we can simply pick exactly 4 of them to form group $B$. Since each is $> 0.8$, their sum is strictly greater than $4 \\times 0.8 = 3.2$. Since each number is also $\\le 1$ (given in the problem), their sum is at most $4 \\times 1 = 4$. This perfectly lands in our target interval $[3.2, 4]$.\n   - If there are fewer than 4 large numbers, we put all of them into group $B$. Their combined sum is at most $3 \\times 1 = 3$. If this sum is already $\\ge 3.2$, we are done. If it is $< 3.2$, we can resume the greedy strategy using the remaining small numbers (which are all $\\le 0.8$). Because the remaining gap to 4 is at least $1.0$ and the interval length is $0.8$, adding numbers $\\le 0.8$ guarantees we will step into the $[3.2, 4]$ interval.\n\nIn all cases, a valid partition is guaranteed if the total sum does not exceed 11.2.\n\nFinal answer: 11.2",
+  "usage": {
+    "input_tokens": 100,
+    "output_tokens": 863,
+    "thoughts_tokens": 6724
+  },
+  "latency_s": 63.29160390503239,
+  "cached": true,
+  "grade": {
+    "correct": true,
+    "method": "exact",
+    "predicted": "11.2"
+  }
+}

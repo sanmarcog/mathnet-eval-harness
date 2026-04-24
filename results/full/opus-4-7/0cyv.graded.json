@@ -1,0 +1,26 @@
+{
+  "id": "0cyv",
+  "country": "Saudi Arabia",
+  "competition": "Saudi Arabia Mathematical Competitions",
+  "gold_final_answer": "a_1432 = 16, a_1433 = 8; and in general\n- a_n = 4·tau(n) if n is odd,\n- a_n = 0 if n ≡ 2 mod 4,\n- a_n = 4·tau(n/4) if n is divisible by 4.",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Factorization techniques",
+    "Number Theory > Number-Theoretic Functions > τ (number of divisors)",
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities"
+  ],
+  "prompt": "For any positive integer $n$ let $a_{n}$ be the number of pairs $(x, y)$ of integers satisfying $|x^{2}-y^{2}|=n$.\n\na. Find $a_{1432}$ and $a_{1433}$.\n\nb. Find $a_{n}$.",
+  "model": "claude-opus-4-7",
+  "response_text": "<think>\nWe need pairs (x,y) of integers with |x²-y²|=n.\n\nx²-y² = (x-y)(x+y). Let me think about this carefully.\n\nFor n>0, count integer pairs (x,y) with |x²-y²|=n.\n\nLet d = x-y, s = x+y. Then ds = ±n, and d,s have same parity (both even or both odd since d+s=2x).\n\nSo we need pairs (d,s) of integers with ds = ±n and d≡s (mod 2).\n\nGiven any such (d,s), x=(d+s)/2, y=(s-d)/2 are integers.\n\nSo a_n = number of (d,s) ∈ ℤ² with d·s = n or d·s = -n, and d≡s mod 2.\n\nEquivalently, number of factorizations of ±n into two integers of same parity.\n\nCase 1: n odd. Then ds = ±n means both d,s odd (automatically same parity). Number of (d,s) with ds=n: each divisor d of n (positive or negative) gives one s. Number of divisors of n counting signs: 2τ(n) where τ is number of positive divisors. Same for ds=-n: 2τ(n). Total: 4τ(n).\n\nWait, for ds=n with n odd: d ranges over all divisors of n (including negative), so 2τ(n) pairs. For ds=-n: same, 2τ(n). Total 4τ(n).\n\nCase 2: n ≡ 2 (mod 4). Then ds=±n. If d,s both odd, ds odd, can't equal n. If both even, ds ≡0 mod 4, can't equal n. So a_n = 0.\n\nCase 3: n ≡ 0 (mod 4). Write n=4m. Need d,s both even (both odd impossible since n even). Let d=2d', s=2s'. Then 4d's' = ±n, so d's' = ±n/4 = ±m. Number of (d',s') with d's'=m: 2τ(m), with d's'=-m: 2τ(m). Total 4τ(n/4).\n\nNow 1432 = 8·179. 179 is prime. So 1432/4 = 358 = 2·179. τ(358)=4. So a_{1432} = 16.\n\n1433: check if prime. 1433/7≈204.7, 1433/11=130.3, 1433/13=110.2, 1433/17=84.3, 1433/19=75.4, 1433/23=62.3, 1433/29=49.4, 1433/31=46.2, 1433/37=38.7. √1433≈37.9. Check: 7·204=1428, no. 11·130=1430, no. 13·110=1430, no. 17·84=1428, no. 19·75=1425, no. 23·62=1426, no. 29·49=1421, no. 31·46=1426, no. 37·38=1406, no. So 1433 is prime. τ(1433)=2, a_{1433}=8.\n\nLet me verify with small cases. n=1: pairs (x,y) with |x²-y²|=1. (1,0),(-1,0),(0,1),(0,-1). That's 4. Formula: 4τ(1)=4. ✓\n\nn=3: |x²-y²|=3. (2,1),(2,-1),(-2,1),(-2,-1),(1,2),(-1,2),(1,-2),(-1,-2). 8 pairs. 4τ(3)=8. ✓\n\nn=4: |x²-y²|=4. (2,0),(-2,0),(0,2),(0,-2). 4 pairs. Formula 4τ(1)=4. ✓\n\nn=2: should be 0. |x²-y²|=2: x²-y²=2 or -2. No solutions. ✓\n\nGreat.\n\nSo:\n- a_n = 0 if n ≡ 2 (mod 4)\n- a_n = 4τ(n) if n odd\n- a_n = 4τ(n/4) if n ≡ 0 (mod 4)\n\na_{1432} = 16, a_{1433} = 8.\n</think>\n\n**Setup.** Let $d=x-y$, $s=x+y$. Then $x^2-y^2 = ds$, and $(x,y)\\in\\mathbb Z^2$ iff $d\\equiv s\\pmod 2$. So $a_n$ equals the number of pairs $(d,s)\\in\\mathbb Z^2$ with $ds=\\pm n$ and $d\\equiv s\\pmod 2$.\n\n**Case analysis.**\n\n*Case 1: $n$ odd.* Then $ds=\\pm n$ forces $d,s$ both odd automatically. Each equation $ds=n$ and $ds=-n$ gives $2\\tau(n)$ signed factorizations, so $a_n = 4\\tau(n)$.\n\n*Case 2: $n\\equiv 2\\pmod 4$.* If $d,s$ both odd, $ds$ is odd; if both even, $4\\mid ds$. Neither allows $ds=\\pm n$. So $a_n=0$.\n\n*Case 3: $n\\equiv 0\\pmod 4$, say $n=4m$.* Both $d,s$ must be even; write $d=2d',s=2s'$, giving $d's'=\\pm m$. Thus $a_n = 4\\tau(n/4)$.\n\n**Part (a).**\n- $1432 = 2^3\\cdot 179$, so $1432/4 = 358 = 2\\cdot 179$, $\\tau(358)=4$. Hence $a_{1432}=16$.\n- $1433$ is prime, so $\\tau(1433)=2$, giving $a_{1433}=8$.\n\n**Part (b).**\n$$a_n = \\begin{cases} 4\\tau(n) & n \\text{ odd},\\\\ 0 & n\\equiv 2\\pmod 4,\\\\ 4\\tau(n/4) & n\\equiv 0\\pmod 4. \\end{cases}$$\n\nFinal answer: $a_{1432}=16,\\ a_{1433}=8$; and $a_n=4\\tau(n)$ if $n$ is odd, $a_n=0$ if $n\\equiv 2\\pmod 4$, $a_n=4\\tau(n/4)$ if $4\\mid n$.",
+  "usage": {
+    "input_tokens": 162,
+    "output_tokens": 2051,
+    "thinking_tokens": 0
+  },
+  "latency_s": 21.190229872940108,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "$a_{1432}=16,\\ a_{1433}=8$; and $a_n=4\\tau(n)$ if $n$ is odd, $a_n=0$ if $n\\equiv 2\\pmod 4$, $a_n=4\\tau(n/4)$ if $4\\mid n$."
+  }
+}

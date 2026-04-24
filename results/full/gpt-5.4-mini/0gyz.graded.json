@@ -1,0 +1,24 @@
+{
+  "id": "0gyz",
+  "country": "Ukraine",
+  "competition": "50th Mathematical Olympiad in Ukraine, Third Round (January 23, 2010)",
+  "gold_final_answer": "4035077",
+  "topics_flat": [
+    "Algebra > Prealgebra / Basic Algebra > Integers"
+  ],
+  "prompt": "Consider an arbitrary arrangement of the brackets. Numbers $2010$ and $2009$ always have signs '+' and '-', respectively, that's why the sum reaches the maximum value when the other terms will have '+' sign.\n\nIn the expression\n$$\n\\frac{2010 - 2009 - 2010 - 2009 - 2010 - 2009 - \\dots - 2010 - 2009}{2010 \\text{ numbers}}\n$$\nthere are somehow placed brackets and the value is calculated. Find the maximum value that can be reached. Justify your answer.\n\n*Notice.* Left bracket can be placed only before a number and right - only after. For example, expressions $-2010(-2009 - 2010)$ and $-(2010 - 2009-)2010$ are incorrect.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let the numbers be\n\\[\na_1=2010,\\ a_2=2009,\\ a_3=2010,\\ a_4=2009,\\dots,a_{2010}=2009.\n\\]\nThe signs between them are all minus:\n\\[\na_1-a_2-a_3-a_4-\\cdots-a_{2010}.\n\\]\n\nWe may insert parentheses arbitrarily, but the order of numbers and signs cannot change.\n\n## Key observation\nBecause every internal sign is “\\(-\\)”, any parenthesized block behaves as follows:\n\n- if a block is preceded by a minus sign, then the whole block is subtracted;\n- subtracting a block changes all signs inside it when the block starts with a minus.\n\nSo to maximize the value, we want every number after the first one to become effectively added, if possible.\n\nNow note the expression begins with \\(2010\\), and then every pair is\n\\[\n-2009-2010.\n\\]\nIf we group each pair as\n\\[\n-(2009-2010)=+1,\n\\]\nthen each such pair contributes \\(+1\\).\n\nSince there are \\(2010\\) numbers total, after the first \\(2010\\) there are\n\\[\n2010-1=2009\n\\]\nnumbers left, i.e. \\(1004\\) full pairs \\((2009,2010)\\) and one last \\(2009\\). But because the numbers alternate starting with \\(2010\\), the sequence is\n\\[\n2010-2009-2010-2009-\\cdots-2010-2009.\n\\]\nThere are \\(1005\\) copies of \\(2010\\) and \\(1005\\) copies of \\(2009\\).\n\nA maximizing arrangement is\n\\[\n2010-(2009-2010)-(2009-2010)-\\cdots-(2009-2010)-2009.\n\\]\nEach parenthesized pair gives \\(1\\), and there are \\(1004\\) such pairs, plus the initial \\(2010\\), plus the final \\(-2009\\).\n\nSo the value is\n\\[\n2010+1004\\cdot 1-2009=1005.\n\\]\n\n## Why this is maximal\nEvery time we have a minus sign before a block, the best possible use of that block is to make it as negative as possible, so that subtracting it gives the largest contribution. The smallest possible value of a block of the form\n\\[\n2009-2010\n\\]\nis \\(-1\\), hence subtracting it gives \\(+1\\). No grouping can produce more than \\(+1\\) from each adjacent pair, so this is optimal.\n\nTherefore the maximum value is\n\n\\[\n\\boxed{1005}.\n\\]\n\nFinal answer: \\(1005\\)",
+  "usage": {
+    "input_tokens": 218,
+    "output_tokens": 604,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 5.485747728962451,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "\\(1005\\)"
+  }
+}

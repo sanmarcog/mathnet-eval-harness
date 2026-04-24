@@ -1,0 +1,26 @@
+{
+  "id": "07ug",
+  "country": "Ireland",
+  "competition": "IRL_ABooklet",
+  "gold_final_answer": "10, 21, 32, 43, 54, 65, 76, 87, 98",
+  "topics_flat": [
+    "Number Theory > Other",
+    "Algebra > Prealgebra / Basic Algebra > Integers",
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities"
+  ],
+  "prompt": "For any positive integer $N$ we denote by $\\overline\\{N\\}$ the number obtained by writing the digits of $N$ from right to left. For instance, if $N = 2395$ then $\\overline\\{N\\} = 5932$ and if $N = 3780$ then $\\overline\\{N\\} = 873$.\nFind all positive integers $N$ such that $N - \\overline\\{N\\} = 9$.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "We need N - N̄ = 9, where N̄ is the digit reversal of N.\n\n**Case: 2-digit numbers**\nLet N = 10a + b where a ≥ 1, b ≥ 0.\nThen N̄ = 10b + a (assuming b ≠ 0; if b = 0, N̄ = a).\n\nIf b ≠ 0: N - N̄ = 9a + b - 10b - a... wait, let me redo:\nN - N̄ = (10a + b) - (10b + a) = 9a - 9b = 9(a - b) = 9\nSo a - b = 1, meaning b = a - 1.\n\nValid solutions: a ∈ {1,...,9}, b = a-1 ≥ 0:\n- (a,b) = (1,0): N = 10, N̄ = 01 = 1, N - N̄ = 9 ✓\n- (a,b) = (2,1): N = 21, N̄ = 12, difference = 9 ✓\n- (a,b) = (3,2): N = 32 ✓\n- ... up to (9,8): N = 98 ✓\n\nSo 2-digit solutions: 10, 21, 32, 43, 54, 65, 76, 87, 98.\n\n**Case: 3-digit numbers**\nN = 100a + 10b + c, N̄ = 100c + 10b + a\nN - N̄ = 99a - 99c = 99(a - c) = 9 → a - c = 1/11, not integer. No solutions.\n\n**Case: 4-digit numbers**\nN = 1000a + 100b + 10c + d\nN̄ = 1000d + 100c + 10b + a\nN - N̄ = 999a + 90b - 90c - 999d = 999(a-d) + 90(b-c) = 9\n→ 111(a-d) + 10(b-c) = 1\n\nSince a,d ∈ {1,...,9} and b,c ∈ {0,...,9}, we need 111(a-d) + 10(b-c) = 1.\nIf a = d: 10(b-c) = 1, no integer solution.\nIf a-d = 1: 111 + 10(b-c) = 1 → 10(b-c) = -110 → b-c = -11, impossible.\nIf a-d = -1: -111 + 10(b-c) = 1 → 10(b-c) = 112, impossible.\nNo solutions.\n\n**General k-digit numbers (k ≥ 3):**\nFor odd k: The difference N - N̄ involves terms like (10^(k-1) - 1)(a_1 - a_k) + ... The smallest nonzero contribution from the leading term is 10^(k-1) - 1 ≥ 99 for k=3, which already exceeds 9 unless coefficients cancel, but as shown above they don't yield 9.\n\nFor even k ≥ 4: Similar analysis shows the minimum nonzero contribution is too large.\n\n**Conclusion:**\nAll positive integers N with N - N̄ = 9 are the 2-digit numbers where the tens digit exceeds the units digit by 1:\n\n**N ∈ {10, 21, 32, 43, 54, 65, 76, 87, 98}**\n\nFinal answer: All positive integers of the form $N = \\overline{(a)(a-1)}$ for $a = 1, 2, \\ldots, 9$, i.e., $N \\in \\{10, 21, 32, 43, 54, 65, 76, 87, 98\\}$.",
+  "usage": {
+    "input_tokens": 157,
+    "output_tokens": 1015,
+    "thinking_tokens": 0
+  },
+  "latency_s": 14.038105702027678,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "All positive integers of the form $N = \\overline{(a)(a-1)}$ for $a = 1, 2, \\ldots, 9$, i.e., $N \\in \\{10, 21, 32, 43, 54, 65, 76, 87, 98\\}$."
+  }
+}

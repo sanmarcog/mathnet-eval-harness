@@ -1,0 +1,26 @@
+{
+  "id": "0ern",
+  "country": "South Africa",
+  "competition": "South African Mathematics Olympiad First Round",
+  "gold_final_answer": "E",
+  "topics_flat": [
+    "Algebra > Prealgebra / Basic Algebra > Fractions",
+    "Algebra > Prealgebra / Basic Algebra > Decimals",
+    "Algebra > Prealgebra / Basic Algebra > Simple Equations"
+  ],
+  "prompt": "How many grams of pure gold must be added to five grams of a mixture that consists of 10% gold and 90% of some other metal so that the mixture will contain 20% gold?\n(A) 0.125 (B) 0.25 (C) 0.375 (D) 0.5 (E) 0.625",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find the amount of pure gold that must be added, let $x$ be the number of grams of pure gold. \n\nThe initial mixture weighs 5 grams and contains 10% gold. \nThe amount of gold currently in the mixture is:\n$0.10 \\times 5 = 0.5 \\text{ grams}$\n\nWhen $x$ grams of pure gold are added, the new amount of gold in the mixture will be $0.5 + x$ grams, and the total weight of the new mixture will be $5 + x$ grams. \n\nWe want the new mixture to be 20% gold, which gives us the following equation:\n$\\frac{0.5 + x}{5 + x} = 0.20$\n\nTo solve for $x$, multiply both sides by $5 + x$:\n$0.5 + x = 0.20(5 + x)$\n$0.5 + x = 1 + 0.20x$\n\nSubtract $0.20x$ from both sides:\n$0.80x + 0.5 = 1$\n\nSubtract $0.5$ from both sides:\n$0.80x = 0.5$\n\nDivide by $0.80$:\n$x = \\frac{0.5}{0.80} = \\frac{5}{8} = 0.625$\n\nThus, 0.625 grams of pure gold must be added.\n\nFinal answer: 0.625",
+  "usage": {
+    "input_tokens": 126,
+    "output_tokens": 338,
+    "thoughts_tokens": 415
+  },
+  "latency_s": 6.9120069650234655,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "0.625"
+  }
+}

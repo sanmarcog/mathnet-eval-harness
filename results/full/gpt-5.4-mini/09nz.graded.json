@@ -1,0 +1,25 @@
+{
+  "id": "09nz",
+  "country": "Mongolia",
+  "competition": "MMO2025 Round 4",
+  "gold_final_answer": "Player 1",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Games / greedy algorithms",
+    "Discrete Mathematics > Combinatorics > Invariants / monovariants"
+  ],
+  "prompt": "Let $a_0 = 2^{2025}$. Two players take turns extending a sequence $a_0, a_1, a_2, \\dots$ by the following rules:\nOn the $n$-th move, the player chooses $a_n = a_{n-1} + 1$ or $a_n = S(a_{n-1})$, where $S(x)$ denotes the sum of the digits of $x$.\nThe game ends when either three identical numbers appear in the sequence, or four consecutive terms form an arithmetic progression. The player who makes the final move (i.e., causes the game to end) wins.\nAssuming both players play optimally, determine which player has a winning strategy.\n(Batbayasgalan Balkhuu)",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let \\(a_0=2^{2025}\\). Since only two moves are possible at each step:\n\n- \\(a_n=a_{n-1}+1\\), which increases the number by 1,\n- \\(a_n=S(a_{n-1})\\), which collapses it to the sum of its digits,\n\nwe look for unavoidable patterns.\n\n### Key observation\nFor any sufficiently large number \\(x\\), \\(S(x)\\) is much smaller than \\(x\\), so after a digit-sum move the sequence drops drastically, while \\(+1\\) moves only increase it slowly. Hence the game will eventually be forced into a short cycle of values. The game ends when either:\n1. three equal terms appear, or\n2. four consecutive terms are in arithmetic progression.\n\nNow note:\n\n- If a player repeatedly chooses \\(a_n=a_{n-1}+1\\), then the last four terms are in arithmetic progression with common difference \\(1\\), so the game ends immediately.\n- If a player chooses \\(a_n=S(a_{n-1})\\), then the value becomes much smaller; from then on the next player can always force a repetition or an arithmetic progression within finitely many moves.\n\nThe crucial point is that the first player can choose the initial move to force the game into a position where the second player is the one compelled to create the terminal pattern. In fact, from \\(2^{2025}\\), the first player may choose \\(a_1=S(2^{2025})=1\\), and then the sequence is immediately driven into a tiny set of values where the second player cannot avoid eventually completing one of the winning terminal configurations on their own move.\n\nThus the **second player** can mirror strategically until the first player is forced into the losing move, so the second player has a winning strategy.\n\nFinal answer: The second player has a winning strategy.",
+  "usage": {
+    "input_tokens": 211,
+    "output_tokens": 396,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.746948783053085,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "The second player has a winning strategy."
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "id": "01e3",
+  "country": "Baltic Way",
+  "competition": "Baltic Way shortlist",
+  "gold_final_answer": "2/(8073^2 + 1)",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Polynomial operations",
+    "Algebra > Algebraic Expressions > Sequences and Series > Telescoping series"
+  ],
+  "prompt": "Compute the following product:\n$$\n\\prod_{m=1}^{2018} \\frac{(2m-1)^4 + \\frac{1}{4}}{(2m)^4 + \\frac{1}{4}}\n$$",
+  "model": "gpt-5.4-mini",
+  "response_text": "We simplify each factor first:\n\\[\n\\frac{(2m-1)^4+\\frac14}{(2m)^4+\\frac14}\n=\\frac{4(2m-1)^4+1}{4(2m)^4+1}.\n\\]\nNow use\n\\[\n4x^4+1=(2x^2-2x+1)(2x^2+2x+1).\n\\]\nWith \\(x=2m-1\\) and \\(x=2m\\), we get\n\\[\n4(2m-1)^4+1=\\bigl(2(2m-1)^2-2(2m-1)+1\\bigr)\\bigl(2(2m-1)^2+2(2m-1)+1\\bigr),\n\\]\n\\[\n4(2m)^4+1=\\bigl(2(2m)^2-2(2m)+1\\bigr)\\bigl(2(2m)^2+2(2m)+1\\bigr).\n\\]\nA cleaner way is to factor directly as\n\\[\n4x^4+1=(2x^2+2x+1)(2x^2-2x+1),\n\\]\nand then note the telescoping pattern\n\\[\n4(2m-1)^4+1=(8m^2-8m+1)(8m^2-4m+1),\n\\]\n\\[\n4(2m)^4+1=(8m^2-4m+1)(8m^2+4m+1).\n\\]\nThus\n\\[\n\\frac{(2m-1)^4+\\frac14}{(2m)^4+\\frac14}\n=\\frac{8m^2-8m+1}{8m^2+4m+1}.\n\\]\nBut more importantly,\n\\[\n8m^2-8m+1= (4m-1)^2-8m(m-1),\\qquad\n8m^2+4m+1=(4m+1)^2-8m^2,\n\\]\nso the product telescopes via the factorization\n\\[\n4x^4+1=(2x^2-2x+1)(2x^2+2x+1).\n\\]\nIndeed, substituting \\(x=m-\\tfrac12\\) and \\(x=m\\) gives\n\\[\n\\frac{(2m-1)^4+\\frac14}{(2m)^4+\\frac14}\n=\\frac{(4m^2-6m+2)(4m^2-2m+1)}{(4m^2-2m+1)(4m^2+2m+1)}\n=\\frac{4m^2-6m+2}{4m^2+2m+1}.\n\\]\nThis is exactly\n\\[\n\\frac{(2m-1)(2m-2)}{(2m+1)(2m)}.\n\\]\nSo the product becomes\n\\[\n\\prod_{m=1}^{2018}\\frac{(2m-1)(2m-2)}{(2m)(2m+1)}.\n\\]\nNow separate:\n\\[\n\\prod_{m=1}^{2018}\\frac{2m-1}{2m+1}\\cdot \\prod_{m=1}^{2018}\\frac{2m-2}{2m}.\n\\]\nThe second product is\n\\[\n\\prod_{m=1}^{2018}\\frac{m-1}{m}=0\n\\]\nbecause the first factor at \\(m=1\\) is \\(\\frac00\\) from the original expression? Let's instead evaluate directly the original product at \\(m=1\\):\n\\[\n\\frac{1^4+\\frac14}{2^4+\\frac14}=\\frac{5/4}{65/4}=\\frac1{13},\n\\]\nso no zero issue. The correct telescoping factorization is\n\\[\n\\frac{(2m-1)^4+\\frac14}{(2m)^4+\\frac14}\n=\\frac{4m^2-4m+1}{4m^2+1}.\n\\]\nThen\n\\[\n4m^2+1=(2m-1)^2+(2m)\\quad\\text{and}\\quad 4m^2-4m+1=(2m-1)^2,\n\\]\nwhich gives\n\\[\n\\frac{4m^2-4m+1}{4m^2+1}=\\frac{2m-1}{2m+1}.\n\\]\nHence\n\\[\n\\prod_{m=1}^{2018}\\frac{2m-1}{2m+1}\n=\\frac{1\\cdot 3\\cdot 5\\cdots 4035}{3\\cdot 5\\cdot 7\\cdots 4037}\n=\\frac{1}{4037}.\n\\]\n\nFinal answer: \\(\\boxed{\\frac{1}{4037}}\\)",
+  "usage": {
+    "input_tokens": 98,
+    "output_tokens": 1085,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 5.99338652996812,
+  "cached": false
+}

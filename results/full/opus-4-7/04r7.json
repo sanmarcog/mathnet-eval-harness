@@ -1,0 +1,22 @@
+{
+  "id": "04r7",
+  "country": "Czech Republic",
+  "competition": "63rd Czech and Slovak Mathematical Olympiad",
+  "gold_final_answer": "2013",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Prime numbers",
+    "Number Theory > Divisibility / Factorization > Factorization techniques",
+    "Number Theory > Modular Arithmetic",
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities"
+  ],
+  "prompt": "A number $n$ is a product of three (not necessarily distinct) prime numbers. Adding 1 to each of them, after multiplication we get a larger product $n + 963$. Determine the original product $n$. (Pavel Novotný)",
+  "model": "claude-opus-4-7",
+  "response_text": "<think>\npqr, (p+1)(q+1)(r+1) - pqr = 963.\n\nExpand: pqr + pq+pr+qr+p+q+r+1 - pqr = pq+qr+rp+p+q+r+1 = 963\nSo pq+qr+rp+p+q+r = 962.\n\nIf all odd, LHS even... pq+qr+rp odd*3=odd, p+q+r odd, sum even. 962 even, ok.\nIf one is 2: say r=2. Then pq+2p+2q+p+q+2 = pq+3p+3q+2 = 962, pq+3p+3q=960, (p+3)(q+3)=969=3·17·19.\nFactor pairs: 3·323, 17·57, 19·51. So p+3,q+3: 17,57 -> p=14 no. 19,51 -> p=16 no. 3·323 -> p=0 no.\n\nIf two are 2: p=q=2, r odd. 4+2r+2r+2+2+r=5r+8=962, 5r=954, not integer... wait 954/5 no.\n\nAll three 2: 4+4+4+2+2+2=18, no.\n\nIf one is 2 doesn't work. Try all odd primes.\npq+qr+rp+p+q+r=962.\n\nHmm, let me try p=q=r: 3p²+3p=962, no.\nTry small: p=3: 3q+3r+qr+3+q+r=qr+4q+4r+3=962, qr+4q+4r=959, (q+4)(r+4)=975=3·5²·13.\nPairs: 15·65 → q=11,r=61. Both prime! Check: 3·11·61=2013. 4·12·62=2976. 2976-2013=963. ✓\nOther pairs: 25·39 → 21,35 no. 13·75→9,71 no. 5·195→1,191 no. 75·13 same.\n\nSo n=2013.\n</think>\n\nExpanding $(p+1)(q+1)(r+1) - pqr = 963$ gives:\n$$pq + qr + rp + p + q + r + 1 = 963$$\n\nTesting $p=3$: $(q+4)(r+4) = 975 = 15 \\cdot 65$, giving $q=11, r=61$ (both prime).\n\nCheck: $3 \\cdot 11 \\cdot 61 = 2013$ and $4 \\cdot 12 \\cdot 62 = 2976$, difference $= 963$ ✓\n\nFinal answer: 2013",
+  "usage": {
+    "input_tokens": 142,
+    "output_tokens": 819,
+    "thinking_tokens": 0
+  },
+  "latency_s": 10.95451034209691,
+  "cached": false
+}

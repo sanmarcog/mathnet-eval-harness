@@ -1,0 +1,24 @@
+{
+  "id": "09v3",
+  "country": "Netherlands",
+  "competition": "Junior Mathematical Olympiad, September 2019",
+  "gold_final_answer": "D) 3",
+  "topics_flat": [
+    "Discrete Mathematics > Logic"
+  ],
+  "prompt": "Five smart students are sitting in a circle. The teacher gives one or more marbles to each of them. He explains that he has handed out a total of 18 marbles, and that everyone got a different number of marbles. Each student is allowed to see his own number of marbles, as well as the number of marbles of his neighbour on the left and his neighbour on the right.\n\nUsing only this information, each student must try to logically deduce the difference between the numbers of marbles of the two students opposite to him. The teacher has distributed the marbles in such a way as to minimise the number of students that are able to do this. How many students can do it?\nA) 0  B) 1  C) 2  D) 3  E) 5",
+  "model": "gpt-5.4",
+  "response_text": "Let the five numbers of marbles around the circle be \\(a_1,a_2,a_3,a_4,a_5\\), all distinct positive integers, with\n\n\\[\na_1+a_2+a_3+a_4+a_5=18.\n\\]\n\nSince they are five distinct positive integers summing to 18, they must be exactly\n\n\\[\n1,2,3,4,8\n\\]\n\nin some order, because the smallest possible sum of five distinct positive integers is \\(1+2+3+4+5=15\\), and we need 3 more, which forces the largest to be \\(8\\).\n\nNow fix one student, say the one seeing \\((L, X, R)\\): left neighbour \\(L\\), own number \\(X\\), right neighbour \\(R\\).  \nThen the two unseen opposite students together have total\n\n\\[\n18-(L+X+R).\n\\]\n\nAlso, the two unseen numbers must be the two remaining numbers from \\(\\{1,2,3,4,8\\}\\). Since all numbers are distinct, this pair is actually determined uniquely by the visible triple. Therefore the student can deduce the *pair* of opposite numbers, hence their difference.\n\nSo at first glance it seems everyone can always do it. But we must check whether the student knows which opposite student has which of the two values. The problem asks for the difference between the numbers of the two opposite students, which is independent of order. So knowing the pair is enough.\n\nThus every student can deduce the difference.\n\nTherefore the teacher cannot reduce the number below 5.\n\nFinal answer: E) 5",
+  "usage": {
+    "input_tokens": 215,
+    "output_tokens": 346,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 5.804447960923426,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "E) 5"
+  }
+}

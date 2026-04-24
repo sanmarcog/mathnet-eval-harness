@@ -1,0 +1,24 @@
+{
+  "id": "0eq0",
+  "country": "South Africa",
+  "competition": "South African Mathematics Olympiad",
+  "gold_final_answer": "36",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Inclusion-exclusion"
+  ],
+  "prompt": "In a group of $108$ people, $1$ in $4$ of them has a pen and $1$ in $3$ has a pencil. What is the minimum possible number of people that have something to write with?",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let \\(P\\) be the number of people with a pen and \\(Q\\) the number with a pencil.\n\n\\[\nP=\\frac14\\cdot 108=27,\\qquad Q=\\frac13\\cdot 108=36.\n\\]\n\nTo minimize the number of people who have something to write with, we want the overlap between pen-holders and pencil-holders to be as large as possible. The maximum possible overlap is the smaller of the two groups, which is \\(27\\).\n\nSo the minimum number with at least one writing tool is\n\n\\[\n27+36-27=36.\n\\]\n\nFinal answer: \\(36\\)",
+  "usage": {
+    "input_tokens": 96,
+    "output_tokens": 144,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 1.492369726067409,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "normalized",
+    "predicted": "\\(36\\)"
+  }
+}

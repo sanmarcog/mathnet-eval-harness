@@ -1,0 +1,25 @@
+{
+  "id": "0569",
+  "country": "Estonia",
+  "competition": "Estonian Mathematical Olympiad",
+  "gold_final_answer": "No",
+  "topics_flat": [
+    "Number Theory > Modular Arithmetic",
+    "Discrete Mathematics > Combinatorics > Pigeonhole principle"
+  ],
+  "prompt": "Do there exist five distinct prime numbers for which the sum of any three of them is a prime number as well?",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To determine if there exist five distinct prime numbers such that the sum of any three is also prime, we can consider the prime numbers modulo 3. \n\nEvery prime number is congruent to 0, 1, or 2 modulo 3. The only prime congruent to 0 modulo 3 is 3 itself. \n\nLet's analyze the possible residues of our five distinct primes modulo 3:\n1. **Case 1: The number 3 is not among the five primes.**\n   Then all five primes must be congruent to either 1 or 2 modulo 3. By the Pigeonhole Principle, since there are 5 primes and only 2 possible residues, at least $\\lceil 5/2 \\rceil = 3$ of these primes must have the same residue modulo 3. \n   If we take these three primes, their sum will be congruent to $1+1+1 \\equiv 3 \\equiv 0 \\pmod 3$ or $2+2+2 \\equiv 6 \\equiv 0 \\pmod 3$. Thus, their sum is a multiple of 3. Since the sum of any three distinct primes is at least $2+5+7 = 14 > 3$, this sum must be a composite number, which contradicts the condition.\n\n2. **Case 2: The number 3 is among the five primes.**\n   The other four primes must have residues of 1 or 2 modulo 3. \n   - If three of these four primes share the same residue, their sum is a multiple of 3 (and greater than 3), making it composite.\n   - If they do not, there must be exactly two primes congruent to 1 modulo 3, and exactly two primes congruent to 2 modulo 3. \n   In this scenario, we can choose the prime 3 (which is $0 \\pmod 3$), one prime congruent to $1 \\pmod 3$, and one prime congruent to $2 \\pmod 3$. The sum of these three primes will be congruent to $0 + 1 + 2 = 3 \\equiv 0 \\pmod 3$. Again, the sum of these three distinct primes is at least $3+5+2 = 10 > 3$, meaning their sum is a multiple of 3 strictly greater than 3, and therefore composite.\n\nIn all possible cases, we can always find three primes among the five whose sum is a composite number. \n\nFinal answer: No",
+  "usage": {
+    "input_tokens": 62,
+    "output_tokens": 527,
+    "thoughts_tokens": 1705
+  },
+  "latency_s": 20.411051494884305,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "exact",
+    "predicted": "No"
+  }
+}

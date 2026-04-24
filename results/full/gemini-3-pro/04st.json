@@ -1,0 +1,20 @@
+{
+  "id": "04st",
+  "country": "Czech Republic",
+  "competition": "Czech and Slovak Mathematical Olympiad",
+  "gold_final_answer": "x + y + z = 4; the smallest interval is [2/3, 2].",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Vieta's formulas",
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities"
+  ],
+  "prompt": "Suppose that the real numbers $x, y, z$ satisfy equalities\n$$\n15(x + y + z) = 12(xy + yz + zx) = 10(x^2 + y^2 + z^2)\n$$\nand that at least one of them is different from zero.\na) Prove that $x + y + z = 4$.\nb) Find the smallest interval $(a, b)$, which contains all three numbers from any triplet $(x, y, z)$ satisfying the given conditions.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To solve the problem, we introduce the symmetric polynomials:\nLet $S = x + y + z$, $P = xy + yz + zx$, and $Q = x^2 + y^2 + z^2$.\n\nThe given equalities are:\n$$15S = 12P = 10Q$$\n\nFrom this, we can express $P$ and $Q$ in terms of $S$:\n$$P = \\frac{15}{12}S = \\frac{5}{4}S$$\n$$Q = \\frac{15}{10}S = \\frac{3}{2}S$$\n\nWe also know the algebraic identity relating $S, P,$ and $Q$:\n$$S^2 = (x + y + z)^2 = x^2 + y^2 + z^2 + 2(xy + yz + zx) = Q + 2P$$\n\nSubstitute the expressions for $P$ and $Q$ into the identity:\n$$S^2 = \\frac{3}{2}S + 2\\left(\\frac{5}{4}S\\right)$$\n$$S^2 = \\frac{3}{2}S + \\frac{5}{2}S$$\n$$S^2 = 4S$$\n\nSince at least one of $x, y, z$ is non-zero, $Q = x^2 + y^2 + z^2 > 0$. This implies $S > 0$. Dividing by $S$, we get:\n$$S = 4$$\nThis proves part a), that $x + y + z = 4$.\n\nFor part b), we substitute $S = 4$ back into our expressions for $P$ and $Q$:\n$$P = \\frac{5}{4}(4) = 5$$\n$$Q = \\frac{3}{2}(4) = 6$$\n\nWe want to find the range of possible values for any of the variables, say $x$. We can express the sum and product of the other two variables, $y$ and $z$, in terms of $x$:\n$$y + z = S - x = 4 - x$$\n$$yz = P - x(y + z) = 5 - x(4 - x) = x^2 - 4x + 5$$\n\nFor $y$ and $z$ to be real numbers, they must be roots of the quadratic equation $t^2 - (y+z)t + yz = 0$. The discriminant of this quadratic must be non-negative:\n$$\\Delta = (y + z)^2 - 4yz \\ge 0$$\n\nSubstitute the expressions in terms of $x$:\n$$(4 - x)^2 - 4(x^2 - 4x + 5) \\ge 0$$\n$$16 - 8x + x^2 - 4x^2 + 16x - 20 \\ge 0$$\n$$-3x^2 + 8x - 4 \\ge 0$$\n$$3x^2 - 8x + 4 \\le 0$$\n\nFactor the quadratic:\n$$(3x - 2)(x - 2) \\le 0$$\n\nThis inequality holds for:\n$$\\frac{2}{3} \\le x \\le 2$$\n\nBy symmetry, the same bounds apply to $y$ and $z$. The values are achievable (e.g., $x=2, y=1, z=1$ and $x=2/3, y=5/3, z=5/3$). Therefore, the smallest interval containing all three numbers is $[2/3, 2]$.\n\nFinal answer: [2/3, 2]",
+  "usage": {
+    "input_tokens": 157,
+    "output_tokens": 822,
+    "thoughts_tokens": 1595
+  },
+  "latency_s": 19.93248109309934,
+  "cached": false
+}

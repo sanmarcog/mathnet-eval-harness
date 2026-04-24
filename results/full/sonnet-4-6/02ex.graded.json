@@ -1,0 +1,26 @@
+{
+  "id": "02ex",
+  "country": "Brazil",
+  "competition": "XIV OBM",
+  "gold_final_answer": "The unique maximizer is the convex polygon whose vertices lie on a semicircle with endpoints at the first and last vertices, so that each interior vertex subtends a right angle with these endpoints (that is, it is inscribed in a semicircle with diameter A0An).",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Geometric Inequalities > Optimization in geometry",
+    "Geometry > Plane Geometry > Triangles > Triangle trigonometry",
+    "Geometry > Plane Geometry > Miscellaneous > Angle chasing"
+  ],
+  "prompt": "Given positive real numbers $x_1, x_2, \\dots, x_n$ find the polygon $A_0A_1 \\dots A_n$ with $A_0A_1 = x_1$, $A_1A_2 = x_2$, $\\dots$, $A_{n-1}A_n = x_n$ which has the greatest area.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Setting Up the Problem\n\nWe want to find the polygon $A_0A_1\\cdots A_n$ with given side lengths $x_1, x_2, \\ldots, x_n$ that maximizes the area.\n\n**Key Insight:** This is an open polygon (a chain), not a closed polygon. We need to maximize the area enclosed between the polygon and the segment $A_0A_n$.\n\n## Analysis\n\nThe area of the polygon $A_0A_1\\cdots A_n$ (together with the closing segment $A_nA_0$) can be computed. We want to maximize the area of the region bounded by the polygonal chain and the chord $A_0A_n$.\n\n**Reduction to a known result:** For a polygon with fixed side lengths that is closed, the maximum area is achieved when it's cyclic (inscribed in a circle). For an open chain, we can think of it as follows:\n\nConsider the polygon formed by $A_0, A_1, \\ldots, A_n$ together with the segment $A_nA_0$. The area of this closed polygon is maximized when all vertices lie on a common circle (cyclic polygon), by the generalization of the isoperimetric inequality for polygons with fixed side lengths.\n\n**Proof sketch:** Using the formula for area in terms of the diagonal $A_0A_n = d$ and the positions of intermediate vertices:\n\nThe area of the chain above $A_0A_n$ equals the sum of triangle areas. For fixed side lengths, the area is maximized when:\n1. All vertices $A_0, A_1, \\ldots, A_n$ lie on a semicircle (so the polygon is cyclic with $A_0A_n$ as diameter... not necessarily).\n\nMore precisely: The area of the closed polygon $A_0A_1\\cdots A_nA_0$ with sides $x_1, \\ldots, x_n, d$ (where $d = A_0A_n$) is maximized over all configurations when the polygon is **cyclic**. But we also optimize over $d$.\n\n**Optimizing over the closing side:** If we fix $d = A_0A_n$, the maximum area of the chain is achieved when $A_0, A_1, \\ldots, A_n$ are concyclic. The total area (chain + triangle $A_0A_n$... actually the closed polygon) is maximized when cyclic.\n\nTo also maximize over $d$: for a cyclic polygon with sides $x_1, \\ldots, x_n, d$, we differentiate with respect to $d$. The maximum over $d$ occurs when the inscribed angle subtended by $d$ satisfies a condition — specifically when $d$ is also a chord of the same circle, and the derivative condition gives that the angle subtended by $d$ equals $\\pi/2$... \n\nActually, the optimal open chain maximizes area when **all vertices lie on a semicircle** with $A_0A_n$ as diameter. This means each side $x_i$ subtends a right angle... No.\n\n**Correct result:** The area is maximized when the polygon $A_0A_1\\cdots A_n$ is **inscribed in a semicircle** with $A_0A_n$ as diameter. This means all intermediate vertices $A_1, \\ldots, A_{n-1}$ lie on the semicircle with diameter $A_0A_n$, i.e., the polygon is cyclic with $A_0A_n$ as diameter.\n\nThis follows because: fixing $A_0A_n$, the area is maximized when all points are on a circle (cyclic). Then optimizing over the circle, the maximum area of the open chain occurs when $A_0A_n$ is a diameter (so the polygon is inscribed in a semicircle).\n\n## Conclusion\n\nThe polygon of greatest area is the one where **all vertices $A_0, A_1, \\ldots, A_n$ lie on a semicircle**, with $A_0$ and $A_n$ at the endpoints of the diameter. Equivalently, the polygon is **cyclic** (inscribed in a circle) with the additional condition that $A_0A_n$ is a diameter of that circle — meaning each side $x_i$ subtends an angle at the center such that the vertices all lie on a semicircle.\n\nFinal answer: The polygon of greatest area is the one inscribed in a semicircle, with $A_0$ and $A_n$ at the two ends of the diameter; that is, all vertices $A_0, A_1, \\dots, A_n$ lie on a common circle with $A_0A_n$ as a diameter (so the polygon is cyclic and $A_0A_n$ is a diameter of the circumscribed circle).",
+  "usage": {
+    "input_tokens": 138,
+    "output_tokens": 1133,
+    "thinking_tokens": 0
+  },
+  "latency_s": 18.583746289019473,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "The polygon of greatest area is the one inscribed in a semicircle, with $A_0$ and $A_n$ at the two ends of the diameter; that is, all vertices $A_0, A_1, \\dots, A_n$ lie on a common circle with $A_0A_n$ as a diameter (so the polygon is cyclic and $A_0A_n$ is a diameter of the circumscribed circle)."
+  }
+}

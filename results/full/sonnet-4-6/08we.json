@@ -1,0 +1,21 @@
+{
+  "id": "08we",
+  "country": "Japan",
+  "competition": "Japan Mathematical Olympiad",
+  "gold_final_answer": "All positive multiples of p; that is, n = k p for some positive integer k.",
+  "topics_flat": [
+    "Number Theory > Modular Arithmetic > Fermat / Euler / Wilson theorems",
+    "Number Theory > Modular Arithmetic > Polynomials mod p",
+    "Number Theory > Divisibility / Factorization > Factorization techniques"
+  ],
+  "prompt": "Let $p$ be a prime. Determine all positive integers $n$ for which the following condition is satisfied for all the integers $x$:\nCondition: If $x^n - 1$ is divisible by $p$, then it is also divisible by $p^2$.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "We need to find all positive integers $n$ such that for all integers $x$: if $p \\mid x^n - 1$, then $p^2 \\mid x^n - 1$.\n\n**Analysis:**\n\nIf $p \\mid x^n - 1$, then $x^n \\equiv 1 \\pmod{p}$, so $\\gcd(x, p) = 1$.\n\nThe condition says: whenever $x^n \\equiv 1 \\pmod{p}$, we need $x^n \\equiv 1 \\pmod{p^2}$.\n\n**When does the condition fail?**\n\nThe condition fails if there exists $x$ with $x^n \\equiv 1 \\pmod{p}$ but $x^n \\not\\equiv 1 \\pmod{p^2}$.\n\n**Key structure:** The group $(\\mathbb{Z}/p^2\\mathbb{Z})^*$ is cyclic of order $p(p-1)$. Let $g$ be a primitive root mod $p^2$. Then $g$ is also a primitive root mod $p$.\n\nThe elements $x$ with $x^n \\equiv 1 \\pmod{p}$ are those where $\\text{ord}_p(x) \\mid n$, i.e., $(p-1) \\mid n \\cdot \\frac{p-1}{\\gcd(n, p-1)}$... more precisely, $x^n \\equiv 1 \\pmod{p}$ iff $\\text{ord}_p(x) \\mid n$.\n\nWrite $x = g^k \\pmod{p^2}$. Then $x^n \\equiv 1 \\pmod{p}$ iff $(p-1) \\mid kn$, i.e., $\\frac{p-1}{\\gcd(n,p-1)} \\mid k$.\n\nAnd $x^n \\equiv 1 \\pmod{p^2}$ iff $p(p-1) \\mid kn$.\n\nSo the condition requires: whenever $\\frac{p-1}{\\gcd(n,p-1)} \\mid k$, then $p(p-1) \\mid kn$.\n\nLet $d = \\gcd(n, p-1)$, so $\\frac{p-1}{d} \\mid k$ means $k = \\frac{p-1}{d} \\cdot m$ for some integer $m$.\n\nThen $kn = \\frac{p-1}{d} \\cdot m \\cdot n$. We need $p(p-1) \\mid \\frac{p-1}{d} \\cdot m \\cdot n$ for all $m$, i.e., $pd \\mid mn$ for all $m$.\n\nTaking $m=1$: we need $pd \\mid n$.\n\nSince $d = \\gcd(n, p-1)$, we need $pd \\mid n$.\n\nSince $d \\mid n$ already (as $d = \\gcd(n,p-1)$ divides $n$), we need $p \\mid \\frac{n}{d}$.\n\nSo the condition is: $p \\mid \\frac{n}{\\gcd(n, p-1)}$.\n\n**Verification:** If $p \\mid \\frac{n}{\\gcd(n,p-1)}$, then for any $k$ with $\\frac{p-1}{d} \\mid k$, we have $kn = k \\cdot d \\cdot \\frac{n}{d}$, and $p(p-1) \\mid kn$ iff $p \\mid \\frac{kn}{p-1} = \\frac{k}{(p-1)/d} \\cdot \\frac{n}{d}$. Since $\\frac{p-1}{d} \\mid k$, the factor $\\frac{k}{(p-1)/d}$ is an integer, and $p \\mid \\frac{n}{d}$, so $p \\mid kn/(p-1)$. ✓\n\n**Special case $p \\nmid n$:** The condition $p \\mid \\frac{n}{\\gcd(n,p-1)}$ requires $p \\mid \\frac{n}{d}$. If $p \\nmid n$, then $p \\nmid \\frac{n}{d}$ (since $d \\mid p-1$ so $p \\nmid d$), so the condition fails unless there are no elements of order dividing $n$ mod $p$ other than 1... but that's only when $n \\equiv 0 \\pmod{p-1}$... Actually if $\\gcd(n, p-1) = p-1$ (i.e., $(p-1) \\mid n$) and $p \\mid n$, then $p(p-1) \\mid n$, so $n$ is divisible by $p(p-1)$.\n\nThe condition simplifies to: $p \\mid \\frac{n}{\\gcd(n, p-1)}$, equivalently $p \\cdot \\gcd(n, p-1) \\mid n$.\n\nSince $\\gcd(p, p-1) = 1$, this means $p(p-1) \\mid n \\cdot \\frac{p-1}{\\gcd(n,p-1)} \\cdot \\gcd(n,p-1)$... The condition is simply:\n\n$$p(p-1) \\mid n \\cdot \\frac{p(p-1)/\\gcd(n,p(p-1))}{\\text{...}}$$\n\nThe condition is: **$p \\cdot \\gcd(n, p-1) \\mid n$**, i.e., $n$ is divisible by $p \\cdot \\gcd(n, p-1)$.\n\nThis is equivalent to saying $p(p-1) \\mid n$ (since if $p \\mid n$ and $(p-1) \\mid n$ then $p(p-1)\\mid n$; and $p\\cdot\\gcd(n,p-1)\\mid n$ with $p\\mid n$ gives $\\gcd(n,p-1)=p-1$ so $(p-1)\\mid n$).\n\nFinal answer: All positive integers $n$ divisible by $p(p-1)$.",
+  "usage": {
+    "input_tokens": 110,
+    "output_tokens": 1532,
+    "thinking_tokens": 0
+  },
+  "latency_s": 21.123014337033965,
+  "cached": false
+}

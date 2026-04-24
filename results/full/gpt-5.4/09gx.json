@@ -1,0 +1,20 @@
+{
+  "id": "09gx",
+  "country": "Mongolia",
+  "competition": "Mongolian Mathematical Olympiad",
+  "gold_final_answer": "n if n is even; n−1 if n is odd",
+  "topics_flat": [
+    "Discrete Mathematics > Graph Theory > Matchings, Marriage Lemma, Tutte's theorem",
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments"
+  ],
+  "prompt": "Гүдгэр $n$-өнцөгтийн талууд ба диагоналиудыг $n-1$ өнгөөр буджээ. Хэрэв оройгоос гарсан талууд ба диагоналиуд нь бүгд өөр өнгөтэй байвал уг оройг “сайн” орой гэж нэрлэе. Сайн орой хамгийн олондоо хэдэн ширхэг байх вэ?",
+  "model": "gpt-5.4",
+  "response_text": "Let the vertices of the convex \\(n\\)-gon be \\(1,2,\\dots,n\\).  \nAll sides and diagonals are colored with \\(n-1\\) colors.\n\nA vertex is called **good** if all \\(n-1\\) segments from that vertex to the other vertices have pairwise distinct colors. Since there are exactly \\(n-1\\) colors total, this means:\n\n- at a good vertex, the \\(n-1\\) incident edges use **all** \\(n-1\\) colors exactly once.\n\nWe seek the maximum possible number of good vertices.\n\n---\n\n## Claim\nThe number of good vertices is at most \\(2\\), and this bound is attainable.\n\n---\n\n## Proof of the upper bound\n\nAssume \\(A,B,C\\) are three good vertices. Consider the triangle \\(ABC\\).\n\nLet the colors of its sides be:\n\\[\nAB=x,\\quad BC=y,\\quad CA=z.\n\\]\n\nSince \\(A\\) is good, among the edges from \\(A\\), all colors are distinct; in particular\n\\[\nx\\neq z.\n\\]\nSimilarly, from \\(B\\) good we get\n\\[\nx\\neq y,\n\\]\nand from \\(C\\) good we get\n\\[\ny\\neq z.\n\\]\nSo \\(x,y,z\\) are three distinct colors.\n\nNow look at any other vertex \\(P\\). Since \\(A\\) is good, the color of \\(AP\\) cannot be \\(x\\) or \\(z\\), and similarly from \\(B,C\\) we get restrictions. That alone is not enough, so we use a counting idea.\n\nFor every good vertex, the incident edges realize all \\(n-1\\) colors once. Hence if there are \\(k\\) good vertices, then counting pairs\n\\[\n(\\text{good vertex},\\text{color})\n\\]\ngives exactly \\(k(n-1)\\).\n\nOn the other hand, each edge contributes to at most two good vertices (its endpoints), so summing over colors and using the structure forced by three good vertices leads to contradiction: for any color, the edges of that color form a matching on the good vertices, because at a good vertex each color appears exactly once. If there were \\(3\\) good vertices, then for color \\(x=AB\\), vertices \\(A\\) and \\(B\\) are already matched by color \\(x\\). Vertex \\(C\\), being good, must also be incident to exactly one edge of color \\(x\\), say \\(CQ\\). Similarly for the colors \\(y,z\\).\n\nNow among the \\(n-1\\) colors, each good vertex uses each color exactly once. Restricting to the three good vertices, every color induces degree \\(1\\) at each of these vertices. But on a set of \\(3\\) vertices this is impossible: a graph in which every vertex has degree \\(1\\) must have an even number of vertices. Thus no color can be incident exactly once to each of \\(A,B,C\\). Contradiction.\n\nTherefore there cannot be \\(3\\) good vertices. So the number of good vertices is at most \\(2\\).\n\n---\n\n## Construction showing \\(2\\) is possible\n\nTake two adjacent vertices, say \\(1\\) and \\(2\\).  \nColor edge \\(1j\\) (\\(j=2,3,\\dots,n\\)) with distinct colors \\(1,2,\\dots,n-1\\).  \nFor each \\(j\\ge 3\\), color edge \\(2j\\) with the same color as edge \\(1,j-1\\). Then the \\(n-1\\) edges from vertex \\(2\\) also all have distinct colors.  \nColor all remaining edges arbitrarily.\n\nThen vertices \\(1\\) and \\(2\\) are good.\n\nSo \\(2\\) is achievable.\n\n---\n\nHence the maximum possible number of good vertices is\n\nFinal answer: \\(\\boxed{2}\\)",
+  "usage": {
+    "input_tokens": 133,
+    "output_tokens": 825,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 15.457279026973993,
+  "cached": false
+}

@@ -1,0 +1,24 @@
+{
+  "id": "0h9s",
+  "country": "Ukraine",
+  "competition": "58th Ukrainian National Mathematical Olympiad",
+  "gold_final_answer": "5, 6, 8",
+  "topics_flat": [
+    "Discrete Mathematics > Graph Theory"
+  ],
+  "prompt": "There are several gentlemen in the club.\nEvery two are either friends, or enemies. It is known that each of the gentlemen has exactly $4$ enemies. In addition, for each of them, the enemy of his friend is his enemy. How many gentlemen can be present at the club?",
+  "model": "gpt-5.4-mini",
+  "response_text": "Model the gentlemen as vertices of a graph: an edge means “enemies.”  \nThen each vertex has degree \\(4\\), so the graph is \\(4\\)-regular.\n\nNow use the extra condition:\n\n- If \\(A\\) and \\(B\\) are friends, then every enemy of \\(B\\) is also an enemy of \\(A\\).\n- Since each man has exactly 4 enemies, this means \\(A\\) and \\(B\\) have the same set of enemies.\n\nSo “being friends” is an equivalence relation: all men in the same friendship class have exactly the same 4 enemies, and every man in one class is enemies with every man in some other classes.\n\nTake any friendship class \\(C\\). If it has size \\(s\\), then each member of \\(C\\) has exactly 4 enemies, and these enemies must lie outside \\(C\\). Moreover, all members of \\(C\\) have the same 4 enemy classes. Thus each friendship class is connected by enmity to exactly 4 other friendship classes.\n\nTherefore the friendship classes form the vertices of a graph where every vertex has degree 4. Such a graph can have any number \\(m\\) of vertices with \\(m\\ge 5\\), but each friendship class must have the same size, say \\(k\\). Then each person has exactly \\(4k\\) enemies, and this must equal 4, so \\(k=1\\).\n\nHence every friendship class has size 1: no two distinct gentlemen can be friends. So every pair are enemies, and each man has exactly \\(n-1\\) enemies, where \\(n\\) is the total number of gentlemen. Since this equals 4, we get\n\\[\nn-1=4 \\quad\\Rightarrow\\quad n=5.\n\\]\n\nFinal answer: \\(5\\)",
+  "usage": {
+    "input_tokens": 107,
+    "output_tokens": 392,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.0596027020365,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "\\(5\\)"
+  }
+}

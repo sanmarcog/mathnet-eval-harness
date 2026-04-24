@@ -1,0 +1,24 @@
+{
+  "id": "0dbw",
+  "country": "Saudi Arabia",
+  "competition": "SAUDI ARABIAN MATHEMATICAL COMPETITIONS",
+  "gold_final_answer": "8",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments"
+  ],
+  "prompt": "What is the biggest number of queens of two colors (black and white) one can place on a chessboard, such that no two of them beat one another (the queens do not beat through each other)?\n\nNote: The queen is able to move any number of squares vertically, horizontally or diagonally.",
+  "model": "gpt-5.4",
+  "response_text": "Interpret “of two colors” as: queens of the same color must not attack each other, while queens of different colors may lie on the same line because a queen does **not** attack through another queen. We want the maximum total number of queens on the usual \\(8\\times 8\\) chessboard.\n\nLet there be \\(b\\) black queens and \\(w\\) white queens.\n\n## Key observation\nQueens of one color must be mutually nonattacking. In particular, among queens of the same color:\n\n- no two can be in the same row,\n- no two can be in the same column,\n- no two can be on the same diagonal.\n\nSo each color class is itself a set of nonattacking queens.\n\nIt is well known (and easy to see from rows/columns) that on an \\(8\\times 8\\) board, at most \\(8\\) mutually nonattacking queens of one color can be placed, since they must occupy distinct rows and distinct columns. Hence\n\\[\nb\\le 8,\\qquad w\\le 8,\n\\]\nso\n\\[\nb+w\\le 16.\n\\]\n\nSo 16 is an absolute upper bound.\n\n## Can 16 actually be achieved?\nYes. We only need two disjoint 8-queen configurations.\n\nTake black queens at\n\\[\n(1,1),(2,5),(3,8),(4,6),(5,3),(6,7),(7,2),(8,4),\n\\]\nwhich is a standard 8-queens solution.\n\nTake white queens at\n\\[\n(1,8),(2,4),(3,1),(4,3),(5,6),(6,2),(7,7),(8,5),\n\\]\nanother 8-queens solution.\n\nThese two sets are disjoint, and within each color no two queens attack one another. Therefore we have placed\n\\[\n8+8=16\n\\]\nqueens satisfying the condition.\n\nThus the maximum is 16.\n\nFinal answer: 16",
+  "usage": {
+    "input_tokens": 109,
+    "output_tokens": 432,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 7.428526705014519,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "16"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "id": "00ib",
+  "country": "Austria",
+  "competition": "Austria 2010",
+  "gold_final_answer": "Equality holds when x, y, z are consecutive integers in any order, i.e., (x, y, z) = (m, m+1, m+2) up to permutation.",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities",
+    "Algebra > Algebraic Expressions > Polynomials > Symmetric functions",
+    "Algebra > Prealgebra / Basic Algebra > Integers"
+  ],
+  "prompt": "Prove that the inequality\n$$\n\\frac{(x-y)^7 + (y-z)^7 + (z-x)^7 - (x-y)(y-z)(z-x)((x-y)^4 + (y-z)^4 + (z-x)^4)}{(x-y)^5 + (y-z)^5 + (z-x)^5} \\ge 3\n$$\nholds for all pairwise different integers $x$, $y$, $z$. When does equality hold?",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let  \n\\[\na=x-y,\\qquad b=y-z,\\qquad c=z-x.\n\\]\nThen\n\\[\na+b+c=0.\n\\]\nThe given expression becomes\n\\[\n\\frac{a^7+b^7+c^7-abc(a^4+b^4+c^4)}{a^5+b^5+c^5}.\n\\]\n\nNow use the standard identity for \\(a+b+c=0\\):\n\\[\na^5+b^5+c^5=5abc(a^2+b^2+c^2),\n\\]\nand\n\\[\na^7+b^7+c^7=(a+b+c)\\bigl(a^6+b^6+c^6-\\cdots\\bigr)=\\frac{7}{6}abc\\,(a^4+b^4+c^4)-\\frac{7}{12}abc\\,(a^2+b^2+c^2)^2,\n\\]\nbut it is cleaner to use the polynomial reductions under \\(a+b+c=0\\). Since \\(c=-a-b\\), one checks that\n\\[\na^7+b^7+c^7-abc(a^4+b^4+c^4)=\\frac{3}{2}\\,abc(a^2+b^2+c^2)^2.\n\\]\nTherefore\n\\[\n\\frac{a^7+b^7+c^7-abc(a^4+b^4+c^4)}{a^5+b^5+c^5}\n=\n\\frac{\\frac32\\,abc(a^2+b^2+c^2)^2}{5abc(a^2+b^2+c^2)}\n=\\frac{3}{10}(a^2+b^2+c^2).\n\\]\n\nSo the expression equals\n\\[\n\\frac{3}{10}\\bigl((x-y)^2+(y-z)^2+(z-x)^2\\bigr).\n\\]\nSince \\(x,y,z\\) are pairwise different integers, each of the three differences is a nonzero integer, hence\n\\[\n(x-y)^2+(y-z)^2+(z-x)^2\\ge 2+1+1=4,\n\\]\nbut in fact we only need the sharper observation that for three distinct integers the sum of these three squares is at least \\(10\\) unless two differences are \\(\\pm1\\) and the third is \\(\\pm2\\). In general, the minimum occurs for consecutive integers:\n\\[\n(x,y,z)=(n,n+1,n+2)\\quad \\text{up to permutation},\n\\]\ngiving\n\\[\n(x-y)^2+(y-z)^2+(z-x)^2=1+1+4=6.\n\\]\nHence\n\\[\n\\frac{3}{10}\\bigl((x-y)^2+(y-z)^2+(z-x)^2\\bigr)\\ge \\frac{3}{10}\\cdot 6=\\frac95.\n\\]\n\nSo the stated inequality with lower bound \\(3\\) is actually false as written.  \nFor example, with \\((x,y,z)=(0,1,2)\\), the expression equals \\(\\frac95<3\\).\n\nThus there is no equality case for the inequality \\(\\ge 3\\), because the inequality does not hold in general.\n\nFinal answer: The inequality is false as stated; for \\((x,y,z)=(0,1,2)\\) the value is \\(\\frac95<3\\).",
+  "usage": {
+    "input_tokens": 151,
+    "output_tokens": 731,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 4.853391568991356,
+  "cached": false
+}

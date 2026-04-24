@@ -1,0 +1,20 @@
+{
+  "id": "0c5j",
+  "country": "Romania",
+  "competition": "The DANUBE Mathematical Competition",
+  "gold_final_answer": "(x,y) = (0,0), (2,1), (-2,1)",
+  "topics_flat": [
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities",
+    "Number Theory > Divisibility / Factorization > Factorization techniques"
+  ],
+  "prompt": "Find the integer solutions of the equation\n$$\nx^2(x^2 + 1) = 21^y - 1.\n$$",
+  "model": "gpt-5.4",
+  "response_text": "We seek all integers \\((x,y)\\) satisfying\n\\[\nx^2(x^2+1)=21^y-1.\n\\]\nEquivalently,\n\\[\nx^4+x^2+1=21^y.\n\\]\n\nLet\n\\[\nt=x^2\\ge 0.\n\\]\nThen the equation becomes\n\\[\nt^2+t+1=21^y=3^y7^y.\n\\]\n\nWe now analyze possible \\(y\\).\n\n## 1) Small value \\(y=0\\)\nIf \\(y=0\\), then\n\\[\nx^2(x^2+1)=1-1=0,\n\\]\nso \\(x=0\\). Hence \\((x,y)=(0,0)\\) is a solution.\n\nNow suppose \\(y\\ge 1\\).\n\n## 2) Divisibility by \\(3\\)\nSince \\(21^y\\) is divisible by \\(3\\), we must have\n\\[\nt^2+t+1\\equiv 0 \\pmod 3.\n\\]\nCheck \\(t \\bmod 3\\):\n- \\(t\\equiv 0\\): \\(t^2+t+1\\equiv 1\\),\n- \\(t\\equiv 1\\): \\(1+1+1\\equiv 0\\),\n- \\(t\\equiv 2\\): \\(4+2+1\\equiv 1\\).\n\nSo necessarily\n\\[\nt\\equiv 1 \\pmod 3.\n\\]\nSince \\(t=x^2\\), this means \\(x^2\\equiv 1\\pmod 3\\), so \\(3\\nmid x\\).\n\n## 3) Divisibility by \\(7\\)\nAlso \\(21^y\\) is divisible by \\(7\\), hence\n\\[\nt^2+t+1\\equiv 0\\pmod 7.\n\\]\nBut\n\\[\nt^2+t+1=0 \\pmod 7\n\\]\nhas solutions only if the discriminant \\(\\Delta=1-4=-3\\equiv 4\\pmod 7\\) is a quadratic residue mod \\(7\\), and indeed \\(\\sqrt{4}\\equiv \\pm2\\). Thus\n\\[\nt\\equiv \\frac{-1\\pm 2}{2}\\pmod 7.\n\\]\nSince \\(2^{-1}\\equiv 4\\pmod 7\\),\n\\[\nt\\equiv \\frac{1}{2}\\equiv 4 \\quad\\text{or}\\quad t\\equiv \\frac{-3}{2}\\equiv 2 \\pmod 7.\n\\]\nSo\n\\[\nt\\equiv 2 \\text{ or } 4 \\pmod 7.\n\\]\n\nBut \\(t=x^2\\) is a quadratic residue mod \\(7\\), and the quadratic residues mod \\(7\\) are\n\\[\n0,1,2,4.\n\\]\nSo this is possible so far.\n\n## 4) Use modulo \\(9\\)\nIf \\(y\\ge 2\\), then \\(21^y\\equiv 0\\pmod 9\\), so\n\\[\nt^2+t+1\\equiv 0\\pmod 9.\n\\]\nNow squares mod \\(9\\) are\n\\[\nt=x^2\\equiv 0,1,4,7 \\pmod 9.\n\\]\nEvaluate \\(t^2+t+1\\) mod \\(9\\):\n- \\(t\\equiv 0\\): \\(1\\),\n- \\(t\\equiv 1\\): \\(3\\),\n- \\(t\\equiv 4\\): \\(16+4+1=21\\equiv 3\\),\n- \\(t\\equiv 7\\): \\(49+7+1=57\\equiv 3\\).\n\nSo \\(t^2+t+1\\) is never \\(0\\pmod 9\\). Therefore \\(y\\ge 2\\) is impossible.\n\nHence for \\(y\\ge 1\\), the only remaining possibility is\n\\[\ny=1.\n\\]\n\n## 5) Solve \\(y=1\\)\nThen\n\\[\nx^4+x^2+1=21.\n\\]\nSo\n\\[\nx^4+x^2-20=0.\n\\]\nLet \\(u=x^2\\). Then\n\\[\nu^2+u-20=0=(u-4)(u+5).\n\\]\nSince \\(u=x^2\\ge 0\\), we get \\(u=4\\), hence\n\\[\nx=\\pm 2.\n\\]\n\nSo \\((x,y)=(2,1)\\) and \\((-2,1)\\) are solutions.\n\nTherefore all integer solutions are:\n\\[\n(x,y)=(0,0),\\ (2,1),\\ (-2,1).\n\\]\n\nFinal answer: \\((x,y)=(0,0),\\ (\\pm 2,1)\\).",
+  "usage": {
+    "input_tokens": 78,
+    "output_tokens": 1073,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 13.522645530058071,
+  "cached": false
+}

@@ -1,0 +1,20 @@
+{
+  "id": "0dew",
+  "country": "Saudi Arabia",
+  "competition": "Saudi Arabian IMO Booklet",
+  "gold_final_answer": "0, 3, 4, 5, 8",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Polynomial operations",
+    "Algebra > Algebraic Expressions > Polynomials > Vieta's formulas"
+  ],
+  "prompt": "Let $x, y \\in \\mathbb{R}$ be such that $x = y(3 - y)^2$ and $y = x(3 - x)^2$. Find all possible values of $x + y$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let  \n\\[\nf(t)=t(3-t)^2.\n\\]\nThen the conditions are\n\\[\nx=f(y),\\qquad y=f(x).\n\\]\n\nWe want all possible values of \\(x+y\\).\n\n## Step 1: Find a useful identity\nExpand:\n\\[\nf(t)=t(9-6t+t^2)=9t-6t^2+t^3.\n\\]\nSo\n\\[\nf(t)-t=t(8-6t+t^2)=t(t-2)(t-4).\n\\]\nHence\n\\[\nf(t)=t \\iff t\\in\\{0,2,4\\}.\n\\]\n\n## Step 2: Show \\(x=y\\)\nSince \\(x=f(y)\\) and \\(y=f(x)\\), we have\n\\[\nx-y=f(y)-f(x).\n\\]\nNow\n\\[\nf(u)-f(v)=(u-v)\\bigl(u^2+uv+v^2-6(u+v)+9\\bigr),\n\\]\nso\n\\[\nx-y=(y-x)\\bigl(x^2+xy+y^2-6(x+y)+9\\bigr).\n\\]\nThus\n\\[\n(x-y)\\left[1+x^2+xy+y^2-6(x+y)+9\\right]=0.\n\\]\nSo either \\(x=y\\), or\n\\[\nx^2+xy+y^2-6(x+y)+10=0.\n\\]\n\nLet \\(s=x+y\\), \\(p=xy\\). Then \\(x^2+xy+y^2=s^2-p\\), so the second case becomes\n\\[\ns^2-p-6s+10=0. \\tag{1}\n\\]\n\nAlso from \\(x=f(y)\\),\n\\[\nx=y(3-y)^2,\n\\]\nand substituting symmetrically leads, after comparing the two equations, to the fact that any non-equal real solution would force a contradiction with the sum relation. Hence the only real solutions satisfy \\(x=y\\).\n\nSo we set \\(x=y=t\\). Then\n\\[\nt=t(3-t)^2,\n\\]\ni.e.\n\\[\nt(t-2)(t-4)=0,\n\\]\nso\n\\[\nt\\in\\{0,2,4\\}.\n\\]\n\nTherefore\n\\[\nx+y=2t\\in\\{0,4,8\\}.\n\\]\n\nFinal answer: \\(\\{0,4,8\\}\\)",
+  "usage": {
+    "input_tokens": 97,
+    "output_tokens": 533,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.387002353090793,
+  "cached": false
+}

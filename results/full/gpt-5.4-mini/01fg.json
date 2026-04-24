@@ -1,0 +1,20 @@
+{
+  "id": "01fg",
+  "country": "Baltic Way",
+  "competition": "Baltic Way 2019",
+  "gold_final_answer": "A",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Games / greedy algorithms",
+    "Discrete Mathematics > Combinatorics > Invariants / monovariants"
+  ],
+  "prompt": "On a board the numbers $1, 2, 3, \\ldots, 500$ are written. In a game two players $A$ and $B$ take turns alternately and $A$ starts. In each turn they have to erase two numbers $n$ and $2n$ on the board. If a player can not take a turn, the player loses. Determine who has a winning strategy.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Group the numbers into chains of the form\n\\[\nm,2m,4m,8m,\\dots\n\\]\nwhere \\(m\\) is odd.  \nA move always erases two consecutive terms in one such chain: \\(n\\) and \\(2n\\).\n\nSo each odd \\(m\\) gives an independent game on its chain. The key point is that a chain with \\(k\\) numbers behaves like a pile of size \\(k\\), where a move removes two adjacent elements; equivalently, the only thing that matters is the parity of \\(k\\). In fact, a chain with even length is a losing position, and a chain with odd length is a winning position.\n\nNow count the chains. For each odd \\(m\\le 500\\), the length of its chain is the largest \\(t\\) such that\n\\[\nm,2m,4m,\\dots,2^{t-1}m\\le 500.\n\\]\nThis length equals \\(1+\\lfloor \\log_2(500/m)\\rfloor\\).\n\nThe crucial observation is that among the odd \\(m\\), the total number of chains of odd length is even, so the xor/sum of the component positions is \\(0\\). Therefore the initial position is a losing position for the first player.\n\nHence \\(B\\) has a winning strategy.\n\nFinal answer: \\(B\\) wins.",
+  "usage": {
+    "input_tokens": 135,
+    "output_tokens": 299,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 2.9601905669551343,
+  "cached": false
+}

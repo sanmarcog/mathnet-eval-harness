@@ -1,0 +1,26 @@
+{
+  "id": "03bj",
+  "country": "Bulgaria",
+  "competition": "Bulgarian Mathematical Olympiad",
+  "gold_final_answer": "3",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments",
+    "Discrete Mathematics > Combinatorics > Pigeonhole principle",
+    "Geometry > Plane Geometry > Miscellaneous > Constructions and loci"
+  ],
+  "prompt": "All points in the plane having integer coordinates are colored in three colors. Find the least positive integer $S$ having the following property: for arbitrary such covering there exists a triangle of area $S$ having all its vertices in one and the same color.",
+  "model": "gpt-5.4-mini",
+  "response_text": "We use the affine form of **Hales–Jewett / Gallai–Witt** ideas on the lattice.\n\n## 1) A lower bound: \\(S\\ge 1\\)\n\nColor the lattice by the parity of \\(x\\) and \\(y\\) in a 3-coloring, for example using\n\\[\n(x,y)\\mapsto x+y \\pmod 3.\n\\]\nThen every triangle whose area is \\(<1\\) has area \\(0\\), impossible, and area \\(1\\) is the first possible positive lattice area. So \\(S\\) must be at least \\(1\\).\n\n## 2) Show \\(S=1\\) always works\n\nTake any 3-coloring of \\(\\mathbb Z^2\\).  \nBy the 2-dimensional lattice version of the finite Ramsey/Gallai theorem, among the lattice points of a sufficiently large grid there exist three monochromatic points of the form\n\\[\n(a,b),\\quad (a+m,b),\\quad (a,b+n)\n\\]\nfor some integers \\(m,n\\neq 0\\), all in the same color.\n\nTheir area is\n\\[\n\\frac{|m n|}{2}.\n\\]\nNow choose a primitive lattice triangle of area \\(1\\), e.g.\n\\[\n(0,0),\\ (1,0),\\ (0,2),\n\\]\nwhich has area \\(1\\).\n\nA standard lattice Ramsey argument (equivalently, applying the monochromatic structure theorem to the scaled copy of this triangle inside \\(\\mathbb Z^2\\)) guarantees that every 3-coloring contains a monochromatic affine copy of this triangle, hence a monochromatic triangle of area \\(1\\).\n\nTherefore \\(1\\) is achievable and is the least possible value.\n\n\\[\n\\boxed{1}\n\\]\n\nFinal answer: \\(1\\)",
+  "usage": {
+    "input_tokens": 99,
+    "output_tokens": 395,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.2988523319363594,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "\\(1\\)"
+  }
+}

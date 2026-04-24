@@ -1,0 +1,19 @@
+{
+  "id": "04vo",
+  "country": "Czech Republic",
+  "competition": "First Round (take-home)",
+  "gold_final_answer": "-1/4",
+  "topics_flat": [
+    "Algebra > Intermediate Algebra > Quadratic functions"
+  ],
+  "prompt": "Suppose that $a, b$ are real numbers such that the expressions $a^2 + b$ and $a + b^2$ share the same value. What is the smallest possible shared value?",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find the smallest possible shared value, let $v$ be the shared value of the two expressions. We are given that:\n$v = a^2 + b = a + b^2$\n\nWe can set the two expressions equal to each other:\n$a^2 + b = a + b^2$\n\nRearranging the terms, we get:\n$a^2 - b^2 - a + b = 0$\n\nWe can factor this equation by grouping:\n$(a - b)(a + b) - (a - b) = 0$\n$(a - b)(a + b - 1) = 0$\n\nThis gives us two cases to consider:\n**Case 1:** $a - b = 0 \\implies a = b$\nSubstitute $b = a$ into the expression for $v$:\n$v = a^2 + a$\nTo find the minimum value of this quadratic, we can complete the square or find the vertex. The vertex of the parabola $v = a^2 + a$ occurs at $a = -\\frac{1}{2}$.\nSubstituting $a = -\\frac{1}{2}$ into the expression gives:\n$v = \\left(-\\frac{1}{2}\\right)^2 + \\left(-\\frac{1}{2}\\right) = \\frac{1}{4} - \\frac{1}{2} = -\\frac{1}{4}$\n\n**Case 2:** $a + b - 1 = 0 \\implies b = 1 - a$\nSubstitute $b = 1 - a$ into the expression for $v$:\n$v = a^2 + (1 - a) = a^2 - a + 1$\nThe vertex of the parabola $v = a^2 - a + 1$ occurs at $a = \\frac{1}{2}$.\nSubstituting $a = \\frac{1}{2}$ into the expression gives:\n$v = \\left(\\frac{1}{2}\\right)^2 - \\frac{1}{2} + 1 = \\frac{1}{4} - \\frac{1}{2} + 1 = \\frac{3}{4}$\n\nComparing the minimum values from both cases, the smallest possible shared value is $-\\frac{1}{4}$.\n\nFinal answer: -1/4",
+  "usage": {
+    "input_tokens": 81,
+    "output_tokens": 503,
+    "thoughts_tokens": 860
+  },
+  "latency_s": 13.158543066005222,
+  "cached": true
+}

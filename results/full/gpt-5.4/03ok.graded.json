@@ -1,0 +1,25 @@
+{
+  "id": "03ok",
+  "country": "China",
+  "competition": "China Mathematical Competition",
+  "gold_final_answer": "9",
+  "topics_flat": [
+    "Algebra > Intermediate Algebra > Quadratic functions",
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities"
+  ],
+  "prompt": "Suppose a quadratic function $f(x) = a x^2 + b x + c$ ($a, b, c \\in \\mathbb{R}$, and $a \\neq 0$) satisfies the following conditions:\n(1) When $x \\in \\mathbb{R}$, $f(x-4) = f(2-x)$ and $f(x) \\ge x$.\n(2) When $x \\in (0, 2)$, $f(x) \\le \\left(\\frac{x+1}{2}\\right)^2$.\n(3) The minimum value of $f(x)$ on $\\mathbb{R}$ is $0$.\nFind the maximal $m$ ($m > 1$) such that there exists $t \\in \\mathbb{R}$, $f(x+t) \\le x$ holds so long as $x \\in [1, m]$.",
+  "model": "gpt-5.4",
+  "response_text": "From  \n\\[\nf(x-4)=f(2-x)\\qquad(\\forall x\\in \\mathbb R),\n\\]\nthe quadratic has symmetry about the midpoint of \\(x-4\\) and \\(2-x\\), i.e. about \\(x=-1\\).  \nSo the axis of the parabola is \\(x=-1\\), hence\n\\[\nf(x)=a(x+1)^2+k.\n\\]\nGiven that the minimum value of \\(f\\) on \\(\\mathbb R\\) is \\(0\\), we must have \\(a>0\\) and \\(k=0\\). Thus\n\\[\nf(x)=a(x+1)^2.\n\\]\n\nNow use condition (1): \\(f(x)\\ge x\\) for all real \\(x\\). Then\n\\[\na(x+1)^2-x\\ge 0\\qquad(\\forall x).\n\\]\nThis quadratic in \\(x\\) must have discriminant \\(\\le 0\\):\n\\[\n(2a-1)^2-4a^2 = 1-4a \\le 0 \\quad\\Longrightarrow\\quad a\\ge \\frac14.\n\\]\n\nUse condition (2): for \\(x\\in(0,2)\\),\n\\[\na(x+1)^2\\le \\left(\\frac{x+1}{2}\\right)^2=\\frac{(x+1)^2}{4}.\n\\]\nSince \\(x+1>0\\), this gives\n\\[\na\\le \\frac14.\n\\]\nHence\n\\[\na=\\frac14,\n\\]\nso\n\\[\nf(x)=\\frac{(x+1)^2}{4}.\n\\]\n\nWe seek the largest \\(m>1\\) such that there exists \\(t\\in\\mathbb R\\) with\n\\[\nf(x+t)\\le x \\qquad \\forall x\\in[1,m].\n\\]\nSubstitute \\(f\\):\n\\[\n\\frac{(x+t+1)^2}{4}\\le x\n\\quad\\Longleftrightarrow\\quad\n(x+t+1)^2\\le 4x.\n\\]\nEquivalently,\n\\[\nx^2+(2t-2)x+(t+1)^2\\le 0.\n\\]\nThis is an upward-opening quadratic in \\(x\\), so the set of \\(x\\) satisfying it is exactly the interval between its roots. Its discriminant is\n\\[\n(2t-2)^2-4(t+1)^2=-16t,\n\\]\nso we need \\(t\\le 0\\). The roots are\n\\[\nx=(1-t)\\pm 2\\sqrt{-t}.\n\\]\nThus the admissible interval is\n\\[\n\\left[(1-t)-2\\sqrt{-t},\\ (1-t)+2\\sqrt{-t}\\right].\n\\]\nTo contain \\([1,m]\\), we need especially the left endpoint \\(\\le 1\\). Let \\(u=\\sqrt{-t}\\ge 0\\), so \\(t=-u^2\\). Then the interval becomes\n\\[\n[(u-1)^2,\\ (u+1)^2].\n\\]\nFor the left endpoint to be \\(\\le 1\\), we need\n\\[\n(u-1)^2\\le 1 \\iff 0\\le u\\le 2.\n\\]\nThen the largest possible right endpoint is maximized when \\(u=2\\), giving\n\\[\nm_{\\max}=(2+1)^2=9.\n\\]\nIndeed, for \\(u=2\\) (i.e. \\(t=-4\\)),\n\\[\nf(x-4)=\\frac{(x-3)^2}{4}\\le x\n\\]\nholds exactly for \\(x\\in[1,9]\\).\n\nFinal answer: \\(9\\)",
+  "usage": {
+    "input_tokens": 244,
+    "output_tokens": 813,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 10.231447348021902,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "normalized",
+    "predicted": "\\(9\\)"
+  }
+}

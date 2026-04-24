@@ -1,0 +1,26 @@
+{
+  "id": "05bk",
+  "country": "Estonia",
+  "competition": "Estonian Mathematical Olympiad",
+  "gold_final_answer": "a) 4; b) 3",
+  "topics_flat": [
+    "Number Theory > Modular Arithmetic > Chinese remainder theorem",
+    "Number Theory > Divisibility / Factorization > Greatest common divisors (gcd)",
+    "Algebra > Algebraic Expressions > Sequences and Series > Sums and products"
+  ],
+  "prompt": "How many integers $k$ are there for which $1 \\le k \\le n$ and the sum $1 + 2 + \\dots + k$ is divisible by $n$, if\n\na) $n = 2023^{2024}$;\nb) $n = 2024^{2023}$?",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Setup\n\nThe sum $1 + 2 + \\cdots + k = \\frac{k(k+1)}{2}$.\n\nWe need $n \\mid \\frac{k(k+1)}{2}$, i.e., $k(k+1) \\equiv 0 \\pmod{2n}$.\n\nSince $k$ and $k+1$ are consecutive integers (coprime), we need to distribute the prime factors of $2n$ between $k$ and $k+1$.\n\n## Part a) $n = 2023^{2024}$\n\n$2023 = 7 \\times 17^2$... wait, let me check: $2023 = 7 \\times 17^2$? $7 \\times 289 = 2023$. Yes.\n\nSo $n = 7^{2024} \\cdot 17^{2048}$ and $2n = 2^1 \\cdot 7^{2024} \\cdot 17^{2048}$.\n\nWe need $k(k+1) \\equiv 0 \\pmod{2n}$ with $\\gcd(k, k+1) = 1$.\n\nFor each prime power $p^a \\| 2n$, either $p^a \\mid k$ or $p^a \\mid (k+1)$.\n\nThe prime powers in $2n$: $2^1$, $7^{2024}$, $17^{2048}$.\n\nFor each prime, we choose which of $k$ or $k+1$ it divides. That gives $2^3 = 8$ combinations. Each combination gives a unique residue class mod $2n$ by CRT (since $\\gcd(k,k+1)=1$ is automatically satisfied).\n\nSo there are 8 solutions mod $2n$.\n\nIn the range $1 \\le k \\le n$: The solutions mod $2n$ in $\\{0, 1, \\ldots, 2n-1\\}$ give 8 values. We need those in $\\{1, 2, \\ldots, n\\}$.\n\nThe 8 solutions come in pairs $(k, 2n-1-k)$ (since if $k$ is a solution, so is $2n-1-k$ because $(2n-1-k)(2n-k) = (2n-1-k)(2n-k)$ and $2n-k \\equiv -(k) \\pmod{2n}$... let me verify: if $k(k+1) \\equiv 0 \\pmod{2n}$, then $(2n-1-k)(2n-k) = k(k+1) \\pmod{2n}$. Yes).\n\nSo solutions pair up as $(k, 2n-1-k)$. One of each pair is in $[0, n-1]$ and the other in $[n, 2n-1]$.\n\nActually: $k + (2n-1-k) = 2n-1$, so one is $\\le n-1$ and the other is $\\ge n$.\n\nAmong the 8 solutions in $[0, 2n-1]$: exactly 4 lie in $[0, n-1]$ and 4 lie in $[n, 2n-1]$.\n\nWe need $k \\in [1, n]$. The solution $k=0$ would correspond to $k=2n$ (not in range). Check if $k=0$ is a solution: $0 \\cdot 1 = 0 \\equiv 0$. Yes. And $k = 2n-1$: $(2n-1)(2n) \\equiv 0$. Yes.\n\nThe pair $(0, 2n-1)$: $0 \\in [0,n-1]$ and $2n-1 \\in [n, 2n-1]$.\n\nSo in $[0, n-1]$: 4 solutions including $k=0$. In $[1, n-1]$: 3 solutions. Plus check $k=n$: $n(n+1)/2$. Is $n \\mid n(n+1)/2$? Yes, always. So $k=n$ is always a solution.\n\nTherefore solutions in $[1, n]$: $3 + 1 = 4$.\n\n**Answer for a): 4**\n\n## Part b) $n = 2024^{2023}$\n\n$2024 = 8 \\times 253 = 8 \\times 11 \\times 23$. So $2024 = 2^3 \\cdot 11 \\cdot 23$.\n\n$n = 2^{3 \\cdot 2023} \\cdot 11^{2023} \\cdot 23^{2023} = 2^{6069} \\cdot 11^{2023} \\cdot 23^{2023}$.\n\n$2n = 2^{6070} \\cdot 11^{2023} \\cdot 23^{2023}$.\n\nNumber of prime factors: 3, giving $2^3 = 8$ solutions mod $2n$.\n\nBy the same pairing argument, exactly 4 solutions in $[0, n-1]$, one of which is $k=0$, giving 3 in $[1, n-1]$, plus $k=n$ always works.\n\n**Answer for b): 4**\n\nFinal answer: a) $\\boxed{4}$, b) $4$",
+  "usage": {
+    "input_tokens": 123,
+    "output_tokens": 1342,
+    "thinking_tokens": 0
+  },
+  "latency_s": 16.413758644950576,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "4"
+  }
+}

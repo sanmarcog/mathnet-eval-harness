@@ -1,0 +1,25 @@
+{
+  "id": "0bsr",
+  "country": "Romania",
+  "competition": "67th Romanian Mathematical Olympiad",
+  "gold_final_answer": "12",
+  "topics_flat": [
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities",
+    "Algebra > Algebraic Expressions > Polynomials > Polynomial operations"
+  ],
+  "prompt": "a) Prove that, for every integer $k$, the equation $x^3 - 24x + k = 0$ has at most one integer solution.\n\nb) Prove that the equation $x^3 + 24x - 2016 = 0$ has exactly one integer solution.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To prove part a), suppose for the sake of contradiction that the equation $x^3 - 24x + k = 0$ has at least two distinct integer solutions, say $a$ and $b$. \nThen we have:\n$a^3 - 24a + k = 0$\n$b^3 - 24b + k = 0$\n\nSubtracting the second equation from the first gives:\n$(a^3 - b^3) - 24(a - b) = 0$\n\nSince $a \\neq b$, we can divide the entire equation by $(a - b)$ to obtain:\n$a^2 + ab + b^2 - 24 = 0 \\implies a^2 + ab + b^2 = 24$\n\nWe can analyze this equation modulo 3. For any integers $a$ and $b$, the squares $a^2$ and $b^2$ are congruent to 0 or 1 modulo 3. \nTesting the possible combinations for $(a \\pmod 3, b \\pmod 3)$:\n- If $a \\equiv 0, b \\equiv 0$, then $a^2 + ab + b^2 \\equiv 0 \\pmod 3$.\n- If $a \\equiv 1, b \\equiv 1$, then $1 + 1 + 1 \\equiv 0 \\pmod 3$.\n- If $a \\equiv -1, b \\equiv -1$, then $1 + 1 + 1 \\equiv 0 \\pmod 3$.\n- For all other combinations (e.g., $a \\equiv 1, b \\equiv 0$ or $a \\equiv 1, b \\equiv -1$), $a^2 + ab + b^2 \\equiv 1 \\pmod 3$.\n\nSince $24 \\equiv 0 \\pmod 3$, $a$ and $b$ must either both be multiples of 3, or both be congruent to 1 or -1 modulo 3. \nHowever, notice that $a^2 + ab + b^2 = \\frac{3}{4}(a+b)^2 + \\frac{1}{4}(a-b)^2$. \nIf $a \\equiv b \\pmod 3$, then $a-b$ is a multiple of 3, meaning $(a-b)^2$ is a multiple of 9. \nLet's look at the simpler condition: if $a$ and $b$ are both multiples of 3, let $a = 3m$ and $b = 3n$. Then:\n$9m^2 + 9mn + 9n^2 = 24 \\implies 3(m^2 + mn + n^2) = 8$\nThis implies 8 is divisible by 3, which is false. \nIf $a \\equiv b \\equiv 1 \\pmod 3$ or $a \\equiv b \\equiv -1 \\pmod 3$, let $a = 3m \\pm 1$ and $b = 3n \\pm 1$. Then $a-b = 3(m-n)$, so $a \\equiv b \\pmod 3$.\nWe can also just bound the values. Since $a^2 + ab + b^2 = (a + b/2)^2 + 3b^2/4 = 24$, we must have $3b^2/4 \\le 24 \\implies b^2 \\le 32$. The only integer values for $b$ are $0, \\pm 1, \\pm 2, \\pm 3, \\pm 4, \\pm 5$. Testing these yields no integer solutions for $a$.\nThus, no such integers $a$ and $b$ exist, meaning the equation has at most one integer solution.\n\nTo prove part b), we are given the equation $x^3 + 24x - 2016 = 0$.\nLet $f(x) = x^3 + 24x - 2016$. The derivative is $f'(x) = 3x^2 + 24$.\nSince $3x^2 \\ge 0$ for all real $x$, $f'(x) \\ge 24 > 0$. Because the derivative is always strictly positive, the function $f(x)$ is strictly increasing on the real numbers. Therefore, $f(x) = 0$ can have at most one real solution.\nWe can test integer values to find a root:\n$f(10) = 1000 + 240 - 2016 = -776$\n$f(12) = 12^3 + 24(12) - 2016 = 1728 + 288 - 2016 = 2016 - 2016 = 0$\nThus, $x = 12$ is a solution. Since it is the only real solution, it is exactly the one integer solution.\n\nFinal answer: 12",
+  "usage": {
+    "input_tokens": 106,
+    "output_tokens": 1130,
+    "thoughts_tokens": 1551
+  },
+  "latency_s": 21.908028917969204,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "exact",
+    "predicted": "12"
+  }
+}

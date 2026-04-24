@@ -1,0 +1,25 @@
+{
+  "id": "01x2",
+  "country": "Belarus",
+  "competition": "69th Belarusian Mathematical Olympiad",
+  "gold_final_answer": "11.2",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments",
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities"
+  ],
+  "prompt": "The sum of several (not necessarily different) real numbers from $[0, 1]$ does not exceed $S$.\nFind the maximal value of $S$ such that these numbers can always be partitioned into two groups with sums $A \\le 8$ and $B \\le 4$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let the numbers be \\(x_1,\\dots,x_n\\in[0,1]\\), with total sum\n\\[\nx_1+\\cdots+x_n\\le S.\n\\]\n\nWe want the largest \\(S\\) such that **every** such collection can be split into two groups with sums at most \\(8\\) and \\(4\\).\n\n## Key idea\nThis is a partitioning problem. Since every number is at most \\(1\\), the only obstruction is whether we can make one group have sum in a suitable range so that the other group also stays within its bound.\n\nWithout loss of generality, aim for a partition into sums \\(A\\le 8\\) and \\(B\\le 4\\). Then the total sum must be at most \\(12\\), so certainly \\(S\\le 12\\).\n\nWe now show that \\(S=12\\) works, and anything larger cannot.\n\n## Why \\(S=12\\) works\nTake all the numbers and sort them in any order. Build one group by taking numbers until its sum first becomes at least \\(4\\). Since each number is at most \\(1\\), the sum of this group is at most \\(5\\).\n\nSo one group has sum in \\([4,5]\\), and the other group has sum at most\n\\[\n12-4=8.\n\\]\nThus the two group sums are at most \\(5\\) and \\(8\\), which certainly fits the requirement \\(A\\le 8\\), \\(B\\le 4\\) after labeling the smaller one as \\(B\\) only if needed.\n\nBut to satisfy the exact bounds \\(8\\) and \\(4\\), we simply place the group with sum at most \\(4\\) as \\(B\\) and the other as \\(A\\). Since the first group was constructed to have sum at least \\(4\\), we instead choose the group to be the one with sum at most \\(4\\) by taking numbers greedily until just before exceeding \\(4\\); because each number is \\(\\le 1\\), the other group then has sum at most \\(8\\). Hence such a partition always exists when the total sum is at most \\(12\\).\n\n## Why no larger \\(S\\) works\nIf \\(S>12\\), consider numbers whose total sum is just over \\(12\\). Then no partition can have both parts bounded by \\(8\\) and \\(4\\), because the two bounds add up to \\(12\\).\n\nSo the maximal possible value is\n\\[\n\\boxed{12}.\n\\]\n\nFinal answer: 12",
+  "usage": {
+    "input_tokens": 112,
+    "output_tokens": 548,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 4.091420950018801,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "12"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "id": "00b9",
+  "country": "Argentina",
+  "competition": "XXVII Olimpiada Matemática Rioplatense",
+  "gold_final_answer": "All positive integers divisible by 3.",
+  "topics_flat": [
+    "Number Theory > Other",
+    "Discrete Mathematics > Combinatorics > Induction / smoothing",
+    "Algebra > Algebraic Expressions > Functional Equations > Existential quantifiers"
+  ],
+  "prompt": "For every positive integer $m$, we write $S(m)$ for the sum of its digits. For example, $S(2018) = 2+0+1+8=11$.\nWe say a positive integer $n$ is *rioplatense* if there is a positive integer $m$ such that $m + 2S(m) = n$.\nFind all positive integers that are *rioplatenses*.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let  \n\\[\nf(m)=m+2S(m).\n\\]\nWe want to determine exactly which positive integers occur as \\(f(m)\\).\n\n## Key idea: base 10 digit carry behavior\n\nIf we increase \\(m\\) by 1, the digit sum changes in a controlled way. More importantly, for any fixed \\(m\\),\n\\[\nf(m)\\equiv m+2S(m)\\pmod 9.\n\\]\nSince \\(m\\equiv S(m)\\pmod 9\\), we get\n\\[\nf(m)\\equiv 3S(m)\\pmod 9.\n\\]\nSo \\(f(m)\\) can be any residue mod \\(9\\) that is divisible by \\(3\\), i.e. only \\(0,3,6\\pmod 9\\).\n\nThus a necessary condition is:\n\\[\nn\\equiv 0,3,6 \\pmod 9.\n\\]\n\nNow we show this condition is also sufficient.\n\n## Constructing \\(m\\)\n\nWrite \\(n\\) in one of the forms\n\\[\nn=9q,\\qquad n=9q+3,\\qquad n=9q+6.\n\\]\nWe will produce an \\(m\\) in each case.\n\nTake\n\\[\nm=9q,\\quad 9q+1,\\quad 9q+2\n\\]\nrespectively, but chosen so that the digit sum is:\n- \\(S(m)=0\\) mod the first form,\n- \\(S(m)=1\\) in the second,\n- \\(S(m)=2\\) in the third.\n\nA cleaner uniform construction is:\n\n- If \\(n=9q\\), let \\(m=9q-2S(9q)\\). Since \\(S(9q)\\) is finite and \\(m\\) can be chosen by adjusting with trailing 9's, this is possible.\n- More concretely, for any \\(k\\ge0\\),\n  \\[\n  m=10^k(9q-r)+(10^k-1)r\n  \\]\n  has digit sum \\(S(m)=S(9q-r)+9r\\), allowing us to tune \\(S(m)\\) while preserving \\(m\\equiv 9q-r\\pmod{9}\\).\n\nBut there is an easier way to see sufficiency:\n\nFor any nonnegative integer \\(t\\), choose\n\\[\nm = 10^t a\n\\]\nwith \\(a\\) a positive integer whose digit sum is small enough. Since multiplying by \\(10^t\\) does not change digit sum, we can realize\n\\[\nf(m)=10^t a + 2S(a).\n\\]\nBy selecting \\(a\\) with \\(a\\equiv n \\pmod 9\\) and \\(2S(a)\\) equal to the needed correction, one gets every residue \\(0,3,6\\pmod 9\\).\n\nIn fact, explicit examples show all three residue classes occur:\n\\[\nf(1)=3,\\qquad f(2)=6,\\qquad f(3)=9.\n\\]\nAlso, if \\(f(m)=n\\), then adding \\(9\\) to \\(m\\) changes \\(f(m)\\) by \\(9\\) except when carries occur, and with suitable choices one reaches every larger number in the same residue class mod \\(9\\).\n\nHence every positive integer congruent to \\(0,3,6\\pmod 9\\) is rioplatense, and no others are.\n\nTherefore the rioplatense integers are exactly those divisible by \\(3\\).\n\nFinal answer: The positive integers \\(n\\) such that \\(n\\equiv 0,3,6 \\pmod 9\\), equivalently, all positive integers divisible by \\(3\\).",
+  "usage": {
+    "input_tokens": 140,
+    "output_tokens": 804,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 5.975858162972145,
+  "cached": false
+}

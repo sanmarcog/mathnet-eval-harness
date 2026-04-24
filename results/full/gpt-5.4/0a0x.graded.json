@@ -1,0 +1,25 @@
+{
+  "id": "0a0x",
+  "country": "Netherlands",
+  "competition": "Dutch Mathematical Olympiad",
+  "gold_final_answer": "Each vase contains the note equal to its own label; that is, for every k from 1 to 2023, vase k contains k.",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Functional equations",
+    "Discrete Mathematics > Combinatorics > Induction / smoothing"
+  ],
+  "prompt": "In a room there are $2023$ vases numbered from $1$ to $2023$. In each vase we want to put a note with a positive integer from $1, 2, \\ldots, 2023$ on it. The numbers on the notes do *not* necessarily have to be distinct. The following should now apply to each vase. Look at the note inside the vase, find the (not necessarily different) vase with the number written on the note, and look at the note inside this vase. Then the average of the numbers on the two notes must be exactly equal to the number of the first selected vase. For example, if we put a note with the number $5$ in vase $13$, then vase $5$ should contain a note with the number $21$ on it: after all, the average of $5$ and $21$ is $13$.\n\nDetermine all possible ways to provide each vase with a note.",
+  "model": "gpt-5.4",
+  "response_text": "Let \\(f(i)\\) be the number written in vase \\(i\\), for \\(i=1,2,\\dots,2023\\).\n\nThe condition says:\n\n- in vase \\(i\\) there is the note \\(f(i)\\),\n- then in vase \\(f(i)\\) there is the note \\(f(f(i))\\),\n- and the average of these two note numbers equals \\(i\\).\n\nSo for every \\(i\\),\n\\[\n\\frac{f(i)+f(f(i))}{2}=i,\n\\]\ni.e.\n\\[\nf(f(i))=2i-f(i). \\tag{1}\n\\]\n\nWe must determine all functions\n\\[\nf:\\{1,\\dots,2023\\}\\to \\{1,\\dots,2023\\}\n\\]\nsatisfying (1) for all \\(i\\).\n\n## Step 1: Rewrite with a deviation function\nDefine\n\\[\ng(i)=f(i)-i.\n\\]\nThen \\(f(i)=i+g(i)\\). Substitute into (1):\n\\[\nf(f(i))=2i-f(i)=i-g(i).\n\\]\nBut also\n\\[\nf(f(i))=f(i+g(i))=(i+g(i))+g(i+g(i)).\n\\]\nHence\n\\[\n(i+g(i))+g(i+g(i))=i-g(i),\n\\]\nso\n\\[\ng(i+g(i))=-2g(i). \\tag{2}\n\\]\n\nNow let \\(j=i+g(i)=f(i)\\). Then (2) says\n\\[\ng(j)=-2g(i).\n\\]\nApply the same relation starting from \\(j\\):\n\\[\ng(f(j))=-2g(j)=4g(i).\n\\]\nBut from (1), \\(f(j)=f(f(i))=i-g(i)\\). Thus\n\\[\ng(i-g(i))=4g(i). \\tag{3}\n\\]\n\nApply (2) to \\(i-g(i)\\):\n\\[\ng\\big((i-g(i))+g(i-g(i))\\big)=-2g(i-g(i)).\n\\]\nUsing (3), this becomes\n\\[\ng(i-g(i)+4g(i))=g(i+3g(i))=-8g(i). \\tag{4}\n\\]\n\nContinuing in this way, values of \\(g\\) along certain indices grow by powers of \\(2\\), unless \\(g(i)=0\\).\n\nBut all indices and all note values lie in \\(\\{1,\\dots,2023\\}\\), so\n\\[\n-(i-1)\\le g(i)\\le 2023-i,\n\\]\nhence \\(g(i)\\) is bounded. The relations above force doubling repeatedly, impossible unless\n\\[\ng(i)=0.\n\\]\n\nA cleaner way to finish is by maximality:\n\n## Step 2: Maximal absolute deviation argument\nAssume some \\(g(i)\\neq 0\\). Choose \\(i\\) with \\(|g(i)|\\) maximal.\n\nFrom (2),\n\\[\ng(f(i))=-2g(i).\n\\]\nTherefore\n\\[\n|g(f(i))|=2|g(i)|>|g(i)|,\n\\]\ncontradicting the maximality of \\(|g(i)|\\).\n\nSo no such \\(i\\) exists, and hence for all \\(i\\),\n\\[\ng(i)=0.\n\\]\nThus\n\\[\nf(i)=i \\qquad \\text{for all } i.\n\\]\n\n## Step 3: Check\nIf every vase \\(i\\) contains note \\(i\\), then the two notes seen are \\(i\\) and \\(i\\), whose average is indeed \\(i\\).\n\nSo this works, and it is the only possibility.\n\nFinal answer: The unique assignment is to put note \\(i\\) in vase \\(i\\) for every \\(i=1,2,\\dots,2023\\).",
+  "usage": {
+    "input_tokens": 247,
+    "output_tokens": 827,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 12.106727687991224,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "The unique assignment is to put note \\(i\\) in vase \\(i\\) for every \\(i=1,2,\\dots,2023\\)."
+  }
+}

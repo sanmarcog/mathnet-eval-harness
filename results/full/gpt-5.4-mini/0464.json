@@ -1,0 +1,22 @@
+{
+  "id": "0464",
+  "country": "China",
+  "competition": "China-TST-2023B",
+  "gold_final_answer": "No; such an irrational number does not exist. For every irrational number, there are infinitely many positive integers n satisfying the condition.",
+  "topics_flat": [
+    "Number Theory > Other",
+    "Algebra > Algebraic Expressions > Sequences and Series > Floors and ceilings",
+    "Geometry > Plane Geometry > Combinatorial Geometry > Pick's theorem",
+    "Geometry > Plane Geometry > Analytic / Coordinate Methods > Cartesian coordinates"
+  ],
+  "prompt": "Does there exist an irrational number $x$ such that there are at most finitely many positive integers $n$ satisfying\n$$\n\\{kx\\} \\geq \\frac{1}{n+1}\n$$\nfor every $k \\in \\{1, \\dots, n\\}$?\n\nNote: Here, for a positive real number $y$, $\\{y\\}$ denotes the fractional part of $y$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Yes, such an irrational number exists.\n\nTake any irrational \\(x>1\\) whose continued fraction is chosen so that it is very well approximated by rationals with rapidly growing partial quotients. We will show that for such an \\(x\\), the inequality\n\\[\n\\{kx\\}\\ge \\frac1{n+1}\\qquad (1\\le k\\le n)\n\\]\ncan hold for only finitely many \\(n\\).\n\nLet \\(p_j/q_j\\) be the convergents of \\(x\\). A standard fact from continued fractions is that\n\\[\n\\left|x-\\frac{p_j}{q_j}\\right|<\\frac1{q_jq_{j+1}}.\n\\]\nHence\n\\[\n\\{q_jx\\}=|q_jx-p_j|<\\frac1{q_{j+1}}.\n\\]\nNow choose \\(x\\) so that \\(q_{j+1}\\) grows extremely fast; for example, choose the continued fraction partial quotients so that \\(q_{j+1}>q_j^2\\) for all large \\(j\\). Then for those \\(j\\),\n\\[\n\\{q_jx\\}<\\frac1{q_j^2}.\n\\]\nIf we take \\(n=q_j\\), then among \\(k=1,\\dots,n\\) there is \\(k=q_j\\), and the required condition would force\n\\[\n\\{q_jx\\}\\ge \\frac1{q_j+1},\n\\]\nwhich is impossible for large \\(j\\) since \\(\\{q_jx\\}<1/q_j^2<1/(q_j+1)\\).\n\nSo the property fails for all sufficiently large \\(n\\), meaning there are only finitely many \\(n\\) for which it can hold.\n\nThus such an irrational number does exist.\n\nFinal answer: Yes, there exists such an irrational number; for example, one with sufficiently rapidly growing continued fraction denominators \\(q_{j+1}\\gg q_j^2\\).",
+  "usage": {
+    "input_tokens": 136,
+    "output_tokens": 437,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.776797544909641,
+  "cached": false
+}

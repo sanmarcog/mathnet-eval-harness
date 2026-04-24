@@ -1,0 +1,25 @@
+{
+  "id": "0euf",
+  "country": "South Korea",
+  "competition": "Korean Mathematical Olympiad Final Round",
+  "gold_final_answer": "kn",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Invariants / monovariants",
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments"
+  ],
+  "prompt": "There is an $n \\times n$ chess board. Each of the $n^2$ small boxes can present a number from $0$ to $k$, for some positive integer $k$. In each row and column, there is a button and if we push the button in a row (or column), the number in each of the $n$ small boxes contained in that row (or column, respectively) increases by $1$ and the number $k$ is changed to $0$. We call this a \"process\". At first, the number $0$ was presented in every $n^2$ small box. But there were some processes and the numbers were changed. Show that every number in the $n^2$ small boxes can be changed to $0$ by taking at most $kn$ processes.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "We need to show that starting from any configuration (reachable from the all-zero board by some sequence of row/column button presses), we can return everything to zero using at most $kn$ processes.\n\n## Setup and Key Observation\n\nLet $r_i$ denote the total number of times row $i$ was pressed (in the original sequence that created the current configuration), and $c_j$ the total number of times column $j$ was pressed. The value in cell $(i,j)$ is:\n$$a_{i,j} = (r_i + c_j) \\bmod (k+1)$$\n\nWe need to find non-negative integers $R_i, C_j$ (additional row/column presses) such that:\n$$(r_i + R_i + c_j + C_j) \\equiv 0 \\pmod{k+1}$$\nfor all $i, j$, while minimizing $\\sum R_i + \\sum C_j$.\n\n## Strategy\n\n**Step 1: Choose column presses.** For each column $j$, set $C_j = (k+1) - (c_j \\bmod (k+1))$ if $c_j \\not\\equiv 0$, or $C_j = 0$ if $c_j \\equiv 0$. Actually, let's use a cleaner approach.\n\n**Cleaner approach:** We want $(r_i + R_i) + (c_j + C_j) \\equiv 0 \\pmod{k+1}$ for all $i,j$.\n\nThis means $(r_i + R_i) - (r_1 + R_1) \\equiv 0 \\pmod{k+1}$ for all $i$ (by subtracting the equation for row 1 from row $i$, fixing $j$). So all $r_i + R_i$ must be congruent modulo $k+1$.\n\nLet $R_i$ be chosen so that $r_i + R_i \\equiv t \\pmod{k+1}$ for some fixed $t$, with $0 \\leq R_i \\leq k$. Then we need $t + (c_j + C_j) \\equiv 0 \\pmod{k+1}$, so $c_j + C_j \\equiv -t \\pmod{k+1}$, with $0 \\leq C_j \\leq k$.\n\n**Step 2: Count the processes.** Choose $t \\in \\{0, 1, \\ldots, k\\}$. For each row $i$, set $R_i \\equiv t - r_i \\pmod{k+1}$ with $0 \\leq R_i \\leq k$. For each column $j$, set $C_j \\equiv -t - c_j \\pmod{k+1}$ with $0 \\leq C_j \\leq k$.\n\nThe total number of additional presses is:\n$$\\sum_{i=1}^n R_i + \\sum_{j=1}^n C_j$$\n\nwhere $R_i \\equiv t - r_i \\pmod{k+1}$, $0 \\leq R_i \\leq k$, and $C_j \\equiv -t - c_j \\pmod{k+1}$, $0 \\leq C_j \\leq k$.\n\n**Step 3: Optimize over $t$.** Note that $R_i + C_j \\leq 2k$ for each pair, but we need a global bound. Consider summing over all $t \\in \\{0,\\ldots,k\\}$:\n\n$$\\sum_{t=0}^{k} R_i(t) = \\sum_{t=0}^{k} ((t - r_i) \\bmod (k+1)) = 0 + 1 + \\cdots + k = \\frac{k(k+1)}{2}$$\n\nSo $\\sum_{t=0}^{k} \\sum_i R_i(t) = n \\cdot \\frac{k(k+1)}{2}$, and similarly $\\sum_{t=0}^{k} \\sum_j C_j(t) = n \\cdot \\frac{k(k+1)}{2}$.\n\nTherefore:\n$$\\sum_{t=0}^{k} \\left(\\sum_i R_i(t) + \\sum_j C_j(t)\\right) = n \\cdot \\frac{k(k+1)}{2} + n \\cdot \\frac{k(k+1)}{2} = nk(k+1)$$\n\nBy the **pigeonhole principle**, there exists some $t^* \\in \\{0, 1, \\ldots, k\\}$ such that:\n$$\\sum_i R_i(t^*) + \\sum_j C_j(t^*) \\leq \\frac{nk(k+1)}{k+1} = nk$$\n\n**Conclusion:** Choosing this optimal $t^*$, we can reset all cells to zero using at most $kn$ additional row and column presses. $\\blacksquare$\n\nFinal answer: By choosing $t^*$ via the pigeonhole principle over $t\\in\\{0,\\dots,k\\}$, the total additional presses $\\sum R_i+\\sum C_j\\le kn$, resetting all cells to $0$ in at most $kn$ processes.",
+  "usage": {
+    "input_tokens": 219,
+    "output_tokens": 1326,
+    "thinking_tokens": 0
+  },
+  "latency_s": 16.486745469039306,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "By choosing $t^*$ via the pigeonhole principle over $t\\in\\{0,\\dots,k\\}$, the total additional presses $\\sum R_i+\\sum C_j\\le kn$, resetting all cells to $0$ in at most $kn$ processes."
+  }
+}

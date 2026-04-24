@@ -1,0 +1,21 @@
+{
+  "id": "0cgr",
+  "country": "Romania",
+  "competition": "74th Romanian Mathematical Olympiad",
+  "gold_final_answer": "8",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Greatest common divisors (gcd)",
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities",
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities"
+  ],
+  "prompt": "a) Prove that $12n+13$ and $13n+14$ are coprime, for every natural $n$.\n\nb) Find the number of the pairs $(a, b)$ of natural numbers for which there exists a natural number $n$ so that $\\frac{a}{b} = \\frac{12n+13}{13n+14}$ and $17a + 19b < 2024$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let  \n\\[\n\\frac ab=\\frac{12n+13}{13n+14}\n\\]\nfor some natural number \\(n\\).\n\n## a) Prove the two numbers are coprime\nConsider a common divisor \\(d\\) of \\(12n+13\\) and \\(13n+14\\). Then \\(d\\) divides any integer linear combination of them:\n\n\\[\n13(12n+13)-12(13n+14)=156n+169-156n-168=1.\n\\]\n\nSo \\(d\\mid 1\\), hence \\(d=1\\). Therefore,\n\\[\n\\gcd(12n+13,\\;13n+14)=1\n\\]\nfor every natural \\(n\\).\n\n---\n\n## b) Count the pairs \\((a,b)\\)\n\nSince the fraction \\(\\frac{12n+13}{13n+14}\\) is already in lowest terms by part (a), each admissible \\(n\\) gives a unique pair\n\\[\n(a,b)=(12n+13,\\;13n+14).\n\\]\n\nNow impose the inequality:\n\\[\n17a+19b<2024.\n\\]\nSubstitute:\n\\[\n17(12n+13)+19(13n+14)<2024.\n\\]\nCompute:\n\\[\n204n+221+247n+266<2024\n\\]\n\\[\n451n+487<2024\n\\]\n\\[\n451n<1537\n\\]\n\\[\nn<3.41\\ldots\n\\]\nSo the natural numbers \\(n\\) are\n\\[\nn=1,2,3\n\\]\n(if natural numbers start at 1). This gives 3 pairs.\n\nCheck them:\n- \\(n=1\\): \\((a,b)=(25,27)\\)\n- \\(n=2\\): \\((a,b)=(37,40)\\)\n- \\(n=3\\): \\((a,b)=(49,53)\\)\n\nAll satisfy \\(17a+19b<2024\\).\n\nTherefore the number of pairs is\n\n**Final answer: 3**",
+  "usage": {
+    "input_tokens": 140,
+    "output_tokens": 453,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.384589369990863,
+  "cached": false
+}

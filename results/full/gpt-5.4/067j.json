@@ -1,0 +1,19 @@
+{
+  "id": "067j",
+  "country": "Greece",
+  "competition": "Hellenic Mathematical Olympiad ARCHIMEDES",
+  "gold_final_answer": "2, 5/4, sqrt(2), -sqrt(2)",
+  "topics_flat": [
+    "Algebra > Intermediate Algebra > Quadratic functions"
+  ],
+  "prompt": "Determine the values of the parameter $\\alpha \\in \\mathbb{R}$ for which the equation $x^2 + (\\alpha - 2)x - (\\alpha - 1)(2\\alpha - 3) = 0$ has two roots such that the one of them is equal to the square of the other.",
+  "model": "gpt-5.4",
+  "response_text": "Let the two roots be \\(r\\) and \\(s\\), with one equal to the square of the other.  \nSo we may write\n\\[\ns=r^2\n\\]\n(the other case is the same by swapping the roots).\n\nFor the quadratic\n\\[\nx^2+(\\alpha-2)x-(\\alpha-1)(2\\alpha-3)=0,\n\\]\nVieta gives\n\\[\nr+s=2-\\alpha,\\qquad rs=-(\\alpha-1)(2\\alpha-3).\n\\]\n\nSince \\(s=r^2\\), we get\n\\[\nr+r^2=2-\\alpha \\quad\\Rightarrow\\quad \\alpha=2-r-r^2.\n\\]\nAlso\n\\[\nr\\cdot r^2=r^3=-(\\alpha-1)(2\\alpha-3).\n\\]\nNow substitute \\(\\alpha=2-r-r^2\\):\n\n\\[\n\\alpha-1=1-r-r^2,\\qquad 2\\alpha-3=1-2r-2r^2.\n\\]\nHence\n\\[\nr^3=-(1-r-r^2)(1-2r-2r^2).\n\\]\nExpand:\n\\[\n(1-r-r^2)(1-2r-2r^2)=1-3r+r^2+4r^3+2r^4.\n\\]\nSo\n\\[\nr^3=-(1-3r+r^2+4r^3+2r^4),\n\\]\ni.e.\n\\[\n2r^4+5r^3+r^2-3r+1=0.\n\\]\nFactor:\n\\[\n2r^4+5r^3+r^2-3r+1=(r+1)^2(2r^2+r-1).\n\\]\nThus\n\\[\nr=-1 \\quad\\text{or}\\quad 2r^2+r-1=0.\n\\]\nFrom the quadratic,\n\\[\nr=\\frac12 \\quad\\text{or}\\quad r=-1.\n\\]\nSo possible \\(r\\) are\n\\[\nr=-1,\\quad r=\\frac12.\n\\]\n\nNow compute \\(\\alpha=2-r-r^2\\):\n\n- If \\(r=-1\\), then\n  \\[\n  \\alpha=2-(-1)-1=2.\n  \\]\n\n- If \\(r=\\frac12\\), then\n  \\[\n  \\alpha=2-\\frac12-\\frac14=\\frac54.\n  \\]\n\nCheck:\n\n- For \\(\\alpha=2\\): equation is \\(x^2-1=0\\), roots \\(1,-1\\), and \\(1=(-1)^2\\).\n- For \\(\\alpha=\\frac54\\): equation is\n  \\[\n  x^2-\\frac34x-\\frac12=0,\n  \\]\n  roots \\(1\\) and \\(-\\frac12\\), and \\(\\left(-\\frac12\\right)^2=\\frac14\\) not \\(1\\); but note with \\(r=\\frac12\\), \\(r^2=\\frac14\\), so this seems inconsistent because the corresponding roots should be \\(\\frac12,\\frac14\\). Thus we should verify by direct substitution.\n\nA cleaner way is to impose directly that roots are \\(t\\) and \\(t^2\\). Then the quadratic must be\n\\[\nx^2-(t+t^2)x+t^3.\n\\]\nComparing coefficients:\n\\[\n\\alpha-2=-(t+t^2),\\qquad -(\\alpha-1)(2\\alpha-3)=t^3.\n\\]\nFrom the first,\n\\[\n\\alpha=2-t-t^2.\n\\]\nSubstitute into the second:\n\\[\n(1-t-t^2)(1-2t-2t^2)= -t^3.\n\\]\nSo\n\\[\n1-3t+t^2+4t^3+2t^4=-t^3,\n\\]\nhence\n\\[\n2t^4+5t^3+t^2-3t+1=0=(t+1)^2(2t^2+t-1).\n\\]\nThus\n\\[\nt=-1,\\ \\frac12,\\ -1.\n\\]\nNow test each via root pair \\((t,t^2)\\):\n\n- \\(t=-1\\) gives roots \\(-1,1\\), sum \\(0\\), so \\(\\alpha=2\\).\n- \\(t=\\frac12\\) gives roots \\(\\frac12,\\frac14\\), sum \\(\\frac34\\), so \\(\\alpha=\\frac54\\).  \n  But product should be \\(\\frac18\\), while for \\(\\alpha=\\frac54\\),\n  \\[\n  -(\\alpha-1)(2\\alpha-3)=-\\frac14\\left(-\\frac12\\right)=\\frac18,\n  \\]\n  so it works.\n\nTherefore the valid values are\n\\[\n\\boxed{\\alpha=2\\ \\text{or}\\ \\alpha=\\frac54}.\n\\]\n\nFinal answer: \\(\\displaystyle \\alpha\\in\\left\\{2,\\frac54\\right\\}\\).",
+  "usage": {
+    "input_tokens": 115,
+    "output_tokens": 1103,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 13.38571595097892,
+  "cached": false
+}

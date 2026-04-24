@@ -1,0 +1,22 @@
+{
+  "id": "0gv0",
+  "country": "Turkey",
+  "competition": "Team Selection Test for IMO 2024",
+  "gold_final_answer": "2, 3",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments",
+    "Discrete Mathematics > Combinatorics > Induction / smoothing",
+    "Number Theory > Divisibility / Factorization > Prime numbers",
+    "Number Theory > Number-Theoretic Functions > τ (number of divisors)"
+  ],
+  "prompt": "For a positive integer $r \\ge 2$ each positive integer is coloured into one of $r$ colours. Suppose that for each integer number $n$ and each pair $(a, b)$ of two colours $a$ and $b$ the difference between the number of divisors of $n$ coloured $a$ and the number of divisors of $n$ coloured $b$ is at most $1$. Find all possible values of $r$.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find all possible values of $r$, we analyze the condition given in the problem. Let $c(n) \\in \\{1, 2, \\dots, r\\}$ be the color of $n$. The condition states that for any positive integer $n$, the colors of its divisors are distributed as evenly as possible. This means that no color can appear among the divisors of $n$ more than $\\lceil d(n)/r \\rceil$ times, where $d(n)$ is the total number of divisors of $n$.\n\nAssume $r \\ge 4$. Consider a number $n = p_1 p_2 \\dots p_r$, where $p_1, p_2, \\dots, p_r$ are distinct primes. \nFor any pair of distinct primes $p_i, p_j$ dividing $n$, the number $p_i p_j$ has exactly $d(p_i p_j) = 4$ divisors: $1, p_i, p_j$, and $p_i p_j$. \nBecause $r \\ge 4$, the maximum number of times any color can appear among these 4 divisors is $\\lceil 4/r \\rceil = 1$. \nThis implies that all 4 divisors of $p_i p_j$ must have distinct colors. In particular, $c(1), c(p_i)$, and $c(p_j)$ must be mutually distinct.\nSince this must hold for all pairs $i \\neq j",
+  "usage": {
+    "input_tokens": 132,
+    "output_tokens": 328,
+    "thoughts_tokens": 7860
+  },
+  "latency_s": 66.04834282794036,
+  "cached": false
+}

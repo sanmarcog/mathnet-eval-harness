@@ -1,0 +1,20 @@
+{
+  "id": "0h92",
+  "country": "Ukraine",
+  "competition": "58th Ukrainian National Mathematical Olympiad",
+  "gold_final_answer": "(25, 7, 13) and its cyclic permutations: (7, 13, 25) and (13, 25, 7)",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization",
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities"
+  ],
+  "prompt": "Find all triples pairwise distinct positive integer numbers $(a, b, c)$ that satisfy the condition: number $2a-1$ is divisible by $b$, number $2b-1$ is divisible by $c$ and number $2c-1$ is divisible by $a$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let  \n\\[\n2a-1=kb,\\qquad 2b-1=\\ell c,\\qquad 2c-1=ma\n\\]\nfor some positive integers \\(k,\\ell,m\\).\n\nSince \\(2a-1<2a\\), we have\n\\[\nkb=2a-1<2a.\n\\]\nIf \\(b\\ge a\\), then \\(kb\\ge b\\ge a\\), so the only possible small values can be checked cyclically. A cleaner way is to use the divisibility inequalities:\n\n\\[\nb\\le 2a-1,\\quad c\\le 2b-1,\\quad a\\le 2c-1.\n\\]\n\nNow suppose \\(a\\) is the smallest of the three. Then \\(a<b,c\\). From \\(2c-1=ma\\) we get \\(a\\mid 2c-1\\), and since \\(c>a\\), we have\n\\[\n2c-1 \\ge 2a+1,\n\\]\nso \\(m\\ge 3\\). Then\n\\[\n2c-1\\ge 3a \\implies c\\ge \\frac{3a+1}{2}.\n\\]\nSimilarly,\n\\[\n2b-1= \\ell c \\ge c+1 \\implies b\\ge \\frac{c+1}{2}.\n\\]\nAnd from \\(2a-1=kb\\), since \\(b>a\\), we must have \\(k=1\\) impossible because then \\(b=2a-1>a\\) but then \\(2b-1\\) is too large to divide nicely in the cycle. A more direct finite check comes from bounding:\n\nBecause \\(2a-1\\) is divisible by \\(b>a\\), we must have\n\\[\nb\\le 2a-1<2b \\quad\\Rightarrow\\quad k=1,\n\\]\nso\n\\[\nb=2a-1.\n\\]\nThen\n\\[\n2b-1 = 4a-3.\n\\]\nSince \\(c\\mid 4a-3\\) and \\(c>b=2a-1\\), we get\n\\[\nc=4a-3.\n\\]\nThen\n\\[\n2c-1 = 8a-7.\n\\]\nBut \\(a\\mid 8a-7\\), so \\(a\\mid 7\\). Hence \\(a=1\\) or \\(a=7\\), but \\(a=1\\) gives \\(b=1\\), not pairwise distinct, and \\(a=7\\) gives\n\\[\n(b,c)=(13,25),\n\\]\nbut then \\(2c-1=49\\) is divisible by \\(a=7\\), indeed it works. Check:\n\\[\n2\\cdot 7-1=13,\\quad 2\\cdot 13-1=25,\\quad 2\\cdot 25-1=49.\n\\]\n\nThus the only pairwise distinct positive integer triple is\n\\[\n(7,13,25)\n\\]\nup to the cyclic order forced by the conditions.\n\nFinal answer: \\((7,13,25)\\)",
+  "usage": {
+    "input_tokens": 109,
+    "output_tokens": 683,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 5.023034482030198,
+  "cached": false
+}

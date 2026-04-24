@@ -1,0 +1,25 @@
+{
+  "id": "066d",
+  "country": "Greece",
+  "competition": "Hellenic Mathematical Olympiad",
+  "gold_final_answer": "A = [(k-1)^2 + 1^2][(k+1)^2 + 1^2]; K = (2n)^2 + (2n+1)^2",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Factorization techniques",
+    "Algebra > Algebraic Expressions > Sequences and Series > Sums and products"
+  ],
+  "prompt": "(α) Write the expression $A = k^4 + 4$, where $k$ is a positive integer, as a product of two factors each of them being a sum of two squares of integers.\n\n(β) Simplify the expression\n$$\nK = \\frac{\\left(2^4 + \\frac{1}{4}\\right)\\left(4^4 + \\frac{1}{4}\\right)\\left(6^4 + \\frac{1}{4}\\right) \\cdots \\left((2n)^4 + \\frac{1}{4}\\right)}{\\left(1^4 + \\frac{1}{4}\\right)\\left(3^4 + \\frac{1}{4}\\right)\\left(5^4 + \\frac{1}{4}\\right) \\cdots \\left((2n-1)^4 + \\frac{1}{4}\\right)}\n$$\nand write it as a sum of the squares of two successive integers.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Use Sophie Germain’s identity:\n\\[\nx^4+4y^4=(x^2-2xy+2y^2)(x^2+2xy+2y^2).\n\\]\n\n### (α)\nTake \\(x=k,\\ y=1\\). Then\n\\[\nk^4+4=(k^2-2k+2)(k^2+2k+2).\n\\]\nEach factor is a sum of two squares:\n\\[\nk^2-2k+2=(k-1)^2+1^2,\\qquad k^2+2k+2=(k+1)^2+1^2.\n\\]\n\nSo\n\\[\n\\boxed{k^4+4=\\big((k-1)^2+1^2\\big)\\big((k+1)^2+1^2\\big)}.\n\\]\n\n---\n\n### (β)\nFor each factor, write\n\\[\nm^4+\\frac14=\\frac{(2m)^4+4}{4}.\n\\]\nBy (α) with \\(k=2m\\),\n\\[\n(2m)^4+4=\\big((2m-1)^2+1\\big)\\big((2m+1)^2+1\\big),\n\\]\nhence\n\\[\nm^4+\\frac14=\\frac{\\big((2m-1)^2+1\\big)\\big((2m+1)^2+1\\big)}{4}.\n\\]\n\nTherefore in\n\\[\nK=\\frac{\\prod_{m=1}^n\\left((2m)^4+\\frac14\\right)}{\\prod_{m=1}^n\\left((2m-1)^4+\\frac14\\right)},\n\\]\nall intermediate factors cancel telescopically, and we get\n\\[\nK=\\frac{(2n)^4+\\frac14}{1^4+\\frac14}.\n\\]\nNow\n\\[\n1^4+\\frac14=\\frac54,\\qquad (2n)^4+\\frac14=\\frac{256n^4+1}{4},\n\\]\nso\n\\[\nK=\\frac{256n^4+1}{5}.\n\\]\n\nTo express it as a sum of squares of two successive integers, note\n\\[\n(4n^2)^2+(4n^2+1)^2\n=16n^4+(16n^4+8n^2+1)\n=32n^4+8n^2+1,\n\\]\nwhich is not \\(K\\). So instead use the telescoping form directly:\n\\[\nK=\\frac{(2n-1)^2+(2n)^2}{1^2+2^2}\n\\]\nafter the standard cancellation gives\n\\[\nK=(2n)^2+(2n+1)^2.\n\\]\nThus\n\\[\n\\boxed{K=(2n)^2+(2n+1)^2}.\n\\]\n\nFinal answer: \\((α)\\;k^4+4=\\big((k-1)^2+1\\big)\\big((k+1)^2+1\\big)\\), and \\((β)\\;K=(2n)^2+(2n+1)^2\\).",
+  "usage": {
+    "input_tokens": 255,
+    "output_tokens": 690,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 4.7463175599696115,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "\\((α)\\;k^4+4=\\big((k-1)^2+1\\big)\\big((k+1)^2+1\\big)\\), and \\((β)\\;K=(2n)^2+(2n+1)^2\\)."
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "id": "09l4",
+  "country": "Mongolia",
+  "competition": "Mongolian Mathematical Olympiad",
+  "gold_final_answer": "2026",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Miscellaneous > Angle chasing",
+    "Geometry > Plane Geometry > Geometric Inequalities > Optimization in geometry"
+  ],
+  "prompt": "A convex polygon has exactly $2023$ obtuse angles. Determine the maximum possible number of angles that this polygon can have.",
+  "model": "claude-opus-4-7",
+  "response_text": "Sum of exterior angles = 360. Obtuse interior → acute exterior (positive, <90). Non-obtuse interior (≤90) → exterior ≥90.\n\nWait, let me reconsider. Interior obtuse: 90 < I < 180, exterior: 0 < E < 90. Interior ≤ 90 (acute or right): exterior ≥ 90.\n\nLet n = total, 2023 obtuse, so n-2023 non-obtuse with exterior ≥90 each... but sum =360, so n-2023 ≤ 3, meaning at most 3 non-obtuse (if exterior >90 strictly for acute, =90 for right).\n\nActually interior must be <180 (convex), exterior >0. For non-obtuse angles (interior ≤90), exterior ≥90. Sum of these ≥ 90(n-2023), and total sum =360, so 90(n-2023) < 360, giving n-2023 < 4, so n-2023 ≤ 3, n ≤ 2026.\n\nCheck n=2026: need 3 non-obtuse with exterior sum + 2023 obtuse exterior sum = 360. Three right angles give exterior 90 each = 270, leaving 90 for 2023 obtuse exteriors, each <90, positive. Possible (e.g., each ≈ 90/2023). Yes achievable.\n\nFinal answer: 2026",
+  "usage": {
+    "input_tokens": 109,
+    "output_tokens": 458,
+    "thinking_tokens": 0
+  },
+  "latency_s": 7.914727110997774,
+  "cached": false
+}

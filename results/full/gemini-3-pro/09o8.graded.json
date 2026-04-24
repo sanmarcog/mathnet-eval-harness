@@ -1,0 +1,24 @@
+{
+  "id": "09o8",
+  "country": "Mongolia",
+  "competition": "MMO2025 Round 2",
+  "gold_final_answer": "Yes",
+  "topics_flat": [
+    "Discrete Mathematics > Other"
+  ],
+  "prompt": "Consider a $2024 \\times 2024$ grid fully tiled using $1 \\times 2$ and $2 \\times 1$ dominoes without overlap. A robot is placed on one of the cells. It moves from one cell of a domino to the other, then continues in the same direction to the next domino, if such exists; otherwise, it stops. Is it possible for the robot to eventually return to its starting cell?",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To determine if the robot can return to its starting cell, we can analyze its movement by coloring the $2024 \\times 2024$ grid like a chessboard, with Black and White cells. \n\nLet's assign coordinates $(x, y)$ to the cells. Without loss of generality, let the Black cells be those where $x+y$ is even, and White cells be those where $x+y$ is odd. \nWhen the robot is on a domino, it moves from one cell to the other. Notice that within a domino, the robot always moves from a Black cell to a White cell (or vice versa). \nSuppose the robot starts on a Black cell $c_1$. It moves to the White cell $c_2$ of the same domino. The robot then continues in the same direction to the next cell $c_3$, which belongs to a new domino. Because $c_1, c_2, c_3$ are in a straight line and alternate colors, $c_3$ must be a Black cell. \nThis means the robot always starts its movement on a new domino on a Black cell. Furthermore, the jump from $c_1$ to $c_3$ is exactly $2\\vec{v}$, where $\\vec{v}$ is the vector from $c_1$ to $c_2$. This implies that the parity of the coordinates of the Black cells visited by the robot never changes. If $c_1$ has (even, even) coordinates, all subsequent Black cells visited will also have (even, even) coordinates.\n\nWe can form a scaled grid consisting only of the (even, even) Black cells. In this scaled grid, the robot's path is a sequence of directed edges (arrows). Since every (even, even) cell is covered by exactly one domino, every node in our scaled grid has an out-degree of exactly 1 (or it points outside the board).\n\nFor the robot to return to its starting cell, its path must form a closed loop (a cycle). \nSuppose such a cycle exists. This cycle forms a closed polygon in the scaled grid. By the Jordan Curve Theorem, this polygon encloses a strictly interior region of cells in the original grid. For the overall grid to be fully tiled, the cells strictly inside this cycle must also be perfectly tiled by dominoes. \n\nLet's count the number of Black and White cells strictly inside this polygon. \nUsing Euler's formula and Pick's Theorem for the grid graph, let $A$ be the area of the polygon in the scaled grid, $I",
+  "usage": {
+    "input_tokens": 134,
+    "output_tokens": 552,
+    "thoughts_tokens": 7636
+  },
+  "latency_s": 69.98701843898743,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": null
+  }
+}

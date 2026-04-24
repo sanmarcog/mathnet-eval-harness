@@ -1,0 +1,25 @@
+{
+  "id": "03qy",
+  "country": "China",
+  "competition": "China Girls' Mathematical Olympiad",
+  "gold_final_answer": "sqrt(3)",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities > QM-AM-GM-HM / Power Mean",
+    "Algebra > Equations and Inequalities > Cauchy-Schwarz"
+  ],
+  "prompt": "Determine the maximum value of constant $\\lambda$ such that\n$$\nu + v + w \\ge \\lambda,$$\nwhere $u, v$ and $w$ are positive real numbers with $u\\sqrt{vw} + v\\sqrt{wu} + w\\sqrt{uv} \\ge 1$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let  \n\\[\na=\\sqrt u,\\quad b=\\sqrt v,\\quad c=\\sqrt w,\n\\]\nso the condition becomes\n\\[\na^2bc+b^2ca+c^2ab \\ge 1.\n\\]\nFactor out \\(abc\\):\n\\[\nabc(a+b+c)\\ge 1.\n\\]\nWe need the minimum of\n\\[\nu+v+w=a^2+b^2+c^2.\n\\]\n\nNow apply AM-GM:\n\\[\na+b+c \\le \\sqrt{3(a^2+b^2+c^2)}.\n\\]\nAlso,\n\\[\nabc \\le \\left(\\frac{a^2+b^2+c^2}{3}\\right)^{3/2}.\n\\]\nThus\n\\[\n1\\le abc(a+b+c)\n\\le \\left(\\frac{a^2+b^2+c^2}{3}\\right)^{3/2}\\sqrt{3(a^2+b^2+c^2)}\n= \\frac{(a^2+b^2+c^2)^2}{3}.\n\\]\nHence\n\\[\na^2+b^2+c^2 \\ge \\sqrt3.\n\\]\nSo\n\\[\nu+v+w \\ge \\sqrt3.\n\\]\n\nEquality holds at \\(a=b=c=3^{-1/4}\\), i.e. \\(u=v=w=3^{-1/2}\\), since then\n\\[\nu\\sqrt{vw}+v\\sqrt{wu}+w\\sqrt{uv}=3u^{3/2}=1.\n\\]\n\nFinal answer: \\(\\boxed{\\sqrt3}\\)",
+  "usage": {
+    "input_tokens": 114,
+    "output_tokens": 348,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 2.4438327569514513,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "\\sqrt3"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "id": "00hd",
+  "country": "Asia Pacific Mathematics Olympiad (APMO)",
+  "competition": "APMO 2016",
+  "gold_final_answer": "57",
+  "topics_flat": [
+    "Discrete Mathematics > Graph Theory",
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments",
+    "Discrete Mathematics > Combinatorics > Induction / smoothing"
+  ],
+  "prompt": "The country Dreamland consists of 2016 cities. The airline Starways wants to establish some one-way flights between pairs of cities in such a way that each city has exactly one flight out of it. Find the smallest positive integer $k$ such that no matter how Starways establishes its flights, the cities can always be partitioned into $k$ groups so that from any city it is not possible to reach another city in the same group by using at most 28 flights.",
+  "model": "gpt-5.4",
+  "response_text": "Model the flight system as a **functional digraph** on 2016 vertices: each city has outdegree exactly 1.\n\nWe need the smallest \\(k\\) such that **for every** such digraph, the vertices can be colored with \\(k\\) colors so that whenever there is a directed path of length at most \\(28\\) from \\(u\\) to \\(v\\), then \\(u,v\\) get different colors. Equivalently, each color class must contain no two cities where one can reach the other in \\(\\le 28\\) steps.\n\nSo we seek the maximum, over all functional digraphs on 2016 vertices, of the minimum number of colors needed.\n\n## 1. Structure of a functional digraph\nEach component consists of a directed cycle, with rooted trees feeding into the cycle.\n\nFor a city \\(x\\), let\n\\[\nx, f(x), f^2(x), \\dots\n\\]\nbe its forward orbit.\n\nTwo vertices conflict if one is among the first 28 iterates of the other.\n\n## 2. Lower bound\nTake a directed path of 29 distinct vertices:\n\\[\nv_1 \\to v_2 \\to \\cdots \\to v_{29}.\n\\]\nThen for any \\(i<j\\), \\(v_j\\) is reachable from \\(v_i\\) in \\(j-i\\le 28\\) flights, so all 29 must lie in different groups.\n\nSuch a path can occur in a functional digraph (for instance as a tail leading into a loop). Hence\n\\[\nk \\ge 29.\n\\]\n\nBut this is not best possible, because cycles create stronger constraints.\n\nConsider a directed cycle of length \\(m\\). On this cycle, from any vertex you can reach the next 28 vertices. Thus vertices at cyclic distance \\(1,2,\\dots,28\\) must all have different colors. This is exactly the coloring problem for the \\(28\\)-th power of the cycle \\(C_m\\).\n\nIf \\(m=2016\\), then since\n\\[\n2016 = 69\\cdot 29 + 15,\n\\]\n29 colors are not enough for the \\(28\\)-th power of this cycle unless the cycle length is divisible suitably; in fact the chromatic number is\n\\[\n\\chi(C_m^{28})=\\left\\lceil \\frac{m}{\\lfloor m/29\\rfloor}\\right\\rceil,\n\\]\nand here \\(\\lfloor 2016/29\\rfloor=69\\), so\n\\[\n\\chi = \\left\\lceil \\frac{2016}{69}\\right\\rceil = \\lceil 29.217\\ldots\\rceil = 30.\n\\]\nTherefore\n\\[\nk\\ge 30.\n\\]\n\n## 3. Upper bound\nWe show 30 colors always suffice.\n\nIt is enough to color each component separately.\n\n### Trees feeding into cycles\nAlong any directed chain in a tree, vertices distance at most 28 apart must differ, so a simple repeating pattern of period 29 would handle trees. The only issue is compatibility with the cycle, so having 30 colors gives enough slack.\n\n### Cycle\nLet the cycle length be \\(m\\). We must color the cycle so that any 29 consecutive vertices have distinct colors.\n\nWith 30 colors, this is always possible: go around the cycle assigning colors \\(1,2,\\dots,30,1,2,\\dots\\). Since among any 29 consecutive vertices no color repeats, the condition is satisfied. When the cycle closes up, because we have one spare color beyond 29, we can choose the starting phase so that the last 28 vertices and the first ones also satisfy the condition. Concretely, any cycle can be colored by a suitable segment of the 30-periodic coloring.\n\nThen extend this coloring backward along each in-tree: if a vertex’s image has color \\(c\\), assign to the vertex any color not used on the next 28 vertices along its forward path. At most 28 colors are forbidden, so among 30 colors at least 2 remain; thus this greedy extension always works.\n\nHence every functional digraph admits such a partition into 30 groups.\n\nSo\n\\[\nk=30.\n\\]\n\nFinal answer: 30",
+  "usage": {
+    "input_tokens": 145,
+    "output_tokens": 899,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 17.856235540937632,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "30"
+  }
+}

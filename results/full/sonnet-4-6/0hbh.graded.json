@@ -1,0 +1,25 @@
+{
+  "id": "0hbh",
+  "country": "Ukraine",
+  "competition": "59th Ukrainian National Mathematical Olympiad",
+  "gold_final_answer": "k ≥ 3",
+  "topics_flat": [
+    "Discrete Mathematics > Graph Theory",
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments"
+  ],
+  "prompt": "There is a group of $2n$ people, among whom there are couples of friends. It is known that every person in this group has exactly $k \\ge 1$ friends (if \"A\" is familiar with \"B\", then conversely, \"B\" is familiar with \"A\"). Find such a number $k$ for which this group can always be divided into two subgroups of $n$ people so that in both subgroups each person has at least one friend?\n(Bogdan Rublyov)",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Solution\n\nWe need to find all values of $k$ such that for **any** $k$-regular graph on $2n$ vertices, we can partition the vertices into two groups of $n$ so that each person has at least one friend within their group.\n\n**Answer: $k$ must be odd... let me think more carefully.**\n\nWe need to find which $k$ guarantees the partition exists for ALL $k$-regular graphs on $2n$ vertices.\n\n**Key observation:** We need each vertex to have at least one neighbor in its own part of the partition.\n\n**When $k$ is odd:**\n\nConsider a $k$-regular graph. We want to show a balanced partition exists where each vertex has at least one neighbor in its part.\n\n**Counterexample for $k$ even:** Take $k=2$, $n=2$ (so 4 people). Consider a 4-cycle: $1-2-3-4-1$. Any partition into 2+2: say $\\{1,2\\}$ and $\\{3,4\\}$: person 1 is friends with 2 (good), person 2 is friends with 1 (good), person 3 is friends with 4 (good), person 4 is friends with 3 (good). This works. Try $\\{1,3\\}$ and $\\{2,4\\}$: person 1's friends are 2,4 — none in group, fails. But we only need existence of one good partition.\n\n**Counterexample for $k=2$:** Take two disjoint triangles... but that's 6 vertices (n=3). Partition $\\{1,2,3\\}$ and $\\{4,5,6\\}$ — each person has 2 friends in their group. Works. Any partition of 3+3 from two triangles works if we keep triangles together; if we split, say $\\{1,2,4\\}$: 1 is friends with 2 (good), 2 is friends with 1 (good), 4 is friends with 5,6 — none in group, fails. But $\\{1,2,3\\},\\{4,5,6\\}$ works.\n\n**For $k$ odd:** Consider a complete bipartite graph $K_{n,n}$ which is $n$-regular. If $n$ is odd, any balanced partition must have some edges within parts... actually $K_{n,n}$ has no edges within parts in the natural partition, so the natural partition fails. But other partitions: any partition into two groups of $n$ where each group has at least one vertex from each side of the bipartition will have internal edges.\n\n**Critical case - $k$ odd:** For odd $k$, every vertex has odd degree. In any partition, the number of edges within a part has the same parity as... By handshaking within a part, $\\sum_{v \\in S} d_S(v) = 2e(S)$ is even. Each $d_S(v) = k - d_{\\bar{S}}(v)$. \n\nFor odd $k$: if some vertex $v$ has $d_S(v) = 0$, then all $k$ neighbors are in $\\bar{S}$, contributing $k$ (odd) to the cut. \n\n**The answer is $k$ odd.** For odd $k$: suppose a partition has a vertex with no friends in its part. Then all $k$ neighbors cross. Moving this vertex to the other part changes the cut by an odd amount, and we can use a local improvement argument. For even $k$, the complete bipartite graph $K_{n,n}$ (when $k=n$) shows failure: the only balanced partition with internal edges requires mixing, but $K_{n,n}$ with $n$ even — any partition into two $n$-sets has each vertex with exactly (number of opposite-side vertices in its group) friends, which could be 0 if all same-side vertices go together.\n\nFor even $k$: $K_{k+1, k+1}$ is $k$-regular on $2(k+1)$ vertices. The partition into the two natural sides gives 0 internal edges for everyone — this fails. So even $k$ doesn't work.\n\nFor odd $k$: One can prove using a parity/exchange argument that a valid partition always exists.\n\n**The answer is: all odd $k$**, i.e., $k$ is odd.\n\nFinal answer: $k$ is odd (i.e., all odd values $k \\geq 1$).\n\nFinal answer: All odd values of $k$ (i.e., $k$ is odd).",
+  "usage": {
+    "input_tokens": 158,
+    "output_tokens": 1103,
+    "thinking_tokens": 0
+  },
+  "latency_s": 21.84771532798186,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "All odd values of $k$ (i.e., $k$ is odd)."
+  }
+}

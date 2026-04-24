@@ -1,0 +1,21 @@
+{
+  "id": "047l",
+  "country": "China",
+  "competition": "2024 CGMO",
+  "gold_final_answer": "minimum = (3/5) n; maximum = n^4 + n^2 + n - 1 + (n - 1)/(n^5 - 1)",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities > QM-AM-GM-HM / Power Mean",
+    "Algebra > Equations and Inequalities > Jensen / smoothing",
+    "Algebra > Equations and Inequalities > Muirhead / majorization"
+  ],
+  "prompt": "Given an integer $n \\ge 2$, let $x_1, x_2, \\dots, x_n$ be non-negative real numbers satisfying $x_1 + x_2 + \\dots + x_n = n$. Find the minimum and maximum values of\n$$\n\\sum_{k=1}^{n} \\frac{1 + x_k^2 + x_k^4}{1 + x_{k+1} + x_{k+1}^2 + x_{k+1}^3 + x_{k+1}^4},\n$$\nwhere $x_{n+1} = x_1$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let  \n\\[\nS=\\sum_{k=1}^{n}\\frac{1+x_k^2+x_k^4}{1+x_{k+1}+x_{k+1}^2+x_{k+1}^3+x_{k+1}^4},\n\\qquad x_{n+1}=x_1,\n\\]\nwith \\(x_i\\ge 0\\) and \\(\\sum x_i=n\\).\n\nWe seek the minimum and maximum of \\(S\\).\n\n## 1) A useful comparison\n\nFor any \\(t\\ge 0\\),\n\\[\n1+t+t^2+t^3+t^4 \\le (1+t+t^2)^2,\n\\]\nand also\n\\[\n1+t+t^2+t^3+t^4 \\ge 1+t^2+t^4.\n\\]\nHence\n\\[\n\\frac{1+t^2+t^4}{1+t+t^2+t^3+t^4}\\le 1,\n\\]\nwith equality at \\(t=0\\) and \\(t=1\\).\n\nSo each term is at most \\(1\\), giving\n\\[\nS\\le n.\n\\]\nThis upper bound is attained when \\(x_1=\\cdots=x_n=1\\), since then every summand equals\n\\[\n\\frac{1+1+1}{1+1+1+1+1}=\\frac35,\n\\]\nso not yet \\(n\\). Thus we need a sharper analysis.\n\nActually, note that for \\(t=0\\),\n\\[\n\\frac{1+0+0}{1+0+0+0+0}=1,\n\\]\nand for \\(t=1\\),\n\\[\n\\frac{3}{5}.\n\\]\n\nThe extremal behavior is driven by the cyclic dependence.\n\n---\n\n## 2) Maximum\n\nTake \\(x_1=n,\\; x_2=\\cdots=x_n=0\\). Then\n- the \\(k=1\\) term is\n\\[\n\\frac{1+n^2+n^4}{1+0+0+0+0}=1+n^2+n^4,\n\\]\n- the remaining \\(n-1\\) terms are\n\\[\n\\frac{1}{1+0+0+0+0}=1.\n\\]\nSo\n\\[\nS = n+n^2+n^4.\n\\]\nThis is clearly the largest possible, because each numerator is maximized by putting all mass on one variable, and the denominators are minimized at \\(0\\).\n\nHence\n\\[\nS_{\\max}=n^4+n^2+n.\n\\]\n\n---\n\n## 3) Minimum\n\nBy Jensen-type smoothing/cyclic symmetry, the minimum occurs at equality\n\\[\nx_1=\\cdots=x_n=1.\n\\]\nThen every term equals \\(\\frac35\\), so\n\\[\nS = n\\cdot \\frac35=\\frac{3n}{5}.\n\\]\n\nThus\n\\[\nS_{\\min}=\\frac{3n}{5}.\n\\]\n\nSo the extremal values are\n\n\\[\n\\boxed{S_{\\min}=\\frac{3n}{5},\\qquad S_{\\max}=n^4+n^2+n.}\n\\]\n\nFinal answer: \\(\\displaystyle \\min S=\\frac{3n}{5},\\ \\max S=n^4+n^2+n\\).",
+  "usage": {
+    "input_tokens": 182,
+    "output_tokens": 713,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 4.523406059015542,
+  "cached": false
+}

@@ -1,0 +1,19 @@
+{
+  "id": "03yr",
+  "country": "China",
+  "competition": "China Mathematical Competition",
+  "gold_final_answer": "{-3, 0, 2, 6}",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Counting two ways"
+  ],
+  "prompt": "Let $A = \\{a_1, a_2, a_3, a_4\\}$. Suppose the set of sums of all the elements in every ternary subset of $A$ is $B = \\{-1, 3, 5, 8\\}$. Then $A = \\underline{\\hspace{2cm}}$.",
+  "model": "claude-opus-4-7",
+  "response_text": "Sum of all = (sum of B)/3·... wait. Each element appears in 3 of the 4 ternary subsets. Sum of B = 3·(a1+a2+a3+a4) = 15, so total S=5.\n\nThen elements = S - (triple sum) = 5-{-1,3,5,8} = {6,2,0,-3}.\n\nFinal answer: {-3, 0, 2, 6}",
+  "usage": {
+    "input_tokens": 160,
+    "output_tokens": 135,
+    "thinking_tokens": 0
+  },
+  "latency_s": 3.262113466975279,
+  "cached": false
+}

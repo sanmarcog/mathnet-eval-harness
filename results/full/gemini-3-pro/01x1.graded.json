@@ -1,0 +1,25 @@
+{
+  "id": "01x1",
+  "country": "Belarus",
+  "competition": "69th Belarusian Mathematical Olympiad",
+  "gold_final_answer": "Cn = (13 n^3 - n) / 12 for odd n, and Cn = (13 n^3 - 4 n) / 12 for even n.",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments",
+    "Algebra > Equations and Inequalities > Combinatorial optimization"
+  ],
+  "prompt": "Given a positive integer $n$, determine the maximal constant $C_n$ satisfying the following condition: for any partition of the set $\\{1, 2, \\dots, 2n\\}$ into two $n$-element subsets $A$ and $B$, there exist labellings $a_1, \\dots, a_n$ and $b_1, \\dots, b_n$ of $A$ and $B$, respectively, such that\n$$\n(a_1 - b_1)^2 + (a_2 - b_2)^2 + \\dots + (a_n - b_n)^2 \\ge C_n.\n$$",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find the maximal constant $C_n$, we want to find the minimum possible value of the maximum of $\\sum_{i=1}^n (a_i - b_i)^2$ over all valid labellings of $A$ and $B$. \n\nBy the rearrangement inequality, for any given partition $A$ and $B$, the sum $\\sum_{i=1}^n (a_i - b_i)^2$ is maximized when $A$ is sorted in increasing order ($a_1 < a_2 < \\dots < a_n$) and $B$ is sorted in decreasing order ($b_1 > b_2 > \\dots > b_n$). \n\nLet $c_i = a_i - b_i$. We want to minimize $\\sum_{i=1}^n c_i^2$ subject to the conditions that $A \\cup B = \\{1, 2, \\dots, 2n\\}$ and $A \\cap B = \\emptyset$.\nBecause $a_i$ is strictly increasing and $b_i$ is strictly decreasing, $c_i$ is strictly increasing. Furthermore, $c_i - c_{i-1} = (a_i - a_{i-1}) + (b_{i-1} - b_i) \\ge 2$. \nBecause $A$ and $B$ are disjoint, we can deduce further restrictions on the gaps between consecutive $c_i$'s, which forces the sequence $c_i$ to spread out",
+  "usage": {
+    "input_tokens": 181,
+    "output_tokens": 328,
+    "thoughts_tokens": 7860
+  },
+  "latency_s": 62.359646953991614,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": null
+  }
+}

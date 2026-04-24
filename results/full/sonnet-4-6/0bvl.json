@@ -1,0 +1,20 @@
+{
+  "id": "0bvl",
+  "country": "Romania",
+  "competition": "SHORTLISTED PROBLEMS FOR THE 68th NMO",
+  "gold_final_answer": "0",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Sequences and Series > Floors and ceilings",
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities"
+  ],
+  "prompt": "What values can assume $[\\sqrt{m} + \\frac{1}{m+n}] + [\\sqrt{n} + \\frac{1}{m+n}] - [\\sqrt{m}] - [\\sqrt{n}]$, when $m$ and $n$ are integers $\\ge 9$?",
+  "model": "claude-sonnet-4-6",
+  "response_text": "Let me denote the expression as $E = [\\sqrt{m} + \\frac{1}{m+n}] + [\\sqrt{n} + \\frac{1}{m+n}] - [\\sqrt{m}] - [\\sqrt{n}]$.\n\nHere $[x]$ denotes the floor function.\n\n**Key observation:** $[\\sqrt{m} + \\frac{1}{m+n}] - [\\sqrt{m}]$ equals 1 if $\\frac{1}{m+n}$ pushes $\\sqrt{m}$ past an integer, i.e., if $\\{\\sqrt{m}\\} \\geq 1 - \\frac{1}{m+n}$, and equals 0 otherwise.\n\nSo $E = \\epsilon_m + \\epsilon_n$ where $\\epsilon_m \\in \\{0,1\\}$ and $\\epsilon_n \\in \\{0,1\\}$.\n\nThus $E \\in \\{0, 1, 2\\}$.\n\n**Can E = 0?** Take $m = n = 9$. Then $\\sqrt{9} = 3$ exactly, $\\frac{1}{m+n} = \\frac{1}{18}$.\n$[\\sqrt{9} + \\frac{1}{18}] = [3 + \\frac{1}{18}] = 3$, $[\\sqrt{9}] = 3$.\nSo $E = 3 + 3 - 3 - 3 = 0$. ✓\n\n**Can E = 1?** Take $m = 9$, $n = 10$. Then $m+n = 19$, $\\frac{1}{19}$.\n$[\\sqrt{9} + \\frac{1}{19}] = 3$, $[\\sqrt{9}] = 3$: contribution 0.\n$\\sqrt{10} \\approx 3.1623$, $[\\sqrt{10} + \\frac{1}{19}] = [3.1623 + 0.0526] = [3.215] = 3$, $[\\sqrt{10}] = 3$: contribution 0.\n$E = 0$. Try $m = 15$, $n = 10$: $\\sqrt{15} \\approx 3.873$, $m+n=25$, $\\frac{1}{25} = 0.04$.\n$\\{sqrt{15}\\} \\approx 0.873$, need $\\geq 1 - 0.04 = 0.96$. No.\n\nTry $m = 24$, $n = 9$: $\\sqrt{24} \\approx 4.899$, $m+n = 33$, $\\frac{1}{33} \\approx 0.0303$.\n$\\{\\sqrt{24}\\} \\approx 0.899$, need $\\geq 1 - 0.0303 = 0.9697$. No.\n\nTry $m = 24$, $n = 25$: $m+n = 49$, $\\frac{1}{49} \\approx 0.0204$.\n$\\{\\sqrt{24}\\} \\approx 0.899$, need $\\geq 0.9796$. No.\n\nTry $m = 35$, $n = 9$: $\\sqrt{35} \\approx 5.9161$, $m+n=44$, $\\frac{1}{44} \\approx 0.0227$.\n$\\{\\sqrt{35}\\} \\approx 0.9161$, need $\\geq 0.9773$. No.\n\nTry $m = 48$, $n = 9$: $\\sqrt{48} \\approx 6.9282$, $m+n=57$, $\\frac{1}{57} \\approx 0.01754$.\nNeed $\\{\\sqrt{48}\\} \\geq 0.9825$. $0.9282 < 0.9825$. No.\n\nTry $m = 99$, $n = 9$: $\\sqrt{99} \\approx 9.9499$, $m+n=108$, $\\frac{1}{108} \\approx 0.00926$.\nNeed $\\geq 0.9907$. $0.9499 < 0.9907$. No.\n\nTry $m = n = 99$: $\\frac{1}{198} \\approx 0.00505$. Need $\\{\\sqrt{99}\\} \\geq 0.99495$. $0.9499 < 0.99495$. No.\n\nTry $m = 9999$, $n = 9$: $\\sqrt{9999} \\approx 99.995$, $\\{.\\} \\approx 0.995$, $\\frac{1}{10008} \\approx 0.0000999$. Need $\\geq 0.9999$. No.\n\nIt seems $E = 1$ and $E = 2$ may not be achievable. Since $\\frac{1}{m+n} \\leq \\frac{1}{18}$ and $\\sqrt{m}$ is an integer only at perfect squares (where $\\{\\sqrt{m}\\} = 0$), and for non-perfect squares $\\{\\sqrt{m}\\} \\leq 1 - \\frac{1}{\\lfloor\\sqrt{m}\\rfloor + 1} \\cdot \\frac{1}{2}$... Actually it's known that $\\{\\sqrt{m}\\} < 1 - \\frac{1}{2\\sqrt{m}}$, and $\\frac{1}{m+n} < \\frac{1}{2\\sqrt{m}}$ when $m+n > 2\\sqrt{m}$, which holds for $m \\geq 9$. So $\\epsilon_m = 0$ always, meaning $E = 0$ always.\n\n**The expression can only take the value $\\boxed{0}$.**\n\nFinal answer: 0",
+  "usage": {
+    "input_tokens": 122,
+    "output_tokens": 1489,
+    "thinking_tokens": 0
+  },
+  "latency_s": 16.01671148405876,
+  "cached": false
+}

@@ -1,0 +1,25 @@
+{
+  "id": "0ha3",
+  "country": "Ukraine",
+  "competition": "58th Ukrainian National Mathematical Olympiad",
+  "gold_final_answer": "0 or 3/5",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Polynomial operations",
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities"
+  ],
+  "prompt": "Let $a, b$ are such that $\\frac{7a^3b^3}{a^6-8b^6} = 1$. Determine what the value of $\\frac{a^2-b^2}{a^2+b^2}$ can be.",
+  "model": "gpt-5.4-mini",
+  "response_text": "We are given\n\\[\n\\frac{7a^3b^3}{a^6-8b^6}=1,\n\\]\nso\n\\[\na^6-8b^6=7a^3b^3.\n\\]\nLet\n\\[\nx=\\frac{a^3}{b^3}\\quad (\\text{assuming }b\\neq 0).\n\\]\nThen dividing by \\(b^6\\),\n\\[\nx^2-7x-8=0.\n\\]\nFactor:\n\\[\n(x-8)(x+1)=0,\n\\]\nso\n\\[\n\\frac{a^3}{b^3}=8 \\quad \\text{or}\\quad \\frac{a^3}{b^3}=-1.\n\\]\nThus\n\\[\n\\frac{a}{b}=2 \\quad \\text{or}\\quad \\frac{a}{b}=-1\n\\]\n(over the reals).\n\nNow compute\n\\[\n\\frac{a^2-b^2}{a^2+b^2}\n=\n\\frac{\\left(\\frac ab\\right)^2-1}{\\left(\\frac ab\\right)^2+1}.\n\\]\n\n- If \\(\\frac ab=2\\), then\n  \\[\n  \\frac{a^2-b^2}{a^2+b^2}=\\frac{4-1}{4+1}=\\frac35.\n  \\]\n- If \\(\\frac ab=-1\\), then\n  \\[\n  \\frac{a^2-b^2}{a^2+b^2}=\\frac{1-1}{1+1}=0.\n  \\]\n\nSo the expression can take two values.\n\nFinal answer: \\(\\boxed{0 \\text{ or } \\frac35}\\)",
+  "usage": {
+    "input_tokens": 106,
+    "output_tokens": 386,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.4898945400491357,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "0 \\text{ or } \\frac35"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "id": "01og",
+  "country": "Belarus",
+  "competition": "Belorusija 2012",
+  "gold_final_answer": "Any integer from 0 to N−2 with the same parity as N.",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Invariants / monovariants",
+    "Discrete Mathematics > Combinatorics > Counting two ways"
+  ],
+  "prompt": "$N$ boys ($N \\ge 3$), no two of them having the same height, are arranged along a circle. A boy in the given arrangement is said to be *middle* if he is taller than one of his neighbors and shorter than the other one.\nFind all possible numbers of middle boys in the arrangement.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let the boys be placed around the circle in cyclic order, and write their heights as a cyclic sequence of distinct numbers.\n\nA boy is **middle** exactly when, among his two neighbors, one is taller and the other is shorter. Equivalently, he is **not** a local maximum and **not** a local minimum.\n\nSo every boy is one of three types:\n\n- local maximum,\n- local minimum,\n- middle.\n\nNow move around the circle. Because the heights are all distinct, the types of consecutive boys must alternate whenever possible: between a local maximum and a local minimum there must be at least one middle boy, and vice versa. In particular:\n\n- the number of local maxima equals the number of local minima;\n- these two numbers are at least 1.\n\nLet the number of middle boys be \\(m\\). Then the remaining \\(N-m\\) boys are alternately maxima and minima, so \\(N-m\\) must be even. Hence \\(m\\equiv N \\pmod 2\\).\n\nAlso, since there is at least one maximum and one minimum, we need \\(N-m\\ge 2\\), i.e. \\(m\\le N-2\\).\n\nIt remains to show every such value occurs. This is easy to construct:\n\n- If \\(N\\) is even, we can arrange heights in the pattern\n  \\[\n  1,3,2,5,4,7,6,\\dots,N-1,N-2,N\n  \\]\n  around the circle, giving exactly \\(N-2\\) middle boys, and by locally modifying the pattern one can realize every even number from \\(0\\) up to \\(N-2\\).\n\n- If \\(N\\) is odd, a similar pattern realizes every odd number from \\(1\\) up to \\(N-2\\).\n\nThus the possible numbers of middle boys are precisely those with the same parity as \\(N\\), between \\(0\\) and \\(N-2\\).\n\nFinal answer: the possible numbers are\n\\[\nm=0,2,4,\\dots,N-2 \\quad \\text{if }N\\text{ is even},\n\\]\nand\n\\[\nm=1,3,5,\\dots,N-2 \\quad \\text{if }N\\text{ is odd}.\n\\]",
+  "usage": {
+    "input_tokens": 115,
+    "output_tokens": 487,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.7474139800760895,
+  "cached": false
+}

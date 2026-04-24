@@ -1,0 +1,19 @@
+{
+  "id": "00n1",
+  "country": "Austria",
+  "competition": "AUT_ABooklet_2020",
+  "gold_final_answer": "13",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Factorization techniques"
+  ],
+  "prompt": "Determine the smallest possible positive integer $n$ with the following property: For all positive integers $x$, $y$ and $z$ with $x \\mid y^3$ and $y \\mid z^3$ and $z \\mid x^3$ we also have $xyz \\mid (x+y+z)^n$.\n(Gerhard J. Woeginger)",
+  "model": "gpt-5.4",
+  "response_text": "Let\n\\[\nv_p(x)=a,\\qquad v_p(y)=b,\\qquad v_p(z)=c\n\\]\nfor a fixed prime \\(p\\). We analyze the condition prime-by-prime.\n\n## 1. Translate the divisibility conditions\n\nFrom\n\\[\nx\\mid y^3,\\qquad y\\mid z^3,\\qquad z\\mid x^3\n\\]\nwe get\n\\[\na\\le 3b,\\qquad b\\le 3c,\\qquad c\\le 3a.\n\\]\nSo for every prime \\(p\\), the exponents \\(a,b,c\\) are nonnegative integers satisfying this cyclic system.\n\nWe want the smallest \\(n\\) such that always\n\\[\nxyz\\mid (x+y+z)^n.\n\\]\nEquivalently, for every prime \\(p\\),\n\\[\na+b+c \\le n\\, v_p(x+y+z).\n\\]\n\nSo we need a lower bound on \\(v_p(x+y+z)\\) in terms of \\(a,b,c\\), valid for all \\(x,y,z\\).\n\n---\n\n## 2. A universal lower bound for \\(v_p(x+y+z)\\)\n\nFor any prime \\(p\\),\n\\[\nv_p(x+y+z)\\ge \\min(a,b,c),\n\\]\nbecause each of \\(x,y,z\\) is divisible by \\(p^{\\min(a,b,c)}\\).\n\nThus it is enough that\n\\[\na+b+c \\le n\\min(a,b,c)\n\\]\nfor all nonnegative integers \\(a,b,c\\) satisfying\n\\[\na\\le 3b,\\quad b\\le 3c,\\quad c\\le 3a.\n\\]\n\nSo the problem reduces to finding the maximum possible value of\n\\[\n\\frac{a+b+c}{\\min(a,b,c)}.\n\\]\n\n---\n\n## 3. Maximize the ratio\n\nLet \\(m=\\min(a,b,c)\\). Without loss of generality, suppose \\(c=m\\). Then\n\\[\nb\\le 3c=3m,\\qquad a\\le 3b\\le 9m.\n\\]\nBut also \\(c\\le 3a\\) is automatic since \\(c=m\\le 3a\\) for positive \\(a\\).\n\nHence\n\\[\na+b+c \\le 9m+3m+m=13m.\n\\]\nTherefore\n\\[\na+b+c \\le 13\\min(a,b,c).\n\\]\nSo for every prime \\(p\\),\n\\[\na+b+c \\le 13\\,v_p(x+y+z),\n\\]\nand therefore\n\\[\nxyz\\mid (x+y+z)^{13}.\n\\]\nThus \\(n=13\\) works.\n\n---\n\n## 4. Show that \\(13\\) is best possible\n\nWe need an example where \\(12\\) fails.\n\nTake a prime \\(p\\), and set\n\\[\nx=p^9,\\qquad y=p^3,\\qquad z=p.\n\\]\nThen indeed:\n- \\(x\\mid y^3\\) since \\(p^9\\mid p^9\\),\n- \\(y\\mid z^3\\) since \\(p^3\\mid p^3\\),\n- \\(z\\mid x^3\\) since \\(p\\mid p^{27}\\).\n\nNow\n\\[\nx+y+z=p^9+p^3+p=p\\bigl(p^8+p^2+1\\bigr),\n\\]\nand since \\(p^8+p^2+1\\not\\equiv 0\\pmod p\\), we have\n\\[\nv_p(x+y+z)=1.\n\\]\nBut\n\\[\nv_p(xyz)=9+3+1=13.\n\\]\nSo\n\\[\nv_p\\bigl((x+y+z)^{12}\\bigr)=12<13=v_p(xyz),\n\\]\nhence\n\\[\nxyz\\nmid (x+y+z)^{12}.\n\\]\nTherefore \\(n=12\\) does not work.\n\nSo the smallest possible \\(n\\) is \\(13\\).\n\nFinal answer: \\(\\boxed{13}\\)",
+  "usage": {
+    "input_tokens": 128,
+    "output_tokens": 889,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 11.21519427804742,
+  "cached": false
+}

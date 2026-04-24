@@ -1,0 +1,24 @@
+{
+  "id": "08rb",
+  "country": "Japan",
+  "competition": "The 16th Japanese Mathematical Olympiad - The First Round",
+  "gold_final_answer": "4√3",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Triangles > Triangle trigonometry"
+  ],
+  "prompt": "$P$ is a point inside an equilateral triangle. The length of the perpendiculars from $P$ towards three sides are $1$, $2$, and $3$. Answer the length of one edge of this triangle.",
+  "model": "gpt-5.4",
+  "response_text": "In an equilateral triangle, for any point inside it, the sum of the perpendicular distances to the three sides equals the altitude of the triangle.\n\nSo here the altitude is\n\\[\n1+2+3=6.\n\\]\n\nIf the side length is \\(s\\), then the altitude of an equilateral triangle is\n\\[\n\\frac{\\sqrt{3}}{2}s.\n\\]\n\nThus,\n\\[\n\\frac{\\sqrt{3}}{2}s=6\n\\]\nso\n\\[\ns=\\frac{12}{\\sqrt{3}}=4\\sqrt{3}.\n\\]\n\nFinal answer: \\(4\\sqrt{3}\\)",
+  "usage": {
+    "input_tokens": 94,
+    "output_tokens": 138,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 2.4323510569520295,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "\\(4\\sqrt{3}\\)"
+  }
+}

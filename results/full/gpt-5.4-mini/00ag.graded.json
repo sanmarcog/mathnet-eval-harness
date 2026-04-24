@@ -1,0 +1,26 @@
+{
+  "id": "00ag",
+  "country": "Argentina",
+  "competition": "Argentine National Olympiad 2016",
+  "gold_final_answer": "1122",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Induction / smoothing",
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments",
+    "Algebra > Equations and Inequalities > Combinatorial optimization"
+  ],
+  "prompt": "Let $a_1, a_2, ..., a_{100}$ be a permutation of $1, 2, ..., 100$. For each triple $\\{a_i, a_{i+1}, a_{i+2}\\}$ of consecutive numbers, $1 \\le i \\le 98$, the middle number in the triple is marked. For instance if $a_i = 7, a_{i+1} = 99, a_{i+2} = 22$ then $a_{i+2} = 22$ is marked. Let $S$ be the sum of all marked numbers. Find the minimum value of $S$. (Each marked number enters the sum $S$ exactly once, although it may be marked more than once.)",
+  "model": "gpt-5.4-mini",
+  "response_text": "For each \\(i=1,\\dots,98\\), the marked number is the middle term of the triple \\(\\{a_i,a_{i+1},a_{i+2}\\}\\), i.e. \\(a_{i+1}\\) if it is smaller than both neighbors or larger than both neighbors. So the marked numbers are exactly the “local extrema” of the permutation, excluding the endpoints.\n\nWe want to minimize the sum of all local extrema.\n\n## Key observation\nA number is **not** marked if it lies between its two neighbors. To make the sum small, we want as many large numbers as possible to be unmarked, and small numbers to be marked only when necessary.\n\nThe smallest possible set of marked numbers is achieved by making the permutation strictly increase for a while, then strictly decrease, then increase, etc., so that the marked positions alternate between peaks and valleys. The optimal strategy is to make the marked numbers as small as possible.\n\nIn fact, the minimum is obtained by arranging:\n\\[\n1,\\,100,\\,2,\\,99,\\,3,\\,98,\\dots,50,\\,51\n\\]\nor a similar alternating high-low pattern.\n\nThen the marked numbers are exactly:\n\\[\n100,99,98,\\dots,51\n\\]\nor, depending on the exact endpoints, the sum of the largest 50 numbers. Their sum is\n\\[\n51+52+\\cdots+100=\\frac{(51+100)\\cdot 50}{2}=3775.\n\\]\n\n## Why this is minimal\nThere are \\(98\\) triples and each interior position can be marked at most twice, but every marked number must be a local extremum. In any permutation, at least 50 numbers must be marked in order to alternate changes in direction. The best possible choice is to make those 50 marked numbers be the smallest possible? Actually, since marked numbers are the local extrema, the minimum sum occurs when the **marked numbers are the largest 50 numbers arranged as peaks/valleys so that the smaller numbers are unmarked**.\n\nA standard extremal argument shows the minimum possible marked-sum is the sum of the 50 largest numbers, i.e. \\(51\\) through \\(100\\).\n\nTherefore,\n\\[\nS_{\\min}=51+52+\\cdots+100=3775.\n\\]\n\nFinal answer: \\(\\boxed{3775}\\)",
+  "usage": {
+    "input_tokens": 208,
+    "output_tokens": 503,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 4.1561081380350515,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "3775"
+  }
+}

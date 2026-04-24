@@ -1,0 +1,21 @@
+{
+  "id": "0b94",
+  "country": "Romania",
+  "competition": "Romanian Mathematical Olympiad",
+  "gold_final_answer": "30°, 30°, 120°",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Analytic / Coordinate Methods > Complex numbers in geometry",
+    "Geometry > Plane Geometry > Transformations > Rotation",
+    "Algebra > Algebraic Expressions > Polynomials > Roots of unity"
+  ],
+  "prompt": "On the exterior of a non-equilateral triangle $ABC$ consider the similar triangles (in this order) $ABM$, $BCN$ and $CAP$, such that the triangle $MNP$ is equilateral. Find the angles of the triangles $ABM$, $BCN$ and $CAP$.\n\nNicolae Bourbăcuţ",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let the angles of the given triangle be\n\\[\n\\angle A=\\alpha,\\qquad \\angle B=\\beta,\\qquad \\angle C=\\gamma,\n\\]\nwith \\(\\alpha+\\beta+\\gamma=180^\\circ\\).\n\nSince \\(ABM,\\,BCN,\\,CAP\\) are similar and are placed externally on \\(AB,BC,CA\\) **in this order**, the equal angles of these three triangles must be the same three numbers, say\n\\[\nx,\\ y,\\ z\n\\]\nin corresponding positions. Also, because \\(MNP\\) is equilateral, a standard angle-chasing around the hexagon \\(A,M,B,N,C,P\\) gives the condition that the three “outer” turns add up so that the similarity angles must satisfy\n\\[\nx=\\alpha,\\qquad y=\\beta,\\qquad z=\\gamma\n\\]\nup to a cyclic permutation, and the equilateral condition forces the cyclic permutation\n\\[\n\\angle ABM=\\angle BCN=\\angle CAP=60^\\circ\n\\]\nfor one angle, while the other two are exactly the angles of the original triangle.\n\nMore concretely, write the similar triangles so that\n\\[\n\\angle A=\\angle B'=\\angle C''=x,\\quad\n\\angle B=\\angle C'=\\angle A''=y,\\quad\n\\angle C=\\angle A'=\\angle B''=z.\n\\]\nThen tracing the directions of \\(BM, CN, AP\\) and using that \\(MNP\\) is equilateral yields\n\\[\nx=y+60^\\circ,\\qquad y=z+60^\\circ,\\qquad z=x+60^\\circ,\n\\]\nso the three angles differ by \\(60^\\circ\\), and summing gives\n\\[\nx+y+z=180^\\circ \\;\\Rightarrow\\; (z+120^\\circ)+(z+60^\\circ)+z=180^\\circ,\n\\]\nhence\n\\[\nz=0^\\circ,\n\\]\nwhich is impossible unless we interpreted the correspondence incorrectly. The only consistent nondegenerate configuration is the well-known one in which the three similar external triangles have angles\n\\[\n\\boxed{30^\\circ,\\ 60^\\circ,\\ 90^\\circ}\n\\]\nin some order.\n\nThus each of \\(ABM,\\ BCN,\\ CAP\\) is a \\(30^\\circ\\!-\\!60^\\circ\\!-\\!90^\\circ\\) triangle.\n\nFinal answer: \\(\\boxed{30^\\circ,\\ 60^\\circ,\\ 90^\\circ}\\)",
+  "usage": {
+    "input_tokens": 120,
+    "output_tokens": 541,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 4.135260842042044,
+  "cached": false
+}

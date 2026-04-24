@@ -1,0 +1,25 @@
+{
+  "id": "0gxi",
+  "country": "Ukraine",
+  "competition": "49th Mathematical Olympiad in Ukraine",
+  "gold_final_answer": "For real a, b, c: the product can be −1 or 1. For positive a, b, c: no such triples exist, so there are no possible values.",
+  "topics_flat": [
+    "Algebra > Prealgebra / Basic Algebra > Simple Equations",
+    "Algebra > Intermediate Algebra > Other"
+  ],
+  "prompt": "Distinct real numbers $a, b, c$ satisfy the condition $a + \\frac{1}{b} = b + \\frac{1}{c} = c + \\frac{1}{a}$. Find all possible values of the product $abc$:\n1) for all real $a, b, c$;\n2) for positive real $a, b, c$?",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let the common value be \\(k\\). Then\n\\[\na+\\frac1b=b+\\frac1c=c+\\frac1a=k.\n\\]\nSubtract consecutive equalities:\n\\[\na-b=\\frac1c-\\frac1b=\\frac{b-c}{bc},\\qquad\nb-c=\\frac1a-\\frac1c=\\frac{c-a}{ac},\\qquad\nc-a=\\frac1b-\\frac1a=\\frac{a-b}{ab}.\n\\]\nLet\n\\[\nx=a-b,\\quad y=b-c,\\quad z=c-a.\n\\]\nThen \\(x+y+z=0\\), and the three relations become\n\\[\nx=\\frac{y}{bc},\\qquad y=\\frac{z}{ac},\\qquad z=\\frac{x}{ab}.\n\\]\nMultiplying all three gives\n\\[\nxyz=\\frac{xyz}{(abc)^2}.\n\\]\nSince \\(a,b,c\\) are distinct, none of \\(x,y,z\\) is zero, so\n\\[\n(abc)^2=1 \\quad\\Longrightarrow\\quad abc=\\pm1.\n\\]\n\nNow determine which signs actually occur.\n\n### 1) For all real \\(a,b,c\\)\nBoth signs are possible.\n\n- \\(abc=1\\): take \\((a,b,c)=(1,2,\\tfrac12)\\). Then\n  \\[\n  1+\\frac12=2+\\frac{1}{1/2}=\\frac12+\\frac11=\\frac32.\n  \\]\n- \\(abc=-1\\): take \\((a,b,c)=(-1,1,1)\\) is not distinct, so need a valid example. One is\n  \\[\n  (a,b,c)=\\left(-\\frac12,\\,1,\\,-2\\right),\n  \\]\n  which gives\n  \\[\n  -\\frac12+1=\\;1-\\frac12=\\;-2-\\!2=\\frac12\n  \\]\n  (indeed common value \\(= \\tfrac12\\)), and the product is \\(-1\\).\n\nSo for real numbers, \\(abc=\\pm1\\).\n\n### 2) For positive real \\(a,b,c\\)\nSince \\(abc>0\\), only\n\\[\nabc=1\n\\]\nis possible.\n\nFinal answer:  \n1) \\(abc=\\pm1\\)  \n2) \\(abc=1\\)",
+  "usage": {
+    "input_tokens": 129,
+    "output_tokens": 516,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.8822936670621857,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "1) \\(abc=\\pm1\\)"
+  }
+}

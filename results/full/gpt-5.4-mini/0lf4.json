@@ -1,0 +1,20 @@
+{
+  "id": "0lf4",
+  "country": "Vietnam",
+  "competition": "Team selection tests",
+  "gold_final_answer": "a) 2·min(m, n). b) min(m, n), except when m = n is odd, in which case it is m − 1.",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments",
+    "Discrete Mathematics > Combinatorics > Counting two ways"
+  ],
+  "prompt": "A school has two classes $A$ and $B$ which have $m$ and $n$ students each. The students of the two classes sit in a circle. Each student is then given a number of candies equal to the number of consecutive students sitting to the left of him that are from his same class. After distributing the candies, the teacher decides to group the students such that in each group, all the students receive the same amount of candies, and any two students from two different groups should receive a different amount of candies.\na) What is the maximum number of students that a group can have?\nb) Excluding the group where every student receives no candies, what is the maximum number of students that a group can have?",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let the students around the circle be written as blocks of consecutive \\(A\\)'s and \\(B\\)'s.  \nFor a student, the number of candies equals the length of the consecutive block of the same class immediately to his left.\n\nSo in a block of \\(k\\) consecutive students of the same class, the candy numbers are\n\\[\n0,1,2,\\dots,k-1\n\\]\n(one for each student in that block, depending on how far they are from the left end of the block).\n\nThus, for any fixed number \\(t\\), students receiving \\(t\\) candies come exactly from blocks of length at least \\(t+1\\): each such block contributes exactly one student with \\(t\\) candies.\n\nSo the size of a group in which all students receive the same number \\(t\\) of candies is the number of blocks of length at least \\(t+1\\), which is at most the total number of blocks.  \nBut the maximum possible happens when all students of one class are in a single block, and all students of the other class are in a single block. Then there are exactly two blocks, and the candy counts are:\n\n- in the \\(A\\)-block: \\(0,1,\\dots,m-1\\),\n- in the \\(B\\)-block: \\(0,1,\\dots,n-1\\).\n\nHence:\n\n- for \\(t=0\\), there are exactly 2 students receiving 0 candies;\n- for \\(t\\ge 1\\), there are at most 2 students receiving \\(t\\) candies, and this bound is attained when both blocks are long enough.\n\nSo the largest possible group size is \\(2\\).\n\nFor part (b), excluding the zero-candy group, the same reasoning applies: the largest group for a positive candy number is still \\(2\\).\n\nFinal answer:  \na) \\(2\\)  \nb) \\(2\\)",
+  "usage": {
+    "input_tokens": 197,
+    "output_tokens": 406,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.7410845529520884,
+  "cached": false
+}

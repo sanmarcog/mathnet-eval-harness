@@ -1,0 +1,24 @@
+{
+  "id": "04sm",
+  "country": "Czech Republic",
+  "competition": "Czech and Slovak Mathematical Olympiad",
+  "gold_final_answer": "all integers k ≥ 2",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization"
+  ],
+  "prompt": "Find all integers $k \\ge 2$ for which there exists $k$-element set $M$ of positive integers such that the product of all numbers in $M$ is divisible by the sum of any two (different) numbers from $M$.",
+  "model": "gpt-5.4",
+  "response_text": "Let\n\\[\nP=\\prod_{x\\in M}x\n\\]\nand suppose that for every two distinct \\(a,b\\in M\\), we have\n\\[\na+b\\mid P.\n\\]\nWe seek all \\(k\\ge 2\\) for which such a \\(k\\)-element set \\(M\\) exists.\n\nWe will show that this is possible for every \\(k\\ge 2\\).\n\n## Construction\n\nTake\n\\[\nM=\\{2,\\,2^2,\\,2^4,\\,2^8,\\dots,2^{2^{k-1}}\\}.\n\\]\nThis set has \\(k\\) distinct positive integers.\n\nLet two different elements be\n\\[\na=2^{2^i},\\qquad b=2^{2^j}\\qquad (i<j).\n\\]\nThen\n\\[\na+b=2^{2^i}+2^{2^j}=2^{2^i}\\bigl(1+2^{2^j-2^i}\\bigr).\n\\]\nSince \\(j>i\\), the number \\(2^{2^j-2^i}\\) is even, so \\(1+2^{2^j-2^i}\\) is odd. Hence\n\\[\nv_2(a+b)=2^i.\n\\]\nSo each pairwise sum is of the form \\(2^{2^i}\\cdot(\\text{odd})\\).\n\nNow consider the product\n\\[\nP=\\prod_{t=0}^{k-1}2^{2^t}=2^{\\,\\sum_{t=0}^{k-1}2^t}=2^{2^k-1}.\n\\]\nThis is a pure power of \\(2\\). Therefore, for \\(a+b\\) to divide \\(P\\), its odd part must be \\(1\\). So the above construction does **not** work directly.\n\nSo we need a better idea.\n\n---\n\n## Better construction\n\nLet\n\\[\nM=\\{1,2,2^2,2^4,\\dots,2^{2^{k-2}}\\}.\n\\]\nAgain \\(|M|=k\\). Let\n\\[\nP=\\prod_{x\\in M}x=2^{1+2+4+\\cdots+2^{k-2}}=2^{2^{k-1}-1}.\n\\]\nBut now sums like \\(1+2^{2^i}\\) are odd and greater than \\(1\\), so they also cannot divide \\(P\\). Thus this also fails.\n\nSo we need a fundamentally different construction, with the product containing many odd divisors.\n\n---\n\n## Key idea\n\nWe build \\(M\\) recursively.\n\nSuppose \\(M=\\{a_1,\\dots,a_k\\}\\) works, with product \\(P\\). Let\n\\[\nN=P\\cdot\\prod_{1\\le i<j\\le k}(a_i+a_j).\n\\]\nChoose a new element\n\\[\nx=N.\n\\]\nThen for every old element \\(a_i\\),\n\\[\na_i+x \\mid a_iN+N = N(a_i+1)\n\\]\nis not immediate, so this naive step does not work.\n\nInstead we use a standard Sylvester-type trick: choose numbers so that every pairwise sum is itself one of the factors of the total product.\n\nTake\n\\[\nM=\\{d_1,d_2,\\dots,d_k\\}\n\\]\nwhere\n\\[\nd_i=\\prod_{j\\ne i} n_j\n\\]\nfor suitable pairwise coprime integers \\(n_1,\\dots,n_k\\).\n\nThen\n\\[\nP=\\prod_{i=1}^k d_i=\\prod_{i=1}^k n_i^{\\,k-1}.\n\\]\nAlso\n\\[\nd_i+d_j=\\Bigl(\\prod_{\\ell\\ne i,j} n_\\ell\\Bigr)(n_i+n_j).\n\\]\nSo if we choose the \\(n_i\\) so that \\(n_i+n_j\\mid n_i^{k-1}n_j^{k-1}\\), then \\(d_i+d_j\\mid P\\).\n\nThis suggests taking all \\(n_i\\) powers of \\(2\\), but then \\(n_i+n_j\\) has odd part \\(>1\\). So instead take\n\\[\nn_i=2^{m_i}-1\n\\]\nwith carefully chosen \\(m_i\\), so that \\(n_i+n_j\\) factors into earlier \\(n_t\\)'s. A particularly convenient choice is\n\\[\nn_1=1,\\quad n_{r+1}=n_1n_2\\cdots n_r+1.\n\\]\nThen the \\(n_i\\) are pairwise coprime and for \\(i<j\\),\n\\[\nn_j\\equiv 1\\pmod{n_i},\n\\]\nhence\n\\[\nn_i+n_j\\equiv 1\\pmod{n_i},\n\\]\nwhich again does not give divisibility.\n\nSo let us abandon this route too.\n\n---\n\n## Simple successful construction\n\nTake\n\\[\nM=\\{m,\\,2m,\\,3m,\\dots,km\\}\n\\]\nfor some positive integer \\(m\\). Then\n\\[\nP=m^k\\cdot k!.\n\\]\nFor two distinct elements \\(im,jm\\),\n\\[\nim+jm=(i+j)m.\n\\]\nThus we need\n\\[\n(i+j)m\\mid m^k k!\n\\quad\\Longleftrightarrow\\quad\ni+j\\mid m^{k-1}k!\n\\]\nfor all \\(1\\le i<j\\le k\\).\n\nNow every such \\(i+j\\) lies between \\(3\\) and \\(2k-1\\). So it is enough to choose \\(m\\) such that every integer \\(3,4,\\dots,2k-1\\) divides \\(m^{k-1}k!\\).\n\nChoose\n\\[\nm=(2k-1)!.\n\\]\nThen certainly every \\(i+j\\) divides \\(m\\), hence divides \\(m^{k-1}k!\\). Therefore\n\\[\nim+jm=(i+j)m \\mid m\\cdot m^{k-1}k!=m^k k!=P.\n\\]\n\nSo for every \\(k\\ge 2\\), the set\n\\[\nM=\\{(2k-1)!,\\,2(2k-1)!,\\,\\dots,\\,k(2k-1)!\\}\n\\]\nworks.\n\nHence all integers \\(k\\ge 2\\) are possible.\n\nFinal answer: \\(\\boxed{\\text{All integers }k\\ge 2}\\).",
+  "usage": {
+    "input_tokens": 101,
+    "output_tokens": 1419,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 21.27444321801886,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "\\text{All integers }k\\ge 2"
+  }
+}

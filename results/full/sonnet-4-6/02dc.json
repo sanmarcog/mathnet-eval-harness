@@ -1,0 +1,20 @@
+{
+  "id": "02dc",
+  "country": "Brazil",
+  "competition": "III OBM",
+  "gold_final_answer": "(1) Two solutions: k = ±√2. (2) Three solutions: k = ±1.",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Analytic / Coordinate Methods > Cartesian coordinates",
+    "Algebra > Intermediate Algebra > Quadratic functions"
+  ],
+  "prompt": "For which $k$ does the system $x^2 - y^2 = 0$, $(x - k)^2 + y^2 = 1$ have exactly\n(1) two, (2) three real solutions?",
+  "model": "claude-sonnet-4-6",
+  "response_text": "We need to find the values of k for which the system has exactly 2 or 3 real solutions.\n\n**Setting up the system:**\n\nFrom $x^2 - y^2 = 0$, we get $y^2 = x^2$, so $y = x$ or $y = -x$.\n\nSubstituting into $(x-k)^2 + y^2 = 1$:\n\n**Case 1: $y = x$**\n$(x-k)^2 + x^2 = 1$\n$x^2 - 2kx + k^2 + x^2 = 1$\n$2x^2 - 2kx + (k^2 - 1) = 0$\n\nDiscriminant: $\\Delta_1 = 4k^2 - 8(k^2-1) = 4k^2 - 8k^2 + 8 = 8 - 4k^2$\n\n**Case 2: $y = -x$**\n$(x-k)^2 + x^2 = 1$ (same equation!)\n\nSo both lines give the same quadratic: $2x^2 - 2kx + (k^2-1) = 0$.\n\n**Counting solutions:**\n\nEach solution $x$ from the quadratic gives two points: $(x, x)$ and $(x, -x)$, **unless** $x = 0$ (where $y = x = 0$ and $y = -x = 0$ coincide) or unless the two lines intersect at the same point.\n\nThe two lines $y = x$ and $y = -x$ intersect only at the origin $(0,0)$.\n\nSo if $x = 0$ is a solution of the quadratic, it gives only **1 point** (the origin) instead of 2.\n\nCheck when $x = 0$ is a solution: $k^2 - 1 = 0$, so $k = \\pm 1$.\n\n**Analysis by discriminant $\\Delta_1 = 8 - 4k^2$:**\n\n- $\\Delta_1 > 0$: $|k| < \\sqrt{2}$ → two distinct roots $x_1, x_2$\n- $\\Delta_1 = 0$: $|k| = \\sqrt{2}$ → one double root $x = k/2$\n- $\\Delta_1 < 0$: $|k| > \\sqrt{2}$ → no real roots → **0 solutions**\n\n**When $|k| < \\sqrt{2}$, two distinct roots:**\n\nEach root $x_i \\neq 0$ gives 2 points; $x_i = 0$ gives 1 point.\n\n- If neither root is 0 (i.e., $k \\neq \\pm 1$): total = $2 \\times 2 = 4$ solutions\n- If one root is 0 (i.e., $k = \\pm 1$, and $|k| < \\sqrt{2}$ ✓): total = $1 + 2 = 3$ solutions\n\n**When $|k| = \\sqrt{2}$, double root $x = k/2 = \\pm\\frac{\\sqrt{2}}{2} \\neq 0$:**\n\nThe double root gives 2 points (one on each line). Total = **2 solutions**.\n\n**Summary:**\n\n**(1) Exactly 2 solutions:** $k = \\pm\\sqrt{2}$\n\n**(2) Exactly 3 solutions:** $k = \\pm 1$\n\nFinal answer: \n(1) Exactly two real solutions when $k = \\pm\\sqrt{2}$.\n(2) Exactly three real solutions when $k = \\pm 1$.",
+  "usage": {
+    "input_tokens": 101,
+    "output_tokens": 916,
+    "thinking_tokens": 0
+  },
+  "latency_s": 11.20801936800126,
+  "cached": false
+}

@@ -1,0 +1,20 @@
+{
+  "id": "01qf",
+  "country": "Belarus",
+  "competition": "Selection and Training Session",
+  "gold_final_answer": "A circle centered at N, the midpoint of BM (where M is the midpoint of AC), with radius equal to one quarter of AC (equivalently, R/4 where R is the radius of S).",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Analytic / Coordinate Methods > Complex numbers in geometry",
+    "Geometry > Plane Geometry > Miscellaneous > Constructions and loci"
+  ],
+  "prompt": "Given a triangle $ABC$. Let $S$ be the circle passing through $C$ centered at $A$. Let $X$ be a variable point on $S$, and let $K$ be the midpoint of the segment $CX$.\nFind the locus of the midpoints of $BK$, when $X$ moves along $S$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let \\(M\\) be the midpoint of \\(BK\\). We want the locus of \\(M\\) as \\(X\\) moves on the circle \\(S\\).\n\nSet up vectors with origin at \\(A\\). Let\n\\[\n\\vec{AB}=\\mathbf b,\\qquad \\vec{AC}=\\mathbf c,\\qquad \\vec{AX}=\\mathbf x,\n\\]\nwith \\(|\\mathbf x|=|\\mathbf c|\\) since \\(X\\) lies on the circle centered at \\(A\\) through \\(C\\).\n\nSince \\(K\\) is the midpoint of \\(CX\\),\n\\[\n\\vec{AK}=\\frac{\\mathbf c+\\mathbf x}{2}.\n\\]\nSince \\(M\\) is the midpoint of \\(BK\\),\n\\[\n\\vec{AM}=\\frac{\\vec{AB}+\\vec{AK}}{2}\n=\\frac{\\mathbf b+\\frac{\\mathbf c+\\mathbf x}{2}}{2}\n=\\frac{2\\mathbf b+\\mathbf c+\\mathbf x}{4}.\n\\]\nSo\n\\[\n\\vec{AM}=\\frac{2\\mathbf b+\\mathbf c}{4}+\\frac{\\mathbf x}{4}.\n\\]\nAs \\(\\mathbf x\\) runs over the circle centered at \\(A\\) of radius \\(AC\\), the point \\(\\mathbf x/4\\) runs over a circle centered at \\(A\\) of radius \\(AC/4\\). Therefore \\(M\\) runs over a circle obtained by translating and scaling this circle.\n\nHence the locus is a circle centered at the midpoint of the segment joining \\(B\\) to the midpoint of \\(AC\\), with radius \\(\\dfrac{AC}{4}\\).\n\nEquivalently, if \\(N\\) is the midpoint of \\(AC\\), then the midpoint of \\(BN\\) is the center of the locus, and the radius is \\(\\dfrac{AC}{4}\\).\n\nFinal answer: A circle with center at the midpoint of the segment joining \\(B\\) to the midpoint of \\(AC\\), and radius \\(\\dfrac{AC}{4}\\).",
+  "usage": {
+    "input_tokens": 118,
+    "output_tokens": 451,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.6495477720163763,
+  "cached": false
+}

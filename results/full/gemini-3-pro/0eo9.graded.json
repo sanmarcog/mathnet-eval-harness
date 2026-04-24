@@ -1,0 +1,24 @@
+{
+  "id": "0eo9",
+  "country": "South Africa",
+  "competition": "South African Mathematics Olympiad",
+  "gold_final_answer": "10",
+  "topics_flat": [
+    "Algebra > Prealgebra / Basic Algebra > Decimals"
+  ],
+  "prompt": "I have R4. How many sweets can I buy if one sweet costs 40c?",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find out how many sweets you can buy, you need to convert your total amount of money into the same unit as the cost of the sweets. \n\n1 Rand (R1) is equal to 100 cents (100c).\nTherefore, R4 is equal to 4 × 100c = 400c.\n\nNow, divide your total amount of money by the cost of one sweet:\n400c ÷ 40c = 10\n\nYou can buy 10 sweets.\n\nFinal answer: 10",
+  "usage": {
+    "input_tokens": 59,
+    "output_tokens": 121,
+    "thoughts_tokens": 198
+  },
+  "latency_s": 3.9419568250887096,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "exact",
+    "predicted": "10"
+  }
+}

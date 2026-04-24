@@ -1,0 +1,21 @@
+{
+  "id": "0cgr",
+  "country": "Romania",
+  "competition": "74th Romanian Mathematical Olympiad",
+  "gold_final_answer": "8",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Greatest common divisors (gcd)",
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities",
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities"
+  ],
+  "prompt": "a) Prove that $12n+13$ and $13n+14$ are coprime, for every natural $n$.\n\nb) Find the number of the pairs $(a, b)$ of natural numbers for which there exists a natural number $n$ so that $\\frac{a}{b} = \\frac{12n+13}{13n+14}$ and $17a + 19b < 2024$.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To solve the problem, we will address both parts step-by-step.\n\n**Part a)**\nWe want to prove that $12n+13$ and $13n+14$ are coprime for every natural number $n$. \nLet $d$ be the greatest common divisor of $12n+13$ and $13n+14$. Then $d$ must divide any linear combination of these two numbers. \nWe can eliminate $n$ by multiplying the first expression by 13 and the second by 12:\n$13(12n + 13) - 12(13n + 14) = (156n + 169) - (156n + 168) = 1$\nSince $d$ divides 1, we must have $d = 1$. Therefore, $12n+13$ and $13n+14$ are coprime for all natural numbers $n$.\n\n**Part b)**\nWe are given that $\\frac{a}{b} = \\frac{12n+13}{13n+14}$. Since we proved in part a) that the fraction on the right is irreducible, any natural numbers $a$ and $b$ satisfying this ratio must be of the form:\n$a = k(12n+13)$\n$b = k(13n+14)$\nfor some natural number $k \\ge 1$.\n\nWe are also given the inequality $17a + 19b < 2024$. Substituting our expressions for $a$ and $b$ into the inequality gives:\n$17k(12n+13) + 19k(13n+14) < 2024$\n$k(204n + 221 + 247n + 266) < 2024$\n$k(451n + 487) < 2024$\n\nNow we test the possible natural numbers for $n$ (where $n \\ge 0$) to find the number of valid pairs $(k, n)$, which directly correspond to the pairs $(a, b)$:\n\n- For $n = 0$: \n  $k(487) < 2024 \\implies k \\le \\lfloor \\frac{2023}{487} \\rfloor = 4$\n  This gives 4 possible values for $k$: $1, 2, 3, 4$. (4 pairs)\n\n- For $n = 1$:\n  $k(451(1) + 487) = k(938) < 2024 \\implies k \\le \\lfloor \\frac{2023}{938} \\rfloor = 2$\n  This gives 2 possible values for $k$: $1, 2$. (2 pairs)\n\n- For $n = 2$:\n  $k(451(2) + 487) = k(1389) < 2024 \\implies k \\le \\lfloor \\frac{2023}{1389} \\rfloor = 1$\n  This gives 1 possible value for $k$: $1$. (1 pair)\n\n- For $n = 3$:\n  $k(451(3) + 487) = k(1840) < 2024 \\implies k \\le \\lfloor \\frac{2023}{1840} \\rfloor = 1$\n  This gives 1 possible value for $k$: $1$. (1 pair)\n\n- For $n = 4$:\n  $k(451(4) + 487) = k(2291) < 2024$\n  Since $k \\ge 1$, there are no solutions for $n \\ge 4$.\n\nSumming the number of valid pairs $(k, n)$ gives the total number of pairs $(a, b)$:\n$4 + 2 + 1 + 1 = 8$\n\nFinal answer: 8",
+  "usage": {
+    "input_tokens": 140,
+    "output_tokens": 940,
+    "thoughts_tokens": 2653
+  },
+  "latency_s": 27.469016065006144,
+  "cached": false
+}

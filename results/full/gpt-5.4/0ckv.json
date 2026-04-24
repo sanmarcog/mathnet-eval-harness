@@ -1,0 +1,20 @@
+{
+  "id": "0ckv",
+  "country": "Romania",
+  "competition": "75th Romanian Mathematical Olympiad",
+  "gold_final_answer": "All solutions are f(z) = c z for all z, where c is a complex constant with |c| = 1.",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Functional Equations",
+    "Algebra > Intermediate Algebra > Complex numbers"
+  ],
+  "prompt": "Determine all functions $f: \\mathbb{C} \\to \\mathbb{C}$ such that $|wf(z) + zf(w)| = 2|zw|$, for any $z, w \\in \\mathbb{C}$.",
+  "model": "gpt-5.4",
+  "response_text": "We seek all functions \\(f:\\mathbb C\\to\\mathbb C\\) such that for all \\(z,w\\in\\mathbb C\\),\n\\[\n|w f(z)+ z f(w)|=2|zw|.\n\\]\nWe will show the only such functions are\n\\[\nf(z)=z \\quad\\text{for all }z,\n\\qquad\\text{or}\\qquad\nf(z)=-z \\quad\\text{for all }z.\n\\]\n\n## Step 1: Determine \\(f(0)\\)\n\nSet \\(w=0\\). Then\n\\[\n|0\\cdot f(z)+ z f(0)|=0,\n\\]\nso\n\\[\n|z f(0)|=0 \\quad \\forall z.\n\\]\nTaking \\(z\\neq 0\\), we get \\(f(0)=0\\).\n\n---\n\n## Step 2: For \\(z\\neq 0\\), \\(|f(z)|=|z|\\)\n\nSet \\(w=z\\). Then\n\\[\n|z f(z)+ z f(z)|=2|z|^2,\n\\]\nso\n\\[\n|2 z f(z)|=2|z|^2.\n\\]\nHence\n\\[\n|f(z)|=|z| \\qquad (\\forall z\\neq 0).\n\\]\nTogether with \\(f(0)=0\\), this means\n\\[\n|f(z)|=|z| \\quad \\forall z\\in\\mathbb C.\n\\]\n\nSo for each \\(z\\neq 0\\), there exists \\(u(z)\\) with \\(|u(z)|=1\\) such that\n\\[\nf(z)=u(z)z.\n\\]\n\n---\n\n## Step 3: Rewrite the condition\n\nFor nonzero \\(z,w\\), write\n\\[\nf(z)=u(z)z,\\qquad f(w)=u(w)w,\\qquad |u(z)|=|u(w)|=1.\n\\]\nThen\n\\[\nw f(z)+ z f(w)=w(u(z)z)+z(u(w)w)=zw\\,(u(z)+u(w)).\n\\]\nSo the given equation becomes\n\\[\n|zw|\\,|u(z)+u(w)|=2|zw|.\n\\]\nIf \\(zw\\neq 0\\), divide by \\(|zw|\\):\n\\[\n|u(z)+u(w)|=2 \\qquad \\forall z,w\\neq 0.\n\\]\n\nNow for complex numbers of modulus \\(1\\), we have\n\\[\n|a+b|\\le |a|+|b|=2,\n\\]\nwith equality iff \\(a\\) and \\(b\\) have the same argument, i.e. \\(a=b\\).\n\nThus from \\(|u(z)+u(w)|=2\\), we get\n\\[\nu(z)=u(w)\\qquad \\forall z,w\\neq 0.\n\\]\nHence \\(u\\) is constant on \\(\\mathbb C^\\times\\): there exists a fixed \\(c\\) with \\(|c|=1\\) such that\n\\[\nf(z)=cz \\qquad \\forall z\\neq 0.\n\\]\nAlso \\(f(0)=0\\), so actually\n\\[\nf(z)=cz \\qquad \\forall z\\in\\mathbb C.\n\\]\n\n---\n\n## Step 4: Determine \\(c\\)\n\nSubstitute \\(f(z)=cz\\) into the original condition:\n\\[\n|w(cz)+z(cw)|=|2czw|=2|c||zw|=2|zw|.\n\\]\nThis only requires \\(|c|=1\\), but we must check carefully: since\n\\[\nwf(z)+zf(w)=2czw,\n\\]\nthe condition is indeed satisfied for every unit complex \\(c\\).\n\nWait — this seems to give all \\(f(z)=cz\\) with \\(|c|=1\\). Let us verify:\n\\[\n|wf(z)+zf(w)|=|w(cz)+z(cw)|=|2czw|=2|zw|.\n\\]\nYes, this works.\n\nSo all such functions are exactly\n\\[\nf(z)=cz \\quad \\text{for some constant } c\\in\\mathbb C,\\ |c|=1.\n\\]\n\n---\n\nFinal answer: \\(\\boxed{f(z)=cz\\ \\text{for all }z\\in\\mathbb C,\\ \\text{where }|c|=1}\\).",
+  "usage": {
+    "input_tokens": 102,
+    "output_tokens": 951,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 12.163567808107473,
+  "cached": false
+}

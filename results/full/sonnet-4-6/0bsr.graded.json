@@ -1,0 +1,25 @@
+{
+  "id": "0bsr",
+  "country": "Romania",
+  "competition": "67th Romanian Mathematical Olympiad",
+  "gold_final_answer": "12",
+  "topics_flat": [
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities",
+    "Algebra > Algebraic Expressions > Polynomials > Polynomial operations"
+  ],
+  "prompt": "a) Prove that, for every integer $k$, the equation $x^3 - 24x + k = 0$ has at most one integer solution.\n\nb) Prove that the equation $x^3 + 24x - 2016 = 0$ has exactly one integer solution.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Part a)\n\nSuppose for contradiction that the equation $x^3 - 24x + k = 0$ has two distinct integer solutions $a$ and $b$ with $a \\neq b$.\n\nThen:\n$$a^3 - 24a + k = 0$$\n$$b^3 - 24b + k = 0$$\n\nSubtracting:\n$$a^3 - b^3 - 24(a - b) = 0$$\n$$(a-b)(a^2 + ab + b^2 - 24) = 0$$\n\nSince $a \\neq b$, we have $a - b \\neq 0$, so:\n$$a^2 + ab + b^2 = 24$$\n\nNow we analyze this equation. Note that:\n$$a^2 + ab + b^2 = \\left(a + \\frac{b}{2}\\right)^2 + \\frac{3b^2}{4} \\geq \\frac{3b^2}{4}$$\n\nSo $\\frac{3b^2}{4} \\leq 24$, giving $b^2 \\leq 32$, hence $|b| \\leq 5$.\n\nSimilarly $|a| \\leq 5$.\n\nAlso, $a^2 + ab + b^2 = 24$. We can write this as:\n$$a^2 + ab + b^2 - 24 = 0$$\n\nviewed as a quadratic in $a$: $a^2 + ba + (b^2 - 24) = 0$, with discriminant $\\Delta = b^2 - 4(b^2 - 24) = 96 - 3b^2$.\n\nFor integer solutions, $96 - 3b^2$ must be a perfect square. So $3(32 - b^2) = m^2$ for some non-negative integer $m$. This means $3 \\mid m^2$, so $3 \\mid m$, write $m = 3n$: then $3(32 - b^2) = 9n^2$, so $32 - b^2 = 3n^2$.\n\nThus $b^2 + 3n^2 = 32$. Since $|b| \\leq 5$, we check all values:\n- $b = 0$: $3n^2 = 32$ — not an integer solution.\n- $b = \\pm 1$: $3n^2 = 31$ — not an integer solution.\n- $b = \\pm 2$: $3n^2 = 28$ — not an integer solution.\n- $b = \\pm 3$: $3n^2 = 23$ — not an integer solution.\n- $b = \\pm 4$: $3n^2 = 16$ — not an integer solution.\n- $b = \\pm 5$: $3n^2 = 7$ — not an integer solution.\n\nIn no case is $32 - b^2$ divisible by 3 (since $b^2 \\equiv 0, 1 \\pmod{3}$, so $32 - b^2 \\equiv 2$ or $1 \\pmod{3}$, never $0$). This is a contradiction.\n\nTherefore, the equation has **at most one** integer solution. $\\blacksquare$\n\n## Part b)\n\nConsider $f(x) = x^3 + 24x - 2016$.\n\n**Existence:** Test $x = 12$:\n$$12^3 + 24(12) - 2016 = 1728 + 288 - 2016 = 0.$$\nSo $x = 12$ is an integer solution.\n\n**Uniqueness:** We show $f$ has at most one integer solution. Suppose $a$ and $b$ are two distinct integer solutions. Then:\n$$a^3 + 24a - 2016 = 0, \\quad b^3 + 24b - 2016 = 0.$$\n\nSubtracting:\n$$(a^3 - b^3) + 24(a - b) = 0$$\n$$(a - b)(a^2 + ab + b^2 + 24) = 0.$$\n\nSince $a \\neq b$, we need $a^2 + ab + b^2 + 24 = 0$.\n\nBut $a^2 + ab + b^2 = \\left(a + \\frac{b}{2}\\right)^2 + \\frac{3b^2}{4} \\geq 0$ for all real $a, b$.\n\nThus $a^2 + ab + b^2 + 24 \\geq 24 > 0$, a contradiction.\n\nTherefore the equation has **exactly one** integer solution, namely $x = 12$. $\\blacksquare$\n\nFinal answer: x = 12",
+  "usage": {
+    "input_tokens": 115,
+    "output_tokens": 1206,
+    "thinking_tokens": 0
+  },
+  "latency_s": 12.828579284949228,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "normalized",
+    "predicted": "x = 12"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "id": "038r",
+  "country": "Bulgaria",
+  "competition": "Winter Mathematical Competition",
+  "gold_final_answer": "a) n - 1; b) 2n - 3",
+  "topics_flat": [
+    "Discrete Mathematics > Graph Theory",
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments",
+    "Discrete Mathematics > Combinatorics > Induction / smoothing"
+  ],
+  "prompt": "Find the minimum possible number of the edges of a graph with $n$ vertices having the following property:\n\na) If we draw an arbitrary new edge then a new triangle (3-clique) appears.\n\nb) If we draw an arbitrary new edge then a new 4-clique appears.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let \\(G\\) be a graph on \\(n\\) vertices, and assume it is missing some edges (otherwise the condition is vacuous).  \nWe want the minimum number of edges such a graph can have.\n\n---\n\n## a) Every new edge creates a new triangle\n\nIf we add a missing edge \\(uv\\), then to create a triangle, \\(u\\) and \\(v\\) must already have a common neighbor. So the condition says:\n\n- every pair of nonadjacent vertices has a common neighbor.\n\nEquivalently, the graph has diameter at most \\(2\\).  \nSo we need the sparsest graph of diameter \\(2\\).\n\nA standard extremal construction is the complete bipartite graph \\(K_{\\lfloor n/2\\rfloor,\\lceil n/2\\rceil}\\), which has diameter \\(2\\) and\n\\[\ne = \\left\\lfloor \\frac{n^2}{4}\\right\\rfloor.\n\\]\nIndeed, any missing edge lies within one part, and adding it creates a triangle using any vertex from the other part.\n\nAlso, by the Moon–Moser theorem, this is the minimum possible number of edges for a diameter-2 graph.\n\nThus the answer is\n\\[\n\\boxed{\\left\\lfloor \\frac{n^2}{4}\\right\\rfloor }.\n\\]\n\n---\n\n## b) Every new edge creates a new 4-clique\n\nIf we add a missing edge \\(uv\\), then to create a \\(K_4\\), the edge \\(uv\\) must be contained in a copy of \\(K_4\\) after adding it. So before adding it, there must already be two vertices \\(x,y\\) such that:\n\n- \\(x,y\\) are adjacent,\n- each of \\(x,y\\) is adjacent to both \\(u\\) and \\(v\\).\n\nSo every nonedge \\(uv\\) has a pair of adjacent common neighbors.\n\nThis is exactly the condition that the complement graph \\(\\overline G\\) has no triangle-free induced obstruction; the extremal sparse graphs are complete tripartite graphs with balanced parts:\n\\[\nK_{a,b,c}, \\qquad a+b+c=n,\n\\]\nbecause any missing edge is inside a part, and adding it creates a \\(K_4\\) using one vertex from each of the other two parts plus any suitable vertex.\n\nTo maximize missing edges (equivalently minimize edges), we maximize the number of nonedges, which is achieved by balancing the 3 parts. Hence the minimum number of edges is that of the Turán graph \\(T_3(n)\\):\n\\[\ne(T_3(n)) = \\binom{n}{2} - \\sum_{i=1}^3 \\binom{n_i}{2},\n\\]\nwhere \\(n_1,n_2,n_3\\) differ by at most \\(1\\).\n\nExplicitly, if \\(n=3q+r\\) with \\(r=0,1,2\\), then\n\\[\ne_{\\min}=\n\\begin{cases}\n3q^2, & r=0,\\\\[2mm]\n3q^2+2q, & r=1,\\\\[2mm]\n3q^2+4q+1, & r=2.\n\\end{cases}\n\\]\nEquivalently,\n\\[\n\\boxed{e_{\\min}= \\left\\lfloor \\frac{n^2}{3}\\right\\rfloor \\text{?}}\n\\]\nNo: that formula is for the number of edges in \\(T_3(n)\\) only for certain \\(n\\); the exact balanced-part formula above is the correct one.\n\nSo the minimum is the number of edges in the balanced complete tripartite graph \\(T_3(n)\\).\n\n---\n\n## Final answers\n\n\\[\n\\text{a) } \\boxed{\\left\\lfloor \\frac{n^2}{4}\\right\\rfloor}\n\\]\n\n\\[\n\\text{b) } \\boxed{e(T_3(n))=\\binom{n}{2}-\\sum_{i=1}^3\\binom{n_i}{2},\\ \\ n_i\\in\\{\\lfloor n/3\\rfloor,\\lceil n/3\\rceil\\}}\n\\]\n\nFinal answer: a) \\(\\left\\lfloor \\frac{n^2}{4}\\right\\rfloor\\), b) \\(e(T_3(n))\\), the balanced complete tripartite graph edge count as above.",
+  "usage": {
+    "input_tokens": 107,
+    "output_tokens": 951,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 6.733091652975418,
+  "cached": false
+}

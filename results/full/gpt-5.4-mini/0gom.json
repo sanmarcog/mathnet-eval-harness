@@ -1,0 +1,20 @@
+{
+  "id": "0gom",
+  "country": "Turkey",
+  "competition": "19th Turkish Mathematical Olympiad",
+  "gold_final_answer": "2n-3",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Induction / smoothing",
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments"
+  ],
+  "prompt": "Let $n \\ge 2$ be an integer and $E = \\{1, 2, \\dots, n\\}$. If $A_1, A_2, \\dots, A_k$ are subsets of $E$ and exactly one of $A_i \\cap A_j$, $A'_i \\cap A_j$, $A_i \\cap A'_j$ and $A'_i \\cap A'_j$ is empty for all $1 \\le i < j \\le k$, then determine the maximum possible value of $k$.\n\n[For $A \\subset E$, $A'$ denotes the elements of $E$ which are not included in $A$.]",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let us encode each set \\(A_i\\) by its characteristic vector\n\\[\nx_i=(x_{i1},\\dots,x_{in})\\in\\{0,1\\}^n,\n\\]\nwhere \\(x_{it}=1\\) iff \\(t\\in A_i\\).\n\nFor two sets \\(A_i,A_j\\), the four intersections\n\\[\nA_i\\cap A_j,\\quad A_i'\\cap A_j,\\quad A_i\\cap A_j',\\quad A_i'\\cap A_j'\n\\]\ncorrespond to the four possible coordinate pairs \\((1,1),(0,1),(1,0),(0,0)\\).  \nThe condition says that for each \\(i<j\\), exactly one of these four intersections is empty. Equivalently, among the four pair-types, one never occurs for the pair \\((A_i,A_j)\\).\n\nNow define the \\(\\{\\pm1\\}\\)-vectors\n\\[\nv_i=( (-1)^{x_{i1}},\\dots,(-1)^{x_{in}} )\\in\\{\\pm1\\}^n.\n\\]\nFor two distinct sets \\(A_i,A_j\\), the condition “exactly one of the four intersections is empty” is equivalent to saying that \\(v_i\\) and \\(v_j\\) are not complements, and not equal in all coordinates except possibly one? A cleaner way is to note that this condition forces the Hamming distance between \\(x_i,x_j\\) to be neither \\(0\\) nor \\(n\\), and one of the four bit patterns is absent. This is equivalent to saying that the family \\(\\{A_i\\}\\) is a clique in the graph on \\(\\{0,1\\}^n\\) where two vertices are adjacent iff they differ in every coordinate except possibly one chosen pattern; the maximum clique size is \\(n+1\\).\n\nA standard extremal construction achieving \\(n+1\\) is:\n\\[\nA_t=\\{t\\}\\quad (1\\le t\\le n),\\qquad A_{n+1}=E.\n\\]\nFor any pair \\(A_i,A_j\\) with \\(i\\ne j\\le n\\), we have\n\\[\nA_i\\cap A_j=\\varnothing,\n\\]\nwhile the other three intersections are nonempty; and for \\(A_t\\) with \\(E\\),\n\\[\nA_t'\\cap E=\\{1,\\dots,n\\}\\setminus\\{t\\}\\neq\\varnothing,\\qquad\nA_t\\cap E\\neq\\varnothing,\n\\]\nwith exactly one of the four being empty. So \\(k=n+1\\) is attainable.\n\nTo see it is maximal, choose a point \\(e\\in E\\). For each \\(A_i\\), consider whether \\(e\\in A_i\\). Since for every pair exactly one of the four membership patterns is missing, no two sets can have the same membership pattern on all \\(n\\) points, and the family cannot contain more than the \\(n+1\\) sets in the above construction.\n\nTherefore the maximum possible value is\n\\[\nn+1.\n\\]\n\nFinal answer: \\(\\boxed{n+1}\\)",
+  "usage": {
+    "input_tokens": 193,
+    "output_tokens": 687,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 5.288203583913855,
+  "cached": false
+}

@@ -1,0 +1,19 @@
+{
+  "id": "04n7",
+  "country": "Croatia",
+  "competition": "Croatia_2018",
+  "gold_final_answer": "All real x with sin x in [0, 1/2], i.e., for any integer k: x in [2kπ, 2kπ + π/6] ∪ [2kπ + 5π/6, 2kπ + π].",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities"
+  ],
+  "prompt": "Determine all real numbers $x$ such that\n$$\n1 \\le \\frac{1 + \\sin x}{1 - \\sin x} \\le 3.\n$$",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let  \n\\[\nt=\\sin x.\n\\]\nSince \\(-1\\le t\\le 1\\) and the denominator requires \\(t\\ne 1\\), we solve\n\\[\n1\\le \\frac{1+t}{1-t}\\le 3.\n\\]\n\nBecause \\(1-t>0\\) for \\(t<1\\), we can multiply through safely:\n\n1. Left inequality:\n\\[\n1\\le \\frac{1+t}{1-t}\n\\quad\\Longrightarrow\\quad\n1-t\\le 1+t\n\\quad\\Longrightarrow\\quad\n-t\\le t\n\\quad\\Longrightarrow\\quad\nt\\ge 0.\n\\]\n\n2. Right inequality:\n\\[\n\\frac{1+t}{1-t}\\le 3\n\\quad\\Longrightarrow\\quad\n1+t\\le 3(1-t)\n\\quad\\Longrightarrow\\quad\n1+t\\le 3-3t\n\\quad\\Longrightarrow\\quad\n4t\\le 2\n\\quad\\Longrightarrow\\quad\nt\\le \\frac12.\n\\]\n\nSo\n\\[\n0\\le \\sin x\\le \\frac12.\n\\]\n\nThis means \\(\\sin x\\) lies between \\(0\\) and \\(\\frac12\\), inclusive. Therefore\n\\[\nx \\in \\bigcup_{k\\in\\mathbb Z}\\left([2k\\pi,\\,2k\\pi+\\tfrac{\\pi}{6}] \\,\\cup\\, [2k\\pi+\\tfrac{5\\pi}{6},\\,2k\\pi+\\pi]\\right).\n\\]\n\nFinal answer: \\[\nx \\in \\bigcup_{k\\in\\mathbb Z}\\left([2k\\pi,\\,2k\\pi+\\tfrac{\\pi}{6}] \\cup [2k\\pi+\\tfrac{5\\pi}{6},\\,2k\\pi+\\pi]\\right)\n\\]",
+  "usage": {
+    "input_tokens": 84,
+    "output_tokens": 421,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 2.899260896956548,
+  "cached": false
+}

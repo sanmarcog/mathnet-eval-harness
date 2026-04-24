@@ -1,0 +1,19 @@
+{
+  "id": "06ma",
+  "country": "Hong Kong",
+  "competition": "HongKong 2022-23 IMO Selection Tests",
+  "gold_final_answer": "2358",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Inclusion-exclusion"
+  ],
+  "prompt": "A 'palindrome' is a positive integer which reads the same from left to right as from right to left, such as $12321$ and $259952$. Someone wrote down a five-digit palindrome $m$ and then removed a digit of $m$ to obtain a four-digit positive integer $n$ (that does not start with $0$). How many possible values of $n$ are there?",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find the number of possible values for the four-digit integer $n$, we analyze the structure of the original five-digit palindrome $m$. \nLet the five-digit palindrome be $m = abcba$, where $a \\in \\{1, 2, \\dots, 9\\}$ (since $m$ is a five-digit integer) and $b, c \\in \\{0, 1, \\dots, 9\\}$. \n\nWhen we remove one digit from $m$ to form the four-digit integer $n = d_1d_2d_3d_4$, $n$ must take one of the following forms:\n1. Remove the 1st digit: $n = bcba$. Since $n$ cannot start with 0, $b \\neq 0$. Here, $d_1 = d_3$ and $d_4 \\neq 0$. (Condition A)\n2. Remove the 5th digit: $n = abcb$. Here, $d_2 = d_4$. (Condition B)\n3. Remove the 2nd or 4th digit: $n = acba$ or $n = abca$. Here, $d_1 = d_4$. (Condition C)\n4. Remove the 3rd digit: $n = abba$. Here, $d_1 = d_4$ and $d_2 = d_3$, which is already covered by Condition C.\n\nWe want to find the size of the union of the sets of four-digit numbers satisfying at least one of Conditions A, B, or C. We use the Principle of Inclusion-Exclusion.\nKeep in mind that for all valid $n$, the first digit $d_1 \\in \\{1, \\dots, 9\\}$.\n\n- **Size of A**: $d_1 \\in \\{1..9\\}$ (9 choices), $d_2 \\in \\{0..9\\}$ (10 choices), $d_3 = d_1$ (1 choice), $d_4 \\in \\{1..9\\}$ (9 choices). \n  $|A| = 9 \\times 10 \\times 1 \\times 9 = 810$\n- **Size of B**: $d_1 \\in \\{1..9\\}$ (9 choices), $d_2 \\in \\{0..9\\}$ (10 choices), $d_3 \\in \\{0..9\\}$ (10 choices), $d_4 = d_2$ (1 choice). \n  $|B| = 9 \\times 10 \\times 10 \\times 1 = 900$\n- **Size of C**: $d_1 \\in \\{1..9\\}$ (9 choices), $d_2 \\in \\{0..9\\}$ (10 choices), $d_3 \\in \\{0..9\\}$ (10 choices), $d_4 = d_1$ (1 choice). \n  $|C| = 9 \\times 10 \\times 10 \\times 1 = 900$\n\nNow we find the sizes of the intersections:\n- **$A \\cap B$**: $d_1 = d_3$, $d_2 = d_4$, and $d_4 \\neq 0$. $d_1 \\in \\{1..9\\}$ (9 choices), $d_2 \\in \\{1..9\\}$ (9 choices). \n  $|A \\cap B| = 9 \\times 9 = 81$\n- **$A \\cap C$**: $d_1 = d_3$, $d_1 = d_4$, and $d_4 \\neq 0$. $d_1 \\in \\{1..9\\}$ (9 choices), $d_2 \\in \\{0..9\\}$ (10 choices). \n  $|A \\cap C| = 9 \\times 10 = 90$\n- **$B \\cap C$**: $d_2 = d_4$ and $d_1 = d_4$. Thus $d_1 = d_2 = d_4$. $d_1 \\in \\{1..9\\}$ (9 choices), $d_3 \\in \\{0..9\\}$ (10 choices). \n  $|B \\cap C| = 9 \\times 10 = 90$\n\nFinally, the intersection of all three:\n- **$A \\cap B \\cap C$**: $d_1 = d_3$, $d_2 = d_4$, and $d_1 = d_4$. Thus $d_1 = d_2 = d_3 = d_4$. $d_1 \\in \\{1..9\\}$ (9 choices). \n  $|A \\cap B \\cap C| = 9$\n\nApplying the Inclusion-Exclusion Principle:\n$|A \\cup B \\cup C| = |A| + |B| + |C| - |A \\cap B| - |A \\cap C| - |B \\cap C| + |A \\cap B \\cap C|$\n$|A \\cup B \\cup C| = 810 + 900 + 900 - 81 - 90 - 90 + 9$\n$|A \\cup B \\cup C| = 2610 - 261 + 9 = 2358$\n\nFinal answer: 2358",
+  "usage": {
+    "input_tokens": 130,
+    "output_tokens": 1208,
+    "thoughts_tokens": 3332
+  },
+  "latency_s": 30.993068623007275,
+  "cached": false
+}

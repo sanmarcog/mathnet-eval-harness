@@ -1,0 +1,25 @@
+{
+  "id": "09ls",
+  "country": "Mongolia",
+  "competition": "Mongolian Mathematical Olympiad",
+  "gold_final_answer": "630",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Algebraic properties of binomial coefficients",
+    "Algebra > Algebraic Expressions > Sequences and Series > Sums and products"
+  ],
+  "prompt": "A number whose digits first increase and then decrease is called a *mountain-shaped number*. For example, $1310$ is mountain-shaped, while $1331$, $1234$, $4321$, and $3412$ are not mountain-shaped. How many four-digit mountain-shaped numbers are there in total?",
+  "model": "claude-sonnet-4-6",
+  "response_text": "I need to count four-digit numbers where digits first increase then decrease (strictly, based on the example).\n\n## Setting Up the Problem\n\nA four-digit mountain-shaped number has digits d₁d₂d₃d₄ where the sequence first increases then decreases. The \"peak\" can be at position 2, 3, or 4... but let me analyze the example.\n\nExample: 1310 is mountain-shaped. Digits: 1, 3, 1, 0. Here 1 < 3 > 1 > 0. So the peak is at position 2.\n\nWait, let me reconsider. \"First increase then decrease\" means there's a peak somewhere in the middle. The sequence goes up then down.\n\nFor 1310: 1 < 3, then 3 > 1 > 0. Peak at position 2 (second digit).\n\nThe peak could be at position 2 or position 3 (for a 4-digit number).\n\n**Case 1: Peak at position 2** (d₁ < d₂, d₂ > d₃ > d₄... wait, need d₂ > d₃ and d₃ ≥ d₄? Or strict?)\n\nFrom 1310: 1 > 0, so the decreasing part is strict. Let me assume strictly increasing then strictly decreasing.\n\n**Peak at position 2:** d₁ < d₂, d₂ > d₃ > d₄\n- d₁ ≥ 1 (four-digit number), d₄ ≥ 0\n\n**Peak at position 3:** d₁ < d₂ < d₃, d₃ > d₄\n- d₁ ≥ 1, d₄ ≥ 0\n\n## Case 1: Peak at position 2\n\nNeed d₁ < d₂, d₂ > d₃ > d₄, with d₁ ∈ {1,...,9}, d₂ ∈ {1,...,9}, d₃,d₄ ∈ {0,...,9}.\n\nChoose d₂ as the peak. For each peak value p = d₂:\n- d₁ ∈ {1, ..., p-1}: gives (p-1) choices\n- d₃, d₄ with p > d₃ > d₄ ≥ 0: choose 2 values from {0,...,p-1}, which is C(p, 2) ways\n\nCount = Σ(p=2 to 9) (p-1) · C(p,2)\n\n= Σ(p=2 to 9) (p-1) · p(p-1)/2\n\n= Σ(p=2 to 9) p(p-1)²/2\n\nFor p=2: 2·1/2 = 1\nFor p=3: 3·4/2 = 6\nFor p=4: 4·9/2 = 18\nFor p=5: 5·16/2 = 40\nFor p=6: 6·25/2 = 75\nFor p=7: 7·36/2 = 126\nFor p=8: 8·49/2 = 196\nFor p=9: 9·64/2 = 288\n\nSum = 1+6+18+40+75+126+196+288 = 750\n\n## Case 2: Peak at position 3\n\nNeed d₁ < d₂ < d₃, d₃ > d₄, with d₁ ≥ 1, d₄ ≥ 0.\n\nFor peak p = d₃:\n- d₁, d₂ with 1 ≤ d₁ < d₂ < p: choose 2 values from {1,...,p-1}, giving C(p-1, 2) ways\n- d₄ ∈ {0,...,p-1}: gives p choices\n\nCount = Σ(p=2 to 9) C(p-1,2) · p\n\nFor p=2: C(1,2)·2 = 0\nFor p=3: C(2,2)·3 = 3\nFor p=4: C(3,2)·4 = 12\nFor p=5: C(4,2)·5 = 30\nFor p=6: C(5,2)·6 = 60\nFor p=7: C(6,2)·7 = 105\nFor p=8: C(7,2)·8 = 168\nFor p=9: C(8,2)·9 = 252\n\nSum = 0+3+12+30+60+105+168+252 = 630\n\n## Total\n\n750 + 630 = **1380**\n\nFinal answer: 1380",
+  "usage": {
+    "input_tokens": 118,
+    "output_tokens": 1207,
+    "thinking_tokens": 0
+  },
+  "latency_s": 16.13105909898877,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "1380"
+  }
+}

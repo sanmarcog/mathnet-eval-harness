@@ -1,0 +1,21 @@
+{
+  "id": "09zp",
+  "country": "Netherlands",
+  "competition": "Second Round",
+  "gold_final_answer": "39",
+  "topics_flat": [
+    "Algebra > Prealgebra / Basic Algebra > Integers",
+    "Number Theory > Divisibility / Factorization > Factorization techniques",
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities"
+  ],
+  "prompt": "For how many integers $n$ with $1 \\le n \\le 800$ is the number $8n + 1$ a square?",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find the number of integers $n$ such that $1 \\le n \\le 800$ and $8n + 1$ is a perfect square, we can set up the equation:\n$8n + 1 = k^2$\n\nSince $8n + 1$ is always an odd number, $k^2$ must be an odd perfect square, which means $k$ must be an odd integer. \nGiven the range $1 \\le n \\le 800$, we can find the range for $8n + 1$:\n$8(1) + 1 \\le 8n + 1 \\le 8(800) + 1$\n$9 \\le k^2 \\le 6401$\n\nTaking the square root of all parts of the inequality:\n$3 \\le k \\le \\sqrt{6401}$\n\nSince $80^2 = 6400$, we know that $\\sqrt{6401}$ is slightly more than 80. Because $k$ must be an odd integer, the possible values for $k$ are the odd integers from 3 up to 79.\n\nThe sequence of possible values for $k$ is:\n$3, 5, 7, \\dots, 79$\n\nTo find the number of terms in this arithmetic sequence, we can use the formula for the $m$-th term of an arithmetic sequence, $a_m = a_1 + (m - 1)d$:\n$79 = 3 + (m - 1)2$\n$76 = 2(m - 1)$\n$38 = m - 1$\n$m = 39$\n\nThere are 39 possible odd values for $k$, and each corresponds to exactly one valid integer $n$. \n\nFinal answer: 39",
+  "usage": {
+    "input_tokens": 72,
+    "output_tokens": 414,
+    "thoughts_tokens": 912
+  },
+  "latency_s": 11.392027228022926,
+  "cached": false
+}

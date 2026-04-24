@@ -1,0 +1,26 @@
+{
+  "id": "008m",
+  "country": "Argentina",
+  "competition": "XXIX Olimpíada Matemática Argentina National Round",
+  "gold_final_answer": "2n - 3",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Counting two ways",
+    "Discrete Mathematics > Combinatorics > Invariants / monovariants",
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments"
+  ],
+  "prompt": "In a football tournament between $n \\ge 4$ teams, each pair of teams play against each other exactly once. In the final scoreboard, the scores of the teams for the tournament are $n$ consecutive numbers. Find the maximum possible value for the score of the tournament winning team.\n\n**NOTE:** a team gets 3 points when it wins a match, none when it loses, and 1 when the match ends in a tie.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let the team scores be\n\\[\na,a+1,\\dots,a+n-1\n\\]\nfor some integer \\(a\\), since they are \\(n\\) consecutive integers.\n\n### 1) Total number of points\nThere are \\(\\binom n2\\) matches.  \nEach match contributes either \\(3\\) points total (a win/loss) or \\(2\\) points total (a tie). Hence the total score \\(S\\) satisfies\n\\[\n2\\binom n2 \\le S \\le 3\\binom n2.\n\\]\nBut\n\\[\nS = na+\\frac{n(n-1)}2.\n\\]\nSo\n\\[\n2\\binom n2 \\le na+\\frac{n(n-1)}2 \\le 3\\binom n2.\n\\]\nSince \\(2\\binom n2=n(n-1)\\), this gives\n\\[\nn(n-1)\\le na+\\frac{n(n-1)}2 \\le \\frac{3n(n-1)}2,\n\\]\nhence\n\\[\n\\frac{n-1}{2}\\le a \\le n-1.\n\\]\n\n### 2) Upper bound for the champion\nThe winning team has score\n\\[\na+n-1 \\le (n-1)+(n-1)=2n-2.\n\\]\n\nSo the champion’s score is at most \\(2n-2\\).\n\n### 3) Achievability\nWe now show this bound is attainable.\n\n- If \\(n\\) is odd, choose scores\n  \\[\n  \\frac{n-1}{2},\\frac{n+1}{2},\\dots,\\frac{3n-3}{2},\n  \\]\n  whose sum is \\( \\frac{n(2n-2)}2 = n(n-1)\\), the minimum possible total. This corresponds to every match being a tie. The maximum score is \\(\\frac{3n-3}{2}<2n-2\\), so this does not reach the upper bound.\n\nTo get the upper bound, we need total score as large as possible while keeping consecutive scores. The maximum possible total is \\(3\\binom n2\\), which corresponds to no ties, and then the sum would be\n\\[\n\\frac{3n(n-1)}2.\n\\]\nFor consecutive scores this means\n\\[\nna+\\frac{n(n-1)}2=\\frac{3n(n-1)}2\n\\quad\\Rightarrow\\quad a=n-1,\n\\]\nso the scores are\n\\[\nn-1,n,\\dots,2n-2.\n\\]\nThis is realizable by a transitive tournament (one team beats all others, the next beats all but one, etc.), and then the top score is exactly \\(2n-2\\).\n\nTherefore the maximum possible score of the tournament winning team is\n\n\\[\n\\boxed{2n-2}.\n\\]\n\nFinal answer: \\(2n-2\\)",
+  "usage": {
+    "input_tokens": 138,
+    "output_tokens": 641,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 4.181828391971067,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "\\(2n-2\\)"
+  }
+}

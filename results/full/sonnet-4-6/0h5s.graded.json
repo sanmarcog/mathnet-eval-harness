@@ -1,0 +1,24 @@
+{
+  "id": "0h5s",
+  "country": "Ukraine",
+  "competition": "55rd Ukrainian National Mathematical Olympiad - Fourth Round",
+  "gold_final_answer": "x = pi/2 + pi*k, where k is any integer",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Sequences and Series > Floors and ceilings"
+  ],
+  "prompt": "$$\n\\operatorname{ctg}[x] \\cdot \\operatorname{ctg}\\{x\\} = 1.\n$$\nWhere $[a]$ is the integer part of $a$, and $\\{a\\} = a - [a]$.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "We need to solve cot([x]) · cot({x}) = 1.\n\nLet [x] = n (integer) and {x} = f where f ∈ [0,1).\n\nSo cot(n) · cot(f) = 1, which means cot(f) = 1/cot(n) = tan(n).\n\nSo cot(f) = tan(n), which means:\ncos(f)/sin(f) = sin(n)/cos(n)\n\nThis gives: cos(f)cos(n) = sin(f)sin(n)\nSo: cos(f)cos(n) - sin(f)sin(n) = 0\nThus: cos(f + n) = 0\n\nTherefore f + n = π/2 + kπ for some integer k.\n\nSince f = {x} and n = [x], we have x = n + f, so:\nx = π/2 + kπ for some integer k.\n\nBut we need to check the constraints:\n- f ∈ [0, 1), so f = x - n ∈ [0,1)\n- cot(n) must be defined: n ≠ 0 (mod π), but n is an integer, so we need sin(n) ≠ 0, meaning n ≠ 0 (since n is an integer and sin(n) = 0 only when n = 0 as an integer... wait, sin(n) = 0 for integer n only when n = 0, since π is irrational)\n\nActually, sin(n) = 0 for integer n only if n = 0 (since π is irrational, kπ is never a nonzero integer). So n ≠ 0.\n\n- cot(f) must be defined: sin(f) ≠ 0, so f ≠ 0, meaning x is not an integer.\n\nSo x = π/2 + kπ for integer k, with the constraint that {x} ≠ 0 (x not integer, which is satisfied since π/2 + kπ is irrational) and [x] ≠ 0.\n\nWe need [x] = n ≠ 0, i.e., x ≠ π/2 + kπ where [x] = 0.\n\n[x] = 0 when x ∈ [0,1). So we need π/2 + kπ ∉ [0,1).\n\nπ/2 ≈ 1.5708, so k=0 gives x = π/2 ≈ 1.5708, [x] = 1 ≠ 0. ✓\nk=-1 gives x = π/2 - π = -π/2 ≈ -1.5708, [x] = -2 ≠ 0. ✓\nk=1 gives x = 3π/2 ≈ 4.712, [x] = 4 ≠ 0. ✓\n\nActually, for [x] = 0, we'd need x ∈ [0,1), but π/2 + kπ for k=0 gives ≈1.57 ∉ [0,1), and for k=-1 gives ≈-1.57 ∉ [0,1). So none of the solutions have [x] = 0.\n\nWait, let me check: is there any k such that π/2 + kπ ∈ [0,1)?\nπ/2 ≈ 1.5708, so k=0: 1.5708 ∉ [0,1).\nk=-1: -1.5708 ∉ [0,1).\nNo integer k gives π/2 + kπ ∈ [0,1) since the spacing is π ≈ 3.14 and the nearest value is π/2 ≈ 1.57.\n\nSo all solutions x = π/2 + kπ (k ∈ ℤ) are valid.\n\nFinal answer: $x = \\dfrac{\\pi}{2} + \\pi k, \\quad k \\in \\mathbb{Z}$",
+  "usage": {
+    "input_tokens": 111,
+    "output_tokens": 1037,
+    "thinking_tokens": 0
+  },
+  "latency_s": 15.386409780010581,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "$x = \\dfrac{\\pi}{2} + \\pi k, \\quad k \\in \\mathbb{Z}$"
+  }
+}

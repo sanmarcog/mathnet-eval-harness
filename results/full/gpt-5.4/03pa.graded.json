@@ -1,0 +1,25 @@
+{
+  "id": "03pa",
+  "country": "China",
+  "competition": "China Mathematical Competition (Shaanxi)",
+  "gold_final_answer": "C",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Sequences and Series > Floors and ceilings",
+    "Algebra > Prealgebra / Basic Algebra > Integers"
+  ],
+  "prompt": "A new sequence is obtained from the sequence of the positive integers $\\{1, 2, 3, \\ldots\\}$ by deleting all the perfect squares. Then the $2\\ 003$rd term of the new sequence is ( ).\n\n(A) $2\\ 046$\n(B) $2\\ 047$\n(C) $2\\ 048$\n(D) $2\\ 049$",
+  "model": "gpt-5.4",
+  "response_text": "Let the new sequence be all positive integers except perfect squares.\n\nFor a given integer \\(n\\), the number of terms of the new sequence that are \\(\\le n\\) is:\n\n\\[\nn-\\lfloor \\sqrt n \\rfloor\n\\]\n\nbecause there are \\(\\lfloor \\sqrt n \\rfloor\\) perfect squares up to \\(n\\).\n\nWe want the \\(2003\\)rd term, so solve\n\n\\[\nn-\\lfloor \\sqrt n \\rfloor = 2003.\n\\]\n\nCheck the choices:\n\n- \\(2046\\): \\(\\lfloor \\sqrt{2046}\\rfloor=45\\), so \\(2046-45=2001\\)\n- \\(2047\\): \\(2047-45=2002\\)\n- \\(2048\\): \\(2048-45=2003\\)\n- \\(2049\\): \\(\\lfloor \\sqrt{2049}\\rfloor=45\\), so \\(2049-45=2004\\)\n\nThus the \\(2003\\)rd term is \\(2048\\).\n\nFinal answer: \\(2048\\)",
+  "usage": {
+    "input_tokens": 131,
+    "output_tokens": 237,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.553855897975154,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "\\(2048\\)"
+  }
+}

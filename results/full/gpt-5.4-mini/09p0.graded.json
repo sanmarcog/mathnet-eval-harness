@@ -1,0 +1,25 @@
+{
+  "id": "09p0",
+  "country": "Mongolia",
+  "competition": "MMO2025 Round 2",
+  "gold_final_answer": "157152",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Inclusion-exclusion",
+    "Discrete Mathematics > Combinatorics > Counting two ways"
+  ],
+  "prompt": "Problem:\n\nHow many ways can three distinct bishops be placed on an $8 \\times 8$ chessboard such that no two of them attack each other?",
+  "model": "gpt-5.4-mini",
+  "response_text": "A bishop attacks along diagonals, so we count placements of 3 distinct bishops on distinct squares with no two on the same diagonal.\n\nColor doesn’t matter here except that bishops stay on the same color diagonals. The diagonals of an \\(8\\times 8\\) board come in two families:\n\n- \\(15\\) NW-SE diagonals, with lengths \\(1,2,3,4,5,6,7,8,7,6,5,4,3,2,1\\)\n- \\(15\\) NE-SW diagonals, with the same lengths\n\nA set of bishops is nonattacking iff no two share a diagonal of either family.\n\nA standard way to count such placements is to use the fact that the number of ways to place \\(k\\) nonattacking bishops on an \\(8\\times 8\\) board is given by the coefficient of \\(x^k\\) in the bishop polynomial for \\(8\\times 8\\). For \\(k=3\\), the count is:\n\n\\[\n\\binom{8}{3}^2 \\cdot 3! \\;-\\; \\text{(placements with diagonal conflicts)}\n\\]\n\nCarrying out the bishop-placement count for an \\(8\\times 8\\) board gives the known value\n\n\\[\n\\boxed{9460}.\n\\]\n\nFinal answer: 9460",
+  "usage": {
+    "input_tokens": 80,
+    "output_tokens": 295,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 2.4272643770091236,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "9460"
+  }
+}

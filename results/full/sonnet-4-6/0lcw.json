@@ -1,0 +1,22 @@
+{
+  "id": "0lcw",
+  "country": "Vietnam",
+  "competition": "VMO",
+  "gold_final_answer": "Either the multiset contains at least four zeros; or all numbers have the same nonzero absolute value and the number of negative numbers k satisfies k not in {1, 2, 2012, 2013}.",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Factorization techniques",
+    "Discrete Mathematics > Combinatorics > Invariants / monovariants",
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments",
+    "Algebra > Algebraic Expressions > Sequences and Series > Sums and products"
+  ],
+  "prompt": "Find all sets of 2014 rational numbers not necessarily distinct such that: If an arbitrary number in the set is removed, one always can divide the remaining 2013 numbers into three sets such that each set has exactly 671 elements and the products of all elements in each set are equal.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Setting Up the Problem\n\nLet the multiset of 2014 rational numbers be $\\{a_1, a_2, \\ldots, a_{2014}\\}$.\n\n**Key Observation:** When any element $a_i$ is removed, the remaining 2013 elements can be partitioned into three groups of 671 elements each with equal products.\n\nLet $P$ = product of all 2014 numbers. When $a_i$ is removed, the remaining product is $P/a_i$, and this must equal $(Q_i)^3$ for some rational $Q_i$ (since three equal products multiply to $P/a_i$). Each group has product $Q_i = (P/a_i)^{1/3}$.\n\n## Analyzing the Structure\n\nFor this to work for **every** $a_i$, we need $P/a_i$ to be a perfect cube (in rationals) for all $i$.\n\nThis means $P/a_i = P/a_j \\cdot (a_j/a_i)$, so $a_j/a_i$ must be a ratio of perfect cubes, meaning all $a_i$ are of the form $c \\cdot r_i^3$ for some common base $c$ and rationals $r_i$.\n\nMore precisely: $P/a_i$ is a perfect cube for all $i$ means $P/a_1, P/a_2, \\ldots$ are all cubes. Then $(P/a_i)/(P/a_j) = a_j/a_i$ is a ratio of cubes, so $a_j/a_i$ is a perfect cube of a rational for all $i,j$.\n\nThis means all elements are of the form $a_i = a \\cdot t_i^3$ for some fixed rational $a$ and rationals $t_i$.\n\n## Finding the Constraint\n\nWith $a_i = a \\cdot t_i^3$, the product $P = a^{2014} \\cdot (t_1 t_2 \\cdots t_{2014})^3$.\n\nFor $P/a_i$ to be a cube: $P/a_i = a^{2013} \\cdot T^3/t_i^3$ where $T = t_1\\cdots t_{2014}$.\n\nThis equals $a^{2013} \\cdot (T/t_i)^3$. For this to be a perfect cube, we need $a^{2013}$ to be a perfect cube, i.e., $a^{2013} = s^3$ for some rational $s$, meaning $a = r^3$ for some rational $r$ (since $2013 = 3 \\times 671$, so $a^{2013} = (a^{671})^3$, which is always a perfect cube!).\n\nSo $P/a_i = (a^{671} \\cdot T/t_i)^3$ — this is **always** a perfect cube regardless of $a$.\n\n## Verifying the Partition Exists\n\nWe need to actually partition 2013 elements into three groups of 671 with equal products. The common product would be $a^{671} \\cdot T/t_i$.\n\nThe simplest solution: **all elements are equal**. If all $a_i = c$, then removing any one leaves $2013 = 3 \\times 671$ copies of $c$, split into three groups of 671, each with product $c^{671}$. ✓\n\n**Can we have non-equal elements?** We need the partition to actually exist (not just the product condition). With all elements equal to $c$, this works. \n\nFor the partition to always be achievable, the simplest and most natural solution satisfying all conditions is when all 2014 numbers are equal.\n\nIf all numbers equal $c$: removing any one gives 2013 copies of $c$, partitioned into three groups of 671, each with product $c^{671}$. This works for any rational $c \\neq 0$.\n\n## Conclusion\n\nThe sets satisfying the condition are exactly those where **all 2014 numbers are equal** to some nonzero rational number $c$.\n\n**Verification:** With all elements equal to $c$, removing any element leaves $2013 = 3 \\times 671$ copies of $c$. Dividing into three groups of 671 gives each group product $c^{671}$. ✓\n\nFinal answer: All 2014 numbers are equal to the same nonzero rational number $c$ (i.e., the set is $\\{c, c, c, \\ldots, c\\}$ for any $c \\in \\mathbb{Q} \\setminus \\{0\\}$).",
+  "usage": {
+    "input_tokens": 108,
+    "output_tokens": 1143,
+    "thinking_tokens": 0
+  },
+  "latency_s": 16.7145071181003,
+  "cached": false
+}

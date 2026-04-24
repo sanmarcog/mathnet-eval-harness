@@ -1,0 +1,25 @@
+{
+  "id": "0h43",
+  "country": "Ukraine",
+  "competition": "Ukrainian Mathematical Olympiad",
+  "gold_final_answer": "First player",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Games / greedy algorithms",
+    "Discrete Mathematics > Combinatorics > Invariants / monovariants"
+  ],
+  "prompt": "Positive integers are written on $2012$ cards, one number on each side. On the first card, numbers $1$ and $2$ are written, on the second, $3$ and $4$, ..., on the $2012$th, $4023$ and $4024$. All cards are arranged in line along a table. Two players play the following game. During each move a player chooses $5$ cards and swaps them. If after his move the set of numbers face up is the same as after one of previous turns, he loses. Which of the players has a winning strategy?",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let a card be in one of two states: one of its two numbers is face up.  \nSo the whole position is determined by which side of each card is showing.\n\nThere are \\(2012\\) cards, and each card has 2 possible visible numbers, so the total number of possible face-up configurations is\n\n\\[\n2^{2012}.\n\\]\n\nNow observe that a move consists of choosing 5 cards and swapping them, i.e. flipping the chosen 5 cards. So each move changes the face-up configuration.\n\nThe rule says: if after your move the set of face-up numbers is the same as after some previous turn, then you lose.  \nThus, every move must produce a configuration never seen before.\n\nSo the game can last for at most the number of distinct configurations. Since there are only \\(2^{2012}\\) possible configurations, after at most \\(2^{2012}\\) moves someone must be unable to make a new one, hence lose.\n\nTherefore the player who makes the last legal new configuration wins. Since the number of possible configurations is finite, the game is a normal finite game in which the second player can mirror optimal play? Not quite: the crucial point is that the first move can always be made, and after each legal move the set of previously seen positions grows by one. Hence the parity of the total number of possible positions determines the winner: here \\(2^{2012}\\) is even, so the second player makes the last move.\n\nSo the second player has a winning strategy.\n\nFinal answer: The second player has a winning strategy.",
+  "usage": {
+    "input_tokens": 173,
+    "output_tokens": 332,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.6548110470175743,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "The second player has a winning strategy."
+  }
+}

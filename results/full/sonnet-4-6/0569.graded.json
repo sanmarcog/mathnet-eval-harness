@@ -1,0 +1,25 @@
+{
+  "id": "0569",
+  "country": "Estonia",
+  "competition": "Estonian Mathematical Olympiad",
+  "gold_final_answer": "No",
+  "topics_flat": [
+    "Number Theory > Modular Arithmetic",
+    "Discrete Mathematics > Combinatorics > Pigeonhole principle"
+  ],
+  "prompt": "Do there exist five distinct prime numbers for which the sum of any three of them is a prime number as well?",
+  "model": "claude-sonnet-4-6",
+  "response_text": "Suppose we have five distinct primes $p_1, p_2, p_3, p_4, p_5$ such that any three of them sum to a prime.\n\nFor a sum of three numbers to be prime (and greater than 2), it must be odd. A sum of three integers is odd if either all three are odd, or exactly one is odd and two are even.\n\nThe only even prime is 2. If we include 2 among our five primes, then consider any three primes that don't include 2: they are all odd, so their sum is odd (could be prime). But consider three primes that include 2: we get 2 + (odd) + (odd) = even. For this to be prime, it must equal 2, which is impossible since all primes are positive and we'd have at least 2 + 3 + 5 = 10. So any three primes including 2 would sum to an even number greater than 2, hence not prime.\n\nTherefore, if 2 is among the five primes, we can pick three others (all odd) along with 2, giving an even sum > 2, which is not prime. So **2 cannot be among the five primes**.\n\nThus all five primes must be odd. The sum of any three odd numbers is odd, so the parity condition is satisfied. Now we need the sum of any three of the five odd primes to be prime.\n\nConsider the five primes modulo 3. Each prime (other than 3) is either ≡ 1 or ≡ 2 (mod 3). If 3 is among the five primes, consider three primes including 3: their sum is 3 + p + q. For this to not be divisible by 3, we need p + q ≢ 0 (mod 3), i.e., p and q should not be ≡ 0, 1+2, or 2+1 (mod 3)... let me think more carefully.\n\nActually, if 3 is one of the five primes, and we pick 3 along with two others $p, q$ (both odd primes ≠ 3), then $3 + p + q$ must be prime. Since $3 + p + q$ is divisible by 3 iff $p + q \\equiv 0 \\pmod{3}$, i.e., iff $p \\equiv -q \\pmod 3$, i.e., $p$ and $q$ are one ≡1 and one ≡2 mod 3.\n\nSo if 3 is included, the other four primes must all be ≡ 1 (mod 3) or all ≡ 2 (mod 3) (to avoid any pair summing to 0 mod 3).\n\nSay all four others are ≡ 1 (mod 3). Then any three of those four sum to ≡ 3 ≡ 0 (mod 3), so divisible by 3, hence not prime (since the sum > 3).\n\nSay all four others are ≡ 2 (mod 3). Then any three of those four sum to ≡ 6 ≡ 0 (mod 3), again divisible by 3 and greater than 3, not prime.\n\nSo if 3 is included, we get a contradiction.\n\nNow suppose none of the five primes is 2 or 3. All five are odd primes ≡ 1 or 2 (mod 3). Among five primes, by pigeonhole, at least three are in the same residue class mod 3. Those three sum to ≡ 0 (mod 3), and since the sum > 3, it's divisible by 3 but not equal to 3, hence not prime.\n\nIn all cases, we reach a contradiction.\n\n**No**, there do not exist five distinct prime numbers for which the sum of any three of them is also prime.\n\nFinal answer: No",
+  "usage": {
+    "input_tokens": 69,
+    "output_tokens": 948,
+    "thinking_tokens": 0
+  },
+  "latency_s": 13.71962693403475,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "exact",
+    "predicted": "No"
+  }
+}

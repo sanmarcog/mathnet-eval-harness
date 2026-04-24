@@ -1,0 +1,21 @@
+{
+  "id": "075o",
+  "country": "India",
+  "competition": "Indija TS 2012",
+  "gold_final_answer": "Exactly the following sets: any singleton containing one prime; any two element set consisting of two and a Fermat prime; and the set of all prime numbers.",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Prime numbers",
+    "Discrete Mathematics > Combinatorics > Pigeonhole principle",
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities"
+  ],
+  "prompt": "Let $S$ be a nonempty set of primes satisfying the property that for each proper subset $P$ of $S$, all the prime factors of the number $\\left(\\prod_{p \\in P} p\\right) - 1$ are also in $S$. Determine all possible such sets $S$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "We claim the only such set is  \n\\[\nS=\\{2\\}.\n\\]\n\n### Step 1: \\(2\\in S\\)\nSince \\(S\\) is nonempty, choose a prime \\(p\\in S\\).  \nTake the proper subset \\(P=\\{p\\}\\) if \\(S\\) has another element, or \\(P=\\varnothing\\) if \\(S=\\{p\\}\\). In either case, the condition forces the prime factors of \\(p-1\\) (or of \\(0\\), impossible), so we must have some prime in \\(S\\) dividing a number of the form \\(p-1\\). In particular, \\(2\\mid p-1\\) for every odd prime \\(p\\), so \\(2\\) must belong to \\(S\\). Thus \\(2\\in S\\).\n\n### Step 2: No odd prime can belong to \\(S\\)\nAssume for contradiction that \\(q\\in S\\) is odd.\n\nThen \\(\\{2\\}\\) is a proper subset of \\(S\\), so all prime factors of\n\\[\n2-1=1\n\\]\nmust lie in \\(S\\), which gives no information.\n\nBut \\(\\{q\\}\\) is also a proper subset of \\(S\\), so all prime factors of\n\\[\nq-1\n\\]\nmust lie in \\(S\\). Since \\(q\\) is odd, \\(q-1\\) is even, so \\(2\\in S\\), already known.\n\nNow consider the proper subset \\(P=\\{2,q\\}\\). Then all prime factors of\n\\[\n2q-1\n\\]\nmust lie in \\(S\\). But \\(2q-1\\) is odd and greater than \\(1\\), so it has an odd prime divisor \\(r\\). Hence \\(r\\in S\\).\n\nRepeating this argument with subsets involving \\(2\\) and any odd prime in \\(S\\) produces larger and larger primes in \\(S\\). In particular, \\(S\\) cannot be finite. But if \\(S\\) is infinite, then taking larger and larger finite proper subsets \\(P\\) makes \\(\\prod_{p\\in P}p-1\\) arbitrarily large, forcing infinitely many primes in \\(S\\), and the condition becomes incompatible with the fact that each such number has prime divisors outside any fixed finite initial segment. The only stable possibility is that no odd prime is present.\n\nSo \\(S\\) contains no odd prime.\n\n### Step 3: Conclude\nSince \\(S\\) is nonempty and contains only the prime \\(2\\), we get\n\\[\nS=\\{2\\}.\n\\]\n\nThis set works: the only proper subset is \\(\\varnothing\\), and the empty product is \\(1\\), which has no prime factors, so the condition is vacuously satisfied.\n\nFinal answer: \\(\\{2\\}\\)",
+  "usage": {
+    "input_tokens": 113,
+    "output_tokens": 622,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 5.972354879020713,
+  "cached": false
+}

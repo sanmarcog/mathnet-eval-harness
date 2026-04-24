@@ -1,0 +1,21 @@
+{
+  "id": "03wv",
+  "country": "China",
+  "competition": "Chinese Mathematical Olympiad",
+  "gold_final_answer": "All odd integers greater than 1",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Counting two ways",
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments",
+    "Discrete Mathematics > Graph Theory > Matchings, Marriage Lemma, Tutte's theorem"
+  ],
+  "prompt": "Find all integers $n$ such that we can color all the edges and the diagonals of a convex $n$-polygon by $n$ given colors satisfying the following conditions;\n(1) Each of the edges or the diagonals is colored by only one color;\n(2) For any three distinct colors, there exists a triangle whose vertices are vertices of the $n$-polygon and three edges are colored by these three colors.",
+  "model": "claude-opus-4-7",
+  "response_text": "<think>\nThis is a known problem. Answer: odd n.\n</think>\n\nFinal answer: <all odd integers n ≥ 3>",
+  "usage": {
+    "input_tokens": 194,
+    "output_tokens": 47,
+    "thinking_tokens": 0
+  },
+  "latency_s": 1.495029657962732,
+  "cached": false
+}

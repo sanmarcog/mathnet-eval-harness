@@ -1,0 +1,25 @@
+{
+  "id": "0dce",
+  "country": "Saudi Arabia",
+  "competition": "SAUDI ARABIAN MATHEMATICAL COMPETITIONS",
+  "gold_final_answer": "If n is even: P(x) = x^m for some positive integer m. If n is odd: P(x) = ± x^m for some positive integer m.",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Polynomial operations",
+    "Algebra > Algebraic Expressions > Functional Equations"
+  ],
+  "prompt": "Let be given a positive integer $n > 1$. Find all polynomials $P(x)$ non constant, with real coefficients such that\n$$\nP(x) P\\left(x^{2}\\right) \\ldots P\\left(x^{n}\\right) = P\\left(x^{\\frac{n(n+1)}{2}}\\right)\n$$\nfor all $x \\in \\mathbb{R}$.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Solution\n\nLet me find all non-constant polynomials with real coefficients satisfying $P(x)P(x^2)\\cdots P(x^n) = P(x^{n(n+1)/2})$.\n\n**Step 1: Determine the degree.**\n\nLet $\\deg P = d$. The left side has degree $d(1 + 2 + \\cdots + n) = d \\cdot \\frac{n(n+1)}{2}$. The right side has degree $d \\cdot \\frac{n(n+1)}{2}$. This is consistent for any $d$.\n\n**Step 2: Try $P(x) = x^k$.**\n\nThen $P(x)P(x^2)\\cdots P(x^n) = x^k \\cdot x^{2k} \\cdots x^{nk} = x^{k \\cdot n(n+1)/2} = P(x^{n(n+1)/2})$. ✓\n\n**Step 3: Try $P(x) = x^k$ times a constant, or more generally $P(x) = cx^k$.**\n\nThen LHS $= c^n x^{kn(n+1)/2}$ and RHS $= c x^{kn(n+1)/2}$. So we need $c^n = c$, giving $c^{n-1} = 1$. Since $c$ is real and $n > 1$, we get $c = 1$ (for $n-1$ even, $c = \\pm 1$; but $c = -1$ requires $(-1)^{n-1} = 1$, i.e., $n$ odd).\n\nActually let me reconsider more carefully.\n\n**Step 4: Try $P(x) = x^m$ for general $m \\geq 1$.**\n\nThis works as shown above.\n\n**Step 5: Analyze roots.**\n\nIf $r$ is a root of $P$ with multiplicity $m$, then from $P(x)P(x^2)\\cdots P(x^n) = P(x^{n(n+1)/2})$:\n\n- The right side has roots at $x$ where $x^{n(n+1)/2} = r$, each with multiplicity $m$.\n- The left side: $x^k = r$ contributes roots for $k = 1, \\ldots, n$.\n\nFor $r = 0$: If $P(x) = x^d Q(x)$ with $Q(0) \\neq 0$, then the $x=0$ multiplicity on LHS is $d(1+2+\\cdots+n) = d\\cdot\\frac{n(n+1)}{2}$ and on RHS is $d\\cdot\\frac{n(n+1)}{2}$. ✓\n\nFor any nonzero root $r$ of $P$: The values $r^{1/k}$ for $k=1,\\ldots,n$ (real roots) would need to be roots of $P$ as well, leading to infinitely many roots unless $P$ has no nonzero roots.\n\n**Step 6: Conclude $P(x) = x^d$.**\n\nSuppose $P$ has a nonzero real root $r$. Then $r^{1/k}$ must be a root for each $k = 1, \\ldots, n$ (considering real values), and iterating this gives infinitely many roots — contradiction. For complex roots, similar reasoning applies since we work over $\\mathbb{R}$ and complex roots come in conjugate pairs, but the functional equation forces infinitely many roots.\n\nTherefore $P(x) = ax^d$ for some $a \\neq 0$ and $d \\geq 1$.\n\nFrom Step 3: $a^n = a$, so $a^{n-1} = 1$. Since $a$ is real: $a = 1$, or $a = -1$ when $n-1$ is odd (i.e., $n$ is even).\n\n- If $n$ is odd: $a = 1$, so $P(x) = x^d$.\n- If $n$ is even: $a = \\pm 1$, so $P(x) = x^d$ or $P(x) = -x^d$.\n\nCheck $P(x) = -x^d$ with $n$ even: LHS $= (-1)^n x^{d\\cdot n(n+1)/2} = x^{d\\cdot n(n+1)/2}$, RHS $= -x^{d\\cdot n(n+1)/2}$. This fails!\n\nSo $a = 1$ always, giving:\n\n$$\\boxed{P(x) = x^d}$$\n\nfor any positive integer $d \\geq 1$.\n\nFinal answer: $P(x) = x^d$ for any positive integer $d \\geq 1$.",
+  "usage": {
+    "input_tokens": 150,
+    "output_tokens": 1216,
+    "thinking_tokens": 0
+  },
+  "latency_s": 18.044582736096345,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "$P(x) = x^d$ for any positive integer $d \\geq 1$."
+  }
+}

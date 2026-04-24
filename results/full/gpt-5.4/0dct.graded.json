@@ -1,0 +1,27 @@
+{
+  "id": "0dct",
+  "country": "Saudi Arabia",
+  "competition": "SAUDI ARABIAN MATHEMATICAL COMPETITIONS",
+  "gold_final_answer": "10",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments",
+    "Discrete Mathematics > Combinatorics > Invariants / monovariants",
+    "Number Theory > Divisibility / Factorization > Prime numbers",
+    "Number Theory > Divisibility / Factorization > Factorization techniques"
+  ],
+  "prompt": "Let $n$ be a positive integer. Each number from $1, 2, 3, \\ldots, 1000$ was painted one of $n$ colors. It turned out that every two distinct numbers, one of which is a divisor of the other one, have different colors. Find the smallest $n$ for which such situation is possible.",
+  "model": "gpt-5.4",
+  "response_text": "We need color the poset \\(\\{1,2,\\dots,1000\\}\\) so that comparable elements under divisibility get different colors.  \nThus the minimum number of colors equals the size of the largest chain in this poset.\n\nSo we need the maximum possible length of\n\\[\na_1 \\mid a_2 \\mid \\cdots \\mid a_k,\\qquad 1\\le a_i\\le 1000,\n\\]\nwith all \\(a_i\\) distinct.\n\nIn such a chain, each step multiplies by an integer at least \\(2\\), so\n\\[\na_k \\ge a_1\\cdot 2^{k-1}\\ge 2^{k-1}.\n\\]\nSince \\(a_k\\le 1000\\), we get\n\\[\n2^{k-1}\\le 1000.\n\\]\nNow\n\\[\n2^9=512,\\qquad 2^{10}=1024>1000,\n\\]\nso \\(k-1\\le 9\\), hence \\(k\\le 10\\).\n\nThis bound is attainable, for example by\n\\[\n1\\mid 2\\mid 4\\mid 8\\mid 16\\mid 32\\mid 64\\mid 128\\mid 256\\mid 512,\n\\]\nwhich has length \\(10\\).\n\nTherefore the largest chain has size \\(10\\), so at least \\(10\\) colors are necessary.\n\nIt remains to show \\(10\\) colors are sufficient.  \nDefine the color of \\(m\\) to be \\(v_2(m)\\), the exponent of \\(2\\) in \\(m\\), plus \\(1\\). Since \\(m\\le 1000\\), we have \\(v_2(m)\\le 9\\), so this uses at most \\(10\\) colors.\n\nIf \\(a\\mid b\\) and \\(a\\ne b\\), then \\(b=a\\cdot t\\) for some integer \\(t>1\\). Along any divisibility chain, the quantity\n\\[\n\\Omega(m)=\\text{total number of prime factors of }m\\text{ counted with multiplicity}\n\\]\nstrictly increases, and \\(\\Omega(m)\\le 9\\) for \\(m\\le 1000\\) because \\(2^{10}>1000\\). So coloring by \\(\\Omega(m)+1\\) gives at most \\(10\\) colors, and whenever \\(a\\mid b\\) with \\(a\\ne b\\), we have \\(\\Omega(a)<\\Omega(b)\\), hence different colors.\n\nThus \\(10\\) colors are sufficient and necessary.\n\nFinal answer: 10",
+  "usage": {
+    "input_tokens": 123,
+    "output_tokens": 565,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 8.658797828946263,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "exact",
+    "predicted": "10"
+  }
+}

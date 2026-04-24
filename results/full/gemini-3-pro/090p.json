@@ -1,0 +1,21 @@
+{
+  "id": "090p",
+  "country": "Japan",
+  "competition": "The 35th Japanese Mathematical Olympiad",
+  "gold_final_answer": "20!^3",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Recursion, bijection",
+    "Discrete Mathematics > Combinatorics > Invariants / monovariants",
+    "Discrete Mathematics > Combinatorics > Games / greedy algorithms"
+  ],
+  "prompt": "Alice plays a game using a board with 20 rows and 25 columns. Initially, no number is written in any of the $20 \\times 25$ cells. The game proceeds in several turns, and on the $n$-th turn, the following operation is performed:\nChoose a positive integer $k$ and $k$ empty cells $A_1, A_2, \\dots, A_k$ such that for every integer $i$ with $1 \\le i \\le k-1$, the cell $A_{i+1}$ is adjacent to $A_i$ either to the right or above. Write the number $n$ in each of these $k$ cells.\nThe game ends when all cells on the board are filled with some numbers. When Alice plays optimally to minimize the number of turns until the game ends, how many different possible numberings of the board can be obtained when the game ends?\nNote: Numberings that are identical under rotation or reflection are considered distinct and counted as different.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find the number of different possible numberings of the board, we need to determine the number of ways to partition the $20 \\times 25$ board into the minimum number of valid right-up paths, and then multiply by the number of ways to assign the turn numbers to these paths.\n\n**1. Minimum Number of Turns**\nA right-up path can contain at most one cell from each anti-diagonal (cells $(x,y)$ where $x+y = c$). The largest anti-diagonal in an $R \\times C$ board has size $\\min(R, C)$. By Dilworth's Theorem, the minimum number of right-up paths needed to cover the board is exactly $\\min(R, C)$. \nFor a $20 \\times 25$ board, Alice needs exactly 20 turns.\n\n**2. Number of Partitions into 20 Paths**\nWe are looking for the number of ways to partition an $R \\times C$ grid into $R$ right-up paths. \nA partition of the grid into $R$ right-up paths is uniquely determined by $R-1$ non-intersecting boundary paths that separate the $R$ paths. These boundary paths must also move right and up along the grid lines.\nIt is a known combinatorial result that the number of ways to partition an $R \\times C$ grid into $R$ right-up paths is given by the number of standard Young tableaux of a certain shape, or equivalently, it corresponds to the number of ways to",
+  "usage": {
+    "input_tokens": 257,
+    "output_tokens": 327,
+    "thoughts_tokens": 7861
+  },
+  "latency_s": 74.83888721303083,
+  "cached": false
+}

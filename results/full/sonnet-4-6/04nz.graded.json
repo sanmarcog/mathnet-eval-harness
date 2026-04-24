@@ -1,0 +1,25 @@
+{
+  "id": "04nz",
+  "country": "Croatia",
+  "competition": "Croatia_2018",
+  "gold_final_answer": "2, 9, 38",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Sequences and Series > Telescoping series",
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities"
+  ],
+  "prompt": "Let $a_1, a_2, \\dots, a_{41}$ be an arithmetic sequence such that\n$$\n\\frac{1}{\\sqrt{a_1} + \\sqrt{a_2}} + \\frac{1}{\\sqrt{a_2} + \\sqrt{a_3}} + \\dots + \\frac{1}{\\sqrt{a_{40}} + \\sqrt{a_{41}}}\n$$\nis a positive integer. If $a_1 = 1$, and the common difference of the sequence is a positive integer, find the common difference.\n*(Anastazija Pažanin)*",
+  "model": "claude-sonnet-4-6",
+  "response_text": "Let the common difference be $d$. Then $a_k = 1 + (k-1)d$.\n\nRationalize each term:\n$$\\frac{1}{\\sqrt{a_k} + \\sqrt{a_{k+1}}} = \\frac{\\sqrt{a_{k+1}} - \\sqrt{a_k}}{a_{k+1} - a_k} = \\frac{\\sqrt{a_{k+1}} - \\sqrt{a_k}}{d}$$\n\nThe sum telescopes:\n$$\\sum_{k=1}^{40} \\frac{1}{\\sqrt{a_k} + \\sqrt{a_{k+1}}} = \\frac{\\sqrt{a_{41}} - \\sqrt{a_1}}{d} = \\frac{\\sqrt{1 + 40d} - 1}{d}$$\n\nWe need this to be a positive integer $n$:\n$$\\frac{\\sqrt{1 + 40d} - 1}{d} = n$$\n\nSo $\\sqrt{1 + 40d} = 1 + nd$, which gives:\n$$1 + 40d = 1 + 2nd + n^2d^2$$\n$$40d = 2nd + n^2d^2$$\n$$40 = 2n + n^2d$$\n$$n^2 d = 40 - 2n$$\n$$d = \\frac{40 - 2n}{n^2} = \\frac{2(20-n)}{n^2}$$\n\nFor $d$ to be a positive integer:\n- $20 - n > 0 \\Rightarrow n < 20$\n- $n^2 \\mid 2(20-n)$\n\nSince $d$ must be a positive integer, $n^2$ divides $2(20-n)$.\n\nNote that $2(20-n) = 40 - 2n$. Since $n < 20$ and $n \\geq 1$, we have $40 - 2n \\leq 38$.\n\nAlso $n^2 \\leq 40 - 2n$, so $n^2 + 2n \\leq 40$, giving $n \\leq 5$ (since $6^2 + 12 = 48 > 40$).\n\nCheck $n = 1$: $d = 38/1 = 38$ ✓\nCheck $n = 2$: $d = 36/4 = 9$ ✓\nCheck $n = 3$: $d = 34/9$ — not integer\nCheck $n = 4$: $d = 32/16 = 2$ ✓\nCheck $n = 5$: $d = 30/25 = 6/5$ — not integer\n\nSo possible values: $d = 38, 9, 2$.\n\nWe need to verify $\\sqrt{1+40d}$ is real and the sum is indeed a positive integer (already ensured by construction). Also need $1 + nd > 0$ which is satisfied.\n\nThe problem says \"find the common difference\" suggesting a unique answer. Let me re-read... The problem asks to find the common difference given that the sum is a positive integer and $d$ is a positive integer. There are multiple solutions: $d = 2, 9, 38$.\n\nWait, perhaps the problem expects all valid values or there's an additional constraint. Since the problem says \"find the common difference\" (singular), perhaps I need to reconsider.\n\nActually, looking again: all three values $d = 2, 9, 38$ are valid. But competition problems typically have a unique answer. Let me check if there's a constraint I missed.\n\nThe problem states the sum is a positive integer - this is a condition, not something to find. The answer should be unique. Perhaps the problem intends the smallest or there's a uniqueness argument I'm missing.\n\nActually, competition problems sometimes list all answers. The values are $d \\in \\{2, 9, 38\\}$.\n\nBut given the phrasing \"find the common difference,\" likely all three are acceptable answers. However, if forced to pick one, $d = 9$ gives $n = 2$ which is a clean answer. But $d = 2$ gives $n = 4$, also clean.\n\nGiven competition context, the answer is likely **$d = 9$** (middle value, $n=2$), but all three work. Let me present all solutions.\n\nThe valid common differences are $d = 2, 9, 38$.\n\nFinal answer: $d \\in \\{2, 9, 38\\}$",
+  "usage": {
+    "input_tokens": 190,
+    "output_tokens": 1107,
+    "thinking_tokens": 0
+  },
+  "latency_s": 16.437475824030116,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "$d \\in \\{2, 9, 38\\}$"
+  }
+}

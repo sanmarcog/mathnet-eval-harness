@@ -1,0 +1,21 @@
+{
+  "id": "07ug",
+  "country": "Ireland",
+  "competition": "IRL_ABooklet",
+  "gold_final_answer": "10, 21, 32, 43, 54, 65, 76, 87, 98",
+  "topics_flat": [
+    "Number Theory > Other",
+    "Algebra > Prealgebra / Basic Algebra > Integers",
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities"
+  ],
+  "prompt": "For any positive integer $N$ we denote by $\\overline\\{N\\}$ the number obtained by writing the digits of $N$ from right to left. For instance, if $N = 2395$ then $\\overline\\{N\\} = 5932$ and if $N = 3780$ then $\\overline\\{N\\} = 873$.\nFind all positive integers $N$ such that $N - \\overline\\{N\\} = 9$.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find all positive integers $N$ such that $N - \\overline{N} = 9$, let's analyze the number of digits of $N$.\n\nLet $N$ be a $(k+1)$-digit number, so we can write it in base 10 as $N = d_k 10^k + d_{k-1} 10^{k-1} + \\dots + d_1 10 + d_0$, where $d_k \\neq 0$ and $d_i \\in \\{0, 1, \\dots, 9\\}$.\nThe reversed number is $\\overline{N} = d_0 10^k + d_1 10^{k-1} + \\dots + d_{k-1} 10 + d_k$. (Note that if $d_0 = 0$, $\\overline{N}$ simply has fewer digits, but this algebraic expression remains perfectly valid).\n\nThe difference is:\n$N - \\overline{N} = (d_k - d_0)(10^k - 1) + (d_{k-1} - d_1)(10^{k-1} - 10) + \\dots = 9$\n\nTaking this equation modulo 10, we get:\n$d_0 - d_k \\equiv 9 \\pmod{10}$\nSince $d_k$ and $d_0$ are digits and $d_k \\neq 0$, the only way this is possible is if $d_0 - d_k = -1$, which means $d_k - d_0 = 1$.\n\n**Case 1: $N$ is a 2-digit number ($k = 1$)**\nThe equation simplifies to:\n$N - \\overline{N} = 9(d_1 - d_0) = 9 \\implies d_1 - d_0 = 1$\nSince $d_1 \\in \\{1, \\dots, 9\\}$ and $d_0 \\in \\{0, \\dots, 8\\}$, the possible pairs for $(d_1, d_0)$ are $(1,0), (2,1), (3,2), (4,3), (5,4), (6,5), (7,6), (8,7),$ and $(9,8)$.\nThis gives the numbers: 10, 21, 32, 43, 54, 65, 76, 87, 98.\n\n**Case 2: $N$ has 3 or more digits ($k \\ge 2$)**\nSubstitute $d_k - d_0 = 1$ into the difference equation:\n$N - \\overline{N} = 10^k - 1 + 10 \\cdot M = 9$\nwhere $M = (d_{k-1} - d_1)10^{k-2} + \\dots + (d_1 - d_{k-1})$ is the difference between the number formed by the inner digits of $N$ and its reversal.\nSolving for $M$, we get:\n$10 \\cdot M = 10 - 10^k \\implies M = 1 - 10^{k-1}$\nHowever, $M$ is the difference between a $(k-1)$-digit number and its reversal. The maximum possible absolute difference between any $(k-1)$-digit number and its reversal is $10^{k-1} - 1$, which occurs only if the number is $00\\dots0$ and its reversal is $99\\dots9$ (or vice versa). But the reversal of $00\\dots0$ is just $0$, not $99\\dots9$. Thus, the difference $M$ can never be as small as $1 - 10^{k-1}$ (i.e., $-99\\dots9$). \nTherefore, there are no solutions for $k \\ge 2$.\n\nFinal answer: 10, 21, 32, 43, 54, 65, 76, 87, 98",
+  "usage": {
+    "input_tokens": 141,
+    "output_tokens": 931,
+    "thoughts_tokens": 4383
+  },
+  "latency_s": 37.778753548976965,
+  "cached": false
+}

@@ -1,0 +1,27 @@
+{
+  "id": "0dct",
+  "country": "Saudi Arabia",
+  "competition": "SAUDI ARABIAN MATHEMATICAL COMPETITIONS",
+  "gold_final_answer": "10",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments",
+    "Discrete Mathematics > Combinatorics > Invariants / monovariants",
+    "Number Theory > Divisibility / Factorization > Prime numbers",
+    "Number Theory > Divisibility / Factorization > Factorization techniques"
+  ],
+  "prompt": "Let $n$ be a positive integer. Each number from $1, 2, 3, \\ldots, 1000$ was painted one of $n$ colors. It turned out that every two distinct numbers, one of which is a divisor of the other one, have different colors. Find the smallest $n$ for which such situation is possible.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find the smallest number of colors $n$ needed, we can model this problem using a partially ordered set (poset) where the elements are the integers from $1$ to $1000$, and the order relation is divisibility ($a \\le b$ if $a$ divides $b$). \n\nThe problem requires that if $a$ divides $b$ and $a \\neq b$, they must have different colors. This means that any sequence of numbers where each divides the next (a chain in our poset) must be colored with completely distinct colors. \n\nThe minimum number of colors required to color the poset such that no two comparable elements share the same color is equal to the length of the longest chain in the poset. \n\nTo find the longest chain of divisors in the set $\\{1, 2, \\ldots, 1000\\}$, we should start with $1$ and multiply by the smallest possible integer greater than $1$ at each step, which is the smallest prime, $2$. \nThis gives us the sequence of powers of $2$:\n$2^0 = 1$\n$2^1 = 2$\n$2^2 = 4$\n$2^3 = 8$\n$2^4 = 16$\n$2^5 = 32$\n$2^6 = 64$\n$2^7 = 128$\n$2^8 = 256$\n$2^9 = 512$\n\nThe next power of $2$ is $2^{10} = 1024$, which is greater than $1000$. \nThis chain has exactly $10$ elements. Since every element in this chain divides the subsequent ones, all $10$ elements must be painted with different colors. Thus, we need at least $10$ colors.\n\nWe can achieve exactly $10$ colors by coloring each number $x$ based on the total number of its prime factors (counted with multiplicity). Let $\\Omega(x)$ be the number of prime factors of $x$. For example, $\\Omega(1) = 0$, $\\Omega(2) = 1$, $\\Omega(4) = 2$, and so on. If $a$ is a proper divisor of $b$, then $b$ must have at least one more prime factor than $a$, meaning $\\Omega(a) < \\Omega(b)$. \nThe maximum number of prime factors for any integer up to $1000$ is $9$ (which occurs for $512 = 2^9$ and $768 = 2^8 \\cdot 3$). \nThus, $\\Omega(x)$ ranges from $0$ to $9$, giving exactly $10$ possible values. Assigning color $\\Omega(x) + 1$ to each number $x$ satisfies all the conditions using exactly $10$ colors.\n\nFinal answer: 10",
+  "usage": {
+    "input_tokens": 115,
+    "output_tokens": 641,
+    "thoughts_tokens": 1188
+  },
+  "latency_s": 15.739347231108695,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "exact",
+    "predicted": "10"
+  }
+}

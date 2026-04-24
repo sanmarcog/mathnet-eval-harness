@@ -1,0 +1,20 @@
+{
+  "id": "0h97",
+  "country": "Ukraine",
+  "competition": "The Problems of Ukrainian Authors",
+  "gold_final_answer": "2197",
+  "topics_flat": [
+    "Geometry > Solid Geometry > 3D Shapes",
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities"
+  ],
+  "prompt": "The cube is cut into $2010$ smaller cubes. $2008$ of them are unit cubes (cubes of side $1$) and edges of another $2$ cubes are assigned integer numbers (different from $1$). Find the volume of the big cube.\n\n(Serhiy Zhydkov)",
+  "model": "claude-opus-4-7",
+  "response_text": "<think>\nBig cube side n, with 2008 unit cubes + 2 cubes of integer side a,b (a,b≥2). n³ = 2008 + a³ + b³.\n\nTry small n. n=13: 2197-2008=189=a³+b³. 189=125+64=5³+4³. Yes!\nCheck feasibility: can we fit cubes of side 5 and 4 in 13-cube with rest unit? Likely yes.\n\nVolume = 2197.\n</think>\n\nFinal answer: 2197",
+  "usage": {
+    "input_tokens": 161,
+    "output_tokens": 169,
+    "thinking_tokens": 0
+  },
+  "latency_s": 2.9468274139799178,
+  "cached": false
+}

@@ -1,0 +1,24 @@
+{
+  "id": "0cfm",
+  "country": "Romania",
+  "competition": "74th NMO Shortlisted Problems",
+  "gold_final_answer": "60%",
+  "topics_flat": [
+    "Algebra > Prealgebra / Basic Algebra > Simple Equations"
+  ],
+  "prompt": "The path from Little Red Riding Hood to Grandma has ups, downs and flat portions. When walking, LRRH goes up two times slower and goes down two times faster than on flat ground. When riding her bike, she goes up three times slower and goes down three times faster than on flat ground.\n\nLRRH noticed that, when walking, the way back home from Grandma takes 18 minutes less than the way from home to Grandma, and when she rides her bike, the way back home from Grandma takes 20 minutes less than the way from home to Grandma. By what percentage is LRRH's speed larger by bike than by foot?",
+  "model": "claude-sonnet-4-6",
+  "response_text": "Let me denote the flat speed walking as $v$ and flat speed biking as $u$.\n\nLet the path have:\n- $a$ = distance of uphill sections (going from home to grandma)\n- $b$ = distance of downhill sections (going from home to grandma)\n- $c$ = distance of flat sections\n\n**Walking: Home to Grandma**\nTime = $\\frac{a}{v/2} + \\frac{b}{2v} + \\frac{c}{v} = \\frac{2a}{v} + \\frac{b}{2v} + \\frac{c}{v}$\n\n**Walking: Grandma to Home** (uphill and downhill swap)\nTime = $\\frac{a}{2v} + \\frac{2b}{v} + \\frac{c}{v}$\n\nDifference (home→grandma minus grandma→home):\n$$\\frac{2a}{v} + \\frac{b}{2v} - \\frac{a}{2v} - \\frac{2b}{v} = \\frac{3a}{2v} - \\frac{3b}{2v} = \\frac{3(a-b)}{2v} = 18 \\text{ min}$$\n\nSo: $\\frac{3(a-b)}{2v} = 18$, giving $\\frac{a-b}{v} = 12$.\n\n**Biking: Home to Grandma**\nTime = $\\frac{a}{u/3} + \\frac{b}{3u} + \\frac{c}{u} = \\frac{3a}{u} + \\frac{b}{3u} + \\frac{c}{u}$\n\n**Biking: Grandma to Home**\nTime = $\\frac{a}{3u} + \\frac{3b}{u} + \\frac{c}{u}$\n\nDifference (home→grandma minus grandma→home):\n$$\\frac{3a}{u} + \\frac{b}{3u} - \\frac{a}{3u} - \\frac{3b}{u} = \\frac{8a}{3u} - \\frac{8b}{3u} = \\frac{8(a-b)}{3u} = 20 \\text{ min}$$\n\nSo: $\\frac{a-b}{u} = \\frac{60}{8} = \\frac{15}{2}$.\n\n**Finding the ratio:**\n$$\\frac{u}{v} = \\frac{(a-b)/v}{(a-b)/u} = \\frac{12}{15/2} = \\frac{12 \\times 2}{15} = \\frac{24}{15} = \\frac{8}{5} = 1.6$$\n\nThe bike speed is 60% larger than walking speed.\n\nFinal answer: 60%",
+  "usage": {
+    "input_tokens": 194,
+    "output_tokens": 702,
+    "thinking_tokens": 0
+  },
+  "latency_s": 8.787238984019496,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "exact",
+    "predicted": "60%"
+  }
+}

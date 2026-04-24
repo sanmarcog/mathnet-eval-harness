@@ -1,0 +1,25 @@
+{
+  "id": "0cgs",
+  "country": "Romania",
+  "competition": "74th Romanian Mathematical Olympiad",
+  "gold_final_answer": "s(M) = 6 in the equilateral case; if s(M) takes the same value at three distinct points on the circle, then triangle ABC is equilateral.",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Analytic / Coordinate Methods > Complex numbers in geometry",
+    "Geometry > Plane Geometry > Triangles > Triangle centers: centroid, incenter, circumcenter, orthocenter, Euler line, nine-point circle"
+  ],
+  "prompt": "Let $ABC$ be a triangle inscribed in the circle $C$ with center $O$ and radius $1$. For any point $M \\in C \\setminus \\{A, B, C\\}$, we denote $s(M) = OH_1^2 + OH_2^2 + OH_3^2$, where $H_1$, $H_2$, and $H_3$ are the orthocenters of triangles $MAB$, $MBC$, and $MCA$, respectively.\n\na) Prove that if triangle $ABC$ is equilateral, then $s(M) = 6$, for any $M \\in C \\setminus \\{A, B, C\\}$.\n\nb) Prove that if there exist three distinct points $M_1, M_2, M_3 \\in C \\setminus \\{A, B, C\\}$ such that $s(M_1) = s(M_2) = s(M_3)$, then triangle $ABC$ is equilateral.",
+  "model": "gpt-5.4",
+  "response_text": "Let the circumcenter be the origin \\(O=(0,0)\\), and identify the circumcircle \\(C\\) with the unit circle in the plane.  \nWrite the position vectors of \\(A,B,C,M\\) as \\(a,b,c,m\\), with\n\\[\n|a|=|b|=|c|=|m|=1.\n\\]\n\nWe use a standard vector fact:\n\n> If \\(X,Y,Z\\) lie on the unit circle centered at the origin, then the orthocenter of triangle \\(XYZ\\) has position vector\n\\[\nx+y+z.\n\\]\n\nIndeed, for triangle \\(XYZ\\), the vector \\(x+y+z\\) lies on all three altitudes since\n\\[\n(x+y+z-x)\\cdot (y-z)=(y+z)\\cdot(y-z)=|y|^2-|z|^2=0,\n\\]\nand similarly for the others.\n\nThus the orthocenters of \\(MAB,MBC,MCA\\) are\n\\[\nh_1=m+a+b,\\qquad h_2=m+b+c,\\qquad h_3=m+c+a.\n\\]\nTherefore\n\\[\ns(M)=|m+a+b|^2+|m+b+c|^2+|m+c+a|^2.\n\\]\n\nWe now expand this.\n\nSince all vectors have norm \\(1\\),\n\\[\n|m+a+b|^2=|m|^2+|a|^2+|b|^2+2m\\cdot a+2m\\cdot b+2a\\cdot b\n=3+2m\\cdot a+2m\\cdot b+2a\\cdot b.\n\\]\nSumming cyclically,\n\\[\ns(M)=9+4\\,m\\cdot(a+b+c)+2(a\\cdot b+b\\cdot c+c\\cdot a). \\tag{1}\n\\]\n\n## a) Equilateral case\n\nIf \\(ABC\\) is equilateral on the unit circle, then\n\\[\na+b+c=0.\n\\]\nAlso,\n\\[\na\\cdot b=b\\cdot c=c\\cdot a=\\cos 120^\\circ=-\\frac12,\n\\]\nso\n\\[\na\\cdot b+b\\cdot c+c\\cdot a=-\\frac32.\n\\]\nSubstitute into (1):\n\\[\ns(M)=9+4m\\cdot 0+2\\left(-\\frac32\\right)=9-3=6.\n\\]\nHence \\(s(M)=6\\) for every \\(M\\in C\\setminus\\{A,B,C\\}\\).\n\n---\n\n## b) Three distinct points with equal \\(s(M)\\)\n\nFrom (1),\n\\[\ns(M)=\\Bigl(9+2(a\\cdot b+b\\cdot c+c\\cdot a)\\Bigr)+4\\,m\\cdot(a+b+c).\n\\]\nSo as \\(M\\) varies on the circumcircle, \\(s(M)\\) has the form\n\\[\ns(M)=K+4\\,m\\cdot u,\n\\]\nwhere\n\\[\nu:=a+b+c,\\qquad K:=9+2(a\\cdot b+b\\cdot c+c\\cdot a).\n\\]\n\nThus \\(s(M)\\) is an affine linear function of the point \\(m\\) on the circle.\n\nIf \\(u\\neq 0\\), then \\(m\\cdot u\\) is not constant on the unit circle. In fact, for any fixed value \\(t\\), the equation\n\\[\nm\\cdot u=t\n\\]\nrepresents a line, and a line meets a circle in at most two points. Hence the equation \\(s(M)=\\text{constant}\\) can have at most two points \\(M\\) on the circle.\n\nBut we are given three distinct points \\(M_1,M_2,M_3\\) such that\n\\[\ns(M_1)=s(M_2)=s(M_3).\n\\]\nTherefore it must be that\n\\[\nu=a+b+c=0.\n\\]\n\nNow for three unit vectors \\(a,b,c\\), the condition \\(a+b+c=0\\) implies they are the vertices of an equilateral triangle on the unit circle. Indeed,\n\\[\n0=|a+b+c|^2=|a|^2+|b|^2+|c|^2+2(a\\cdot b+b\\cdot c+c\\cdot a)\n=3+2(a\\cdot b+b\\cdot c+c\\cdot a).\n\\]\nSo\n\\[\na\\cdot b+b\\cdot c+c\\cdot a=-\\frac32.\n\\]\nSince each dot product is at least \\(-1\\), equality of the sum to \\(-\\tfrac32\\) forces\n\\[\na\\cdot b=b\\cdot c=c\\cdot a=-\\frac12,\n\\]\nhence each central angle is \\(120^\\circ\\). Therefore \\(ABC\\) is equilateral.\n\nSo the existence of three distinct points with equal \\(s(M)\\) implies that \\(ABC\\) is equilateral.\n\nFinal answer: \n\\[\n\\boxed{\\text{a) If }ABC\\text{ is equilateral, then }s(M)=6\\text{ for all }M.}\n\\]\n\\[\n\\boxed{\\text{b) If }s(M_1)=s(M_2)=s(M_3)\\text{ for three distinct }M_i\\in C\\setminus\\{A,B,C\\},\\text{ then }ABC\\text{ is equilateral.}}\n\\]",
+  "usage": {
+    "input_tokens": 270,
+    "output_tokens": 1210,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 17.28997706901282,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "\\text{b) If }s(M_1)=s(M_2)=s(M_3)\\text{ for three distinct }M_i\\in C\\setminus\\{A,B,C\\},\\text{ then }ABC\\text{ is equilateral.}"
+  }
+}

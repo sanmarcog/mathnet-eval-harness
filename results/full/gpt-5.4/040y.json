@@ -1,0 +1,19 @@
+{
+  "id": "040y",
+  "country": "China",
+  "competition": "China Mathematical Competition",
+  "gold_final_answer": "61/243",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Sequences and Series > Recurrence relations"
+  ],
+  "prompt": "An information station employs four different codes, $A$, $B$, $C$ and $D$, for communication, but each week uses only one of them. The code used in a definite week is randomly selected with equal chance among the three ones that have not been used in the last week. Suppose the code used in the first week is $A$. Then the probability that $A$ is also used in the seventh week is _______. (expressed as an irreducible fraction)",
+  "model": "gpt-5.4",
+  "response_text": "Let \\(X_n\\) be the code used in week \\(n\\). There are 4 codes, and each week the next code is chosen uniformly from the 3 codes different from the previous week's code.\n\nWe want\n\\[\nP(X_7=A\\mid X_1=A).\n\\]\n\nThis is a Markov chain on 4 states. By symmetry, starting from \\(A\\), at any later week there are only two kinds of states:\n\n- being at \\(A\\),\n- being at one of the other 3 letters.\n\nLet\n\\[\np_n=P(X_n=A\\mid X_1=A).\n\\]\nThen \\(p_1=1\\).\n\nTo be at \\(A\\) in week \\(n+1\\), we must be at one of \\(B,C,D\\) in week \\(n\\), and then move to \\(A\\), which has probability \\(1/3\\). Thus\n\\[\np_{n+1}=\\frac{1-p_n}{3}.\n\\]\n\nNow compute:\n\n\\[\np_1=1,\n\\]\n\\[\np_2=\\frac{1-1}{3}=0,\n\\]\n\\[\np_3=\\frac{1-0}{3}=\\frac13,\n\\]\n\\[\np_4=\\frac{1-\\frac13}{3}=\\frac{2}{9},\n\\]\n\\[\np_5=\\frac{1-\\frac29}{3}=\\frac{7}{27},\n\\]\n\\[\np_6=\\frac{1-\\frac{7}{27}}{3}=\\frac{20}{81},\n\\]\n\\[\np_7=\\frac{1-\\frac{20}{81}}{3}=\\frac{61}{243}.\n\\]\n\nTherefore, the required probability is\n\nFinal answer: \\(\\frac{61}{243}\\)",
+  "usage": {
+    "input_tokens": 147,
+    "output_tokens": 388,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 5.454774809884839,
+  "cached": false
+}

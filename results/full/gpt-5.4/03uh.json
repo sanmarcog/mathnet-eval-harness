@@ -1,0 +1,20 @@
+{
+  "id": "03uh",
+  "country": "China",
+  "competition": "China Mathematical Competition",
+  "gold_final_answer": "2/3",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Analytic / Coordinate Methods > Vectors",
+    "Geometry > Plane Geometry > Triangles > Triangle trigonometry"
+  ],
+  "prompt": "Given $\\triangle ABC$ and $\\triangle AEF$ such that $B$ is the midpoint of $EF$. Also, $AB = EF = 1$, $BC = 6$, $CA = \\sqrt{33}$, and $\\overrightarrow{AB} \\cdot \\overrightarrow{AE} + \\overrightarrow{AC} \\cdot \\overrightarrow{AF} = 2$. The cosine of the angle between $\\overrightarrow{EF}$ and $\\overrightarrow{BC}$ is ______.",
+  "model": "gpt-5.4",
+  "response_text": "Let \\(A\\) be the origin, and write vectors\n\\[\n\\vec{AB}=\\mathbf b,\\quad \\vec{AC}=\\mathbf c,\\quad \\vec{AE}=\\mathbf e,\\quad \\vec{AF}=\\mathbf f.\n\\]\n\nWe are given:\n\n- \\(AB=|\\mathbf b|=1\\)\n- \\(EF=|\\mathbf f-\\mathbf e|=1\\)\n- \\(B\\) is the midpoint of \\(EF\\), so\n  \\[\n  \\mathbf b=\\frac{\\mathbf e+\\mathbf f}{2}.\n  \\]\n- \\(BC=|\\mathbf c-\\mathbf b|=6\\)\n- \\(CA=|\\mathbf c|=\\sqrt{33}\\)\n- \\(\\mathbf b\\cdot \\mathbf e+\\mathbf c\\cdot \\mathbf f=2\\)\n\nWe want the cosine of the angle between \\(\\overrightarrow{EF}\\) and \\(\\overrightarrow{BC}\\), i.e. between \\(\\mathbf f-\\mathbf e\\) and \\(\\mathbf c-\\mathbf b\\).\n\nSince \\(B\\) is the midpoint of \\(EF\\), let\n\\[\n\\mathbf e=\\mathbf b-\\mathbf u,\\qquad \\mathbf f=\\mathbf b+\\mathbf u.\n\\]\nThen\n\\[\n\\mathbf f-\\mathbf e=2\\mathbf u,\n\\]\nand since \\(EF=1\\),\n\\[\n|2\\mathbf u|=1 \\implies |\\mathbf u|=\\frac12.\n\\]\n\nAlso,\n\\[\n|\\mathbf b|=1.\n\\]\n\nNow use the dot-product condition:\n\\[\n\\mathbf b\\cdot \\mathbf e+\\mathbf c\\cdot \\mathbf f=2.\n\\]\nSubstitute \\(\\mathbf e=\\mathbf b-\\mathbf u,\\ \\mathbf f=\\mathbf b+\\mathbf u\\):\n\\[\n\\mathbf b\\cdot(\\mathbf b-\\mathbf u)+\\mathbf c\\cdot(\\mathbf b+\\mathbf u)=2,\n\\]\n\\[\n|\\mathbf b|^2-\\mathbf b\\cdot\\mathbf u+\\mathbf c\\cdot\\mathbf b+\\mathbf c\\cdot\\mathbf u=2.\n\\]\nSince \\(|\\mathbf b|^2=1\\),\n\\[\n1+\\mathbf c\\cdot\\mathbf b+(\\mathbf c-\\mathbf b)\\cdot\\mathbf u=2,\n\\]\n\\[\n\\mathbf c\\cdot\\mathbf b+(\\mathbf c-\\mathbf b)\\cdot\\mathbf u=1.\n\\]\n\nNow compute \\(\\mathbf c\\cdot\\mathbf b\\) from the side lengths in \\(\\triangle ABC\\):\n\\[\n|\\mathbf c-\\mathbf b|^2=|\\mathbf c|^2+|\\mathbf b|^2-2\\mathbf c\\cdot\\mathbf b.\n\\]\nSo\n\\[\n36=33+1-2\\mathbf c\\cdot\\mathbf b,\n\\]\n\\[\n36=34-2\\mathbf c\\cdot\\mathbf b,\n\\]\n\\[\n\\mathbf c\\cdot\\mathbf b=-1.\n\\]\nHence\n\\[\n-1+(\\mathbf c-\\mathbf b)\\cdot\\mathbf u=1\n\\]\nso\n\\[\n(\\mathbf c-\\mathbf b)\\cdot\\mathbf u=2.\n\\]\n\nNow the cosine between \\(\\overrightarrow{EF}=2\\mathbf u\\) and \\(\\overrightarrow{BC}=\\mathbf c-\\mathbf b\\) is\n\\[\n\\cos\\theta=\\frac{(2\\mathbf u)\\cdot(\\mathbf c-\\mathbf b)}{|2\\mathbf u|\\,|\\mathbf c-\\mathbf b|}.\n\\]\nUsing \\((\\mathbf c-\\mathbf b)\\cdot\\mathbf u=2\\), \\(|2\\mathbf u|=1\\), and \\(|\\mathbf c-\\mathbf b|=6\\),\n\\[\n\\cos\\theta=\\frac{2\\cdot 2}{1\\cdot 6}=\\frac{4}{6}=\\frac23.\n\\]\n\nFinal answer: \\(\\frac{2}{3}\\)",
+  "usage": {
+    "input_tokens": 154,
+    "output_tokens": 865,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 10.458388773025945,
+  "cached": false
+}

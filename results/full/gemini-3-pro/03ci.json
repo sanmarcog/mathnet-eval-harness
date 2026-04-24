@@ -1,0 +1,20 @@
+{
+  "id": "03ci",
+  "country": "Bulgaria",
+  "competition": "Bulgarian National Mathematical Olympiad",
+  "gold_final_answer": "2^{n-1}",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Enumeration with symmetry",
+    "Number Theory > Divisibility / Factorization > Prime numbers"
+  ],
+  "prompt": "For a set $M$ of positive integers with $n$ elements, where $n$ is odd, a nonempty subset $T$ of $M$ is called good, if the product of the elements of $T$ is divisible by the sum of the elements of $M$, but not divisible by its square. If $M$ is good, find the maximum possible number of the good subsets of $M$?",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find the maximum possible number of good subsets of $M$, let's analyze the conditions given. \n\nLet $M = \\{a_1, a_2, \\dots, a_n\\}$ and $S = \\sum_{i=1}^n a_i$. \nA subset $T \\subseteq M$ is good if $S \\mid \\prod_{x \\in T} x$ but $S^2 \\nmid \\prod_{x \\in T} x$. \nSince $M$ itself is good, we know that $S \\mid \\prod_{i=1}^n a_i$ and $S^2 \\nmid \\prod_{i=1}^n a_i$.\n\nBecause $S^2$ does not divide the product of all elements in $M$, there must exist at least one prime $p$ dividing $S$ such that the $p$-adic valuation satisfies:\n$$v_p\\left(\\prod_{i=1}^n a_i\\right) < v_p(S^2) = 2v_p(S)$$\nLet $v_p(S) = m$ and $v_p(a_i) = v_i$. The above inequality translates to:\n$$\\sum_{i=1}^n v_i < 2m$$\n\nFor any good subset $T$, its product must be divisible by $S$. Therefore, the sum of the valuations of the elements in $T$ must be at least the valuation of $S$:\n$$\\",
+  "usage": {
+    "input_tokens": 124,
+    "output_tokens": 326,
+    "thoughts_tokens": 7862
+  },
+  "latency_s": 63.441390253952704,
+  "cached": true
+}

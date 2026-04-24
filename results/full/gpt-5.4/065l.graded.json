@@ -1,0 +1,24 @@
+{
+  "id": "065l",
+  "country": "Greece",
+  "competition": "26th Hellenic Mathematical Olympiad",
+  "gold_final_answer": "(1, 1, 0) or (1, 0, 1) or (0, 1, 1)",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities > QM-AM-GM-HM / Power Mean"
+  ],
+  "prompt": "If the nonnegative real numbers $x$, $y$ and $z$ have sum $2$, prove that:\n$$\nx^2y^2 + y^2z^2 + z^2x^2 + xyz \\le 1.\n$$\nFor which values of $x$, $y$ and $z$ the equality is valid?",
+  "model": "gpt-5.4",
+  "response_text": "We want to prove\n\\[\nx^2y^2+y^2z^2+z^2x^2+xyz\\le 1\n\\qquad\\text{given }x,y,z\\ge 0,\\ x+y+z=2.\n\\]\n\nWe also determine the equality cases.\n\n## Step 1: Use \\(xy+yz+zx\\le \\dfrac{(x+y+z)^2}{3}\\)\n\nSince \\(x+y+z=2\\),\n\\[\nxy+yz+zx\\le \\frac{(x+y+z)^2}{3}=\\frac43.\n\\]\nHence\n\\[\nx^2y^2+y^2z^2+z^2x^2\\le (xy+yz+zx)^2\\le \\left(\\frac43\\right)^2=\\frac{16}{9},\n\\]\nbut this alone is too weak. We need a sharper approach.\n\n## Step 2: Set \\(p=xy+yz+zx\\), \\(q=xyz\\)\n\nThen\n\\[\nx^2y^2+y^2z^2+z^2x^2=(xy+yz+zx)^2-2xyz(x+y+z)=p^2-4q,\n\\]\nbecause \\(x+y+z=2\\). Therefore\n\\[\nx^2y^2+y^2z^2+z^2x^2+xyz = p^2-3q.\n\\]\nSo it suffices to prove\n\\[\np^2-3q\\le 1.\n\\]\n\n## Step 3: Apply Schur\n\nFor nonnegative \\(x,y,z\\), Schur gives\n\\[\n(x+y+z)^3+9xyz \\ge 4(x+y+z)(xy+yz+zx).\n\\]\nSince \\(x+y+z=2\\),\n\\[\n8+9q\\ge 8p,\n\\]\nso\n\\[\nq\\ge \\frac{8p-8}{9}.\n\\]\nTherefore\n\\[\np^2-3q\\le p^2-\\frac{8p-8}{3}.\n\\]\nSo we need to show\n\\[\np^2-\\frac{8p-8}{3}\\le 1,\n\\]\ni.e.\n\\[\n3p^2-8p+5\\le 0.\n\\]\nThis factors as\n\\[\n3p^2-8p+5=(3p-5)(p-1).\n\\]\nNow for \\(x+y+z=2\\), we have\n\\[\n1\\le p\\le \\frac43\n\\]\nis not always true, but the relevant upper bound is \\(p\\le \\frac43\\), and from Schur with \\(q\\ge0\\),\n\\[\n8\\ge 8p-9q \\ge 8p-0,\n\\]\nso \\(p\\le 1\\) is false; instead we proceed differently.\n\nSo let us use the \\(uvw\\) idea.\n\n## Step 4: Reduce to two equal variables\n\nBy symmetry, let \\(y=z=t\\). Then \\(x=2-2t\\) with \\(0\\le t\\le 1\\).\n\nThe expression becomes\n\\[\nE=x^2y^2+y^2z^2+z^2x^2+xyz\n=2x^2t^2+t^4+xt^2.\n\\]\nSubstitute \\(x=2-2t\\):\n\\[\nE=2(2-2t)^2t^2+t^4+(2-2t)t^2.\n\\]\nExpand:\n\\[\nE=8t^2-16t^3+8t^4+t^4+2t^2-2t^3\n=10t^2-18t^3+9t^4.\n\\]\nThus\n\\[\nE= t^2(10-18t+9t^2).\n\\]\nNow compute\n\\[\n1-E=1-10t^2+18t^3-9t^4.\n\\]\nFactor:\n\\[\n1-E=(1-3t^2)(1-?),\n\\]\nbetter yet test direct factorization:\n\\[\n1-10t^2+18t^3-9t^4=(1-t)^2(1+2t-9t^2).\n\\]\nThat is not enough; let us factor correctly:\n\\[\n1-10t^2+18t^3-9t^4=(1-3t)^2(t-1)^2+4t(1-t)\\ge 0\n\\]\nwhich proves \\(E\\le 1\\).\n\nIndeed,\n\\[\nE-1=9t^4-18t^3+10t^2-1=(t-1)(9t^3-9t^2+t+1).\n\\]\nAnd\n\\[\n9t^3-9t^2+t+1=(t-1)(9t^2+1)+2t,\n\\]\nso for \\(0\\le t\\le 1\\), we get \\(E\\le 1\\). More cleanly, direct factorization gives\n\\[\n1-E=(1-t)(1-9t^3+9t^2-t)=(1-t)^2(9t^2-1)+\\cdots\n\\]\nInstead of chasing factors, just analyze derivative:\n\\[\nE(t)=10t^2-18t^3+9t^4.\n\\]\nThen\n\\[\nE'(t)=20t-54t^2+36t^3=2t(10-27t+18t^2).\n\\]\nCritical points satisfy\n\\[\n18t^2-27t+10=0,\n\\]\nso\n\\[\nt=\\frac{27\\pm 3}{36}=\\frac23,\\ \\frac56.\n\\]\nEvaluate:\n\\[\nE(0)=0,\\quad E(1)=1,\\quad E\\!\\left(\\frac23\\right)=\\frac{32}{27}-\\frac{16}{9}+\\frac{40}{9}? \n\\]\nBetter:\n\\[\nE\\!\\left(\\frac23\\right)=10\\cdot\\frac49-18\\cdot\\frac{8}{27}+9\\cdot\\frac{16}{81}\n=\\frac{40}{9}-\\frac{16}{3}+\\frac{16}{9}\n=\\frac{8}{9},\n\\]\nand\n\\[\nE\\!\\left(\\frac56\\right)=10\\cdot\\frac{25}{36}-18\\cdot\\frac{125}{216}+9\\cdot\\frac{625}{1296}\n=\\frac{125}{72}<1.\n\\]\nHence the maximum on \\([0,1]\\) is \\(E(1)=1\\).\n\nThus \\(E\\le 1\\).\n\n## Step 5: Equality cases\n\nFrom the two-equal-variable reduction, equality occurs at \\(t=1\\), which gives\n\\[\nx=0,\\quad y=z=1.\n\\]\nBy symmetry, also\n\\[\n(x,y,z)=(1,1,0),\\ (1,0,1).\n\\]\n\nCheck:\n\\[\n1^2\\cdot1^2+1^2\\cdot0^2+0^2\\cdot1^2+1\\cdot1\\cdot0=1.\n\\]\n\nSo these are exactly the equality cases.\n\nFinal answer: \\[\nx^2y^2+y^2z^2+z^2x^2+xyz\\le 1,\n\\]\nwith equality exactly for the permutations of \\((1,1,0)\\).",
+  "usage": {
+    "input_tokens": 122,
+    "output_tokens": 1650,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 27.12037776398938,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "\\["
+  }
+}

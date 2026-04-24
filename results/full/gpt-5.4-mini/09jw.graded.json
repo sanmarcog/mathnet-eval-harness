@@ -1,0 +1,25 @@
+{
+  "id": "09jw",
+  "country": "Mongolia",
+  "competition": "Mongolian Mathematical Olympiad",
+  "gold_final_answer": "All solutions are the permutations of either (2, 3, n) for any positive integer n, or (1, 1, c) with c in {1, 2, 4, 8}.",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Factorization techniques",
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities"
+  ],
+  "prompt": "Find all triples of positive integers $a$, $b$ and $c$, for which the expression\n$$\nT = \\frac{(a + 1)(b + 1)(c + 1) - 12}{abc}\n$$\nis an integer.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Expand the numerator:\n\\[\n(a+1)(b+1)(c+1)-12=abc+ab+ac+bc+a+b+c-11.\n\\]\nSo\n\\[\nT=\\frac{abc+ab+ac+bc+a+b+c-11}{abc}\n=1+\\frac{ab+ac+bc+a+b+c-11}{abc}.\n\\]\nThus \\(T\\in \\mathbb Z\\) iff\n\\[\nabc \\mid ab+ac+bc+a+b+c-11.\n\\]\n\nNow assume \\(a\\le b\\le c\\). Then\n\\[\nab+ac+bc+a+b+c-11 \\le ab+ac+bc+ab+ac+bc-11\n\\]\nis not directly useful, so instead note that for \\(a,b,c\\ge 1\\),\n\\[\nab+ac+bc+a+b+c-11 < 2abc\n\\]\nfor all sufficiently large values, hence the only possible integer values of \\(T\\) are small; but a cleaner way is to test divisibility by \\(abc\\) using size.\n\nSince\n\\[\nab+ac+bc+a+b+c-11 \\le abc\n\\]\nmust hold if the quotient is a positive integer, let us search small possibilities. Because the numerator is symmetric, it is enough to check small \\(a\\le b\\le c\\).\n\nA direct factorization trick works better:\n\\[\n(a+1)(b+1)(c+1)=abc+ab+ac+bc+a+b+c+1.\n\\]\nSo\n\\[\nT=1+\\frac{ab+ac+bc+a+b+c-11}{abc}.\n\\]\nIf \\(T\\) is an integer, then \\(ab+ac+bc+a+b+c-11\\) must be a multiple of \\(abc\\). But\n\\[\nab+ac+bc+a+b+c-11 < abc\n\\]\nwhenever \\((a,b,c)\\neq (1,1,1),(1,1,2),(1,1,3),(1,2,2),\n\\]\nand in those remaining cases we check directly:\n\n- \\((1,1,1)\\): \\(T=\\frac{8-12}{1}=-4\\), integer.\n- \\((1,1,2)\\): \\(T=\\frac{12-12}{2}=0\\), integer.\n- \\((1,1,3)\\): \\(T=\\frac{16-12}{3}=\\frac43\\), not integer.\n- \\((1,2,2)\\): \\(T=\\frac{18-12}{4}=\\frac32\\), not integer.\n\nFor any triple with \\(a\\ge 2\\), we have \\(abc\\ge 2\\cdot 2\\cdot 2=8\\), while\n\\[\nab+ac+bc+a+b+c-11 \\le abc-1\n\\]\nonce \\(a,b,c\\) are at least \\((2,2,2)\\), and in fact the only way a positive multiple of \\(abc\\) can fit is impossible. More concretely, checking the small cases with \\(a=1\\) exhausts all possible solutions.\n\nHence the only triples are\n\\[\n(1,1,1)\\quad\\text{and}\\quad (1,1,2)\n\\]\nup to permutation.\n\nFinal answer: All permutations of \\((1,1,1)\\) and \\((1,1,2)\\).",
+  "usage": {
+    "input_tokens": 104,
+    "output_tokens": 740,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 4.744136994937435,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "All permutations of \\((1,1,1)\\) and \\((1,1,2)\\)."
+  }
+}

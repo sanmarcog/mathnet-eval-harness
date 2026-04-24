@@ -1,0 +1,25 @@
+{
+  "id": "059o",
+  "country": "Estonia",
+  "competition": "Estonian Math Competitions",
+  "gold_final_answer": "10^{2^{2020}} + 33",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Sequences and Series > Recurrence relations",
+    "Algebra > Intermediate Algebra > Quadratic functions"
+  ],
+  "prompt": "On the first line of a notebook Juku writes the number $43$. On every following line he writes the number $x^2 - 66x + 1122$, where $x$ is the number on the previous line. Find the number that Juku will write on the $2021$st line.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let  \n\\[\nf(x)=x^2-66x+1122.\n\\]\nThen the sequence is defined by \\(a_1=43\\) and \\(a_{n+1}=f(a_n)\\).\n\nRewrite \\(f\\) by completing the square:\n\\[\nf(x)=x^2-66x+1122=(x-33)^2+33.\n\\]\nSo if we set\n\\[\nb_n=a_n-33,\n\\]\nthen\n\\[\nb_{n+1}=a_{n+1}-33=(a_n-33)^2=b_n^2.\n\\]\n\nNow compute the first term:\n\\[\nb_1=43-33=10.\n\\]\nHence\n\\[\nb_2=10^2,\\quad b_3=10^{2^2},\\quad b_4=10^{2^3},\\ \\ldots\n\\]\nIn general,\n\\[\nb_n=10^{2^{n-1}}.\n\\]\nTherefore\n\\[\na_n=b_n+33=10^{2^{n-1}}+33.\n\\]\n\nFor \\(n=2021\\),\n\\[\na_{2021}=10^{2^{2020}}+33.\n\\]\n\nFinal answer: \\(\\boxed{10^{2^{2020}}+33}\\)",
+  "usage": {
+    "input_tokens": 113,
+    "output_tokens": 287,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 2.4915344830369577,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "\\(\\boxed{10^{2^{2020}}+33}\\)"
+  }
+}

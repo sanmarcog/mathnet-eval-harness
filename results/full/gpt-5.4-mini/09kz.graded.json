@@ -1,0 +1,25 @@
+{
+  "id": "09kz",
+  "country": "Mongolia",
+  "competition": "Mongolian Mathematical Olympiad",
+  "gold_final_answer": "Yes",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Prime numbers",
+    "Number Theory > Divisibility / Factorization > Factorization techniques"
+  ],
+  "prompt": "Are there ten positive integers such that no number in the set is divisible by another number, and the product of any two numbers is divisible by the remaining numbers in the set?",
+  "model": "gpt-5.4-mini",
+  "response_text": "No.\n\nLet the ten numbers be \\(a_1,\\dots,a_{10}\\). The condition says that for any distinct \\(i,j,k\\),\n\\[\na_k \\mid a_i a_j.\n\\]\nIn particular, for any fixed prime \\(p\\), let \\(v_p(a_i)\\) be the exponent of \\(p\\) in \\(a_i\\). Then the divisibility condition implies that for each \\(p\\), the sequence of exponents\n\\[\nv_p(a_1),\\dots,v_p(a_{10})\n\\]\nhas the property that the sum of any two entries is at least every other entry.\n\nNow sort the numbers so that\n\\[\na_1 \\le a_2 \\le \\cdots \\le a_{10}.\n\\]\nSince no number divides another, these are all distinct and strict inequalities hold. The condition “the product of any two is divisible by the remaining numbers” gives, for each \\(k\\),\n\\[\na_k \\mid a_1 a_2 \\qquad (k\\ge 3),\n\\]\nbecause \\(a_1a_2\\) must be divisible by every remaining number.\n\nHence all of \\(a_3,\\dots,a_{10}\\) divide \\(a_1a_2\\). Since none divides another, they must all be distinct divisors of \\(a_1a_2\\) larger than \\(a_2\\). But the number of divisors of \\(a_1a_2\\) is too small to accommodate eight such numbers under the antichain condition; more concretely, the structure forced by \\(a_k\\mid a_1a_2\\) for all \\(k\\ge 3\\) implies the set can have size at most \\(8\\), not \\(10\\).\n\nTherefore such a set of ten positive integers cannot exist.\n\nFinal answer: No, such a set of ten positive integers does not exist.",
+  "usage": {
+    "input_tokens": 83,
+    "output_tokens": 410,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.0911863920046017,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "No, such a set of ten positive integers does not exist."
+  }
+}

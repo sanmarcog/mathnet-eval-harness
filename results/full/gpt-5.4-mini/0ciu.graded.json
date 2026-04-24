@@ -1,0 +1,25 @@
+{
+  "id": "0ciu",
+  "country": "Romania",
+  "competition": "75th NMO",
+  "gold_final_answer": "The finite field with four elements (F4).",
+  "topics_flat": [
+    "Algebra > Abstract Algebra > Ring Theory",
+    "Algebra > Abstract Algebra > Field Theory"
+  ],
+  "prompt": "Determine the finite commutative rings $A$ with at least four elements, with the property that for any choice of a proper subset $S$ of $A^*$ with at least two elements, the equality\n$$\n\\sum_{x \\in S} x = \\prod_{x \\in A^* \\setminus S} x\n$$\nholds.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let \\(A^*\\) denote the set of units of the finite commutative ring \\(A\\), and let\n\\[\nu:=\\sum_{x\\in A^*}x,\\qquad v:=\\prod_{x\\in A^*}x.\n\\]\nFor any proper subset \\(S\\subset A^*\\) with \\(|S|\\ge 2\\), the condition says\n\\[\n\\sum_{x\\in S}x=\\prod_{x\\in A^*\\setminus S}x.\n\\]\nIf we take two such subsets differing by one element, and compare, one quickly gets that all units must behave very rigidly; in fact the only possible situation is that \\(A^*\\) has exactly two elements.\n\nIndeed, let \\(a,b\\in A^*\\) be distinct. Since \\(S=\\{a,b\\}\\) is allowed, we get\n\\[\na+b=\\prod_{x\\in A^*\\setminus\\{a,b\\}}x.\n\\]\nNow choose another unit \\(c\\notin\\{a,b\\}\\) if possible and compare the equations for \\(\\{a,b\\}\\) and \\(\\{a,c\\}\\). This forces \\(b=c\\), contradiction. Hence no such third unit exists, so\n\\[\n|A^*|=2.\n\\]\nThus \\(A^*=\\{1,-1\\}\\), and the ring must have exactly two units. For a finite commutative ring, having exactly two units means the ring is local with residue field \\(\\mathbf F_2\\), and the only way the stated identity can hold for all admissible \\(S\\) is when the ring itself is \\(\\mathbf F_2\\). But \\(\\mathbf F_2\\) has only two elements, violating the requirement \\(|A|\\ge 4\\).\n\nSo there is no finite commutative ring with at least four elements satisfying the property.\n\nFinal answer: No such finite commutative ring exists.",
+  "usage": {
+    "input_tokens": 124,
+    "output_tokens": 429,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.2556617320515215,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "No such finite commutative ring exists."
+  }
+}

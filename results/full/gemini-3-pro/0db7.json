@@ -1,0 +1,19 @@
+{
+  "id": "0db7",
+  "country": "Saudi Arabia",
+  "competition": "SAUDI ARABIAN MATHEMATICAL COMPETITIONS",
+  "gold_final_answer": "-1",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Symmetric functions"
+  ],
+  "prompt": "Real nonzero numbers $x$, $y$, $z$ are such that $x + y + z = 0$. Moreover, it is known that\n$$\nA = \\frac{x}{y} + \\frac{y}{z} + \\frac{z}{x} = \\frac{x}{z} + \\frac{z}{y} + \\frac{y}{x} + 1.\n$$\nDetermine $A$.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find the value of $A$, let's define the two sums given in the problem:\n$$ S_1 = \\frac{x}{y} + \\frac{y}{z} + \\frac{z}{x} $$\n$$ S_2 = \\frac{x}{z} + \\frac{z}{y} + \\frac{y}{x} $$\nWe are given that $S_1 = S_2 + 1$, which means $S_1 - S_2 = 1$. We are also looking for $A = S_1$.\n\nLet's compute the sum $S_1 + S_2$:\n$$ S_1 + S_2 = \\left(\\frac{x}{y} + \\frac{x}{z}\\right) + \\left(\\frac{y}{z} + \\frac{y}{x}\\right) + \\left(\\frac{z}{x} + \\frac{z}{y}\\right) $$\nFinding a common denominator for each pair gives:\n$$ S_1 + S_2 = \\frac{x(y+z)}{yz} + \\frac{y(x+z)}{xz} + \\frac{z(x+y)}{xy} $$\nSince we are given that $x + y + z = 0$, we can substitute $y+z = -x$, $x+z = -y$, and $x+y = -z$ into the equation:\n$$ S_1 + S_2 = \\frac{-x^2}{yz} + \\frac{-y^2}{xz} + \\frac{-z^2}{xy} = -\\frac{x^3 + y^3 + z^3}{xyz} $$\nFor any numbers $x, y, z$ such that $x + y + z = 0$, the identity $x^3 + y^3 + z^3 = 3xyz$ holds. Substituting this into our sum gives:\n$$ S_1 + S_2 = -\\frac{3xyz}{xyz} = -3 $$\n\nNow we have a simple system of linear equations:\n1) $S_1 - S_2 = 1$\n2) $S_1 + S_2 = -3$\n\nAdding the two equations together, we get:\n$$ 2S_1 = -2 $$\n$$ S_1 = -1 $$\n\nSince $A = S_1$, we have $A = -1$. \n\nFinal answer: -1",
+  "usage": {
+    "input_tokens": 133,
+    "output_tokens": 539,
+    "thoughts_tokens": 1987
+  },
+  "latency_s": 20.08519225998316,
+  "cached": false
+}

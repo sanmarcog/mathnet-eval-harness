@@ -1,0 +1,20 @@
+{
+  "id": "0c6j",
+  "country": "Romania",
+  "competition": "70th NMO SELECTION TESTS FOR THE JUNIOR BALKAN MATHEMATICAL OLYMPIAD",
+  "gold_final_answer": "1/16",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities > Cauchy-Schwarz",
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities"
+  ],
+  "prompt": "Find the maximum value of the expression\n\n$$\nE(a, b) = \\frac{a + b}{(4a^2 + 3)(4b^2 + 3)}\n$$\n\nwhen $a, b \\in \\mathbb{R}$.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find the maximum value of the expression \n$$ E(a, b) = \\frac{a + b}{(4a^2 + 3)(4b^2 + 3)} $$\nwe can test the case where $a = b$. The expression becomes a function of a single variable:\n$$ f(a) = \\frac{2a}{(4a^2 + 3)^2} $$\nTo find the maximum of $f(a)$, we take the derivative with respect to $a$ and set it to zero:\n$$ f'(a) = \\frac{2(4a^2 + 3)^2 - 2a \\cdot 2(4a^2 + 3) \\cdot 8a}{(4a^2 + 3)^4} = \\frac{2(4a^2 + 3) - 32a^2}{(4a^2 + 3)^3} = \\frac{6 - 24a^2}{(4a^2 + 3)^3} $$\nSetting $f'(a) = 0$ gives $24a^2 = 6$, which implies $a^2 = \\frac{1}{4}$. Since we want to maximize the expression, we take the positive root $a = \\frac{1}{2}$. \nSubstituting $a = \\frac{1}{2}$ into $f(a)$, we get:\n$$ f\\left(\\frac{1}{2}\\right) = \\frac{2(1/2)}{(4(1/4) + 3)^2} = \\frac{1}{(1 + 3)^2} = \\frac{1}{16} $$\n\nTo prove that $\\frac{1}{16}$ is indeed the global maximum for all real $a$ and $b$, we must show that:\n$$ \\frac{a + b}{(4a^2 + 3)(4b^2 + 3)} \\le \\frac{1}{16} $$\nwhich is equivalent to:\n$$ 16(a + b) \\le (4a^2 + 3)(4b^2 + 3) $$\nExpanding the right side, we get:\n$$ 16a^2b^2 + 12a^2 + 12b^2 + 9 - 16a - 16b \\ge 0 $$\nWe can view this as a quadratic in $a$:\n$$ 4(4b^2 + 3)a^2 - 16a + (12b^2 - 16b + 9) \\ge 0 $$\nFor this quadratic to be non-negative for all real $a$, its discriminant $\\Delta$ must be less than or equal to zero. We calculate the quarter discriminant $\\frac{\\Delta}{4}$:\n$$ \\frac{\\Delta}{4} = (-8)^2 - 4(4b^2 + 3)(12b^2 - 16b + 9) $$\n$$ \\frac{\\Delta}{4} = 64 - 4(48b^4 - 64b^3 + 72b^2 - 48b + 27) $$\n$$ \\frac{\\Delta}{4} = -192b^4 + 256b^3 - 288b^2 + 192b - 44 $$\nWe want to show that $\\frac{\\Delta}{4} \\le 0$, which means:\n$$ 48b^4 - 64b^3 + 72b^2 - 48b + 11 \\ge 0 $$\nWe can factor this polynomial by noting that $b = \\frac{1}{2}$ should be a double root. Dividing by $(b - \\frac{1}{2})^2 = b^2 - b + \\frac{1}{4}$, we get:\n$$ 48b^4 - 64b^3 + 72b^2 - 48b + 11 = \\left(b - \\frac{1}{2}\\right)^2 (48b^2 - 16b + 44) $$\nThe quadratic factor $48b^2 - 16b + 44$ has a negative discriminant ($(-16)^2 - 4(48)(44) < 0$) and a positive leading coefficient, so it is strictly positive for all real $b$. The squared term $\\left(b - \\frac{1}{2}\\right)^2$ is always non-negative. \n\nThus, the discriminant of our original quadratic in $a$ is always less than or equal to zero, meaning the inequality holds for all real $a$ and $b$. Equality is achieved when $a = b = \\frac{1}{2}$.\n\nFinal answer: 1/16",
+  "usage": {
+    "input_tokens": 94,
+    "output_tokens": 1072,
+    "thoughts_tokens": 2328
+  },
+  "latency_s": 24.514294987078756,
+  "cached": false
+}

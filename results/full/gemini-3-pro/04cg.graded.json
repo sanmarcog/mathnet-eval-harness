@@ -1,0 +1,25 @@
+{
+  "id": "04cg",
+  "country": "Croatia",
+  "competition": "Mathematica competitions in Croatia",
+  "gold_final_answer": "1456",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Inclusion-exclusion",
+    "Discrete Mathematics > Other"
+  ],
+  "prompt": "Determine the smallest integer $N$ larger than $1000$ such that exactly half of the numbers from $1$ to $N$ have at least one digit $1$ in their decimal notation.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find the smallest integer $N > 1000$ such that exactly half of the numbers from $1$ to $N$ have at least one digit $1$, we can equivalently say that exactly half of the numbers from $1$ to $N$ do *not* have the digit $1$. \n\nLet $g(N)$ be the number of integers from $1$ to $N$ that do not contain the digit $1$. We are looking for the smallest $N > 1000$ such that $g(N) = \\frac{N}{2}$.\n\nFirst, let's find $g(999)$, which is the number of integers from $1$ to $999$ that do not contain the digit $1$. \nWe can think of the numbers from $0$ to $999$ as all 3-digit strings from $000$ to $999$ (padding with leading zeros). \nFor a number to not contain the digit $1$, each of its digits must be chosen from the set $\\{0, 2, 3, 4, 5, 6, 7, 8, 9\\}$. \nThere are $9$ available choices for each of the 3 digits, giving $9 \\times 9 \\times 9 = 729$ such numbers. \nSince this count includes $000$ (which corresponds to $0$, and we only want numbers from $1$ to $999$), we subtract $1$:\n$g(999) = 729 - 1 = 728$.\n\nFor any $N$ in the range $1000 \\le N \\le 1999$, the thousands digit is $1$. Therefore, every number in this range contains at least one digit $1$. \nThis means that no new numbers without the digit $1$ are added to our count as $N$ increases from $1000$ to $1999$. \nThus, for all $1000 \\le N \\le 1999$, we have:\n$g(N) = g(999) = 728$.\n\nWe want to find $N$ such that exactly half the numbers do not contain the digit $1$:\n$g(N) = \\frac{N}{2}$\n\nSubstitute $g(N) = 728$:\n$728 = \\frac{N}{2}$\n$N = 1456$\n\nSince $1456$ falls within the range $1000 \\le N \\le 1999$, our assumption holds true. \n\nFinal answer: 1456",
+  "usage": {
+    "input_tokens": 82,
+    "output_tokens": 598,
+    "thoughts_tokens": 1660
+  },
+  "latency_s": 18.832073804107495,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "exact",
+    "predicted": "1456"
+  }
+}

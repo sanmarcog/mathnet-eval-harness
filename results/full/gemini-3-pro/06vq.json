@@ -1,0 +1,21 @@
+{
+  "id": "06vq",
+  "country": "IMO",
+  "competition": "IMO 2019 Shortlisted Problems",
+  "gold_final_answer": "(1,1), (3,2)",
+  "topics_flat": [
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities",
+    "Number Theory > Divisibility / Factorization > Factorization techniques",
+    "Algebra > Algebraic Expressions > Sequences and Series > Floors and ceilings"
+  ],
+  "prompt": "Find all pairs $(m, n)$ of positive integers satisfying the equation\n$$\n\\left(2^{n}-1\\right)\\left(2^{n}-2\\right)\\left(2^{n}-4\\right) \\cdots\\left(2^{n}-2^{n-1}\\right)=m!\n$$",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find all pairs $(m, n)$ of positive integers satisfying the equation\n$$\n\\left(2^{n}-1\\right)\\left(2^{n}-2\\right)\\left(2^{n}-4\\right) \\cdots\\left(2^{n}-2^{n-1}\\right)=m!\n$$\nwe can analyze the highest power of 2 dividing both sides. Let $P_n$ be the left-hand side of the equation. We can factor out the powers of 2 from each term:\n$$\nP_n = \\prod_{k=0}^{n-1} (2^n - 2^k) = 2^{0+1+\\dots+(n-1)} \\prod_{k=0}^{n-1} (2^{n-k} - 1) = 2^{\\frac{n(n-1)}{2}} \\prod_{j=1}^n (2^j - 1)\n$$\nThe highest power of 2 dividing $P_n$ is exactly $\\frac{n(n-1)}{2}$. \nBy Legendre's formula, the highest power of 2 dividing $m!$ is $m - s_2(m)$, where $s_2(m)$ is the sum of the digits of $m$ in base 2. Since $s_2(m) \\ge 1$, we must have:\n$$\nm - s_2(m) = \\frac{n(n-1)}{2} \\implies m \\ge \\frac{n(n-1)}{2} + 1\n$$\n\nLet's test small values of $n$:\n- For $n=1$: $P_1 = 2^1 - 1 = 1$. We need $m! = 1$, which gives $m=1$. This yields the solution $(1, 1)$.\n- For $n=2$: $P_2 = (2^2 - 1)(2^2 - 2) = 3 \\times 2 = 6$. We need $m! = 6$, which gives $m=3$. This yields the solution $(3, 2)$.\n- For $n=3$: $P_3 = (2^3 - 1)(2^3 - 2)(2^3 - 4) = 7 \\times 6 \\times 4 = 168$. There is no integer $m$ such that $m! = 168$ (since $5! = 120$ and $6! = 720$).\n- For $n=4$: $P_4 = (2^4 - 1)(2^4 - 2)(2^4 - 4)(2^4 - 8) = 15 \\times 14 \\times 12 \\times 8 = 20160$. There is no integer $m$ such that $m! = 20160$ (since $7! = 5040$ and $8! = 40320$).\n\nFor $n \\ge 5$, we can establish a strict inequality. We know that $m \\ge \\frac{n(n-1)}{2} + 1$. \nLet's compare $P_n$ with $\\left(\\frac{n(n-1)}{2} + 1\\right)!$:\n$$\nP_n < 2^{\\frac{n(n-1)}{2}} \\cdot 2^{\\frac{n(n+1)}{2}} = 2^{n^2}\n$$\nFor $n=5$, $m \\ge 11$. We have $P_5 = 9999360$, while $11! = 39916800$, so $P_5 < 11! \\le m!$.\nBy induction, for all $n \\ge 5$, the factorial grows much faster than the product $P_n$. Specifically, the ratio between consecutive factorials for the minimum $m$ is at least $\\left(\\frac{n(n-1)}{2} + 2\\right)^n$, which is strictly greater than $2^{2n+1}$, the ratio between consecutive upper bounds $2^{n^2}$. \n\nThus, $P_n < m!$ for all $n \\ge 5$, meaning no further solutions exist.\n\nFinal answer: (1, 1), (3, 2)",
+  "usage": {
+    "input_tokens": 108,
+    "output_tokens": 987,
+    "thoughts_tokens": 2891
+  },
+  "latency_s": 30.07309456600342,
+  "cached": false
+}

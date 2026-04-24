@@ -1,0 +1,19 @@
+{
+  "id": "0gpa",
+  "country": "Turkey",
+  "competition": "Team Selection Test",
+  "gold_final_answer": "All triples are: (a, b, c) = (3, 1, 2) and the family with c = 1 and a = b any positive rational.",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Sequences and Series > Sums and products"
+  ],
+  "prompt": "Let $S_r(n) = 1^r + 2^r + \\dots + n^r$ where $r$ is a rational number and $n$ is a positive integer. Find all triples $(a, b, c)$ where $a$ and $b$ are positive rational numbers and $c$ is a positive integer for which there exist infinitely many positive integers $n$ satisfying $S_a(n) = (S_b(n))^c$.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Setting Up the Problem\n\nWe need $S_a(n) = (S_b(n))^c$ for infinitely many positive integers $n$.\n\n## Asymptotic Analysis\n\nFor large $n$, we know $S_r(n) \\sim \\frac{n^{r+1}}{r+1}$.\n\nSo:\n- $S_a(n) \\sim \\frac{n^{a+1}}{a+1}$\n- $(S_b(n))^c \\sim \\left(\\frac{n^{b+1}}{b+1}\\right)^c = \\frac{n^{c(b+1)}}{(b+1)^c}$\n\nFor these to be equal for infinitely many $n$, we need the leading powers to match:\n$$a + 1 = c(b+1)$$\n\nAnd the leading coefficients to match:\n$$\\frac{1}{a+1} = \\frac{1}{(b+1)^c}$$\n\nFrom the coefficient equation: $(b+1)^c = a+1$.\n\nCombined with $a+1 = c(b+1)$, we get:\n$$(b+1)^c = c(b+1)$$\n\nLet $t = b+1 > 1$ (since $b > 0$). Then:\n$$t^c = ct$$\n$$t^{c-1} = c$$\n$$t = c^{1/(c-1)}$$\n\nSo $b+1 = c^{1/(c-1)}$, giving $b = c^{1/(c-1)} - 1$.\n\nAnd $a+1 = c(b+1) = c \\cdot c^{1/(c-1)} = c^{c/(c-1)}$, giving $a = c^{c/(c-1)} - 1$.\n\n## Checking When This Actually Works\n\nThe asymptotic matching is necessary but we need the equation to hold exactly for infinitely many $n$. \n\nThe key known identity: $S_1(n) = \\frac{n(n+1)}{2}$ and $S_3(n) = \\left(\\frac{n(n+1)}{2}\\right)^2 = (S_1(n))^2$.\n\nThis gives $S_3(n) = (S_1(n))^2$, so $(a,b,c) = (3,1,2)$.\n\nLet's verify with our formula: $c=2$, $t = 2^{1/(2-1)} = 2$, so $b+1 = 2$, $b=1$, and $a+1 = 2\\cdot 2 = 4$, $a=3$. ✓\n\nThis holds for **all** positive integers $n$, so infinitely many.\n\n## Checking Other Values of c\n\nFor $c = 1$: $t^0 = 1$ gives no solution (degenerate).\n\nFor $c = 3$: $t = 3^{1/2} = \\sqrt{3}$, so $b = \\sqrt{3}-1$ (irrational) — not valid since $b$ must be rational.\n\nFor $c = 4$: $t = 4^{1/3} = \\sqrt[3]{4}$ — irrational, not valid.\n\nFor $c = 8$: $t = 8^{1/7}$ — irrational.\n\nFor $c = 9$: $t = 9^{1/8}$ — irrational.\n\nWe need $c^{1/(c-1)}$ to be rational. Write $c = m^{c-1}$ for some rational $m$. Since $c$ is a positive integer, we need $c-1 | $ the exponent structure. \n\nIf $c-1 = 1$, i.e., $c = 2$: $t = 2^1 = 2$ ✓ (rational).\n\nIf $c-1 = 2$, i.e., $c = 3$: need $3^{1/2}$ rational — no.\n\nIf $c-1 = k$ for $k \\geq 2$: $c^{1/k}$ is rational iff $c$ is a perfect $k$-th power. If $c = m^k$, then $t = m$, $b = m-1$, $a = m^k \\cdot m - 1 = m^{k+1}-1$. But we also need $c = m^k$ to be a positive integer with $c-1 = k$, so $m^k = k+1$. For $k=2$: $m^2 = 3$ — no integer solution. For $k=3$: $m^3 = 4$ — no. No solutions here.\n\nTherefore, the only valid triple is $(a,b,c) = (3,1,2)$.\n\n## Verification\n\n$S_3(n) = \\left(\\frac{n(n+1)}{2}\\right)^2 = (S_1(n))^2$ holds for all positive integers $n$. ✓\n\nFinal answer: $(a, b, c) = (3, 1, 2)$",
+  "usage": {
+    "input_tokens": 153,
+    "output_tokens": 1282,
+    "thinking_tokens": 0
+  },
+  "latency_s": 17.34466464293655,
+  "cached": false
+}

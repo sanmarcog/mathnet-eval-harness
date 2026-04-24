@@ -1,0 +1,26 @@
+{
+  "id": "0cha",
+  "country": "Romania",
+  "competition": "74th Romanian Mathematical Olympiad",
+  "gold_final_answer": "2\\int_{0}^{1} x f(x) \\, dx",
+  "topics_flat": [
+    "Calculus > Integral Calculus > Techniques > Single-variable",
+    "Calculus > Differential Calculus > Applications",
+    "Precalculus > Limits"
+  ],
+  "prompt": "Consider a continuous function $f : [0, 1] \\to \\mathbb{R}$ with $f(1) = 0$. Prove that the following limit exists and calculate its value:\n$$\n\\lim_{t \\to 1^+} \\left( \\frac{1}{1-t} \\cdot \\int_{0}^{1} x(f(tx) - f(x)) \\, dx \\right).\n$$",
+  "model": "gpt-5.4",
+  "response_text": "Let\n\\[\nL(t)=\\frac{1}{1-t}\\int_0^1 x\\bigl(f(tx)-f(x)\\bigr)\\,dx,\\qquad t>1.\n\\]\nWe must show \\(\\lim_{t\\to1^+}L(t)\\) exists and find it.\n\nSince \\(t>1\\), the argument \\(tx\\) may exceed \\(1\\) when \\(x>1/t\\). So rewrite the integral in a way that only uses values of \\(f\\) on \\([0,1]\\).\n\nSet \\(u=tx\\) in \\(\\int_0^1 x f(tx)\\,dx\\). Then\n\\[\n\\int_0^1 x f(tx)\\,dx\n=\\frac1{t^2}\\int_0^t u f(u)\\,du.\n\\]\nBut \\(f\\) is only given on \\([0,1]\\), so split at \\(u=1\\). Since \\(t\\to1^+\\), only \\(u\\in[0,1]\\) matters, and more directly it is better to write\n\\[\n\\int_0^1 x(f(tx)-f(x))\\,dx\n=\\int_0^{1/t} x(f(tx)-f(x))\\,dx+\\int_{1/t}^1 x(f(1)-f(x))\\,dx,\n\\]\nusing \\(f(1)=0\\) on the second part.\n\nNow in the first integral, let \\(u=tx\\):\n\\[\n\\int_0^{1/t} x f(tx)\\,dx=\\frac1{t^2}\\int_0^1 u f(u)\\,du.\n\\]\nHence\n\\[\n\\int_0^{1/t} x(f(tx)-f(x))\\,dx\n=\\frac1{t^2}\\int_0^1 u f(u)\\,du-\\int_0^{1/t} x f(x)\\,dx.\n\\]\nAdding the second part,\n\\[\n\\int_0^1 x(f(tx)-f(x))\\,dx\n=\\frac1{t^2}\\int_0^1 x f(x)\\,dx-\\int_0^1 x f(x)\\,dx.\n\\]\nTherefore\n\\[\nL(t)=\\frac{1}{1-t}\\left(\\frac1{t^2}-1\\right)\\int_0^1 x f(x)\\,dx.\n\\]\nSimplify:\n\\[\n\\frac{\\frac1{t^2}-1}{1-t}\n=\\frac{1-t^2}{t^2(1-t)}\n=\\frac{(1-t)(1+t)}{t^2(1-t)}\n=\\frac{1+t}{t^2}.\n\\]\nSo\n\\[\nL(t)=\\frac{1+t}{t^2}\\int_0^1 x f(x)\\,dx.\n\\]\nNow let \\(t\\to1^+\\):\n\\[\n\\lim_{t\\to1^+}L(t)=2\\int_0^1 x f(x)\\,dx.\n\\]\n\nThus the limit exists and equals \\(2\\int_0^1 x f(x)\\,dx\\).\n\nFinal answer: \\(\\displaystyle 2\\int_0^1 x\\,f(x)\\,dx\\)",
+  "usage": {
+    "input_tokens": 140,
+    "output_tokens": 699,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 8.69947372796014,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "\\(\\displaystyle 2\\int_0^1 x\\,f(x)\\,dx\\)"
+  }
+}

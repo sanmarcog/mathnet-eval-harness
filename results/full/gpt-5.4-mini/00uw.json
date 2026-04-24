@@ -1,0 +1,22 @@
+{
+  "id": "00uw",
+  "country": "Balkan Mathematical Olympiad",
+  "competition": "41st Balkan Mathematical Olympiad",
+  "gold_final_answer": "f(x) = x for all positive x; g(x) = x.",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Functional Equations",
+    "Algebra > Algebraic Expressions > Functional Equations > Injectivity / surjectivity",
+    "Algebra > Algebraic Expressions > Functional Equations > Existential quantifiers",
+    "Algebra > Algebraic Expressions > Polynomials"
+  ],
+  "prompt": "Let $\\mathbb{R}^+ = (0, \\infty)$ be the set of all positive real numbers. Find all functions $f : \\mathbb{R}^+ \\to \\mathbb{R}^+$ and polynomials $g(x)$ with non-negative coefficients and $g(0) = 0$ that satisfy the equality:\n$$\nf(f(x) + g(y)) = f(x - y) + 2y\n$$\nfor all positive real numbers $x > y$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let  \n\\[\nf(f(x)+g(y))=f(x-y)+2y \\qquad (x>y>0),\n\\]\nwhere \\(f:\\mathbb R^+\\to \\mathbb R^+\\), and \\(g\\) is a polynomial with nonnegative coefficients and \\(g(0)=0\\).\n\nWe will show that no such pair \\((f,g)\\) exists.\n\n---\n\n### 1) A basic form of the equation\nSet \\(x=u+v,\\ y=v\\) with \\(u,v>0\\). Then\n\\[\nf(f(u+v)+g(v))=f(u)+2v.\n\\]\nFor fixed \\(u\\), the right-hand side depends on \\(v\\) in a very simple way.\n\nNow choose two values \\(u_1,u_2>0\\). Then for every \\(v>0\\),\n\\[\nf(f(u_1+v)+g(v)) - f(f(u_2+v)+g(v))=f(u_1)-f(u_2),\n\\]\nso the difference of the two left-hand terms is constant in \\(v\\).\n\n---\n\n### 2) A contradiction from varying \\(x\\)\nFix \\(y>0\\). Then for all \\(x>y\\),\n\\[\nf(f(x)+g(y))=f(x-y)+2y.\n\\]\nAs \\(x\\) varies, the right-hand side varies by the term \\(f(x-y)\\). Hence for each fixed \\(y\\), the map\n\\[\nx\\mapsto f(f(x)+g(y))\n\\]\nmust reproduce \\(f(x-y)\\) up to adding the constant \\(2y\\).\n\nNow take two different values \\(y_1<y_2\\), and let \\(x>y_2\\). Then\n\\[\nf(f(x)+g(y_1)) - f(f(x)+g(y_2))\n= f(x-y_1)-f(x-y_2)+2(y_1-y_2).\n\\]\nThe left side depends on \\(x\\) only through the common input \\(f(x)\\), while the right side involves a shifted difference of \\(f\\). Since this must hold for all large \\(x\\), the shifted difference\n\\[\nf(t+a)-f(t+b)\n\\]\nwould have to be constant in \\(t\\) for suitable shifts, forcing \\(f\\) to be affine on an infinite ray. But then the original equation cannot hold because the left side would be affine in \\(x\\) while the right side contains the separate variable \\(y\\) in the form \\(2y\\), incompatible with \\(x-y\\) dependence for all \\(x>y\\).\n\nMore concretely, if \\(f(t)=ct+d\\) on a ray, then\n\\[\nc(c x+d+g(y))+d = c(x-y)+d+2y,\n\\]\nso\n\\[\nc^2 x + c(g(y)+d)+d = cx - cy + d + 2y.\n\\]\nComparing coefficients of \\(x\\) gives \\(c^2=c\\), so \\(c=1\\). Then\n\\[\ng(y) = (2-y)/1 - d\n\\]\nwould have to be linear with negative slope, impossible since \\(g\\) has nonnegative coefficients.\n\nThus no such affine \\(f\\) exists, and the earlier functional constraints force affine behavior, contradiction.\n\n---\n\nTherefore there are **no** functions \\(f:\\mathbb R^+\\to\\mathbb R^+\\) and polynomials \\(g\\) with nonnegative coefficients, \\(g(0)=0\\), satisfying the given identity.\n\nFinal answer: No such functions \\(f\\) and \\(g\\) exist.",
+  "usage": {
+    "input_tokens": 157,
+    "output_tokens": 789,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 5.331187544041313,
+  "cached": false
+}

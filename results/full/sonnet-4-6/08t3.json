@@ -1,0 +1,22 @@
+{
+  "id": "08t3",
+  "country": "Japan",
+  "competition": "Japan Mathematical Olympiad",
+  "gold_final_answer": "-500004",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Sequences and Series > Recurrence relations",
+    "Algebra > Algebraic Expressions > Sequences and Series > Telescoping series",
+    "Algebra > Prealgebra / Basic Algebra > Integers",
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities"
+  ],
+  "prompt": "Suppose $2008$ real numbers $x_1, x_2, \\dots, x_{2008}$ are given and suppose that $|x_1| = 999$ and $|x_n| = |x_{n-1} + 1|$ for all $n$ with $2 \\le n \\le 2008$ are satisfied. Determine the smallest possible value that $x_1 + x_2 + \\dots + x_{2008}$ can have under these conditions.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Setting Up the Problem\n\nWe have $x_1$ with $|x_1| = 999$, so $x_1 = 999$ or $x_1 = -999$.\n\nThe recurrence is $|x_n| = |x_{n-1} + 1|$, meaning $x_n = \\pm|x_{n-1} + 1|$.\n\nWe want to minimize $S = x_1 + x_2 + \\cdots + x_{2008}$.\n\n## Strategy\n\nTo minimize the sum, we should take $x_1 = -999$ (negative start) and choose signs to make each subsequent term as negative as possible.\n\nAt each step, $x_n = \\pm|x_{n-1} + 1|$. To minimize, we choose $x_n = -|x_{n-1} + 1|$.\n\n## Analysis of the Recurrence\n\nStarting with $x_1 = -999$, let's track what happens when we always choose the negative sign.\n\nIf $x_{n-1} < -1$: then $x_{n-1} + 1 < 0$, so $|x_{n-1}+1| = -(x_{n-1}+1)$, and $x_n = -(-(x_{n-1}+1)) = x_{n-1}+1$.\n\nSo when $x_n < -1$, choosing negative gives $x_n = x_{n-1} + 1$ (increases by 1).\n\nStarting at $x_1 = -999$: the sequence goes $-999, -998, -997, \\ldots$ until we reach $-1$.\n\nAfter 998 steps: $x_{999} = -999 + 998 = -1$.\n\nAt $x_{999} = -1$: $x_{999} + 1 = 0$, so $x_{1000} = 0$.\n\nAt $x_{1000} = 0$: $|x_{1000}+1| = 1$, so $x_{1001} = -1$ (choosing negative).\n\nAt $x_{1001} = -1$: $x_{1002} = 0$, then $x_{1003} = -1$, etc. — oscillates between $-1$ and $0$.\n\n## Computing the Sum\n\n**Phase 1:** $x_1 = -999, x_2 = -998, \\ldots, x_{999} = -1$ (999 terms)\n$$S_1 = \\sum_{k=0}^{998}(-999+k) = \\sum_{j=-999}^{-1} j = -\\frac{999 \\cdot 1000}{2} = -499500$$\n\n**Phase 2:** $x_{1000} = 0, x_{1001} = -1, x_{1002} = 0, x_{1003} = -1, \\ldots$ (1009 terms from $n=1000$ to $n=2008$)\n\nNumber of remaining terms: $2008 - 999 = 1009$ terms.\n\nThe pattern is $0, -1, 0, -1, \\ldots$ starting at $x_{1000}$.\n- Odd positions in phase 2 (n=1000, 1002, ...): value 0\n- Even positions in phase 2 (n=1001, 1003, ...): value -1\n\nNumber of 0's: positions 1000, 1002, ..., 2008 → that's 505 terms.\nNumber of -1's: positions 1001, 1003, ..., 2007 → that's 504 terms.\n\n$$S_2 = 505 \\cdot 0 + 504 \\cdot (-1) = -504$$\n\n**Total:** $S = -499500 + (-504) = -500004$\n\n## Verification\n\nCould starting with $x_1 = 999$ do better? That gives a large positive start, making the sum larger. So $x_1 = -999$ is correct.\n\nCould a different sign choice give a smaller sum? When $x_{n-1} > -1$ (i.e., $x_{n-1} \\geq 0$), choosing negative gives $x_n = -(x_{n-1}+1) < 0$, which is better. Our strategy already does this optimally in phase 2.\n\nThe minimum sum is:\n\n$$S = -499500 - 504 = -500004$$\n\nFinal answer: $\\boxed{-500004}$",
+  "usage": {
+    "input_tokens": 161,
+    "output_tokens": 1097,
+    "thinking_tokens": 0
+  },
+  "latency_s": 13.661558783962391,
+  "cached": false
+}

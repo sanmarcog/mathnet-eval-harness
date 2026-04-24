@@ -1,0 +1,20 @@
+{
+  "id": "0dfy",
+  "country": "Saudi Arabia",
+  "competition": "Saudi Arabian IMO Booklet",
+  "gold_final_answer": "Player A has a winning strategy if and only if n is even; Player B has a winning strategy if and only if n is odd (independent of k).",
+  "topics_flat": [
+    "Discrete Mathematics > Graph Theory > Matchings, Marriage Lemma, Tutte's theorem",
+    "Discrete Mathematics > Combinatorics > Games / greedy algorithms"
+  ],
+  "prompt": "Two players, $A$ and $B$ play the following game. On a $1 \\times n$ board, where fields are labeled in order from $1$ to $n$, a coin is placed at position $k$. Players take turns moving the coin, with player $A$ starting first. Each player can move a coin one or two fields in either direction, with the restriction that the coin cannot move onto a field it had already occupied. The player unable to make a move loses. For which values of $(n, k)$ does which player have a winning strategy?",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To determine which player has a winning strategy, we can model the game as moving a token on a graph $G_n$ where the vertices are the fields $1, 2, \\dots, n$, and edges connect vertices that are at a distance of 1 or 2. A player wins if they can always make a valid move, which is equivalent to finding a perfect matching in the available vertices such that the player can always move along the matching edges.\n\n**Case 1: $n$ is even**\nWhen $n$ is even, the entire board can be perfectly matched using adjacent pairs: \n$M = \\{(1, 2), (3, 4), \\dots, (n-1, n)\\}$.\nSince the distance between any paired vertices is 1, all edges in $M$ are valid moves. \nPlayer A starts at position $k$. The vertex $k$ belongs to exactly one pair in $M$, say $(k, k')$. Player A's first move will be to $k'$. From then on, whenever Player B moves to a new, unvisited vertex $v$, Player A will simply move to its pair $M(v)$. Because Player B must always move to a new pair, and Player A completes the pair, Player A is guaranteed to always have a valid move. Thus, **Player A wins for all $k$ when $n$ is even.**\n\n**Case 2: $n$ is odd**\nWhen $n$ is odd, Player A must make the first move from $k$, effectively leaving $n-1$ (an even number) vertices to be visited. Player B can win if the remaining graph $G_n \\setminus \\{k\\}$ has a perfect matching. We can construct such a matching for any $k$:\n- If $k$ is odd, the remaining vertices can be paired as:\n  $M = \\{(1, 2), \\dots, (k-2, k-1)\\} \\cup \\{(k+1, k+2), \\dots, (n-1, n)\\}$.\n  All pairs are at a distance of 1, which are valid moves.\n- If $k$ is even, the remaining vertices can be paired as:\n  $M = \\{(1, 2), \\dots, (k-3, k-2)\\} \\cup \\{(k-1, k+1)\\} \\cup \\{(k+2, k+3), \\dots, (n-1, n)\\}$.\n  Here, the pair $(k-1, k+1)$ is at a distance of 2, and all other pairs are at a distance of 1. Since moves of distance 1 and 2 are both allowed, all edges in $M$ are valid moves.\n\nIn either scenario, Player B can adopt the strategy of always moving to the paired vertex $M(v)$ of the vertex $v$ that Player A just moved to. Because $G_n \\setminus \\{k\\}$ is perfectly matched, Player B will always have a response to any move Player A makes. Thus, **Player B wins",
+  "usage": {
+    "input_tokens": 158,
+    "output_tokens": 664,
+    "thoughts_tokens": 7524
+  },
+  "latency_s": 66.11192034801934,
+  "cached": false
+}

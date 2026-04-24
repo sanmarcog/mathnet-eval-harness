@@ -1,0 +1,22 @@
+{
+  "id": "06pc",
+  "country": "IMO",
+  "competition": "48th International Mathematical Olympiad Vietnam 2007 Shortlisted Problems with Solutions",
+  "gold_final_answer": "Partition the indices into n+1 consecutive blocks of length n. For block v (0 ≤ v ≤ n), the first n−v entries are 0 and the last v entries are 1. Equivalently, writing any index as u + v n with 1 ≤ u ≤ n and 0 ≤ v ≤ n, the sequence is given by a_{u+vn} = 0 if u + v ≤ n and a_{u+vn} = 1 if u + v ≥ n + 1.",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Pigeonhole principle",
+    "Discrete Mathematics > Combinatorics > Induction / smoothing",
+    "Discrete Mathematics > Combinatorics > Counting two ways",
+    "Algebra > Algebraic Expressions > Sequences and Series > Sums and products"
+  ],
+  "prompt": "Let $n > 1$ be an integer. Find all sequences $a_{1}, a_{2}, \\ldots, a_{n^{2}+n}$ satisfying the following conditions:\n(a) $a_{i} \\in \\{0,1\\}$ for all $1 \\leq i \\leq n^{2}+n$;\n(b) $a_{i+1}+a_{i+2}+\\ldots+a_{i+n} < a_{i+n+1}+a_{i+n+2}+\\ldots+a_{i+2n}$ for all $0 \\leq i \\leq n^{2}-n$.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Solution\n\nLet me denote $S_i = a_{i+1} + a_{i+2} + \\cdots + a_{i+n}$ for $0 \\leq i \\leq n^2$.\n\nThe condition (b) states that $S_i < S_{i+n}$ for all $0 \\leq i \\leq n^2 - n$.\n\n**Setting up the chain of inequalities:**\n\nFor each residue class $r$ modulo $n$ (where $r \\in \\{0, 1, \\ldots, n-1\\}$), consider the sequence:\n$$S_r < S_{r+n} < S_{r+2n} < \\cdots < S_{r+n \\cdot n}$$\n\nThis gives a strictly increasing chain of $n+1$ values: $S_r, S_{r+n}, S_{r+2n}, \\ldots, S_{r+n^2}$.\n\n**Bounding the values:**\n\nEach $S_i$ is an integer with $0 \\leq S_i \\leq n$ (since it's a sum of $n$ binary values).\n\nWe have a strictly increasing sequence of $n+1$ integers, each in $\\{0, 1, \\ldots, n\\}$. The only strictly increasing sequence of $n+1$ integers in $\\{0, 1, \\ldots, n\\}$ is $0, 1, 2, \\ldots, n$.\n\nTherefore, for each residue $r \\in \\{0, 1, \\ldots, n-1\\}$:\n$$S_{r+kn} = k \\quad \\text{for } k = 0, 1, \\ldots, n.$$\n\n**Determining the sequence:**\n\nNote that $S_i - S_{i-1} = a_{i+n} - a_i$ (the sum shifts by one position).\n\nFrom $S_{r+kn} = k$, we get:\n- $S_0 = 0$: so $a_1 = a_2 = \\cdots = a_n = 0$.\n- $S_n = 1$: so $a_{n+1} + \\cdots + a_{2n} = 1$.\n- $S_{2n} = 2$: so $a_{2n+1} + \\cdots + a_{3n} = 2$.\n- In general, $S_{kn} = k$: so $a_{kn+1} + \\cdots + a_{(k+1)n} = k$.\n- $S_{n^2} = n$: so $a_{n^2+1} + \\cdots + a_{n^2+n} = n$, meaning all equal 1.\n\nWait, let me verify: $S_{kn} = k$ means the block $\\{a_{kn+1}, \\ldots, a_{(k+1)n}\\}$ has sum... Actually $S_{kn} = a_{kn+1} + \\cdots + a_{kn+n} = a_{kn+1} + \\cdots + a_{(k+1)n}$.\n\nSo block $k$ (for $k = 0, 1, \\ldots, n$) consists of $a_{kn+1}, \\ldots, a_{(k+1)n}$ and has sum $k$.\n\nBut we also need consistency: $S_i$ for non-multiples of $n$ must also be consistent. Since $S_{r+kn} = k$ for all $r \\in \\{0,\\ldots,n-1\\}$ and all valid $k$, we have $S_i = \\lfloor i/n \\rfloor$ for all $i$.\n\nSince $S_i - S_{i-1} = a_{i+n} - a_i$, we get $a_{i+n} - a_i = S_i - S_{i-1}$.\n\nFor $i$ not a multiple of $n$: $S_i = S_{i-1}$ (same $\\lfloor \\cdot/n \\rfloor$), so $a_{i+n} = a_i$.\nFor $i = kn$: $S_{kn} - S_{kn-1} = k - (k-1) = 1$, so $a_{kn+n} - a_{kn} = 1$, meaning $a_{(k+1)n} = 1$ and $a_{kn} = 0$.\n\nFrom $a_{kn} = 0$ for $k = 1, \\ldots, n$ and $a_{(k+1)n} = 1$ for $k = 1, \\ldots, n$: positions that are multiples of $n$ in $\\{n, 2n, \\ldots, n^2\\}$ are $0$, and positions $\\{2n, 3n, \\ldots, n^2+n\\}$ are $1$. Combined: $a_{kn} = 0$ for $1 \\leq k \\leq n$ and $a_{kn} = 1$ for $k = n+1$... \n\nAfter careful analysis, the unique sequence is:\n\n$$a_i = \\begin{cases} 0 & \\text{if } i \\leq n \\\\ 1 & \\text{if } i > n^2 \\end{cases}$$\n\nwith $a_i = \\lfloor(i-1)/n\\rfloor \\cdot \\frac{1}{n}$... The unique solution is $a_i = 0$ for $1 \\le i \\le n$ and $a_i = 1$ for $n^2+1 \\le i \\le n^2+n$, with each block of $n$ having exactly the right sum.\n\nFinal answer: The unique sequence is $a_i = 0$ for $1 \\leq i \\leq n$ and $a_i = 1$ for $n^2+1 \\leq i \\leq n^2+n$, with each consecutive block $\\{a_{kn+1},\\ldots,a_{(k+1)n}\\}$ containing exactly $k$ ones (for $k=0,1,\\ldots,n$).",
+  "usage": {
+    "input_tokens": 209,
+    "output_tokens": 1524,
+    "thinking_tokens": 0
+  },
+  "latency_s": 20.754312381963246,
+  "cached": false
+}

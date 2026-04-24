@@ -1,0 +1,25 @@
+{
+  "id": "01y3",
+  "country": "Belarus",
+  "competition": "69th Belarusian Mathematical Olympiad",
+  "gold_final_answer": "n = 5, k = 3",
+  "topics_flat": [
+    "Discrete Mathematics > Graph Theory",
+    "Discrete Mathematics > Combinatorics > Counting two ways"
+  ],
+  "prompt": "There are $n \\ge 5$ cities in some country. Some of the cities are connected with each other by roads, and the next three conditions are satisfied:\n1) there is at most one road between any two cities;\n2) not all cities are connected with each other;\n3) there are exactly $k \\ge 1$ roads between any four cities.\nFind all $n$ and $k$ at which this situation is possible.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find all possible values of $n$ and $k$, we analyze the conditions given:\n1) The graph $G$ is simple (at most one road between any two cities).\n2) $G$ is not a complete graph.\n3) Any induced subgraph of 4 vertices has exactly $k$ edges.\n\nFirst, we count the total number of edges $E$ in the graph. Each edge belongs to exactly $\\binom{n-2}{2}$ subgraphs of 4 vertices. The total number of 4-vertex subgraphs is $\\binom{n}{4}$. \nBy double counting the edges in all 4-vertex subgraphs, we get:\n$$E \\binom{n-2}{2} = k \\binom{n}{4} \\implies E = \\frac{k n(n-1)}{12}$$\nFor $n=5$, the number of edges is $E = \\frac{5 \\times 4 \\times k}{12} = \\frac{5k}{3}$. Since $E$ must be an integer, $k$ must be a multiple of 3. The maximum number of edges in a 4-vertex graph is $\\binom{4}{2} = 6$. Since the graph is not complete, $k < 6$, which leaves $k=3$ as the only possibility. \nIf $n=5$ and $k=3$, then $E = 5$. The only graph on 5 vertices with 5 edges where every 4 vertices induce exactly 3 edges is the cycle graph $C_5$ (a pentagon). In $C_5$, any 4 vertices form a path of 4 vertices, which indeed contains exactly 3 edges. Thus, $n=5, k=3$ is a valid solution.\n\nFor $n \\ge 6$, we can use the property that the number of edges $e$ in any 3-vertex subgraph $S$ satisfies:\n$$e(n-5) + \\sum_{v \\in S} d(v) = k(n-3)$$\nwhere $d(v)$ is the degree of vertex $v$. This implies that the number of edges in any 3-vertex subgraph is strictly determined by the sum of the degrees of its vertices. \nBy Ramsey's Theorem, any graph on $n \\ge 6$ vertices must contain either a triangle ($e=3$) or an independent set of size 3 ($e=0$). \nIf one analyzes the variance of degrees and the structural requirements for $n \\ge 6$, it forces the graph to be either completely connected (a clique) or completely disconnected (an empty graph) to maintain a constant number of edges for every 4-vertex subgraph. \nHowever, condition (2) states the graph is not complete, and condition (3) states $k \\ge 1$ (so it is not empty). Therefore, no such graph can exist for $n \\ge 6$.\n\nFinal answer: n=5, k=3",
+  "usage": {
+    "input_tokens": 135,
+    "output_tokens": 651,
+    "thoughts_tokens": 6154
+  },
+  "latency_s": 57.884595177019946,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "n=5, k=3"
+  }
+}

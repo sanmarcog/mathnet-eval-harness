@@ -1,0 +1,25 @@
+{
+  "id": "0532",
+  "country": "Estonia",
+  "competition": "Open Contests",
+  "gold_final_answer": "No",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials",
+    "Algebra > Intermediate Algebra > Other"
+  ],
+  "prompt": "Publisher Soothsayer published a reference book claiming that for each real number $x$ and positive even number $n$ the equality $(1+x)^n \\ge 2^n x$ holds. Is this claim true?",
+  "model": "gpt-5.4",
+  "response_text": "No.\n\nLet\n\\[\nf(x)=(1+x)^n-2^n x,\n\\]\nwhere \\(n\\) is a positive even integer.\n\nWe test whether \\(f(x)\\ge 0\\) for all real \\(x\\).\n\nSince \\(n\\) is even, consider\n\\[\nx=1+\\varepsilon \\quad (\\varepsilon>0).\n\\]\nThen\n\\[\n(1+x)^n=(2+\\varepsilon)^n,\n\\qquad\n2^n x=2^n(1+\\varepsilon).\n\\]\nSo the claimed inequality becomes\n\\[\n(2+\\varepsilon)^n \\ge 2^n(1+\\varepsilon).\n\\]\nDivide by \\(2^n\\):\n\\[\n\\left(1+\\frac{\\varepsilon}{2}\\right)^n \\ge 1+\\varepsilon.\n\\]\nNow for \\(n=2\\), this is\n\\[\n\\left(1+\\frac{\\varepsilon}{2}\\right)^2\n=1+\\varepsilon+\\frac{\\varepsilon^2}{4}\\ge 1+\\varepsilon,\n\\]\nso it holds. But we need it for every positive even \\(n\\), and the original claim says for every real \\(x\\).\n\nA cleaner way is to check the minimum of \\(f\\). Differentiate:\n\\[\nf'(x)=n(1+x)^{n-1}-2^n.\n\\]\nSet \\(f'(x)=0\\):\n\\[\n(1+x)^{n-1}=\\frac{2^n}{n}.\n\\]\nThis gives a critical point\n\\[\nx_0=\\left(\\frac{2^n}{n}\\right)^{\\!1/(n-1)}-1.\n\\]\nAt such a point,\n\\[\nf(x_0)=(1+x_0)^n-2^n x_0.\n\\]\nLet \\(t=1+x_0\\), so \\(t^{\\,n-1}=2^n/n\\). Then\n\\[\nf(x_0)=t^n-2^n(t-1)=t\\cdot \\frac{2^n}{n}-2^n t+2^n\n=2^n\\left(1-t\\frac{n-1}{n}\\right).\n\\]\nSo \\(f(x_0)<0\\) whenever\n\\[\nt>\\frac{n}{n-1}.\n\\]\nBut\n\\[\nt=\\left(\\frac{2^n}{n}\\right)^{1/(n-1)},\n\\]\nand for \\(n\\ge 4\\) even, this indeed exceeds \\(n/(n-1)\\). For example, when \\(n=4\\),\n\\[\nx_0=1-1=0? \\quad \\text{No, solve carefully: } (1+x)^3=4,\\; x=\\sqrt[3]{4}-1.\n\\]\nThen\n\\[\nf(x)=(1+x)^4-16x.\n\\]\nAt \\(x=\\sqrt[3]{4}-1\\),\n\\[\nf(x)=4^{4/3}-16(\\sqrt[3]{4}-1)\n=16-12\\sqrt[3]{4}<0.\n\\]\nIndeed, since \\(\\sqrt[3]{4}>1\\), this is negative.\n\nThus the inequality fails for \\(n=4\\) (and hence the universal claim is false).\n\nFor instance, take \\(n=4\\) and \\(x=\\sqrt[3]{4}-1\\). Then\n\\[\n(1+x)^4=4^{4/3}<16(\\sqrt[3]{4}-1)=2^4x,\n\\]\nso \\((1+x)^n\\ge 2^n x\\) is not always true.\n\nFinal answer: No; the claim is false (for example, \\(n=4,\\ x=\\sqrt[3]{4}-1\\) gives \\((1+x)^4<16x\\)).",
+  "usage": {
+    "input_tokens": 94,
+    "output_tokens": 843,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 12.116260895039886,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "No; the claim is false (for example, \\(n=4,\\ x=\\sqrt[3]{4}-1\\) gives \\((1+x)^4<16x\\))."
+  }
+}

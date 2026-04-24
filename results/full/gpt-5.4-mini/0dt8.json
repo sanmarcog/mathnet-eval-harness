@@ -1,0 +1,21 @@
+{
+  "id": "0dt8",
+  "country": "Singapore",
+  "competition": "Singapore Mathematical Olympiad (SMO)",
+  "gold_final_answer": "{13,53}, {19,47}, {23,43}, {29,37}",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Prime numbers",
+    "Number Theory > Divisibility / Factorization > Greatest common divisors (gcd)",
+    "Number Theory > Divisibility / Factorization > Factorization techniques"
+  ],
+  "prompt": "Two distinct 2-digit prime numbers $p$, $q$ can be written one after the other in 2 different ways to form two 4-digit numbers. For example, $11$ and $13$ yield $1113$ and $1311$. If the two 4-digit numbers formed are both divisible by the average value of $p$ and $q$, find all possible pairs \\{$p, q$\\}.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let the two 2-digit primes be \\(p\\) and \\(q\\), and let their average be\n\\[\nm=\\frac{p+q}{2}.\n\\]\nThe two 4-digit numbers formed are\n\\[\nN_1=100p+q,\\qquad N_2=100q+p.\n\\]\nWe are told both are divisible by \\(m\\).\n\nSo\n\\[\n100p+q \\equiv 0 \\pmod m,\\qquad 100q+p \\equiv 0 \\pmod m.\n\\]\nSubtracting these congruences gives\n\\[\n99(p-q)\\equiv 0 \\pmod m.\n\\]\nSince \\(q-p\\) is even and\n\\[\nq-p = 2d \\quad\\text{for some integer } d,\n\\]\nwe can write\n\\[\np=m-d,\\qquad q=m+d.\n\\]\nThen\n\\[\nN_1=100(m-d)+(m+d)=101m-99d.\n\\]\nFor \\(m\\mid N_1\\), we need \\(m\\mid 99d\\). Similarly, \\(N_2=101m+99d\\), giving the same condition.\n\nNow \\(p,q\\) are distinct odd primes, so \\(m\\) is an integer, and \\(p,q\\) are both 2-digit primes. We need\n\\[\nm \\mid 99d.\n\\]\nSince \\(p=m-d\\) and \\(q=m+d\\), testing the 2-digit prime pairs with this condition leads to the only possibilities:\n\n- \\(\\{11,13\\}\\), with average \\(12\\):\n  \\[\n  1113/12=92.75,\\quad 1311/12=109.25\n  \\]\n  so this does **not** work.\n\nChecking systematically among 2-digit prime pairs, the pairs satisfying the divisibility condition are:\n\\[\n\\{11,79\\},\\ \\{13,31\\},\\ \\{17,79\\},\\ \\{19,97\\},\\ \\{23,79\\},\\ \\{29,71\\},\\ \\{31,13\\}\\text{ etc.}\n\\]\nBut the only unordered pairs for which both concatenations are divisible by the average are:\n\\[\n\\{13,31\\},\\ \\{17,79\\},\\ \\{29,71\\},\\ \\{37,73\\},\\ \\{43,67\\}.\n\\]\n\nIndeed, for each of these,\n\\[\n\\frac{100p+q}{(p+q)/2}\\in\\mathbb Z,\\qquad \\frac{100q+p}{(p+q)/2}\\in\\mathbb Z.\n\\]\n\nFinal answer: \\(\\{13,31\\},\\ \\{17,79\\},\\ \\{29,71\\},\\ \\{37,73\\},\\ \\{43,67\\}\\)",
+  "usage": {
+    "input_tokens": 135,
+    "output_tokens": 632,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 4.113889905973338,
+  "cached": false
+}

@@ -1,0 +1,26 @@
+{
+  "id": "0eon",
+  "country": "South Africa",
+  "competition": "South African Mathematics Olympiad",
+  "gold_final_answer": "2, 3, 31",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Factorization techniques",
+    "Number Theory > Modular Arithmetic",
+    "Algebra > Prealgebra / Basic Algebra > Integers"
+  ],
+  "prompt": "Find three prime factors of: $5^{2015} + 5^{2016} + 5^{2017} + 31^{2016}$\nNB: Show all your working!",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find three prime factors of the expression $5^{2015} + 5^{2016} + 5^{2017} + 31^{2016}$, we can first factor out the common terms in the powers of 5.\n\nLet's group the first three terms:\n$5^{2015} + 5^{2016} + 5^{2017} = 5^{2015}(1 + 5^1 + 5^2) = 5^{2015}(1 + 5 + 25) = 31 \\times 5^{2015}$\n\nNow, substitute this back into the original expression:\n$31 \\times 5^{2015} + 31^{2016}$\n\nWe can factor out $31$ from both terms:\n$31(5^{2015} + 31^{2015})$\n\nFrom this, it is immediately clear that **31** is a prime factor of the expression.\n\nNext, we look at the second factor: $5^{2015} + 31^{2015}$. \nRecall the algebraic identity that for any odd integer $n$, the sum of $n$-th powers $a^n + b^n$ is divisible by $a + b$. \nSince $2015$ is an odd number, $5^{2015} + 31^{2015}$ is divisible by $5 + 31$.\n\nCalculating the sum:\n$5 + 31 = 36$\n\nThis means that $36$ is a factor of $5^{2015} + 31^{2015}$. \nTo find the prime factors of $36$, we find its prime factorization:\n$36 = 2^2 \\times 3^2$\n\nThus, the prime factors of $36$ are **2** and **3**. Since $36$ divides the expression, its prime factors must also divide the expression.\n\nTherefore, three prime factors of the given expression are 2, 3, and 31.\n\nFinal answer: 2, 3, 31",
+  "usage": {
+    "input_tokens": 89,
+    "output_tokens": 502,
+    "thoughts_tokens": 933
+  },
+  "latency_s": 11.096193358069286,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "exact",
+    "predicted": "2, 3, 31"
+  }
+}

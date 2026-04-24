@@ -1,0 +1,20 @@
+{
+  "id": "01p6",
+  "country": "Belarus",
+  "competition": "Belarusian Mathematical Olympiad",
+  "gold_final_answer": "P(x) = a x(x-1)(x+1) for any real a",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials",
+    "Algebra > Algebraic Expressions > Functional Equations"
+  ],
+  "prompt": "Find all polynomials $P(x)$ such that the equality\n$$\n(x - 1)P(x + 1) - (x + 1)P(x - 1) = 4P(x)\n$$\nholds for all real $x$.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find all polynomials $P(x)$ satisfying the given equation:\n$$ (x - 1)P(x + 1) - (x + 1)P(x - 1) = 4P(x) $$\n\nFirst, let's determine the degree of $P(x)$. Let $n$ be the degree of $P(x)$ and $a_n$ be its leading coefficient. \nWe can rewrite the left-hand side (LHS) as:\n$$ \\text{LHS} = x[P(x + 1) - P(x - 1)] - [P(x + 1) + P(x - 1)] $$\nUsing the binomial expansion, the leading terms of $P(x+1)$ and $P(x-1)$ are:\n$$ P(x+1) = a_n x^n + n a_n x^{n-1} + \\dots $$\n$$ P(x-1) = a_n x^n - n a_n x^{n-1} + \\dots $$\nSubtracting and adding these gives:\n$$ P(x+1) - P(x-1) = 2n a_n x^{n-1} + \\dots $$\n$$ P(x+1) + P(x-1) = 2a_n x^n + \\dots $$\nSubstitute these back into the LHS:\n$$ \\text{LHS} = x(2n a_n x^{n-1} + \\dots) - (2a_n x^n + \\dots) = (2n - 2)a_n x^n + \\dots $$\nThe right-hand side (RHS) is $4P(x) = 4a_n x^n + \\dots$.\nEquating the leading coefficients of both sides, we get:\n$$ 2n - 2 = 4 \\implies 2n = 6 \\implies n = 3 $$\nThus, $P(x)$ must be a polynomial of degree 3 (or the zero polynomial). Let $P(x) = ax^3 + bx^2 + cx + d$.\n\nSubstitute $P(x)$ into the original equation:\n$$ P(x+1) = a(x^3+3x^2+3x+1) + b(x^2+2x+1) + c(x+1) + d $$\n$$ P(x-1) = a(x^3-3x^2+3x-1) + b(x^2-2x+1) + c(x-1) + d $$\nCalculating the LHS:\n$$ P(x+1) - P(x-1) = 6ax^2 + 4bx + 2a + 2c $$\n$$ P(x+1) + P(x-1) = 2ax^3 + 2bx^2 + (6a+2c)x + 2b + 2d $$\n$$ \\text{LHS} = x(6ax^2 + 4bx + 2a + 2c) - (2ax^3 + 2bx^2 + (6a+2c)x + 2b + 2d) $$\n$$ \\text{LHS} = 4ax^3 + 2bx^2 - 4ax - 2b - 2d $$\n\nEquating this to the RHS, $4P(x) = 4ax^3 + 4bx^2 + 4cx + 4d$, we compare the coefficients of corresponding powers of $x$:\n- For $x^2$: $2b = 4b \\implies b = 0$\n- For $x$: $-4a = 4c \\implies c = -a$\n- For the constant term: $-2b - 2d = 4d \\implies -2d = 4d \\implies d = 0$\n\nTherefore, the polynomial takes the form:\n$$ P(x) = ax^3 - ax = a(x^3 - x) $$\nwhere $a$ is any real constant. \n\nChecking this solution:\n$$ (x-1)a((x+1)^3 - (x+1)) - (x+1)a((x-1)^3 - (x-1)) $$\n$$ = a(x-1)(x+1)((x+1)^2 - 1 - ((x-1)^2 - 1)) $$\n$$ = a(x^2-1)(x^2+2x - (x^2-2x)) = a(x^2-1)(4x) = 4a(x^3-x) = 4P(x) $$\nThe solution holds.\n\nFinal answer: P(x) = c(x^3 - x)",
+  "usage": {
+    "input_tokens": 98,
+    "output_tokens": 1083,
+    "thoughts_tokens": 1790
+  },
+  "latency_s": 24.787870856001973,
+  "cached": false
+}

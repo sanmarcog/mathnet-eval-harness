@@ -1,0 +1,24 @@
+{
+  "id": "0hbp",
+  "country": "Ukraine",
+  "competition": "59th Ukrainian National Mathematical Olympiad",
+  "gold_final_answer": "No",
+  "topics_flat": [
+    "Number Theory > Modular Arithmetic"
+  ],
+  "prompt": "Three numbers $2^{100}$, $3^{100}$ and $5^{100}$ are written on a long paper strip without any space in-between, thus, creating one big number $N$. Arsenii claims that he can change the last digit of number $N$ so that the new number is a power of $13$. Is he right?",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let  \n\\[\nN=\\text{the decimal concatenation of }2^{100},\\,3^{100},\\,5^{100}.\n\\]\nArsenii may change only the last digit, so the new number has the form\n\\[\nM=10N+d\n\\]\nfor some digit \\(d\\in\\{0,1,\\dots,9\\}\\).  \nWe want to know whether \\(M\\) can equal \\(13^k\\) for some integer \\(k\\).\n\n## Step 1: Determine the last digit of \\(N\\)\nThe last digits of the three powers are:\n\\[\n2^{100}\\equiv 6 \\pmod{10},\\qquad 3^{100}\\equiv 1 \\pmod{10},\\qquad 5^{100}\\equiv 5 \\pmod{10}.\n\\]\nSo \\(N\\) ends in \\(5\\). Therefore changing the last digit means changing that final \\(5\\).\n\nAlso, the length of the concatenation is\n- \\(2^{100}\\) has \\(31\\) digits,\n- \\(3^{100}\\) has \\(48\\) digits,\n- \\(5^{100}\\) has \\(70\\) digits,\n\nso \\(N\\) has \\(31+48+70=149\\) digits.\n\nThus\n\\[\n5\\cdot 10^{148} \\le N < 10^{149},\n\\]\nand hence\n\\[\n5\\cdot 10^{149} \\le 10N < 10^{150}.\n\\]\nSo\n\\[\nM=10N+d\n\\]\nis a 150-digit number.\n\n## Step 2: Compare with powers of \\(13\\)\nWe need a power \\(13^k\\) with 150 digits. Since\n\\[\n13^{129} < 10^{150} < 13^{130},\n\\]\nthe only possible candidate is \\(13^{129}\\), because \\(13^{130}\\) already has more than 150 digits.\n\nSo if \\(M\\) is a power of \\(13\\), it must be\n\\[\nM=13^{129}.\n\\]\n\n## Step 3: Check the last digit\nPowers of \\(13\\) mod \\(10\\) cycle with period \\(10\\), and since \\(13\\equiv 3\\pmod{10}\\), the last digit of \\(13^k\\) is the same as that of \\(3^k\\):\n\\[\n3,9,7,1,3,9,7,1,\\dots\n\\]\nThus the last digit of \\(13^{129}\\) is\n\\[\n13^{129}\\equiv 3^{129}\\equiv 3 \\pmod{10}\n\\]\nbecause \\(129\\equiv 1 \\pmod{4}\\).\n\nSo \\(13^{129}\\) ends in \\(3\\).\n\nBut \\(M=10N+d\\) has last digit \\(d\\), and since the original last digit of \\(N\\) is \\(5\\), Arsenii can choose \\(d\\) freely from \\(0\\) to \\(9\\). In particular, he can choose \\(d=3\\). The remaining question is whether the resulting 150-digit number actually equals \\(13^{129}\\).\n\nA quick modular obstruction works modulo \\(4\\):  \nSince \\(10N+d\\equiv d \\pmod{4}\\), while\n\\[\n13^{129}\\equiv 1 \\pmod{4}.\n\\]\nTherefore we would need \\(d\\equiv 1\\pmod{4}\\), i.e. \\(d\\in\\{1,5,9\\}\\).\n\nBut \\(13^{129}\\) ends in \\(3\\), contradiction.\n\nHence no choice of the last digit can make the number equal to a power of \\(13\\).\n\nSo Arsenii is not right.\n\nFinal answer: No, he cannot make \\(N\\) into a power of \\(13\\).",
+  "usage": {
+    "input_tokens": 121,
+    "output_tokens": 839,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 5.776618035044521,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "No, he cannot make \\(N\\) into a power of \\(13\\)."
+  }
+}

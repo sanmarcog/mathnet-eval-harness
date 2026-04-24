@@ -1,0 +1,25 @@
+{
+  "id": "09pf",
+  "country": "Mongolia",
+  "competition": "MMO2025 Round 3",
+  "gold_final_answer": "All solutions have a = b = c = t and n ≥ 2. If t > 1, then m = n − 1. If t = 1, then any m with 1 ≤ m ≤ 2n − 2 works.",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Greatest common divisors (gcd)",
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities"
+  ],
+  "prompt": "Find all quintuples of positive integers $(a, b, c, m, n)$ such that $m \\le 2n - 2$ and\n$$\na^n + b^n = (a, b)^m (a + b), \\quad b^n + c^n = (b, c)^m (b + c), \\quad c^n + a^n = (c, a)^m (c + a).\n$$\nHere, $(x, y)$ denotes the greatest common divisor of $x$ and $y$.\n(Bilegdemberel Bat-Amgalan)",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Setting Up the Problem\n\nLet me denote $\\gcd(a,b) = d_1$, $\\gcd(b,c) = d_2$, $\\gcd(c,a) = d_3$.\n\nWrite $a = d_1 \\alpha$, $b = d_1 \\beta$ with $\\gcd(\\alpha,\\beta)=1$.\n\n**First equation:** $a^n + b^n = d_1^m(a+b)$\n\n$d_1^n(\\alpha^n + \\beta^n) = d_1^m \\cdot d_1(\\alpha + \\beta)$\n\nSo $d_1^n(\\alpha^n + \\beta^n) = d_1^{m+1}(\\alpha+\\beta)$.\n\nSince $\\gcd(\\alpha,\\beta)=1$ and $\\gcd(\\alpha,\\beta)=1$ implies $\\gcd(\\alpha^n+\\beta^n, \\alpha+\\beta)$ divides $n$ (when $n$ is odd) or similar. Actually $\\alpha^n + \\beta^n = (\\alpha+\\beta)Q$ when $n$ is odd, but for general $n$, $(\\alpha+\\beta) \\mid (\\alpha^n+\\beta^n)$ iff $n$ is odd.\n\n**Testing $a = b = c$:** Let $a=b=c=k$.\n\nThen $\\gcd(a,b)=k$, and $a^n+b^n = 2k^n$, $\\gcd^m(a+b) = k^m \\cdot 2k = 2k^{m+1}$.\n\nSo $2k^n = 2k^{m+1}$, giving $k^n = k^{m+1}$, so $n = m+1$, i.e., $m = n-1$.\n\nCheck: $m \\leq 2n-2$ requires $n-1 \\leq 2n-2$, i.e., $1 \\leq n$. ✓\n\nSo $(a,b,c,m,n) = (k,k,k,n-1,n)$ for any positive integer $k$ and $n \\geq 1$.\n\n**Can we have $a,b,c$ not all equal?**\n\nTry $n=1$: equations become $a+b = \\gcd(a,b)^m(a+b)$, so $\\gcd(a,b)^m = 1$, meaning $m=0$. But $m$ must be a positive integer. So $n=1$ gives no solution with positive $m$.\n\nWait, re-read: positive integers $(a,b,c,m,n)$, so $m \\geq 1$.\n\nFor $n=1$: need $\\gcd(a,b)^m = 1$ which requires $m=0$, not positive. So $n \\geq 2$.\n\n**Try $n=2, m=1$ (so $m=n-1=1$):** $a^2+b^2 = \\gcd(a,b)(a+b)$.\n\nWith $a=d\\alpha, b=d\\beta$, $\\gcd(\\alpha,\\beta)=1$: $d^2(\\alpha^2+\\beta^2) = d(\\alpha+\\beta)d = d^2(\\alpha+\\beta)$. So $\\alpha^2+\\beta^2 = \\alpha+\\beta$. With positive integers and $\\gcd(\\alpha,\\beta)=1$: only $\\alpha=\\beta=1$ works (giving $2=2$). So $a=b$.\n\n**Try non-symmetric cases more carefully.** Suppose $a \\neq b$. From the analysis with $\\gcd(\\alpha,\\beta)=1$:\n\n$d_1^{n-m-1}(\\alpha^n+\\beta^n) = \\alpha+\\beta$\n\nSince $\\alpha,\\beta \\geq 1$ and $\\alpha \\neq \\beta$ (WLOG), $\\alpha^n+\\beta^n \\geq 1^n + 2^n \\geq 3$ and $\\alpha+\\beta \\geq 3$. For $n \\geq 2$, $\\alpha^n+\\beta^n \\geq \\alpha+\\beta$ with equality only when $\\alpha=\\beta=1$. So we need $d_1^{n-m-1} \\leq 1$, meaning $n \\leq m+1$. Combined with $m \\leq 2n-2$, and $m=n-1$ gives equality. If $n < m+1$ then $d_1^{n-m-1} < 1$ impossible. So $n = m+1$ and $\\alpha^n+\\beta^n = \\alpha+\\beta$, forcing $\\alpha=\\beta=1$, so $a=b$.\n\nSimilarly $b=c$ and $c=a$, so $a=b=c$.\n\n## Conclusion\n\nAll solutions are:\n\n$$\\boxed{(a, b, c, m, n) = (k,\\, k,\\, k,\\, n-1,\\, n)}$$\n\nfor any positive integers $k$ and $n \\geq 2$ (with $m = n-1 \\geq 1$).\n\nFinal answer: All quintuples are $(a,b,c,m,n)=(k,k,k,n-1,n)$ for positive integers $k$ and $n\\geq 2$.",
+  "usage": {
+    "input_tokens": 189,
+    "output_tokens": 1363,
+    "thinking_tokens": 0
+  },
+  "latency_s": 18.023823181982152,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "All quintuples are $(a,b,c,m,n)=(k,k,k,n-1,n)$ for positive integers $k$ and $n\\geq 2$."
+  }
+}

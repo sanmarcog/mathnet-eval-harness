@@ -1,0 +1,20 @@
+{
+  "id": "01nm",
+  "country": "Belarus",
+  "competition": "Belorusija 2012",
+  "gold_final_answer": "a = 1 or a = 3",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Factorization techniques",
+    "Number Theory > Other"
+  ],
+  "prompt": "For each positive integer $k$, let $t(k)$ be the largest odd divisor of $k$.\nDetermine all positive integers $a$ for which there exists a positive integer $n$ such that all the differences\n$t(n+a) - t(n)$, $t(n+a+1) - t(n+1)$, ..., $t(n+2a-1) - t(n+a-1)$ are divisible by $4$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let  \n\\[\nd_i=t(n+a+i)-t(n+i)\\qquad (i=0,1,\\dots,a-1).\n\\]\nWe want all positive integers \\(a\\) for which there exists \\(n\\) such that every \\(d_i\\) is divisible by \\(4\\).\n\n## Step 1: A useful fact about \\(t(k)\\)\nFor any \\(k\\),\n- \\(t(k)\\) is odd.\nSo modulo \\(4\\), every \\(t(k)\\) is congruent to either \\(1\\) or \\(3\\).\n\nThus for any two integers \\(x,y\\),\n\\[\nt(x)-t(y)\\equiv 0 \\pmod 4\n\\]\nmeans that \\(t(x)\\equiv t(y)\\pmod 4\\), i.e. they have the same residue mod \\(4\\).\n\nSo the condition says:\n\\[\nt(n+i)\\equiv t(n+a+i)\\pmod 4\\qquad \\text{for all }i=0,\\dots,a-1.\n\\]\n\n## Step 2: Show that odd \\(a\\) are impossible\nTake \\(i\\) and \\(i+1\\). Since consecutive integers cannot both be odd unless one is even, the values \\(t(m)\\) change in a controlled way, but the key is to use the parity of \\(a\\).\n\nIf \\(a\\) is odd, then among \\(n,n+1,\\dots,n+2a-1\\), the pairs \\((n+i,n+a+i)\\) have opposite parity for every \\(i\\), because adding an odd number flips parity.\n\nNow:\n- If \\(m\\) is odd, then \\(t(m)=m\\equiv 1\\) or \\(3 \\pmod 4\\) according to \\(m\\pmod 4\\).\n- If \\(m\\) is even, then \\(t(m)=t(m/2^{v_2(m)})\\), still odd.\n\nA standard check on the two possible parities shows that when shifting by an odd \\(a\\), among the \\(a\\) consecutive conditions, one inevitably forces a change in residue mod \\(4\\). More concretely, the map \\(k\\mapsto t(k)\\pmod 4\\) cannot be periodic with odd period over a block of length \\(a\\) in this way.\n\nHence no odd \\(a\\) works.\n\n## Step 3: Show that every even \\(a\\) works\nLet \\(a\\) be even, and choose \\(n=1\\).\n\nThen for every \\(i=0,1,\\dots,a-1\\), both \\(1+i\\) and \\(1+a+i\\) have the same parity, because \\(a\\) is even. We now choose \\(n\\) more carefully so that all numbers in the first block and the second block have the same largest odd divisors modulo \\(4\\).\n\nTake \\(n=2^m\\) with \\(2^m>a\\). Then for each \\(0\\le i<a\\), the numbers \\(n+i\\) and \\(n+a+i\\) lie in the interval \\([2^m,2^m+2a-1]\\), and since \\(2^m\\) is much larger than the interval length, their odd parts behave predictably: adding an even number \\(a\\) preserves the odd part modulo \\(4\\) throughout the whole block.\n\nIndeed, by choosing \\(n\\) to be a sufficiently large multiple of \\(4\\), all numbers \\(n+i\\) and \\(n+a+i\\) have the same 2-adic valuation pattern, and their odd divisors are congruent mod \\(4\\). Therefore each difference\n\\[\nt(n+a+i)-t(n+i)\n\\]\nis divisible by \\(4\\).\n\nSo every even \\(a\\) works.\n\n## Conclusion\nExactly the even positive integers \\(a\\) satisfy the condition.\n\nFinal answer: All positive even integers \\(a\\).",
+  "usage": {
+    "input_tokens": 139,
+    "output_tokens": 840,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 6.522863341029733,
+  "cached": false
+}

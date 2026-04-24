@@ -1,0 +1,24 @@
+{
+  "id": "04g3",
+  "country": "Croatia",
+  "competition": "Mathematica competitions in Croatia",
+  "gold_final_answer": "1 + i, -1 - i",
+  "topics_flat": [
+    "Algebra > Intermediate Algebra > Complex numbers"
+  ],
+  "prompt": "Determine all complex numbers $z$ such that\n$$\n|z^2 - i| = 1 \\quad \\text{and} \\quad |z| = \\sqrt{2}.\n$$",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let \\(z=x+iy\\), with \\(x,y\\in\\mathbb R\\).\n\nFrom \\(|z|=\\sqrt2\\), we get\n\\[\nx^2+y^2=2.\n\\]\n\nAlso,\n\\[\nz^2=(x^2-y^2)+2ixy,\n\\]\nso\n\\[\nz^2-i=(x^2-y^2)+i(2xy-1).\n\\]\nHence\n\\[\n|z^2-i|^2=(x^2-y^2)^2+(2xy-1)^2=1.\n\\]\nExpanding:\n\\[\n(x^2-y^2)^2+(2xy-1)^2\n= x^4-2x^2y^2+y^4+4x^2y^2-4xy+1\n\\]\n\\[\n= (x^2+y^2)^2+2x^2y^2-4xy+1.\n\\]\nUsing \\(x^2+y^2=2\\), this becomes\n\\[\n4+2x^2y^2-4xy+1=1\n\\]\nso\n\\[\n2x^2y^2-4xy+4=0\n\\]\n\\[\nx^2y^2-2xy+2=0.\n\\]\nLet \\(t=xy\\). Then\n\\[\nt^2-2t+2=0,\n\\]\nwhose discriminant is\n\\[\n\\Delta=4-8=-4<0.\n\\]\nSo there is no real \\(t\\), hence no real \\(x,y\\), and therefore no complex \\(z\\).\n\nFinal answer: \\(\\varnothing\\)",
+  "usage": {
+    "input_tokens": 89,
+    "output_tokens": 367,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 2.4369660899974406,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "\\(\\varnothing\\)"
+  }
+}

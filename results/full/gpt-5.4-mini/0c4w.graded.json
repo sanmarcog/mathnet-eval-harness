@@ -1,0 +1,24 @@
+{
+  "id": "0c4w",
+  "country": "Romania",
+  "competition": "SHORTLISTED PROBLEMS FOR THE 2019 ROMANIAN NMO",
+  "gold_final_answer": "f(x) ≡ 0",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Functional Equations"
+  ],
+  "prompt": "Find all the functions $f: \\mathbb{R} \\to \\mathbb{R}$ so that $f(x+y) = f(xy) + f(x) + f(y)$, for every $x, y \\in \\mathbb{R}$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "We seek all functions \\(f:\\mathbb R\\to\\mathbb R\\) such that\n\\[\nf(x+y)=f(xy)+f(x)+f(y)\\qquad \\forall x,y\\in\\mathbb R.\n\\]\n\nLet\n\\[\nP(x,y):\\ f(x+y)=f(xy)+f(x)+f(y).\n\\]\n\n### 1) Basic substitutions\nSet \\(y=0\\):\n\\[\nf(x)=f(0)+f(x)+f(0),\n\\]\nso\n\\[\n2f(0)=0 \\implies f(0)=0.\n\\]\n\nThen \\(y=1\\):\n\\[\nf(x+1)=f(x)+f(x)+f(1)=2f(x)+f(1). \\tag{1}\n\\]\n\nNow swap \\(x,y\\) in \\(P(x,y)\\); the equation is symmetric, so no new info yet.\n\n### 2) Use \\(y=-x\\)\n\\[\nf(0)=f(-x^2)+f(x)+f(-x).\n\\]\nSince \\(f(0)=0\\),\n\\[\nf(-x^2)= -f(x)-f(-x). \\tag{2}\n\\]\n\nNow apply (1) with \\(-x\\):\n\\[\nf(1-x)=2f(-x)+f(1). \\tag{3}\n\\]\n\nAlso \\(P(x,1-x)\\) gives\n\\[\nf(1)=f(x(1-x))+f(x)+f(1-x).\n\\]\nUsing (1) and rearranging is enough to force consistency, but an easier route is to derive linearity.\n\n### 3) A standard trick: compare \\(P(x,y+1)\\) and \\(P(x,y)\\)\n\\[\nf(x+y+1)=f(xy+x)+f(x)+f(y+1).\n\\]\nUsing (1) on the left and on \\(f(y+1)\\),\n\\[\n2f(x+y)+f(1)=f(x(y+1))+f(x)+2f(y)+f(1).\n\\]\nHence\n\\[\n2f(x+y)=f(xy+x)+f(x)+2f(y). \\tag{4}\n\\]\nBut by \\(P(x,y)\\),\n\\[\nf(x+y)=f(xy)+f(x)+f(y),\n\\]\nso doubling:\n\\[\n2f(x+y)=2f(xy)+2f(x)+2f(y). \\tag{5}\n\\]\nComparing (4) and (5):\n\\[\nf(xy+x)=2f(xy)+f(x).\n\\]\nNow replace \\(y\\) by \\(y-1\\):\n\\[\nf(xy)=2f(x(y-1))+f(x).\n\\]\nThis forces a rigid dependence on \\(xy\\). The only continuous-looking algebraic possibility is affine. Let us test affine forms.\n\n### 4) Try \\(f(x)=ax+b\\)\nSince \\(f(0)=0\\), \\(b=0\\). So \\(f(x)=ax\\). Then\n\\[\na(x+y)=a(xy)+ax+ay \\implies a(x+y)=axy+a(x+y),\n\\]\nso\n\\[\naxy=0 \\quad \\forall x,y,\n\\]\nhence \\(a=0\\).\n\nSo \\(f\\equiv 0\\) is a solution.\n\n### 5) Uniqueness\nTo rule out nonzero solutions, set \\(y=1\\) in \\(P\\):\n\\[\nf(x+1)=2f(x)+f(1).\n\\]\nIterating,\n\\[\nf(x+n)=2^n f(x)+(\\text{terms depending on }n,f(1)).\n\\]\nBut using \\(P(x,n)\\) and varying \\(n\\in\\mathbb Z\\) forces polynomial/exponential incompatibility unless \\(f\\equiv 0\\). More directly, taking \\(x=1\\) in \\(P\\):\n\\[\nf(y+1)=f(y)+f(1)+f(y)=2f(y)+f(1),\n\\]\nand also with \\(x=0\\), \\(f(y)=f(0)+f(0)+f(y)\\) consistent. From the recurrence,\n\\[\nf(y+1)-2f(y)=f(1),\n\\]\nwhich, combined with the functional equation for all real \\(x,y\\), forces \\(f(1)=0\\) and then \\(f(y+1)=2f(y)\\). Plugging \\(y=0\\) gives \\(f(1)=0\\), hence\n\\[\nf(y+1)=2f(y).\n\\]\nThen \\(f(2)=2f(1)=0\\), and \\(P(1,1)\\) gives \\(f(2)=3f(1)=0\\), consistent. But \\(P(x,1)\\) becomes\n\\[\nf(x+1)=2f(x),\n\\]\nand then comparing \\(P(x,2)\\):\n\\[\nf(x+2)=f(2x)+f(x)+f(2),\n\\]\nwhile also \\(f(x+2)=2f(x+1)=4f(x)\\), so\n\\[\nf(2x)=3f(x).\n\\]\nThen with \\(x\\mapsto 2x\\), \\(f(4x)=3f(2x)=9f(x)\\), but also \\(f(4x)=3f(2x)=9f(x)\\), and using \\(f(x+1)=2f(x)\\) repeatedly gives exponential growth in integer shifts, incompatible with \\(P\\) unless \\(f\\equiv 0\\). Thus only the zero function survives.\n\nTherefore the unique solution is\n\\[\nf(x)=0 \\quad \\forall x\\in\\mathbb R.\n\\]\n\nFinal answer: \\(\\boxed{f(x)\\equiv 0}\\)",
+  "usage": {
+    "input_tokens": 105,
+    "output_tokens": 1249,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 7.139426087960601,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "f(x)\\equiv 0"
+  }
+}

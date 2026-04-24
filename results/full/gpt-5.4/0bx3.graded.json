@@ -1,0 +1,26 @@
+{
+  "id": "0bx3",
+  "country": "Romania",
+  "competition": "THE 68th ROMANIAN MATHEMATICAL OLYMPIAD",
+  "gold_final_answer": "All real solutions are x = n + a^n for positive integers n.",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Functional Equations > Injectivity / surjectivity",
+    "Algebra > Intermediate Algebra > Exponential functions",
+    "Algebra > Intermediate Algebra > Logarithmic functions"
+  ],
+  "prompt": "Let $a \\in (0, 1)$. Solve in $\\mathbb{R}$ the equation $a^{[x]} + \\log_a\\{x\\} = x$.",
+  "model": "gpt-5.4",
+  "response_text": "Let\n\\[\nx=[x]+\\{x\\},\n\\]\nwhere \\([x]\\in \\mathbb Z\\) is the integer part and \\(\\{x\\}\\in[0,1)\\) is the fractional part.\n\nWe must solve\n\\[\na^{[x]}+\\log_a\\{x\\}=x,\n\\qquad a\\in(0,1).\n\\]\n\nSince \\(\\log_a\\{x\\}\\) is defined, we need\n\\[\n\\{x\\}\\in(0,1).\n\\]\nSo \\(x\\) is **not** an integer.\n\nWrite\n\\[\n[x]=n\\in\\mathbb Z,\\qquad \\{x\\}=t\\in(0,1).\n\\]\nThen \\(x=n+t\\), and the equation becomes\n\\[\na^n+\\log_a t=n+t.\n\\]\nSo\n\\[\n\\log_a t=n+t-a^n.\n\\]\nExponentiating base \\(a\\),\n\\[\nt=a^{\\,n+t-a^n}=a^n\\cdot a^{\\,t-a^n}.\n\\]\n\nA cleaner way is to isolate the dependence on \\(t\\):\n\\[\na^n+\\log_a t=n+t\n\\iff \\log_a t-t=n-a^n.\n\\]\n\nDefine\n\\[\nf(t)=\\log_a t-t,\\qquad t\\in(0,1).\n\\]\nBecause \\(0<a<1\\), we have\n\\[\nf'(t)=\\frac1{t\\ln a}-1<0,\n\\]\nsince \\(\\ln a<0\\). Hence \\(f\\) is strictly decreasing on \\((0,1)\\).\n\nAlso,\n\\[\nf(a^n)=\\log_a(a^n)-a^n=n-a^n.\n\\]\nThus \\(t=a^n\\) is a solution of\n\\[\nf(t)=n-a^n.\n\\]\nBy strict monotonicity, it is the **unique** solution in \\((0,1)\\), provided \\(a^n\\in(0,1)\\).\n\nNow \\(a^n\\in(0,1)\\) iff \\(n>0\\).  \n- If \\(n\\le 0\\), then \\(a^n\\ge 1\\), so \\(t=a^n\\notin(0,1)\\), impossible.\n- If \\(n>0\\), then \\(t=a^n\\in(0,1)\\), valid.\n\nTherefore all solutions are\n\\[\nx=n+a^n,\\qquad n\\in\\mathbb N^*=\\{1,2,3,\\dots\\}.\n\\]\n\nCheck:\n\\[\n[x]=n,\\qquad \\{x\\}=a^n,\n\\]\nso\n\\[\na^{[x]}+\\log_a\\{x\\}=a^n+\\log_a(a^n)=a^n+n=x.\n\\]\n\nHence the complete solution set is\n\\[\n\\boxed{x=n+a^n\\quad\\text{for }n=1,2,3,\\dots}\n\\]\n\nFinal answer: \\(\\{\\,n+a^n\\mid n\\in\\mathbb Z_{>0}\\,\\}\\).",
+  "usage": {
+    "input_tokens": 88,
+    "output_tokens": 688,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 9.449263799004257,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "\\(\\{\\,n+a^n\\mid n\\in\\mathbb Z_{>0}\\,\\}\\)."
+  }
+}

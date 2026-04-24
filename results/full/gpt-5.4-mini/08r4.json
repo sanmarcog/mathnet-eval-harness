@@ -1,0 +1,20 @@
+{
+  "id": "08r4",
+  "country": "Japan",
+  "competition": "The 4th Japanese Junior Mathematical Olympiad",
+  "gold_final_answer": "Part (1): (1, -2), (1, -5). Part (2): (-2, -2), (-1, -4), (-1, -1), (1, -5), (1, -2), (2, -4).",
+  "topics_flat": [
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities",
+    "Algebra > Intermediate Algebra > Quadratic functions"
+  ],
+  "prompt": "Consider the equation\n$$\nx^2 + xy + y^2 + 3x + 6y + 6 = 0. \\quad (*)\n$$\n(1) Find all pair $(x, y)$ of integers with $x = 1$ which satisfy equation $(*)$.\n(2) Find all pair $(x, y)$ of integers which satisfy equation $(*)$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Set \\(x=1\\). Then \\((*)\\) becomes\n\\[\n1+y+y^2+3+6y+6=0\n\\]\nso\n\\[\ny^2+7y+10=0=(y+5)(y+2).\n\\]\nThus\n\\[\ny=-5 \\quad \\text{or} \\quad y=-2.\n\\]\nSo the integer solutions with \\(x=1\\) are\n\\[\n(1,-5),\\ (1,-2).\n\\]\n\n---\n\nFor all integer solutions, rewrite \\((*)\\) as a quadratic in \\(x\\):\n\\[\nx^2+(y+3)x+(y^2+6y+6)=0.\n\\]\nIts discriminant must be a perfect square:\n\\[\n\\Delta=(y+3)^2-4(y^2+6y+6)\n= -3y^2-18y-15\n= -3(y^2+6y+5).\n\\]\nSo \\(\\Delta\\ge 0\\), which gives\n\\[\ny^2+6y+5\\le 0\n\\quad\\Longrightarrow\\quad\n(y+1)(y+5)\\le 0,\n\\]\nhence\n\\[\n-5\\le y\\le -1.\n\\]\nNow test these values:\n\n- \\(y=-5\\): \\(\\Delta=-3(25-30+5)=0\\), and\n  \\[\n  x^2-2x+1=0 \\Rightarrow x=1.\n  \\]\n  So \\((1,-5)\\).\n\n- \\(y=-4\\): \\(\\Delta=3\\), not a square.\n\n- \\(y=-3\\): \\(\\Delta=6\\), not a square.\n\n- \\(y=-2\\): \\(\\Delta=3\\), not a square.\n\n- \\(y=-1\\): \\(\\Delta=0\\), and\n  \\[\n  x^2+2x+1=0 \\Rightarrow x=-1.\n  \\]\n  So \\((-1,-1)\\).\n\nTherefore all integer solutions are\n\\[\n(1,-5),\\ ( -1,-1).\n\\]\n\nFinal answer: (1) \\((1,-5)\\), \\((1,-2)\\); (2) \\((1,-5)\\), \\((-1,-1)\\)",
+  "usage": {
+    "input_tokens": 130,
+    "output_tokens": 503,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.5897584250196815,
+  "cached": false
+}

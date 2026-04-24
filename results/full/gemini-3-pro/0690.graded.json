@@ -1,0 +1,26 @@
+{
+  "id": "0690",
+  "country": "Greece",
+  "competition": "20th Mediterranean Mathematical Competition",
+  "gold_final_answer": "4",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Sequences and Series > Abel summation",
+    "Algebra > Algebraic Expressions > Sequences and Series > Telescoping series",
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities"
+  ],
+  "prompt": "Determine the smallest integer $n$, for which there exists integers $x_1, x_2, \\dots, x_n$ and positive integers $a_1, a_2, \\dots, a_n$ so that:\n$$\nx_1 + x_2 + \\dots + x_n = 0, \\quad a_1x_1 + a_2x_2 + \\dots + a_nx_n > 0, \\quad a_1^2x_1 + a_2^2x_2 + \\dots + a_n^2x_n < 0.\n$$",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find the smallest integer $n$ that satisfies the given conditions, we can test small values of $n$.\n\n**Case $n=1$:**\nThe first condition is $x_1 = 0$. Then $a_1x_1 = 0$, which contradicts $a_1x_1 > 0$. Thus, $n \\neq 1$.\n\n**Case $n=2$:**\nThe first condition gives $x_1 + x_2 = 0 \\implies x_2 = -x_1$.\nSubstitute this into the second condition:\n$a_1x_1 + a_2x_2 = x_1(a_1 - a_2) > 0$.\nNow substitute into the third condition:\n$a_1^2x_1 + a_2^2x_2 = x_1(a_1^2 - a_2^2) = x_1(a_1 - a_2)(a_1 + a_2)$.\nSince $a_1$ and $a_2$ are positive integers, their sum $a_1 + a_2 > 0$. Therefore, the sign of $x_1(a_1 - a_2)(a_1 + a_2)$ is the same as the sign of $x_1(a_1 - a_2)$. \nSince $x_1(a_1 - a_2) > 0$, it must be that $a_1^2x_1 + a_2^2x_2 > 0$, which contradicts the requirement that $a_1^2x_1 + a_2^2x_2 < 0$. Thus, $n \\neq 2$.\n\n**Case $n=3$:**\nLet's try to find a valid set of numbers for $n=3$. \nLet $a_1 = 1$, $a_2 = 2$, and $a_3 = 3$.\nWe need:\n1) $x_1 + x_2 + x_3 = 0$\n2) $x_1 + 2x_2 + 3x_3 > 0$\n3) $x_1 + 4x_2 + 9x_3 < 0$\n\nUsing $x_3 = -x_1 - x_2$, we can rewrite the inequalities as:\n$x_1 + 2x_2 + 3(-x_1 - x_2) > 0 \\implies -2x_1 - x_2 > 0 \\implies 2x_1 + x_2 < 0$\n$x_1 + 4x_2 + 9(-x_1 - x_2) < 0 \\implies -8x_1 - 5x_2 < 0 \\implies 8x_1 + 5x_2 > 0$\n\nWe need to find integers $x_1, x_2$ such that $2x_1 + x_2 < 0$ and $8x_1 + 5x_2 > 0$.\nLet $x_1 = -3$. Then the inequalities become:\n$2(-3) + x_2 < 0 \\implies x_2 < 6$\n$8(-3) + 5x_2 > 0 \\implies 5x_2 > 24 \\implies x_2 > 4.8$\n\nSince $x_2$ must be an integer, we can choose $x_2 = 5$.\nThen $x_3 = -(-3) - 5 = -2$.\n\nLet's verify our chosen integers $x_1 = -3, x_2 = 5, x_3 = -2$ with $a_1 = 1, a_2 = 2, a_3 = 3$:\n1) $x_1 + x_2 + x_3 = -3 + 5 - 2 = 0$\n2) $a_1x_1 + a_2x_2 + a_3x_3 = 1(-3) + 2(5) + 3(-2) = -3 + 10 - 6 = 1 > 0$\n3) $a_1^2x_1 + a_2^2x_2 + a_3^2x_3 = 1(-3) + 4(5) + 9(-2) = -3 + 20 - 18 = -1 < 0$\n\nAll conditions are satisfied.\n\nFinal answer: 3",
+  "usage": {
+    "input_tokens": 175,
+    "output_tokens": 1019,
+    "thoughts_tokens": 1683
+  },
+  "latency_s": 19.831154461950064,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "3"
+  }
+}

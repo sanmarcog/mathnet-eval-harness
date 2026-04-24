@@ -1,0 +1,21 @@
+{
+  "id": "0akh",
+  "country": "North Macedonia",
+  "competition": "Balkan Mathematical Olympiad",
+  "gold_final_answer": "Bob has a winning strategy exactly when both piles have the same highest power of two dividing their sizes and this common exponent is even.",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Invariants / monovariants",
+    "Discrete Mathematics > Combinatorics > Games / greedy algorithms",
+    "Number Theory > Divisibility / Factorization > Factorization techniques"
+  ],
+  "prompt": "Alice and Bob play the following game: They start with two non-empty piles of coins. Taking turns, with Alice playing first, each player chooses a pile with an even number of coins and moves half of this pile to the other pile. The game ends if a player cannot move, in which case the other player wins.\nDetermine all pairs $(a,b)$ of positive integers such that if initially the two piles have $a$ and $b$ coins respectively, then Bob has a winning strategy.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To determine the pairs $(a,b)$ for which Bob has a winning strategy, let's analyze the game by looking at the highest power of 2 dividing the sizes of the piles. \n\nLet $v_2(x)$ denote the exponent of the highest power of 2 that divides $x$. \nSuppose the current sizes of the piles are $a$ and $b$. \nIf $v_2(a) = v_2(b) = c$, then we can write $a = 2^c x$ and $b = 2^c y$ for some odd integers $x$ and $y$. \n\nIf a player chooses to halve the pile of size $a$ (which is only possible if $c > 0$), the new pile sizes will be $a/2$ and $b + a/2$. \nLet's find the $v_2$ of these new sizes:\n$v_2(a/2) = v_2(2^{c-1} x) = c - 1$\n$v_2(b + a/2) = v_2(2^c y + 2^{c-1} x) = v_2(2^{c-1}(2y + x))$\nSince $x$ is odd, $2y + x$ is also odd. Therefore, $v_2(b + a/2) = c - 1$.\n\nThis means that if $v_2(a) = v",
+  "usage": {
+    "input_tokens": 142,
+    "output_tokens": 325,
+    "thoughts_tokens": 7863
+  },
+  "latency_s": 61.749166387016885,
+  "cached": false
+}

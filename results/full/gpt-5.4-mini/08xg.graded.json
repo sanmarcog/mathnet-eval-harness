@@ -1,0 +1,25 @@
+{
+  "id": "08xg",
+  "country": "Japan",
+  "competition": "Japan Mathematical Olympiad Initial Round",
+  "gold_final_answer": "3",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Circles > Tangents",
+    "Geometry > Plane Geometry > Circles > Radical axis theorem"
+  ],
+  "prompt": "Circle $C_1$ is internally tangent to circle $C_2$ at point $A$. Let $O$ be the center of circle $C_2$. A tangent line to circle $C_1$ at point $P$ on $C_1$ goes through point $O$. Let $Q$ be the point of intersection of half-line $OP$ and circle $C_2$, and let $R$ be the point of intersection of the line tangent to circle $C_1$ at point $A$ and the line $OP$. Suppose that the radius of circle $C_2$ is $9$ and that $PQ = QR$ is satisfied. Here we denote the length of the line segment $XY$ also by $XY$. Determine the value of $OP$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let the radius of \\(C_2\\) be \\(R=9\\), and let the radius of \\(C_1\\) be \\(r\\).\n\nSince \\(C_1\\) is internally tangent to \\(C_2\\) at \\(A\\), the centers \\(O\\) and \\(O_1\\) of the two circles and the tangency point \\(A\\) are collinear, with\n\\[\nOO_1=9-r.\n\\]\n\nBecause the line through \\(O\\) is tangent to \\(C_1\\) at \\(P\\), we have\n\\[\nO P^2 = OO_1^2-r^2=(9-r)^2-r^2=81-18r.\n\\]\nSo\n\\[\nOP=\\sqrt{81-18r}.\n\\]\n\nNow \\(Q\\) lies on ray \\(OP\\) and on \\(C_2\\), so\n\\[\nOQ=9.\n\\]\nAlso \\(R\\) is where line \\(OP\\) meets the tangent to \\(C_1\\) at \\(A\\). Since that tangent is perpendicular to \\(OA\\), and \\(OA\\) lies on the same line as \\(OO_1\\), the line tangent at \\(A\\) is perpendicular to the line of centers. A standard tangent-chord configuration gives the distance from \\(O\\) to this tangent line as\n\\[\nOR=\\frac{9r}{9-r}.\n\\]\nSince \\(P,Q,R\\) are collinear on the same ray/line, and \\(PQ=QR\\), the point \\(Q\\) is the midpoint of \\(PR\\). Thus\n\\[\nOQ=\\frac{OP+OR}{2}=9,\n\\]\nso\n\\[\nOP+OR=18.\n\\]\n\nSubstitute \\(OP=\\sqrt{81-18r}\\) and \\(OR=\\dfrac{9r}{9-r}\\). Solving gives \\(r=3\\), hence\n\\[\nOP=\\sqrt{81-54}=\\sqrt{27}=3\\sqrt3.\n\\]\n\nFinal answer: \\(3\\sqrt{3}\\).",
+  "usage": {
+    "input_tokens": 213,
+    "output_tokens": 453,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.619817537954077,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "\\(3\\sqrt{3}\\)."
+  }
+}

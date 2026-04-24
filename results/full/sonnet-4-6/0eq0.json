@@ -1,0 +1,19 @@
+{
+  "id": "0eq0",
+  "country": "South Africa",
+  "competition": "South African Mathematics Olympiad",
+  "gold_final_answer": "36",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Inclusion-exclusion"
+  ],
+  "prompt": "In a group of $108$ people, $1$ in $4$ of them has a pen and $1$ in $3$ has a pencil. What is the minimum possible number of people that have something to write with?",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Solution\n\nLet me find the minimum number of people who have at least one writing instrument (pen or pencil).\n\n**Given information:**\n- Total people: 108\n- People with pens: 108/4 = 27\n- People with pencils: 108/3 = 36\n\n**Minimizing people with something to write with:**\n\nTo minimize the number of people with at least one writing instrument, I need to maximize the overlap (people who have both a pen AND a pencil).\n\nThe maximum overlap possible is min(27, 36) = 27 (all pen-holders also have pencils).\n\nUsing inclusion-exclusion:\n|pen ∪ pencil| = |pen| + |pencil| - |pen ∩ pencil|\n\nTo minimize |pen ∪ pencil|, maximize |pen ∩ pencil|:\n- Maximum overlap = 27\n\nMinimum |pen ∪ pencil| = 27 + 36 - 27 = **36**\n\n**Verification:** This is achievable — all 27 pen-holders also have pencils, and there are 9 additional people with only pencils. Total with something to write: 36 ✓\n\nFinal answer: 36",
+  "usage": {
+    "input_tokens": 95,
+    "output_tokens": 288,
+    "thinking_tokens": 0
+  },
+  "latency_s": 4.596334674977697,
+  "cached": false
+}

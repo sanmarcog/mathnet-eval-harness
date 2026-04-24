@@ -1,0 +1,25 @@
+{
+  "id": "0gln",
+  "country": "Thailand",
+  "competition": "T3MO 2017",
+  "gold_final_answer": "P(x, y) = k x y for some real constant k",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Polynomial operations",
+    "Algebra > Algebraic Expressions > Functional Equations"
+  ],
+  "prompt": "Determine all polynomials $P \\in \\mathbb{R}[x, y]$ such that\n$$\nP(a, b^2 - ac) + P(b, c^2 - ab) + P(c, a^2 - bc) = 0\n$$\nfor all $a, b, c \\in \\mathbb{R}$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let  \n\\[\nT(a,b,c)=(a,\\ b^2-ac).\n\\]\nWe need all polynomials \\(P(x,y)\\) such that\n\\[\nP(a,b^2-ac)+P(b,c^2-ab)+P(c,a^2-bc)=0\n\\quad\\forall a,b,c\\in\\mathbb R.\n\\]\n\nWe show that only the zero polynomial works.\n\n---\n\n### 1) First reduction: plug \\(a=b=c=t\\)\n\nThen\n\\[\nP(t, t^2-t^2)+P(t,t^2-t^2)+P(t,t^2-t^2)=0,\n\\]\nso\n\\[\n3P(t,0)=0 \\quad\\forall t,\n\\]\nhence\n\\[\nP(x,0)=0 \\quad\\forall x.\n\\]\nTherefore \\(y\\) divides \\(P\\), so we can write\n\\[\nP(x,y)=yQ(x,y)\n\\]\nfor some polynomial \\(Q\\).\n\n---\n\n### 2) Compare degrees in \\(c\\)\n\nSubstitute \\(P(x,y)=yQ(x,y)\\) into the identity:\n\\[\n(b^2-ac)Q(a,b^2-ac)+(c^2-ab)Q(b,c^2-ab)+(a^2-bc)Q(c,a^2-bc)=0.\n\\]\n\nNow fix \\(a,b\\) and view this as a polynomial identity in \\(c\\).  \nThe first term is at most linear in \\(c\\), the second term has highest \\(c\\)-degree equal to \\(\\deg_y(Q)+2\\) (unless \\(Q=0\\)), and the third term has highest \\(c\\)-degree equal to \\(\\deg_x(Q)+1\\) at most. In particular, the only way the identity can hold for all \\(c\\) is if \\(Q\\) is also divisible by \\(y\\).\n\nA cleaner way to iterate is: from the original identity, setting \\(a=b=c=t\\) gave \\(P(x,0)=0\\), so \\(y\\mid P\\). Repeating the same argument on \\(Q\\) by again setting \\(a=b=c=t\\) in the transformed identity gives \\(Q(x,0)=0\\), hence \\(y\\mid Q\\). Thus \\(y^2\\mid P\\).\n\nRepeating indefinitely, we get\n\\[\ny^n \\mid P \\quad\\text{for every } n\\ge 1.\n\\]\nBut a nonzero polynomial cannot be divisible by arbitrarily high powers of \\(y\\). Therefore \\(P\\equiv 0\\).\n\n---\n\nHence the only polynomial satisfying the condition is the zero polynomial.\n\n**Final answer:** \\(\\boxed{P(x,y)\\equiv 0}\\)",
+  "usage": {
+    "input_tokens": 124,
+    "output_tokens": 587,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 5.007666024961509,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "P(x,y)\\equiv 0"
+  }
+}

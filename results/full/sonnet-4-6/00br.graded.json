@@ -1,0 +1,25 @@
+{
+  "id": "00br",
+  "country": "Argentina",
+  "competition": "Argentina_2018",
+  "gold_final_answer": "21, 25, 29, 41",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Sequences and Series > Sums and products",
+    "Number Theory > Divisibility / Factorization > Factorization techniques"
+  ],
+  "prompt": "A natural number is written on each face of a cube. To each vertex of the cube assign the product of the numbers of the three faces that have this vertex in common. Let the sum of these 8 products be 315. Determine the sum of the numbers on the faces (find all possibilities).",
+  "model": "claude-sonnet-4-6",
+  "response_text": "Let the numbers on opposite face pairs be (a, a'), (b, b'), (c, c').\n\nThe sum of the 8 vertex products is:\n(a + a')(b + b')(c + c') = 315\n\nWe need to factor 315 as a product of three positive integers (each at least 2, since each is a sum of two natural numbers, so minimum 1+1=2).\n\n315 = 3² × 5 × 7\n\nWe need to find all ways to write 315 = x · y · z where x, y, z ≥ 2 are positive integers.\n\n315 = 3 × 3 × 35\n315 = 3 × 5 × 21\n315 = 3 × 7 × 15\n315 = 3 × 9 × ... wait, 3 × 9 = 27, 315/27 is not integer... 315/27 = 11.67, no.\n315 = 5 × 7 × 9\n315 = 5 × 63 = 5 × 63... but need three factors\n315 = 7 × 9 × 5 (same as above)\n315 = 3 × 105 = 3 × 3 × 35, 3 × 5 × 21, 3 × 7 × 15\n315 = 5 × 63: 5 × 7 × 9\n315 = 7 × 45: 7 × 5 × 9 (same)\n315 = 9 × 35: 9 × 5 × 7 (same)\n315 = 15 × 21: 15 × 3 × 7 (same as 3 × 7 × 15)\n315 = 1 × ... but x,y,z ≥ 2, so no factor of 1.\n\nWait, natural numbers start at 1, so each face has at least 1, meaning each sum x = a + a' ≥ 2. So all factors ≥ 2.\n\nThe factorizations of 315 into three factors each ≥ 2:\n- 3 × 3 × 35\n- 3 × 5 × 21\n- 3 × 7 × 15\n- 5 × 7 × 9\n\nThe sum of all face numbers = (a + a') + (b + b') + (c + c') = x + y + z.\n\nFor each factorization:\n- 3 + 3 + 35 = 41\n- 3 + 5 + 21 = 29\n- 3 + 7 + 15 = 25\n- 5 + 7 + 9 = 21\n\nEach of these is achievable since we can always write x = 1 + (x-1) with natural numbers.\n\nSo the possible sums are **21, 25, 29, 41**.\n\nFinal answer: 21, 25, 29, 41",
+  "usage": {
+    "input_tokens": 109,
+    "output_tokens": 749,
+    "thinking_tokens": 0
+  },
+  "latency_s": 9.822676623007283,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "exact",
+    "predicted": "21, 25, 29, 41"
+  }
+}

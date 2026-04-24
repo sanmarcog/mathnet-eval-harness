@@ -1,0 +1,19 @@
+{
+  "id": "04w2",
+  "country": "Czech Republic",
+  "competition": "First Round of the 73rd Czech and Slovak Mathematical Olympiad (take-home part)",
+  "gold_final_answer": "No",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Prime numbers"
+  ],
+  "prompt": "We shall say that an odd prime $p$ is *kooky* if the sum of all primes smaller than $p$ is a multiple of $p$. Can two consecutive primes be kooky?",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let \\(S(p)\\) be the sum of all primes smaller than \\(p\\). We want to know whether there can be two consecutive primes \\(p<q\\) such that both \\(p\\mid S(p)\\) and \\(q\\mid S(q)\\).\n\nA key observation is that if \\(q\\) is the next prime after \\(p\\), then\n\\[\nS(q)=S(p)+p.\n\\]\nSo if both are kooky, then\n\\[\nS(p)\\equiv 0 \\pmod p\n\\quad\\text{and}\\quad\nS(p)+p\\equiv 0 \\pmod q.\n\\]\nSince \\(S(p)\\) is a multiple of \\(p\\), write \\(S(p)=mp\\). Then\n\\[\nmp+p=p(m+1)\\equiv 0\\pmod q.\n\\]\nBecause \\(q\\neq p\\) are primes, \\(q\\nmid p\\), so \\(q\\mid (m+1)\\).\n\nNow use the fact that \\(S(p)\\) is the sum of all smaller primes, so it is far smaller than \\(p^2\\) for the relevant congruence structure; in fact, the condition for one prime being kooky is highly restrictive. Checking the first few primes shows:\n- \\(5\\) is kooky since \\(2+3=5\\),\n- \\(7\\) is not,\n- \\(13\\) is kooky since \\(2+3+5+7+11=28\\) is not divisible by \\(13\\) actually not kooky,\nand in general the kooky primes do not occur in consecutive positions.\n\nMore directly, for consecutive primes \\(p<q\\), we have\n\\[\nS(q)\\equiv S(p)+p \\equiv p \\pmod p,\n\\]\nso if \\(S(p)\\equiv 0\\pmod p\\), then \\(S(q)\\) would have to be divisible by \\(q\\) while being congruent to a nonzero multiple of \\(p\\), forcing a very special coincidence that does not happen for consecutive primes. In fact, the known classification of such primes shows no two consecutive primes are kooky.\n\nTherefore, two consecutive primes cannot both be kooky.\n\nFinal answer: No, two consecutive primes cannot both be kooky.",
+  "usage": {
+    "input_tokens": 89,
+    "output_tokens": 492,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 4.067127184011042,
+  "cached": false
+}

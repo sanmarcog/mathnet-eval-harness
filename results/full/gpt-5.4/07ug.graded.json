@@ -1,0 +1,26 @@
+{
+  "id": "07ug",
+  "country": "Ireland",
+  "competition": "IRL_ABooklet",
+  "gold_final_answer": "10, 21, 32, 43, 54, 65, 76, 87, 98",
+  "topics_flat": [
+    "Number Theory > Other",
+    "Algebra > Prealgebra / Basic Algebra > Integers",
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities"
+  ],
+  "prompt": "For any positive integer $N$ we denote by $\\overline\\{N\\}$ the number obtained by writing the digits of $N$ from right to left. For instance, if $N = 2395$ then $\\overline\\{N\\} = 5932$ and if $N = 3780$ then $\\overline\\{N\\} = 873$.\nFind all positive integers $N$ such that $N - \\overline\\{N\\} = 9$.",
+  "model": "gpt-5.4",
+  "response_text": "Let \\(R(N)=\\overline{\\{N\\}}\\) be the number obtained by reversing the digits of \\(N\\) and deleting leading zeros if they appear after reversal.\n\nWe want\n\\[\nN-R(N)=9.\n\\]\n\nWe will show that the only possibilities are the two-digit numbers\n\\[\n10,21,32,43,54,65,76,87,98.\n\\]\n\n## 1) First, one-digit numbers are impossible\nIf \\(N\\) has one digit, then \\(R(N)=N\\), so \\(N-R(N)=0\\neq 9\\).\n\nSo \\(N\\) has at least two digits.\n\n## 2) Two-digit numbers\nLet\n\\[\nN=10a+b \\qquad (1\\le a\\le 9,\\ 0\\le b\\le 9).\n\\]\nThen\n\\[\nR(N)=10b+a,\n\\]\nexcept when \\(b=0\\), in which case \\(R(N)=a\\); but the same computation below still works.\n\nNow\n\\[\nN-R(N)=(10a+b)-(10b+a)=9(a-b).\n\\]\nWe want this to equal \\(9\\), so\n\\[\na-b=1.\n\\]\nHence all two-digit solutions are\n\\[\n10,21,32,43,54,65,76,87,98.\n\\]\n\n## 3) No solution with at least 3 digits\nLet \\(N\\) have \\(k\\ge 3\\) digits:\n\\[\nN=\\overline{a_k a_{k-1}\\dots a_1},\n\\]\nwith \\(a_k\\neq 0\\). Then\n\\[\nR(N)=\\overline{a_1 a_2\\dots a_k}.\n\\]\n\nA standard fact: for any integer, the number and the sum of its digits are congruent modulo \\(9\\). Reversing digits does not change the digit sum, so\n\\[\nN\\equiv R(N)\\pmod 9.\n\\]\nThus \\(N-R(N)\\) is divisible by \\(9\\), so getting \\(9\\) is at least possible modulo \\(9\\); but we need more.\n\nNow compare the sizes. Since \\(k\\ge 3\\), changing the first and last digits already affects the value by a multiple of \\(10^{k-1}-1\\), which is at least \\(99\\). More concretely,\n\\[\nN-R(N)\n= (a_k-a_1)(10^{k-1}-1)+(a_{k-1}-a_2)(10^{k-2}-10)+\\cdots.\n\\]\nEach coefficient is divisible by \\(9\\), and for \\(k\\ge 3\\) the smallest nonzero absolute value that such an expression can take is at least \\(99-90=9\\), but in fact equality \\(9\\) cannot occur because the first term is a multiple of \\(99\\), and all remaining terms are multiples of \\(90,900,\\dots\\). Therefore the whole difference is a multiple of \\(9\\) and, for \\(k\\ge 3\\), actually a multiple of \\(90\\) or differs from such by at least \\(99\\), so it cannot be exactly \\(9\\).\n\nA cleaner way is to look modulo \\(10\\):  \nSince \\(N-R(N)=9\\), we have\n\\[\nN\\equiv R(N)-1 \\pmod{10}.\n\\]\nBut \\(N\\pmod{10}\\) is the last digit \\(a_1\\), while \\(R(N)\\pmod{10}\\) is the first digit \\(a_k\\). So\n\\[\na_1\\equiv a_k-1\\pmod{10}.\n\\]\nSince digits are between \\(0\\) and \\(9\\), this means \\(a_k=a_1+1\\).\n\nNow subtract:\n\\[\nN-R(N)=(a_k-a_1)(10^{k-1}-1)+\\text{terms divisible by }90.\n\\]\nBecause \\(a_k-a_1=1\\), the first term is \\(10^{k-1}-1\\), which is at least \\(99\\) for \\(k\\ge3\\). Adding/subtracting multiples of \\(90\\) can never reduce this to \\(9\\), since\n\\[\n10^{k-1}-1\\equiv -1\\pmod{90},\n\\]\nso the whole expression would be congruent to \\(-1\\equiv 89\\pmod{90}\\), not \\(9\\). Contradiction.\n\nHence no \\(k\\ge3\\)-digit solution exists.\n\nSo only the two-digit solutions remain.\n\nFinal answer: \\(N\\in\\{10,21,32,43,54,65,76,87,98\\}\\).",
+  "usage": {
+    "input_tokens": 154,
+    "output_tokens": 1023,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 16.841042240033858,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "\\(N\\in\\{10,21,32,43,54,65,76,87,98\\}\\)."
+  }
+}

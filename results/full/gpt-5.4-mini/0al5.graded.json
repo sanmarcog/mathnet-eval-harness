@@ -1,0 +1,26 @@
+{
+  "id": "0al5",
+  "country": "North Macedonia",
+  "competition": "Macedonian Mathematical Olympiad",
+  "gold_final_answer": "ceil(n/2)",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments",
+    "Discrete Mathematics > Combinatorics > Invariants / monovariants",
+    "Discrete Mathematics > Graph Theory > Matchings, Marriage Lemma, Tutte's theorem"
+  ],
+  "prompt": "At a round table are seated $n$ boys and $n$ girls, where $n > 3$. In every move, it is allowed to swap the sitting places of two adjacent children. The entropy of a sitting arrangement is the minimum number of moves resulting with each child having at least one neighbor of the same gender. Find the maximum possible entropy of a sitting arrangement.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let the boys and girls be arranged around the circle in some initial order.\n\nA child has a neighbor of the same gender exactly when it belongs to a run of at least two consecutive children of that gender. So the goal is to transform the circle into an arrangement with no isolated children, i.e. every maximal monochromatic block has length at least \\(2\\).\n\nWe will show the maximum possible entropy is\n\n\\[\n\\boxed{n-2}.\n\\]\n\n### 1) A lower bound: some arrangement needs at least \\(n-2\\) swaps\nTake the alternating arrangement\n\\[\nBGBGBG\\cdots BG\n\\]\naround the circle. Here every child has two neighbors of opposite gender, so initially no child has a same-gender neighbor.\n\nIn one adjacent swap, only the two swapped children and at most their four immediate neighbors can change status. In particular, one swap can reduce the number of “isolated” children by at most \\(2\\).\n\nInitially all \\(2n\\) children are isolated. In a final good arrangement, no child is isolated. To eliminate the isolation of all children, at least \\(n-2\\) swaps are needed; indeed, the best possible final pattern is two monochromatic blocks, one of boys and one of girls, each of length \\(n\\), and reaching this from the alternating pattern requires at least \\(n-2\\) swaps. So the entropy can be at least \\(n-2\\).\n\n### 2) An upper bound: \\(n-2\\) swaps always suffice\nWe now show that from any arrangement, we can reach a good arrangement in at most \\(n-2\\) swaps.\n\nBecause there are \\(n\\) boys and \\(n\\) girls, around the circle there must be at least one pair of adjacent equal genders. If not, the arrangement would be alternating, which is the hardest case.\n\nTake any maximal alternating segment and “merge” its ends by swapping one child at a boundary with an adjacent child of the same gender. Each such swap increases the length of some monochromatic block and decreases the number of isolated children. Repeating this, one can build two blocks of length \\(n\\), one all boys and one all girls, using at most \\(n-2\\) swaps total.\n\nThus every arrangement has entropy at most \\(n-2\\).\n\nCombining the lower and upper bounds, the maximum possible entropy is\n\n\\[\n\\boxed{n-2}.\n\\]\n\nFinal answer: \\(\\boxed{n-2}\\).",
+  "usage": {
+    "input_tokens": 124,
+    "output_tokens": 529,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 4.120766209089197,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "n-2"
+  }
+}

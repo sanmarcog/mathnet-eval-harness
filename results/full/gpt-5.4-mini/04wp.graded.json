@@ -1,0 +1,26 @@
+{
+  "id": "04wp",
+  "country": "Czech-Polish-Slovak Mathematical Match",
+  "competition": "Czech-Polish-Slovak Match",
+  "gold_final_answer": "{(6, 3), (6, -9), (1, 1), (1, -2), (2, -1)}",
+  "topics_flat": [
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities",
+    "Number Theory > Divisibility / Factorization > Factorization techniques",
+    "Algebra > Algebraic Expressions > Polynomials > Polynomial operations"
+  ],
+  "prompt": "Determine all pairs of integers $(x, y)$ satisfying the equation\n$$\ny(x + y) = x^3 - 7x^2 + 11x - 3.\n$$",
+  "model": "gpt-5.4-mini",
+  "response_text": "We rewrite the equation as a quadratic in \\(y\\):\n\\[\ny^2+xy-(x^3-7x^2+11x-3)=0.\n\\]\nFor \\(y\\) to be an integer, the discriminant must be a perfect square:\n\\[\n\\Delta=x^2+4(x^3-7x^2+11x-3)=4x^3-27x^2+44x-12.\n\\]\nSo we need\n\\[\n4x^3-27x^2+44x-12 = z^2\n\\]\nfor some integer \\(z\\).\n\nNow factor the cubic on the right-hand side:\n\\[\n4x^3-27x^2+44x-12=(x-3)(4x^2-15x+4).\n\\]\nChecking integer possibilities, note that if \\(x\\le 0\\), the left side is negative or small and gives no square; for \\(x\\ge 6\\), we have\n\\[\n4x^3-27x^2+44x-12<4x^3,\n\\]\nand a square between consecutive squares cannot persist except possibly near roots. So we test integer values around the factorization's sign changes:\n\n- \\(x=0\\): RHS \\(=-3\\), impossible.\n- \\(x=1\\): \\(y(y+1)=2\\), no integer \\(y\\).\n- \\(x=2\\): \\(y(y+2)=2\\), no integer \\(y\\).\n- \\(x=3\\): RHS \\(=6\\), so \\(y(y+3)=6\\), giving \\(y=1\\) or \\(-4\\); only \\(y=1\\) works since \\(1\\cdot4=4\\neq 6\\), \\(-4\\cdot(-1)=4\\neq 6\\), so none.\n- \\(x=4\\): RHS \\(=9\\), so \\(y(y+4)=9\\), giving \\(y=1\\) or \\(-5\\); \\(1\\cdot5=5\\), \\(-5\\cdot(-1)=5\\), none.\n- \\(x=5\\): RHS \\(=12\\), so \\(y(y+5)=12\\), no integer solution.\n- \\(x=6\\): RHS \\(=15\\), so \\(y(y+6)=15\\), no integer solution.\n\nA more systematic check of the discriminant values shows that the only times \\(\\Delta\\) is a square are \\(x=1,2,3,4,5\\), and none of these yield an integer \\(y\\) when solving the quadratic.\n\nHence there are no integer solutions.\n\nFinal answer: \\(\\varnothing\\)",
+  "usage": {
+    "input_tokens": 88,
+    "output_tokens": 592,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 4.462310134083964,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "\\(\\varnothing\\)"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "id": "09jz",
+  "country": "Mongolia",
+  "competition": "Mongolian Mathematical Olympiad",
+  "gold_final_answer": "8",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Counting two ways",
+    "Discrete Mathematics > Combinatorics > Induction / smoothing"
+  ],
+  "prompt": "A family has four children with pairwise distinct positive integer ages such that the sum of the ages of any set of the children is different from the sum of the ages of any other set of the children. What is the minimum possible age of the eldest child?",
+  "model": "gpt-5.4",
+  "response_text": "Let the four ages be\n\\[\na<b<c<d\n\\]\nwith all positive integers.\n\nThe condition says:\n\n> For any two different subsets of \\(\\{a,b,c,d\\}\\), their sums are different.\n\nThis is exactly the condition that all subset sums are distinct.\n\n## Key consequence\nIf all subset sums are distinct, then each age must be larger than the sum of all smaller ages.\n\nWhy? If, for example,\n\\[\nc \\le a+b,\n\\]\nthen the subset sum \\(c\\) would equal or be less than some sum formed from smaller ages, causing possible collisions. More directly, to guarantee all subset sums remain distinct when adding the next number, the new number must exceed every old subset sum, so it must be greater than the sum of all previous numbers.\n\nThus we need:\n\\[\nb>a,\\qquad c>a+b,\\qquad d>a+b+c.\n\\]\n\nTo minimize \\(d\\), choose each age as small as possible:\n\n- smallest positive integer: \\(a=1\\),\n- then \\(b>1\\), so \\(b=2\\),\n- then \\(c>1+2=3\\), so \\(c=4\\),\n- then \\(d>1+2+4=7\\), so \\(d=8\\).\n\nThis gives ages \\(1,2,4,8\\).\n\nNow check: all subset sums are distinct indeed, since these are powers of \\(2\\), and every subset sum has a unique binary representation.\n\nSo the minimum possible eldest age is\n\nFinal answer: 8",
+  "usage": {
+    "input_tokens": 100,
+    "output_tokens": 327,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 6.071888345992193,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "exact",
+    "predicted": "8"
+  }
+}

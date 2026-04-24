@@ -1,0 +1,19 @@
+{
+  "id": "0bqv",
+  "country": "Romania",
+  "competition": "67th NMO Shortlisted Problems",
+  "gold_final_answer": "x=1, y=2, z=3",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities > QM-AM-GM-HM / Power Mean"
+  ],
+  "prompt": "Find all positive reals $x, y, z$ so that\n$$\n\\begin{cases}\nxyz = 6 \\\\\n(x+1)(y+2)(z+3) = 48.\n\\end{cases}\n$$",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let\n\\[\na=x,\\quad b=y+1,\\quad c=z+2.\n\\]\nThat does not look immediately helpful, so instead use the condition \\(xyz=6\\) to rewrite the second equation in a symmetric way.\n\nWe have\n\\[\n(x+1)(y+2)(z+3)=xyz+2xz+3xy+xy(z?),\n\\]\nwhich is messy if expanded directly. A better approach is to use the substitution\n\\[\nx=\\frac{6}{yz}.\n\\]\nThen the second equation becomes\n\\[\n\\left(\\frac{6}{yz}+1\\right)(y+2)(z+3)=48.\n\\]\nMultiply by \\(yz\\):\n\\[\n(6+yz)(y+2)(z+3)=48yz.\n\\]\nNow expand \\((y+2)(z+3)=yz+3y+2z+6\\), so\n\\[\n(6+yz)(yz+3y+2z+6)=48yz.\n\\]\nLet \\(p=yz\\). Then \\(x=6/p\\), and the equation becomes\n\\[\n(6+p)(p+3y+2z+6)=48p.\n\\]\nThis suggests trying equality cases from AM-GM. Since \\(xyz=6\\), by AM-GM,\n\\[\nx+1 \\ge 2\\sqrt{x},\\quad y+2\\ge 2\\sqrt{2y},\\quad z+3\\ge 2\\sqrt{3z},\n\\]\nso\n\\[\n48=(x+1)(y+2)(z+3)\\ge 8\\sqrt{6xyz}=8\\sqrt{36}=48.\n\\]\nThus equality must hold throughout AM-GM, so\n\\[\nx=1,\\quad y=2,\\quad z=3.\n\\]\nCheck:\n\\[\nxyz=1\\cdot2\\cdot3=6,\\qquad (1+1)(2+2)(3+3)=2\\cdot4\\cdot6=48.\n\\]\nHence this is the only solution.\n\nFinal answer: \\((x,y,z)=(1,2,3)\\)",
+  "usage": {
+    "input_tokens": 98,
+    "output_tokens": 468,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 4.082987343892455,
+  "cached": false
+}

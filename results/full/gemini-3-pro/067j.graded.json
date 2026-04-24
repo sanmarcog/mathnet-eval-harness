@@ -1,0 +1,24 @@
+{
+  "id": "067j",
+  "country": "Greece",
+  "competition": "Hellenic Mathematical Olympiad ARCHIMEDES",
+  "gold_final_answer": "2, 5/4, sqrt(2), -sqrt(2)",
+  "topics_flat": [
+    "Algebra > Intermediate Algebra > Quadratic functions"
+  ],
+  "prompt": "Determine the values of the parameter $\\alpha \\in \\mathbb{R}$ for which the equation $x^2 + (\\alpha - 2)x - (\\alpha - 1)(2\\alpha - 3) = 0$ has two roots such that the one of them is equal to the square of the other.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find the values of $\\alpha$ for which the equation $x^2 + (\\alpha - 2)x - (\\alpha - 1)(2\\alpha - 3) = 0$ has two roots where one is the square of the other, let the roots be $r$ and $r^2$. \n\nBy Vieta's formulas, we have:\n1) The sum of the roots: $r + r^2 = -(\\alpha - 2) = 2 - \\alpha$\n2) The product of the roots: $r \\cdot r^2 = r^3 = -(\\alpha - 1)(2\\alpha - 3)$\n\nFrom the first equation, we can express $\\alpha$ in terms of $r$:\n$\\alpha = 2 - r - r^2$\n\nSubstitute this expression for $\\alpha$ into the second equation:\n$r^3 = -(2 - r - r^2 - 1)(2(2 - r - r^2) - 3)$\n$r^3 = -(1 - r - r^2)(4 - 2r - 2r^2 - 3)$\n$r^3 = -(1 - r - r^2)(1 - 2r - 2r^2)$\n\nExpanding the right side:\n$r^3 = (r^2 + r - 1)(1 - 2r - 2r^2)$\n$r^3 = r^2 - 2r^3 - 2r^4 + r - 2r^2 - 2r^3 - 1 + 2r + 2r^2$\n$r^3 = -2r^4 - 4r^3 + r^2 + 3r - 1$\n\nBringing all terms to one side gives a polynomial equation in $r$:\n$2r^4 + 5r^3 - r^2 - 3r + 1 = 0$\n\nWe can find the roots of this polynomial by testing rational root candidates. \nTesting $r = -1$:\n$2(-1)^4 + 5(-1)^3 - (-1)^2 - 3(-1) + 1 = 2 - 5 - 1 + 3 + 1 = 0$\nSo, $r = -1$ is a root. Factoring out $(r + 1)$ gives:\n$(r + 1)(2r^3 + 3r^2 - 4r + 1) = 0$\n\nTesting rational roots for the cubic factor, we find $r = \\frac{1}{2}$:\n$2\\left(\\frac{1}{2}\\right)^3 + 3\\left(\\frac{1}{2}\\right)^2 - 4\\left(\\frac{1}{2}\\right) + 1 = \\frac{1}{4} + \\frac{3}{4} - 2 + 1 = 0$\nFactoring out $(2r - 1)$ gives:\n$(r + 1)(2r - 1)(r^2 + 2r - 1) = 0$\n\nThe quadratic factor $r^2 + 2r - 1 = 0$ yields the roots:\n$r = \\frac{-2 \\pm \\sqrt{4 - 4(1)(-1)}}{2} = -1 \\pm \\sqrt{2}$\n\nNow we substitute each possible value of $r$ back into $\\alpha = 2 - r - r^2$ to find the corresponding values of $\\alpha$:\n1) For $r = -1$:\n$\\alpha = 2 - (-1) - (-1)^2 = 2 + 1 - 1 = 2$\n\n2) For $r = \\frac{1}{2}$:\n$\\alpha = 2 - \\frac{1}{2} - \\left(\\frac{1}{2}\\right)^2 = 2 - \\frac{1}{2} - \\frac{1}{4} = \\frac{5}{4}$\n\n3) For $r = -1 \\pm \\sqrt{2}$:\nNotice that since $r^2 + 2r - 1 = 0$, we have $r^2 + r = 1 - r$.\n$\\alpha = 2 - (r^2 + r) = 2 - (1 - r) = 1 + r$\nFor $r = -1 + \\sqrt{2}$, $\\alpha = 1 + (-1 + \\sqrt{2}) = \\sqrt{2}$\nFor $r = -1 - \\sqrt{2}$, $\\alpha = 1 + (-1 - \\sqrt{2}) = -\\sqrt{2}$\n\nAll these values of $\\alpha$ yield valid quadratic equations with distinct roots satisfying the condition.\n\nFinal answer: 2, \\frac{5}{4}, \\sqrt{2}, -\\sqrt{2}",
+  "usage": {
+    "input_tokens": 106,
+    "output_tokens": 1074,
+    "thoughts_tokens": 2668
+  },
+  "latency_s": 26.57243482605554,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "2, \\frac{5}{4}, \\sqrt{2}, -\\sqrt{2}"
+  }
+}

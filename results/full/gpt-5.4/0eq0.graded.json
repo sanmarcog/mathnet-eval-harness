@@ -1,0 +1,24 @@
+{
+  "id": "0eq0",
+  "country": "South Africa",
+  "competition": "South African Mathematics Olympiad",
+  "gold_final_answer": "36",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Inclusion-exclusion"
+  ],
+  "prompt": "In a group of $108$ people, $1$ in $4$ of them has a pen and $1$ in $3$ has a pencil. What is the minimum possible number of people that have something to write with?",
+  "model": "gpt-5.4",
+  "response_text": "Let \\(P\\) be the set of people with pens and \\(Q\\) the set of people with pencils.\n\n- Total people: \\(108\\)\n- \\(|P| = \\frac14 \\cdot 108 = 27\\)\n- \\(|Q| = \\frac13 \\cdot 108 = 36\\)\n\nWe want the minimum number of people who have **something to write with**, i.e. \\(|P \\cup Q|\\).\n\nUsing\n\\[\n|P \\cup Q| = |P| + |Q| - |P \\cap Q|,\n\\]\nto make \\(|P \\cup Q|\\) as small as possible, we make the overlap \\(|P \\cap Q|\\) as large as possible.\n\nThe largest possible overlap is the smaller of \\(27\\) and \\(36\\), so\n\\[\n|P \\cap Q| \\le 27.\n\\]\nThus the minimum union is\n\\[\n27 + 36 - 27 = 36.\n\\]\n\nSo at least \\(36\\) people must have a pen or pencil, and this is achievable if all 27 pen-holders also have pencils.\n\nFinal answer: 36",
+  "usage": {
+    "input_tokens": 96,
+    "output_tokens": 248,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.7395131969824433,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "exact",
+    "predicted": "36"
+  }
+}

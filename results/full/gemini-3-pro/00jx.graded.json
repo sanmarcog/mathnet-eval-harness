@@ -1,0 +1,24 @@
+{
+  "id": "00jx",
+  "country": "Austria",
+  "competition": "AustriaMO2013",
+  "gold_final_answer": "a_n = F_{n+3} - 2, where F_0 = 0 and F_1 = 1",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Sequences and Series > Recurrence relations"
+  ],
+  "prompt": "We order the positive integers in two rows in the following manner:\n1 3 6 11 19 32 53 ...\n2 4 5 7 8 9 10 12 13 14 15 16 17 18 20 to 31 33 to 52 54 ...\nWe first write $1$ in the first row, $2$ in the second and $3$ in the first. After this, the following integers are written in such a way that an individual integer is always added in the first row and blocks of consecutive integers are added in the second row, with the leading number of a block giving the number of (consecutive) integers to be written in the next block.\nWe name the numbers in the first row $a_1, a_2, a_3, \\dots$\nDetermine an explicit formula for $a_n$.\nG. Baron, Vienna",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find an explicit formula for $a_n$, let's analyze the construction of the two rows. \n\nLet $a_k$ be the $k$-th number in the first row. \nLet $b_k$ be the leading number of the $k$-th block in the second row, and let $L_k$ be the number of consecutive integers in the $k$-th block.\n\nFrom the problem description, the sequence of positive integers is partitioned into alternating single numbers (for the first row) and blocks of numbers (for the second row). \nThus, the $k$-th single number $a_k$ is immediately followed by the $k$-th block, which means:\n$b_k = a_k + 1$\n\nThe $k$-th block has length $L_k$, and it is immediately followed by the next single number $a_{k+1}$ in the first row. Therefore:\n$a_{k+1} = b_k + L_k - 1 + 1 = b_k + L_k$\n\nThe problem also states that the leading number of a block gives the length of the next block. This gives us the relation:\n$L_{k} = b_{k-1}$\n\nSubstitute $L_k$ into the equation for $a_{k+1}$:\n$a_{k+1} = b_k + b_{k-1}$\n\nNow, substitute $b_k = a_k + 1$ and $b_{k-1} = a_{k-1} + 1$ into the equation:\n$a_{k+1} = (a_k + 1) + (a_{k-1} + 1)$\n$a_{k+1} = a_k + a_{k-1} + 2$\n\nThis is a linear non-homogeneous recurrence relation. We can solve it by defining a new sequence $x_k = a_k + 2$. Substituting $a_k = x_k - 2$ into the recurrence gives:\n$x_{k+1} - 2 = (x_k - 2) + (x_{k-1} - 2) + 2$\n$x_{k+1} = x_k + x_{k-1}$\n\nThis means $x_k$ follows the Fibonacci sequence $F_n$, where $F_1 = 1, F_2 = 1, F_3 = 2, F_4 = 3, F_5 = 5, \\dots$\nLet's find the initial values for $x_k$:\nFor $k=1$, $a_1 = 1 \\implies x_1 = 1 + 2 = 3 = F_4$\nFor $k=2$, $a_2 = 3 \\implies x_2 = 3 + 2 = 5 = F_5$\n\nSince $x_1 = F_4$ and $x_2 = F_5$, it follows that for all $n \\ge 1$:\n$x_n = F_{n+3}$\n\nSubstituting back $a_n = x_n - 2$, we get the explicit formula for $a_n$:\n$a_n = F_{n+3} - 2$\n\nFinal answer: F_{n+3} - 2",
+  "usage": {
+    "input_tokens": 252,
+    "output_tokens": 741,
+    "thoughts_tokens": 2950
+  },
+  "latency_s": 28.263690521009266,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "F_{n+3} - 2"
+  }
+}

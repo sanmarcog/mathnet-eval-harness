@@ -1,0 +1,22 @@
+{
+  "id": "0522",
+  "country": "Estonia",
+  "competition": "Final Round of National Olympiad",
+  "gold_final_answer": "No",
+  "topics_flat": [
+    "Number Theory > Modular Arithmetic > Polynomials mod p",
+    "Algebra > Algebraic Expressions > Polynomials > Polynomial operations",
+    "Number Theory > Divisibility / Factorization > Factorization techniques",
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities"
+  ],
+  "prompt": "Can $2013$ be represented as the difference of two cubes of integers?",
+  "model": "gpt-5.4",
+  "response_text": "Suppose\n\\[\n2013=a^3-b^3=(a-b)(a^2+ab+b^2)\n\\]\nfor integers \\(a,b\\).\n\nWe factor \\(2013\\):\n\\[\n2013=3\\cdot 11\\cdot 61.\n\\]\n\nNow use the identity modulo \\(3\\). Any integer cube is congruent to \\(0,\\pm1\\pmod 9\\), but more simply modulo \\(3\\),\n\\[\nx^3\\equiv x \\pmod 3.\n\\]\nSo if\n\\[\na^3-b^3\\equiv 0 \\pmod 3,\n\\]\nthen\n\\[\na-b\\equiv 0 \\pmod 3.\n\\]\nHence \\(3\\mid (a-b)\\).\n\nBut then in\n\\[\na^3-b^3=(a-b)(a^2+ab+b^2),\n\\]\nwe also have\n\\[\na\\equiv b \\pmod 3,\n\\]\nso\n\\[\na^2+ab+b^2 \\equiv a^2+a^2+a^2=3a^2\\equiv 0 \\pmod 3.\n\\]\nThus \\(3\\) divides the second factor as well.\n\nTherefore \\(9\\mid (a^3-b^3)\\).\n\nSo any difference of two integer cubes divisible by \\(3\\) must actually be divisible by \\(9\\).\n\nBut\n\\[\n2013=3\\cdot 11\\cdot 61\n\\]\nis divisible by \\(3\\) but not by \\(9\\) (since \\(2+0+1+3=6\\)).\n\nThis is impossible. Therefore \\(2013\\) cannot be written as the difference of two cubes of integers.\n\nFinal answer: No, \\(2013\\) cannot be represented as the difference of two cubes of integers.",
+  "usage": {
+    "input_tokens": 64,
+    "output_tokens": 400,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 6.295626990962774,
+  "cached": false
+}

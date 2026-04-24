@@ -1,0 +1,25 @@
+{
+  "id": "0598",
+  "country": "Estonia",
+  "competition": "Estonian Math Competitions",
+  "gold_final_answer": "{5, 20}; {5, 6, 14}; {5, 7, 13}; {5, 8, 12}; {5, 9, 11}; {6, 12}",
+  "topics_flat": [
+    "Algebra > Prealgebra / Basic Algebra > Integers",
+    "Number Theory > Divisibility / Factorization > Factorization techniques"
+  ],
+  "prompt": "There are some distinct positive integers written on a blackboard. If we erase the smallest number written on the blackboard, then the ratio of the sum and the product of the remaining numbers will be 4 times greater than the ratio of the sum and the product of the numbers initially on the blackboard. Find all possibilities for the set of numbers that could have been on the blackboard initially.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "Let the numbers initially on the blackboard be $x_1 < x_2 < \\dots < x_n$. \nThe sum of the numbers is $S = \\sum_{i=1}^n x_i$ and the product is $P = \\prod_{i=1}^n x_i$.\nThe ratio of the sum and the product initially is $\\frac{S}{P}$.\n\nWhen the smallest number $x_1$ is erased, the sum of the remaining numbers is $S - x_1$ and their product is $\\frac{P}{x_1}$. \nThe new ratio of the sum and the product is $\\frac{S - x_1}{P / x_1} = \\frac{x_1(S - x_1)}{P}$.\n\nWe are given that this new ratio is 4 times the initial ratio:\n$$ \\frac{x_1(S - x_1)}{P} = 4 \\frac{S}{P} $$\n\nSince the numbers are positive integers, $P > 0$, so we can multiply both sides by $P$:\n$$ x_1(S - x_1) = 4S $$\n$$ x_1 S - x_1^2 = 4S $$\n$$ S(x_1 - 4) = x_1^2 $$\n\nSince $S > 0$ and $x_1^2 > 0$, we must have $x_1 - 4 > 0$, which means $x_1 \\ge 5$. \nWe can solve for $S$:\n$$ S = \\frac{x_1^2}{x_1 - 4} = x_1 + 4 + \\frac{16}{x_1 - 4} $$\n\nFor $S$ to be an integer, $x_1 - 4$ must be a positive divisor of 16. The divisors of 16 are 1, 2, 4, 8, and 16. This gives the possible values for $x_1$:\n$x_1 \\in \\{5, 6, 8, 12, 20\\}$.\n\nNow we check each case to find the remaining numbers, which must be distinct integers strictly greater than $x_1$ and sum to $S - x_1$:\n\n1. **If $x_1 = 5$:**\n   $S = 5 + 4 + 16/1 = 25$.\n   The sum of the remaining numbers is $S - x_1 = 20$.\n   We need to partition 20 into distinct integers greater than 5.\n   - 1 number: $20$. This gives the set $\\{5, 20\\}$.\n   - 2 numbers: $6+14$, $7+13$, $8+12$, $9+11$. This gives the sets $\\{5, 6, 14\\}$, $\\{5, 7, 13\\}$, $\\{5, 8, 12\\}$, and $\\{5, 9, 11\\}$.\n   - 3 numbers: The smallest sum of three distinct integers greater than 5 is $6+7+8 = 21 > 20$, so there are no solutions for 3 or more remaining numbers.\n\n2. **If $x_1 = 6$:**\n   $S = 6 + 4 + 16/2 = 18$.\n   The sum of the remaining numbers is $S - x_1 = 12$.\n   We need to partition 12 into distinct integers greater than 6.\n   - 1 number: $12$. This gives the set $\\{6, 12\\}$.\n   - 2 numbers: The smallest sum is $7+8 = 15 > 12$, so no more solutions.\n\n3. **If $x_1 = 8$:**\n   $S = 8 + 4 + 16/4 = 16$.\n   The sum of the remaining numbers is $S - x_1 = 8$.\n   Since the remaining numbers must be greater than 8, this is impossible.\n\n4. **If $x_1 = 12$:**\n   $S = 12 + 4 + 16/8 = 18$.\n   The sum of the remaining numbers is $S - x_1 = 6$. Impossible.\n\n5. **If $x_1 = 20$:**\n   $S = 20 + 4 + 16/16 = 25$.\n   The sum of the remaining numbers is $S - x_1 = 5$. Impossible.\n\nFinal answer: \\{5, 20\\}, \\{6, 12\\}, \\{5, 6, 14\\}, \\{5, 7, 13\\}, \\{5, 8, 12\\}, \\{5, 9, 11\\}",
+  "usage": {
+    "input_tokens": 114,
+    "output_tokens": 1090,
+    "thoughts_tokens": 3402
+  },
+  "latency_s": 33.61799145396799,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "\\{5, 20\\}, \\{6, 12\\}, \\{5, 6, 14\\}, \\{5, 7, 13\\}, \\{5, 8, 12\\}, \\{5, 9, 11\\}"
+  }
+}

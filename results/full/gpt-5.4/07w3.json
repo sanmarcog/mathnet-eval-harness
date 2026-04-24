@@ -1,0 +1,19 @@
+{
+  "id": "07w3",
+  "country": "Ireland",
+  "competition": "IRL_ABooklet_2023",
+  "gold_final_answer": "The bound |ad + bc + ca − db| ≤ 2 holds. Equality |ad + bc + ca − db| = 2 occurs exactly in the following cases:\n- a = b = ±1 and c = ±1 (with d arbitrary in [−1, 1]);\n- a = −b = ±1 and d = ±1 (with c arbitrary in [−1, 1]);\n- a = ±1, |b| < 1, and c = d = ±1;\n- b = ±1, |a| < 1, and c = −d = ±1.",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities"
+  ],
+  "prompt": "Suppose $a$, $b$, $c$, $d \\in [-1, 1]$. Prove that\n$$\n|ad + bc + ca - db| \\leq 2\n$$\nand determine the case of equality.",
+  "model": "gpt-5.4",
+  "response_text": "Let\n\\[\nE=ad+bc+ca-db.\n\\]\nWe want to prove \\(|E|\\le 2\\) for all \\(a,b,c,d\\in[-1,1]\\), and find when equality occurs.\n\n## Step 1: Rewrite the expression\nGroup terms as\n\\[\nE=a(c+d)+b(c-d).\n\\]\nNow for fixed \\(c,d\\), this is linear in \\(a,b\\). Since \\(a,b\\in[-1,1]\\),\n\\[\n|E|=|a(c+d)+b(c-d)|\n\\le |a||c+d|+|b||c-d|\n\\le |c+d|+|c-d|.\n\\]\nSo it remains to show\n\\[\n|c+d|+|c-d|\\le 2.\n\\]\n\n## Step 2: Bound \\(|c+d|+|c-d|\\)\nA standard identity is\n\\[\n|x+y|+|x-y|=2\\max(|x|,|y|).\n\\]\nApplying this with \\(x=c,\\ y=d\\), we get\n\\[\n|c+d|+|c-d|=2\\max(|c|,|d|)\\le 2,\n\\]\nbecause \\(c,d\\in[-1,1]\\).\n\nHence\n\\[\n|ad+bc+ca-db|\\le 2.\n\\]\n\n## Step 3: Equality cases\nFor equality \\(|E|=2\\), we must have equality in both steps:\n\n1. \\(|c+d|+|c-d|=2\\), so\n   \\[\n   \\max(|c|,|d|)=1.\n   \\]\n   Thus at least one of \\(c,d\\) equals \\(\\pm1\\).\n\n2. Also we need equality in\n   \\[\n   |a(c+d)+b(c-d)|\\le |a||c+d|+|b||c-d|\\le |c+d|+|c-d|.\n   \\]\n   So necessarily\n   \\[\n   |a|=|b|=1,\n   \\]\n   and the two terms must have the same sign:\n   \\[\n   a(c+d)\\ \\text{and}\\ b(c-d)\\ \\text{have the same sign}\n   \\]\n   (or one is zero).\n\nThis can be described neatly by checking the endpoint cases.\n\n- If \\(c=1\\), then\n  \\[\n  E=a(1+d)+b(1-d).\n  \\]\n  Since \\(1+d\\ge0\\) and \\(1-d\\ge0\\), equality \\(|E|=2\\) occurs exactly when \\(a=b=\\pm1\\).\n\n- If \\(c=-1\\), then\n  \\[\n  E=a(d-1)-b(1+d),\n  \\]\n  and equality occurs exactly when \\(a=-b=\\pm1\\).\n\n- If \\(d=1\\), then\n  \\[\n  E=a(c+1)+b(c-1),\n  \\]\n  and equality occurs exactly when \\(a=-b=\\pm1\\).\n\n- If \\(d=-1\\), then\n  \\[\n  E=a(c-1)+b(c+1),\n  \\]\n  and equality occurs exactly when \\(a=b=\\pm1\\).\n\nThese are exactly the same as the condition\n\\[\na=\\operatorname{sgn}(c+d),\\qquad b=\\operatorname{sgn}(c-d)\n\\]\nup to a common simultaneous sign change (which gives \\(E=-2\\) instead of \\(E=2\\)), with at least one of \\(|c|,|d|\\) equal to \\(1\\).\n\nEquivalently, equality holds iff\n\\[\na,b\\in\\{\\pm1\\},\\qquad \\max(|c|,|d|)=1,\n\\]\nand\n\\[\na(c+d),\\ b(c-d)\\ge0\n\\]\nfor \\(E=2\\), or both \\(\\le0\\) for \\(E=-2\\).\n\nFinal answer: \n\\[\n|ad+bc+ca-db|\\le 2.\n\\]\nEquality holds exactly when \\(\\max(|c|,|d|)=1\\), \\(a,b\\in\\{\\pm1\\}\\), and \\(a(c+d)\\) and \\(b(c-d)\\) have the same sign (possibly one is \\(0\\)); equivalently, up to an overall sign, \\(a=\\operatorname{sgn}(c+d)\\) and \\(b=\\operatorname{sgn}(c-d)\\).",
+  "usage": {
+    "input_tokens": 100,
+    "output_tokens": 968,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 16.129244007985108,
+  "cached": false
+}

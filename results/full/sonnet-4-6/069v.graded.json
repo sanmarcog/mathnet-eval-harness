@@ -1,0 +1,24 @@
+{
+  "id": "069v",
+  "country": "Greece",
+  "competition": "SELECTION EXAMINATION",
+  "gold_final_answer": "All solutions are f(x) = a x + b/x for real constants a, b.",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Functional Equations > Injectivity / surjectivity"
+  ],
+  "prompt": "Determine all functions $f : (0, +\\infty) \\to \\mathbb{R}$ satisfying\n$$\n(y^2 + 1)f(x) - y f(xy) = y f\\left(\\frac{x}{y}\\right), \\text{ for all } x, y > 0.\n$$\n(IMO 2018 shortlist, modified)",
+  "model": "claude-sonnet-4-6",
+  "response_text": "We need to find all functions $f:(0,+\\infty)\\to\\mathbb{R}$ satisfying\n$$(y^2+1)f(x) - yf(xy) = yf\\left(\\frac{x}{y}\\right).$$\n\n**Rearranging:** \n$$(y^2+1)f(x) = yf(xy) + yf\\left(\\frac{x}{y}\\right).$$\n\n**Step 1: Try $y=1$.**\n$(1+1)f(x) = f(x) + f(x)$, which gives $2f(x) = 2f(x)$. Always true.\n\n**Step 2: Try $x=1$.**\n$(y^2+1)f(1) = yf(y) + yf(1/y).$\n\nSo $yf(y) + yf(1/y) = (y^2+1)f(1)$.\n\n**Step 3: Guess $f(x) = ax + b/x$ for constants $a,b$.**\n\nCheck: $yf(xy) + yf(x/y) = y(axy + b/(xy)) + y(ax/y + by/x)$\n$= ay^2x + b/x + ax + by^2/x$\n$= ax(y^2+1) + (b/x)(y^2+1)$\n$= (y^2+1)(ax + b/x) = (y^2+1)f(x)$. ✓\n\n**Step 4: Check if these are the only solutions.**\n\nLet $g(t) = f(e^t)$ where $t\\in\\mathbb{R}$. Setting $x = e^s$, $y = e^u$:\n$(e^{2u}+1)g(s) = e^u g(s+u) + e^u g(s-u).$\n\nDividing by $e^u$:\n$(e^u + e^{-u})g(s) = g(s+u) + g(s-u),$\ni.e., $2\\cosh(u)\\,g(s) = g(s+u) + g(s-u).$\n\nThis is a functional equation. Setting $s=0$: $2\\cosh(u)g(0) = g(u)+g(-u)$.\n\nSetting $u=s$: $2\\cosh(s)g(s) = g(2s)+g(0)$.\n\nThe equation $g(s+u)+g(s-u) = 2\\cosh(u)g(s)$ is a well-known functional equation. \n\nTry $g(s) = Ae^s + Be^{-s}$ (i.e., $f(x) = Ax + B/x$):\n$Ae^{s+u}+Be^{-(s+u)} + Ae^{s-u}+Be^{-(s-u)} = A e^s(e^u+e^{-u}) + Be^{-s}(e^u+e^{-u}) = 2\\cosh(u)(Ae^s+Be^{-s})$. ✓\n\nFor continuous (or measurable) solutions, these are the only solutions. The general solution to $g(s+u)+g(s-u)=2\\cosh(u)g(s)$ for all $s,u$ can be analyzed: fix $s=0$ to get $g(u)+g(-u)=2\\cosh(u)g(0)$. Let $h(s)=g(s)-g(0)\\cosh(s)$; then $h$ satisfies $h(s+u)+h(s-u)=2\\cosh(u)h(s)$ with $h(0)=0$ and $h(u)+h(-u)=0$ (odd). \n\nFor odd solutions: $h(s+u)+h(s-u)=2\\cosh(u)h(s)$. Setting $u=s$: $h(2s)+h(0)=2\\cosh(s)h(s)$, so $h(2s)=2\\cosh(s)h(s)$. Try $h(s)=C\\sinh(s)$: $C\\sinh(s+u)+C\\sinh(s-u)=2C\\sinh(s)\\cosh(u)$. ✓\n\nSo $g(s) = A\\cosh(s)+C\\sinh(s) = \\frac{A+C}{2}e^s + \\frac{A-C}{2}e^{-s}$, giving $f(x) = ax + b/x$.\n\n**Conclusion:** All solutions are of the form\n\n$$\\boxed{f(x) = ax + \\dfrac{b}{x}}$$\n\nfor constants $a, b \\in \\mathbb{R}$.\n\nFinal answer: $f(x) = ax + \\dfrac{b}{x}$ for arbitrary constants $a, b \\in \\mathbb{R}$.",
+  "usage": {
+    "input_tokens": 137,
+    "output_tokens": 1242,
+    "thinking_tokens": 0
+  },
+  "latency_s": 17.29040270007681,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "$f(x) = ax + \\dfrac{b}{x}$ for arbitrary constants $a, b \\in \\mathbb{R}$."
+  }
+}

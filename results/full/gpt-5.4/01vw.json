@@ -1,0 +1,20 @@
+{
+  "id": "01vw",
+  "country": "Belarus",
+  "competition": "69th Belarusian Mathematical Olympiad",
+  "gold_final_answer": "(-11/8, 2)",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Analytic / Coordinate Methods > Cartesian coordinates",
+    "Geometry > Plane Geometry > Triangles > Triangle centers: centroid, incenter, circumcenter, orthocenter, Euler line, nine-point circle"
+  ],
+  "prompt": "The point $C$ with an abscissa $-2$ lie on the hyperbola $y = 1/x$. Two lines with slopes $2$ and $1/2$ passes through $C$ and intersect the hyperbola for the second time at the points $A$ and $B$.\nFind the coordinates of the circumcenter of the triangle $ABC$.",
+  "model": "gpt-5.4",
+  "response_text": "Since \\(C\\) lies on \\(y=\\frac1x\\) and has abscissa \\(-2\\), we get\n\\[\nC=(-2,-\\tfrac12).\n\\]\n\nLet the line through \\(C\\) with slope \\(m\\) intersect the hyperbola again at another point. Its equation is\n\\[\ny+\\frac12=m(x+2).\n\\]\nIntersect with \\(y=\\frac1x\\):\n\\[\n\\frac1x+\\frac12=m(x+2).\n\\]\nMultiplying by \\(2x\\),\n\\[\n2+x=2mx^2+4mx,\n\\]\nso\n\\[\n2mx^2+(4m-1)x-2=0.\n\\]\nSince \\(x=-2\\) is one root (point \\(C\\)), the other root gives the second intersection.\n\n## Point \\(A\\) (slope \\(2\\))\nFor \\(m=2\\):\n\\[\n4x^2+7x-2=0.\n\\]\nOne root is \\(-2\\), so the other is \\(\\frac14\\). Hence\n\\[\nA=\\left(\\frac14,4\\right).\n\\]\n\n## Point \\(B\\) (slope \\(\\tfrac12\\))\nFor \\(m=\\frac12\\):\n\\[\nx^2+x-2=0.\n\\]\nOne root is \\(-2\\), so the other is \\(1\\). Hence\n\\[\nB=(1,1).\n\\]\n\nNow find the circumcenter of \\(\\triangle ABC\\), the intersection of perpendicular bisectors.\n\n### Perpendicular bisector of \\(BC\\)\n\\[\nB=(1,1),\\quad C=(-2,-\\tfrac12).\n\\]\nMidpoint:\n\\[\nM_{BC}=\\left(-\\frac12,\\frac14\\right).\n\\]\nSlope of \\(BC\\):\n\\[\n\\frac{1-(-1/2)}{1-(-2)}=\\frac{3/2}{3}=\\frac12.\n\\]\nSo perpendicular slope is \\(-2\\). Its equation:\n\\[\ny-\\frac14=-2\\left(x+\\frac12\\right)\n\\]\n\\[\ny=-2x-\\frac34.\n\\]\n\n### Perpendicular bisector of \\(AC\\)\n\\[\nA=\\left(\\frac14,4\\right),\\quad C=(-2,-\\tfrac12).\n\\]\nMidpoint:\n\\[\nM_{AC}=\\left(-\\frac78,\\frac74\\right).\n\\]\nSlope of \\(AC\\):\n\\[\n\\frac{4-(-1/2)}{1/4-(-2)}=\\frac{9/2}{9/4}=2.\n\\]\nSo perpendicular slope is \\(-\\frac12\\). Its equation:\n\\[\ny-\\frac74=-\\frac12\\left(x+\\frac78\\right).\n\\]\nThus\n\\[\ny=\\frac{21}{16}-\\frac{x}{2}.\n\\]\n\nIntersect the two bisectors:\n\\[\n-2x-\\frac34=\\frac{21}{16}-\\frac{x}{2}.\n\\]\nMultiply by \\(16\\):\n\\[\n-32x-12=21-8x\n\\]\n\\[\n-24x=33\n\\]\n\\[\nx=-\\frac{11}{8}.\n\\]\nThen\n\\[\ny=-2\\left(-\\frac{11}{8}\\right)-\\frac34=\\frac{22}{8}-\\frac{6}{8}=2.\n\\]\n\nTherefore the circumcenter is\n\\[\n\\boxed{\\left(-\\frac{11}{8},\\,2\\right)}.\n\\]\n\nFinal answer: \\(\\left(-\\frac{11}{8},\\,2\\right)\\)",
+  "usage": {
+    "input_tokens": 125,
+    "output_tokens": 785,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 10.636173784034327,
+  "cached": false
+}

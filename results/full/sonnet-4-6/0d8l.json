@@ -1,0 +1,21 @@
+{
+  "id": "0d8l",
+  "country": "Saudi Arabia",
+  "competition": "SAUDI ARABIAN MATHEMATICAL COMPETITIONS",
+  "gold_final_answer": "(4, 4), (5, 6), (6, 5)",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Vieta's formulas",
+    "Algebra > Intermediate Algebra > Quadratic functions",
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities"
+  ],
+  "prompt": "Find all pairs of positive integers ($p$, $q$) such that both equations $x^{2} - p x + q = 0$ and $x^{2} - q x + p = 0$ have integral solutions.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "Let the roots of x² - px + q = 0 be integers a, b and roots of x² - qx + p = 0 be integers c, d.\n\nThen:\n- a + b = p, ab = q\n- c + d = q, cd = p\n\nSo: a + b = p, ab = q, c + d = q = ab, cd = p = a + b.\n\nFrom these: a + b = cd and ab = c + d.\n\nAlso, p and q are positive integers, so ab > 0 and a + b > 0, meaning both roots have the same sign and their sum is positive, so both roots are positive integers (since if both negative, sum would be negative).\n\nWait, roots could be negative integers too, but a + b = p > 0 and ab = q > 0, so both roots are positive integers. Similarly c + d = q > 0 and cd = p > 0, so c, d are positive integers.\n\nSo we need positive integers a, b, c, d with:\n- a + b = cd\n- ab = c + d\n\nBy AM-GM: a + b ≥ 2√(ab), so cd ≥ 2√(c+d).\n\nLet s = c + d and t = cd. Then s = ab and t = a + b.\n\nSo we need: a + b = cd and ab = c + d, i.e., the pair (a+b, ab) = (cd, c+d), meaning the pair (sum, product) swaps.\n\nLet me set s = a + b = cd and t = ab = c + d.\n\nSo a, b are roots of x² - sx + t = 0 and c, d are roots of x² - tx + s = 0.\n\nWLOG assume s ≥ t (i.e., p ≥ q; we can check both cases).\n\nFrom AM-GM on positive integers: s = a+b ≥ 2√t and t = c+d ≥ 2√s.\n\nSo s ≥ 2√t and t ≥ 2√s.\n\nFrom t ≥ 2√s and s ≥ 2√t:\nt ≥ 2√s ≥ 2√(2√t) = 2·2^(1/2)·t^(1/4)\n\nSo t ≥ 2^(3/2) · t^(1/4), giving t^(3/4) ≥ 2^(3/2), so t ≥ 2² = 4.\n\nSimilarly s ≥ 4. Let me try small values.\n\nTry a = b (equal roots): a = b, so s = 2a, t = a². Then c + d = a² and cd = 2a.\nc, d are roots of x² - a²x + 2a = 0. Discriminant: a⁴ - 8a = a(a³ - 8) ≥ 0, so a ≥ 2.\n\nFor a = 2: s = 4, t = 4. c + d = 4, cd = 4, so c = d = 2. This gives p = q = 4. Check: x² - 4x + 4 = (x-2)² ✓\n\nFor a = 3: s = 6, t = 9. c + d = 9, cd = 6. Discriminant: 81 - 24 = 57, not a perfect square.\n\nFor a = 4: s = 8, t = 16. c + d = 16, cd = 8. Discriminant: 256 - 32 = 224, not perfect square.\n\nTry a ≠ b. Let a = 1, b = k: s = 1+k, t = k. Then c+d = k, cd = 1+k.\nDiscriminant of c,d: k² - 4(1+k) = k² - 4k - 4. Need this to be a perfect square.\nk² - 4k - 4 = m²: (k-2)² - 8 = m², so (k-2-m)(k-2+m) = 8.\nFactor pairs of 8: (1,8),(2,4). \n- k-2-m=2, k-2+m=4: k-2=3, m=1, k=5. Check: c+d=5, cd=6, so c,d=2,3. ✓\n  p = s = 6, q = t = 5. Check: x²-6x+5=(x-1)(x-5)✓, x²-5x+6=(x-2)(x-3)✓\n\n- k-2-m=1, k-2+m=8: k-2=4.5, not integer.\n\nTry a=1, b=1: s=2, t=1. c+d=1, cd=2. No positive integer solution.\n\nTry a=2, b=3: s=5, t=6. c+d=6, cd=5. c,d: roots of x²-6x+5=0 → 1,5. Then check: c+d=6=s✓, cd=5=t✓. This gives p=5, q=6 (same as above by symmetry).\n\nSo the solutions are **(p, q) = (4, 4)** and **(p, q) = (5, 6)** and **(p, q) = (6, 5)**.\n\nFinal answer: (p, q) ∈ {(4, 4), (5, 6), (6, 5)}",
+  "usage": {
+    "input_tokens": 99,
+    "output_tokens": 1390,
+    "thinking_tokens": 0
+  },
+  "latency_s": 19.129878795007244,
+  "cached": false
+}

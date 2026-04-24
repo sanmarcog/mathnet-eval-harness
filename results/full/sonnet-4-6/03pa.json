@@ -1,0 +1,20 @@
+{
+  "id": "03pa",
+  "country": "China",
+  "competition": "China Mathematical Competition (Shaanxi)",
+  "gold_final_answer": "C",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Sequences and Series > Floors and ceilings",
+    "Algebra > Prealgebra / Basic Algebra > Integers"
+  ],
+  "prompt": "A new sequence is obtained from the sequence of the positive integers $\\{1, 2, 3, \\ldots\\}$ by deleting all the perfect squares. Then the $2\\ 003$rd term of the new sequence is ( ).\n\n(A) $2\\ 046$\n(B) $2\\ 047$\n(C) $2\\ 048$\n(D) $2\\ 049$",
+  "model": "claude-sonnet-4-6",
+  "response_text": "We need to find the 2003rd positive integer that is not a perfect square.\n\nIf the answer is n, then n minus the number of perfect squares ≤ n equals 2003.\n\nSo n - ⌊√n⌋ = 2003.\n\nEstimate: n ≈ 2003 + √2003 ≈ 2003 + 44.7 ≈ 2048.\n\nCheck n = 2048: ⌊√2048⌋ = 45 (since 45² = 2025, 46² = 2116)\n2048 - 45 = 2003. ✓\n\nAlso check that 2048 is not a perfect square: 45² = 2025, 46² = 2116, so 2048 is not a perfect square.\n\nThe 2003rd term is **2048**.\n\nFinal answer: (C) 2048",
+  "usage": {
+    "input_tokens": 140,
+    "output_tokens": 225,
+    "thinking_tokens": 0
+  },
+  "latency_s": 3.3280999229755253,
+  "cached": false
+}

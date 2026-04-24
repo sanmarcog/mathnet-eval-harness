@@ -1,0 +1,22 @@
+{
+  "id": "039c",
+  "country": "Bulgaria",
+  "competition": "Bulgarian National Olympiad",
+  "gold_final_answer": "7",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Analytic / Coordinate Methods > Trigonometry",
+    "Algebra > Algebraic Expressions > Polynomials > Irreducibility: Rational Root Theorem, Gauss's Lemma, Eisenstein",
+    "Algebra > Abstract Algebra > Field Theory",
+    "Algebra > Algebraic Expressions > Polynomials > Polynomial operations"
+  ],
+  "prompt": "Find the least natural number $n$ for which $\\cos \\frac{\\pi}{n}$ can not be expressed in the form $p + \\sqrt{q} + \\sqrt[3]{r}$, where $p, q$ and $r$ are rational numbers.",
+  "model": "gpt-5.4",
+  "response_text": "Let  \n\\[\n\\alpha=\\cos\\frac{\\pi}{n}.\n\\]\nWe seek the smallest \\(n\\in \\mathbb N\\) such that \\(\\alpha\\) **cannot** be written as\n\\[\np+\\sqrt q+\\sqrt[3]r\n\\qquad (p,q,r\\in \\mathbb Q).\n\\]\n\nWe will use field degree considerations.\n\n## 1. Degree of numbers of the form \\(p+\\sqrt q+\\sqrt[3]r\\)\n\nLet\n\\[\nx=p+\\sqrt q+\\sqrt[3]r.\n\\]\nThen \\(x\\) lies in the field\n\\[\n\\mathbb Q(\\sqrt q,\\sqrt[3]r).\n\\]\nNow:\n- \\(\\mathbb Q(\\sqrt q)\\) has degree at most \\(2\\) over \\(\\mathbb Q\\),\n- \\(\\mathbb Q(\\sqrt[3]r)\\) has degree at most \\(3\\) over \\(\\mathbb Q\\).\n\nHence\n\\[\n[\\mathbb Q(\\sqrt q,\\sqrt[3]r):\\mathbb Q]\\mid 6,\n\\]\nso in particular the degree of \\(x\\) over \\(\\mathbb Q\\) is at most \\(6\\).\n\nTherefore, if \\(\\cos\\frac{\\pi}{n}\\) has degree \\(>6\\), it cannot be of the required form.\n\n---\n\n## 2. Degree of \\(\\cos \\frac{\\pi}{n}\\)\n\nIt is standard that for \\(n>2\\),\n\\[\n\\left[\\mathbb Q\\!\\left(\\cos\\frac{\\pi}{n}\\right):\\mathbb Q\\right]=\\frac{\\varphi(2n)}{2},\n\\]\nwhere \\(\\varphi\\) is Euler's totient function.\n\nSo we look for the smallest \\(n\\) such that\n\\[\n\\frac{\\varphi(2n)}{2}>6\n\\quad\\Longleftrightarrow\\quad\n\\varphi(2n)>12.\n\\]\n\nCheck small \\(n\\):\n\n\\[\n\\begin{array}{c|c|c}\nn & 2n & \\varphi(2n) \\\\\n\\hline\n1 & 2 & 1\\\\\n2 & 4 & 2\\\\\n3 & 6 & 2\\\\\n4 & 8 & 4\\\\\n5 & 10 & 4\\\\\n6 & 12 & 4\\\\\n7 & 14 & 6\\\\\n8 & 16 & 8\\\\\n9 & 18 & 6\\\\\n10 & 20 & 8\\\\\n11 & 22 & 10\\\\\n12 & 24 & 8\\\\\n13 & 26 & 12\\\\\n14 & 28 & 12\\\\\n15 & 30 & 8\\\\\n16 & 32 & 16\n\\end{array}\n\\]\n\nThe first time \\(\\varphi(2n)>12\\) is at \\(n=16\\), giving degree\n\\[\n\\frac{\\varphi(32)}{2}=\\frac{16}{2}=8.\n\\]\nThus \\(\\cos(\\pi/16)\\) has degree \\(8\\), so it cannot be written as \\(p+\\sqrt q+\\sqrt[3]r\\).\n\n---\n\n## 3. Why all smaller \\(n\\) are possible\n\nFor \\(n<16\\), the degree of \\(\\cos(\\pi/n)\\) is at most \\(6\\). In fact:\n- many are rational or quadratic,\n- degree \\(4\\) values are obtainable using nested square roots,\n- degree \\(3\\) or \\(6\\) values can be written with a cube-root term (for example cubic cases fit into \\(p+\\sqrt[3]r\\) with \\(\\sqrt q=0\\)).\n\nSo no smaller \\(n\\) provides an obstruction.\n\nHence the least such \\(n\\) is\n\nFinal answer: \\(16\\)",
+  "usage": {
+    "input_tokens": 105,
+    "output_tokens": 843,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 11.08255868894048,
+  "cached": false
+}

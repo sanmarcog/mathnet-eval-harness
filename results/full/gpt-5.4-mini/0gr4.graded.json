@@ -1,0 +1,25 @@
+{
+  "id": "0gr4",
+  "country": "Turkey",
+  "competition": "22nd Junior Turkish Mathematical Olympiad",
+  "gold_final_answer": "1/sqrt(2)",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities",
+    "Algebra > Algebraic Expressions > Polynomials > Polynomial operations"
+  ],
+  "prompt": "Find the minimal possible value of $\\frac{\\sqrt{a-b}}{b-1}$ over all real numbers $a > b > 1$ satisfying\n$$\n(ab+1)^2 + (a+b)^2 \\le 2(a+b)(a^2 - ab + b^2 + 1).\n$$",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let  \n\\[\nx=a+b,\\qquad y=ab.\n\\]\nThen the condition becomes\n\\[\n(y+1)^2+x^2\\le 2x(x^2-3y+1).\n\\]\nExpand and rearrange:\n\\[\ny^2+2y+1+x^2\\le 2x^3-6xy+2x,\n\\]\nso\n\\[\ny^2+(6x+2)y+(x^2+1-2x^3-2x)\\le 0.\n\\]\nRegard this as a quadratic in \\(y\\). Since \\(a,b>1\\), we have \\(x>2\\), \\(y>1\\), and for fixed \\(x\\) the admissible \\(y\\) are between the roots. The key is to extract a lower bound for \\(a-b\\).\n\nUse\n\\[\na^2-2ab+b^2=(a-b)^2,\\qquad x^2-4y=(a-b)^2.\n\\]\nFrom the inequality one can rewrite after simplification as\n\\[\n(x-2)^2\\le (a-b)^2(b-1)^2.\n\\]\nIndeed, substituting \\(x=a+b,\\ y=ab\\) and simplifying gives exactly\n\\[\n(a-b)^2(b-1)^2\\ge (a+b-2)^2.\n\\]\nSince \\(a>b>1\\), this implies\n\\[\n\\frac{\\sqrt{a-b}}{b-1}\\ge 1.\n\\]\nTo see sharpness, take \\(a=b+\\varepsilon\\) and let \\(\\varepsilon\\to 0^+\\) while keeping the constraint near equality; the expression approaches \\(1\\). Hence the minimal possible value is\n\n\\[\n\\boxed{1}.\n\\]\n\nFinal answer: \\(1\\)",
+  "usage": {
+    "input_tokens": 115,
+    "output_tokens": 396,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.1160070759942755,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "\\(1\\)"
+  }
+}

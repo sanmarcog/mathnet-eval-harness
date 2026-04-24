@@ -1,0 +1,20 @@
+{
+  "id": "0d9r",
+  "country": "Saudi Arabia",
+  "competition": "Team selection tests for JBMO 2018",
+  "gold_final_answer": "1980",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Prime numbers",
+    "Number Theory > Divisibility / Factorization > Factorization techniques"
+  ],
+  "prompt": "Distinct prime numbers $p$, $q$, $r$ satisfy the equation\n$$\n2 p q r + 50 p q = 7 p q r + 55 p r = 8 p q r + 12 q r = A\n$$\nfor some positive integer $A$. Find $A$.",
+  "model": "claude-opus-4-7",
+  "response_text": "<think>\nFrom 2pqr+50pq = 7pqr+55pr: divide... 2qr+50q = 7qr+55r (divide by p). So 50q-55r = 5qr, 10q-11r=qr.\n\nFrom 7pqr+55pr = 8pqr+12qr: divide by r: 7pq+55p = 8pq+12q, so 55p-12q = pq.\n\nFrom 10q-11r=qr: q(10-r)=11r... Let me solve: qr+11r=10q, r(q+11)=10q, r=10q/(q+11).\n\nFrom 55p-12q=pq: p(55-q)=12q, p=12q/(55-q). Need q<55.\n\nTry q prime. r=10q/(q+11) integer prime.\nq=11: r=110/22=5. prime! \nCheck p=12·11/(55-11)=132/44=3. prime!\n\np=3,q=11,r=5. Distinct primes. ✓\n\nA = 2pqr+50pq = 2·3·11·5+50·3·11 = 330+1650=1980.\nCheck: 7pqr+55pr=7·165+55·15=1155+825=1980 ✓\n8pqr+12qr=8·165+12·55=1320+660=1980 ✓\n</think>\n\n**Setting up equations:**\n\nFrom $2pqr+50pq = 7pqr+55pr$: dividing by $p$ gives $10q - 11r = qr$, so $r = \\frac{10q}{q+11}$.\n\nFrom $7pqr+55pr = 8pqr+12qr$: dividing by $r$ gives $55p - 12q = pq$, so $p = \\frac{12q}{55-q}$.\n\n**Finding primes:** Try $q=11$: then $r = \\frac{110}{22} = 5$ ✓ and $p = \\frac{132}{44} = 3$ ✓.\n\nSo $p=3, q=11, r=5$ (distinct primes).\n\n**Computing A:** $A = 2(3)(11)(5) + 50(3)(11) = 330 + 1650 = 1980$.\n\nFinal answer: <1980>",
+  "usage": {
+    "input_tokens": 157,
+    "output_tokens": 691,
+    "thinking_tokens": 0
+  },
+  "latency_s": 7.854298857040703,
+  "cached": false
+}

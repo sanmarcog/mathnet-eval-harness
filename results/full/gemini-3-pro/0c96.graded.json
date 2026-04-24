@@ -1,0 +1,26 @@
+{
+  "id": "0c96",
+  "country": "Romania",
+  "competition": "Romanian Mathematical Olympiad",
+  "gold_final_answer": "a = 1 or a = 2",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Sequences and Series > Recurrence relations",
+    "Algebra > Intermediate Algebra > Logarithmic functions",
+    "Number Theory > Divisibility / Factorization > Factorization techniques"
+  ],
+  "prompt": "Consider a real number $a \\ge 1$. The sequence $(x_n)_{n \\ge 1}$ is given by $x_1 = a$ and $x_{n+1} = 1 + \\log_2 x_n$, for any $n \\in \\mathbb{N}^*$. Determine values of $a$ such that all terms of the sequence are rational numbers.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find all real numbers $a \\ge 1$ such that all terms of the sequence $(x_n)_{n \\ge 1}$ are rational, we analyze the given recurrence relation:\n$$x_{n+1} = 1 + \\log_2 x_n \\implies x_n = 2^{x_{n+1} - 1}$$\n\nWe are given that $x_n \\in \\mathbb{Q}$ for all $n \\ge 1$. \nSince $x_{n+1}$ is rational, we can write $x_{n+1} - 1 = \\frac{p}{q}$, where $p$ and $q$ are coprime integers and $q > 0$. \nThen, $x_n = 2^{p/q}$. For $x_n$ to be a rational number, say $\\frac{r}{s}$ (with $r, s$ coprime positive integers), we must have:\n$$2^{p/q} = \\frac{r}{s} \\implies 2^p = \\frac{r^q}{s^q}$$\nSince $r$ and $s$ are coprime, $s^q$ must be 1, which means $s = 1$. Thus, $2^p = r^q$. By the fundamental theorem of arithmetic, $r$ must be a power of 2, say $r = 2^k$ for some integer $k \\ge 0$. \nThis gives $2^p = 2^{kq} \\implies p = kq$. Since $p$ and $q$ are coprime, we must have $q = 1$. \nTherefore, $x_{n+1} - 1$ must be an integer, which means $x_{n+1}$ is an integer. \n\nBecause this holds for all $n \\ge 1$, $x_n$ must be an integer for all $n \\ge 2$. Furthermore, $x_1 = 2^{x_2 - 1}$ must also be an integer. Thus, the entire sequence consists of integers.\n\nNow we study the integer sequence $x_{n+1} = 1 + \\log_2 x_n$. \nIf $x_n \\ge 3$, we have $x_{n+1} = 1 + \\log_2 x_n < x_n$. This means that as long as the terms are $\\ge 3$, the sequence of integers is strictly decreasing. However, an infinite sequence of positive integers cannot be strictly decreasing forever, so the sequence must eventually reach a value $x_k \\le 2$.\n\nLet's check the possible integer values $\\le 2$:\n- If $x_k = 1$, then $x_{k-1} = 2^{1-1} = 1$. By induction backwards, $x_1 = a = 1$.\n- If $x_k = 2$, then $x_{k-1} = 2^{2-1} = 2$. By induction backwards, $x_1 = a = 2$.\n\nChecking these values:\n- If $a = 1$, $x_1 = 1$, $x_2 = 1 + \\log_2 1 = 1$, and $x_n = 1$ for all $n$. All terms are rational.\n- If $a = 2$, $x_1 = 2$, $x_2 = 1 + \\log_2 2 = 2$, and $x_n = 2$ for all $n$. All terms are rational.\n\nFinal answer: a \\in \\{1, 2\\}",
+  "usage": {
+    "input_tokens": 122,
+    "output_tokens": 801,
+    "thoughts_tokens": 2871
+  },
+  "latency_s": 29.857152368989773,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "a \\in \\{1, 2\\}"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "id": "03um",
+  "country": "China",
+  "competition": "China Mathematical Competition",
+  "gold_final_answer": "2^{2008} + 2007",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Functional Equations",
+    "Algebra > Algebraic Expressions > Sequences and Series > Telescoping series",
+    "Algebra > Algebraic Expressions > Sequences and Series > Sums and products",
+    "Algebra > Intermediate Algebra > Exponential functions"
+  ],
+  "prompt": "Suppose that $f(x)$ is defined on $\\mathbb{R}$, satisfying $f(0) = 2008$, and for any $x \\in \\mathbb{R}$\n$$\n\\begin{aligned}\nf(x+2) - f(x) &\\le 3 \\times 2^x, \\\\\nf(x+6) - f(x) &\\ge 63 \\times 2^x.\n\\end{aligned}\n$$\n\nThen $f(2008) = \\underline{\\hspace{2cm}}$.",
+  "model": "gpt-5.4",
+  "response_text": "Let\n\\[\na_n:=f(n)-2^n \\qquad (n\\in \\mathbb Z).\n\\]\nWe will show \\(a_n\\) is constant on the even integers, which will determine \\(f(2008)\\).\n\nFrom\n\\[\nf(x+2)-f(x)\\le 3\\cdot 2^x,\n\\]\nfor integer \\(x=n\\),\n\\[\na_{n+2}-a_n\n= \\bigl(f(n+2)-2^{n+2}\\bigr)-\\bigl(f(n)-2^n\\bigr)\n= f(n+2)-f(n)-3\\cdot 2^n\n\\le 0.\n\\]\nSo\n\\[\na_{n+2}\\le a_n. \\tag{1}\n\\]\n\nFrom\n\\[\nf(x+6)-f(x)\\ge 63\\cdot 2^x,\n\\]\nagain for integer \\(x=n\\),\n\\[\na_{n+6}-a_n\n= f(n+6)-f(n)-(2^{n+6}-2^n)\n\\ge 63\\cdot 2^n-63\\cdot 2^n=0.\n\\]\nHence\n\\[\na_{n+6}\\ge a_n. \\tag{2}\n\\]\n\nNow apply (1) successively:\n\\[\na_{n+6}\\le a_{n+4}\\le a_{n+2}\\le a_n.\n\\]\nTogether with (2), this gives\n\\[\na_{n+6}=a_{n+4}=a_{n+2}=a_n.\n\\]\nSo \\(a_n\\) is periodic with period \\(2\\) on integers; in particular, all even-indexed terms are equal.\n\nSince \\(2008\\) is even,\n\\[\na_{2008}=a_0=f(0)-2^0=2008-1=2007.\n\\]\nTherefore\n\\[\nf(2008)=a_{2008}+2^{2008}=2007+2^{2008}.\n\\]\n\nFinal answer: \\(2^{2008}+2007\\)",
+  "usage": {
+    "input_tokens": 166,
+    "output_tokens": 459,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 5.885614055907354,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "symbolic",
+    "predicted": "\\(2^{2008}+2007\\)"
+  }
+}

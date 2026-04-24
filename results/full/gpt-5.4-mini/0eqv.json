@@ -1,0 +1,19 @@
+{
+  "id": "0eqv",
+  "country": "South Africa",
+  "competition": "South African Mathematics Olympiad First Round",
+  "gold_final_answer": "E",
+  "topics_flat": [
+    "Algebra > Prealgebra / Basic Algebra > Simple Equations"
+  ],
+  "prompt": "Water pours into a tank at a constant rate. After 2 hours the tank was 36% full and after 10 hours it is 100% full. How full was the tank to begin with?\n(A) 10%\n(B) 12%\n(C) 15%\n(D) 18%\n(E) 20%",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let the tank’s initial fullness be \\(x\\%\\), and let the filling rate be \\(r\\%\\) per hour.\n\nAfter 2 hours:\n\\[\nx+2r=36\n\\]\n\nAfter 10 hours:\n\\[\nx+10r=100\n\\]\n\nSubtract:\n\\[\n8r=64 \\implies r=8\n\\]\n\nThen:\n\\[\nx=36-2(8)=20\n\\]\n\nSo the tank was initially \\(20\\%\\) full.\n\nFinal answer: (E) 20%",
+  "usage": {
+    "input_tokens": 115,
+    "output_tokens": 121,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 1.676913039991632,
+  "cached": false
+}

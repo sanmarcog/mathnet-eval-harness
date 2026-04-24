@@ -1,0 +1,26 @@
+{
+  "id": "02d5",
+  "country": "Brazil",
+  "competition": "I OBM",
+  "gold_final_answer": "The locus is the entire parabola b y = a^2 − x^2, in coordinates with A = (−a, 0), B = (a, 0), and C moving along y = b.",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Triangles > Triangle centers: centroid, incenter, circumcenter, orthocenter, Euler line, nine-point circle",
+    "Geometry > Plane Geometry > Analytic / Coordinate Methods > Cartesian coordinates",
+    "Geometry > Plane Geometry > Miscellaneous > Constructions and loci"
+  ],
+  "prompt": "The vertex $C$ of the triangle $ABC$ is allowed to vary along a line parallel to $AB$. Find the locus of the orthocenter.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Setting Up Coordinates\n\nLet me place $AB$ on the x-axis with $A = (0, 0)$ and $B = (a, 0)$. The line parallel to $AB$ is $y = k$ for some constant $k \\neq 0$.\n\nSo $C = (t, k)$ for varying parameter $t$.\n\n## Finding the Orthocenter\n\nThe orthocenter $H = (x, y)$ is the intersection of the altitudes.\n\n**Altitude from C perpendicular to AB:** Since $AB$ is horizontal, this altitude is vertical: $x = t$.\n\n**Altitude from A perpendicular to BC:** \n- Slope of $BC = \\frac{k - 0}{t - a} = \\frac{k}{t-a}$\n- Slope of altitude from $A$: $-\\frac{t-a}{k}$\n- Altitude from $A$: $y = -\\frac{t-a}{k} \\cdot x$\n\n**Finding H:** Since $x = t$:\n$$y = -\\frac{t-a}{k} \\cdot t = -\\frac{t(t-a)}{k}$$\n\n## Finding the Locus\n\nWe have:\n$$x = t, \\quad y = -\\frac{t(t-a)}{k}$$\n\nSubstituting $t = x$:\n$$y = -\\frac{x(x-a)}{k} = -\\frac{x^2 - ax}{k}$$\n\n$$ky = -x^2 + ax$$\n\n$$x^2 - ax + ky = 0$$\n\n$$\\left(x - \\frac{a}{2}\\right)^2 = \\frac{a^2}{4} - ky$$\n\nThis is a **parabola** with vertex at $\\left(\\frac{a}{2}, \\frac{a^2}{4k}\\right)$.\n\n## Verification\n\nNote that when $C$ is directly above the midpoint of $AB$, the triangle is isosceles and the orthocenter lies on the perpendicular bisector of $AB$ (at $x = a/2$), which is consistent.\n\nThe locus is a line parallel to $AB$ when... actually let me check: the equation $x^2 - ax + ky = 0$ is indeed a parabola (since $x$ appears quadratically).\n\n**The locus of the orthocenter is a line parallel to $AB$.**\n\nWait — let me reconsider. The altitude from $A$ perpendicular to $BC$ gives a parabola. But let me verify with a specific example.\n\nTake $a = 2$, $k = 1$. Then $y = -x(x-2) = -x^2 + 2x$. At $t=0$: $H = (0, 0) = A$. At $t=2$: $H = (2, 0) = B$. At $t=1$: $H = (1, 1)$. This traces a parabola, not a line.\n\nThe locus is a **parabola**.\n\nFinal answer: The locus of the orthocenter is a parabola (specifically, the parabola $x^2 - ax + ky = 0$ in the coordinate system where $A=(0,0)$, $B=(a,0)$, and $C$ moves along $y=k$).",
+  "usage": {
+    "input_tokens": 80,
+    "output_tokens": 826,
+    "thinking_tokens": 0
+  },
+  "latency_s": 12.154294612933882,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "The locus of the orthocenter is a parabola (specifically, the parabola $x^2 - ax + ky = 0$ in the coordinate system where $A=(0,0)$, $B=(a,0)$, and $C$ moves along $y=k$)."
+  }
+}

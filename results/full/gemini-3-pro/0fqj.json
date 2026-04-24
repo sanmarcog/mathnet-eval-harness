@@ -1,0 +1,19 @@
+{
+  "id": "0fqj",
+  "country": "Spain",
+  "competition": "SPANISH MATHEMATICAL OLYMPIAD (FINAL ROUND)",
+  "gold_final_answer": "y ∈ {π/7, 2π/7, 3π/7, 4π/7, 5π/7, 6π/7} ∪ {π/8, 3π/8, 5π/8, 7π/8} ∪ {π/9, 2π/9, π/3, 4π/9, 5π/9, 2π/3, 7π/9, 8π/9}",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Vieta's formulas"
+  ],
+  "prompt": "Let $a$, $b$ and $c$ be real numbers such that $p(x) = x^4 + a x^3 + b x^2 + a x + c$ has exactly three different real roots; these roots are $\\tan y$, $\\tan 2y$ and $\\tan 3y$ for some real number $y$. Find all possible values of $y$, $0 \\le y < \\pi$.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find the possible values of $y$, we start by using the relationships between the roots and coefficients of the polynomial $p(x) = x^4 + ax^3 + bx^2 + ax + c$. \n\nLet the four roots of $p(x)$ be $r_1, r_2, r_3, r_4$. By Vieta's formulas, the sum of the roots is $S_1 = -a$, and the sum of the roots taken three at a time is $S_3 = -a$. Therefore, we must have:\n$$S_1 = S_3$$\n\nWe are given that $p(x)$ has exactly three different real roots, which are $\\tan y$, $\\tan 2y$, and $\\tan 3y$. Since the polynomial has degree 4 and real coefficients, its four roots must all be real (complex roots would come in conjugate pairs, which would either introduce non-real roots or require two pairs of complex roots, leaving no real roots). Thus, exactly one of the roots $\\tan y$, $\\tan 2y$, or $\\tan 3y$ must be a double root. \n\nLet the roots be $\\tan \\theta_1, \\tan \\theta_2, \\tan \\theta_3, \\tan \\theta_4$. The condition $S_1 = S_3$ is equivalent to:\n$$\\sin(\\theta_1 + \\theta_2 + \\theta_3 + \\theta_4) = \\cos \\theta_1 \\cos \\theta_2 \\cos \\theta_3 \\cos \\theta_4 (S_1 - S_3) = 0$$\nSince the roots are real, $\\cos \\theta_i \\neq 0$ for all $i$. Thus, the sum of the angles must be a multiple of $\\pi$:\n$$\\theta_1 + \\theta_2 + \\theta_3 + \\theta_4 = k\\pi$$\n\nThe four angles are $y, 2y, 3y$, and a repeated angle $my$ where $m \\in \\{1, 2, 3\\}$. The sum of the angles is:\n$$y + 2y + 3y + my = (6+m)y = k\\pi \\implies y = \\frac{k\\pi}{6+m}$$\n\nWe must also ensure that the three roots $\\tan y, \\tan 2y, \\tan 3y$ are distinct and well-defined. This means $y \\neq 0$ (which would make all roots 0) and $y$ cannot be such that any of the angles are odd multiples of $\\pi/2$.\nLet's test the three cases for $m \\in \\{1, 2, 3\\}$ within the interval $0 \\le y < \\pi$:\n\n1. **Case $m = 1$ (Double root is $\\tan y$):**\n$7y = k\\pi \\implies y = \\frac{k\\pi}{7}$\nFor $k \\in \\{1, 2, 3, 4, 5, 6\\}$, all roots are well-defined and distinct. This gives 6 solutions.\n\n2. **Case $m = 2$ (Double root is $\\tan 2y$):**\n$8y = k\\pi \\implies y = \\frac{k\\pi}{8}$\nFor $k \\in \\{1, 2, 3, 4, 5, 6, 7\\}$, we must exclude even $k$ because they reduce to multiples of $\\pi/4$, which either make $\\tan 2y$ undefined or make the roots non-distinct. Thus, $k \\in \\{1, 3, 5, 7\\}$. This gives 4 solutions.\n\n3. **Case $m = 3$ (Double root is $\\tan 3y$):**\n$9y = k\\pi \\implies y = \\frac{k\\pi}{9}$\nFor $k \\in \\{1, 2, 3, 4, 5, 6, 7, 8\\}$, all roots are well-defined and distinct (even for $k=3, 6$ which yield $y = \\pi/3, 2\\pi/3$, the roots are $\\pm\\sqrt{3}$ and $0$, which are perfectly valid and distinct). This gives 8 solutions.\n\nNone of the sets of solutions overlap. \n\nFinal answer: \\frac{k\\pi}{7} \\text{ for } k \\in \\{1,2,3,4,5,6\\}, \\frac{k\\pi}{8} \\text{ for } k \\in \\{1,3,5,7\\}, \\frac{k\\pi}{9} \\text{ for } k \\in \\{1,2,3,4,5,6,7,8\\}",
+  "usage": {
+    "input_tokens": 131,
+    "output_tokens": 1060,
+    "thoughts_tokens": 6716
+  },
+  "latency_s": 59.3000182909891,
+  "cached": false
+}

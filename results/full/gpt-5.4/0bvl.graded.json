@@ -1,0 +1,25 @@
+{
+  "id": "0bvl",
+  "country": "Romania",
+  "competition": "SHORTLISTED PROBLEMS FOR THE 68th NMO",
+  "gold_final_answer": "0",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Sequences and Series > Floors and ceilings",
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities"
+  ],
+  "prompt": "What values can assume $[\\sqrt{m} + \\frac{1}{m+n}] + [\\sqrt{n} + \\frac{1}{m+n}] - [\\sqrt{m}] - [\\sqrt{n}]$, when $m$ and $n$ are integers $\\ge 9$?",
+  "model": "gpt-5.4",
+  "response_text": "Let\n\\[\nE=\\left[\\sqrt m+\\frac1{m+n}\\right]+\\left[\\sqrt n+\\frac1{m+n}\\right]-[\\sqrt m]-[\\sqrt n],\n\\]\nwhere \\(m,n\\ge 9\\) are integers, and \\([x]\\) denotes the integer part.\n\nWe want all possible values of \\(E\\).\n\n## Step 1: Each bracket changes by at most \\(1\\)\n\nFor any real \\(x\\) and any \\(0<\\varepsilon<1\\),\n\\[\n[x+\\varepsilon]-[x]\\in\\{0,1\\}.\n\\]\nHere \\(\\varepsilon=\\frac1{m+n}\\), and since \\(m+n\\ge 18\\),\n\\[\n0<\\frac1{m+n}<1.\n\\]\nSo each of\n\\[\n\\left[\\sqrt m+\\frac1{m+n}\\right]-[\\sqrt m],\\qquad\n\\left[\\sqrt n+\\frac1{m+n}\\right]-[\\sqrt n]\n\\]\nis either \\(0\\) or \\(1\\).\n\nHence\n\\[\nE\\in\\{0,1,2\\}.\n\\]\n\nSo it remains to check which of these three values are actually attainable.\n\n---\n\n## Step 2: When does one term contribute \\(1\\)?\n\nWe have\n\\[\n\\left[\\sqrt m+\\frac1{m+n}\\right]-[\\sqrt m]=1\n\\]\niff adding \\(\\frac1{m+n}\\) pushes \\(\\sqrt m\\) past the next integer.\n\nLet \\(k=[\\sqrt m]\\). Then this happens exactly when\n\\[\n\\sqrt m+\\frac1{m+n}\\ge k+1.\n\\]\nSince \\(k+1=\\lceil \\sqrt m\\rceil\\), and for non-square \\(m\\), \\(k+1>\\sqrt m\\), this means\n\\[\n\\lceil \\sqrt m\\rceil-\\sqrt m\\le \\frac1{m+n}.\n\\]\n\nIn particular, if \\(m=a^2-1\\), then\n\\[\n[a^2-1]=m,\\qquad \\sqrt m=\\sqrt{a^2-1},\n\\]\nand\n\\[\na-\\sqrt{a^2-1}\n=\\frac{1}{a+\\sqrt{a^2-1}}.\n\\]\nSo if also \\(m+n\\le a+\\sqrt{a^2-1}\\), then that term contributes \\(1\\).\n\nA very useful special case is \\(m=15\\):\n\\[\n\\sqrt{15}\\approx 3.87298,\\qquad 4-\\sqrt{15}\\approx 0.1270.\n\\]\n\n---\n\n## Step 3: Produce all possible values\n\n### Value \\(0\\)\n\nTake \\(m=n=9\\). Then\n\\[\n\\sqrt9=3,\\qquad \\frac1{m+n}=\\frac1{18}.\n\\]\nSo\n\\[\n\\left[3+\\frac1{18}\\right]-[3]=0,\n\\]\nfor both terms. Hence\n\\[\nE=0.\n\\]\n\n### Value \\(1\\)\n\nTake \\(m=15,\\ n=9\\). Then\n\\[\n\\frac1{m+n}=\\frac1{24}\\approx 0.0417.\n\\]\nNow\n\\[\n\\sqrt{15}\\approx 3.873,\\qquad 4-\\sqrt{15}\\approx 0.127>0.0417,\n\\]\nso actually this does **not** work. Let us pick a better example.\n\nTake \\(m=15,\\ n=3\\) would work, but \\(n\\ge 9\\), so not allowed.\n\nTry \\(m=15,\\ n=10\\):\n\\[\n\\frac1{25}=0.04,\n\\]\nstill too small.\n\nSo we need a number even closer to a square. Let \\(m=24\\), since\n\\[\n5-\\sqrt{24}\\approx 0.1010,\n\\]\nstill not enough.\n\nBetter: take \\(m=35\\):\n\\[\n6-\\sqrt{35}\\approx 0.0839.\n\\]\nStill too large for \\(n\\ge 9\\).\n\nIn general, for \\(m=a^2-1\\),\n\\[\na-\\sqrt{a^2-1}=\\frac1{a+\\sqrt{a^2-1}}\\approx \\frac1{2a}.\n\\]\nWe want this \\(\\le \\frac1{m+n}\\), i.e. \\(m+n\\le a+\\sqrt{a^2-1}\\approx 2a\\). But since \\(m=a^2-1\\), for \\(a\\ge 4\\), \\(m+n\\ge a^2+8\\), much larger than \\(2a\\). So actually no term can ever contribute \\(1\\)!\n\nLet us prove this properly.\n\n---\n\n## Step 4: Show each contribution is always \\(0\\)\n\nLet \\(k=[\\sqrt m]\\). Then\n\\[\nk^2\\le m<(k+1)^2.\n\\]\nIf \\(m=k^2\\), then \\(\\sqrt m\\) is an integer, and since \\(0<\\frac1{m+n}<1\\),\n\\[\n\\left[\\sqrt m+\\frac1{m+n}\\right]=[\\sqrt m].\n\\]\nSo contribution is \\(0\\).\n\nIf \\(k^2<m<(k+1)^2\\), then since \\(m\\) is integer,\n\\[\nm\\le (k+1)^2-1.\n\\]\nThus\n\\[\n\\sqrt m\\le \\sqrt{(k+1)^2-1}.\n\\]\nTherefore\n\\[\n(k+1)-\\sqrt m \\ge (k+1)-\\sqrt{(k+1)^2-1}\n= \\frac{1}{(k+1)+\\sqrt{(k+1)^2-1}}.\n\\]\nNow \\(k+1\\le \\sqrt m+1\\le \\sqrt m+\\sqrt n\\le \\sqrt{m+n}+\\sqrt{m+n}\\), but an easier estimate is enough:\n\nSince \\(m\\ge 9\\), let \\(a=k+1\\ge 4\\). Then\n\\[\n(k+1)-\\sqrt m \\ge \\frac{1}{a+\\sqrt{a^2-1}}>\\frac1{2a}.\n\\]\nOn the other hand,\n\\[\nm\\ge a^2-1,\n\\]\nso\n\\[\nm+n\\ge a^2-1+9=a^2+8.\n\\]\nHence\n\\[\n\\frac1{m+n}\\le \\frac1{a^2+8}.\n\\]\nFor \\(a\\ge 4\\),\n\\[\n\\frac1{a^2+8}<\\frac1{2a},\n\\]\nbecause \\(a^2+8>2a\\).\n\nSo\n\\[\n\\frac1{m+n}<(k+1)-\\sqrt m.\n\\]\nTherefore adding \\(\\frac1{m+n}\\) to \\(\\sqrt m\\) never reaches the next integer, and\n\\[\n\\left[\\sqrt m+\\frac1{m+n}\\right]=[\\sqrt m].\n\\]\nThe same argument holds for \\(n\\).\n\nThus both increments are always \\(0\\), so\n\\[\nE=0\n\\]\nfor all \\(m,n\\ge 9\\).\n\nFinal answer: \\(\\boxed{0}\\)",
+  "usage": {
+    "input_tokens": 114,
+    "output_tokens": 1579,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 20.981648344080895,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "exact",
+    "predicted": "0"
+  }
+}

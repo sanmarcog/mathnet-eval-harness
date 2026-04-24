@@ -1,0 +1,19 @@
+{
+  "id": "00nw",
+  "country": "Austria",
+  "competition": "AUT_ABooklet_2023",
+  "gold_final_answer": "For alpha equal to minus one, the only solution is f(x) = x for all real x; for all other alpha, there is no solution.",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Functional Equations"
+  ],
+  "prompt": "Let $\\alpha$ be a nonzero real number.\nDetermine all functions $f: \\mathbb{R} \\to \\mathbb{R}$ with\n$$\nf(f(x + y)) = f(x + y) + f(x)f(y) + \\alpha xy\n$$\nfor all $x, y \\in \\mathbb{R}$.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find all functions $f: \\mathbb{R} \\to \\mathbb{R}$ satisfying the given equation:\n$$ f(f(x + y)) = f(x + y) + f(x)f(y) + \\alpha xy $$\nwe can analyze the terms. Notice that the left-hand side, $f(f(x+y))$, depends only on the sum $x+y$. Therefore, the right-hand side must also depend only on $x+y$. \nThis implies that the expression $f(x)f(y) + \\alpha xy$ depends only on $x+y$. \n\nLet $x+y = S$, so $y = S-x$. Then $f(x)f(S-x) + \\alpha x(S-x)$ must be constant for any fixed $S$. \nEvaluating this at $x=S$ (which means $y=0$), we get:\n$$ f(x)f(y) + \\alpha xy = f(x+y)f(0) $$\nLet $c = f(0)$. Then we have:\n$$ f(x)f(y) = c f(x+y) - \\alpha xy $$\n\nSubstituting this back into the original equation gives:\n$$ f(f(x+y)) = f(x+y) + c f(x+y) = (c+1)f(x+y) $$\nSince $x+y$ can be any real number $z",
+  "usage": {
+    "input_tokens": 116,
+    "output_tokens": 328,
+    "thoughts_tokens": 7860
+  },
+  "latency_s": 61.211989031988196,
+  "cached": false
+}

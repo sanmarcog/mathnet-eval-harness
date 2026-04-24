@@ -1,0 +1,20 @@
+{
+  "id": "067y",
+  "country": "Greece",
+  "competition": "33rd Hellenic Mathematical Olympiad",
+  "gold_final_answer": "[(4, 8, 0), (35, 70, 1), (14, 77, 1)]",
+  "topics_flat": [
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities",
+    "Number Theory > Divisibility / Factorization > Factorization techniques"
+  ],
+  "prompt": "Find all possible triads of non negative integers $(x, y, z)$ with $x \\le y$, which satisfy the equation: $x^2 + y^2 = 3 \\cdot 2016^z + 77$",
+  "model": "claude-opus-4-7",
+  "response_text": "<think>\nWe need x²+y²=3·2016^z+77, x≤y nonneg integers.\n\nz=0: x²+y²=80. Try: 80=16+64=4²+8². Also 80=... 0+80 no. So (4,8).\nOther: 80 = ? only 4²+8².\n\nz=1: 3·2016+77=6048+77=6125. x²+y²=6125. 6125=5³·7²·... 6125/25=245=5·49. So 6125=5³·7². \nFind representations. √6125≈78.26.\nTry y from 78 down: 78²=6084, 6125-6084=41 no. 77²=5929, 196=14². So (14,77).\n76²=5776, 349 no. 75²=5625,500 no. 74²=5476,649 no. 73²=5329,796 no. 72²=5184,941 no. 71²=5041,1084 no. 70²=4900,1225=35². So (35,70).\n69²=4761,1364 no. 68²=4624,1501 no. 67²=4489,1636 no. 66²=4356,1769 no. 65²=4225,1900 no. 64²=4096,2029 no. 63²=3969,2156 no. 62²=3844,2281 no. 61²=3721,2404 no. 60²=3600,2525 no. 59²=3481,2644 no. 58²=3364,2761 no. 57²=3249,2876 no. 56²=3136,2989 no. Past midpoint √(6125/2)≈55.3. Stop.\n\nSo z=1: (14,77),(35,70).\n\nz≥2: 2016=2^5·3²·7. 2016^z mod... Let's check mod 4. 2016≡0 mod 4, so 2016^z≡0 for z≥1. Then 3·2016^z+77≡77≡1 mod 4. x²+y²≡1 mod4 means one even, one odd. OK.\n\nMod 7: 2016≡0, so RHS≡77≡0 mod 7. x²+y²≡0 mod 7. Squares mod 7: 0,1,2,4. Need sum ≡0: both ≡0. So 7|x and 7|y.\n\nMod 9: 2016=9·224, 2016≡0 mod 9. For z≥1, RHS≡77≡77-72=5 mod 9. Squares mod 9: 0,1,4,7. Sum=5: 1+4=5 or 4+1. So {x²,y²} mod9 = {1,4}.\n\nMod higher power... for z≥2, 2016² divides... let's think mod larger.\n\nActually let me check z=2: 3·2016²+77 = 3·4064256+77=12192768+77=12192845. \n7|x,7|y so x=7a,y=7b, 49(a²+b²)=12192845. 12192845/49=248833.57... let me check: 49·248833=12192817, diff 28. Not divisible. Hmm.\n\nWait let me recompute. 2016²=4064256. 3·4064256=12192768. +77=12192845. 12192845/7=1741835. /7=248833.57. So 49∤. Contradiction with 7|x,7|y which requires 49|RHS.\n\nLet me recheck mod 7. 77=7·11, so 77≡0 mod 7. 2016=7·288, so 2016^z≡0 mod 7 for z≥1. RHS=0 mod 7. OK.\nBut mod 49: 77=49+28, so 77≡28 mod 49. 2016=49·41+7, 2016=2009+7, so 2016≡7 mod 49. 2016²≡49≡0 mod 49. So for z≥2, 2016^z≡0 mod 49, RHS≡28 mod 49.\n\nx²+y²≡28 mod 49. We argued 7|x and 7|y, giving 49|(x²+y²), but 28≠0 mod 49. Contradiction! So z≥2 impossible.\n\nWait need to verify 7|x,7|y from mod 7. x²+y²≡0 mod 7. Squares mod 7: 0,1,2,4. Can we get sum 0 mod 7 with nonzero? 1+6? 6 not square. 2+5? no. 4+3? no. So both must be 0 mod 7. Yes.\n\nSo z≥2 no solutions.\n\nz=0: (4,8). z=1: (14,77),(35,70).\n\nLet me double-check z=0: 3·1+77=80=16+64 ✓.\nz=1: 14²+77²=196+5929=6125 ✓. 35²+70²=1225+4900=6125 ✓.\n</think>\n\n**Solution sketch:**\n\n**Case z ≥ 2:** Mod 7, since 2016 ≡ 0 and 77 ≡ 0, we get x² + y² ≡ 0 (mod 7). Squares mod 7 are {0,1,2,4}, forcing 7|x and 7|y, hence 49 | x²+y². But mod 49: 2016 ≡ 7, so 2016² ≡ 0, giving RHS ≡ 77 ≡ 28 (mod 49). Contradiction.\n\n**Case z = 1:** x² + y² = 6125. Searching gives (14, 77) and (35, 70).\n\n**Case z = 0:** x² + y² = 80, giving (4, 8).\n\nFinal answer: (4,8), (14,77), (35,70)",
+  "usage": {
+    "input_tokens": 133,
+    "output_tokens": 1790,
+    "thinking_tokens": 0
+  },
+  "latency_s": 20.972702282015234,
+  "cached": false
+}

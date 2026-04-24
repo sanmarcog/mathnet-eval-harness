@@ -1,0 +1,20 @@
+{
+  "id": "0h0o",
+  "country": "Ukraine",
+  "competition": "51st Ukrainian National Mathematical Olympiad, 3rd Round",
+  "gold_final_answer": "20",
+  "topics_flat": [
+    "Algebra > Prealgebra / Basic Algebra > Fractions",
+    "Number Theory > Divisibility / Factorization"
+  ],
+  "prompt": "Olesya wrote down a natural number $N$. After this, Andriy wrote down one sixth, one fifth, one fourth, one third and a half of $N$. It turns out that the sum of all numbers that are written is integer. What is the least possible number that Olesya could write?",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let the five numbers written by Andriy be\n\n\\[\n\\frac N6,\\ \\frac N5,\\ \\frac N4,\\ \\frac N3,\\ \\frac N2.\n\\]\n\nTheir sum is\n\n\\[\nN\\left(\\frac16+\\frac15+\\frac14+\\frac13+\\frac12\\right).\n\\]\n\nCompute the coefficient:\n\n\\[\n\\frac16+\\frac15+\\frac14+\\frac13+\\frac12\n= \\frac{10+12+15+20+30}{60}\n= \\frac{87}{60}\n= \\frac{29}{20}.\n\\]\n\nSo the total sum of all written numbers is\n\n\\[\nN+\\frac{29}{20}N=\\frac{49}{20}N.\n\\]\n\nWe need this to be an integer, so \\(20\\mid 49N\\). Since \\(\\gcd(49,20)=1\\), it follows that\n\n\\[\n20\\mid N.\n\\]\n\nThus the smallest possible natural number is\n\n\\[\nN=20.\n\\]\n\nFinal answer: 20",
+  "usage": {
+    "input_tokens": 112,
+    "output_tokens": 230,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 2.3818648400483653,
+  "cached": false
+}

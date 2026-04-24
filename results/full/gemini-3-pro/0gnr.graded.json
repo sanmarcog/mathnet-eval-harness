@@ -1,0 +1,26 @@
+{
+  "id": "0gnr",
+  "country": "Turkey",
+  "competition": "16th Turkish Mathematical Olympiad",
+  "gold_final_answer": "671",
+  "topics_flat": [
+    "Discrete Mathematics > Graph Theory",
+    "Discrete Mathematics > Combinatorics > Games / greedy algorithms",
+    "Discrete Mathematics > Combinatorics > Pigeonhole principle"
+  ],
+  "prompt": "In a computer network consisting of $2008$ computers no two cycles intersect. At time $t = 0$, a hacker hacks into a computer in this network; and at time $t = 1$, the network administrator installs a protective software to an unhacked computer. For each positive integer $k$, at time $t = 2k$, the hacker hacks into another computer, if there is one, that is not protected and that is directly connected to a hacked computer; and at time $t = 2k + 1$, the administrator installs the protective software to another computer, if there is one, that is not hacked and that is directly connected to a protected computer. Determine the maximum number of computers the hacker can guarantee to hack into no matter how the network is configured.\n\n[For $m \\ge 3$, $\\{C_1, C_2, \\dots, C_m\\}$ is a cycle if the computers $C_1$ and $C_m$ and, for all $2 \\le i \\le m$, the computers $C_{i-1}$ and $C_i$ are directly connected.]",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find the maximum number of computers the hacker can guarantee to hack into no matter how the network is configured, we are looking for the minimum possible number of hacked computers over all valid network configurations, assuming both the hacker and the administrator play optimally.\n\nLet $n = 2008$ be the total number of computers. \nConsider the case where the network is a simple path graph $P_{2008}$ (which is a valid cactus graph since it has no cycles). \n- The hacker chooses a starting computer $x \\in \\{1, 2, \\dots, 2008\\}$.\n- The administrator will then choose to protect an adjacent computer to minimize the hacker's spread. If the hacker chooses $x$, the administrator will choose $x+1$ (if $x \\ge 1004$) or $x-1$ (if $x < 1004$).\n- Because the administrator's protected computers must remain connected and the hacker's hacked computers must also remain connected, the administrator's choice effectively blocks the hacker from moving in one direction along the path.\n- The hacker will thus be able to hack exactly $\\max(x, 2008 - x)$ computers. \n- To maximize their guaranteed number of hacked computers, the hacker will choose the middle of the path, $x = 1004$ (or $1005$). The administrator will block the other half, restricting the hacker to exactly $1004$ computers.\n\nFor any general cactus graph, the hacker can always guarantee to hack at least $\\lceil n/2 \\rceil$ computers. By finding the \"centroid\" of the cactus graph (a vertex or cycle whose removal leaves connected components of size at most $\\lfloor n/2 \\rfloor$), the hacker can start there. The administrator is forced to start in one of these components and is restricted to it, allowing the hacker to hack the rest of the network, which will be at least $\\lceil 2008/2 \\rceil = 1004$ computers.\n\nThus, the maximum number of computers the hacker can guarantee to hack into, regardless of the network's configuration, is exactly half of the network.\n\nFinal answer: 1004",
+  "usage": {
+    "input_tokens": 278,
+    "output_tokens": 479,
+    "thoughts_tokens": 4088
+  },
+  "latency_s": 44.1227029080037,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "1004"
+  }
+}

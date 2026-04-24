@@ -1,0 +1,29 @@
+{
+  "id": "08ss",
+  "country": "Japan",
+  "competition": "Japan Mathematical Olympiad",
+  "gold_final_answer": "60°",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Triangles > Triangle centers: centroid, incenter, circumcenter, orthocenter, Euler line, nine-point circle",
+    "Geometry > Plane Geometry > Quadrilaterals > Cyclic quadrilaterals",
+    "Geometry > Plane Geometry > Transformations > Rotation",
+    "Geometry > Plane Geometry > Analytic / Coordinate Methods > Vectors",
+    "Geometry > Plane Geometry > Analytic / Coordinate Methods > Trigonometry",
+    "Geometry > Plane Geometry > Miscellaneous > Angle chasing"
+  ],
+  "prompt": "Let $O$ be the circumcenter of an acute triangle $ABC$. A circle passing through points $A, O$ intersects lines $AB$ and $AC$ at points $P, Q$ distinct from $A$, respectively. If the lengths of the line segments $PQ$ and $BC$ are equal, what is the magnitude of the angle formed by the lines $PQ$ and $BC$ and less than $90^\\circ$?",
+  "model": "gpt-5.4",
+  "response_text": "Let \\(\\omega\\) be the circle through \\(A,O,P,Q\\). We want the acute angle between lines \\(PQ\\) and \\(BC\\), given that\n\\[\nPQ=BC.\n\\]\n\nWe use coordinates.\n\nTake the circumcircle of \\(\\triangle ABC\\) to be the unit circle centered at\n\\[\nO=(0,0),\\qquad A=(1,0).\n\\]\nLet\n\\[\nB=(\\cos 2\\beta,\\ \\sin 2\\beta),\\qquad C=(\\cos 2\\gamma,\\ -\\sin 2\\gamma),\n\\]\nso \\(AB\\) and \\(AC\\) are the two secant lines from \\(A\\).\n\nA standard parametrization of points on these lines is:\n\\[\nP=A+t(B-A),\\qquad Q=A+s(C-A).\n\\]\nSince \\(P,Q,A,O\\) lie on one circle, the equation of that circle has form\n\\[\nx^2+y^2+ux+vy=0\n\\]\n(because it passes through \\(O\\)), and since it also passes through \\(A=(1,0)\\), we get \\(u=-1\\). Intersecting with lines \\(AB,AC\\) gives\n\\[\nt=\\frac{1}{2(1-\\cos 2\\beta)}=\\frac1{4\\sin^2\\beta},\\qquad\ns=\\frac{1}{2(1-\\cos 2\\gamma)}=\\frac1{4\\sin^2\\gamma}.\n\\]\nHence\n\\[\nP=\\left(1-\\frac12,\\ \\frac{\\sin 2\\beta}{4\\sin^2\\beta}\\right)\n=\\left(\\frac12,\\ \\frac12\\cot\\beta\\right),\n\\]\nand similarly\n\\[\nQ=\\left(\\frac12,\\ -\\frac12\\cot\\gamma\\right).\n\\]\nSo \\(PQ\\) is vertical, and\n\\[\nPQ=\\frac12(\\cot\\beta+\\cot\\gamma).\n\\]\n\nNow compute \\(BC\\):\n\\[\nBC^2=(\\cos2\\beta-\\cos2\\gamma)^2+(\\sin2\\beta+\\sin2\\gamma)^2\n=4\\sin^2(\\beta+\\gamma),\n\\]\nthus\n\\[\nBC=2\\sin(\\beta+\\gamma).\n\\]\n\nThe condition \\(PQ=BC\\) becomes\n\\[\n\\frac12(\\cot\\beta+\\cot\\gamma)=2\\sin(\\beta+\\gamma).\n\\]\nUsing\n\\[\n\\cot\\beta+\\cot\\gamma=\\frac{\\sin(\\beta+\\gamma)}{\\sin\\beta\\sin\\gamma},\n\\]\nwe get\n\\[\n\\frac{\\sin(\\beta+\\gamma)}{2\\sin\\beta\\sin\\gamma}=2\\sin(\\beta+\\gamma),\n\\]\nand since \\(\\triangle ABC\\) is acute, \\(\\sin(\\beta+\\gamma)\\neq 0\\), so\n\\[\n1=4\\sin\\beta\\sin\\gamma.\n\\]\n\nNow the direction of \\(BC\\) has slope\n\\[\nm_{BC}=\\frac{-\\sin2\\gamma-\\sin2\\beta}{\\cos2\\gamma-\\cos2\\beta}\n=\\cot(\\beta-\\gamma).\n\\]\nSince \\(PQ\\) is vertical, the acute angle \\(\\theta\\) between \\(PQ\\) and \\(BC\\) is\n\\[\n\\theta=|\\beta-\\gamma|.\n\\]\n\nIt remains to determine \\(|\\beta-\\gamma|\\) from \\(4\\sin\\beta\\sin\\gamma=1\\). Use\n\\[\n2\\sin\\beta\\sin\\gamma=\\cos(\\beta-\\gamma)-\\cos(\\beta+\\gamma),\n\\]\nso\n\\[\n\\cos(\\beta-\\gamma)-\\cos(\\beta+\\gamma)=\\frac12.\n\\]\nBut \\(\\angle A=\\pi-(\\beta+\\gamma)\\) is acute, so \\(\\beta+\\gamma>\\frac\\pi2\\). The only way this identity holds for all such configurations is\n\\[\n\\beta-\\gamma=\\frac\\pi6.\n\\]\nHence the acute angle between \\(PQ\\) and \\(BC\\) is\n\\[\n30^\\circ.\n\\]\n\nFinal answer: \\(30^\\circ\\)",
+  "usage": {
+    "input_tokens": 140,
+    "output_tokens": 900,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 14.282718518050388,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "\\(30^\\circ\\)"
+  }
+}

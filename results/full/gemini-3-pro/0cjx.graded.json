@@ -1,0 +1,25 @@
+{
+  "id": "0cjx",
+  "country": "Romania",
+  "competition": "75th Romanian Mathematical Olympiad",
+  "gold_final_answer": "a) A must equal its transpose. b) Example: the matrix whose only nonzero entries are ones in the first row at the first and second columns (all other entries zero) satisfies the property but is not symmetric.",
+  "topics_flat": [
+    "Algebra > Linear Algebra > Determinants",
+    "Algebra > Linear Algebra > Matrices"
+  ],
+  "prompt": "Let $n \\ge 3$ be an integer number. We say that a matrix $A \\in \\mathcal{M}_n(\\mathbb{C})$ has the property $(\\mathcal{P})$ if $\\det(A + X_{ij}) = \\det(A + X_{ji})$, for any $i, j \\in \\{1, 2, \\dots, n\\}$, where $X_{ij} \\in \\mathcal{M}_n(\\mathbb{C})$ is the matrix with $1$ at the position $(i, j)$ and $0$ elsewhere.\n\na) Assume a matrix $A \\in \\mathcal{M}_n(\\mathbb{C})$ with the property $(\\mathcal{P})$, such that $\\det(A) \\neq 0$. Prove that $A = A^T$.\n\nb) Give an example of a matrix $A \\in \\mathcal{M}_n(\\mathbb{C})$ with the property $(\\mathcal{P})$, but $A \\neq A^T$.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To understand the property $(\\mathcal{P})$, let's evaluate $\\det(A + X_{ij})$. By the linearity of the determinant with respect to the $i$-th row, we can split the determinant into two parts:\n$$\\det(A + X_{ij}) = \\det(A) + \\det(A^{(i)})$$\nwhere $A^{(i)}$ is the matrix $A$ with its $i$-th row replaced by the $i$-th row of $X_{ij}$, which is $e_j^T$ (a row vector with $1$ at the $j$-th position and $0$ elsewhere). \nExpanding $\\det(A^{(i)})$ along the $i$-th row, we find that it is exactly the cofactor $C_{ij}$ of the matrix $A$. \nThus, $\\det(A + X_{ij}) = \\det(A) + C_{ij}$.\n\nThe property $(\\mathcal{P})$ states that $\\det(A + X_{ij}) = \\det(A + X_{ji})$ for all $i, j$. This is equivalent to:\n$$C_{ij} = C_{ji} \\text{ for all } i, j$$\nwhich means the cofactor matrix $C$ of $A$ is symmetric, i.e., $C = C^T$.\n\n**a)** Assume $\\det(A) \\neq 0$. Then $A$ is invertible, and its inverse is given by the adjugate matrix divided by the determinant:\n$$A^{-1} = \\frac{1}{\\det(A)} C^T$$\nSince $C = C^T$, we have $A^{-1} = \\frac{1}{\\det(A)} C$, which means $A^{-1}$ is a symmetric matrix. The inverse of a symmetric matrix is also symmetric, so $A = (A^{-1})^{-1}$ must be symmetric. Therefore, $A = A^T$.\n\n**b)** We want to find a matrix $A$ such that $C = C^T$ but $A \\neq A^T$. \nFrom our earlier deduction, we just need the cofactor matrix $C$ to be symmetric. If we choose a matrix $A$ such that $\\text{rank}(A) \\le n - 2$, then all of its $(n-1) \\times (n-1)$ minors will be $0$. Consequently, the cofactor matrix will be the zero matrix ($C = 0$), which is trivially symmetric.\n\nSince $n \\ge 3$, we can easily pick a non-symmetric matrix with rank $1 \\le n - 2$. For example, we can choose $A = X_{12}$, which has a $1$ at position $(1, 2)$ and $0$ everywhere else. \nClearly, $A \\neq A^T$. For any $i, j$, the matrix $A + X_{ij}$ has at most two non-zero entries, so its rank is at most $2$. Because $n \\ge 3$, the matrix $A + X_{ij}$ is not full rank, meaning $\\det(A + X_{ij}) = 0$. Thus, $\\det(A + X_{ij}) = \\det(A + X_{ji}) = 0$ for all $i, j$, satisfying property $(\\mathcal{P})$.\n\nFinal answer: X_{12}",
+  "usage": {
+    "input_tokens": 250,
+    "output_tokens": 730,
+    "thoughts_tokens": 1908
+  },
+  "latency_s": 22.042581718065776,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "X_{12}"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "id": "0694",
+  "country": "Greece",
+  "competition": "SELECTION EXAMINATION 2019",
+  "gold_final_answer": "f(x) = x for all x > 0",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Functional Equations"
+  ],
+  "prompt": "Let $\\mathbb{R}_+ = (0, \\infty)$. Determine all functions $f : \\mathbb{R}_+ \\to \\mathbb{R}_+$ such that\n$$\nf(xf(y)) + yf(z) + zf(x) = xy + yz + zx,\n$$\nfor all $x, y, z \\in \\mathbb{R}_+$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "We seek all \\(f:\\mathbb R_+\\to\\mathbb R_+\\) satisfying\n\\[\nf(xf(y))+yf(z)+zf(x)=xy+yz+zx \\qquad (\\forall x,y,z>0).\n\\]\n\n## 1) First reductions\nSet \\(z\\) and \\(y\\) differently to compare. Since the left side is linear in \\(y,z\\) except for the first term, we extract structure.\n\nLet \\(x=1\\):\n\\[\nf(f(y))+y f(z)+z f(1)= y+yz+z. \\tag{1}\n\\]\nNow set \\(z=1\\):\n\\[\nf(xf(y))+y f(1)+f(x)=xy+y+x. \\tag{2}\n\\]\n\nFrom (1), fixing \\(y\\) and varying \\(z\\), the coefficient of \\(z\\) gives\n\\[\nf(y)=y \\quad \\text{for all } y>0,\n\\]\nbecause the right-hand side has coefficient \\(y\\) of \\(z\\), while the left has coefficient \\(f(y)\\) of \\(z\\).  \nSo \\(f\\) must be the identity function.\n\n## 2) Verification\nIf \\(f(t)=t\\), then\n\\[\nf(xf(y))+yf(z)+zf(x)=f(xy)+yz+zx=xy+yz+zx,\n\\]\nwhich works.\n\nTherefore the unique solution is\n\n\\[\n\\boxed{f(x)=x \\text{ for all } x>0.}\n\\]\n\nFinal answer: \\(f(x)=x\\) for all \\(x\\in\\mathbb R_+\\).",
+  "usage": {
+    "input_tokens": 133,
+    "output_tokens": 359,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 2.7475521380547434,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "\\(f(x)=x\\) for all \\(x\\in\\mathbb R_+\\)."
+  }
+}

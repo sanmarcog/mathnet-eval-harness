@@ -1,0 +1,25 @@
+{
+  "id": "058y",
+  "country": "Estonia",
+  "competition": "Estonian Math Competitions",
+  "gold_final_answer": "2021 + 2021/2022",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Sequences and Series > Telescoping series",
+    "Algebra > Algebraic Expressions > Sequences and Series > Sums and products"
+  ],
+  "prompt": "Find the sum\n$$\n\\sqrt{1 + \\frac{1}{1^2} + \\frac{1}{2^2}} + \\sqrt{1 + \\frac{1}{2^2} + \\frac{1}{3^2}} + \\dots + \\sqrt{1 + \\frac{1}{2021^2} + \\frac{1}{2022^2}}\n$$",
+  "model": "claude-sonnet-4-6",
+  "response_text": "We need to simplify the general term $\\sqrt{1 + \\frac{1}{n^2} + \\frac{1}{(n+1)^2}}$.\n\n$$1 + \\frac{1}{n^2} + \\frac{1}{(n+1)^2} = \\frac{n^2(n+1)^2 + (n+1)^2 + n^2}{n^2(n+1)^2}$$\n\nNumerator: $n^2(n+1)^2 + (n+1)^2 + n^2$\n\n$= n^2(n+1)^2 + n^2 + 2n + 1 + n^2$\n\n$= n^2(n+1)^2 + 2n^2 + 2n + 1$\n\nNote that $n^2(n+1)^2 + 2n(n+1) + 1 = (n(n+1)+1)^2$, and $2n^2+2n+1 = 2n(n+1)+1$. So:\n\nNumerator $= (n(n+1)+1)^2 = (n^2+n+1)^2$\n\nTherefore:\n$$\\sqrt{1 + \\frac{1}{n^2} + \\frac{1}{(n+1)^2}} = \\frac{n^2+n+1}{n(n+1)} = 1 + \\frac{1}{n(n+1)} = 1 + \\frac{1}{n} - \\frac{1}{n+1}$$\n\nThe sum becomes:\n$$\\sum_{n=1}^{2021} \\left(1 + \\frac{1}{n} - \\frac{1}{n+1}\\right) = 2021 + \\sum_{n=1}^{2021}\\left(\\frac{1}{n} - \\frac{1}{n+1}\\right)$$\n\nThe telescoping sum:\n$$\\sum_{n=1}^{2021}\\left(\\frac{1}{n} - \\frac{1}{n+1}\\right) = 1 - \\frac{1}{2022} = \\frac{2021}{2022}$$\n\nTotal sum:\n$$2021 + \\frac{2021}{2022} = 2021\\left(1 + \\frac{1}{2022}\\right) = \\frac{2021 \\cdot 2023}{2022}$$\n\nFinal answer: $\\dfrac{2021 \\times 2023}{2022}$",
+  "usage": {
+    "input_tokens": 142,
+    "output_tokens": 641,
+    "thinking_tokens": 0
+  },
+  "latency_s": 5.965515156975016,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "symbolic",
+    "predicted": "$\\dfrac{2021 \\times 2023}{2022}$"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "id": "04bw",
+  "country": "Croatia",
+  "competition": "Mathematica competitions in Croatia",
+  "gold_final_answer": "1, 4, 9",
+  "topics_flat": [
+    "Algebra > Prealgebra / Basic Algebra > Integers",
+    "Algebra > Intermediate Algebra > Quadratic functions",
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities"
+  ],
+  "prompt": "Determine all positive integers smaller than $1000$ that are equal to the sum of squares of their digits.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find all positive integers $n < 1000$ that are equal to the sum of the squares of their digits, we can analyze the number of digits of $n$.\n\n**Case 1: $n$ is a 1-digit number.**\nLet $n = c$, where $c \\in \\{1, 2, \\dots, 9\\}$.\nThe condition is $c = c^2$, which simplifies to $c(c - 1) = 0$.\nSince $n$ is a positive integer, $c \\neq 0$, so $c = 1$. \nThis gives the solution $n = 1$.\n\n**Case 2: $n$ is a 2-digit number.**\nLet $n = 10b + c$, where $b \\in \\{1, 2, \\dots, 9\\}$ and $c \\in \\{0, 1, \\dots, 9\\}$.\nThe condition is $10b + c = b^2 + c^2$.\nRearranging the terms, we get:\n$10b - b^2 = c^2 - c$\n$b(10 - b) = c(c - 1)$\nWe can test all possible values for $b$:\nThe possible values for the left side, $b(10 - b)$ for $b \\in \\{1, \\dots, 9\\}$, are $9, 16, 21, 24,$ and $25$.\nThe possible values for the right side, $c(c - 1)$ for $c \\in \\{0, \\dots, 9\\}$, are $0, 2, 6, 12, 20, 30, 42, 56,$ and $72$.\nSince there is no overlap between the possible values of the left side and the right side, there are no 2-digit solutions.\n\n**Case 3: $n$ is a 3-digit number.**\nLet $n = 100a + 10b + c$, where $a \\in \\{1, 2, \\dots, 9\\}$ and $b, c \\in \\{0, 1, \\dots, 9\\}$.\nThe condition is $100a + 10b + c = a^2 + b^2 + c^2$.\nRearranging the terms, we get:\n$100a - a^2 + 10b - b^2 = c^2 - c$\n$a(100 - a) + b(10 - b) = c(c - 1)$\nSince $a \\ge 1$, the minimum value of $a(100 - a)$ is $1(99) = 99$.\nSince $b \\ge 0$, the minimum value of $b(10 - b)$ is $0$.\nThus, the left side is at least $99 + 0 = 99$.\nHowever, the maximum possible value for the right side is when $c = 9$, which gives $9(8) = 72$.\nBecause $99 > 72$, the left side will always be strictly greater than the right side. Therefore, there are no 3-digit solutions.\n\nThe only positive integer satisfying the condition is 1.\n\nFinal answer: 1",
+  "usage": {
+    "input_tokens": 63,
+    "output_tokens": 745,
+    "thoughts_tokens": 2727
+  },
+  "latency_s": 25.64715903403703,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "1"
+  }
+}

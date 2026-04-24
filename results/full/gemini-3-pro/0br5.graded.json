@@ -1,0 +1,24 @@
+{
+  "id": "0br5",
+  "country": "Romania",
+  "competition": "67th Romanian Mathematical Olympiad",
+  "gold_final_answer": "3",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Prime numbers"
+  ],
+  "prompt": "How many three-digit primes can be turned into perfect cubes with a permutation of their digits?",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find how many three-digit primes can be turned into perfect cubes with a permutation of their digits, we first list all the three-digit perfect cubes:\n- $5^3 = 125$\n- $6^3 = 216$\n- $7^3 = 343$\n- $8^3 = 512$\n- $9^3 = 729$\n\nNext, we look at the sets of digits for each of these cubes and find all permutations that form a prime number:\n\n1. **Digits {1, 2, 5}** (from 125 and 512):\nThe possible three-digit numbers are 125, 152, 215, 251, 512, and 521.\n- 125 and 215 end in 5, so they are divisible by 5.\n- 152 and 512 are even.\n- 251 is not divisible by 2, 3, 5, 7, 11, or 13, so it is **prime**.\n- 521 is not divisible by 2, 3, 5, 7, 11, 13, 17, 19, or 23, so it is **prime**.\n\n2. **Digits {1, 2, 6}** (from 216):\nThe sum of the digits is $1 + 2 + 6 = 9$. Since the sum of the digits is a multiple of 3, any permutation of these digits will be a multiple of 3. Thus, there are no primes.\n\n3. **Digits {3, 3, 4}** (from 343):\nThe possible three-digit numbers are 334, 343, and 433.\n- 334 is even.\n- 343 is $7^3$, so it is not prime.\n- 433 is not divisible by 2, 3, 5, 7, 11, 13, 17, 19, or 23, so it is **prime**.\n\n4. **Digits {2, 7, 9}** (from 729):\nThe sum of the digits is $2 + 7 + 9 = 18$. Since the sum of the digits is a multiple of 3, any permutation of these digits will be a multiple of 3. Thus, there are no primes.\n\nThe only three-digit primes that can be turned into perfect cubes by permuting their digits are 251, 521, and 433. \n\nFinal answer: 3",
+  "usage": {
+    "input_tokens": 58,
+    "output_tokens": 621,
+    "thoughts_tokens": 1941
+  },
+  "latency_s": 18.161421761964448,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "exact",
+    "predicted": "3"
+  }
+}

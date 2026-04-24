@@ -1,0 +1,24 @@
+{
+  "id": "07l7",
+  "country": "Ireland",
+  "competition": "Irska",
+  "gold_final_answer": "x^3 - 3/4 x",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Chebyshev polynomials"
+  ],
+  "prompt": "Find a polynomial $x^3 + a x^2 + b x + c$ for which $\\max_{x \\in [-1, 1]} |x^3 + a x^2 + b x + c|$ is minimised. You may assume that such a polynomial exists.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "We want to minimize the maximum of $|x^3 + ax^2 + bx + c|$ over $[-1,1]$ among all choices of $a, b, c$.\n\nThis is a Chebyshev approximation problem. We want to find the best approximation to $x^3$ by polynomials of degree $\\leq 2$ in the sup norm on $[-1,1]$.\n\nThe Chebyshev polynomial of degree 3 is $T_3(x) = 4x^3 - 3x$, which satisfies $\\max_{x \\in [-1,1]} |T_3(x)| = 1$.\n\nWe can write:\n$$x^3 = \\frac{1}{4}T_3(x) + \\frac{3}{4}x$$\n\nSo:\n$$x^3 - \\frac{3}{4}x = \\frac{1}{4}T_3(x)$$\n\nThe monic polynomial of degree 3 with smallest sup norm on $[-1,1]$ is $\\frac{1}{4}T_3(x) = x^3 - \\frac{3}{4}x$, with maximum value $\\frac{1}{4}$.\n\nThis means the best choice is $a = 0$, $b = -\\frac{3}{4}$, $c = 0$, giving the polynomial:\n\n$$x^3 - \\frac{3}{4}x$$\n\nThe maximum of $|x^3 - \\frac{3}{4}x|$ on $[-1,1]$ equals $\\frac{1}{4}$, achieved at $x = \\pm 1$ and $x = \\pm \\frac{1}{2}$ (the extrema of $T_3$).\n\nFinal answer: $x^3 - \\dfrac{3}{4}x$",
+  "usage": {
+    "input_tokens": 112,
+    "output_tokens": 454,
+    "thinking_tokens": 0
+  },
+  "latency_s": 6.564026960055344,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "$x^3 - \\dfrac{3}{4}x$"
+  }
+}

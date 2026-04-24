@@ -1,0 +1,27 @@
+{
+  "id": "08t3",
+  "country": "Japan",
+  "competition": "Japan Mathematical Olympiad",
+  "gold_final_answer": "-500004",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Sequences and Series > Recurrence relations",
+    "Algebra > Algebraic Expressions > Sequences and Series > Telescoping series",
+    "Algebra > Prealgebra / Basic Algebra > Integers",
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities"
+  ],
+  "prompt": "Suppose $2008$ real numbers $x_1, x_2, \\dots, x_{2008}$ are given and suppose that $|x_1| = 999$ and $|x_n| = |x_{n-1} + 1|$ for all $n$ with $2 \\le n \\le 2008$ are satisfied. Determine the smallest possible value that $x_1 + x_2 + \\dots + x_{2008}$ can have under these conditions.",
+  "model": "gpt-5.4",
+  "response_text": "Let\n\\[\nS=x_1+x_2+\\cdots+x_{2008}.\n\\]\nWe are given\n\\[\n|x_1|=999,\\qquad |x_n|=|x_{n-1}+1|\\quad (2\\le n\\le 2008).\n\\]\n\nWe want the minimum possible value of \\(S\\).\n\n## 1. Rewrite the recurrence\nSince\n\\[\n|x_n|=|x_{n-1}+1|,\n\\]\nfor each \\(n\\ge 2\\) we must have\n\\[\nx_n=x_{n-1}+1 \\quad \\text{or} \\quad x_n=-(x_{n-1}+1).\n\\]\nSo from each term, the next term is either \\(x+1\\) or \\(-x-1\\).\n\nA key observation:\n\\[\n-(x+1)\\ge x+1 \\iff x\\le -1.\n\\]\nThus:\n- if \\(x\\le -1\\), the smaller choice for the next term is \\(x+1\\);\n- if \\(x\\ge -1\\), the smaller choice is \\(-x-1\\).\n\nSo to minimize the total sum, at each step we should choose the smaller allowed next term.\n\n## 2. Check the two possible starting values\n\n### Case 1: \\(x_1=999\\)\nThen \\(x_2\\) is either \\(1000\\) or \\(-1000\\), so to minimize we take \\(x_2=-1000\\).\n\nNow from \\(-1000\\), the smaller next value is \\(-999\\), then \\(-998\\), etc. Hence we get\n\\[\nx_1=999,\\quad x_2=-1000,\\quad x_3=-999,\\quad x_4=-998,\\ \\dots,\\ x_{2008}=-994.\n\\]\nIndeed, for \\(n\\ge2\\),\n\\[\nx_n=-(1002-n)=n-1002.\n\\]\nSo\n\\[\n\\sum_{n=2}^{2008} x_n = -1000-999-\\cdots-994.\n\\]\nThis is \\(2007\\) consecutive integers from \\(-1000\\) to \\(994\\), so\n\\[\n\\sum_{n=2}^{2008} x_n\n= \\frac{2007(-1000+994)}{2}\n= \\frac{2007(-6)}{2}\n= -6021.\n\\]\nTherefore\n\\[\nS=999-6021=-5022.\n\\]\n\n### Case 2: \\(x_1=-999\\)\nSince \\(x_1\\le -1\\), the smaller next term is \\(x_2=x_1+1=-998\\), and similarly we keep increasing by \\(1\\):\n\\[\nx_n=-1000+n.\n\\]\nThus\n\\[\nx_1,x_2,\\dots,x_{2008}=-999,-998,\\dots,1008.\n\\]\nTheir sum is\n\\[\nS=\\frac{2008(-999+1008)}{2}\n=\\frac{2008\\cdot 9}{2}\n=9036.\n\\]\n\nSo this case is much larger.\n\n## 3. Conclusion\nThe smallest possible sum is attained in Case 1, namely\n\\[\n\\boxed{-5022}.\n\\]\n\nFinal answer: \\(-5022\\)",
+  "usage": {
+    "input_tokens": 156,
+    "output_tokens": 724,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 11.260510638006963,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "\\(-5022\\)"
+  }
+}

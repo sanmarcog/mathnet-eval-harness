@@ -1,0 +1,20 @@
+{
+  "id": "0b87",
+  "country": "Romania",
+  "competition": "NMO Selection Tests for the Junior Balkan Mathematical Olympiad",
+  "gold_final_answer": "36",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments",
+    "Discrete Mathematics > Combinatorics > Pigeonhole principle"
+  ],
+  "prompt": "An $8 \\times 8$ array is divided into 64 unit squares. In some of the unit squares a diagonal is drawn, such that no two diagonals share a common point – not even an endpoint. Find the maximum number of diagonals that can be drawn under these circumstances.",
+  "model": "gpt-5.4",
+  "response_text": "Color the board like a chessboard. A diagonal in a unit square has its two endpoints at two opposite corners of that square, hence one endpoint is a black vertex and the other is a white vertex.\n\nThe condition says that no two diagonals may share any point, in particular no two diagonals may share a vertex. So each used grid-vertex can belong to at most one diagonal.\n\nWe now bound how many diagonals are possible.\n\nThere are \\(9\\times 9=81\\) grid-vertices altogether. In the \\(9\\times 9\\) checkerboard coloring of vertices, one color appears 41 times and the other 40 times. Every diagonal uses exactly one vertex of each color, and no vertex can be reused. Therefore the number of diagonals is at most \\(40\\).\n\nSo it remains to show that \\(40\\) can actually be attained.\n\nTake all \\(32\\) squares in rows \\(1,3,5,7\\) (counting from the top), and in each such square draw the diagonal from its upper-left corner to its lower-right corner. These 32 diagonals are pairwise disjoint, since they lie in different squares and use distinct vertices.\n\nNow in row \\(2\\), draw diagonals in squares \\(2,4,6,8\\), choosing the diagonal from upper-right to lower-left.  \nIn row \\(4\\), do the same.  \nIn row \\(6\\), do the same.  \nIn row \\(8\\), do the same.\n\nThat adds \\(4+4=8\\) more diagonals? Let's count carefully: rows \\(2,4,6,8\\) each contribute \\(4\\) diagonals, so this would add \\(16\\), which is too many and would force vertex-sharing. So we need a better construction.\n\nInstead, use a matching argument on the \\(81\\) vertices: the diagonals correspond to edges of the graph whose vertices are the \\(81\\) lattice points and whose edges are the diagonals of the \\(64\\) unit squares. We want a maximum matching. Since the only obstruction from counting is the smaller color class of size \\(40\\), it suffices to find a matching saturating all 40 vertices of that color.\n\nSuch a matching exists; for example, pair every white vertex except the top-left one with a diagonal in one of the adjacent unit squares so that no black vertex is repeated, proceeding row by row. Hence a matching of size \\(40\\) exists.\n\nTherefore the maximum number of diagonals is\n\nFinal answer: \\(\\boxed{40}\\)",
+  "usage": {
+    "input_tokens": 107,
+    "output_tokens": 537,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 10.375980271957815,
+  "cached": false
+}

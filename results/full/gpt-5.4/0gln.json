@@ -1,0 +1,20 @@
+{
+  "id": "0gln",
+  "country": "Thailand",
+  "competition": "T3MO 2017",
+  "gold_final_answer": "P(x, y) = k x y for some real constant k",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Polynomial operations",
+    "Algebra > Algebraic Expressions > Functional Equations"
+  ],
+  "prompt": "Determine all polynomials $P \\in \\mathbb{R}[x, y]$ such that\n$$\nP(a, b^2 - ac) + P(b, c^2 - ab) + P(c, a^2 - bc) = 0\n$$\nfor all $a, b, c \\in \\mathbb{R}$.",
+  "model": "gpt-5.4",
+  "response_text": "We seek all polynomials \\(P(x,y)\\in \\mathbb R[x,y]\\) such that for all real \\(a,b,c\\),\n\\[\nP(a,b^2-ac)+P(b,c^2-ab)+P(c,a^2-bc)=0.\n\\]\nWe will show that necessarily \\(P\\equiv 0\\).\n\n## Step 1: Rewrite the condition\nDefine\n\\[\nu=a,\\quad v=b^2-ac,\\qquad\nu'=b,\\quad v'=c^2-ab,\\qquad\nu''=c,\\quad v''=a^2-bc.\n\\]\nThen the identity is\n\\[\nP(u,v)+P(u',v')+P(u'',v'')=0.\n\\]\nThe variables are not independent, so we extract information by choosing special values of \\(a,b,c\\).\n\n---\n\n## Step 2: First easy substitutions\n\n### Case \\(a=b=c=t\\)\nThen\n\\[\nb^2-ac=t^2-t^2=0,\\quad c^2-ab=0,\\quad a^2-bc=0,\n\\]\nso\n\\[\n3P(t,0)=0 \\quad \\forall t.\n\\]\nHence\n\\[\nP(x,0)=0 \\quad \\forall x.\n\\]\nTherefore \\(y\\) divides \\(P\\):\n\\[\nP(x,y)=yQ(x,y)\n\\]\nfor some polynomial \\(Q\\in\\mathbb R[x,y]\\).\n\n---\n\n### Case \\(c=0,\\ b=0\\)\nThen\n\\[\nP(a,0)+P(0,-ab)+P(0,a^2)=0\n\\]\nbecomes, with \\(b=0\\),\n\\[\nP(a,0)+P(0,0)+P(0,a^2)=0.\n\\]\nSince \\(P(a,0)=0\\) and \\(P(0,0)=0\\), we get\n\\[\nP(0,a^2)=0\\quad \\forall a.\n\\]\nThus\n\\[\nP(0,y)=0\\quad \\forall y\\ge 0.\n\\]\nAs a polynomial in one variable, this forces\n\\[\nP(0,y)\\equiv 0 \\quad \\forall y.\n\\]\nSo \\(x\\) also divides \\(P\\):\n\\[\nP(x,y)=xyR(x,y)\n\\]\nfor some \\(R\\in\\mathbb R[x,y]\\).\n\nSo far:\n\\[\nx\\mid P,\\qquad y\\mid P.\n\\]\n\n---\n\n## Step 3: A key parametrization\nTake \\(a=0\\). Then the identity becomes\n\\[\nP(0,b^2)+P(b,c^2)+P(c,-bc)=0.\n\\]\nSince \\(P(0,\\cdot)\\equiv 0\\), this reduces to\n\\[\nP(b,c^2)+P(c,-bc)=0 \\qquad \\forall b,c\\in\\mathbb R.\n\\]\nRename variables:\n\\[\nP(x,y^2)+P(y,-xy)=0 \\qquad \\forall x,y\\in\\mathbb R. \\tag{1}\n\\]\n\nThis is very strong.\n\n---\n\n## Step 4: Use divisibility by \\(x\\)\nBecause \\(P(x,y)=xS(x,y)\\) for some polynomial \\(S\\), substitute into (1):\n\\[\nxS(x,y^2)+yS(y,-xy)=0 \\qquad \\forall x,y. \\tag{2}\n\\]\n\nNow set \\(x=0\\):\n\\[\nyS(y,0)=0 \\qquad \\forall y.\n\\]\nHence\n\\[\nS(y,0)=0 \\quad \\forall y,\n\\]\nso \\(y\\mid S\\). Therefore \\(P\\) is divisible by \\(xy^2\\):\n\\[\nP(x,y)=xy^2T(x,y)\n\\]\nfor some polynomial \\(T\\).\n\nSubstitute this into (1):\n\\[\nx(y^2)^2T(x,y^2)+y(-xy)^2T(y,-xy)=0,\n\\]\ni.e.\n\\[\nxy^4T(x,y^2)+x^2y^3T(y,-xy)=0.\n\\]\nFactor \\(xy^3\\):\n\\[\nxy^3\\big(yT(x,y^2)+xT(y,-xy)\\big)=0.\n\\]\nHence\n\\[\nyT(x,y^2)+xT(y,-xy)=0 \\qquad \\forall x,y. \\tag{3}\n\\]\n\nNow set \\(x=0\\) again:\n\\[\nyT(0,y^2)=0 \\qquad \\forall y.\n\\]\nSo \\(T(0,z)=0\\) for all \\(z\\ge0\\), hence identically:\n\\[\nT(0,z)\\equiv0.\n\\]\nThus \\(x\\mid T\\), so\n\\[\nP(x,y)=x^2y^2U(x,y).\n\\]\n\nRepeating the same argument inductively, one gets that for every \\(n\\ge1\\),\n\\[\nx^ny^n \\mid P(x,y).\n\\]\nIndeed, if \\(P=x^ny^nV\\), then substituting into (1) gives\n\\[\nx^ny^{2n}V(x,y^2)+(-1)^ny^nx^ny^nV(y,-xy)=0,\n\\]\nso after factoring \\(x^ny^n\\),\n\\[\ny^nV(x,y^2)+(-1)^nx^nV(y,-xy)=0.\n\\]\nSetting \\(x=0\\) implies \\(V(0,y^2)=0\\), hence \\(x\\mid V\\); by symmetry from earlier divisibility, also \\(y\\mid V\\). Thus powers keep increasing.\n\nA nonzero polynomial cannot be divisible by \\(x^ny^n\\) for all \\(n\\). Therefore\n\\[\nP\\equiv 0.\n\\]\n\n---\n\n## Conclusion\nThe only polynomial satisfying the identity for all real \\(a,b,c\\) is the zero polynomial.\n\nFinal answer: \\(\\boxed{P(x,y)\\equiv 0}\\).",
+  "usage": {
+    "input_tokens": 124,
+    "output_tokens": 1312,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 16.667094457079656,
+  "cached": false
+}

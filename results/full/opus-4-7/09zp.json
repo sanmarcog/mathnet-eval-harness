@@ -1,0 +1,21 @@
+{
+  "id": "09zp",
+  "country": "Netherlands",
+  "competition": "Second Round",
+  "gold_final_answer": "39",
+  "topics_flat": [
+    "Algebra > Prealgebra / Basic Algebra > Integers",
+    "Number Theory > Divisibility / Factorization > Factorization techniques",
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities"
+  ],
+  "prompt": "For how many integers $n$ with $1 \\le n \\le 800$ is the number $8n + 1$ a square?",
+  "model": "claude-opus-4-7",
+  "response_text": "8n+1 = k², k odd. k=2m+1, 8n+1=4m²+4m+1, n=m(m+1)/2. Need 1≤m(m+1)/2≤800, so m(m+1)≤1600. m=39: 1560✓, m=40: 1640✗. m≥1. So m=1..39: 39 values.\n\nFinal answer: 39",
+  "usage": {
+    "input_tokens": 102,
+    "output_tokens": 125,
+    "thinking_tokens": 0
+  },
+  "latency_s": 3.029464383958839,
+  "cached": false
+}

@@ -1,0 +1,21 @@
+{
+  "id": "01v0",
+  "country": "Belarus",
+  "competition": "Selection and Training Session",
+  "gold_final_answer": "1",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Circles > Tangents",
+    "Geometry > Plane Geometry > Miscellaneous > Angle chasing",
+    "Geometry > Plane Geometry > Quadrilaterals"
+  ],
+  "prompt": "Given the parallelogram $ABCD$. The circle $S_1$ passes through the vertex $C$ and touches the sides $BA$ and $AD$ at points $P_1$ and $Q_1$ respectively. The circle $S_2$ passes through the vertex $B$ and touches the sides $DC$ and $AD$ at points $P_2$ and $Q_2$ respectively. Let $d_1, d_2$ be the distances from $C$ and $B$ to the lines $P_1Q_1$ and $P_2Q_2$ respectively.\nFind all possible values of the ratio $d_1 : d_2$.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find the ratio $d_1 : d_2$, we can use a well-known geometric property of circles: \n**For any point on a circle, its perpendicular distance to a chord is the geometric mean of its perpendicular distances to the tangent lines at the endpoints of that chord.**\n\nLet's apply this theorem to the given problem.\n\n**For circle $S_1$:**\n- $S_1$ passes through point $C$.\n- $S_1$ is tangent to the lines $AB$ and $AD$ at points $P_1$ and $Q_1$, respectively.\n- The chord connecting the points of tangency is $P_1Q_1$.\nBy the theorem, the distance $d_1$ from $C$ to the chord $P_1Q_1$ satisfies:\n$$d_1 = \\sqrt{h_{1} \\cdot h_{2}}$$\nwhere $h_1$ is the distance from $C$ to the line $AB$, and $h_2$ is the distance from $C$ to the line $AD$.\nSince $ABCD$ is a parallelogram, the distance from $C$ to $AB$ is simply the height of the parallelogram with respect to the base $AB$, which we will call $H_{AB}$. Similarly, the distance from $C$ to $AD$ is the height of the parallelogram with respect to the base $AD$, which we will call $H_{AD}$.\nThus, we have:\n$$d_1 = \\sqrt{H_{AB} \\cdot H_{AD}}$$\n\n**For circle $S_2$:**\n- $S_2$ passes through point $B$.\n- $S_2$ is tangent to the lines $DC$ and $AD$ at points $P_2$ and $Q_2$, respectively.\n- The chord connecting the points of tangency is $P_2Q_2$.\nApplying the same theorem, the distance $d_2$ from $B$ to the chord $P_2Q_2$ satisfies:\n$$d_2 = \\sqrt{h_{3} \\cdot h_{4}}$$\nwhere $h_3$ is the distance from $B$ to the line $DC$, and $h_4$ is the distance from $B$ to the line $AD$.\nAgain, because $ABCD$ is a parallelogram, the distance from $B$ to $DC$ is the height of the parallelogram with respect to the base $DC$, which is equal to $H_{AB}$. The distance from $B$ to $AD$ is the height of the parallelogram with respect to the base $AD$, which is equal to $H_{AD}$.\nThus, we have:\n$$d_2 = \\sqrt{H_{AB} \\cdot H_{AD}}$$\n\nComparing the two results, we can clearly see that $d_1 = d_2$. Therefore, the ratio of their distances is exactly 1.\n\nFinal answer: 1",
+  "usage": {
+    "input_tokens": 185,
+    "output_tokens": 642,
+    "thoughts_tokens": 3915
+  },
+  "latency_s": 32.337874928023666,
+  "cached": false
+}

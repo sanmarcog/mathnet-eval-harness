@@ -1,0 +1,19 @@
+{
+  "id": "04ol",
+  "country": "Croatia",
+  "competition": "Croatian Mathematical Society Competitions",
+  "gold_final_answer": "16",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Transformations > Homothety"
+  ],
+  "prompt": "Points $P_1$, $P_2$ and $P_3$ are located on the side $AB$ of the triangle $ABC$ so that\n$$\n|AP_1| = |P_1P_2| = |P_2P_3| = |P_3B| = \\frac{1}{4}|AB|.\n$$\nParallels with the side $BC$ are drawn through those points and divide the triangle $ABC$ into four parts. The area of the part between the parallels through $P_2$ and $P_3$ equals $5$.\nWhat is the area of the triangle $ABC$? (Purple Comet! Math Meet)",
+  "model": "gpt-5.4",
+  "response_text": "Let \\(S\\) be the area of \\(\\triangle ABC\\).\n\nThrough points on \\(AB\\), draw lines parallel to \\(BC\\). Then the small triangle cut off from vertex \\(A\\) is similar to \\(\\triangle ABC\\).\n\nIf a point \\(P\\) on \\(AB\\) satisfies\n\\[\n\\frac{AP}{AB}=t,\n\\]\nthen the triangle with vertex \\(A\\) cut off by the parallel through \\(P\\) has area\n\\[\nt^2 S\n\\]\nby similarity.\n\nHere:\n- \\(P_2\\) is at \\(\\frac12 AB\\), so the area above the parallel through \\(P_2\\) is\n\\[\n\\left(\\frac12\\right)^2 S=\\frac14 S.\n\\]\n- \\(P_3\\) is at \\(\\frac34 AB\\), so the area above the parallel through \\(P_3\\) is\n\\[\n\\left(\\frac34\\right)^2 S=\\frac{9}{16}S.\n\\]\n\nTherefore, the area of the strip between the parallels through \\(P_2\\) and \\(P_3\\) is\n\\[\n\\frac{9}{16}S-\\frac14 S=\\frac{9}{16}S-\\frac{4}{16}S=\\frac{5}{16}S.\n\\]\nWe are told this equals \\(5\\), so\n\\[\n\\frac{5}{16}S=5.\n\\]\nHence\n\\[\nS=16.\n\\]\n\nFinal answer: 16",
+  "usage": {
+    "input_tokens": 195,
+    "output_tokens": 329,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 4.430307798902504,
+  "cached": false
+}

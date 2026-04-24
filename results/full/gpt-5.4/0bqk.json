@@ -1,0 +1,21 @@
+{
+  "id": "0bqk",
+  "country": "Romania",
+  "competition": "67th NMO Shortlisted Problems",
+  "gold_final_answer": "(n, m) = (2, 2017) or (2017, 2)",
+  "topics_flat": [
+    "Number Theory > Number-Theoretic Functions > τ (number of divisors)",
+    "Number Theory > Number-Theoretic Functions > σ (sum of divisors)",
+    "Number Theory > Divisibility / Factorization > Prime numbers"
+  ],
+  "prompt": "For a positive integer $n$ denote $d(n)$ the number of its positive divisors and $s(n)$ their sum. It is known that $n + d(n) = s(n) + 1$, $m + d(m) = s(m) + 1$ and $nm + d(nm) + 2016 = s(nm)$. Find $n$ and $m$.\n\nMihai Bunget",
+  "model": "gpt-5.4",
+  "response_text": "Let  \n\\[\nf(x)=x+d(x)-s(x).\n\\]\nThen the first two conditions say\n\\[\nf(n)=1,\\qquad f(m)=1,\n\\]\nand the third says\n\\[\nf(nm)=-2016.\n\\]\n\nWe will determine all positive integers \\(x\\) such that \\(f(x)=1\\), then use multiplicativity.\n\n## 1) Solve \\(x+d(x)=s(x)+1\\)\n\nWrite\n\\[\nx=\\prod_{i=1}^r p_i^{a_i}.\n\\]\nRecall:\n- \\(d(x)=\\prod (a_i+1)\\),\n- \\(s(x)=\\prod (1+p_i+\\cdots+p_i^{a_i})\\).\n\nWe test according to the number of prime factors.\n\n### Case 1: \\(x=p^a\\)\n\nThen\n\\[\ns(x)=1+p+\\cdots+p^a,\\qquad d(x)=a+1.\n\\]\nThe equation becomes\n\\[\np^a+(a+1)=(1+p+\\cdots+p^a)+1,\n\\]\nso\n\\[\na=\\sum_{j=1}^{a-1} p^j.\n\\]\nIf \\(a=1\\), this is true (empty sum \\(=0\\)). Hence \\(x=p\\) works.\n\nIf \\(a\\ge 2\\), then RHS \\(\\ge p\\ge 2\\), while already for \\(a=2\\) we get\n\\[\n2=p,\n\\]\nso \\(p=2,a=2\\) fails since \\(2\\ne 2\\)? Let us check directly:\n\\[\n4+d(4)=4+3=7,\\qquad s(4)+1=7+1=8,\n\\]\nso no. For larger \\(a\\), RHS grows too fast. Thus only \\(a=1\\).\n\nSo every prime \\(p\\) satisfies \\(f(p)=1\\).\n\n### Case 2: \\(x\\) has at least two prime factors\n\nLet \\(p\\) be the smallest prime divisor of \\(x\\). Then\n\\[\ns(x)\\ge 1+p+x,\n\\]\nsince \\(1,p,x\\) are distinct divisors. Hence from \\(x+d(x)=s(x)+1\\),\n\\[\nd(x)\\ge p+2.\n\\]\nThis is weak, but we can do more concretely.\n\nSuppose first \\(x=pq\\) with distinct primes. Then\n\\[\nd(x)=4,\\quad s(x)=(1+p)(1+q)=1+p+q+pq.\n\\]\nEquation:\n\\[\npq+4=pq+p+q+2 \\implies p+q=2,\n\\]\nimpossible.\n\nIf \\(x=p^a q^b\\) or has more factors, then \\(s(x)-x\\) is already much larger than \\(d(x)-1\\), so equality cannot hold. Hence no composite solution exists.\n\nTherefore:\n\n\\[\n\\boxed{\\text{The positive integers }x\\text{ with }x+d(x)=s(x)+1\\text{ are exactly the primes.}}\n\\]\n\nSo \\(n\\) and \\(m\\) are primes.\n\n---\n\n## 2) Use the condition for \\(nm\\)\n\nLet \\(n=p,\\ m=q\\) be primes.\n\n### If \\(p\\ne q\\)\n\nThen\n\\[\nd(pq)=4,\\qquad s(pq)=(1+p)(1+q)=1+p+q+pq.\n\\]\nSo\n\\[\npq+4+2016=s(pq)=1+p+q+pq.\n\\]\nThus\n\\[\n2020=p+q+1 \\implies p+q=2019.\n\\]\nBut \\(2019\\) is odd. The sum of two primes is odd only if one of them is \\(2\\). Then the other would be \\(2017\\), and indeed \\(2017\\) is prime.\n\nSo one solution is\n\\[\n(n,m)=(2,2017)\\quad\\text{or}\\quad(2017,2).\n\\]\n\n### If \\(p=q\\)\n\nThen \\(nm=p^2\\), so\n\\[\nd(p^2)=3,\\qquad s(p^2)=1+p+p^2.\n\\]\nThus\n\\[\np^2+3+2016=1+p+p^2,\n\\]\nhence\n\\[\n2018=p,\n\\]\nimpossible since \\(2018\\) is not prime.\n\nSo no equal-prime solution.\n\nTherefore the only ordered pairs are\n\\[\n\\boxed{(n,m)=(2,2017)\\ \\text{or}\\ (2017,2)}.\n\\]\n\nFinal answer: \\((n,m)=(2,2017)\\) or \\((2017,2)\\).",
+  "usage": {
+    "input_tokens": 139,
+    "output_tokens": 1027,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 16.93191953492351,
+  "cached": false
+}

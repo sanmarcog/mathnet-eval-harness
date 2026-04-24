@@ -1,0 +1,24 @@
+{
+  "id": "0br5",
+  "country": "Romania",
+  "competition": "67th Romanian Mathematical Olympiad",
+  "gold_final_answer": "3",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Prime numbers"
+  ],
+  "prompt": "How many three-digit primes can be turned into perfect cubes with a permutation of their digits?",
+  "model": "gpt-5.4-mini",
+  "response_text": "A three-digit prime has digit sum not divisible by 3, and any permutation of its digits must have the same digit sum.\n\nNow, a perfect cube with three digits must be one of:\n\\[\n5^3=125,\\ 6^3=216,\\ 7^3=343,\\ 8^3=512,\\ 9^3=729\n\\]\nTheir digit sums are:\n- \\(1+2+5=8\\)\n- \\(2+1+6=9\\)\n- \\(3+4+3=10\\)\n- \\(5+1+2=8\\)\n- \\(7+2+9=18\\)\n\nSo the only cubes whose digit sums are not divisible by 3 are \\(125,343,512\\).\n\nCheck their permutations for primes:\n- \\(125\\): permutations are multiples of 5 or even, no prime.\n- \\(343\\): permutations include \\(347\\), which is prime.\n- \\(512\\): permutations include \\(521\\), which is prime.\n\nThus there are exactly 2 such three-digit primes.\n\nFinal answer: 2",
+  "usage": {
+    "input_tokens": 66,
+    "output_tokens": 237,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 1.9707509790314361,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "2"
+  }
+}

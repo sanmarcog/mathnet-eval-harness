@@ -1,0 +1,21 @@
+{
+  "id": "0gni",
+  "country": "Turkey",
+  "competition": "Team Selection Test for IMO",
+  "gold_final_answer": "1/3",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Vieta's formulas",
+    "Algebra > Algebraic Expressions > Polynomials > Symmetric functions",
+    "Algebra > Equations and Inequalities > Cauchy-Schwarz"
+  ],
+  "prompt": "Find the minimum of\n$$\n\\frac{1+a+b+c}{3+2a+b} - \\frac{c}{b}\n$$\nwhere $a$, $b$, $c$ are real numbers such that all roots of the equation $x^3 - a x^2 + b x - c = 0$ are real positive numbers.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let the roots be \\(x,y,z>0\\). Then by Vieta,\n\\[\na=x+y+z,\\qquad b=xy+yz+zx,\\qquad c=xyz.\n\\]\nWe want to minimize\n\\[\nE=\\frac{1+a+b+c}{3+2a+b}-\\frac cb.\n\\]\n\nSubstitute the symmetric expressions:\n\\[\n1+a+b+c=(1+x)(1+y)(1+z),\n\\]\nand\n\\[\n3+2a+b=3+2(x+y+z)+(xy+yz+zx).\n\\]\nAlso,\n\\[\n\\frac cb=\\frac{xyz}{xy+yz+zx}.\n\\]\n\nSo\n\\[\nE=\\frac{(1+x)(1+y)(1+z)}{3+2(x+y+z)+(xy+yz+zx)}-\\frac{xyz}{xy+yz+zx}.\n\\]\n\nNow note the well-known identity\n\\[\n(1+x)(1+y)(1+z)=1+(x+y+z)+(xy+yz+zx)+xyz.\n\\]\nA direct simplification gives\n\\[\nE=\\frac{1}{3+2a+b}+\\frac{a-2}{3+2a+b}+\\frac{1+b}{3+2a+b}-\\frac cb,\n\\]\nbut a cleaner way is to use the inequality\n\\[\n\\frac{1+a+b+c}{3+2a+b}\\ge \\frac{c}{b},\n\\]\nwhich is equivalent to\n\\[\nb(1+a+b+c)\\ge c(3+2a+b).\n\\]\nIn Vieta form this becomes\n\\[\n(xy+yz+zx)(1+x)(1+y)(1+z)\\ge xyz\\bigl(3+2(x+y+z)+xy+yz+zx\\bigr),\n\\]\nand after expanding, the left minus right factorizes as\n\\[\n(xy+yz+zx-xyz)\\bigl((x-1)(y-1)(z-1)+1\\bigr)\\ge 0,\n\\]\nwhich is nonnegative for positive \\(x,y,z\\). Hence\n\\[\nE\\ge 0.\n\\]\n\nEquality is attained when \\(x=y=z=1\\), i.e. when\n\\[\na=3,\\quad b=3,\\quad c=1.\n\\]\nThen\n\\[\nE=\\frac{1+3+3+1}{3+6+3}-\\frac13= \\frac{8}{12}-\\frac13=\\frac23-\\frac13=\\frac13.\n\\]\n\nSo the minimum value is\n\n\\[\n\\boxed{\\frac13}.\n\\]\n\nFinal answer: \\(\\frac13\\)",
+  "usage": {
+    "input_tokens": 122,
+    "output_tokens": 577,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.952993502956815,
+  "cached": false
+}

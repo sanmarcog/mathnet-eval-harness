@@ -1,0 +1,20 @@
+{
+  "id": "0651",
+  "country": "Greece",
+  "competition": "24th Balkan Mathematical Olympiad",
+  "gold_final_answer": "n = 1 or n = 3",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities",
+    "Algebra > Prealgebra / Basic Algebra > Integers"
+  ],
+  "prompt": "Find all positive integers $n$ such that there is a permutation $\\sigma$ of the set $\\{1,2,...,n\\}$ for which $\\sqrt{\\sigma(1)+\\sigma(2)+\\dots+\\sigma(n)}$ is a rational number.\n\n*: A permutation of the set $\\{1,2,...,n\\}$ is a one-to-one function of this set to itself.*",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let  \n\\[\nS=\\sigma(1)+\\sigma(2)+\\cdots+\\sigma(n).\n\\]\nSince \\(\\sigma\\) is a permutation of \\(\\{1,2,\\dots,n\\}\\), the sum is fixed:\n\\[\nS=1+2+\\cdots+n=\\frac{n(n+1)}2.\n\\]\nSo the question becomes: for which \\(n\\) is\n\\[\n\\sqrt{\\frac{n(n+1)}2}\n\\]\nrational?\n\nBecause the expression under the square root is an integer, its square root is rational iff it is an integer. Thus we need\n\\[\n\\frac{n(n+1)}2 = k^2\n\\]\nfor some integer \\(k\\). This is the classical problem of triangular numbers that are perfect squares.\n\nNow we check when this can happen.\n\nIf \\(n(n+1)/2\\) is a square, then\n\\[\nn(n+1)=2k^2.\n\\]\nSince \\(\\gcd(n,n+1)=1\\), the consecutive integers \\(n\\) and \\(n+1\\) are coprime. A standard Pell-equation argument shows this has infinitely many solutions, and the first few are\n\\[\nn=1,8,49,288,\\dots\n\\]\nIndeed, these are exactly the \\(n\\) for which \\(\\frac{n(n+1)}2\\) is a square.\n\nTherefore, the desired \\(n\\) are precisely those positive integers \\(n\\) satisfying\n\\[\n\\frac{n(n+1)}2 \\text{ is a perfect square}.\n\\]\n\nFinal answer: All positive integers \\(n\\) such that \\(\\frac{n(n+1)}2\\) is a perfect square (equivalently, the triangular numbers that are squares; e.g. \\(n=1,8,49,288,\\dots\\)).",
+  "usage": {
+    "input_tokens": 131,
+    "output_tokens": 409,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.458566582063213,
+  "cached": false
+}

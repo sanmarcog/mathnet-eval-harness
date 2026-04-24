@@ -1,0 +1,20 @@
+{
+  "id": "0l9y",
+  "country": "Vietnam",
+  "competition": "Vijetnam 2007",
+  "gold_final_answer": "1506",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Pigeonhole principle",
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments"
+  ],
+  "prompt": "Given a regular 2007-polygon. Find the smallest positive integer $k$ satisfying the following property: In every set of $k$ vertices there are 4 vertices which form a quadrilateral with 3 edges of the given 2007-polygon.",
+  "model": "gpt-5.4-mini",
+  "response_text": "We need the smallest \\(k\\) such that every set of \\(k\\) vertices of a regular 2007-gon contains 4 vertices forming a quadrilateral with 3 sides of the polygon.\n\nA quadrilateral with 3 sides of the polygon is formed by **4 consecutive vertices except one gap**:\n\\[\nA,B,C,D\n\\]\nwith \\(AB,BC,CD\\) sides of the 2007-gon, and \\(AD\\) the fourth side.  \nSo we need 4 chosen vertices containing a block of **4 consecutive vertices** with the possibility that one vertex is missing? More precisely, among 4 vertices there must be three that are consecutive in the polygon, and the fourth one is the endpoint completing the quadrilateral. Thus the four vertices must include a string of 4 consecutive vertices of the polygon.\n\nSo the problem becomes:\n\n> Find the smallest \\(k\\) such that any set of \\(k\\) vertices of a 2007-gon contains **4 consecutive vertices**.\n\nNow use the standard extremal argument: to avoid 4 consecutive vertices, we can choose vertices in blocks of at most 3 consecutive vertices, separated by at least one omitted vertex. The maximum number of vertices with no 4 consecutive is achieved by taking pattern\n\\[\n1110\\,1110\\,1110\\cdots\n\\]\naround the polygon.\n\nSince \\(2007 = 4\\cdot 501 + 3\\), the maximum number of vertices with no 4 consecutive is\n\\[\n3\\cdot 501 + 3 = 1506.\n\\]\nIndeed, we can take 3 vertices, skip 1, repeatedly, and at the end take the remaining 3.\n\nTherefore, any set of \\(1507\\) vertices must contain 4 consecutive vertices, hence form the required quadrilateral.\n\nSo the smallest such \\(k\\) is\n\\[\n1507.\n\\]\n\nFinal answer: \\(1507\\)",
+  "usage": {
+    "input_tokens": 101,
+    "output_tokens": 414,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 6.060822908999398,
+  "cached": false
+}

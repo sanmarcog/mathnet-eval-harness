@@ -1,0 +1,19 @@
+{
+  "id": "0gsc",
+  "country": "Turkey",
+  "competition": "26th Turkish Mathematical Olympiad",
+  "gold_final_answer": "Yes",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Games / greedy algorithms"
+  ],
+  "prompt": "There are $2018$ distinguishable boxes on the table. Starting Writer, Writer and Braker take turn writing a box pair to the table (each pair can be written at most once). They stop when there are $4032$ written pairs on the table. After that Braker numerates box pairs by numbers $1, 2, \\dots, 4032$ and for each $k = 1, 2, \\dots, 4032$ puts $k$ balls into each box belonging to pair numbered $k$. Can Braker guarantee that any two boxes will contain different number of balls?",
+  "model": "gpt-5.4-mini",
+  "response_text": "Yes, Braker can guarantee this.\n\nLet the \\(4032\\) written pairs be numbered \\(1,2,\\dots,4032\\).  \nIf a box appears in pairs with numbers \\(S\\subseteq \\{1,\\dots,4032\\}\\), then after Braker’s move that box contains\n\n\\[\n\\sum_{k\\in S} k\n\\]\n\nballs. So the question becomes: can Braker ensure that all 2018 boxes get distinct subset-sums?\n\nHe can by forcing every box to have a unique “binary code” of incidences with the pairs. Since there are \\(4032\\) pairs and only \\(2018\\) boxes, the total number of incidences can be arranged so that each box receives a distinct subset of pair numbers. Then the sums of distinct subsets of \\(\\{1,2,\\dots,4032\\}\\) are distinct if we choose the numbers as powers of \\(2\\), but here the pair numbers are fixed as \\(1,2,\\dots,4032\\), so we need a different observation:\n\nIf two boxes had the same number of balls, then two different subsets of \\(\\{1,\\dots,4032\\}\\) would have the same sum. Braker can avoid this by making the sets of pairs containing different boxes pairwise incomparable in such a way that their sums are forced to differ; in particular, he can ensure that one box’s incident pair numbers always include a larger-numbered pair where another box’s do not.\n\nBecause there are so many pairs (\\(4032\\)) relative to the number of boxes (\\(2018\\)), Braker can always continue choosing pairs so that every new pair separates at least one previously indistinguishable pair of boxes, until all boxes are distinguished. Hence he can guarantee that no two boxes end with the same number of balls.\n\nFinal answer: Yes, Braker can guarantee that all 2018 boxes contain different numbers of balls.",
+  "usage": {
+    "input_tokens": 174,
+    "output_tokens": 412,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.7927267500199378,
+  "cached": false
+}

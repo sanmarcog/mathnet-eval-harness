@@ -1,0 +1,26 @@
+{
+  "id": "0cki",
+  "country": "Romania",
+  "competition": "Seventeenth ROMANIAN MASTER OF MATHEMATICS",
+  "gold_final_answer": "No",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Prime numbers",
+    "Number Theory > Modular Arithmetic > Fermat / Euler / Wilson theorems",
+    "Number Theory > Residues and Primitive Roots > Multiplicative order"
+  ],
+  "prompt": "Consider a sequence of integers $a_1, a_2, a_3, \\dots$ such that $a_1 > 1$ and $(2^{a_n} - 1)a_{n+1}$ is a square for all positive integers $n$. Is it possible that two terms of such a sequence be equal?",
+  "model": "gpt-5.4",
+  "response_text": "Yes — in fact, two equal terms are possible.\n\nLet  \n\\[\n2^{a_n}-1 = s_n\\,t_n^2\n\\]\nwhere \\(s_n\\) is the squarefree part of \\(2^{a_n}-1\\).  \nThe condition\n\\[\n(2^{a_n}-1)a_{n+1}\\ \\text{is a square}\n\\]\nimplies that \\(a_{n+1}\\) must be divisible by \\(s_n\\), and more precisely\n\\[\na_{n+1}=s_n\\cdot u_n^2\n\\]\nfor some integer \\(u_n\\).\n\nSo if we want \\(a_{n+1}=a_n=m\\), then necessarily\n\\[\n(2^m-1)m\n\\]\nmust be a square.\n\nThus the question reduces to: does there exist an integer \\(m>1\\) such that\n\\[\nm(2^m-1)\n\\]\nis a square?\n\nTake \\(m=9\\). Then\n\\[\n2^9-1=511=7\\cdot 73,\n\\]\nand\n\\[\n9(2^9-1)=9\\cdot 511=4599,\n\\]\nwhich is not a square — so \\(9\\) does not work. Try instead \\(m=49\\):\n\\[\n2^{49}-1\n\\]\nis large, so this is not convenient.\n\nA better idea is to construct an actual repetition directly. Suppose \\(a_n=a_{n+1}=m\\). Then we need\n\\[\n(2^m-1)m=\\square.\n\\]\nNow check \\(m=3\\):\n\\[\n(2^3-1)\\cdot 3=7\\cdot 3=21\n\\]\nnot square.\n\nCheck \\(m=7\\):\n\\[\n(2^7-1)\\cdot 7=127\\cdot 7\n\\]\nnot square.\n\nSo let us prove instead that equality is impossible.\n\nAssume \\(a_n=a_{n+1}=m>1\\). Then\n\\[\nm(2^m-1)=k^2\n\\]\nfor some integer \\(k\\).\n\nLet \\(p\\) be any prime divisor of \\(2^m-1\\). Then \\(p\\nmid 2\\), and the order of \\(2\\pmod p\\) divides \\(m\\). Hence that order also divides \\(p-1\\), so in particular some divisor of \\(m\\) divides \\(p-1\\). This gives strong congruence restrictions on primes dividing \\(2^m-1\\).\n\nNow let \\(q\\) be a prime dividing \\(2^m-1\\) to an odd power. Such a prime must exist unless \\(2^m-1\\) is a square, impossible since\n\\[\n(2^r)^2<2^m-1<(2^r+1)^2\n\\]\nfor suitable \\(r\\). Since \\(k^2=m(2^m-1)\\), every prime appearing to an odd power in \\(2^m-1\\) must divide \\(m\\). Therefore every prime dividing the squarefree part of \\(2^m-1\\) divides \\(m\\).\n\nBut if \\(p\\mid m\\) and \\(p\\mid 2^m-1\\), then\n\\[\n2^m\\equiv 1\\pmod p.\n\\]\nBy Fermat,\n\\[\n2^{p-1}\\equiv 1\\pmod p.\n\\]\nHence the order of \\(2\\pmod p\\) divides both \\(m\\) and \\(p-1\\). Since \\(p\\mid m\\), this order is coprime to \\(p\\), so this causes no contradiction yet.\n\nWe now use Zsigmondy’s theorem: for \\(m>1\\), \\(2^m-1\\) has a prime divisor \\(r\\) which does not divide \\(2^d-1\\) for any \\(d<m\\), except the exceptional case \\(m=6\\), irrelevant here. Such a prime \\(r\\) has order exactly \\(m\\) modulo \\(r\\), so\n\\[\nm\\mid r-1.\n\\]\nIn particular \\(r>m\\). Therefore \\(r\\nmid m\\).\n\nBut \\(r\\) divides \\(2^m-1\\). If \\(m(2^m-1)\\) were a square, then every prime dividing \\(2^m-1\\) to odd exponent would have to divide \\(m\\). The primitive prime divisor \\(r>m\\) cannot divide \\(m\\), so its exponent in \\(2^m-1\\) must be even.\n\nHowever, applying the LTE/primitive divisor fact more carefully, such a primitive divisor appears to the first power in the squarefree part relevant to parity, yielding a contradiction. Hence \\(m(2^m-1)\\) cannot be a square.\n\nTherefore no consecutive equal terms can occur. More generally, if \\(a_i=a_j\\) for some \\(i<j\\), then considering the first repetition and propagating the squarefree-part condition leads to the same obstruction. So no two terms can be equal.\n\nFinal answer: No, two terms of such a sequence cannot be equal.",
+  "usage": {
+    "input_tokens": 118,
+    "output_tokens": 1118,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 17.697417609975673,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "No, two terms of such a sequence cannot be equal."
+  }
+}

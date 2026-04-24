@@ -1,0 +1,20 @@
+{
+  "id": "0h97",
+  "country": "Ukraine",
+  "competition": "The Problems of Ukrainian Authors",
+  "gold_final_answer": "2197",
+  "topics_flat": [
+    "Geometry > Solid Geometry > 3D Shapes",
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities"
+  ],
+  "prompt": "The cube is cut into $2010$ smaller cubes. $2008$ of them are unit cubes (cubes of side $1$) and edges of another $2$ cubes are assigned integer numbers (different from $1$). Find the volume of the big cube.\n\n(Serhiy Zhydkov)",
+  "model": "gpt-5.4",
+  "response_text": "Let the side lengths of the \\(2010\\) small cubes be\n\\[\n\\underbrace{1,1,\\dots,1}_{2008\\text{ times}},a,b,\n\\]\nwhere \\(a,b\\in \\mathbb Z_{>0}\\) and \\(a,b\\ne 1\\).\n\nThen the volume of the big cube is\n\\[\nV=2008+a^3+b^3.\n\\]\nSince it is itself a cube, we need\n\\[\n2008+a^3+b^3=N^3\n\\]\nfor some integer \\(N\\).\n\nSo we seek integers \\(a,b\\ge 2\\) such that\n\\[\nN^3-a^3-b^3=2008.\n\\]\n\nNow \\(2008\\) is quite small, so \\(N\\) must be close to \\(a+b\\). Try small possibilities.\n\nWe use the identity\n\\[\n12^3=1728.\n\\]\nThen\n\\[\n2008-1728=280.\n\\]\nSo we want\n\\[\na^3+b^3=280.\n\\]\nAnd indeed\n\\[\n6^3+4^3=216+64=280.\n\\]\nHence\n\\[\n2008+6^3+4^3=2008+216+64=2288= ? \n\\]\nThat is not a cube, so this was not right.\n\nInstead check cubes near \\(2008\\):\n\\[\n12^3=1728,\\qquad 13^3=2197,\\qquad 14^3=2744.\n\\]\nSince\n\\[\n2008+a^3+b^3=N^3,\n\\]\nwe need\n\\[\na^3+b^3=N^3-2008.\n\\]\nFor \\(N=14\\),\n\\[\n14^3-2008=2744-2008=736.\n\\]\nAnd\n\\[\n8^3+6^3=512+216=728,\\qquad 9^3+2^3=729+8=737,\n\\]\nso no.\n\nFor \\(N=15\\),\n\\[\n15^3-2008=3375-2008=1367,\n\\]\nand\n\\[\n11^3+3^3=1331+27=1358,\\qquad 10^3+6^3=1000+216=1216,\n\\]\nso no.\n\nA better way is to use the structure of a cube dissected into cubes.\n\nA standard fact: if a cube is tiled by cubes whose edges are integers, then the side length \\(L\\) of the big cube is an integer, and along any edge of the big cube the small cubes partition it into integer lengths summing to \\(L\\).\n\nSince only two cubes are non-unit, all others are unit cubes. Thus the total “defect” from an all-unit tiling is concentrated in two larger cubes.\n\nLet the side of the big cube be \\(n\\). Then an \\(n\\times n\\times n\\) cube would contain \\(n^3\\) unit cubes. Replacing \\(a^3\\) unit cubes by one cube of side \\(a\\) reduces the number of pieces by \\(a^3-1\\). Similarly for \\(b\\).\n\nHence\n\\[\n2010 = n^3-(a^3-1)-(b^3-1)=n^3-a^3-b^3+2,\n\\]\nso\n\\[\nn^3=2008+a^3+b^3.\n\\]\nSame equation as above.\n\nNow, because only two cubes are larger than \\(1\\), they must each sit in a corner; otherwise too many neighboring cubes would be forced to be non-unit. Thus the side length \\(n\\) must be expressible on each edge as\n\\[\nn=a+1+\\cdots+1=b+1+\\cdots+1,\n\\]\nso in particular \\(a<n\\), \\(b<n\\), and the simplest corner placement gives\n\\[\n(n-a)(n-b)=1\n\\]\nin effect, forcing \\(n-a=1\\) and \\(n-b=2\\) up to order. Thus\n\\[\na=n-1,\\qquad b=n-2.\n\\]\nSubstitute:\n\\[\nn^3=2008+(n-1)^3+(n-2)^3.\n\\]\nExpand:\n\\[\nn^3=2008+\\bigl(n^3-3n^2+3n-1\\bigr)+\\bigl(n^3-6n^2+12n-8\\bigr),\n\\]\nso\n\\[\n0=2008+n^3-9n^2+15n-9.\n\\]\nThus\n\\[\nn^3-9n^2+15n+1999=0.\n\\]\nTesting integer roots, \\(n=13\\) works:\n\\[\n2197-1521+195+1999=2870\\neq 0,\n\\]\nso not.\n\nTry instead \\(n=12\\):\n\\[\n1728-1296+180+1999=2611\\neq 0.\n\\]\n\nSo that inference was wrong; let us finish by direct search in the cubic equation:\n\\[\nn^3-2008=a^3+b^3,\\qquad 2\\le a,b<n.\n\\]\nCheck \\(n=13\\):\n\\[\n2197-2008=189=125+64=5^3+4^3.\n\\]\nExcellent! Therefore\n\\[\na=5,\\quad b=4,\\quad n=13.\n\\]\nThen\n\\[\n2008+5^3+4^3=2008+125+64=2197=13^3.\n\\]\n\nSo the big cube has side \\(13\\), hence volume\n\\[\n13^3=2197.\n\\]\n\nFinal answer: 2197",
+  "usage": {
+    "input_tokens": 113,
+    "output_tokens": 1246,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 19.913656088989228,
+  "cached": false
+}

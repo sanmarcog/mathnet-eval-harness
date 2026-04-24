@@ -1,0 +1,20 @@
+{
+  "id": "0es5",
+  "country": "South Africa",
+  "competition": "The South African Mathematical Olympiad Third Round",
+  "gold_final_answer": "2017",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Games / greedy algorithms",
+    "Discrete Mathematics > Combinatorics > Induction / smoothing"
+  ],
+  "prompt": "Andile and Zandre play a game on a $2017 \\times 2017$ board. At the beginning, Andile declares some of the squares *forbidden*, meaning that nothing may be placed on such a square. After that, they take turns to place coins on the board, with Zandre placing the first coin. It is not allowed to place a coin on a forbidden square or in the same row or column where another coin has already been placed. The player who places the last coin wins the game.\nWhat is the least number of squares Andile needs to declare as forbidden at the beginning to ensure a win? (Assume that both players use an optimal strategy.)",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To determine the least number of squares Andile needs to forbid to ensure a win, we can analyze the game by representing it as a bipartite graph matching problem. The board is a complete bipartite graph $K_{n,n}$ where $n = 2017$. Placing a coin corresponds to selecting an edge in this graph, and removing its endpoints (the row and column). The game ends when no more edges can be selected, meaning a maximal matching has been formed. The last player to move wins.\n\nFor an $n \\times n$ board where $n$ is odd, if no squares are forbidden, the first player (Zandre) will always win because every maximal matching in $K_{n,n}$ has exactly $n$ edges. Since $n$ is odd, the game will always end after an odd number of moves, meaning the first player makes the last move.\n\n**Andile's Winning Strategy with $n$ Forbidden Squares:**\nAndile can ensure a win by forbidding exactly $n = 2017$ squares. He can do this by forbidding all the squares on the main diagonal (i.e., squares $(i, i)$ for all $1 \\le i \\le n$). \nBecause the board is now symmetric across the main diagonal and the diagonal itself is unplayable, every available square $(i, j)$ has a distinct symmetric counterpart $(j, i)$ (since $i \\neq j$). \nWhenever Zandre places a coin on a square $(i, j)$, Andile can simply mirror Zandre's move by placing a coin on $(j, i)$. Because $i \\neq j$, the square $(j, i)$ does not share a row or column with $(i, j)$, meaning it will always be a valid, independent move. This pairing strategy guarantees that Andile will always have a response to any move Zandre makes, ensuring Andile places the last coin and wins.\n\n**Why fewer than $n$ squares is not enough:**\nIf Andile forbids $k < n$ squares, Zandre can always force a win. Because $k < n$, Zandre can strategically pick a square that eliminates the rows/columns containing the forbidden squares in such a way that the remaining board eventually reduces to an even $m \\times m$ board with no forbidden squares. On any even $m \\times m$ board with no forbidden squares, the second player to move on that sub-board wins. Since Zandre makes the move that reduces the board to this state, Andile becomes the first player on the remaining even board and thus loses. \n\nTherefore, the minimum number of squares Andile must forbid is exactly $n$.\n\nFinal answer: 2017",
+  "usage": {
+    "input_tokens": 181,
+    "output_tokens": 568,
+    "thoughts_tokens": 6122
+  },
+  "latency_s": 62.79593592497986,
+  "cached": false
+}

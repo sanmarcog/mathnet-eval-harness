@@ -1,0 +1,20 @@
+{
+  "id": "0h0f",
+  "country": "Ukraine",
+  "competition": "50th Mathematical Olympiad in Ukraine, Fourth Round (March 24, 2010)",
+  "gold_final_answer": "1006",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Prime numbers",
+    "Number Theory > Divisibility / Factorization > Factorization techniques"
+  ],
+  "prompt": "Find the least possible value $k$ for which there exist $2010$ distinct natural numbers that satisfy the following condition: the product of any $k$ numbers from the chosen set is divisible by the product of the rest $2010 - k$ numbers.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find the least possible value $k$, let the chosen set of 2010 distinct natural numbers be $A = \\{a_1, a_2, \\dots, a_{2010}\\}$. \nThe condition states that for any subset $S \\subset A$ of size $k$, the product $\\prod_{x \\in S} x$ is divisible by $\\prod_{y \\in A \\setminus S} y$. \n\nFor any prime $p$, let $v_p(x)$ denote the exponent of $p$ in the prime factorization of $x$. The divisibility condition implies that for any prime $p$ and any subset $S$ of size $k$:\n$$ \\sum_{x \\in S} v_p(x) \\ge \\sum_{y \\in A \\setminus S} v_p(y) $$\nTo satisfy this for *all* subsets $S$ of size $k$, it must hold for the subset that minimizes the left-hand side and maximizes the right-hand side. Thus, the sum of the $k$ smallest exponents must be greater than or equal to the sum of the $2010 - k$ largest exponents.\n\nIf $k \\le 1005$, then $2010 - k \\ge k$. Since all exponents are non-negative, the sum of the $2010 - k$ largest exponents is at least the sum of the $k$ largest exponents. Therefore, we have:\n$$ \\text{Sum of } k \\text{ smallest} \\ge \\text{Sum of } 2010-k \\text{ largest} \\ge \\text{Sum of } k \\text{ largest} $$\nHowever, the sum of the $k$ smallest elements in a set can never strictly exceed the sum of the $k$ largest elements. For the inequality to hold, all elements must be exactly equal. Since this must be true for the exponents of every prime $p$, it would mean that all 2010 numbers are identical, which contradicts the condition that the numbers are distinct. Thus, $k$ cannot be $\\le 1005$, meaning $k \\ge 1006$.\n\nWe can easily construct a valid set for $k = 1006$. Let $p$ be a prime and choose $a_i = p^{M+i}$ for $i = 1, 2, \\dots, 2010$. The condition requires the sum of the 1006 smallest exponents to be at least the sum of the 1004 largest exponents:\n$$ \\sum_{i=1}^{1006} (M+i) \\ge \\sum_{i=1007}^{2010} (M+i) $$\n$$ 1006M + \\frac{1006 \\times 1007}{2} \\ge 1004M + \\sum_{i=1007}^{2010} i $$\n$$ 2M \\ge \\sum_{i=1007}^{2010} i - \\frac{1006 \\times 1007}{2} $$\nBy choosing $M$ to be a sufficiently large integer, this inequality is satisfied, and all $a_i$ will be distinct natural numbers. \n\nFinal answer: 1006",
+  "usage": {
+    "input_tokens": 96,
+    "output_tokens": 737,
+    "thoughts_tokens": 2893
+  },
+  "latency_s": 29.909544446971267,
+  "cached": false
+}

@@ -1,0 +1,24 @@
+{
+  "id": "09o8",
+  "country": "Mongolia",
+  "competition": "MMO2025 Round 2",
+  "gold_final_answer": "Yes",
+  "topics_flat": [
+    "Discrete Mathematics > Other"
+  ],
+  "prompt": "Consider a $2024 \\times 2024$ grid fully tiled using $1 \\times 2$ and $2 \\times 1$ dominoes without overlap. A robot is placed on one of the cells. It moves from one cell of a domino to the other, then continues in the same direction to the next domino, if such exists; otherwise, it stops. Is it possible for the robot to eventually return to its starting cell?",
+  "model": "gpt-5.4",
+  "response_text": "No.\n\nLet each cell be a vertex, and connect the two cells of every domino by an internal edge. The robot’s motion is determined as follows:\n\n- from a cell, it must cross the internal edge of its domino to the other cell;\n- then it continues one more step in the same direction into the adjacent cell (if that cell exists).\n\nSo one move of the robot is a map from one cell to another cell of the grid.\n\nWe prove that this directed motion cannot contain a cycle.\n\n## Key invariant\nColor the board in checkerboard fashion. Every step of the robot goes:\n- first to the other cell of the domino, changing color;\n- then one more cell in the same direction, changing color again.\n\nHence after one full move, the robot lands on a cell of the **same** color as where it started. So any possible cycle would lie entirely within one color class.\n\nNow refine this. Assign to each cell the sum \\(x+y\\) of its row and column indices. Since the robot moves two unit steps in one of the four cardinal directions, each move changes either \\(x\\) by \\(\\pm 2\\) or \\(y\\) by \\(\\pm 2\\). Thus \\(x+y \\pmod 2\\) is preserved, as above.\n\nBut more importantly, look at the quantity\n\\[\nf(x,y)=x \\pmod 2,\\ y \\pmod 2.\n\\]\nSince the robot always moves by 2 in one coordinate and 0 in the other, both parities are preserved individually. Therefore the robot always stays inside one of the four classes determined by \\((x \\bmod 2, y \\bmod 2)\\).\n\nSo compress the board by grouping cells with the same parity pattern into a \\(1012\\times 1012\\) lattice, where each robot move becomes a unit step north/south/east/west.\n\nNow observe: such a step is possible exactly when the intermediate cell and the starting cell form a domino. Therefore each move crosses a domino and then exits it straight ahead. In the compressed picture, this gives a directed graph in which every vertex has outdegree at most 1.\n\nIf a cycle existed, then in that cycle every vertex would also have indegree 1, so the corresponding strip of dominoes would form a closed directed loop. But that would force the dominoes along the loop to alternate in a way that encloses an odd/even inconsistency: inside the loop, the number of black and white cells would differ, impossible for a domino tiling. Equivalently, a closed loop of “through-going” domino transitions cannot occur in a rectangle tiled by dominoes.\n\nA cleaner boundary argument is this: on the top boundary, a robot can never enter from outside, and similarly for each side. Thus if we start from any cell and follow the unique trajectory backward (when possible), it must eventually terminate at the boundary rather than form a cycle. Hence no directed cycle exists.\n\nTherefore the robot can never return to its starting cell.\n\nFinal answer: No, it is impossible for the robot to return to its starting cell.",
+  "usage": {
+    "input_tokens": 139,
+    "output_tokens": 646,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 14.9877831999911,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "No, it is impossible for the robot to return to its starting cell."
+  }
+}

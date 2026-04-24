@@ -1,0 +1,25 @@
+{
+  "id": "0gp9",
+  "country": "Turkey",
+  "competition": "Team Selection Test",
+  "gold_final_answer": "(m, n, p) = (2, 3, 3), (1, 1, 2), (2, 2, 5)",
+  "topics_flat": [
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities",
+    "Number Theory > Divisibility / Factorization > Greatest common divisors (gcd)"
+  ],
+  "prompt": "Determine all positive integers $m$, $n$ and prime numbers $p$ such that\n$$\n\\frac{5^m + 2^n p}{5^m - 2^n p}\n$$\nis a square of an integer.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let\n\\[\n\\frac{5^m+2^n p}{5^m-2^n p}=k^2\n\\]\nfor some integer \\(k\\ge 1\\). Then\n\\[\n5^m+2^n p=k^2(5^m-2^n p),\n\\]\nso\n\\[\n5^m(k^2-1)=2^n p(k^2+1).\n\\]\nSince the fraction is positive, we must have \\(5^m>2^n p\\), and \\(k^2>1\\), so \\(k\\ge 2\\).\n\nNow write\n\\[\n\\frac{5^m+2^n p}{5^m-2^n p}\n=\\frac{x+y}{x-y}\n\\quad\\text{with }x=5^m,\\ y=2^n p.\n\\]\nThen\n\\[\nx+y=k^2(x-y).\n\\]\nHence\n\\[\nx(1-k^2)=-y(1+k^2),\n\\]\nso\n\\[\n\\frac{x}{y}=\\frac{k^2+1}{k^2-1}.\n\\]\nThus\n\\[\n\\frac{5^m}{2^n p}=\\frac{k^2+1}{k^2-1}.\n\\]\n\nBut \\(\\gcd(k^2-1,k^2+1)\\mid 2\\), so the right-hand side is a reduced fraction whose denominator is \\(k^2-1\\) or \\((k^2-1)/2\\), in any case it is not a power of \\(2\\) unless very small. Since the left-hand side has numerator a power of \\(5\\), the only possible way this equality can hold is if the reduced form of \\(\\frac{k^2+1}{k^2-1}\\) is of the shape \\(\\frac{5^m}{2^n p}\\), forcing \\(k^2-1\\) to have only prime factors \\(2\\) and \\(5\\). But \\(k^2-1=(k-1)(k+1)\\), and for \\(k\\ge 2\\) this quickly gives a contradiction except possibly \\(k=2\\).\n\nCheck \\(k=2\\):\n\\[\n\\frac{5^m+2^n p}{5^m-2^n p}=4\n\\]\ngives\n\\[\n5^m+2^n p=4\\cdot 5^m-4\\cdot 2^n p\n\\]\nso\n\\[\n3\\cdot 5^m=5\\cdot 2^n p.\n\\]\nThe left side is divisible by \\(3\\), while the right side is divisible by \\(5\\); impossible.\n\nTherefore no positive integers \\(m,n\\) and prime \\(p\\) satisfy the condition.\n\nFinal answer: There are no such triples \\((m,n,p)\\).",
+  "usage": {
+    "input_tokens": 101,
+    "output_tokens": 636,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.837316838093102,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "There are no such triples \\((m,n,p)\\)."
+  }
+}

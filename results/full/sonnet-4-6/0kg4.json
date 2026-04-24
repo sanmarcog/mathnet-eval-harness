@@ -1,0 +1,21 @@
+{
+  "id": "0kg4",
+  "country": "United States",
+  "competition": "USA TSTST",
+  "gold_final_answer": "m = p^a and n = p^b for some prime p and integers a ≥ b ≥ 1",
+  "topics_flat": [
+    "Number Theory > Number-Theoretic Functions > σ (sum of divisors)",
+    "Number Theory > Number-Theoretic Functions > τ (number of divisors)",
+    "Number Theory > Divisibility / Factorization > Prime numbers"
+  ],
+  "prompt": "For every positive integer $N$, let $\\sigma(N)$ denote the sum of the positive integer divisors of $N$. Find all integers $m \\ge n \\ge 2$ satisfying\n$$\n\\frac{\\sigma(m) - 1}{m - 1} = \\frac{\\sigma(n) - 1}{n - 1} = \\frac{\\sigma(mn) - 1}{mn - 1}.\n$$",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Setting Up the Problem\n\nLet me denote the common ratio as $k$, so:\n$$\\frac{\\sigma(m)-1}{m-1} = \\frac{\\sigma(n)-1}{n-1} = \\frac{\\sigma(mn)-1}{mn-1} = k$$\n\nThis means $\\sigma(m) = k(m-1)+1$, $\\sigma(n) = k(n-1)+1$, $\\sigma(mn) = k(mn-1)+1$.\n\n## Key Observations\n\n**If $n$ is prime:** $\\sigma(n) = n+1$, so $k = \\frac{n+1-1}{n-1} = \\frac{n}{n-1}$. For $k$ to be rational and consistent, let's explore.\n\n**Testing $n = m$ (equal case):** If $m = n$, then we need $\\frac{\\sigma(m^2)-1}{m^2-1} = \\frac{\\sigma(m)-1}{m-1}$.\n\n**Let me try small primes.** Suppose $n = p$ is prime and $m = p$ as well.\n\nFor prime $p$: $\\sigma(p) = p+1$, so $k = \\frac{p}{p-1}$.\n\nThen $\\sigma(p^2) = 1+p+p^2$, and $\\frac{\\sigma(p^2)-1}{p^2-1} = \\frac{p+p^2}{p^2-1} = \\frac{p(1+p)}{(p-1)(p+1)} = \\frac{p}{p-1} = k$. ✓\n\nSo **$m = n = p$** works for any prime $p$!\n\n## Checking if Other Solutions Exist\n\nSuppose $m \\neq n$. Let $n$ be prime $p$, so $k = \\frac{p}{p-1}$.\n\nThen $\\sigma(m) = \\frac{p}{p-1}(m-1)+1 = \\frac{pm - p + m - 1}{p-1} = \\frac{(p+1)(m-1)}{p-1} + 1$... let me recompute:\n$$\\sigma(m) = \\frac{p(m-1)}{p-1} + 1 = \\frac{pm - p + p - 1}{p-1} = \\frac{pm-1}{p-1}$$\n\nSo $(p-1)\\sigma(m) = pm - 1$, meaning $p \\mid (p-1)\\sigma(m) + 1$... Actually $pm - 1 \\equiv -1 \\pmod{p}$ and $(p-1)\\sigma(m) \\equiv -\\sigma(m) \\pmod{p}$, so $\\sigma(m) \\equiv 1 \\pmod{p}$.\n\nAlso $\\sigma(mn) = k(mn-1)+1 = \\frac{p(mn-1)}{p-1}+1 = \\frac{pmn-1}{p-1}$.\n\nIf $\\gcd(m,n)=1$: $\\sigma(mn) = \\sigma(m)\\sigma(n) = \\sigma(m)(p+1)$.\n\nSo $\\sigma(m)(p+1) = \\frac{pmn-1}{p-1}$ and $\\sigma(m) = \\frac{pm-1}{p-1}$.\n\nThus $\\frac{pm-1}{p-1}(p+1) = \\frac{pmn-1}{p-1}$, giving $(pm-1)(p+1) = pmn-1$.\n\nExpanding: $p^2m + pm - p - 1 = pmn - 1$, so $p^2m + pm - p = pmn$, thus $pm(p+1-n) = p$, giving $m(p+1-n) = 1$.\n\nSince $m \\geq 2$, this is impossible (would need $m=1$).\n\nIf $p \\mid m$: write $m = p^a \\cdot r$ with $\\gcd(r,p)=1$. The constraint becomes very restrictive. Testing $m = p^2$: $\\sigma(p^2) = 1+p+p^2$, and $k = \\frac{p^2+p}{p^2-1} = \\frac{p}{p-1}$. ✓ But then we need $n$ with the same $k$, so $n = p$ or $n = p^2$, giving $m = n = p$ or $m = n = p^2$.\n\nBy the same argument, $m = n = p^a$ for prime $p$ works since $\\frac{\\sigma(p^a)-1}{p^a-1} = \\frac{p^a+p^{a-1}+\\cdots+p}{p^a-1} = \\frac{p(p^a-1)/(p-1)}{p^a-1} = \\frac{p}{p-1}$.\n\n## Conclusion\n\nThe solutions are all pairs $m = n = p^a$ where $p$ is prime and $a \\geq 1$ (with $p^a \\geq 2$).\n\nFinal answer: All pairs $(m, n)$ with $m = n = p^a$ for some prime $p$ and positive integer $a$ (i.e., $m = n$ is a prime power).",
+  "usage": {
+    "input_tokens": 150,
+    "output_tokens": 1349,
+    "thinking_tokens": 0
+  },
+  "latency_s": 16.926499239052646,
+  "cached": false
+}

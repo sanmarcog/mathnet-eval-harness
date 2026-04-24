@@ -1,0 +1,27 @@
+{
+  "id": "0cyz",
+  "country": "Saudi Arabia",
+  "competition": "Saudi Arabia Mathematical Competitions",
+  "gold_final_answer": "42",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Greatest common divisors (gcd)",
+    "Number Theory > Divisibility / Factorization > Factorization techniques",
+    "Number Theory > Modular Arithmetic > Fermat / Euler / Wilson theorems",
+    "Algebra > Algebraic Expressions > Polynomials > Polynomial operations"
+  ],
+  "prompt": "Consider the set $S=\\{(a+b)^{7}-a^{7}-b^{7}: a, b \\in \\mathbb{Z}\\}$. Find the greatest common divisor of all members in $S$.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "We need to find the GCD of all values of $(a+b)^7 - a^7 - b^7$ for integers $a, b$.\n\nFirst, let's expand $(a+b)^7 - a^7 - b^7$. Using the binomial theorem:\n\n$(a+b)^7 - a^7 - b^7 = \\sum_{k=1}^{6} \\binom{7}{k} a^k b^{7-k} = 7ab(a+b)(a^2+ab+b^2)^2$\n\nLet me verify this factorization. We know $(a+b)^7 - a^7 - b^7$ is divisible by $ab(a+b)$ since it vanishes when $a=0$, $b=0$, or $a=-b$. The remaining factor should be degree 4.\n\n$(a+b)^7 - a^7 - b^7 = 7ab(a+b)(a^2+ab+b^2)^2$\n\nLet me check with $a=b=1$: $(2)^7 - 1 - 1 = 128 - 2 = 126 = 7 \\cdot 1 \\cdot 1 \\cdot 2 \\cdot (1+1+1)^2 = 7 \\cdot 2 \\cdot 9 = 126$. ✓\n\nNow we need the GCD of $7ab(a+b)(a^2+ab+b^2)^2$ over all integers $a, b$.\n\n**Computing specific values:**\n\n- $a=1, b=1$: $7 \\cdot 1 \\cdot 1 \\cdot 2 \\cdot 9 = 126 = 2 \\cdot 3^2 \\cdot 7$\n- $a=1, b=2$: $7 \\cdot 1 \\cdot 2 \\cdot 3 \\cdot (1+2+4)^2 = 7 \\cdot 6 \\cdot 49 = 2058 = 2 \\cdot 3 \\cdot 7^3$\n- $a=1, b=3$: $7 \\cdot 1 \\cdot 3 \\cdot 4 \\cdot (1+3+9)^2 = 7 \\cdot 12 \\cdot 169 = 14196 = 2^2 \\cdot 3 \\cdot 7 \\cdot 169$\n- $a=2, b=3$: $7 \\cdot 2 \\cdot 3 \\cdot 5 \\cdot (4+6+9)^2 = 7 \\cdot 30 \\cdot 361 = 75810 = 2 \\cdot 3 \\cdot 5 \\cdot 7 \\cdot 19^2$\n\nGCD of 126 and 2058: $126 = 2 \\cdot 3^2 \\cdot 7$, $2058 = 2 \\cdot 3 \\cdot 7^3$, GCD $= 2 \\cdot 3 \\cdot 7 = 42$.\n\nGCD of 42 and 14196: $14196 = 2^2 \\cdot 3 \\cdot 7 \\cdot 169$, GCD with 42 = $2 \\cdot 3 \\cdot 7 = 42$.\n\nGCD of 42 and 75810: $75810 = 2 \\cdot 3 \\cdot 5 \\cdot 7 \\cdot 361$, GCD with 42 = $2 \\cdot 3 \\cdot 7 = 42$.\n\nSo the GCD appears to be **42**.\n\n**Verification that 42 divides all values:**\n\n$7ab(a+b)(a^2+ab+b^2)^2$\n\n- Factor of 7: explicit.\n- Factor of 2: Among $a, b, a+b$, at least one is even (if $a,b$ both odd, $a+b$ is even; otherwise one of $a,b$ is even).\n- Factor of 3: We need $3 \\mid ab(a+b)(a^2+ab+b^2)^2$. If $3\\nmid a$ and $3\\nmid b$, then $a^2+ab+b^2 \\equiv 1+ab+1 = 2+ab \\pmod{3}$. If $a\\equiv b\\equiv 1$: $2+1=3\\equiv 0$. If $a\\equiv 1, b\\equiv 2$: $2+2=4\\equiv 1$, but then $a+b\\equiv 0\\pmod 3$. If $a\\equiv b\\equiv 2$: $2+4=6\\equiv 0$. So in all cases, $3$ divides $ab(a+b)(a^2+ab+b^2)^2$.\n\nThus $42 \\mid 7ab(a+b)(a^2+ab+b^2)^2$ always, and 42 is achieved, so the GCD is 42.\n\nFinal answer: 42",
+  "usage": {
+    "input_tokens": 100,
+    "output_tokens": 1314,
+    "thinking_tokens": 0
+  },
+  "latency_s": 17.171920006047003,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "exact",
+    "predicted": "42"
+  }
+}

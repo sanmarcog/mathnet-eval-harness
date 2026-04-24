@@ -1,0 +1,25 @@
+{
+  "id": "01uh",
+  "country": "Belarus",
+  "competition": "Belarusian Mathematical Olympiad",
+  "gold_final_answer": "60°",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Miscellaneous > Angle chasing",
+    "Geometry > Plane Geometry > Miscellaneous > Constructions and loci"
+  ],
+  "prompt": "Point $M$ is marked inside a convex quadrilateral $ABCD$. It appears that $AM = BM$, $CM = DM$, and $\\angle AMB = \\angle CMD = 60^\\circ$. Let $K$, $L$, and $N$ be the midpoints of the segments $BC$, $AM$, and $DM$, respectively. Find the value of the angle $LKN$.\n\n(S. Mazanik)",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Setting Up Coordinates\n\nLet me place M at the origin. Since AM = BM and ∠AMB = 60°, triangle AMB is equilateral (isoceles with 60° apex angle, so all angles are 60°). Similarly, triangle CMD is equilateral.\n\nLet me set up coordinates. Let AM = BM = a, and CM = DM = b.\n\nPlace M at origin. Let's orient the triangles conveniently.\n\nLet ∠AMB = 60° with the bisector of angle AMB along some direction. Similarly for ∠CMD = 60°.\n\nLet me place:\n- A at angle α from M, distance a: A = a(cos α, sin α)\n- B at angle α - 60° from M, distance a: B = a(cos(α-60°), sin(α-60°))\n- C at angle γ from M, distance b: C = b(cos γ, sin γ)  \n- D at angle γ - 60° from M, distance b: D = b(cos(γ-60°), sin(γ-60°))\n\n**Key points:**\n- N = midpoint of DM = D/2 = (b/2)(cos(γ-60°), sin(γ-60°))\n- L = midpoint of AM = A/2 = (a/2)(cos α, sin α)\n- K = midpoint of BC = (B + C)/2\n\n**Computing K:**\nK = (a/2)(cos(α-60°), sin(α-60°)) + (b/2)(cos γ, sin γ)\n\n**Vectors from K:**\nKL = L - K = (a/2)cos α - (a/2)cos(α-60°) - (b/2)cos γ, (a/2)sin α - (a/2)sin(α-60°) - (b/2)sin γ)\n\nKN = N - K = (b/2)cos(γ-60°) - (a/2)cos(α-60°) - (b/2)cos γ, (b/2)sin(γ-60°) - (a/2)sin(α-60°) - (b/2)sin γ)\n\n**Simplifying KL:**\n(a/2)(cos α - cos(α-60°)) = (a/2)·2sin(α-30°)sin(30°) = (a/2)sin(α-30°)\n\nWait: cos α - cos(α-60°) = -2sin(α-30°)sin(30°) = -sin(α-30°)\n\nSo KL = (-(a/2)sin(α-30°) - (b/2)cos γ, -(a/2)cos(α-30°)... let me redo.\n\ncos α - cos(α-60°) = cos α - cos α cos60° - sin α sin60°... wait: cos(α-60°) = cos α cos60° + sin α sin60°\n\nSo cos α - cos(α-60°) = cos α(1 - cos60°) - sin α sin60° = cos α · (1/2) - sin α · (√3/2)\n\nSimilarly sin α - sin(α-60°) = sin α - sin α cos60° + cos α sin60° = sin α(1/2) + cos α(√3/2)\n\nSo KL = ((a/2)[(1/2)cos α - (√3/2)sin α] - (b/2)cos γ, (a/2)[(1/2)sin α + (√3/2)cos α] - (b/2)sin γ)\n\n= ((a/2)cos(α+60°) - (b/2)cos γ, (a/2)sin(α+60°) - (b/2)sin γ)\n\n**Simplifying KN:**\ncos(γ-60°) - cos γ = cos γ cos60° + sin γ sin60° - cos γ = -(1/2)cos γ + (√3/2)sin γ = -cos(γ+60°)... \n\nActually: cos(γ-60°) - cos γ = (1/2)cos γ + (√3/2)sin γ - cos γ = -(1/2)cos γ + (√3/2)sin γ\n\nsin(γ-60°) - sin γ = sin γ cos60° - cos γ sin60° - sin γ = -(1/2)sin γ - (√3/2)cos γ\n\nSo KN = ((b/2)[-(1/2)cos γ + (√3/2)sin γ] - (a/2)cos(α-60°), (b/2)[-(1/2)sin γ - (√3/2)cos γ] - (a/2)sin(α-60°))\n\n= (-(b/2)cos(γ+60°) - (a/2)cos(α-60°), -(b/2)sin(γ+60°) - (a/2)sin(α-60°))\n\nNotice KN = -[(b/2)cos(γ+60°) + (a/2)cos(α-60°), ...] and KL = [(a/2)cos(α+60°) - (b/2)cos γ, ...]\n\nThe angle between KL and KN... Let me try specific values: α = 90°, γ = 210°, a = b = 1.\n\nAfter computation with specific values, the angle LKN = **60°**.\n\nFinal answer: 60°",
+  "usage": {
+    "input_tokens": 156,
+    "output_tokens": 1375,
+    "thinking_tokens": 0
+  },
+  "latency_s": 15.048282159026712,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "exact",
+    "predicted": "60°"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "id": "0gp9",
+  "country": "Turkey",
+  "competition": "Team Selection Test",
+  "gold_final_answer": "(m, n, p) = (2, 3, 3), (1, 1, 2), (2, 2, 5)",
+  "topics_flat": [
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities",
+    "Number Theory > Divisibility / Factorization > Greatest common divisors (gcd)"
+  ],
+  "prompt": "Determine all positive integers $m$, $n$ and prime numbers $p$ such that\n$$\n\\frac{5^m + 2^n p}{5^m - 2^n p}\n$$\nis a square of an integer.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find all positive integers $m, n$ and prime numbers $p$ such that $\\frac{5^m + 2^n p}{5^m - 2^n p}$ is the square of an integer, we set:\n$$ \\frac{5^m + 2^n p}{5^m - 2^n p} = x^2 $$\nwhere $x > 1$ is an integer. Rearranging this equation gives:\n$$ 5^m (x^2 - 1) = 2^n p (x^2 + 1) $$\n\nFirst, we check the parity of $x$. If $x$ were even, $x^2 - 1$ would be odd. Then the left side $5^m(x^2 - 1)$ would be odd, while the right side $2^n p (x^2 + 1)$ would be even (since $n \\ge 1$). This is a contradiction, so $x$ must be odd.\n\nLet $x = 2k + 1$. Then $x^2 - 1 = 4k(k+1)$ (which is a multiple of 8) and $x^2 + 1 = 4k^2 + 4k + 2$ (which is twice an odd number). \nWe can divide both sides of our equation by 2:\n$$ 5^m \\left(\\frac{x^2 - 1}{2}\\right",
+  "usage": {
+    "input_tokens": 93,
+    "output_tokens": 323,
+    "thoughts_tokens": 7865
+  },
+  "latency_s": 61.875473722000606,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": null
+  }
+}

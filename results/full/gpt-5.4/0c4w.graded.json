@@ -1,0 +1,24 @@
+{
+  "id": "0c4w",
+  "country": "Romania",
+  "competition": "SHORTLISTED PROBLEMS FOR THE 2019 ROMANIAN NMO",
+  "gold_final_answer": "f(x) ≡ 0",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Functional Equations"
+  ],
+  "prompt": "Find all the functions $f: \\mathbb{R} \\to \\mathbb{R}$ so that $f(x+y) = f(xy) + f(x) + f(y)$, for every $x, y \\in \\mathbb{R}$.",
+  "model": "gpt-5.4",
+  "response_text": "We seek all \\(f:\\mathbb R\\to\\mathbb R\\) such that\n\\[\nf(x+y)=f(xy)+f(x)+f(y)\\qquad(\\forall x,y\\in\\mathbb R).\n\\]\nWe will show the only such function is \\(f\\equiv 0\\).\n\n## Step 1: Plug in special values\n\nWe use\n\\[\nf(x+y)=f(xy)+f(x)+f(y). \\tag{1}\n\\]\n\n### 1. Set \\(x=y=0\\)\n\\[\nf(0)=f(0)+f(0)+f(0),\n\\]\nso\n\\[\nf(0)=3f(0)\\implies 2f(0)=0\\implies f(0)=0.\n\\]\n\n### 2. Set \\(y=0\\)\nThen\n\\[\nf(x)=f(0)+f(x)+f(0)=f(x),\n\\]\nwhich gives nothing new.\n\n### 3. Set \\(y=1\\)\n\\[\nf(x+1)=f(x)+f(x)+f(1)=2f(x)+f(1). \\tag{2}\n\\]\n\n### 4. Set \\(x=1,y=1\\)\n\\[\nf(2)=f(1)+f(1)+f(1)=3f(1). \\tag{3}\n\\]\nBut from (2) with \\(x=1\\),\n\\[\nf(2)=2f(1)+f(1)=3f(1),\n\\]\nsame result.\n\n## Step 2: Relate \\(f(-x)\\) and \\(f(x)\\)\n\nSet \\(y=-x\\). Since \\(x+(-x)=0\\), we get\n\\[\nf(0)=f(-x^2)+f(x)+f(-x).\n\\]\nAs \\(f(0)=0\\),\n\\[\nf(-x^2)+f(x)+f(-x)=0. \\tag{4}\n\\]\n\nSet \\(x=-1\\) in (2):\n\\[\nf(0)=2f(-1)+f(1),\n\\]\nhence\n\\[\n2f(-1)+f(1)=0. \\tag{5}\n\\]\n\nNow set \\(x=1,y=-1\\) in (1):\n\\[\nf(0)=f(-1)+f(1)+f(-1)=f(1)+2f(-1),\n\\]\nsame as (5).\n\n## Step 3: Use \\(y=2\\)\n\nFrom (1),\n\\[\nf(x+2)=f(2x)+f(x)+f(2). \\tag{6}\n\\]\nBut from (2),\n\\[\nf(x+2)=2f(x+1)+f(1)=2(2f(x)+f(1))+f(1)=4f(x)+3f(1). \\tag{7}\n\\]\nSince \\(f(2)=3f(1)\\), comparing (6) and (7):\n\\[\nf(2x)+f(x)+3f(1)=4f(x)+3f(1),\n\\]\nso\n\\[\nf(2x)=3f(x)\\qquad(\\forall x). \\tag{8}\n\\]\n\nNow put \\(x\\mapsto x/2\\) into (2):\n\\[\nf\\!\\left(\\frac x2+1\\right)=2f\\!\\left(\\frac x2\\right)+f(1).\n\\]\nBut also by (1) with \\((x/2,2)\\),\n\\[\nf\\!\\left(\\frac x2+2\\right)=f(x)+f\\!\\left(\\frac x2\\right)+f(2),\n\\]\nnot immediately helpful. Instead use (8) in (2) at \\(2x\\):\n\\[\nf(2x+1)=2f(2x)+f(1)=6f(x)+f(1). \\tag{9}\n\\]\n\nOn the other hand, by (1) with \\((2x,1)\\),\n\\[\nf(2x+1)=f(2x)+f(2x)+f(1)=2f(2x)+f(1),\n\\]\nconsistent with (9).\n\n## Step 4: Determine \\(f(1)\\)\n\nSet \\(y=x\\) in (1):\n\\[\nf(2x)=f(x^2)+2f(x).\n\\]\nUsing (8),\n\\[\n3f(x)=f(x^2)+2f(x),\n\\]\nso\n\\[\nf(x^2)=f(x)\\qquad(\\forall x). \\tag{10}\n\\]\n\nNow replace \\(x\\) by \\(-x\\) in (10):\n\\[\nf(x^2)=f(-x).\n\\]\nComparing with \\(f(x^2)=f(x)\\), we get\n\\[\nf(-x)=f(x)\\qquad(\\forall x). \\tag{11}\n\\]\nSo \\(f\\) is even.\n\nNow return to (4):\n\\[\nf(-x^2)+f(x)+f(-x)=0.\n\\]\nBy evenness, \\(f(-x^2)=f(x^2)=f(x)\\) and \\(f(-x)=f(x)\\), so\n\\[\nf(x)+f(x)+f(x)=0,\n\\]\nhence\n\\[\n3f(x)=0\\implies f(x)=0\\qquad(\\forall x).\n\\]\n\nThus the only solution is the zero function.\n\nIt is easy to check \\(f(x)\\equiv 0\\) satisfies (1).\n\nFinal answer: \\(\\boxed{f(x)=0\\text{ for all }x\\in\\mathbb R}\\).",
+  "usage": {
+    "input_tokens": 105,
+    "output_tokens": 1218,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 17.367713385028765,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "f(x)=0\\text{ for all }x\\in\\mathbb R"
+  }
+}

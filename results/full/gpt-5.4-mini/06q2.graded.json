@@ -1,0 +1,27 @@
+{
+  "id": "06q2",
+  "country": "IMO",
+  "competition": "49th International Mathematical Olympiad Spain",
+  "gold_final_answer": "180180",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Greatest common divisors (gcd)",
+    "Number Theory > Divisibility / Factorization > Least common multiples (lcm)",
+    "Discrete Mathematics > Combinatorics > Pigeonhole principle",
+    "Geometry > Plane Geometry > Analytic / Coordinate Methods > Cartesian coordinates"
+  ],
+  "prompt": "In the coordinate plane consider the set $S$ of all points with integer coordinates. For a positive integer $k$, two distinct points $A, B \\in S$ will be called $k$-friends if there is a point $C \\in S$ such that the area of the triangle $A B C$ is equal to $k$. A set $T \\subset S$ will be called a $k$-clique if every two points in $T$ are $k$-friends. Find the least positive integer $k$ for which there exists a $k$-clique with more than 200 elements.",
+  "model": "gpt-5.4-mini",
+  "response_text": "For lattice points \\(A=(x_1,y_1)\\), \\(B=(x_2,y_2)\\), the area of \\(\\triangle ABC\\) with \\(C\\in \\mathbb Z^2\\) is\n\n\\[\n\\frac12 \\left|\\det(B-A,\\; C-A)\\right|.\n\\]\n\nSo \\(A,B\\) are \\(k\\)-friends iff there exists a lattice point \\(C\\) such that\n\n\\[\n\\left|\\det(B-A,\\; C-A)\\right| = 2k.\n\\]\n\nIf \\(B-A=(u,v)\\), then the set of all possible determinants \\(\\det((u,v),(p,q))\\) as \\((p,q)\\in \\mathbb Z^2\\) is exactly all multiples of \\(\\gcd(u,v)\\). Hence such a \\(C\\) exists iff \\(\\gcd(u,v)\\mid 2k\\).\n\nSo two lattice points are \\(k\\)-friends exactly when the gcd of their coordinate differences divides \\(2k\\).\n\n---\n\nNow we want a large clique. A very effective choice is to take all points in a \\(m\\times m\\) grid:\n\n\\[\nT=\\{0,1,\\dots,m-1\\}^2,\n\\]\n\nwhich has \\(m^2\\) points. Any two points in \\(T\\) differ by a vector \\((u,v)\\) with \\(|u|,|v|\\le m-1\\), so if we choose \\(m\\) so that every such difference has \\(\\gcd(u,v)\\mid 2k\\), then \\(T\\) is a \\(k\\)-clique.\n\nThe cleanest way is to use a rectangle whose side lengths are divisors of \\(2k\\).  \nIn fact, if we take the set\n\n\\[\nT=\\{(x,y): 0\\le x\\le a-1,\\ 0\\le y\\le b-1\\},\n\\]\n\nthen any difference vector has \\(\\gcd(u,v)\\le \\gcd(a-1,b-1)\\), but to guarantee the clique property for all pairs it is enough to take all points in a translate of the subgroup \\(m\\mathbb Z\\times m\\mathbb Z\\). Then pairwise differences are multiples of \\(m\\), and choosing \\(m\\mid 2k\\) works.\n\nSo the largest obvious clique of this kind has size\n\n\\[\n\\left(\\frac{2k}{1}\\right)^2 = (2k)^2,\n\\]\n\nby taking all points in a \\(2k \\times 2k\\) grid of step \\(1\\), but we must check the friendship condition.  \nFor any two points, their difference vector \\((u,v)\\) satisfies \\(\\gcd(u,v)\\mid 2k\\) if \\(|u|,|v|<2k\\) is not enough; however, if we take the set\n\n\\[\nT=\\{(0,0),(2k,0),(0,2k),(2k,2k),\\dots\\},\n\\]\n\ni.e. a grid with spacing \\(2k\\), then every pairwise difference is a multiple of \\(2k\\), so every pair is \\(k\\)-friends. Such a clique can have size as large as we like by taking enough grid points.\n\nTherefore, for every positive integer \\(k\\), there exists a \\(k\\)-clique with arbitrarily many elements: just take a large enough subset of the lattice \\((2k)\\mathbb Z\\times (2k)\\mathbb Z\\).\n\nIn particular, there exists one with more than 200 elements for \\(k=1\\).\n\nTo see \\(k=1\\) explicitly: choose any 201 points of the form \\((2i,2j)\\). For any two such points, the difference vector has both coordinates even, so \\(\\gcd(u,v)\\) is even, hence divides \\(2\\). Thus every pair is \\(1\\)-friends.\n\nSo the least such positive integer is\n\nFinal answer: \\(\\boxed{1}\\)",
+  "usage": {
+    "input_tokens": 179,
+    "output_tokens": 874,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 6.134159432956949,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "1"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "id": "04vo",
+  "country": "Czech Republic",
+  "competition": "First Round (take-home)",
+  "gold_final_answer": "-1/4",
+  "topics_flat": [
+    "Algebra > Intermediate Algebra > Quadratic functions"
+  ],
+  "prompt": "Suppose that $a, b$ are real numbers such that the expressions $a^2 + b$ and $a + b^2$ share the same value. What is the smallest possible shared value?",
+  "model": "claude-opus-4-7",
+  "response_text": "Need a²+b = a+b², so a²-a = b²-b, meaning (a-b)(a+b-1)=0.\n\nCase a=b: value = a²+a, min at a=-1/2: -1/4.\nCase a+b=1: value = a²+b = a²+1-a, min at a=1/2: 3/4.\n\nFinal answer: -1/4",
+  "usage": {
+    "input_tokens": 123,
+    "output_tokens": 118,
+    "thinking_tokens": 0
+  },
+  "latency_s": 2.5483376330230385,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "exact",
+    "predicted": "-1/4"
+  }
+}

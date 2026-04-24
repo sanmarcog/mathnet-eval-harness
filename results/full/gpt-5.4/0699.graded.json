@@ -1,0 +1,26 @@
+{
+  "id": "0699",
+  "country": "Greece",
+  "competition": "36th Hellenic Mathematical Olympiad",
+  "gold_final_answer": "α_v = (5^v − 3^v)/2 for v ≥ 1; and for k = 2^2019, the greatest power of 2 dividing a_k is 2^2021.",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Sequences and Series > Recurrence relations",
+    "Algebra > Algebraic Expressions > Sequences and Series > Sums and products",
+    "Number Theory > Divisibility / Factorization"
+  ],
+  "prompt": "The sequence $\\alpha_v$ satisfies the recurrence relation: $\\alpha_1 = 1$ and $\\alpha_v = 5\\alpha_{v-1} + 3^{v-1}$, $v \\ge 2$. Determine the general term $\\alpha_v$ and the greatest power of $2$ which divides the term $a_k$, where $k=2^{2019}$.",
+  "model": "gpt-5.4",
+  "response_text": "We solve\n\\[\n\\alpha_1=1,\\qquad \\alpha_v=5\\alpha_{v-1}+3^{v-1}\\quad(v\\ge2).\n\\]\n\n## 1. Find the general term\n\nWe solve the linear recurrence.\n\nHomogeneous part:\n\\[\n\\alpha_v^{(h)}=C\\cdot 5^{v-1}.\n\\]\n\nTry a particular solution of the form\n\\[\n\\alpha_v^{(p)}=A\\cdot 3^{v-1}.\n\\]\nSubstitute:\n\\[\nA3^{v-1}=5A3^{v-2}+3^{v-1}.\n\\]\nDivide by \\(3^{v-2}\\):\n\\[\n3A=5A+3 \\implies -2A=3 \\implies A=-\\frac32.\n\\]\nSo\n\\[\n\\alpha_v=C5^{v-1}-\\frac32\\,3^{v-1}.\n\\]\nUse \\(\\alpha_1=1\\):\n\\[\n1=C-\\frac32 \\implies C=\\frac52.\n\\]\nHence\n\\[\n\\alpha_v=\\frac52\\,5^{v-1}-\\frac32\\,3^{v-1}\n=\\frac{5^v-3^v}{2}.\n\\]\n\n## 2. Highest power of \\(2\\) dividing \\(\\alpha_k\\), \\(k=2^{2019}\\)\n\nWe need\n\\[\n\\alpha_k=\\frac{5^k-3^k}{2},\\qquad k=2^{2019}.\n\\]\nSo\n\\[\nv_2(\\alpha_k)=v_2(5^k-3^k)-1.\n\\]\n\nNow use LTE for even \\(k\\):\n\\[\nv_2(5^k-3^k)=v_2(5-3)+v_2(5+3)+v_2(k)-1.\n\\]\nCompute:\n\\[\nv_2(5-3)=v_2(2)=1,\\quad v_2(5+3)=v_2(8)=3,\\quad v_2(k)=v_2(2^{2019})=2019.\n\\]\nThus\n\\[\nv_2(5^k-3^k)=1+3+2019-1=2022.\n\\]\nTherefore\n\\[\nv_2(\\alpha_k)=2022-1=2021.\n\\]\n\nSo the greatest power of \\(2\\) dividing \\(\\alpha_k\\) is\n\\[\n2^{2021}.\n\\]\n\nFinal answer: \\(\\displaystyle \\alpha_v=\\frac{5^v-3^v}{2}\\), and for \\(k=2^{2019}\\) the greatest power of \\(2\\) dividing \\(\\alpha_k\\) is \\(\\boxed{2^{2021}}\\).",
+  "usage": {
+    "input_tokens": 131,
+    "output_tokens": 608,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 7.753067891928367,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "2^{2021}"
+  }
+}

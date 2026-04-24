@@ -1,0 +1,20 @@
+{
+  "id": "02dc",
+  "country": "Brazil",
+  "competition": "III OBM",
+  "gold_final_answer": "(1) Two solutions: k = ±√2. (2) Three solutions: k = ±1.",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Analytic / Coordinate Methods > Cartesian coordinates",
+    "Algebra > Intermediate Algebra > Quadratic functions"
+  ],
+  "prompt": "For which $k$ does the system $x^2 - y^2 = 0$, $(x - k)^2 + y^2 = 1$ have exactly\n(1) two, (2) three real solutions?",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find the number of real solutions to the system of equations:\n1) $x^2 - y^2 = 0$\n2) $(x - k)^2 + y^2 = 1$\n\nFrom the first equation, we have $y^2 = x^2$. Substituting this into the second equation gives:\n$(x - k)^2 + x^2 = 1$\n$x^2 - 2kx + k^2 + x^2 = 1$\n$2x^2 - 2kx + (k^2 - 1) = 0$\n\nThis is a quadratic equation in $x$. The number of solutions for $x$ depends on the discriminant $\\Delta$:\n$\\Delta = (-2k)^2 - 4(2)(k^2 - 1) = 4k^2 - 8k^2 + 8 = 8 - 4k^2$\n\nFor each non-zero real root $x$, the equation $y^2 = x^2$ yields two distinct real values for $y$ ($y = x$ and $y = -x$). If $x = 0$ is a root, it yields exactly one value for $y$ ($y = 0$).\n\n**Case 1: Exactly two real solutions**\nFor the system to have exactly two real solutions, the quadratic in $x$ must have exactly one non-zero double root. This occurs when $\\Delta = 0$:\n$8 - 4k^2 = 0 \\implies k^2 = 2 \\implies k = \\pm \\sqrt{2}$\nFor $k = \\pm \\sqrt{2}$, the double root is $x = \\frac{2k}{4} = \\pm \\frac{\\sqrt{2}}{2} \\neq 0$. This gives exactly 2 solutions for $y$.\n\n**Case 2: Exactly three real solutions**\nFor the system to have exactly three real solutions, the quadratic in $x$ must have two distinct real roots ($\\Delta > 0$), and exactly one of these roots must be $x = 0$. \nSetting $x = 0$ in the quadratic equation $2x^2 - 2kx + (k^2 - 1) = 0$ gives:\n$k^2 - 1 = 0 \\implies k = \\pm 1$\nFor $k = \\pm 1$, $\\Delta = 8 - 4(1) = 4 > 0$. The roots are $x = 0$ (which gives 1 solution for $y$) and $x = \\pm 1$ (which gives 2 solutions for $y$), totaling $1 + 2 = 3$ real solutions.\n\nFinal answer: (1) k = \\pm \\sqrt{2}, (2) k = \\pm 1",
+  "usage": {
+    "input_tokens": 88,
+    "output_tokens": 617,
+    "thoughts_tokens": 1654
+  },
+  "latency_s": 17.456933559966274,
+  "cached": false
+}

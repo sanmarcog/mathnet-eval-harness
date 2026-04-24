@@ -1,0 +1,27 @@
+{
+  "id": "0cgv",
+  "country": "Romania",
+  "competition": "74th NMO Selection Tests for BMO and IMO",
+  "gold_final_answer": "minimum: n−1; maximum: floor(n/2) * floor((n+1)/2)",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Counting two ways",
+    "Algebra > Algebraic Expressions > Sequences and Series > Sums and products",
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities",
+    "Algebra > Equations and Inequalities > Combinatorial optimization"
+  ],
+  "prompt": "Fix an integer $n \\ge 2$. Consider $n$ real numbers $a_1, a_2, \\dots, a_n$, not all equal, and let\n$$\nd = d(a_1, a_2, \\dots, a_n) = \\max_{1 \\le i < j \\le n} |a_i - a_j|\n$$\nand\n$$\ns = s(a_1, a_2, \\dots, a_n) = \\sum_{1 \\le i < j \\le n} |a_i - a_j|.\n$$\n\nDetermine, in terms of $n$, the smallest and the largest values the quotient $s/d$ may achieve.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let\n\\[\nm=\\min_i a_i,\\qquad M=\\max_i a_i,\n\\]\nso \\(d=M-m>0\\). Since both \\(s\\) and \\(d\\) are translation- and scale-invariant in the ratio \\(s/d\\), we may normalize to\n\\[\nm=0,\\quad M=1,\n\\]\nso all \\(a_i\\in[0,1]\\) and \\(d=1\\). Then\n\\[\n\\frac{s}{d}=s=\\sum_{i<j}|a_i-a_j|.\n\\]\n\n## Smallest possible value\nTo make \\(s\\) as small as possible, we should have as few nonzero pairwise differences as possible. This happens when exactly one number is \\(0\\), exactly one number is \\(1\\), and the remaining \\(n-2\\) numbers are all equal to one of these endpoints. Then only one pair contributes distance \\(1\\), so\n\\[\ns=1.\n\\]\nThis is clearly minimal, since at least one pair realizes the diameter.\n\nThus\n\\[\n\\min \\frac{s}{d}=1.\n\\]\n\n## Largest possible value\nTo maximize the sum of pairwise distances with fixed diameter \\(1\\), we want the numbers split as evenly as possible between the two endpoints \\(0\\) and \\(1\\). If \\(k\\) numbers are \\(0\\) and \\(n-k\\) are \\(1\\), then every cross-pair contributes \\(1\\), so\n\\[\ns=k(n-k).\n\\]\nThis is maximized when \\(k\\) is as close as possible to \\(n/2\\), giving\n\\[\n\\max s=\\left\\lfloor \\frac{n^2}{4}\\right\\rfloor.\n\\]\nIndeed,\n- if \\(n=2m\\), the maximum is \\(m^2\\);\n- if \\(n=2m+1\\), the maximum is \\(m(m+1)\\).\n\nTherefore\n\\[\n\\max \\frac{s}{d}=\\left\\lfloor \\frac{n^2}{4}\\right\\rfloor.\n\\]\n\nSo the quotient \\(s/d\\) ranges from \\(1\\) to \\(\\left\\lfloor n^2/4\\right\\rfloor\\).\n\nFinal answer: \\(\\min \\frac{s}{d}=1,\\quad \\max \\frac{s}{d}=\\left\\lfloor \\frac{n^2}{4}\\right\\rfloor.\\)",
+  "usage": {
+    "input_tokens": 195,
+    "output_tokens": 531,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.5999042919138446,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "\\(\\min \\frac{s}{d}=1,\\quad \\max \\frac{s}{d}=\\left\\lfloor \\frac{n^2}{4}\\right\\rfloor.\\)"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "id": "0ckv",
+  "country": "Romania",
+  "competition": "75th Romanian Mathematical Olympiad",
+  "gold_final_answer": "All solutions are f(z) = c z for all z, where c is a complex constant with |c| = 1.",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Functional Equations",
+    "Algebra > Intermediate Algebra > Complex numbers"
+  ],
+  "prompt": "Determine all functions $f: \\mathbb{C} \\to \\mathbb{C}$ such that $|wf(z) + zf(w)| = 2|zw|$, for any $z, w \\in \\mathbb{C}$.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Setting Up the Problem\n\nWe need to find all functions $f: \\mathbb{C} \\to \\mathbb{C}$ such that $|wf(z) + zf(w)| = 2|zw|$ for all $z, w \\in \\mathbb{C}$.\n\n## Initial Substitutions\n\n**Setting $z = w$:** \n$$|zf(z) + zf(z)| = 2|z|^2 \\implies 2|z||f(z)| = 2|z|^2$$\n\nFor $z \\neq 0$: $|f(z)| = |z|$.\n\nSo $f$ maps each nonzero $z$ to a complex number with $|f(z)| = |z|$.\n\n**Setting $w = z$ and $w = -z$:**\n\nFrom $|f(z)| = |z|$, we can write $f(z) = z \\cdot g(z)$ where $|g(z)| = 1$ for $z \\neq 0$.\n\n## Substituting $f(z) = z \\cdot g(z)$\n\nThe condition becomes:\n$$|w \\cdot z \\cdot g(z) + z \\cdot w \\cdot g(w)| = 2|zw|$$\n$$|zw| \\cdot |g(z) + g(w)| = 2|zw|$$\n\nFor $z, w \\neq 0$: $|g(z) + g(w)| = 2$.\n\nSince $|g(z)| = |g(w)| = 1$, the condition $|g(z) + g(w)| = 2$ means $g(z) = g(w)$ (equality in triangle inequality requires same direction, and since both have modulus 1, they must be equal).\n\nThis must hold for **all** $z, w \\neq 0$, so $g(z)$ is constant: $g(z) = c$ where $|c| = 1$.\n\n## Conclusion\n\nTherefore $f(z) = cz$ for all $z \\neq 0$, where $|c| = 1$.\n\n**Checking $z = 0$:** The original equation gives $|wf(0)| = 0$ for all $w$, so $f(0) = 0 = c \\cdot 0$. ✓\n\n**Verification:** With $f(z) = cz$:\n$$|wf(z) + zf(w)| = |w(cz) + z(cw)| = |2czw| = 2|c||zw| = 2|zw| \\checkmark$$\n\n## Answer\n\nAll functions satisfying the condition are:\n\n$$\\boxed{f(z) = cz}$$\n\nwhere $c \\in \\mathbb{C}$ with $|c| = 1$.\n\nFinal answer: $f(z)=cz$ for some constant $c\\in\\mathbb{C}$ with $|c|=1$.",
+  "usage": {
+    "input_tokens": 108,
+    "output_tokens": 740,
+    "thinking_tokens": 0
+  },
+  "latency_s": 11.096455773105845,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "$f(z)=cz$ for some constant $c\\in\\mathbb{C}$ with $|c|=1$."
+  }
+}

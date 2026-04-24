@@ -1,0 +1,20 @@
+{
+  "id": "01qf",
+  "country": "Belarus",
+  "competition": "Selection and Training Session",
+  "gold_final_answer": "A circle centered at N, the midpoint of BM (where M is the midpoint of AC), with radius equal to one quarter of AC (equivalently, R/4 where R is the radius of S).",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Analytic / Coordinate Methods > Complex numbers in geometry",
+    "Geometry > Plane Geometry > Miscellaneous > Constructions and loci"
+  ],
+  "prompt": "Given a triangle $ABC$. Let $S$ be the circle passing through $C$ centered at $A$. Let $X$ be a variable point on $S$, and let $K$ be the midpoint of the segment $CX$.\nFind the locus of the midpoints of $BK$, when $X$ moves along $S$.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "Let me set up coordinates. Let A be the center of circle S, which passes through C, so the radius is AC.\n\nX moves on S, so |AX| = |AC|.\n\nK is the midpoint of CX, so K = (C + X)/2.\n\nLet M be the midpoint of BK. Then:\nM = (B + K)/2 = (B + (C + X)/2)/2 = B/2 + C/4 + X/4\n\nAs X moves on circle S (centered at A with radius AC), X = A + (C - A) rotated, i.e., X traces a circle centered at A with radius |AC|.\n\nSo M = B/2 + C/4 + X/4, where X lies on a circle centered at A with radius |AC|.\n\nThe locus of M is a circle centered at:\nB/2 + C/4 + A/4\n\nwith radius |AC|/4.\n\nLet me express the center more cleanly. The center is:\n(B/2) + (C/4) + (A/4) = (2B + C + A)/4\n\nThe radius is |AC|/4.\n\n**Verification:** The center of the locus is the point (A + 2B + C)/4. \n\nLet me describe this geometrically. The midpoint of AC is (A+C)/2. The midpoint of B and midpoint(AC) is (B + (A+C)/2)/2 = (A + 2B + C)/4. This is the midpoint of B and the midpoint of AC.\n\nAlternatively: Let N be the midpoint of AC. The center of the locus is the midpoint of BN.\n\nThe radius is AC/4.\n\n**The locus** is a circle centered at the midpoint of $B$ and the midpoint of $AC$, with radius $\\frac{AC}{4}$.\n\nFinal answer: The locus is a circle centered at the midpoint of $B$ and the midpoint of $AC$, with radius $\\dfrac{AC}{4}$.",
+  "usage": {
+    "input_tokens": 124,
+    "output_tokens": 491,
+    "thinking_tokens": 0
+  },
+  "latency_s": 8.164882757002488,
+  "cached": false
+}

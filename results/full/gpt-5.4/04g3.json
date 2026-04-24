@@ -1,0 +1,19 @@
+{
+  "id": "04g3",
+  "country": "Croatia",
+  "competition": "Mathematica competitions in Croatia",
+  "gold_final_answer": "1 + i, -1 - i",
+  "topics_flat": [
+    "Algebra > Intermediate Algebra > Complex numbers"
+  ],
+  "prompt": "Determine all complex numbers $z$ such that\n$$\n|z^2 - i| = 1 \\quad \\text{and} \\quad |z| = \\sqrt{2}.\n$$",
+  "model": "gpt-5.4",
+  "response_text": "Let\n\\[\nz=x+iy \\qquad (x,y\\in\\mathbb R).\n\\]\nWe are given\n\\[\n|z|=\\sqrt2 \\quad\\Longrightarrow\\quad x^2+y^2=2.\n\\]\n\nAlso,\n\\[\nz^2=(x+iy)^2=(x^2-y^2)+2xy\\,i,\n\\]\nso\n\\[\nz^2-i=(x^2-y^2)+i(2xy-1).\n\\]\nHence\n\\[\n|z^2-i|=1\n\\]\ngives\n\\[\n(x^2-y^2)^2+(2xy-1)^2=1.\n\\]\n\nNow expand:\n\\[\n(x^2-y^2)^2+(2xy-1)^2\n= (x^2+y^2)^2-4xy+1.\n\\]\nSince \\(x^2+y^2=2\\), this becomes\n\\[\n4-4xy+1=1,\n\\]\nso\n\\[\n4-4xy=0 \\quad\\Longrightarrow\\quad xy=1.\n\\]\n\nThus we solve\n\\[\nx^2+y^2=2,\\qquad xy=1.\n\\]\nThen\n\\[\n(x-y)^2=x^2+y^2-2xy=2-2=0,\n\\]\nso \\(x=y\\). Since \\(xy=1\\), we get \\(x^2=1\\), hence\n\\[\nx=y=1 \\quad\\text{or}\\quad x=y=-1.\n\\]\n\nTherefore\n\\[\nz=1+i \\quad\\text{or}\\quad z=-1-i.\n\\]\n\nFinal answer: \\(\\boxed{z=1+i \\text{ or } z=-1-i}\\).",
+  "usage": {
+    "input_tokens": 89,
+    "output_tokens": 379,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 5.2659985510399565,
+  "cached": false
+}

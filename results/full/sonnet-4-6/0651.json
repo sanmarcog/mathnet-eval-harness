@@ -1,0 +1,20 @@
+{
+  "id": "0651",
+  "country": "Greece",
+  "competition": "24th Balkan Mathematical Olympiad",
+  "gold_final_answer": "n = 1 or n = 3",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities",
+    "Algebra > Prealgebra / Basic Algebra > Integers"
+  ],
+  "prompt": "Find all positive integers $n$ such that there is a permutation $\\sigma$ of the set $\\{1,2,...,n\\}$ for which $\\sqrt{\\sigma(1)+\\sigma(2)+\\dots+\\sigma(n)}$ is a rational number.\n\n*: A permutation of the set $\\{1,2,...,n\\}$ is a one-to-one function of this set to itself.*",
+  "model": "claude-sonnet-4-6",
+  "response_text": "The sum σ(1) + σ(2) + ... + σ(n) is always 1 + 2 + ... + n = n(n+1)/2, regardless of the permutation.\n\nSo we need √(n(n+1)/2) to be rational, which means n(n+1)/2 must be a perfect square.\n\nWe need n(n+1)/2 = k² for some positive integer k.\n\nThese are called square triangular numbers. We need to find all positive integers n such that the n-th triangular number is a perfect square.\n\nLet me find which n work:\n- n=1: 1·2/2 = 1 = 1². ✓\n- n=2: 2·3/2 = 3. Not a perfect square.\n- n=3: 3·4/2 = 6. Not a perfect square.\n- n=4: 4·5/2 = 10. Not a perfect square.\n- n=5: 5·6/2 = 15. Not a perfect square.\n- n=6: 6·7/2 = 21. Not a perfect square.\n- n=7: 7·8/2 = 28. Not a perfect square.\n- n=8: 8·9/2 = 36 = 6². ✓\n- n=49: 49·50/2 = 1225 = 35². ✓\n- n=288: 288·289/2 = 41616 = 204². ✓\n\nThe equation n(n+1)/2 = k² leads to the Pell equation. Setting m = 2n+1, we get m² - 8k² = 1, which is a Pell equation with infinitely many solutions.\n\nThe solutions satisfy the recurrence. The values of n are: 1, 8, 49, 288, 1681, ...\n\nThese follow the recurrence n_{j+1} = 6n_j - n_{j-1} + 2.\n\nSince the problem asks to \"find all positive integers n,\" and there are infinitely many such n (given by the Pell equation solutions), the answer is:\n\nAll positive integers n such that n(n+1)/2 is a perfect square, i.e., n belongs to the sequence 1, 8, 49, 288, 1681, ... defined by the recurrence n_{k+1} = 6n_k - n_{k-1} + 2 with n_0 = 0, n_1 = 1 (or equivalently n_1 = 1, n_2 = 8).\n\nThese are precisely the positive integers n for which n(n+1)/2 is a perfect square.\n\nFinal answer: All positive integers $n$ such that $\\dfrac{n(n+1)}{2}$ is a perfect square (i.e., $n \\in \\{1, 8, 49, 288, 1681, \\ldots\\}$, the sequence satisfying $n_{k+1} = 6n_k - n_{k-1} + 2$).",
+  "usage": {
+    "input_tokens": 143,
+    "output_tokens": 754,
+    "thinking_tokens": 0
+  },
+  "latency_s": 9.834123285021633,
+  "cached": false
+}

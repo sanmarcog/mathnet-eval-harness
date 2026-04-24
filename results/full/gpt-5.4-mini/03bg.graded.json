@@ -1,0 +1,27 @@
+{
+  "id": "03bg",
+  "country": "Bulgaria",
+  "competition": "Bulgaria",
+  "gold_final_answer": "2^{2011}(2011\\cdot2010+2)",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments",
+    "Discrete Mathematics > Combinatorics > Induction / smoothing",
+    "Geometry > Plane Geometry > Combinatorial Geometry > Convex hulls",
+    "Geometry > Plane Geometry > Miscellaneous > Constructions and loci"
+  ],
+  "prompt": "Let $M$ be convex 2011-gon. Consider 2011 points lying inside $M$ and such that no three of all 4022 points (the vertexes of $M$ and 2011 points inside $M$) are collinear. A coloring of all points in two colors is called *good* if it is possible to connect some of the points by segments such that the following conditions hold:\n(1) Each segment has its endpoints of one and the same color.\n(2) No segments intersect in inner points.\n(3) Between any two points of the same color there exists a path through the given segments.\nFind the number of all good colorings.",
+  "model": "gpt-5.4-mini",
+  "response_text": "A coloring is good exactly when one color class is connected and the other color class is connected in the noncrossing straight-line graph sense. For a set of points in general position, a standard fact is:\n\n- A two-coloring is good **iff** the two color classes are each **not separable by a line** into convex-position extremes that force disconnectedness; for the vertices of a convex polygon together with interior points, this translates into the following simple criterion:\n- The only bad colorings are those in which one color class consists of a set of points all lying on the boundary of a convex hull that disconnects the other color class from itself.  \n- In this problem, because there are exactly \\(2011\\) polygon vertices and \\(2011\\) interior points, and no three points are collinear, the good colorings are precisely those where the two color classes have the same parity count on the convex boundary obstruction, leading to a Catalan-type count.\n\nFor a convex \\( (2n+1)\\)-gon with \\(2n+1\\) interior points in general position, the number of good colorings is\n\\[\n2^{2n+1}-2\\binom{2n+1}{n}.\n\\]\nHere \\(2n+1=2011\\), so \\(n=1005\\), and the number is\n\\[\n2^{2011}-2\\binom{2011}{1005}.\n\\]\n\nFinal answer: \\(\\boxed{2^{2011}-2\\binom{2011}{1005}}\\)",
+  "usage": {
+    "input_tokens": 189,
+    "output_tokens": 332,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 2.9527141380822286,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "2^{2011}-2\\binom{2011}{1005}"
+  }
+}

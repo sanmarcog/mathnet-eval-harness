@@ -1,0 +1,25 @@
+{
+  "id": "09v7",
+  "country": "Netherlands",
+  "competition": "Second Round, March 2019",
+  "gold_final_answer": "11",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments",
+    "Algebra > Algebraic Expressions > Sequences and Series > Recurrence relations"
+  ],
+  "prompt": "In a tall hat there are one hundred notes, numbered from $1$ to $100$. You want to have three notes with the property that each of the three numbers is smaller than the sum of the other two. For example, the three notes numbered $10$, $15$, and $20$ would be suitable (as $10 < 15 + 20$, $15 < 10 + 20$, and $20 < 10 + 15$), but the notes numbered $3$, $4$, and $7$ would not (as $7$ is not smaller than $3 + 4$). You may (without looking at the numbers on the notes) take some notes from the hat.\nWhat is the smallest number of notes you have to take to be sure to have three notes that meet your wish?",
+  "model": "gpt-5.4-mini",
+  "response_text": "To guarantee three chosen numbers \\(a,b,c\\) satisfy\n\\[\na<b+c,\\quad b<a+c,\\quad c<a+b,\n\\]\nit is enough and necessary that the largest of the three is less than the sum of the other two.\n\nSo we want the smallest number of notes that forces such a triple among numbers \\(1,2,\\dots,100\\).\n\n### Key idea\nIf we want to **avoid** having such a triple, we must avoid any three chosen numbers where the largest is less than the sum of the other two.\n\nA largest possible set with no such triple is:\n\\[\n1,2,4,8,16,32,64\n\\]\n(the powers of 2).  \nWhy does this work? For any three of them, the largest is at least the sum of the other two, since\n\\[\n2^k \\ge 2^{k-1}+2^{k-2}.\n\\]\nSo this set has size \\(7\\).\n\nNow we show this is best possible: any set of \\(8\\) numbers from \\(1\\) to \\(100\\) must contain such a triple. Indeed, among 8 numbers in increasing order\n\\[\na_1<a_2<\\cdots<a_8,\n\\]\nif every triple avoided the condition, then in particular we would need\n\\[\na_{i+2}\\ge a_{i+1}+a_i \\quad \\text{for all } i,\n\\]\nwhich forces the sequence to grow at least like Fibonacci numbers. The smallest such sequence starting from positive integers is\n\\[\n1,2,3,5,8,13,21,34,\\dots\n\\]\nand by the 8th term we already reach 34, so the maximum size of a triangle-free set in \\(\\{1,\\dots,100\\}\\) is \\(7\\).\n\nTherefore, with \\(7\\) notes it is still possible to avoid the property, but with \\(8\\) notes it is impossible.\n\nFinal answer: \\(8\\)",
+  "usage": {
+    "input_tokens": 217,
+    "output_tokens": 434,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.281037352979183,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "\\(8\\)"
+  }
+}

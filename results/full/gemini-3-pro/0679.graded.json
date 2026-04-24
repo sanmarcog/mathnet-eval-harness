@@ -1,0 +1,26 @@
+{
+  "id": "0679",
+  "country": "Greece",
+  "competition": "31st Hellenic Mathematical Olympiad",
+  "gold_final_answer": "(2, 1)",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Prime numbers",
+    "Number Theory > Divisibility / Factorization > Factorization techniques",
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities"
+  ],
+  "prompt": "Let $p$ prime and $m$ a positive integer. Determine all pairs $(p, m)$ satisfying the equation: $p(p+m)+p=(m+1)^3$. (A. Fellouris)",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find all pairs $(p, m)$ of a prime $p$ and a positive integer $m$ satisfying the equation:\n$$p(p+m)+p=(m+1)^3$$\n\nFirst, we can factor the left side of the equation:\n$$p(p+m+1) = (m+1)^3$$\n\nSince $p$ is a prime and it divides the left side, it must also divide the right side, $(m+1)^3$. By the property of primes, if $p$ divides $(m+1)^3$, then $p$ must divide $m+1$. \n\nLet $m+1 = pk$ for some positive integer $k$. Substituting $m+1 = pk$ and $m = pk-1$ into our factored equation gives:\n$$p(p + pk - 1 + 1) = (pk)^3$$\n$$p(p + pk) = p^3k^3$$\n$$p^2(1 + k) = p^3k^3$$\n\nSince $p$ is a prime, $p \\neq 0$, so we can divide both sides by $p^2$:\n$$1 + k = pk^3$$\n\nNow we can solve for $p$:\n$$p = \\frac{k+1}{k^3}$$\n\nSince $p$ must be a prime (and therefore an integer $\\ge 2$), the numerator $k+1$ must be greater than or equal to the denominator $k^3$. \nFor $k = 1$:\n$$p = \\frac{1+1}{1^3} = 2$$\nThis gives a prime $p=2$. We can then find $m$:\n$$m = pk - 1 = 2(1) - 1 = 1$$\n\nFor $k \\ge 2$:\nThe denominator $k^3$ grows much faster than the numerator $k+1$. Specifically, for any $k \\ge 2$, $k^3 > k+1$, which means $0 < \\frac{k+1}{k^3} < 1$. Thus, $p$ cannot be an integer for any $k \\ge 2$.\n\nTherefore, the only solution is when $k=1$, which yields $p=2$ and $m=1$. \n\nWe can verify this solution by plugging it back into the original equation:\n$$2(2+1)+2 = 2(3)+2 = 8$$\n$$(1+1)^3 = 2^3 = 8$$\nThe equation holds true.\n\nFinal answer: (2, 1)",
+  "usage": {
+    "input_tokens": 86,
+    "output_tokens": 574,
+    "thoughts_tokens": 1049
+  },
+  "latency_s": 14.328942967928015,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "exact",
+    "predicted": "(2, 1)"
+  }
+}

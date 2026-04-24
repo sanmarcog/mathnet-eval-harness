@@ -1,0 +1,25 @@
+{
+  "id": "0d0t",
+  "country": "Saudi Arabia",
+  "competition": "Saudi Arabia Mathematical Competitions 2012",
+  "gold_final_answer": "n!·(n−1)^n",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities > Combinatorial optimization",
+    "Discrete Mathematics > Combinatorics > Induction / smoothing"
+  ],
+  "prompt": "In an $n \\times n$ board, the numbers $0$ through $n^2 - 1$ are written so that the number in row $i$ and column $j$ is equal to\n$$\n(i-1) + n(j-1) \\text{ where } 1 \\le i, j \\le n.\n$$\nSuppose we select $n$ different cells of the board, where no two cells are in the same row or column. Find the maximum possible product of the numbers in the $n$ cells.",
+  "model": "gpt-5.4",
+  "response_text": "Let the selected cells be \\((i,\\sigma(i))\\) for a permutation \\(\\sigma\\) of \\(\\{1,2,\\dots,n\\}\\), since we choose exactly one cell from each row and each column.\n\nThe number in row \\(i\\), column \\(j\\) is\n\\[\n(i-1)+n(j-1).\n\\]\nSo the product we want to maximize is\n\\[\nP(\\sigma)=\\prod_{i=1}^n \\bigl((i-1)+n(\\sigma(i)-1)\\bigr).\n\\]\n\nWe will show the maximum occurs when \\(\\sigma(i)=n+1-i\\), i.e. on the anti-diagonal:\n\\[\n(i,\\,n+1-i).\n\\]\n\n## Step 1: Rewrite the entries\nSet\n\\[\na_i=i-1 \\qquad (0,1,\\dots,n-1),\n\\]\nand\n\\[\nb_j=n(j-1) \\qquad (0,n,2n,\\dots,n(n-1)).\n\\]\nThen each chosen factor is \\(a_i+b_{\\sigma(i)}\\).\n\nSo we want to maximize\n\\[\n\\prod_{i=1}^n (a_i+b_{\\sigma(i)}).\n\\]\n\nHere \\(a_1<a_2<\\cdots<a_n\\) and \\(b_1<b_2<\\cdots<b_n\\).\n\n## Step 2: A swapping argument\nSuppose for some \\(r<s\\) we have \\(\\sigma(r)<\\sigma(s)\\). Compare the product contribution before and after swapping these two assignments:\n\nBefore:\n\\[\n(a_r+b_{\\sigma(r)})(a_s+b_{\\sigma(s)}).\n\\]\n\nAfter swap:\n\\[\n(a_r+b_{\\sigma(s)})(a_s+b_{\\sigma(r)}).\n\\]\n\nCompute the difference:\n\\[\n(a_r+b_{\\sigma(s)})(a_s+b_{\\sigma(r)})-(a_r+b_{\\sigma(r)})(a_s+b_{\\sigma(s)})\n\\]\n\\[\n= (a_s-a_r)(b_{\\sigma(r)}-b_{\\sigma(s)}).\n\\]\nSince \\(a_s>a_r\\) and \\(b_{\\sigma(s)}>b_{\\sigma(r)}\\), this is negative. Thus\n\\[\n(a_r+b_{\\sigma(r)})(a_s+b_{\\sigma(s)})\n>\n(a_r+b_{\\sigma(s)})(a_s+b_{\\sigma(r)}).\n\\]\n\nSo if two rows \\(r<s\\) are matched to columns in increasing order, swapping them decreases the product; equivalently, to maximize the product we should pair larger \\(a_i\\) with smaller \\(b_j\\), i.e. the permutation must be decreasing.\n\nHence the maximizing permutation is\n\\[\n\\sigma(i)=n+1-i.\n\\]\n\n## Step 3: Compute the product\nFor \\(\\sigma(i)=n+1-i\\), the chosen entry in row \\(i\\) is\n\\[\n(i-1)+n((n+1-i)-1)=(i-1)+n(n-i).\n\\]\nThis simplifies to\n\\[\nn^2-(n-1)i-1+n\n= n^2-1-(n-1)(i-1).\n\\]\nAs \\(i=1,2,\\dots,n\\), these values are\n\\[\nn^2-n,\\; n^2-2n+1,\\; \\dots,\\; 2n-2,\\; n-1.\n\\]\nMore transparently,\n\\[\n(i-1)+n(n-i)=(n-1)(n-k)\\quad\\text{with }k=i-1,\n\\]\nso the set of chosen numbers is\n\\[\n(n-1),\\;2(n-1),\\;3(n-1),\\;\\dots,\\;n(n-1).\n\\]\nTherefore the maximum product is\n\\[\n\\prod_{m=1}^n m(n-1)=(n-1)^n\\cdot n!.\n\\]\n\nFinal answer: \\(\\boxed{n!(n-1)^n}\\)",
+  "usage": {
+    "input_tokens": 162,
+    "output_tokens": 863,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 12.707477655028924,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "n!(n-1)^n"
+  }
+}

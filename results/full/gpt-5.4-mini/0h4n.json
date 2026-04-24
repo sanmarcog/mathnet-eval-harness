@@ -1,0 +1,20 @@
+{
+  "id": "0h4n",
+  "country": "Ukraine",
+  "competition": "55rd Ukrainian National Mathematical Olympiad - Third Round",
+  "gold_final_answer": "1, 2, 3, 4, 6",
+  "topics_flat": [
+    "Number Theory > Number-Theoretic Functions > τ (number of divisors)",
+    "Number Theory > Divisibility / Factorization > Greatest common divisors (gcd)"
+  ],
+  "prompt": "Find all integers $n$ that have more than $\\frac{n}{2}$ divisors.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let \\(d(n)\\) denote the number of positive divisors of \\(n\\).\n\nWe want all integers \\(n\\) such that\n\\[\nd(n)>\\frac n2.\n\\]\n\n### Key observation\nFor \\(n>6\\), this is very restrictive, because \\(d(n)\\) grows much more slowly than \\(n\\).\n\nWe check small values:\n- \\(n=1\\): \\(d(1)=1>\\tfrac12\\), yes\n- \\(n=2\\): \\(d(2)=2>1\\), yes\n- \\(n=3\\): \\(d(3)=2>\\tfrac32\\), yes\n- \\(n=4\\): \\(d(4)=3>2\\), yes\n- \\(n=5\\): \\(d(5)=2\\not> \\tfrac52\\), no\n- \\(n=6\\): \\(d(6)=4>3\\), yes\n\nNow show no \\(n\\ge 7\\) works.\n\nIf \\(n\\) is odd, then \\(d(n)\\le n^{o(1)}\\), and in particular for \\(n\\ge 7\\), \\(d(n)\\le n-1 < n/2\\) is not immediate, but we can argue more directly using factor pairs: the divisor count is at most \\(n\\), and in fact only very small numbers can have divisor count exceeding half the number itself. A cleaner route is to use the standard bound\n\\[\nd(n)\\le 2\\sqrt n,\n\\]\nsince divisors come in pairs \\(a,n/a\\). Then for \\(n\\ge 9\\),\n\\[\nd(n)\\le 2\\sqrt n \\le \\frac n2\n\\]\nbecause \\(4\\sqrt n\\le n\\) when \\(n\\ge 16\\), and the remaining cases \\(7\\le n\\le 15\\) can be checked directly:\n- \\(7: d=2\\)\n- \\(8: d=4\\)\n- \\(9: d=3\\)\n- \\(10: d=4\\)\n- \\(11: d=2\\)\n- \\(12: d=6\\) not \\(>6\\)\n- \\(13: d=2\\)\n- \\(14: d=4\\)\n- \\(15: d=4\\)\n\nNone of these exceed \\(n/2\\).\n\nSo the only solutions are\n\\[\nn=1,2,3,4,6.\n\\]\n\nFinal answer: \\(\\boxed{1,2,3,4,6}\\)",
+  "usage": {
+    "input_tokens": 68,
+    "output_tokens": 548,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 4.1843897140352055,
+  "cached": false
+}

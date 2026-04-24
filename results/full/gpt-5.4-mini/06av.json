@@ -1,0 +1,20 @@
+{
+  "id": "06av",
+  "country": "Greece",
+  "competition": "40th Hellenic Mathematical Olympiad",
+  "gold_final_answer": "(3, 2), (10, 9), (13, 6)",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Factorization techniques",
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities"
+  ],
+  "prompt": "Determine all positive integers $\\alpha, \\beta$ with $\\alpha > 1$ such that $\\beta$ divides $\\alpha - 1$ and $2\\alpha + 1$ divides $5\\beta - 3$.\n(A. Fellouris)",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let  \n\\[\n\\beta\\mid (\\alpha-1),\\qquad 2\\alpha+1\\mid 5\\beta-3,\n\\]\nwith \\(\\alpha>1\\).\n\nWe write\n\\[\n\\alpha-1=k\\beta\n\\]\nfor some positive integer \\(k\\). Then\n\\[\n\\alpha=k\\beta+1.\n\\]\nSubstitute into the second divisibility condition:\n\\[\n2\\alpha+1=2(k\\beta+1)+1=2k\\beta+3 \\mid 5\\beta-3.\n\\]\n\nNow compare sizes. Since \\(k\\ge 1\\),\n\\[\n2k\\beta+3 \\le 5\\beta-3\n\\]\nmust hold for divisibility to be possible, so \\(2k\\beta+3\\le 5\\beta-3\\), giving\n\\[\n(2k-5)\\beta \\le -6.\n\\]\nHence \\(2k-5<0\\), so \\(k=1\\) or \\(k=2\\).\n\n### Case 1: \\(k=1\\)\nThen \\(\\alpha=\\beta+1\\), and\n\\[\n2\\alpha+1=2\\beta+3 \\mid 5\\beta-3.\n\\]\nCompute:\n\\[\n5\\beta-3 - 2(2\\beta+3)=\\beta-9.\n\\]\nSo \\(2\\beta+3\\mid \\beta-9\\). Since \\(2\\beta+3 > \\beta-9\\) for \\(\\beta\\ge 1\\), we must have \\(\\beta-9\\le 0\\). Testing possible values from divisibility gives:\n\\[\n\\beta-9 = - (2\\beta+3)\n\\]\nimpossible, and smaller absolute values also do not work except \\(\\beta=3\\), which gives\n\\[\n2\\beta+3=9,\\quad 5\\beta-3=12,\n\\]\nnot divisible. So no solution here.\n\n### Case 2: \\(k=2\\)\nThen \\(\\alpha=2\\beta+1\\), and\n\\[\n2\\alpha+1=4\\beta+3 \\mid 5\\beta-3.\n\\]\nNow\n\\[\n5\\beta-3 - (4\\beta+3)=\\beta-6,\n\\]\nso \\(4\\beta+3\\mid \\beta-6\\). Again \\(4\\beta+3>\\beta-6\\), forcing \\(\\beta\\le 6\\). Check \\(\\beta=1,2,3,4,5,6\\):\n- \\(\\beta=1\\): \\(7\\nmid 2\\)\n- \\(\\beta=2\\): \\(11\\nmid 7\\)\n- \\(\\beta=3\\): \\(15\\nmid 12\\)\n- \\(\\beta=4\\): \\(19\\nmid 17\\)\n- \\(\\beta=5\\): \\(23\\nmid 22\\)\n- \\(\\beta=6\\): \\(27\\nmid 27\\) works.\n\nSo \\(\\beta=6\\), and then\n\\[\n\\alpha=2\\beta+1=13.\n\\]\nCheck:\n\\[\n\\beta\\mid \\alpha-1 \\iff 6\\mid 12,\\qquad 2\\alpha+1=27\\mid 5\\cdot 6-3=27.\n\\]\n\nThus the unique solution is\n\\[\n(\\alpha,\\beta)=(13,6).\n\\]\n\nFinal answer: \\((\\alpha,\\beta)=(13,6)\\)",
+  "usage": {
+    "input_tokens": 102,
+    "output_tokens": 770,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 5.131791985942982,
+  "cached": false
+}

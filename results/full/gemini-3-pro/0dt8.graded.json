@@ -1,0 +1,26 @@
+{
+  "id": "0dt8",
+  "country": "Singapore",
+  "competition": "Singapore Mathematical Olympiad (SMO)",
+  "gold_final_answer": "{13,53}, {19,47}, {23,43}, {29,37}",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Prime numbers",
+    "Number Theory > Divisibility / Factorization > Greatest common divisors (gcd)",
+    "Number Theory > Divisibility / Factorization > Factorization techniques"
+  ],
+  "prompt": "Two distinct 2-digit prime numbers $p$, $q$ can be written one after the other in 2 different ways to form two 4-digit numbers. For example, $11$ and $13$ yield $1113$ and $1311$. If the two 4-digit numbers formed are both divisible by the average value of $p$ and $q$, find all possible pairs \\{$p, q$\\}.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find all possible pairs of distinct 2-digit prime numbers $\\{p, q\\}$, we first write the two 4-digit numbers formed by concatenating them. Since $p$ and $q$ are 2-digit numbers, the two 4-digit numbers are $100p + q$ and $100q + p$.\n\nThe average value of $p$ and $q$ is $A = \\frac{p+q}{2}$. We are given that $A$ divides both $100p + q$ and $100q + p$. \nThis means there exists an integer $k$ such that:\n$100p + q = k \\left(\\frac{p+q}{2}\\right)$\n$200p + 2q = k(p+q)$\n$200p - kp = kq - 2q$\n$p(200 - k) = q(k - 2)$\n\nSince $p$ and $q$ are distinct prime numbers, $\\gcd(p, q) = 1$. Therefore, $p$ must divide $k - 2$. \nLet $k - 2 = cp$ for some integer $c$. Then $k = cp + 2$. \nSubstitute this back into the equation:\n$p(200 - (cp + 2)) = q(cp)$\n$200 - cp - 2 = cq$\n$198 = c(p + q)$\n\nThis shows that $p + q$ must be a divisor of 198. \nSince $p$ and $q$ are 2-digit primes, they are both odd, making $p + q$ an even number. Furthermore, the sum of two distinct 2-digit primes must be strictly between $11 + 13 = 24$ and $97 + 89 = 186$. \n\nLet's check the even divisors of 198 (which is $2 \\times 3^2 \\times 11$) that fall in the range $24 \\le p+q \\le 186$:\n- If $p + q = 198$, this is impossible since the maximum sum is 186.\n- If $p + q = 66$, this is a valid even divisor.\n- If $p + q = 22$, the only primes that sum to 22 are $11 + 11$, but $p$ and $q$ must be distinct.\n\nThus, the only possible sum for the two primes is $p + q = 66$. \nNow we find all pairs of distinct 2-digit primes that add up to 66:\n- $13 + 53 = 66$ (Both are prime)\n- $17 + 49 = 66$ ($49 = 7^2$, not prime)\n- $19 + 47 = 66$ (Both are prime)\n- $23 + 43 = 66$ (Both are prime)\n- $29 + 37 = 66$ (Both are prime)\n- $31 + 35 = 66$ ($35 = 5 \\times 7$, not prime)\n\nThe valid pairs of primes are $\\{13, 53\\}$, $\\{19, 47\\}$, $\\{23, 43\\}$, and $\\{29, 37\\}$. \n\nFinal answer: \\{13, 53\\}, \\{19, 47\\}, \\{23, 43\\}, \\{29, 37\\}",
+  "usage": {
+    "input_tokens": 135,
+    "output_tokens": 810,
+    "thoughts_tokens": 3150
+  },
+  "latency_s": 30.77028611698188,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "\\{13, 53\\}, \\{19, 47\\}, \\{23, 43\\}, \\{29, 37\\}"
+  }
+}

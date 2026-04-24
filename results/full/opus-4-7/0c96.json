@@ -1,0 +1,21 @@
+{
+  "id": "0c96",
+  "country": "Romania",
+  "competition": "Romanian Mathematical Olympiad",
+  "gold_final_answer": "a = 1 or a = 2",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Sequences and Series > Recurrence relations",
+    "Algebra > Intermediate Algebra > Logarithmic functions",
+    "Number Theory > Divisibility / Factorization > Factorization techniques"
+  ],
+  "prompt": "Consider a real number $a \\ge 1$. The sequence $(x_n)_{n \\ge 1}$ is given by $x_1 = a$ and $x_{n+1} = 1 + \\log_2 x_n$, for any $n \\in \\mathbb{N}^*$. Determine values of $a$ such that all terms of the sequence are rational numbers.",
+  "model": "claude-opus-4-7",
+  "response_text": "<think>\nWe need x_n rational for all n, with x_1=a≥1, x_{n+1}=1+log_2(x_n).\n\nIf sequence is constant: x=1+log_2 x, so x=2 (since log_2 2=1, 1+1=2). Actually check x=1: 1+log_2 1=1. So x=1 works too. Both fixed points.\n\nFor x_n rational, need log_2(x_n) rational, so x_n = 2^{p/q} rational means x_n is power of 2 with integer exponent. So x_n = 2^{k_n} for integer k_n.\n\nThen x_{n+1}=1+k_n, must equal 2^{k_{n+1}}. So 1+k_n = 2^{k_{n+1}}.\n\nNeed k_n such that 1+k_n is power of 2 for all n, and k_{n+1}=log_2(1+k_n).\n\nStart k_1 with a=2^{k_1}. Need k_1 integer (actually x_1 rational and log_2 x_1 rational forces x_1 = 2^integer? Let's verify: if x rational and log_2 x rational = p/q, then x=2^{p/q}, rational only if q|something... 2^{p/q} rational iff q=1 (by Gelfond or elementary). Yes.\n\nSo k_1 integer ≥0 (since a≥1).\nk_2 = log_2(1+k_1), need 1+k_1 = 2^{k_2}, k_2 integer ≥0.\nThen k_3 = log_2(1+k_2), etc.\n\nSequence k_n: k_{n+1}=log_2(1+k_n), all nonneg integers.\n\nFixed points: k=1 gives 1+1=2, log=1. k=0 gives 1+0=1, log=0.\n\nIf k_n=0 forever: a=1.\nIf k_n=1 forever: a=2.\n\nCould we have eventually reaching fixed point? k_1 such that 1+k_1 power of 2, then k_2 must also satisfy. If k_2=1, then k_1=1. If k_2=0, k_1=0... wait 1+k_1=2^0=1 means k_1=0.\n\nWhat about k_1=3: 1+3=4=2^2, k_2=2. Then 1+2=3, not power of 2. Fails.\nk_1=7: k_2=3, then fails.\nk_1=15: k_2=4, 1+4=5 fail.\n\nSo only a=1 or a=2.\n</think>\n\nLooking at this problem, I need to find $a \\geq 1$ making all $x_n$ rational.\n\n## Setting Up the Structure\n\nSince $x_{n+1} = 1 + \\log_2 x_n$ must be rational and $x_n$ is rational, $\\log_2 x_n$ must be rational.\n\n**Key fact:** If $x$ is rational and $\\log_2 x = p/q$ is rational, then $x = 2^{p/q}$. For this to be rational, we need $q = 1$, so $x = 2^k$ for some integer $k$.\n\nTherefore every $x_n$ must equal $2^{k_n}$ for some non-negative integer $k_n$ (since $a \\geq 1$).\n\n## Analyzing the Integer Sequence\n\nFrom $x_{n+1} = 1 + \\log_2 x_n$:\n$$2^{k_{n+1}} = 1 + k_n$$\n\nSo the sequence $(k_n)$ satisfies: **$1 + k_n$ must be a power of 2**, and $k_{n+1} = \\log_2(1+k_n)$, with all $k_n$ non-negative integers.\n\n## Finding Valid Sequences\n\n**Fixed points:** \n- $k = 0$: gives $1+0 = 1 = 2^0$ ✓ (so $k_{n+1}=0$)\n- $k = 1$: gives $1+1 = 2 = 2^1$ ✓ (so $k_{n+1}=1$)\n\n**Testing other starts:** If $k_1 \\geq 2$:\n- $k_1 = 2$: $1+2=3$, not a power of 2. ✗\n- $k_1 = 3$: $k_2 = 2$, then fails.\n- $k_1 = 7$: $k_2 = 3$, then $k_3 = 2$, then fails.\n- $k_1 = 2^m - 1$ (any $m \\geq 2$): $k_2 = m$, and eventually we reach some $k_j = 2$ which fails.\n\n**Claim:** The only sequences of non-negative integers with $1+k_n = 2^{k_{n+1}}$ forever are the constant sequences $k_n = 0$ and $k_n = 1$.\n\n*Proof:* If $k_n \\geq 2$ ever occurs, then $k_{n+1} = \\log_2(1+k_n) < k_n$ (since $1+k_n < 2^{k_n}$ for $k_n \\geq 2$). So the sequence strictly decreases while $k_n \\geq 2$, eventually hitting $k_j = 2$, where $1 + 2 = 3$ is not a power of 2. Contradiction.\n\nSo we need $k_n \\in \\{0, 1\\}$ always, forcing $k_1 = 0$ or $k_1 = 1$.\n\n## Conclusion\n\n- $k_1 = 0 \\Rightarrow a = 1$ (sequence: $1, 1, 1, \\ldots$)\n- $k_1 = 1 \\Rightarrow a = 2$ (sequence: $2, 2, 2, \\ldots$)\n\nFinal answer: $a \\in \\{1, 2\\}$",
+  "usage": {
+    "input_tokens": 182,
+    "output_tokens": 1848,
+    "thinking_tokens": 0
+  },
+  "latency_s": 21.46363911498338,
+  "cached": false
+}

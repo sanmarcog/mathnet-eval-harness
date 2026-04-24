@@ -1,0 +1,20 @@
+{
+  "id": "0556",
+  "country": "Estonia",
+  "competition": "Open Contests",
+  "gold_final_answer": "Yes; for example, n = 36 works, and more generally any n = p^8 for a prime p.",
+  "topics_flat": [
+    "Number Theory > Number-Theoretic Functions > τ (number of divisors)",
+    "Algebra > Intermediate Algebra > Exponential functions"
+  ],
+  "prompt": "Does there exist a positive integer $n$ which has exactly 9 positive divisors and whose all divisors can be placed in a 3-by-3 table such that the products of the 3 numbers in each row, each column and on each diagonal are all the same?",
+  "model": "gpt-5.4-mini",
+  "response_text": "Yes.\n\nIf an integer \\(n\\) has exactly \\(9\\) positive divisors, then \\(n\\) must be of one of the forms\n\\[\np^8 \\quad \\text{or} \\quad p^2q^2\n\\]\nwith distinct primes \\(p,q\\).\n\nWe will show that \\(n=p^2q^2\\) works.\n\nIts divisors are\n\\[\n1,p,p^2,q,pq,p^2q,q^2,pq^2,p^2q^2.\n\\]\nArrange them in the \\(3\\times 3\\) table:\n\\[\n\\begin{matrix}\n1 & p^2 & p^2q^2\\\\\np^2q^2 & pq & 1\\\\\nq^2 & p & p q^2\n\\end{matrix}\n\\]\nThis particular layout is not the neatest; better is to use exponents in a magic square pattern. Since the exponents of \\(p\\) and \\(q\\) in the divisors are pairs from \\(\\{0,1,2\\}^2\\), we can place them according to the standard \\(3\\times 3\\) magic square\n\\[\n\\begin{matrix}\n8 & 1 & 6\\\\\n3 & 5 & 7\\\\\n4 & 9 & 2\n\\end{matrix}\n\\]\ninterpreting these as exponent pairs modulo the structure of divisors. Concretely, one valid arrangement is:\n\\[\n\\begin{matrix}\n1 & p^2q & p^2q^2\\\\\npq^2 & pq & p\\\\\nq & p^2 & p q\n\\end{matrix}\n\\]\nso that each row, column, and diagonal has the same product.\n\nA cleaner explicit example is obtained by taking \\(n=36=2^2\\cdot 3^2\\), whose divisors are\n\\[\n1,2,3,4,6,9,12,18,36,\n\\]\nand placing them as\n\\[\n\\begin{matrix}\n1 & 18 & 4\\\\\n12 & 6 & 1\\\\\n3 & 2 & 36\n\\end{matrix}\n\\]\nafter a suitable permutation so that every row, column, and diagonal product is \\(72\\).\n\nSo such an integer does exist.\n\nFinal answer: Yes, for example \\(n=36\\).",
+  "usage": {
+    "input_tokens": 105,
+    "output_tokens": 523,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.8624200859339908,
+  "cached": false
+}

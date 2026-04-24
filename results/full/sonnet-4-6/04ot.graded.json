@@ -1,0 +1,24 @@
+{
+  "id": "04ot",
+  "country": "Croatia",
+  "competition": "Croatian Mathematical Society Competitions",
+  "gold_final_answer": "First player",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Games / greedy algorithms"
+  ],
+  "prompt": "42 pebbles are placed on a table. Two players take turns making moves. When making a move, a player has to take at least one pebble, but no more than half of the remaining pebbles. The player after whose move there is exactly one pebble left on the table, wins.\nWhich player can win regardless of how his opponent plays?\n(United Kingdom 2014)",
+  "model": "claude-sonnet-4-6",
+  "response_text": "I need to find a winning strategy for this game where players alternate taking pebbles (at least 1, at most half the remaining), and the player who leaves exactly 1 pebble wins.\n\n## Setting Up the Analysis\n\nLet me analyze positions by the number of pebbles remaining. A position is a **losing position (L)** if the player whose turn it is will lose with optimal play, and **winning position (W)** otherwise.\n\n**Key rules:**\n- From n pebbles, you can take k where 1 ≤ k ≤ ⌊n/2⌋, leaving n-k pebbles where ⌈n/2⌉ ≤ n-k ≤ n-1\n- You win if you leave exactly 1 pebble (i.e., you take n-1 pebbles, which requires n-1 ≤ n/2, so n ≤ 2... only possible from n=2)\n- Position n=1: the previous player already won, so this is terminal\n\n**Base cases:**\n- n=2: Can take 1 (leaving 1). **W** (win immediately)\n- n=3: Can take 1 (leaving 2). Must leave 2 (since max take = 1). Opponent faces W position → **L**\n- n=4: Can take 1 or 2, leaving 3 or 2. Can leave 3 (L for opponent). **W**\n- n=5: Can take 1 or 2, leaving 4 or 3. Leave 3 (L) → **W**\n- n=6: Can take 1,2,3, leaving 5,4,3. Leave 3 (L) → **W**\n- n=7: Can take 1,2,3, leaving 6,5,4. All are W → **L**\n- n=8: Can take 1-4, leaving 7,6,5,4. Leave 7 (L) → **W**\n- n=9: Can take 1-4, leaving 8,7,6,5. Leave 7 (L) → **W**\n- n=10: Can take 1-5, leaving 9,8,7,6,5. Leave 7 (L) → **W**\n- n=11: Can take 1-5, leaving 10,9,8,7,6. Leave 7 (L) → **W**\n- n=12: Can take 1-6, leaving 11,10,9,8,7,6. Leave 7 (L) → **W**\n- n=13: Can take 1-6, leaving 12,11,10,9,8,7. Leave 7 (L) → **W**\n- n=14: Can take 1-7, leaving 13,...,7. Leave 7 (L) → **W**\n- n=15: Can take 1-7, leaving 14,...,8. All W? Check: 8-14 are all W. → **L**\n\nI see a pattern: L positions are n = 3, 7, 15, ... which are **2^k - 1**.\n\nLet me verify: L positions seem to be numbers of the form 2^k - 1.\n- n=3=2²-1: L ✓\n- n=7=2³-1: L ✓  \n- n=15=2⁴-1: L ✓\n- n=31=2⁵-1: L ✓\n\n**Why?** From n = 2^k - 1, you can take 1 to ⌊(2^k-1)/2⌋ = 2^(k-1)-1 pebbles, leaving between 2^(k-1) and 2^k - 2. None of these equal 2^j - 1 for any j (since 2^(k-1) through 2^k-2 skips 2^(k-1)-1 and 2^k-1). So all moves lead to W positions.\n\nFrom any W position n (not 2^k-1), there exists a move to some 2^k-1: find the largest 2^k-1 < n, and check if n - (2^k-1) ≤ n/2, i.e., 2^k-1 ≥ n/2, i.e., 2^(k+1)-2 ≥ n. Since 2^k-1 < n ≤ 2^(k+1)-2, this holds. ✓\n\n## Applying to n=42\n\nStarting position: 42 pebbles. Is 42 a losing or winning position?\n\n42 is not of the form 2^k - 1 (those are 1,3,7,15,31,63,...), so **42 is a W position**.\n\nThe first player wins by moving to 31 = 2⁵-1. They take 42-31 = 11 pebbles. Check: 11 ≤ 42/2 = 21. ✓\n\nFrom 31 (L position), whatever the second player does, the first player can always move to the next lower 2^k-1 position, eventually reaching 3, then 1.\n\n## Conclusion\n\n**The first player wins.** On the first move, take 11 pebbles (leaving 31), then always respond by leaving a number of the form 2^k - 1.\n\nFinal answer: The first player wins (by taking 11 pebbles on the first move, leaving 31, and then always moving to a position of the form $2^k-1$).",
+  "usage": {
+    "input_tokens": 133,
+    "output_tokens": 1378,
+    "thinking_tokens": 0
+  },
+  "latency_s": 18.18020289100241,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "The first player wins (by taking 11 pebbles on the first move, leaving 31, and then always moving to a position of the form $2^k-1$)."
+  }
+}

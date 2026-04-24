@@ -1,0 +1,20 @@
+{
+  "id": "0c6d",
+  "country": "Romania",
+  "competition": "70th ROMANIAN MATHEMATICAL OLYMPIAD",
+  "gold_final_answer": "a) 300; b) 7776",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization",
+    "Number Theory > Modular Arithmetic"
+  ],
+  "prompt": "At the math class 25 students of the fifth grade receive a paper stick with an integer on it. Each student divides his number to $24$ and communicates the remainder to the math teacher. The sum of all remainders is $288$. Dany, one of the students, remarks that all the remainders of the students are different two by two, but his remainder equals the quotient he obtained.\n\na)\nWhat is the number on Dany's stick?\n\nb) Find the sum of the numbers written on the $25$ sticks, knowing that each student different from Dany, obtained a quotient one unit bigger than the remainder.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let the number on Dany’s stick be \\(N\\). When divided by \\(24\\), it gives\n\n\\[\nN=24q+r,\\qquad 0\\le r<24\n\\]\n\nwhere \\(q\\) is the quotient and \\(r\\) is the remainder.  \nWe are told that for Dany, \\(q=r\\). Hence\n\n\\[\nN=24r+r=25r.\n\\]\n\nAlso, all remainders of the 25 students are pairwise different, and there are only 24 possible remainders \\(0,1,\\dots,23\\). So the set of remainders must be exactly\n\n\\[\n0,1,2,\\dots,23\n\\]\n\ntogether with one repeated? But they are said to be all different two by two, so this is impossible unless one student’s “remainder” is actually \\(24\\), which cannot happen in division by 24. Therefore the intended meaning must be that the remainders are distinct among the 25 students except that Dany’s special condition determines the situation uniquely; using the sum condition, we proceed:\n\nThe sum of all remainders is\n\n\\[\n0+1+\\cdots+23= \\frac{23\\cdot24}{2}=276.\n\\]\n\nSince the total is \\(288\\), Dany’s remainder must be\n\n\\[\n288-276=12.\n\\]\n\nThus \\(q=r=12\\), and so\n\n\\[\nN=25\\cdot 12=300.\n\\]\n\nSo for part (a), Dany’s number is \\(300\\).\n\n---\n\nFor part (b), every student different from Dany has quotient one unit bigger than remainder.  \nIf a student’s remainder is \\(r\\), then their quotient is \\(r+1\\), so their number is\n\n\\[\n24(r+1)+r=25r+24.\n\\]\n\nThe 24 non-Dany students have remainders \\(0,1,\\dots,23\\) except \\(12\\) (since Dany has remainder \\(12\\)). Their numbers sum to\n\n\\[\n\\sum_{r\\in\\{0,\\dots,23\\}\\setminus\\{12\\}} (25r+24).\n\\]\n\nCompute:\n\n\\[\n\\sum_{r=0}^{23} (25r+24)=25\\sum_{r=0}^{23}r+24\\cdot24\n=25\\cdot 276+576=7476.\n\\]\n\nSubtract Dany’s corresponding term for \\(r=12\\):\n\n\\[\n25\\cdot 12+24=324.\n\\]\n\nSo the sum of the other 24 numbers is\n\n\\[\n7476-324=7152.\n\\]\n\nAdd Dany’s number \\(300\\):\n\n\\[\n7152+300=7452.\n\\]\n\nFinal answer:  \na) \\(300\\)  \nb) \\(7452\\)",
+  "usage": {
+    "input_tokens": 178,
+    "output_tokens": 620,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 5.970374373951927,
+  "cached": false
+}

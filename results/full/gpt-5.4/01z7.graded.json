@@ -1,0 +1,27 @@
+{
+  "id": "01z7",
+  "country": "Belarus",
+  "competition": "Belarus2022",
+  "gold_final_answer": "1/3",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Circles > Tangents",
+    "Geometry > Plane Geometry > Triangles > Triangle trigonometry",
+    "Geometry > Plane Geometry > Geometric Inequalities > Optimization in geometry",
+    "Geometry > Plane Geometry > Miscellaneous > Constructions and loci"
+  ],
+  "prompt": "Three non-intersecting circles of radius $1$ are placed inside the triangle $ABC$. (Circles can touch each other and the sides of a triangle, but cannot share interior points.)\nFind the largest value of $r$ for which we can be sure that inside the triangle it is possible to draw a fourth circle of radius $r$ that doesn't intersect with three circles already drawn.",
+  "model": "gpt-5.4",
+  "response_text": "Let the three given circles have centers \\(O_1,O_2,O_3\\), all of radius \\(1\\), inside triangle \\(ABC\\).\n\nWe want a number \\(r\\) such that **no matter how** these three non-overlapping unit circles are placed in the triangle, there is always room for a fourth circle of radius \\(r\\) inside the triangle, disjoint from the first three.\n\nWe also want the **largest** such guaranteed \\(r\\).\n\n## Key idea\nUse an area argument.\n\nIf a circle of radius \\(r\\) cannot be placed anywhere in the remaining part of the triangle, then every point of the triangle must lie within distance \\(1+r\\) of one of the centers \\(O_1,O_2,O_3\\). Indeed, if some point were farther than \\(1+r\\) from all three centers, then a circle of radius \\(r\\) centered there would avoid all three unit circles.\n\nSo in that case, the whole triangle would be covered by the three disks of radius \\(1+r\\) centered at \\(O_1,O_2,O_3\\). Hence\n\\[\n[ABC]\\le 3\\pi(1+r)^2.\n\\]\n\nOn the other hand, since the three unit circles lie inside the triangle and are pairwise interior-disjoint, the area of the triangle must satisfy\n\\[\n[ABC]\\ge 3\\pi.\n\\]\n\nThus, if it were impossible to place a fourth circle of radius \\(r\\), we would need\n\\[\n3\\pi \\le [ABC]\\le 3\\pi(1+r)^2,\n\\]\nwhich alone is not enough. So we need a sharper geometric idea.\n\n## Better viewpoint: use the centers\nThe centers \\(O_1,O_2,O_3\\) lie in the triangle shrunk inward by distance \\(1\\), call it \\(T\\).  \nA fourth circle of radius \\(r\\) can be placed iff there is a point in the triangle shrunk inward by distance \\(r\\), call it \\(T_r\\), whose distance from each \\(O_i\\) is at least \\(1+r\\).\n\nThe worst case for forcing the largest unavoidable empty circle happens when the three unit circles are arranged as efficiently as possible to block space. The extremal configuration is when the triangle itself is just the equilateral triangle tangent to the three mutually tangent unit circles.\n\nIndeed, if the triangle is any larger or less tight, there is more room for a fourth circle.\n\nSo it remains to solve the equilateral “tight” case.\n\n---\n\n## Extremal configuration\nTake three unit circles mutually tangent, with centers forming an equilateral triangle of side \\(2\\).  \nThe smallest triangle containing them is an equilateral triangle whose sides are tangent to the outer arcs.\n\nIf the side length of this triangle is \\(s\\), then its inradius is\n\\[\n\\frac{\\sqrt3}{6}s.\n\\]\nThe inradius of the centers’ triangle (side \\(2\\)) is\n\\[\n\\frac{\\sqrt3}{3}.\n\\]\nSince the outer triangle is offset outward by distance \\(1\\), its inradius is\n\\[\n\\frac{\\sqrt3}{3}+1.\n\\]\nThus\n\\[\n\\frac{\\sqrt3}{6}s=1+\\frac{\\sqrt3}{3},\n\\]\nso\n\\[\ns=2\\sqrt3+2.\n\\]\n\nNow the largest fourth circle that fits in the middle gap is the inscribed circle in the curvilinear triangular gap between the three unit circles. Since the three unit circles are mutually tangent, the center of that circle is the center of the equilateral triangle of centers, and if its radius is \\(r\\), then\n\\[\n1+r = \\text{distance from gap-center to each }O_i = \\frac{2}{\\sqrt3}.\n\\]\nHence\n\\[\nr=\\frac{2}{\\sqrt3}-1.\n\\]\n\nThis value is achievable as the maximal guaranteed one, and the tight equilateral configuration shows no larger radius can always be guaranteed.\n\nTherefore the largest guaranteed radius is\n\\[\n\\boxed{\\frac{2}{\\sqrt3}-1}.\n\\]\n\nFinal answer: \\(\\displaystyle \\frac{2}{\\sqrt3}-1\\)",
+  "usage": {
+    "input_tokens": 127,
+    "output_tokens": 896,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 14.829572814051062,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "\\(\\displaystyle \\frac{2}{\\sqrt3}-1\\)"
+  }
+}

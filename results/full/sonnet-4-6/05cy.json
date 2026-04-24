@@ -1,0 +1,20 @@
+{
+  "id": "05cy",
+  "country": "Estonia",
+  "competition": "Estonian Mathematical Olympiad",
+  "gold_final_answer": "(184, 88)",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Least common multiples (lcm)",
+    "Number Theory > Divisibility / Factorization > Factorization techniques"
+  ],
+  "prompt": "Determine all pairs $(m, n)$ of natural numbers that satisfy $m - n = 96$ and $\\text{lcm}(m, n) = 2024$.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "I need to find pairs (m, n) of natural numbers where m - n = 96 and lcm(m, n) = 2024.\n\n## Setting Up\n\nFirst, factor 2024: 2024 = 8 × 253 = 8 × 11 × 23 = 2³ × 11 × 23.\n\nSince lcm(m, n) = 2024, both m and n must be divisors of 2024.\n\n## Finding Divisors of 2024\n\nThe divisors of 2024 = 2³ × 11 × 23 are:\n1, 2, 4, 8, 11, 22, 44, 88, 23, 46, 92, 184, 253, 506, 1012, 2024.\n\n## Finding Pairs with Difference 96\n\nI need pairs (m, n) where m > n, both divide 2024, m - n = 96, and lcm(m, n) = 2024.\n\nCheck pairs of divisors with difference 96:\n- 184 - 88 = 96 ✓\n- 2024 - 1928: 1928 not a divisor\n- 1012 - 916: not a divisor\n- 506 - 410: not a divisor\n- 253 - 157: not a divisor\n- 92 - (-4): negative\n- 184 - 88 = 96 ✓\n\nLet me check more carefully:\n- 8 + 96 = 104: not a divisor\n- 11 + 96 = 107: no\n- 22 + 96 = 118: no\n- 44 + 96 = 140: no\n- 88 + 96 = 184: yes! ✓\n- 23 + 96 = 119: no\n- 46 + 96 = 142: no\n- 92 + 96 = 188: no\n- 184 + 96 = 280: no\n- 253 + 96 = 349: no\n- 506 + 96 = 602: no\n- 1012 + 96 = 1108: no\n- 2024 + 96 = 2120: no\n\nSo the only pair of divisors with difference 96 is (184, 88).\n\n## Verifying\n\nCheck lcm(184, 88):\n- 184 = 2³ × 23\n- 88 = 2³ × 11\n- lcm(184, 88) = 2³ × 11 × 23 = 2024 ✓\n- 184 - 88 = 96 ✓\n\n## Answer\n\nFinal answer: $(m, n) = (184, 88)$",
+  "usage": {
+    "input_tokens": 87,
+    "output_tokens": 687,
+    "thinking_tokens": 0
+  },
+  "latency_s": 6.9865768160671,
+  "cached": false
+}

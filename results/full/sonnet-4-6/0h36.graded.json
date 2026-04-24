@@ -1,0 +1,24 @@
+{
+  "id": "0h36",
+  "country": "Ukraine",
+  "competition": "Ukrainian Mathematical Olympiad",
+  "gold_final_answer": "f(x) = 1 for all real x",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Functional Equations"
+  ],
+  "prompt": "Find all functions $f : \\mathbb{R} \\to \\mathbb{R}$ such that for all $x, y, z \\in \\mathbb{R}$\n$$\nf(xy) + f(xz) \\geq f(x)f(yz) + 1.\n$$",
+  "model": "claude-sonnet-4-6",
+  "response_text": "We need to find all functions $f : \\mathbb{R} \\to \\mathbb{R}$ such that $f(xy) + f(xz) \\geq f(x)f(yz) + 1$ for all $x, y, z \\in \\mathbb{R}$.\n\n**Step 1: Try constant functions.**\n\nIf $f(t) = c$ for all $t$, then $c + c \\geq c \\cdot c + 1$, so $2c \\geq c^2 + 1$, meaning $c^2 - 2c + 1 \\leq 0$, i.e., $(c-1)^2 \\leq 0$. Thus $c = 1$.\n\nSo $f \\equiv 1$ is a solution.\n\n**Step 2: Try $f(t) = 1$ for all $t$ — confirmed above.**\n\n**Step 3: Look for other solutions.**\n\nSet $x = y = z = 0$: $f(0) + f(0) \\geq f(0)f(0) + 1$, so $2f(0) \\geq f(0)^2 + 1$, giving $(f(0)-1)^2 \\leq 0$, so $f(0) = 1$.\n\nSet $x = 0$: $f(0) + f(0) \\geq f(0)f(yz) + 1$, so $2 \\geq f(yz) + 1$, meaning $f(yz) \\leq 1$ for all $y, z$. Thus $f(t) \\leq 1$ for all $t$.\n\nSet $y = z = 0$: $f(0) + f(0) \\geq f(x)f(0) + 1$, so $2 \\geq f(x) + 1$, giving $f(x) \\leq 1$ — consistent.\n\nSet $z = 0$: $f(xy) + f(0) \\geq f(x)f(0) + 1$, so $f(xy) + 1 \\geq f(x) + 1$, meaning $f(xy) \\geq f(x)$ for all $x, y$.\n\nThis means: for any $x$ and any $t$ (setting $t = xy$, so $y = t/x$ when $x \\neq 0$), $f(t) \\geq f(x)$ for all $t, x$ with $x \\neq 0$.\n\nWait, this says $f(xy) \\geq f(x)$ for all $x, y$. For fixed $x \\neq 0$, as $y$ ranges over $\\mathbb{R}$, $xy$ ranges over all of $\\mathbb{R}$. So $f(t) \\geq f(x)$ for all $t \\in \\mathbb{R}$ and all $x \\neq 0$.\n\nThis means $f(t) \\geq f(x)$ for all $t$ and all $x \\neq 0$. In particular, taking $t \\neq 0$: $f(t) \\geq f(x)$ for all $x \\neq 0$, and also $f(0) \\geq f(x)$ for all $x \\neq 0$.\n\nSo $f$ is constant on $\\mathbb{R} \\setminus \\{0\\}$: let $f(t) = c$ for $t \\neq 0$. We know $f(0) = 1$ and $c \\leq 1$.\n\nAlso from $f(xy) \\geq f(x)$: if $x \\neq 0, y = 0$, then $f(0) \\geq f(x)$, i.e., $1 \\geq c$ ✓.\n\nNow check the original inequality with $f(0) = 1$ and $f(t) = c$ for $t \\neq 0$.\n\nCase: $x, y, z \\neq 0$ and $xy, xz, yz \\neq 0$: $c + c \\geq c \\cdot c + 1$, so $(c-1)^2 \\leq 0$, giving $c = 1$.\n\nSo $c = 1$, meaning $f \\equiv 1$.\n\n**Step 4: Verify $f \\equiv 1$ works:** $1 + 1 \\geq 1 \\cdot 1 + 1 = 2$ ✓ (equality holds).\n\n**Conclusion:** The only solution is $f \\equiv 1$.\n\nFinal answer: $f(x) = 1$ for all $x \\in \\mathbb{R}$.",
+  "usage": {
+    "input_tokens": 117,
+    "output_tokens": 1167,
+    "thinking_tokens": 0
+  },
+  "latency_s": 15.011884729960002,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "$f(x) = 1$ for all $x \\in \\mathbb{R}$."
+  }
+}

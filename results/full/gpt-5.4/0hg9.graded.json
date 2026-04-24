@@ -1,0 +1,25 @@
+{
+  "id": "0hg9",
+  "country": "Ukraine",
+  "competition": "62nd Ukrainian National Mathematical Olympiad, Third Round, First Tour",
+  "gold_final_answer": "6",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Geometric Inequalities > Triangle inequalities",
+    "Algebra > Prealgebra / Basic Algebra > Integers"
+  ],
+  "prompt": "There are $n \\ge 3$ segments, their lengths in centimeters are distinct positive integers. It's known that it's possible to form a nondegenerate triangle from any three of these $n$ segments. Suppose that among these segments there are segments with lengths $5$ cm and $12$ cm. What's the largest value $n$ can attain?",
+  "model": "gpt-5.4",
+  "response_text": "Let the segment lengths be\n\\[\na_1<a_2<\\cdots<a_n,\n\\]\ndistinct positive integers, with \\(5\\) and \\(12\\) among them.\n\nWe are told that **any three** segments form a nondegenerate triangle. For sorted lengths, this is equivalent to requiring that for every triple,\n\\[\na_i+a_j>a_k \\quad (i<j<k).\n\\]\nIn particular, it is enough to check the “worst” case for each largest side \\(a_k\\), namely\n\\[\na_1+a_2>a_k.\n\\]\nSo in fact all lengths must satisfy\n\\[\na_n<a_1+a_2.\n\\]\n\nNow \\(5\\) and \\(12\\) are among the lengths. Since lengths are distinct positive integers, and \\(5<12\\), we must have\n\\[\na_1\\le 5,\\qquad a_2\\le 6.\n\\]\nWhy? If \\(a_1\\ge 6\\), then 5 could not appear. If \\(a_2\\ge 7\\), then among the two smallest numbers one would already exceed 6, leaving no room for 5 and another distinct smaller integer.\n\nHence\n\\[\na_1+a_2\\le 5+6=11.\n\\]\nTherefore every length must be \\(<11\\), so all lengths are chosen from\n\\[\n\\{1,2,\\dots,10\\}.\n\\]\nBut \\(12\\) must also be present — impossible.\n\nSo our assumption \\(a_2\\le 6\\) was too restrictive? Let's reason more directly.\n\nSince 5 and 12 are present, consider the triple consisting of the two shortest lengths and 12. For every triple to form a triangle, in particular the sum of the two smallest lengths must exceed 12:\n\\[\na_1+a_2>12.\n\\]\nTo maximize \\(n\\), we want the interval of allowed lengths as large as possible. Also, since 5 is one of the lengths, the smallest length cannot exceed 5, so \\(a_1\\le 5\\). Thus\n\\[\na_2\\ge 13-a_1.\n\\]\nTo make room for as many integers as possible, we maximize the largest allowed range by making \\(a_1\\) as large as possible, i.e. \\(a_1=5\\). Then \\(a_2\\ge 8\\).\n\nNow if \\(5\\) is the smallest length and the second smallest is at least \\(8\\), then every other length \\(x\\) must satisfy\n\\[\n5+8>x \\quad\\Rightarrow\\quad x\\le 12.\n\\]\nSo all lengths lie in\n\\[\n\\{5,8,9,10,11,12\\},\n\\]\nwhich gives at most \\(6\\) segments.\n\nThis bound is attainable: the set\n\\[\n\\{5,8,9,10,11,12\\}\n\\]\nhas distinct positive integers, contains \\(5\\) and \\(12\\), and any three form a triangle because the sum of the two smallest is \\(5+8=13>12\\), hence any larger triple also works.\n\nTherefore the maximum possible \\(n\\) is\n\nFinal answer: \\(6\\)",
+  "usage": {
+    "input_tokens": 120,
+    "output_tokens": 700,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 11.56422838801518,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "normalized",
+    "predicted": "\\(6\\)"
+  }
+}

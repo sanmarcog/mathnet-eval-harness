@@ -1,0 +1,24 @@
+{
+  "id": "01tw",
+  "country": "Belarus",
+  "competition": "66th Belarusian Mathematical Olympiad",
+  "gold_final_answer": "no",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Polynomial operations"
+  ],
+  "prompt": "6. Given a polynomial $p(x) = a_{2n}x^{2n} + a_{2n-1}x^{2n-1} + \\dots + a_1x + a_0$ of even degree with positive coefficients $a_0, a_1, \\dots, a_{2n}$.\na) Prove that there exists a permutation of these coefficients such that the polynomial obtained has no real roots.\nb) Does the statement of a) remain true if some coefficients of $p(x)$ are non-positive?",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To prove part a), let the given positive coefficients be sorted in ascending order: $b_0 \\le b_1 \\le \\dots \\le b_{2n}$. We construct a new polynomial by assigning the $n$ smallest coefficients to the odd powers of $x$, and the $n+1$ largest coefficients to the even powers of $x$. Let this new polynomial be $P(x) = c_{2n}x^{2n} + c_{2n-1}x^{2n-1} + \\dots + c_1x + c_0$. \nBy our assignment, any coefficient of an even power is greater than or equal to any coefficient of an odd power. That is, $c_{2k} \\ge c_{2j-1}$ for all $k, j$.\n\nSince all coefficients are positive, for any $x \\ge 0$, we trivially have $P(x) > 0$.\nFor $x < 0$, let $x = -y$ where $y > 0$. We can evaluate $P(-y)$:\n$P(-y) = c_{2n}y^{2n} - c_{2n-1}y^{2n-1} + c_{2n-2}y^{2n-2} - \\dots - c_1y + c_0$\n\nWe can group the terms of $P(-y)$ in two different ways depending on the value of $y$:\n1. For $y \\ge 1$, we group the terms as:\n$P(-y) = \\sum_{k=1}^n y^{2k-1}(c_{2k}y - c_{2k-1}) + c_0$\nSince $c_{2k} \\ge c_{2k-1}$ and $y \\ge 1$, we have $c_{2k}y - c_{2k-1} \\ge 0$. Because $c_0 > 0$, it follows that $P(-y) > 0$.\n\n2. For $0 < y < 1$, we group the terms as:\n$P(-y) = c_{2n}y^{2n} + \\sum_{k=1}^n y^{2k-2}(c_{2k-2} - c_{2k-1}y)$\nSince $c_{2k-2} \\ge c_{2k-1}$ and $0 < y < 1$, we have $c_{2k-2} - c_{2k-1}y > 0$. Because $c_{2n}y^{2n} > 0$, it follows that $P(-y) > 0$.\n\nIn all cases, $P(x) > 0$, meaning the polynomial has no real roots. This proves part a).\n\nFor part b), the statement does not remain true. We can provide a simple counterexample. Let the coefficients be $\\{1, 1, -3\\}$ for a polynomial of degree $2n=2$. The possible permutations of these coefficients yield the following quadratic polynomials:\n- $x^2 + x - 3 = 0 \\implies \\Delta = 1^2 - 4(1)(-3) = 13 > 0$\n- $x^2 - 3x + 1 = 0 \\implies \\Delta = (-3)^2 - 4(1)(1) = 5 > 0$\n- $-3x^2 + x + 1 = 0 \\implies \\Delta = 1^2 - 4(-3)(1) = 13 > 0$\n\nIn every possible permutation, the discriminant $\\Delta$ is strictly positive, meaning the polynomial will always have real roots. Thus, the statement fails if some coefficients are allowed to be non-positive.\n\nFinal answer: No",
+  "usage": {
+    "input_tokens": 158,
+    "output_tokens": 835,
+    "thoughts_tokens": 3389
+  },
+  "latency_s": 38.47429409297183,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "normalized",
+    "predicted": "No"
+  }
+}

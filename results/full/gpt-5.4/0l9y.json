@@ -1,0 +1,20 @@
+{
+  "id": "0l9y",
+  "country": "Vietnam",
+  "competition": "Vijetnam 2007",
+  "gold_final_answer": "1506",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Pigeonhole principle",
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments"
+  ],
+  "prompt": "Given a regular 2007-polygon. Find the smallest positive integer $k$ satisfying the following property: In every set of $k$ vertices there are 4 vertices which form a quadrilateral with 3 edges of the given 2007-polygon.",
+  "model": "gpt-5.4",
+  "response_text": "Label the vertices of the regular \\(2007\\)-gon cyclically.\n\nWe want the smallest \\(k\\) such that **every** set of \\(k\\) vertices contains 4 vertices forming a quadrilateral with 3 sides that are sides of the \\(2007\\)-gon.\n\n## 1. What does such a quadrilateral look like?\n\nA quadrilateral whose 3 sides are sides of the polygon must be formed by **4 vertices containing 3 consecutive edges of the polygon**.\n\nIndeed, if the quadrilateral uses 3 polygon edges, those 3 edges must be consecutive along the boundary, so the 4 vertices are of the form\n\\[\nv_i,\\ v_{i+1},\\ v_{i+2},\\ v_{i+3}.\n\\]\nThese 4 vertices form the quadrilateral\n\\[\nv_i v_{i+1} v_{i+2} v_{i+3},\n\\]\nwhose first three sides are polygon sides; the fourth side \\(v_{i+3}v_i\\) is a diagonal.\n\nSo the problem becomes:\n\n> Find the least \\(k\\) such that every \\(k\\)-subset of vertices contains **4 consecutive vertices** on the cycle of length \\(2007\\).\n\nEquivalently, let \\(M\\) be the largest size of a subset of vertices with **no 4 consecutive vertices**. Then\n\\[\nk=M+1.\n\\]\n\n---\n\n## 2. Maximize a subset with no 4 consecutive vertices\n\nWe need the maximum number of chosen vertices on a cycle of length \\(2007\\) with no block of 4 consecutive chosen.\n\nA standard bound: in any 4 consecutive vertices, at most 3 can be chosen. Summing over all \\(2007\\) blocks of 4 consecutive vertices, each chosen vertex is counted in exactly 4 blocks. Thus if \\(m\\) vertices are chosen,\n\\[\n4m \\le 3\\cdot 2007.\n\\]\nSo\n\\[\nm \\le \\left\\lfloor \\frac{3\\cdot 2007}{4}\\right\\rfloor\n= \\left\\lfloor \\frac{6021}{4}\\right\\rfloor\n=1505.\n\\]\n\nNow we show \\(1505\\) is attainable.\n\nTake the cyclic pattern\n\\[\n1110\\,1110\\,1110\\cdots\n\\]\nas much as possible. Since\n\\[\n2007=4\\cdot 501+3,\n\\]\nwe can choose vertices in the pattern\n\\[\n(1110)^{501}111.\n\\]\nThis selects\n\\[\n3\\cdot 501+3=1506\n\\]\nvertices, but because the arrangement is cyclic, the final \\(111\\) together with the initial \\(1\\) creates 4 consecutive chosen vertices across the boundary. So \\(1506\\) does **not** work.\n\nBut if we use\n\\[\n(1110)^{501}11,\n\\]\nand leave the last vertex unchosen, then the total number chosen is\n\\[\n3\\cdot 501+2=1505,\n\\]\nand there is no run of 4 consecutive chosen vertices, including across the cyclic boundary.\n\nHence\n\\[\nM=1505.\n\\]\n\nTherefore the least \\(k\\) forcing 4 consecutive vertices is\n\\[\nk=M+1=1506.\n\\]\n\nFinal answer: \\(\\boxed{1506}\\)",
+  "usage": {
+    "input_tokens": 101,
+    "output_tokens": 732,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 11.18487788096536,
+  "cached": false
+}

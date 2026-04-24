@@ -1,0 +1,21 @@
+{
+  "id": "0lev",
+  "country": "Vietnam",
+  "competition": "VMO",
+  "gold_final_answer": "7, 17, 289",
+  "topics_flat": [
+    "Number Theory > Number-Theoretic Functions > φ (Euler's totient)",
+    "Number Theory > Modular Arithmetic > Fermat / Euler / Wilson theorems",
+    "Number Theory > Divisibility / Factorization > Prime numbers"
+  ],
+  "prompt": "For every pair of positive integers $n, m$ with $n < m$, denote $s(n, m)$ as the number of positive integers in the range $[n, m]$ that are coprime with $m$. Find all positive integers $m \\ge 2$ such that $m$ satisfies these conditions\n\ni) $\\frac{s(n, m)}{m-n} \\ge \\frac{s(1, m)}{m}$ for all $n = 1, 2, \\dots, m-1$.\nii) $2022^m + 1$ is divisible by $m^2$.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Setting Up the Problem\n\n**Understanding s(n,m):** s(n,m) counts integers in [n,m] coprime with m. Note s(1,m) = φ(m) (Euler's totient, since 1 is coprime with m and m is not, but we count m... wait, gcd(m,m)=m≠1 unless m=1). So s(1,m) = φ(m).\n\n**Condition i):** We need s(n,m)/(m-n) ≥ φ(m)/m for all n = 1,...,m-1.\n\nThis says the density of integers coprime to m in [n,m] is at least φ(m)/m.\n\n## Analyzing Condition i)\n\nThe condition states that for every interval [n,m], the proportion of integers coprime to m is at least φ(m)/m.\n\n**Claim: m must be prime or 1.** Let me check: if m is prime, every integer in [1,m-1] is coprime to m, and m itself is not. So s(n,m) = m-n (all of n, n+1,...,m-1 are coprime to m, and m is not). Thus s(n,m)/(m-n) = (m-n)/(m-n) = 1 ≥ (m-1)/m. ✓\n\nIf m is composite, say m = p·q, consider n = m - p + 1. The interval [n,m] contains p integers. Among these, m is not coprime to m. The integers m-p+1,...,m-1,m — we need to check how many are coprime to m. Since p|m, the multiples of p in this range include m itself. So s(n,m) = p-1 (at most). The ratio is (p-1)/(p-1) = 1... \n\nLet me reconsider with m = 4: s(1,4) = φ(4) = 2. Check n=2: [2,4] = {2,3,4}, coprime with 4: {3}, so s(2,4)=1. Ratio: 1/2 = 2/4. ✓. n=3: [3,4]={3,4}, coprime: {3}, ratio 1/1=1 ≥ 1/2. ✓. n=1: 2/3 ≥ 2/4=1/2. ✓. So m=4 satisfies condition i)?\n\nFor m=4, check condition ii): 2022⁴+1 divisible by 16? 2022 is even, so 2022⁴ ≡ 0 (mod 16), so 2022⁴+1 ≡ 1 (mod 16). Not divisible. So m=4 fails ii).\n\n**For primes:** Condition i) is satisfied. Now check condition ii): m² | 2022^m + 1.\n\nFor prime p: p² | 2022^p + 1.\n\nBy Fermat's little theorem, 2022^p ≡ 2022 (mod p). So p | 2022^p + 1 requires p | 2023 = 7 × 17^2... wait: 2023 = 7 × 17².  Actually 7 × 289 = 2023. Yes.\n\nSo p | 2023, meaning p ∈ {7, 17}.\n\n**Check p = 7:** Need 49 | 2022^7 + 1. \n2022 ≡ 2022 - 288×7 = 2022 - 2016 = 6 ≡ -1 (mod 7).\nSo 2022^7 ≡ (-1)^7 = -1 (mod 7), so 7 | 2022^7+1. ✓\nFor mod 49: 2022 = 49×41 + 13, so 2022 ≡ 13 (mod 49).\n13^7 mod 49: 13²=169=3×49+22, so 13²≡22. 13⁴≡22²=484=9×49+43≡43≡-6. 13⁷=13⁴·13²·13≡(-6)(22)(13)=(-6)(286)=(-6)(286-5×49)=(-6)(41)=-246≡-246+5×49=-246+245=-1 (mod 49).\nSo 2022^7+1 ≡ 0 (mod 49). ✓ **p=7 works!**\n\n**Check p = 17:** 2022 ≡ 2022 - 118×17 = 2022-2006=16≡-1 (mod 17). 2022^17≡(-1)^17=-1 (mod 17). ✓\nMod 289: 2022=7×289-1=2023-1, so 2022≡-1 (mod 289). Then 2022^17≡(-1)^17=-1 (mod 289). So 2022^17+1≡0 (mod 289). ✓ **p=17 works!**\n\nFinal answer: $m \\in \\{7, 17\\}$",
+  "usage": {
+    "input_tokens": 193,
+    "output_tokens": 1334,
+    "thinking_tokens": 0
+  },
+  "latency_s": 18.8745573569322,
+  "cached": false
+}

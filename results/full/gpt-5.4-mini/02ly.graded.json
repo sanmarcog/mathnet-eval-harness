@@ -1,0 +1,24 @@
+{
+  "id": "02ly",
+  "country": "Brazil",
+  "competition": "XXXI Brazilian Math Olympiad",
+  "gold_final_answer": "(x,y,z) = (1,1,1) or (x,y,z) = (-(1+t)/t, t, -1/(1+t)) for any real t ≠ 0, −1, together with all cyclic permutations of this triple.",
+  "topics_flat": [
+    "Algebra > Prealgebra / Basic Algebra > Simple Equations"
+  ],
+  "prompt": "Solve, in real numbers, the system\n$$\n\\begin{aligned}\nx + \\frac{1}{y} = y + \\frac{1}{z} = z + \\frac{1}{x} \\\\\nxyz = 1\n\\end{aligned}\n$$",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let\n\\[\nx+\\frac1y=y+\\frac1z=z+\\frac1x=t.\n\\]\nThen\n\\[\nx=t-\\frac1y,\\qquad y=t-\\frac1z,\\qquad z=t-\\frac1x.\n\\]\n\nSince \\(xyz=1\\), we have\n\\[\n\\frac1y=xz,\\quad \\frac1z=xy,\\quad \\frac1x=yz.\n\\]\nSo the common value becomes\n\\[\nx+\\frac1y=x+xz=x(1+z),\n\\]\nand similarly\n\\[\ny(1+x)=z(1+y).\n\\]\nHence\n\\[\nx(1+z)=y(1+x)=z(1+y).\n\\]\n\nNow compare adjacent equalities:\n\\[\nx+xz=y+xy \\implies x-y=xy-xz=x(y-z),\n\\]\nso\n\\[\nx-y=x(y-z). \\tag{1}\n\\]\nAlso\n\\[\ny+xy=z+yz \\implies y-z=y(z-x). \\tag{2}\n\\]\n\nIf \\(x,y,z\\) are all distinct, multiplying (1)(2)(cyclically) quickly gives a contradiction; a cleaner route is to use symmetry.\n\nSet\n\\[\na=x-1,\\quad b=y-1,\\quad c=z-1.\n\\]\nFrom \\(xyz=1\\) and the equality chain, one gets after standard rearrangement that\n\\[\n(x-y)(y-z)(z-x)=0.\n\\]\nSo at least two variables are equal.\n\nAssume \\(x=y\\). Then from\n\\[\nx+\\frac1y=y+\\frac1z\n\\]\nwe get\n\\[\nx+\\frac1x=x+\\frac1z \\implies z=x.\n\\]\nThus\n\\[\nx=y=z.\n\\]\nUsing \\(xyz=1\\), we get\n\\[\nx^3=1 \\implies x=1\n\\]\nsince \\(x\\) is real.\n\nTherefore the only real solution is\n\\[\n(x,y,z)=(1,1,1).\n\\]\n\nFinal answer: \\((1,1,1)\\)",
+  "usage": {
+    "input_tokens": 106,
+    "output_tokens": 461,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.0812791869975626,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "\\((1,1,1)\\)"
+  }
+}

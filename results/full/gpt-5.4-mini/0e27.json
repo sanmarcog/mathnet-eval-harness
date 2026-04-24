@@ -1,0 +1,20 @@
+{
+  "id": "0e27",
+  "country": "Slovenia",
+  "competition": "National Math Olympiad",
+  "gold_final_answer": "All positive integers greater than 1",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Factorization techniques",
+    "Algebra > Prealgebra / Basic Algebra > Integers"
+  ],
+  "prompt": "For which positive integers $n$ does there exist a multiple of $7$, such that the sum of its digits is equal to $n$?",
+  "model": "gpt-5.4-mini",
+  "response_text": "We want the positive integers \\(n\\) for which there exists a positive integer divisible by \\(7\\) whose digit sum is \\(n\\).\n\n## Key idea\nLet \\(s(m)\\) denote the sum of digits of \\(m\\). We need to know which values of \\(n\\) occur among numbers \\(m\\equiv 0\\pmod 7\\).\n\n### 1) Small values\nCheck \\(n=1,2,\\dots,6\\):\n- A number divisible by \\(7\\) with digit sum \\(1\\) would have to be \\(1,10,100,\\dots\\), none divisible by \\(7\\).\n- Similarly for digit sums \\(2,\\dots,6\\), one can check no such multiple of \\(7\\) exists.\n\nIn fact, the smallest positive digit sum of a multiple of \\(7\\) is \\(7\\), for example \\(7\\) itself.\n\n### 2) Every \\(n\\ge 7\\) is possible\nWe can construct such a multiple of \\(7\\) for every \\(n\\ge 7\\).\n\nA useful base example is:\n- \\(7\\) has digit sum \\(7\\) and is divisible by \\(7\\).\n\nAlso note:\n- \\(70\\) is divisible by \\(7\\) and has digit sum \\(7\\).\n- Appending zeros preserves divisibility by \\(7\\) and does not change the digit sum.\n\nNow use the fact that for each \\(k\\in\\{0,1,\\dots,6\\}\\), there is a multiple of \\(7\\) with digit sum \\(7+k\\):\n\\[\n7,\\ 16,\\ 25,\\ 34,\\ 43,\\ 52,\\ 61\n\\]\nThese are all congruent to \\(0 \\pmod 7\\), and their digit sums are \\(7,7,7,7,7,7,7\\)? Wait—those are not all multiples of \\(7\\), so let us instead use a cleaner construction.\n\nConsider the numbers\n\\[\n7,\\ 70,\\ 700,\\dots\n\\]\nall have digit sum \\(7\\). To get higher digit sums, use\n\\[\n49 \\equiv 0 \\pmod 7,\\quad s(49)=13.\n\\]\nThen by appending zeros, we get multiples of \\(7\\) with digit sum \\(13\\).\n\nMore generally, since we can realize digit sums \\(7\\) and \\(13\\), and \\(\\gcd(7,13)=1\\), every sufficiently large integer is a nonnegative combination \\(7a+13b\\). But we want exact digit sums, so we need a direct construction for all \\(n\\ge 7\\).\n\nA standard way is:\n- For \\(n=7\\): use \\(7\\).\n- For \\(n\\ge 8\\): write \\(n=7q+r\\) with \\(0\\le r\\le 6\\).\n  Then build a multiple of \\(7\\) whose digit sum is \\(r\\) modulo \\(7\\), and pad with copies of \\(7\\) separated by zeros to add \\(7\\)'s to the digit sum.\n\nFor example, the numbers\n\\[\n14,\\, 23,\\, 32,\\, 41,\\, 50,\\, 59,\\, 68\n\\]\nare all multiples of \\(7\\)? No, they are not. So instead, let us use the fact that the multiples of \\(7\\) modulo \\(9\\) are periodic and digit sums can be adjusted by adding \\(9\\)-blocks that preserve divisibility:\n\\[\n1001 = 7\\cdot 143\n\\]\nhas digit sum \\(2\\), so multiplying by \\(10^k\\) gives digit sum \\(2\\). Then sums can be built using combinations of \\(7\\) and \\(2\\).\n\nA simpler constructive argument:\n- \\(7\\) has digit sum \\(7\\).\n- \\(1001\\) is divisible by \\(7\\) and has digit sum \\(2\\).\n- Therefore \\(7a + 2b\\) can be achieved as the digit sum of a multiple of \\(7\\) by taking a number of the form\n  \\[\n  7\\cdot 10^m + 1001\\cdot 10^k + \\cdots\n  \\]\n  with non-overlapping blocks of digits. Since \\(\\gcd(2,7)=1\\), every integer \\(n\\ge 7\\) can be written as \\(7a+2b\\) with \\(a,b\\ge 0\\).\n\nThus every \\(n\\ge 7\\) is attainable.\n\n## Conclusion\nThe possible values are exactly all positive integers \\(n\\ge 7\\).\n\nFinal answer: \\(n\\ge 7\\)",
+  "usage": {
+    "input_tokens": 78,
+    "output_tokens": 1018,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 7.47281001706142,
+  "cached": false
+}

@@ -1,0 +1,25 @@
+{
+  "id": "0cjx",
+  "country": "Romania",
+  "competition": "75th Romanian Mathematical Olympiad",
+  "gold_final_answer": "a) A must equal its transpose. b) Example: the matrix whose only nonzero entries are ones in the first row at the first and second columns (all other entries zero) satisfies the property but is not symmetric.",
+  "topics_flat": [
+    "Algebra > Linear Algebra > Determinants",
+    "Algebra > Linear Algebra > Matrices"
+  ],
+  "prompt": "Let $n \\ge 3$ be an integer number. We say that a matrix $A \\in \\mathcal{M}_n(\\mathbb{C})$ has the property $(\\mathcal{P})$ if $\\det(A + X_{ij}) = \\det(A + X_{ji})$, for any $i, j \\in \\{1, 2, \\dots, n\\}$, where $X_{ij} \\in \\mathcal{M}_n(\\mathbb{C})$ is the matrix with $1$ at the position $(i, j)$ and $0$ elsewhere.\n\na) Assume a matrix $A \\in \\mathcal{M}_n(\\mathbb{C})$ with the property $(\\mathcal{P})$, such that $\\det(A) \\neq 0$. Prove that $A = A^T$.\n\nb) Give an example of a matrix $A \\in \\mathcal{M}_n(\\mathbb{C})$ with the property $(\\mathcal{P})$, but $A \\neq A^T$.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Part a)\n\n**Setup:** Let $A$ have property $(\\mathcal{P})$ with $\\det(A) \\neq 0$. We need to show $A = A^T$.\n\n**Key formula:** For any matrix $A$ and rank-1 matrix $X_{ij}$, by the matrix determinant lemma:\n$$\\det(A + X_{ij}) = \\det(A)(1 + e_j^T A^{-1} e_i) = \\det(A)(1 + (A^{-1})_{ji})$$\n\nwhere $(A^{-1})_{ji}$ denotes the $(j,i)$ entry of $A^{-1}$.\n\n**Applying property $(\\mathcal{P})$:** The condition $\\det(A + X_{ij}) = \\det(A + X_{ji})$ gives:\n$$\\det(A)(1 + (A^{-1})_{ji}) = \\det(A)(1 + (A^{-1})_{ij})$$\n\nSince $\\det(A) \\neq 0$, we can divide both sides by $\\det(A)$:\n$$(A^{-1})_{ji} = (A^{-1})_{ij}$$\n\nThis holds for all $i, j \\in \\{1, \\dots, n\\}$, which means $A^{-1} = (A^{-1})^T$.\n\n**Conclusion:** Since $A^{-1}$ is symmetric, we have $(A^{-1})^T = A^{-1}$. Taking inverses of both sides:\n$$((A^{-1})^T)^{-1} = (A^{-1})^{-1} = A$$\n\nBut $((A^{-1})^T)^{-1} = (A^{-T}) = (A^T)^{-1}$... Let us redo this cleanly.\n\nSince $A^{-1}$ is symmetric: $(A^{-1})^T = A^{-1}$. Now $(A^T)^{-1} = (A^{-1})^T = A^{-1}$, so $A^T = A$. $\\blacksquare$\n\n## Part b)\n\n**Construction:** We need $A \\neq A^T$ but $\\det(A) = 0$ (since part a) shows invertible matrices with $(\\mathcal{P})$ must be symmetric).\n\nConsider $A = 0$ (the zero matrix). Then $\\det(A + X_{ij}) = \\det(X_{ij})$. Since $X_{ij}$ is a rank-1 matrix with $n \\geq 3$, we have $\\det(X_{ij}) = 0$ for all $i,j$. So $\\det(A + X_{ij}) = 0 = \\det(A + X_{ji})$ for all $i,j$. But $A = 0 = A^T$, so this doesn't work.\n\n**Better example:** Take $A$ to be any matrix with $\\det(A) = 0$ such that $A \\neq A^T$ and $\\det(A + X_{ij}) = 0$ for all $i,j$.\n\nLet $n = 3$ and take $A = \\mathbf{0}_{3\\times 3}$... that's symmetric. Instead, let:\n\n$$A = \\begin{pmatrix} 0 & 1 & 0 \\\\ 0 & 0 & 0 \\\\ 0 & 0 & 0 \\end{pmatrix}$$\n\nThen $A \\neq A^T$. Check: $\\det(A + X_{ij})$. Since $A + X_{ij}$ has at most two nonzero entries and $n=3$, it has rank $\\leq 2$, so $\\det(A + X_{ij}) = 0$ for all $i,j$. Similarly $\\det(A + X_{ji}) = 0$. So property $(\\mathcal{P})$ holds trivially.\n\n**Verification:** $A + X_{ij}$ has at most 2 nonzero entries total (one from $A$ at position $(1,2)$ and one from $X_{ij}$). A $3\\times 3$ matrix with at most 2 nonzero entries has rank $\\leq 2$, hence determinant $0$. So $\\det(A+X_{ij}) = 0 = \\det(A+X_{ji})$ for all $i,j$. ✓\n\nAnd $A \\neq A^T$ since $a_{12} = 1$ but $a_{21} = 0$. ✓\n\n**Example:**\n$$A = \\begin{pmatrix} 0 & 1 & 0 \\\\ 0 & 0 & 0 \\\\ 0 & 0 & 0 \\end{pmatrix}$$\n\nFinal answer: For part (b), the matrix $A = \\begin{pmatrix} 0 & 1 & 0 \\\\ 0 & 0 & 0 \\\\ 0 & 0 & 0 \\end{pmatrix}$ has property $(\\mathcal{P})$ (since $A+X_{ij}$ has rank $\\leq 2$ for all $i,j$, making all determinants zero) but $A \\neq A^T$.",
+  "usage": {
+    "input_tokens": 303,
+    "output_tokens": 1353,
+    "thinking_tokens": 0
+  },
+  "latency_s": 19.345817315974273,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "For part (b), the matrix $A = \\begin{pmatrix} 0 & 1 & 0 \\\\ 0 & 0 & 0 \\\\ 0 & 0 & 0 \\end{pmatrix}$ has property $(\\mathcal{P})$ (since $A+X_{ij}$ has rank $\\leq 2$ for all $i,j$, making all determinants zero) but $A \\neq A^T$."
+  }
+}

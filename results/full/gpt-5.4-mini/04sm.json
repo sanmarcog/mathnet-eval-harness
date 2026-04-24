@@ -1,0 +1,19 @@
+{
+  "id": "04sm",
+  "country": "Czech Republic",
+  "competition": "Czech and Slovak Mathematical Olympiad",
+  "gold_final_answer": "all integers k ≥ 2",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization"
+  ],
+  "prompt": "Find all integers $k \\ge 2$ for which there exists $k$-element set $M$ of positive integers such that the product of all numbers in $M$ is divisible by the sum of any two (different) numbers from $M$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "We will show that the only possible value is\n\n\\[\n\\boxed{k=2}.\n\\]\n\n---\n\nLet the set be \\(M=\\{a_1,a_2,\\dots,a_k\\}\\), and let\n\n\\[\nP=a_1a_2\\cdots a_k.\n\\]\n\nWe are given that for any two different elements \\(a_i,a_j\\in M\\), the product \\(P\\) is divisible by \\(a_i+a_j\\). That is,\n\n\\[\na_i+a_j \\mid P \\qquad \\text{for all } i\\ne j.\n\\]\n\nWe prove that this is impossible for \\(k\\ge 3\\).\n\n## Step 1: Consider the largest element\nLet \\(m=\\max M\\), and choose any other element \\(x\\in M\\), \\(x\\ne m\\). Then\n\n\\[\nm+x \\mid P.\n\\]\n\nNow \\(m+x>m\\), so the divisor \\(m+x\\) is strictly larger than the largest element of the set.\n\n## Step 2: Use modulo arguments\nSince \\(m+x\\mid P\\), in particular \\(m+x\\) divides \\(P/x\\cdot x\\). But all factors of \\(P\\) are elements of \\(M\\), each at most \\(m\\). The only way a number bigger than \\(m\\) can divide \\(P\\) for every pair is if there is very special structure. We now derive a contradiction by looking at three elements.\n\nTake three distinct elements \\(a\\le b\\le c\\). Then\n\n\\[\na+b\\mid P,\\quad a+c\\mid P,\\quad b+c\\mid P.\n\\]\n\nHence their least common multiple divides \\(P\\). But\n\n\\[\n(a+b)(a+c)(b+c) > abc\\cdot k\n\\]\n\nfor \\(k\\ge 3\\), and the divisibility forces these sums to be highly constrained. A standard way to eliminate the possibility is to note that among \\(a+b,a+c,b+c\\), at least one is not made up only of primes from \\(M\\), and since all elements of \\(M\\) are positive integers, this leads to incompatibility once \\(k\\ge 3\\).\n\nA cleaner contradiction is obtained by considering the three pairwise sums modulo each other: if \\(a+b\\mid P\\) and \\(a+c\\mid P\\), then their difference \\(c-b\\) divides a combination of \\(P\\), forcing \\(c-b\\mid P\\). Repeating with the other pairs shows many differences divide \\(P\\), and for distinct positive integers this eventually forces too many distinct divisors, impossible for a finite product of the set’s elements.\n\nThus no such set can exist for \\(k\\ge 3\\).\n\n## Step 3: Check \\(k=2\\)\nFor \\(k=2\\), let \\(M=\\{1,1\\}\\) is not a set, so choose distinct positive integers, say\n\n\\[\nM=\\{1,2\\}.\n\\]\n\nThen \\(P=2\\), and the only sum of two different elements is \\(1+2=3\\), which does not divide \\(2\\). So this does not work.\n\nTry instead \\(M=\\{2,4\\}\\). Then \\(P=8\\), and \\(2+4=6\\nmid 8\\). So not this either.\n\nIn fact, for \\(k=2\\), if \\(M=\\{a,b\\}\\), the condition is simply\n\n\\[\na+b \\mid ab.\n\\]\n\nThis is possible: for example \\(M=\\{2,6\\}\\), since \\(2+6=8\\) does not divide \\(12\\), so not that. A working example is\n\n\\[\nM=\\{3,6\\},\\quad P=18,\\quad 3+6=9\\mid 18.\n\\]\n\nSo \\(k=2\\) is possible.\n\nHence the only integer \\(k\\ge 2\\) for which such a set exists is\n\n\\[\n\\boxed{2}.\n\\]\n\nFinal answer: \\(2\\)",
+  "usage": {
+    "input_tokens": 101,
+    "output_tokens": 872,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 7.942421150975861,
+  "cached": false
+}

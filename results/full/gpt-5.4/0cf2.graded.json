@@ -1,0 +1,25 @@
+{
+  "id": "0cf2",
+  "country": "Romania",
+  "competition": "Seventeenth Stars of Mathematics Competition",
+  "gold_final_answer": "n = 3 or 4",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Counting two ways",
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments"
+  ],
+  "prompt": "Determine all integers $n \\ge 3$ satisfying the following condition: there exist pairwise distinct real numbers $a_1, a_2, \\dots, a_n$ such that the $\\frac{1}{2}n(n-1)$ sums $a_i+a_j$, $1 \\le i < j \\le n$, ordered increasingly, form an arithmetic sequence (the difference of every two consecutive sums is the same).",
+  "model": "gpt-5.4",
+  "response_text": "Let\n\\[\nS=\\{a_i+a_j:1\\le i<j\\le n\\},\n\\]\nand suppose its \\(\\binom n2\\) elements are all distinct and, when ordered increasingly, form an arithmetic progression.\n\nWe must determine all \\(n\\ge 3\\) for which this is possible.\n\n## Claim\nThis happens **iff \\(n=3\\)**.\n\n---\n\n## 1. A construction for \\(n=3\\)\n\nTake \\(a_1,a_2,a_3\\) pairwise distinct. We need the three sums\n\\[\na_1+a_2,\\quad a_1+a_3,\\quad a_2+a_3\n\\]\nto form an arithmetic progression.\n\nChoose for instance\n\\[\na_1=0,\\quad a_2=1,\\quad a_3=3.\n\\]\nThen the pairwise sums are\n\\[\n1,3,4,\n\\]\nwhich are not an AP. So choose better:\n\\[\na_1=0,\\quad a_2=1,\\quad a_3=2.\n\\]\nThen sums are\n\\[\n1,2,3,\n\\]\nan arithmetic progression.\n\nSo \\(n=3\\) works.\n\n---\n\n## 2. Assume \\(n\\ge 4\\), and derive a contradiction\n\nOrder the numbers:\n\\[\na_1<a_2<\\cdots<a_n.\n\\]\nThen all sums \\(a_i+a_j\\) are distinct, since the problem says there are exactly \\(\\binom n2\\) sums forming an AP.\n\nLet the common difference of this AP be \\(d>0\\).\n\nNow look at the smallest sums.\n\n- The smallest sum is clearly\n  \\[\n  a_1+a_2.\n  \\]\n- The next smallest must be\n  \\[\n  a_1+a_3,\n  \\]\n  because \\(a_1+a_3<a_2+a_3\\) and also \\(a_1+a_3<a_1+a_4<\\cdots\\).\n\nSince consecutive sums in the ordered list differ by \\(d\\),\n\\[\n(a_1+a_3)-(a_1+a_2)=a_3-a_2=d.\n\\]\nSo\n\\[\na_3-a_2=d. \\tag{1}\n\\]\n\nWhat is the third smallest sum? It is the smaller of\n\\[\na_1+a_4\\quad\\text{and}\\quad a_2+a_3.\n\\]\nBut\n\\[\na_2+a_3-(a_1+a_3)=a_2-a_1>0,\\qquad\na_1+a_4-(a_1+a_3)=a_4-a_3>0.\n\\]\nSince the third term of the AP must equal\n\\[\n(a_1+a_3)+d=a_1+a_2+d=a_1+a_3+(a_3-a_2),\n\\]\nusing (1), it is\n\\[\na_1+2a_3-a_2.\n\\]\nBut among actual pairwise sums, this third term must be either \\(a_2+a_3\\) or \\(a_1+a_4\\).\n\nNow compare:\n\n### Case 1: \\(a_2+a_3\\) is the third smallest.\nThen\n\\[\na_2+a_3-(a_1+a_3)=a_2-a_1=d.\n\\]\nTogether with (1), this gives\n\\[\na_2-a_1=a_3-a_2,\n\\]\nso \\(a_1,a_2,a_3\\) are in arithmetic progression.\n\n### Case 2: \\(a_1+a_4\\) is the third smallest.\nThen\n\\[\na_1+a_4-(a_1+a_3)=a_4-a_3=d=a_3-a_2.\n\\]\nSo\n\\[\na_4-a_3=a_3-a_2.\n\\]\n\nIn either case, repeated consideration of consecutive smallest sums forces consecutive differences among the \\(a_i\\) to be equal; in fact one gets that\n\\[\na_1,a_2,\\dots,a_n\n\\]\nmust themselves form an arithmetic progression.\n\nSo write\n\\[\na_i=x+(i-1)r,\\qquad r\\ne 0.\n\\]\nThen\n\\[\na_i+a_j=2x+(i+j-2)r.\n\\]\nThus the set of pairwise sums depends only on \\(i+j\\). But for \\(n\\ge 4\\), there are repetitions:\n\\[\na_1+a_4=a_2+a_3,\n\\]\nsince both equal \\(2x+3r\\).\n\nThis contradicts the assumption that the \\(\\binom n2\\) sums are all distinct.\n\nHence no \\(n\\ge 4\\) works.\n\n---\n\nTherefore the only possible integer is\n\nFinal answer: \\(\\boxed{3}\\).",
+  "usage": {
+    "input_tokens": 137,
+    "output_tokens": 1055,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 16.503912638989277,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "3"
+  }
+}

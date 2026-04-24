@@ -1,0 +1,24 @@
+{
+  "id": "04vo",
+  "country": "Czech Republic",
+  "competition": "First Round (take-home)",
+  "gold_final_answer": "-1/4",
+  "topics_flat": [
+    "Algebra > Intermediate Algebra > Quadratic functions"
+  ],
+  "prompt": "Suppose that $a, b$ are real numbers such that the expressions $a^2 + b$ and $a + b^2$ share the same value. What is the smallest possible shared value?",
+  "model": "gpt-5.4",
+  "response_text": "Let the common value be \\(k\\). Then\n\\[\na^2+b=a+b^2.\n\\]\nRearrange:\n\\[\na^2-a=b^2-b\n\\]\nso\n\\[\na(a-1)=b(b-1).\n\\]\nThus\n\\[\na^2-a-(b^2-b)=0\n\\]\nwhich factors as\n\\[\n(a-b)(a+b-1)=0.\n\\]\nSo either:\n\n1. \\(a=b\\), or  \n2. \\(a+b=1\\).\n\nWe want to minimize the common value.\n\n### Case 1: \\(a=b\\)\nThen the common value is\n\\[\na^2+a.\n\\]\nThis quadratic has minimum at \\(a=-\\tfrac12\\), giving\n\\[\n\\left(-\\tfrac12\\right)^2-\\tfrac12=\\tfrac14-\\tfrac12=-\\tfrac14.\n\\]\n\n### Case 2: \\(a+b=1\\)\nLet \\(b=1-a\\). Then the common value is\n\\[\na^2+b=a^2+1-a=a^2-a+1.\n\\]\nThis quadratic has minimum at \\(a=\\tfrac12\\), giving\n\\[\n\\left(\\tfrac12\\right)^2-\\tfrac12+1=\\tfrac14-\\tfrac12+1=\\tfrac34.\n\\]\n\nComparing the two cases, the smallest possible shared value is\n\\[\n-\\frac14.\n\\]\n\nFinal answer: \\(-\\frac14\\)",
+  "usage": {
+    "input_tokens": 91,
+    "output_tokens": 327,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 7.694642664981075,
+  "cached": true,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "\\(-\\frac14\\)"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "id": "0cyy",
+  "country": "Saudi Arabia",
+  "competition": "Saudi Arabia Mathematical Competitions",
+  "gold_final_answer": "a1 = 2^{2010}, a2 = 3^{2010} − 1, a3 = 4^{2010} − 1, ..., a2010 = 2011^{2010} − 1",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Sequences and Series > Telescoping series"
+  ],
+  "prompt": "Find positive integers $a_{1} < a_{2} < \\ldots < a_{2010}$ such that\n$$\na_{1}(1!)^{2010} + a_{2}(2!)^{2010} + \\ldots + a_{2010}(2010!)^{2010} = (2011!)^{2010}.\n$$",
+  "model": "gpt-5.4",
+  "response_text": "Let\n\\[\nb_k=(k!)^{2010}\\qquad (1\\le k\\le 2010).\n\\]\nWe want\n\\[\na_1b_1+a_2b_2+\\cdots+a_{2010}b_{2010}=(2011!)^{2010}.\n\\]\nSince\n\\[\n(2011!)^{2010}=(2011)^{2010}(2010!)^{2010}=(2011)^{2010}b_{2010},\n\\]\nand also\n\\[\nb_k=(k!)^{2010}=\\frac{(2010!)^{2010}}{\\big((k+1)(k+2)\\cdots 2010\\big)^{2010}},\n\\]\nit is natural to divide successively by \\(b_k\\). The key observation is\n\\[\n\\frac{b_{k+1}}{b_k}=(k+1)^{2010}.\n\\]\nSo if we choose numbers \\(a_k\\) by backward Euclidean expansion in base \\((k+1)^{2010}\\), then the strict increase can be enforced very simply.\n\nA very clean choice is\n\\[\na_k=(k+1)^{2010}-1 \\qquad (1\\le k\\le 2010).\n\\]\nThese are clearly positive and strictly increasing.\n\nNow check the sum:\n\\[\n\\sum_{k=1}^{2010} a_k (k!)^{2010}\n=\n\\sum_{k=1}^{2010} \\big((k+1)^{2010}-1\\big)(k!)^{2010}.\n\\]\nBut\n\\[\n(k+1)^{2010}(k!)^{2010}=((k+1)!)^{2010},\n\\]\nso\n\\[\n\\sum_{k=1}^{2010} \\big((k+1)^{2010}-1\\big)(k!)^{2010}\n=\n\\sum_{k=1}^{2010} \\left(((k+1)!)^{2010}-(k!)^{2010}\\right).\n\\]\nThis telescopes:\n\\[\n= (2!)^{2010}-(1!)^{2010}+(3!)^{2010}-(2!)^{2010}+\\cdots +(2011!)^{2010}-(2010!)^{2010}.\n\\]\nHence\n\\[\n\\sum_{k=1}^{2010} a_k (k!)^{2010}=(2011!)^{2010}-(1!)^{2010}.\n\\]\nThis misses by \\(1\\). So we adjust only the first term:\n\ntake\n\\[\na_1=2^{2010},\\qquad a_k=(k+1)^{2010}-1\\quad (2\\le k\\le 2010).\n\\]\nThen\n\\[\na_1(1!)^{2010}+\\sum_{k=2}^{2010} a_k (k!)^{2010}\n=\n\\big(2^{2010}-1\\big)(1!)^{2010}\n+\\sum_{k=1}^{2010}\\big((k+1)^{2010}-1\\big)(k!)^{2010}.\n\\]\nSince the latter sum is \\((2011!)^{2010}-1\\), adding \\(1\\) gives exactly \\((2011!)^{2010}\\).\n\nIt remains to check strict increase:\n\\[\na_1=2^{2010},\\qquad a_2=3^{2010}-1.\n\\]\nSince \\(2^{2010}<3^{2010}-1\\), and for \\(k\\ge2\\),\n\\[\na_{k+1}-a_k=((k+2)^{2010}-1)-((k+1)^{2010}-1)>0,\n\\]\nthe sequence is strictly increasing.\n\nTherefore one suitable choice is\n\\[\na_1=2^{2010},\\qquad a_k=(k+1)^{2010}-1\\ \\ (2\\le k\\le 2010).\n\\]\n\nFinal answer: \\(\\displaystyle a_1=2^{2010},\\quad a_k=(k+1)^{2010}-1\\ \\text{for }k=2,3,\\dots,2010.\\)",
+  "usage": {
+    "input_tokens": 124,
+    "output_tokens": 914,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 12.449110758956522,
+  "cached": true
+}

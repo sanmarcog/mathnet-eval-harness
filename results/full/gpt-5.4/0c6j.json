@@ -1,0 +1,20 @@
+{
+  "id": "0c6j",
+  "country": "Romania",
+  "competition": "70th NMO SELECTION TESTS FOR THE JUNIOR BALKAN MATHEMATICAL OLYMPIAD",
+  "gold_final_answer": "1/16",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities > Cauchy-Schwarz",
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities"
+  ],
+  "prompt": "Find the maximum value of the expression\n\n$$\nE(a, b) = \\frac{a + b}{(4a^2 + 3)(4b^2 + 3)}\n$$\n\nwhen $a, b \\in \\mathbb{R}$.",
+  "model": "gpt-5.4",
+  "response_text": "Let\n\\[\nE(a,b)=\\frac{a+b}{(4a^2+3)(4b^2+3)}.\n\\]\nWe seek its maximum over all real \\(a,b\\).\n\nSince the expression is symmetric in \\(a,b\\), it is natural to try \\(a=b\\). We now justify that this indeed gives the maximum.\n\n## Step 1: Use \\(x=a+b,\\ y=ab\\)\n\nWe have\n\\[\n(4a^2+3)(4b^2+3)=16a^2b^2+12(a^2+b^2)+9.\n\\]\nUsing\n\\[\na^2+b^2=(a+b)^2-2ab=x^2-2y,\n\\]\nthis becomes\n\\[\n16y^2+12x^2-24y+9.\n\\]\nSo\n\\[\nE=\\frac{x}{16y^2-24y+12x^2+9}.\n\\]\n\nFor fixed \\(x\\), this denominator is a quadratic in \\(y\\):\n\\[\n16y^2-24y=(16)\\left(y-\\frac34\\right)^2-9.\n\\]\nHence\n\\[\n16y^2-24y+12x^2+9 = 16\\left(y-\\frac34\\right)^2+12x^2 \\ge 12x^2.\n\\]\nTherefore\n\\[\nE \\le \\frac{x}{12x^2}=\\frac1{12x}\n\\qquad (x>0).\n\\]\n\nAlso, since \\(a,b\\in\\mathbb R\\),\n\\[\nx^2=(a+b)^2\\ge 4ab=4y.\n\\]\nEquality occurs when \\(a=b\\). For fixed \\(x\\), the denominator is minimized when \\(y\\) is as large as possible, i.e. at\n\\[\ny=\\frac{x^2}{4},\n\\]\nagain giving \\(a=b\\). Thus the maximum must occur at \\(a=b\\).\n\n## Step 2: Set \\(a=b=t\\)\n\nThen\n\\[\nE(t,t)=\\frac{2t}{(4t^2+3)^2}.\n\\]\nLet\n\\[\nf(t)=\\frac{2t}{(4t^2+3)^2}.\n\\]\nDifferentiate:\n\\[\nf'(t)=\\frac{2(4t^2+3)^2-2t\\cdot 2(4t^2+3)\\cdot 8t}{(4t^2+3)^4}.\n\\]\nFactor the numerator:\n\\[\nf'(t)=\\frac{2(4t^2+3)(3-12t^2)}{(4t^2+3)^4}.\n\\]\nSo critical points satisfy\n\\[\n3-12t^2=0 \\quad\\Rightarrow\\quad t^2=\\frac14.\n\\]\nSince we want the maximum and \\(E>0\\) for \\(t>0\\), take\n\\[\nt=\\frac12.\n\\]\nThen\n\\[\nE\\left(\\frac12,\\frac12\\right)\n=\\frac{1}{(4\\cdot \\frac14+3)^2}\n=\\frac{1}{(1+3)^2}\n=\\frac1{16}.\n\\]\n\nThus the maximum value is\n\\[\n\\boxed{\\frac1{16}}.\n\\]\n\nFinal answer: \\(\\frac{1}{16}\\)",
+  "usage": {
+    "input_tokens": 104,
+    "output_tokens": 737,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 8.70712110796012,
+  "cached": false
+}

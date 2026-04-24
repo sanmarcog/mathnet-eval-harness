@@ -1,0 +1,20 @@
+{
+  "id": "01rn",
+  "country": "Belarus",
+  "competition": "FINAL ROUND",
+  "gold_final_answer": "4",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Vieta's formulas",
+    "Algebra > Algebraic Expressions > Polynomials > Polynomial operations"
+  ],
+  "prompt": "Numbers $x_1$, $x_2$, $x_3$ ($x_1 < x_2 < x_3$) are the roots of the equation\n$$\nx^3 - 3x^2 + (a+2)x - a = 0,\n$$\nwhere $a$ is a real number.\nFind all possible values of the expression $4x_1 - x_1^2 + x_3^2$.",
+  "model": "gpt-5.4",
+  "response_text": "Let\n\\[\nP(x)=x^3-3x^2+(a+2)x-a,\n\\]\nand suppose its three real roots are\n\\[\nx_1<x_2<x_3.\n\\]\n\nWe want all possible values of\n\\[\nE=4x_1-x_1^2+x_3^2.\n\\]\n\n## 1) Express the polynomial in a useful form\nObserve that\n\\[\nP(x)=x^3-3x^2+2x+a(x-1)=x(x-1)(x-2)+a(x-1).\n\\]\nSo\n\\[\nP(x)=(x-1)\\bigl(x(x-2)+a\\bigr)=(x-1)\\bigl((x-1)^2+(a-1)\\bigr).\n\\]\nHence the roots are\n\\[\nx=1,\\qquad x=1\\pm \\sqrt{\\,1-a\\,}.\n\\]\n\nFor the polynomial to have three distinct real roots, we need\n\\[\n1-a>0 \\quad\\Longrightarrow\\quad a<1.\n\\]\nThen indeed the roots are\n\\[\nx_1=1-\\sqrt{1-a},\\qquad x_2=1,\\qquad x_3=1+\\sqrt{1-a}.\n\\]\n\nLet\n\\[\nt=\\sqrt{1-a}>0.\n\\]\nThen\n\\[\nx_1=1-t,\\qquad x_3=1+t.\n\\]\n\n## 2) Compute the expression\nNow\n\\[\nE=4x_1-x_1^2+x_3^2\n=4(1-t)-(1-t)^2+(1+t)^2.\n\\]\nCompute:\n\\[\n(1+t)^2-(1-t)^2=4t,\n\\]\nso\n\\[\nE=4(1-t)+4t=4.\n\\]\n\nThus the expression is constant for all admissible \\(a\\).\n\nFinal answer: \\(\\boxed{4}\\)",
+  "usage": {
+    "input_tokens": 144,
+    "output_tokens": 423,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 6.136904697981663,
+  "cached": false
+}

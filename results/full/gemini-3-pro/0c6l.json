@@ -1,0 +1,21 @@
+{
+  "id": "0c6l",
+  "country": "Romania",
+  "competition": "Stars of Mathematics Competition",
+  "gold_final_answer": "Yes",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization",
+    "Algebra > Algebraic Expressions > Polynomials > Vieta's formulas",
+    "Algebra > Algebraic Expressions > Polynomials > Irreducibility: Rational Root Theorem, Gauss's Lemma, Eisenstein"
+  ],
+  "prompt": "If $n$ is an integer, $n \\ge 3$, and $a_1, a_2, \\dots, a_n$ are non-zero integers such that\n$$\na_1 a_2 \\cdots a_n \\left( \\frac{1}{a_1^2} + \\frac{1}{a_2^2} + \\cdots + \\frac{1}{a_n^2} \\right)\n$$\nis an integer, does it follow that the product $a_1 a_2 \\cdots a_n$ is divisible by each $a_i^2$?",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To determine whether the product $P = a_1 a_2 \\cdots a_n$ is divisible by each $a_i^2$, we can analyze the $p$-adic valuation for an arbitrary prime $p$.\n\nLet $p$ be any prime number, and let $v_p(x)$ denote the exponent of the highest power of $p$ that divides an integer $x$. Let $k_i = v_p(a_i)$ for each $i \\in \\{1, 2, \\dots, n\\}$. \nWithout loss of generality, we can order the integers $a_i$ such that their $p$-adic valuations are in descending order:\n$$ k_1 \\ge k_2 \\ge \\dots \\ge k_n \\ge 0 $$\nThe $p$-adic valuation of the product $P$ is the sum of the individual valuations:\n$$ v_p(P) = \\sum_{j=1}^n k_j $$\nThe problem states that the sum\n$$ S = P \\sum_{i=1}^n \\frac{1}{a_i^2} = \\sum_{i=1}^n \\frac{P}{a_i^2} $$\nis an integer. Let $T_i = \\frac{P}{a_i^2}$. The $p$-adic valuation of each term $T_i$ is:\n$$ v_p(T_i) = v_p(P) - 2k_i $$\n",
+  "usage": {
+    "input_tokens": 173,
+    "output_tokens": 326,
+    "thoughts_tokens": 7862
+  },
+  "latency_s": 58.948572608991526,
+  "cached": false
+}

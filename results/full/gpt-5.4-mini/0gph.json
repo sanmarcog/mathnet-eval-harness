@@ -1,0 +1,21 @@
+{
+  "id": "0gph",
+  "country": "Turkey",
+  "competition": "Team Selection Test for IMO 2011",
+  "gold_final_answer": "p^n",
+  "topics_flat": [
+    "Number Theory > Modular Arithmetic",
+    "Number Theory > Residues and Primitive Roots > Multiplicative order",
+    "Algebra > Algebraic Expressions > Functional Equations"
+  ],
+  "prompt": "Let $p$ be a prime, $n$ be a positive integer, and let $Z_{p^n}$ denote the set of congruence classes modulo $p^n$. Determine the number of functions $f : Z_{p^n} \\to Z_{p^n}$ satisfying the condition\n$$\nf(a) + f(b) \\equiv f(a + b + pab) \\pmod{p^n}\n$$\nfor all $a, b \\in Z_{p^n}$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let  \n\\[\na\\star b:=a+b+pab \\pmod{p^n}.\n\\]\nThen the condition is\n\\[\nf(a\\star b)\\equiv f(a)+f(b)\\pmod{p^n}\\qquad(\\forall a,b).\n\\]\n\nWe look for a change of variables that turns \\(\\star\\) into ordinary addition.  \nConsider\n\\[\n\\phi(x)=1+px.\n\\]\nThen\n\\[\n\\phi(a\\star b)=1+p(a+b+pab)=(1+pa)(1+pb)=\\phi(a)\\phi(b).\n\\]\nSo \\((Z_{p^n},\\star)\\) is isomorphic to the multiplicative group\n\\[\nU:=\\{1+px:x\\in Z_{p^n}\\},\n\\]\nwhich has size \\(p^{n-1}\\).\n\nNow define \\(g(x)=f(\\phi^{-1}(x))\\) on \\(U\\). The condition becomes\n\\[\ng(xy)\\equiv g(x)+g(y)\\pmod{p^n}\\qquad(\\forall x,y\\in U).\n\\]\nSo \\(g:U\\to Z_{p^n}\\) is a group homomorphism from the finite \\(p\\)-group \\(U\\) into the additive group \\(Z_{p^n}\\), which is cyclic of order \\(p^n\\).\n\nSince \\(U\\cong \\mathbb Z/p^{\\,n-1}\\mathbb Z\\), the number of homomorphisms\n\\[\nU\\to Z_{p^n}\n\\]\nis exactly the number of choices for the image of a generator of \\(U\\), and that image must satisfy\n\\[\np^{n-1}արը=0 \\pmod{p^n}.\n\\]\nThe elements of \\(Z_{p^n}\\) killed by \\(p^{n-1}\\) are precisely the multiples of \\(p\\), of which there are \\(p^{n-1}\\).\n\nThus there are \\(p^{n-1}\\) such homomorphisms, hence \\(p^{n-1}\\) such functions \\(f\\).\n\nFinal answer: \\(\\boxed{p^{\\,n-1}}\\)",
+  "usage": {
+    "input_tokens": 157,
+    "output_tokens": 481,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.65074242092669,
+  "cached": false
+}

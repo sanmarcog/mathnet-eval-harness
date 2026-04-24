@@ -1,0 +1,20 @@
+{
+  "id": "03ta",
+  "country": "China",
+  "competition": "China Mathematical Competition",
+  "gold_final_answer": "[-√5/5, √5/5]",
+  "topics_flat": [
+    "Algebra > Intermediate Algebra > Complex numbers",
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities"
+  ],
+  "prompt": "Let complex number $z = (a + \\cos \\theta) + (2a - \\sin \\theta)i$. If $|z| \\le 2$ for any $\\theta \\in \\mathbb{R}$, then the range of real number $a$ is ______.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "We need |z|² ≤ 4 for all θ ∈ ℝ.\n\n|z|² = (a + cos θ)² + (2a - sin θ)²\n\n= a² + 2a cos θ + cos²θ + 4a² - 4a sin θ + sin²θ\n\n= 5a² + 2a cos θ - 4a sin θ + 1\n\nWe need 5a² + 2a cos θ - 4a sin θ + 1 ≤ 4 for all θ.\n\nThe maximum of 2a cos θ - 4a sin θ over θ is |a|√(4 + 16) = 2√5|a|.\n\nSo we need:\n5a² + 2√5|a| + 1 ≤ 4\n\n5a² + 2√5|a| - 3 ≤ 0\n\nLet t = |a| ≥ 0:\n5t² + 2√5 t - 3 ≤ 0\n\nUsing quadratic formula:\nt = (-2√5 ± √(20 + 60))/10 = (-2√5 ± √80)/10 = (-2√5 ± 4√5)/10\n\nTaking positive root: t = (2√5)/10 = √5/5\n\nSo |a| ≤ √5/5, meaning -√5/5 ≤ a ≤ √5/5.\n\nFinal answer: $-\\dfrac{\\sqrt{5}}{5} \\leq a \\leq \\dfrac{\\sqrt{5}}{5}$",
+  "usage": {
+    "input_tokens": 111,
+    "output_tokens": 415,
+    "thinking_tokens": 0
+  },
+  "latency_s": 5.155822596978396,
+  "cached": false
+}

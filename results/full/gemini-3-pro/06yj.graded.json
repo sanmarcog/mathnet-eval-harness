@@ -1,0 +1,26 @@
+{
+  "id": "06yj",
+  "country": "IMO",
+  "competition": "IMO2024 Shortlisted Problems",
+  "gold_final_answer": "1, 2, 4, 12",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Prime numbers",
+    "Number Theory > Modular Arithmetic > Fermat / Euler / Wilson theorems",
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities"
+  ],
+  "prompt": "Find all positive integers $n$ with the following property: for all positive divisors $d$ of $n$, we have that $d+1 \\mid n$ or $d+1$ is prime.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find all positive integers $n$ such that for all positive divisors $d$ of $n$, $d+1 \\mid n$ or $d+1$ is prime, we can test small values and analyze the properties of such $n$.\n\n1. **Odd $n$**: \nIf $n$ is odd, its largest divisor is $d = n$. The condition requires $n+1 \\mid n$ (which is only possible if $n=1$) or $n+1$ is prime. If $n > 1$, $n+1$ is an even number greater than 2, so it cannot be prime. Thus, $n=1$ is the only odd solution.\n\n2. **Even $n$ with no odd prime factors ($n = 2^k$)**:\nThe divisors are $1, 2, 4, \\dots, 2^k$. \n- For $k=1$, $n=2$. Divisors are $1, 2$. $d+1 \\in \\{2, 3\\}$, both are prime. So $n=2$ works.\n- For $k=2$, $n=4$. Divisors are $1, 2, 4$. $d+1 \\in \\{2, 3, 5\\}$, all are prime. So $n=4$ works.\n- For $k \\ge 3$, $d=8$ is a divisor. $d+1 = 9$, which is neither prime",
+  "usage": {
+    "input_tokens": 82,
+    "output_tokens": 323,
+    "thoughts_tokens": 7865
+  },
+  "latency_s": 61.57308624696452,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": null
+  }
+}

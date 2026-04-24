@@ -1,0 +1,22 @@
+{
+  "id": "06sc",
+  "country": "IMO",
+  "competition": "International Mathematical Olympiad Shortlisted Problems",
+  "gold_final_answer": "P(x) = t x for any real t",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Functional Equations",
+    "Algebra > Algebraic Expressions > Polynomials > Polynomial operations",
+    "Algebra > Algebraic Expressions > Polynomials > Irreducibility: Rational Root Theorem, Gauss's Lemma, Eisenstein",
+    "Algebra > Algebraic Expressions > Polynomials > Intermediate Value Theorem"
+  ],
+  "prompt": "Let $m \\neq 0$ be an integer. Find all polynomials $P(x)$ with real coefficients such that\n$$\n\\left(x^{3}-m x^{2}+1\\right) P(x+1)+\\left(x^{3}+m x^{2}+1\\right) P(x-1)=2\\left(x^{3}-m x+1\\right) P(x)\n$$\nfor all real numbers $x$.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find all polynomials $P(x)$ with real coefficients that satisfy the given equation:\n$$ \\left(x^{3}-m x^{2}+1\\right) P(x+1)+\\left(x^{3}+m x^{2}+1\\right) P(x-1)=2\\left(x^{3}-m x+1\\right) P(x) $$\nwe can rewrite it by grouping the terms:\n$$ (x^3+1)[P(x+1)+P(x-1)-2P(x)] - mx^2[P(x+1)-P(x-1)] + 2mxP(x) = 0 $$\n\nLet $d$ be the degree of the polynomial $P(x)$, and let its leading term be $a_d x^d$ (with $a_d \\neq 0$). \nWe can analyze the leading terms of each part of the equation:\n1. $P(x+1)+P(x-1)-2P(x)$ has a leading term of $d(d-1)a_d x^{d-2}$. Multiplied by $(x^3+1)$, the leading term is $d(d-1)a_d x^{d+1}$.\n2. $P(x+1)-P(x-1)$ has a leading term of $2d a_d x^{d-1}$. Multiplied by $-mx^2$, the leading term is $-2md a_d x",
+  "usage": {
+    "input_tokens": 139,
+    "output_tokens": 328,
+    "thoughts_tokens": 7860
+  },
+  "latency_s": 60.7935063529294,
+  "cached": false
+}

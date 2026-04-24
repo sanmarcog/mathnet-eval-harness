@@ -1,0 +1,20 @@
+{
+  "id": "0ha3",
+  "country": "Ukraine",
+  "competition": "58th Ukrainian National Mathematical Olympiad",
+  "gold_final_answer": "0 or 3/5",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Polynomial operations",
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities"
+  ],
+  "prompt": "Let $a, b$ are such that $\\frac{7a^3b^3}{a^6-8b^6} = 1$. Determine what the value of $\\frac{a^2-b^2}{a^2+b^2}$ can be.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "We need to find the value of $\\frac{a^2-b^2}{a^2+b^2}$ given that $\\frac{7a^3b^3}{a^6-8b^6} = 1$.\n\nFrom the constraint: $7a^3b^3 = a^6 - 8b^6$.\n\nLet $t = \\frac{a^2}{b^2}$ (assuming $b \\neq 0$). Let me set $x = \\frac{a^3}{b^3}$, so $x = t^{3/2}$.\n\nThe equation becomes: $7x = x^2 - 8$, so $x^2 - 7x - 8 = 0$.\n\n$(x-8)(x+1) = 0$, giving $x = 8$ or $x = -1$.\n\n**Case 1:** $\\frac{a^3}{b^3} = 8$, so $\\frac{a}{b} = 2$, meaning $a = 2b$.\n\nThen $\\frac{a^2 - b^2}{a^2 + b^2} = \\frac{4b^2 - b^2}{4b^2 + b^2} = \\frac{3b^2}{5b^2} = \\frac{3}{5}$.\n\n**Case 2:** $\\frac{a^3}{b^3} = -1$, so $\\frac{a}{b} = -1$, meaning $a = -b$.\n\nThen $\\frac{a^2 - b^2}{a^2 + b^2} = \\frac{b^2 - b^2}{b^2 + b^2} = 0$.\n\nBut we need to check if $a = -b$ is valid: $a^6 - 8b^6 = b^6 - 8b^6 = -7b^6$, and $7a^3b^3 = 7(-b)^3b^3 = -7b^6$. So $\\frac{-7b^6}{-7b^6} = 1$. ✓\n\nBoth cases are valid. The problem asks \"what value can $\\frac{a^2-b^2}{a^2+b^2}$ be,\" suggesting we find all possible values.\n\nThe possible values are $\\frac{3}{5}$ and $0$.\n\nHowever, since the problem says \"determine what the value can be\" (implying a specific answer), and both are valid, let me present both. But typically in competition problems, they expect $\\frac{3}{5}$ as the non-trivial answer.\n\nThe possible values are $\\boxed{0}$ and $\\dfrac{3}{5}$.\n\nFinal answer: $0$ or $\\dfrac{3}{5}$",
+  "usage": {
+    "input_tokens": 113,
+    "output_tokens": 699,
+    "thinking_tokens": 0
+  },
+  "latency_s": 8.098456683917902,
+  "cached": false
+}

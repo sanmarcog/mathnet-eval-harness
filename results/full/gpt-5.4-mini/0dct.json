@@ -1,0 +1,22 @@
+{
+  "id": "0dct",
+  "country": "Saudi Arabia",
+  "competition": "SAUDI ARABIAN MATHEMATICAL COMPETITIONS",
+  "gold_final_answer": "10",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments",
+    "Discrete Mathematics > Combinatorics > Invariants / monovariants",
+    "Number Theory > Divisibility / Factorization > Prime numbers",
+    "Number Theory > Divisibility / Factorization > Factorization techniques"
+  ],
+  "prompt": "Let $n$ be a positive integer. Each number from $1, 2, 3, \\ldots, 1000$ was painted one of $n$ colors. It turned out that every two distinct numbers, one of which is a divisor of the other one, have different colors. Find the smallest $n$ for which such situation is possible.",
+  "model": "gpt-5.4-mini",
+  "response_text": "We need the smallest number of colors needed so that whenever \\(a\\mid b\\) and \\(a\\ne b\\), the numbers \\(a,b\\) get different colors.\n\nThis is exactly the chromatic number of the divisibility graph on \\(\\{1,\\dots,1000\\}\\).  \nA coloring exists with \\(n\\) colors iff the set can be partitioned into \\(n\\) chains with respect to divisibility (because each color class must contain no pair with divisibility relation).\n\nSo the answer is the size of the largest antichain? More directly, by Dilworth/Mirsky, the minimum number of chains needed equals the size of the largest antichain in the poset. But there is an easier way here:\n\n### Lower bound\nConsider the numbers\n\\[\n501,502,\\dots,1000.\n\\]\nNo one of these can divide another distinct one, because if \\(a<b\\) and \\(a\\mid b\\), then \\(b\\ge 2a\\), but for \\(a\\ge 501\\) we get \\(2a>1000\\).  \nSo these \\(500\\) numbers are pairwise incomparable, hence must all have different colors.\n\nThus\n\\[\nn\\ge 500.\n\\]\n\n### Upper bound\nColor each number \\(k\\in\\{1,\\dots,1000\\}\\) by the exponent of \\(2\\) in its prime factorization, i.e. by \\(v_2(k)\\), but truncated to the set\n\\[\n0,1,2,\\dots,9.\n\\]\nThis gives only 10 colors, so not enough. We need the actual minimum, so let's use a better idea.\n\nPartition the numbers into the 500 pairs\n\\[\n\\{1,2\\},\\{3,4\\},\\{5,6\\},\\dots,\\{999,1000\\}.\n\\]\nIn each pair, the smaller number does not divide the larger in general, so this alone does not help. Instead, use the following chain decomposition:\nfor each odd \\(m\\le 999\\), consider\n\\[\nm,2m,4m,\\dots\n\\]\nstopping at \\(\\le 1000\\). These are chains under divisibility. The number of odd \\(m\\le 1000\\) is \\(500\\), so this partitions all numbers into \\(500\\) chains.\n\nNow color each chain with its own color. Since numbers in the same color class lie on a divisibility chain, any two distinct numbers in the same color class are comparable, which is forbidden, so we must actually color **different chains** differently. This shows a valid coloring with \\(500\\) colors exists by assigning a unique color to each odd \\(m\\).\n\nHence\n\\[\nn\\le 500.\n\\]\n\nCombining both bounds gives\n\\[\nn=500.\n\\]\n\nFinal answer: \\(500\\)",
+  "usage": {
+    "input_tokens": 123,
+    "output_tokens": 619,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 4.77275510400068,
+  "cached": false
+}

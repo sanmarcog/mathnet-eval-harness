@@ -1,0 +1,20 @@
+{
+  "id": "06tq",
+  "country": "IMO",
+  "competition": "IMO 2016 Shortlisted Problems",
+  "gold_final_answer": "4/9",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities > Cauchy-Schwarz",
+    "Algebra > Algebraic Expressions > Sequences and Series > Telescoping series"
+  ],
+  "prompt": "Determine the largest real number $a$ such that for all $n \\geqslant 1$ and for all real numbers $x_{0}, x_{1}, \\ldots, x_{n}$ satisfying $0=x_{0}<x_{1}<x_{2}<\\cdots<x_{n}$, we have\n$$\n\\frac{1}{x_{1}-x_{0}}+\\frac{1}{x_{2}-x_{1}}+\\cdots+\\frac{1}{x_{n}-x_{n-1}} \\geqslant a\\left(\\frac{2}{x_{1}}+\\frac{3}{x_{2}}+\\cdots+\\frac{n+1}{x_{n}}\\right)\n$$",
+  "model": "gpt-5.4",
+  "response_text": "Let\n\\[\nd_k=x_k-x_{k-1}\\qquad (k=1,\\dots,n).\n\\]\nThen \\(d_k>0\\) and\n\\[\nx_k=d_1+\\cdots+d_k.\n\\]\nThe inequality becomes\n\\[\n\\sum_{k=1}^n \\frac1{d_k}\\ge a\\sum_{k=1}^n \\frac{k+1}{x_k}.\n\\]\nWe seek the largest \\(a\\) such that this holds for all positive \\(d_k\\).\n\n## Step 1: Find an upper bound for \\(a\\)\n\nTake \\(d_1=d_2=\\cdots=d_n=t>0\\). Then \\(x_k=kt\\), so\n\\[\n\\sum_{k=1}^n \\frac1{d_k}=\\frac{n}{t},\n\\]\nand\n\\[\n\\sum_{k=1}^n \\frac{k+1}{x_k}\n=\\sum_{k=1}^n \\frac{k+1}{kt}\n=\\frac1t\\sum_{k=1}^n \\left(1+\\frac1k\\right)\n=\\frac1t\\left(n+\\sum_{k=1}^n \\frac1k\\right).\n\\]\nHence the inequality would force\n\\[\n\\frac{n}{t}\\ge a\\cdot \\frac1t\\left(n+\\sum_{k=1}^n \\frac1k\\right),\n\\]\nso\n\\[\na\\le \\frac{n}{n+H_n},\n\\]\nwhere \\(H_n=\\sum_{k=1}^n \\frac1k\\). As \\(n\\to\\infty\\), \\(\\frac{n}{n+H_n}\\to 1\\). This only gives \\(a\\le 1\\).\n\nTo get the sharp upper bound, take \\(n=1\\). Then the inequality is\n\\[\n\\frac1{x_1}\\ge a\\cdot \\frac2{x_1},\n\\]\nso necessarily\n\\[\na\\le \\frac12.\n\\]\n\nThus the largest possible \\(a\\) is at most \\(\\frac12\\).\n\n## Step 2: Prove \\(a=\\frac12\\) works\n\nWe need to show\n\\[\n\\sum_{k=1}^n \\frac1{x_k-x_{k-1}}\n\\ge \\frac12\\sum_{k=1}^n \\frac{k+1}{x_k}.\n\\]\n\nNow for each \\(k\\),\n\\[\nx_k=x_{k-1}+(x_k-x_{k-1})>k(x_k-x_{k-1}),\n\\]\nbecause\n\\[\nx_k=\\sum_{j=1}^k (x_j-x_{j-1}),\n\\]\na sum of \\(k\\) positive terms, one of which is \\(x_k-x_{k-1}\\). Hence\n\\[\n\\frac1{x_k-x_{k-1}}>\\frac{k}{x_k}.\n\\]\nAlso trivially\n\\[\n\\frac1{x_k-x_{k-1}}>\\frac1{x_k},\n\\]\nsince \\(x_k>x_k-x_{k-1}\\).\n\nAdding these two inequalities,\n\\[\n\\frac{2}{x_k-x_{k-1}}>\\frac{k+1}{x_k},\n\\]\nso\n\\[\n\\frac1{x_k-x_{k-1}}>\\frac{k+1}{2x_k}.\n\\]\nSumming over \\(k=1,\\dots,n\\),\n\\[\n\\sum_{k=1}^n \\frac1{x_k-x_{k-1}}\n\\ge \\frac12\\sum_{k=1}^n \\frac{k+1}{x_k}.\n\\]\nThus \\(a=\\frac12\\) indeed works.\n\nSince \\(a\\le \\frac12\\) and \\(a=\\frac12\\) works, the largest such \\(a\\) is\n\nFinal answer: \\(\\boxed{\\tfrac12}\\)",
+  "usage": {
+    "input_tokens": 207,
+    "output_tokens": 855,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 13.348016611067578,
+  "cached": false
+}

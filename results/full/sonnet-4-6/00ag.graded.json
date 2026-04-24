@@ -1,0 +1,26 @@
+{
+  "id": "00ag",
+  "country": "Argentina",
+  "competition": "Argentine National Olympiad 2016",
+  "gold_final_answer": "1122",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Induction / smoothing",
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments",
+    "Algebra > Equations and Inequalities > Combinatorial optimization"
+  ],
+  "prompt": "Let $a_1, a_2, ..., a_{100}$ be a permutation of $1, 2, ..., 100$. For each triple $\\{a_i, a_{i+1}, a_{i+2}\\}$ of consecutive numbers, $1 \\le i \\le 98$, the middle number in the triple is marked. For instance if $a_i = 7, a_{i+1} = 99, a_{i+2} = 22$ then $a_{i+2} = 22$ is marked. Let $S$ be the sum of all marked numbers. Find the minimum value of $S$. (Each marked number enters the sum $S$ exactly once, although it may be marked more than once.)",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Setting Up the Problem\n\nFor each triple $(a_i, a_{i+1}, a_{i+2})$, we mark the **median** of the three values. We want to minimize the sum $S$ of all marked values (each counted once even if marked multiple times).\n\n## Key Observations\n\nA number $a_j$ (for $2 \\leq j \\leq 99$) is marked if it's the median of $(a_{j-1}, a_j, a_{j+1})$. A number $a_j$ is the median of its triple if and only if it's neither the maximum nor the minimum of the three consecutive elements.\n\nActually, let me reconsider: $a_j$ is marked when it appears as the middle value in position $i+1$ for some triple, meaning $a_j$ is the median of $(a_{j-1}, a_j, a_{j+1})$.\n\n**When is $a_j$ NOT marked?** When $a_j$ is either the maximum or minimum of $(a_{j-1}, a_j, a_{j+1})$, i.e., when $a_j$ is a local extremum.\n\n## Strategy to Minimize S\n\nTo minimize $S$, we want large numbers to be marked as rarely as possible, and small numbers to be marked instead. Ideally, we want large numbers to be local extrema (peaks or valleys) so they avoid being medians.\n\n**Key insight:** In a sequence of 100 elements, positions 2 through 99 (98 positions) each contribute a marked value. We want to arrange so that large numbers are local extrema.\n\nIf we arrange the sequence in a \"zigzag\" pattern (alternating local maxima and minima), then every interior element is a local extremum and thus NOT marked. But wait — if every interior element is a local extremum, then what gets marked?\n\nActually if $a_{j-1} < a_j > a_{j+1}$ (local max) or $a_{j-1} > a_j < a_{j+1}$ (local min), then $a_j$ is NOT the median — the median is one of the neighbors. So in a zigzag, the interior elements aren't marked, but the medians come from the neighbors.\n\nLet me reconsider: for triple $(a_{i}, a_{i+1}, a_{i+2})$, the marked element is the median. In a zigzag where $a_{i+1}$ is a peak: $a_i < a_{i+1} > a_{i+2}$, the median is $\\max(a_i, a_{i+2})$.\n\n## Constructing an Optimal Arrangement\n\nPlace large numbers at odd positions (peaks) and small numbers at even positions (valleys): arrange as $b_1, s_1, b_2, s_2, \\ldots$ where $b_i$ are large and $s_i$ are small.\n\nFor triple $(s_{k-1}, b_k, s_k)$: median = $\\max(s_{k-1}, s_k)$ — a small number. ✓\nFor triple $(b_k, s_k, b_{k+1})$: median = $\\min(b_k, b_{k+1})$ — a large number. ✗\n\nTo avoid marking large numbers, we need the valleys to \"shield\" the peaks. \n\n**Better arrangement:** Put the 50 largest numbers at even positions and 50 smallest at odd positions in a way that each triple's median is small.\n\nAfter careful analysis: arrange as $100, 1, 99, 2, 98, 3, \\ldots$ (large, small, large, small...). \n\nFor each triple (large, small, large): median = small number.\nFor each triple (small, large, small): median = large number.\n\nThe marked values from (large, small, large) triples: the small numbers $1, 2, \\ldots, 49$ (positions 2,4,...,98).\nThe marked values from (small, large, small) triples: the large numbers... we get $\\min$ of two large neighbors.\n\nAfter detailed computation with arrangement $100,1,99,2,98,3,\\ldots,52,49,51$:\n- Triples centered at small numbers (positions 2,4,...,98): medians are $1,2,...,49$\n- Triples centered at large numbers (positions 3,5,...,97): medians are $52,53,...,99$ — these are the smaller of adjacent large numbers.\n\nThe sum $S = (1+2+\\cdots+49) + (52+53+\\cdots+99) = 1225 + (52+99)\\cdot 48/2 = 1225 + 3624 = 4849$.\n\nAfter verification and optimization, the minimum value is:\n\nFinal answer: **2500**\n\nWait, let me recompute: $1+2+\\cdots+49 = 1225$ and $52+\\cdots+99 = \\frac{48 \\cdot 151}{2} = 3624$. Total = $4849$.\n\nFinal answer: 4849",
+  "usage": {
+    "input_tokens": 218,
+    "output_tokens": 1224,
+    "thinking_tokens": 0
+  },
+  "latency_s": 19.070769701967947,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "4849"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "id": "0cik",
+  "country": "Romania",
+  "competition": "75th NMO",
+  "gold_final_answer": "All functions f(x) = ax + b with a ≠ 0.",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Functional Equations > Injectivity / surjectivity"
+  ],
+  "prompt": "Find the continuous and surjective functions $f : \\mathbb{R} \\to \\mathbb{R}$ with the following two properties:\n(i) $2f(1) = f(0) + f(2)$;\n(ii) for any real numbers $a, b, c$, if $f(a), f(b), f(c)$ are terms of an arithmetic progression then $a, b, c$ are also terms of an arithmetic progression.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let us write property (ii) in the equivalent form:\n\nIf  \n\\[\n2f(b)=f(a)+f(c),\n\\]\nthen  \n\\[\n2b=a+c.\n\\]\n\nWe will show that the only continuous surjective functions satisfying (i) and (ii) are affine functions\n\\[\nf(x)=mx+n\n\\]\nwith \\(m\\neq 0\\), and then use (i) to determine the restriction on \\(m,n\\).\n\n---\n\n## 1) \\(f\\) is injective\n\nAssume \\(f(u)=f(v)\\). Then \\(f(u),f(v),f(v)\\) are in arithmetic progression, so by (ii), \\(u,v,v\\) are in arithmetic progression. Hence\n\\[\n2v=u+v \\implies u=v.\n\\]\nSo \\(f\\) is injective.\n\nSince \\(f\\) is continuous and surjective, it is a continuous bijection \\(\\mathbb R\\to\\mathbb R\\), hence a homeomorphism.\n\n---\n\n## 2) The midpoint property\n\nTake any \\(x,y\\in\\mathbb R\\), and let\n\\[\nz=\\frac{x+y}{2}.\n\\]\nThen \\(x,z,y\\) are in arithmetic progression, so by (ii), \\(f(x),f(z),f(y)\\) are in arithmetic progression. Therefore\n\\[\n2f\\!\\left(\\frac{x+y}{2}\\right)=f(x)+f(y). \\tag{1}\n\\]\n\nThis is Jensen’s functional equation.\n\n---\n\n## 3) Continuity implies affinity\n\nA continuous solution of Jensen’s equation on \\(\\mathbb R\\) is affine:\n\\[\nf(x)=mx+n\n\\]\nfor some constants \\(m,n\\). Since \\(f\\) is surjective, \\(m\\neq 0\\).\n\n---\n\n## 4) Use condition (i)\n\nSubstitute \\(f(x)=mx+n\\) into\n\\[\n2f(1)=f(0)+f(2):\n\\]\n\\[\n2(m+n)=n+(2m+n).\n\\]\nThis is an identity, so condition (i) imposes no further restriction.\n\nThus every nonconstant affine function works.\n\n---\n\n## 5) Verification\n\nIf \\(f(x)=mx+n\\) with \\(m\\neq 0\\), then\n\\[\nf(a),f(b),f(c)\\text{ in AP}\n\\iff 2f(b)=f(a)+f(c)\n\\iff 2mb+2n=ma+mc+2n\n\\iff 2b=a+c,\n\\]\nso (ii) holds. Also (i) holds automatically.\n\nTherefore the complete set of functions is:\n\n\\[\nf(x)=mx+n \\qquad (m\\neq 0).\n\\]\n\nFinal answer: \\(\\boxed{f(x)=mx+n\\text{ for arbitrary }n\\in\\mathbb R,\\ m\\in\\mathbb R\\setminus\\{0\\}}\\).",
+  "usage": {
+    "input_tokens": 143,
+    "output_tokens": 635,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 4.75368881796021,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "f(x)=mx+n\\text{ for arbitrary }n\\in\\mathbb R,\\ m\\in\\mathbb R\\setminus\\{0\\}"
+  }
+}

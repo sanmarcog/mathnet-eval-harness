@@ -1,0 +1,20 @@
+{
+  "id": "0gmh",
+  "country": "Turkey",
+  "competition": "X. NATIONAL MATHEMATICAL OLYMPIAD",
+  "gold_final_answer": "p = 2 and all odd primes congruent to 3 modulo 4",
+  "topics_flat": [
+    "Number Theory > Residues and Primitive Roots > Quadratic residues",
+    "Number Theory > Modular Arithmetic > Polynomials mod p"
+  ],
+  "prompt": "Find all prime numbers $p$ for which the number of ordered pairs of integers $(x, y)$ satisfying the conditions $y^2 \\equiv x^3 - x \\pmod p$ and $0 \\le x, y < p$ is exactly $p$.",
+  "model": "gpt-5.4",
+  "response_text": "Let\n\\[\nN_p=\\#\\{(x,y)\\in \\{0,1,\\dots,p-1\\}^2:\\ y^2\\equiv x^3-x \\pmod p\\}.\n\\]\nWe seek all primes \\(p\\) such that \\(N_p=p\\).\n\nThis is the number of \\(\\mathbf F_p\\)-points on the elliptic curve\n\\[\nE:\\ y^2=x^3-x\n\\]\nexcluding/including the point at infinity appropriately. In fact,\n\\[\n\\#E(\\mathbf F_p)=N_p+1.\n\\]\nSo the condition \\(N_p=p\\) is equivalent to\n\\[\n\\#E(\\mathbf F_p)=p+1,\n\\]\ni.e. the trace of Frobenius is \\(0\\).\n\nWe now compute \\(N_p\\).\n\n## 1) Small prime \\(p=2\\)\n\nModulo \\(2\\), the equation is\n\\[\ny^2\\equiv x^3-x \\equiv x-x\\equiv 0.\n\\]\nThus \\(y=0\\), while \\(x\\) can be \\(0,1\\), giving exactly \\(2\\) pairs:\n\\[\n(0,0),(1,0).\n\\]\nHence \\(N_2=2=p\\), so \\(p=2\\) works.\n\n## 2) Odd primes\n\nFor odd \\(p\\), let \\(\\chi\\) be the Legendre symbol mod \\(p\\), extended by \\(\\chi(0)=0\\).  \nFor each \\(x\\), the number of \\(y\\) satisfying \\(y^2\\equiv x^3-x\\) is\n\\[\n1+\\chi(x^3-x),\n\\]\nbecause it is \\(1\\) if \\(x^3-x=0\\), \\(2\\) if it is a nonzero square, and \\(0\\) otherwise. Therefore\n\\[\nN_p=\\sum_{x\\in\\mathbf F_p}\\bigl(1+\\chi(x^3-x)\\bigr)\n= p+\\sum_{x\\in\\mathbf F_p}\\chi(x^3-x).\n\\]\nSo \\(N_p=p\\) iff\n\\[\n\\sum_{x\\in\\mathbf F_p}\\chi(x^3-x)=0.\n\\]\n\nNow \\(E:y^2=x^3-x=x(x-1)(x+1)\\) is the CM elliptic curve with \\(j=1728\\). A standard fact for this curve is:\n\n- If \\(p\\equiv 3\\pmod 4\\), then \\(a_p=0\\), hence \\(\\#E(\\mathbf F_p)=p+1\\), so \\(N_p=p\\).\n- If \\(p\\equiv 1\\pmod 4\\), then \\(a_p\\neq 0\\) (indeed \\(p=a^2+b^2\\) with \\(a\\) odd, and \\(a_p=\\pm 2a\\)), so \\(N_p\\ne p\\).\n\nThus every odd prime \\(p\\equiv 3\\pmod 4\\) works, and no odd prime \\(p\\equiv 1\\pmod 4\\) works.\n\nFor completeness, here is a quick elementary check of the vanishing when \\(p\\equiv 3\\pmod4\\). Since then \\(\\chi(-1)=-1\\),\n\\[\n\\chi((-x)^3-(-x))=\\chi(-(x^3-x))=\\chi(-1)\\chi(x^3-x)=-\\chi(x^3-x).\n\\]\nPairing \\(x\\) and \\(-x\\), the terms cancel; the only fixed points under \\(x\\mapsto -x\\) are \\(x=0\\) (and only \\(x=0\\) since \\(p\\) is odd), where \\(\\chi(0)=0\\). Hence the sum is \\(0\\), so \\(N_p=p\\).\n\nIf \\(p\\equiv1\\pmod4\\), this cancellation fails because \\(\\chi(-1)=1\\), and indeed \\(N_p\\neq p\\).\n\nTherefore the primes are exactly\n\\[\np=2 \\quad\\text{or}\\quad p\\equiv 3\\pmod 4.\n\\]\n\nFinal answer: \\(\\boxed{p=2\\text{ or }p\\equiv 3\\pmod 4}\\).",
+  "usage": {
+    "input_tokens": 105,
+    "output_tokens": 938,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 13.207002556067891,
+  "cached": false
+}

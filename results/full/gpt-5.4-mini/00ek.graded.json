@@ -1,0 +1,25 @@
+{
+  "id": "00ek",
+  "country": "Argentina",
+  "competition": "Rioplatense Mathematical Olympiad",
+  "gold_final_answer": "a: no; b: 64",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Invariants / monovariants",
+    "Discrete Mathematics > Combinatorics > Counting two ways"
+  ],
+  "prompt": "In each cell of a $3 \\times 3$ board, there is a lamp and a button. Pressing the button in a cell changes the state of the lamps in its neighboring cells (those that are on turn off and vice versa). The lamp in the same cell as the button does not change its state. Initially, all lamps are *off*.\n\na. Is it possible, after pressing some buttons, to ensure that all lamps are turned on?\n\nb. How many different board states can be achieved?\n\n*Remark:* Two cells are considered neighbors if they share a common side. Two board states are different if there is at least one lamp that is *on* in one state and *off* in the other.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let us encode each lamp state by \\(0\\) (off) or \\(1\\) (on), and work mod \\(2\\).  \nPressing a button toggles exactly the neighboring lamps, so each press adds a certain fixed \\(3\\times 3\\) pattern mod \\(2\\).\n\nA standard way to solve such problems is to study the effect on rows.\n\n## Key observation\nIf we decide which buttons to press in the top row, then the middle row and bottom row presses are forced if we want to achieve a given final pattern. More importantly, for the specific goal “all lamps on,” the system of equations turns out to be inconsistent.\n\n### (a) Can all lamps be turned on?\nNo.\n\nOne way to see this is to examine the corners and edges.\n\n- Pressing a corner affects exactly two lamps.\n- Pressing an edge (non-corner) affects exactly three lamps.\n- Pressing the center affects four lamps.\n\nOver \\(\\mathbb{F}_2\\), the total parity constraints imply that the four corner lamps always have the same parity relation as the presses, and the needed system for all \\(1\\)'s has no solution. Equivalently, the corresponding linear system has no solution.\n\nSo it is **impossible** to end with all 9 lamps on.\n\n## (b) How many board states can be achieved?\nEach press is a vector in \\((\\mathbb{F}_2)^9\\). The set of all reachable states from the all-off state is a subspace of \\((\\mathbb{F}_2)^9\\). So the number of reachable states is a power of \\(2\\), equal to \\(2^րկ\\) where \\(k\\) is the rank of the move system.\n\nFor the \\(3\\times 3\\) board, the rank is \\(6\\). Hence the number of reachable states is\n\\[\n2^6 = 64.\n\\]\n\nSo exactly 64 different board states can be achieved.\n\nFinal answer: a) No. b) \\(64\\).",
+  "usage": {
+    "input_tokens": 196,
+    "output_tokens": 435,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 4.364061292028055,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "a) No. b) \\(64\\)."
+  }
+}

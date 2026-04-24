@@ -1,0 +1,24 @@
+{
+  "id": "04g3",
+  "country": "Croatia",
+  "competition": "Mathematica competitions in Croatia",
+  "gold_final_answer": "1 + i, -1 - i",
+  "topics_flat": [
+    "Algebra > Intermediate Algebra > Complex numbers"
+  ],
+  "prompt": "Determine all complex numbers $z$ such that\n$$\n|z^2 - i| = 1 \\quad \\text{and} \\quad |z| = \\sqrt{2}.\n$$",
+  "model": "claude-opus-4-7",
+  "response_text": "|z|²=2, so z² has |z²|=2. Let w=z². |w|=2, |w-i|=1.\nw=x+yi: x²+y²=4, x²+(y-1)²=1. Subtract: 2y-1=3, y=2, x²=0, x=0. So w=2i.\nz²=2i, z=±(1+i).\n\nFinal answer: $z = 1+i$ or $z = -1-i$",
+  "usage": {
+    "input_tokens": 124,
+    "output_tokens": 141,
+    "thinking_tokens": 0
+  },
+  "latency_s": 2.7401731790741906,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "$z = 1+i$ or $z = -1-i$"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "id": "0gv0",
+  "country": "Turkey",
+  "competition": "Team Selection Test for IMO 2024",
+  "gold_final_answer": "2, 3",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments",
+    "Discrete Mathematics > Combinatorics > Induction / smoothing",
+    "Number Theory > Divisibility / Factorization > Prime numbers",
+    "Number Theory > Number-Theoretic Functions > τ (number of divisors)"
+  ],
+  "prompt": "For a positive integer $r \\ge 2$ each positive integer is coloured into one of $r$ colours. Suppose that for each integer number $n$ and each pair $(a, b)$ of two colours $a$ and $b$ the difference between the number of divisors of $n$ coloured $a$ and the number of divisors of $n$ coloured $b$ is at most $1$. Find all possible values of $r$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let \\(d(n)\\) be the number of divisors of \\(n\\).  \nFor each \\(n\\), write \\(c_1(n),\\dots,c_r(n)\\) for the numbers of divisors of \\(n\\) in each color.\n\nThe condition says that for every \\(n\\),\n\\[\n|c_i(n)-c_j(n)|\\le 1 \\qquad \\text{for all } i,j.\n\\]\nSo all \\(c_i(n)\\) must be as equal as possible. Since\n\\[\nc_1(n)+\\cdots+c_r(n)=d(n),\n\\]\nthis is possible iff the divisors of every \\(n\\) can be split among \\(r\\) colors so that the counts differ by at most \\(1\\).\n\nNow take \\(n=p\\), a prime. Then \\(d(p)=2\\). So the two divisors of \\(p\\) must be colored, and the color counts are a partition of \\(2\\) into \\(r\\) nonnegative integers differing by at most \\(1\\). This forces:\n- one color gets \\(1\\),\n- one other color gets \\(1\\),\n- the remaining \\(r-2\\) colors get \\(0\\).\n\nHence for \\(n=p\\), we need \\(r\\le 2\\) if all colors are to appear equally up to \\(1\\). But the problem states \\(r\\ge 2\\), so we check \\(r=2\\) is possible.\n\nIndeed, with \\(r=2\\), the condition becomes: for every \\(n\\), the number of divisors of \\(n\\) of color 1 and color 2 differ by at most \\(1\\). This can be achieved, for example, by coloring the positive integers alternately by parity of their exponent pattern in a suitable ordering; more simply, the problem only asks for possible values of \\(r\\), and the prime case shows \\(r\\) cannot exceed \\(2\\).\n\nSo the only possible value is\n\\[\nr=2.\n\\]\n\nFinal answer: \\(2\\)",
+  "usage": {
+    "input_tokens": 143,
+    "output_tokens": 443,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.3469571170862764,
+  "cached": false
+}

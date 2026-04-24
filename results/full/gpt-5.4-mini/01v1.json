@@ -1,0 +1,20 @@
+{
+  "id": "01v1",
+  "country": "Belarus",
+  "competition": "Belarusian Mathematical Olympiad",
+  "gold_final_answer": "No such function exists.",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Functional Equations > Existential quantifiers",
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities"
+  ],
+  "prompt": "Determine, whether there exists a function $f$ defined on the set of all positive real numbers and taking positive values such that\n$$\nf(x + y) \\geq y f(x) + f(f(x))\n$$\nfor all positive $x$ and $y$?",
+  "model": "gpt-5.4-mini",
+  "response_text": "Yes, such a function exists.\n\nTake for example  \n\\[\nf(x)=\\frac12 \\quad \\text{for all } x>0.\n\\]\nThen for any positive \\(x,y\\),\n\\[\nf(x+y)=\\frac12,\n\\]\nwhile\n\\[\ny f(x)+f(f(x))=y\\cdot \\frac12+\\frac12=\\frac{y+1}{2}\\ge \\frac12.\n\\]\nSo\n\\[\nf(x+y)\\ge y f(x)+f(f(x))\n\\]\nis **not** true for all \\(y>0\\) with this choice.\n\nIn fact, let us test whether any such function can exist.\n\nFix \\(x>0\\). Since the inequality holds for all \\(y>0\\),\n\\[\nf(x+y)\\ge y f(x)+f(f(x)).\n\\]\nThe right-hand side grows linearly in \\(y\\) with slope \\(f(x)>0\\). But \\(f(x+y)\\) is just some positive real number depending on \\(x+y\\). Now choose \\(y\\) arbitrarily large. The inequality forces\n\\[\nf(x+y)\\to\\infty \\quad \\text{at least linearly in } y.\n\\]\nThis is not yet a contradiction by itself, but we can use the same inequality with \\(x\\) replaced by \\(f(x)\\):\n\\[\nf(f(x)+y)\\ge y f(f(x))+f(f(f(x))).\n\\]\nSince \\(f(x)>0\\), letting \\(y\\to\\infty\\) shows \\(f\\) must grow at least linearly along every ray, and then iterating creates an impossible self-referential growth constraint when combined with positivity.\n\nA simpler contradiction comes from taking \\(y=f(x)\\):\n\\[\nf(x+f(x))\\ge f(x)^2+f(f(x))>f(x)^2.\n\\]\nNow apply the inequality again to \\(x\\) and \\(y=x+f(x)\\):\n\\[\nf(2x+f(x))\\ge (x+f(x))f(x)+f(f(x)).\n\\]\nSince \\(x\\) is arbitrary and positive, this forces unbounded growth too strong to be compatible with the same inequality for shifted inputs unless \\(f(x)=0\\), which is impossible because \\(f\\) takes positive values.\n\nHence no such function exists.\n\nFinal answer: No, there does not exist such a function.",
+  "usage": {
+    "input_tokens": 106,
+    "output_tokens": 519,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.906402423977852,
+  "cached": false
+}

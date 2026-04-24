@@ -1,0 +1,25 @@
+{
+  "id": "00kf",
+  "country": "Austria",
+  "competition": "Austria 2014",
+  "gold_final_answer": "y < z < x",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities",
+    "Algebra > Equations and Inequalities > Muirhead / majorization"
+  ],
+  "prompt": "Let $a$, $b$, $c$ and $d$ be real numbers with $a < b < c < d$.\nSort the numbers $x = a b + c d$, $y = b c + a d$ and $z = c a + b d$ in ascending order and prove the correctness of your result.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let us compare the three expressions by taking differences:\n\n\\[\nx=ab+cd,\\qquad y=bc+ad,\\qquad z=ca+bd.\n\\]\n\nCompute:\n\n\\[\ny-x=(bc+ad)-(ab+cd)=b(c-a)-d(c-a)=(c-a)(b-d).\n\\]\n\nSince \\(a<c\\) and \\(b<d\\), we have \\(c-a>0\\) and \\(b-d<0\\), so\n\n\\[\ny-x<0 \\quad\\Rightarrow\\quad y<x.\n\\]\n\nNext,\n\n\\[\nz-y=(ca+bd)-(bc+ad)=c(a-b)+d(b-a)=(a-b)(c-d).\n\\]\n\nSince \\(a<b\\) and \\(c<d\\), we have \\(a-b<0\\) and \\(c-d<0\\), so\n\n\\[\nz-y>0 \\quad\\Rightarrow\\quad y<z.\n\\]\n\nFinally,\n\n\\[\nx-z=(ab+cd)-(ca+bd)=a(b-c)+d(c-b)=(b-c)(a-d).\n\\]\n\nSince \\(b<c\\) and \\(a<d\\), we have \\(b-c<0\\) and \\(a-d<0\\), hence\n\n\\[\nx-z>0 \\quad\\Rightarrow\\quad z<x.\n\\]\n\nPutting these together:\n\n\\[\n\\boxed{y<z<x}.\n\\]\n\nSo the numbers in ascending order are\n\n\\[\n\\boxed{bc+ad < ca+bd < ab+cd}.\n\\]\n\nFinal answer: \\(bc+ad<ca+bd<ab+cd\\).",
+  "usage": {
+    "input_tokens": 118,
+    "output_tokens": 352,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 2.3983083380153403,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "\\(bc+ad<ca+bd<ab+cd\\)."
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "id": "0h52",
+  "country": "Ukraine",
+  "competition": "55rd Ukrainian National Mathematical Olympiad - Third Round",
+  "gold_final_answer": "a) 2103, 2104, 2105, 2106, 2107, 2108, 2109; b) No, a chain longer than seven consecutive colored years cannot occur.",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Pigeonhole principle",
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments"
+  ],
+  "prompt": "Let us call a year *colored* if the decimal representation of its number has no repeating digits. For example, all years from $2013$ to $2019$ are colored, unlike $2020$.\n\na) Find the nearest chain of seven consecutive colored years in the future.\n\nb) Can a chain of more than seven consecutive years happen in the future?",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Part a)\n\nWe need seven consecutive years with no repeated digits in their decimal representation.\n\nFor a 4-digit year, \"no repeating digits\" means all 4 digits are distinct.\n\nLet me look for 7 consecutive years starting from 2021 (since 2020 has repeated digits).\n\n**Checking years after 2020:**\n\n- 2021: has two 2's → not colored\n- 2031: 2,0,3,1 → colored\n- Let me look for chains of 7.\n\nFor years in the 2100s, 2200s, etc., let me think systematically.\n\nFor years 20XX: the digits are 2, 0, X_tens, X_units. We need all four distinct, so X_tens ≠ 2, X_tens ≠ 0, X_units ≠ 2, X_units ≠ 0, X_units ≠ X_tens.\n\nFor a chain of 7 consecutive years, we need years n, n+1, ..., n+6 all colored. The problem occurs when the units digit cycles through values that create repeats, or when we cross a tens boundary.\n\n**Looking at years 2031-2039:** digits 2,0,3,d where d ∈ {1,...,9}\\{2,0,3} = {1,4,5,6,7,8,9}. So 2031,2034,2035,2036,2037,2038,2039 are colored but 2032 has... wait 2032: 2,0,3,2 → repeated 2. Not colored.\n\nSo in 2030s: 2031 is colored, 2032 is not.\n\n**Years 2034-2039:** 2034(✓),2035(✓),2036(✓),2037(✓),2038(✓),2039(✓) — that's 6 consecutive. 2040: 2,0,4,0 → repeated 0. Not colored.\n\n**Years 2134-2139:** 2,1,3,4 through 2,1,3,9 — all distinct? 2134(✓),2135(✓),2136(✓),2137(✓),2138(✓),2139(✓) = 6. Then 2140: 2,1,4,0 ✓. That's 7! Check: 2134,2135,2136,2137,2138,2139,2140.\n\n- 2134: 2,1,3,4 ✓\n- 2135: 2,1,3,5 ✓\n- 2136: 2,1,3,6 ✓\n- 2137: 2,1,3,7 ✓\n- 2138: 2,1,3,8 ✓\n- 2139: 2,1,3,9 ✓\n- 2140: 2,1,4,0 ✓\n\nAll seven are colored! And 2133: 2,1,3,3 → repeated 3, not colored. So the chain starts at 2134.\n\n**The nearest chain of 7 consecutive colored years is 2134–2140.**\n\n## Part b)\n\nCan we have 8 or more consecutive colored years?\n\nConsider any 10 consecutive years: they include years ending in 0,1,...,9. Among any 10 consecutive years, we pass through a \"decade boundary\" (units digit goes 0→9 or similar). \n\nMore carefully: among any 8 consecutive years, we must cross at least one tens boundary (since 8 > ... actually not necessarily). But consider: in 8 consecutive years, the units digits are 8 consecutive values mod 10. \n\nFor a chain of 8 years crossing no tens boundary: units digits d, d+1,...,d+7. The year is AB_CD where D cycles. We need all of {A,B,C,D} distinct for each. Since A,B,C are fixed, we need D ≠ A, D ≠ B, D ≠ C for all 8 values of D. But D takes 8 consecutive values mod 10, so D avoids at most 2 values — but we need D to avoid 3 specific values (A,B,C). With 8 consecutive digits, we can avoid at most 2 values from {0,...,9}. So we cannot avoid 3 values → impossible!\n\nTherefore, **no chain of more than 7 consecutive colored years can occur**.\n\nFinal answer: \n\na) The nearest chain of seven consecutive colored years is **2134, 2135, 2136, 2137, 2138, 2139, 2140**.\n\nb) **No**, a chain of more than seven consecutive colored years cannot happen, because among any 8 consecutive years with the same hundreds digit, the units digit takes 8 values and cannot avoid the 3 digits already used in the thousands, hundreds, and tens places.",
+  "usage": {
+    "input_tokens": 123,
+    "output_tokens": 1211,
+    "thinking_tokens": 0
+  },
+  "latency_s": 21.095093892072327,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "a) The nearest chain of seven consecutive colored years is **2134, 2135, 2136, 2137, 2138, 2139, 2140**."
+  }
+}

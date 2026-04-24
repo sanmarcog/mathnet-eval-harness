@@ -1,0 +1,24 @@
+{
+  "id": "04pe",
+  "country": "Croatia",
+  "competition": "Croatian Mathematical Society Competitions",
+  "gold_final_answer": "sqrt(3)",
+  "topics_flat": [
+    "Precalculus > Trigonometric functions"
+  ],
+  "prompt": "Calculate\n$$\n\\frac{\\tan 192^\\circ + \\tan 48^\\circ}{1 + \\tan 168^\\circ \\cdot \\tan 408^\\circ}\n$$",
+  "model": "gpt-5.4",
+  "response_text": "Use tangent periodicity and angle identities.\n\n\\[\n\\tan 192^\\circ=\\tan(180^\\circ+12^\\circ)=\\tan 12^\\circ\n\\]\n\\[\n\\tan 48^\\circ=\\tan 48^\\circ\n\\]\n\\[\n\\tan 168^\\circ=\\tan(180^\\circ-12^\\circ)=-\\tan 12^\\circ\n\\]\n\\[\n\\tan 408^\\circ=\\tan(360^\\circ+48^\\circ)=\\tan 48^\\circ\n\\]\n\nSo the expression becomes\n\\[\n\\frac{\\tan 12^\\circ+\\tan 48^\\circ}{1-\\tan 12^\\circ\\tan 48^\\circ}.\n\\]\n\nNow use\n\\[\n\\tan(A+B)=\\frac{\\tan A+\\tan B}{1-\\tan A\\tan B}.\n\\]\nWith \\(A=12^\\circ\\), \\(B=48^\\circ\\), this is\n\\[\n\\tan(12^\\circ+48^\\circ)=\\tan 60^\\circ=\\sqrt3.\n\\]\n\nFinal answer: \\(\\sqrt3\\)",
+  "usage": {
+    "input_tokens": 87,
+    "output_tokens": 234,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.063141713035293,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "\\(\\sqrt3\\)"
+  }
+}

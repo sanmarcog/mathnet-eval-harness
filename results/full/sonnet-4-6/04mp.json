@@ -1,0 +1,19 @@
+{
+  "id": "04mp",
+  "country": "Croatia",
+  "competition": "Croatia_2018",
+  "gold_final_answer": "9, 9 + 15i, 9 - 15i",
+  "topics_flat": [
+    "Algebra > Intermediate Algebra > Complex numbers"
+  ],
+  "prompt": "Find all complex numbers $z$ such that\n$$ \\mathrm{Re}(z) = 9 \\quad \\text{and} \\quad \\mathrm{Im}(z^2) = \\mathrm{Im}(z^3). \\qquad (\\text{AIME 2007}) $$",
+  "model": "claude-sonnet-4-6",
+  "response_text": "Let z = 9 + bi where b is real.\n\nz² = (9 + bi)² = 81 - b² + 18bi, so Im(z²) = 18b\n\nz³ = z · z² = (9 + bi)(81 - b² + 18bi) = 9(81 - b²) + 9·18bi + 81bi - b²·bi + 18b·i²·b... let me compute carefully.\n\nz³ = (9 + bi)(81 - b² + 18bi)\n= 9(81 - b²) + 9(18bi) + bi(81 - b²) + bi(18bi)\n= 729 - 9b² + 162bi + 81bi - b³i + 18b²i²\n= 729 - 9b² - 18b² + (162b + 81b - b³)i\n= 729 - 27b² + (243b - b³)i\n\nSo Im(z³) = 243b - b³\n\nSetting Im(z²) = Im(z³):\n18b = 243b - b³\nb³ = 225b\nb(b² - 225) = 0\nb = 0, b = 15, b = -15\n\nThe solutions are z = 9, z = 9 + 15i, z = 9 - 15i.\n\nFinal answer: $z \\in \\{9,\\ 9+15i,\\ 9-15i\\}$",
+  "usage": {
+    "input_tokens": 123,
+    "output_tokens": 374,
+    "thinking_tokens": 0
+  },
+  "latency_s": 5.023139060009271,
+  "cached": false
+}

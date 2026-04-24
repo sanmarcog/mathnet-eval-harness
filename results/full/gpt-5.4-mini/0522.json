@@ -1,0 +1,22 @@
+{
+  "id": "0522",
+  "country": "Estonia",
+  "competition": "Final Round of National Olympiad",
+  "gold_final_answer": "No",
+  "topics_flat": [
+    "Number Theory > Modular Arithmetic > Polynomials mod p",
+    "Algebra > Algebraic Expressions > Polynomials > Polynomial operations",
+    "Number Theory > Divisibility / Factorization > Factorization techniques",
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities"
+  ],
+  "prompt": "Can $2013$ be represented as the difference of two cubes of integers?",
+  "model": "gpt-5.4-mini",
+  "response_text": "We want integers \\(a,b\\) such that\n\\[\na^3-b^3=2013.\n\\]\nFactor:\n\\[\na^3-b^3=(a-b)(a^2+ab+b^2).\n\\]\nSo \\(a-b\\) must be a divisor of \\(2013\\). Also, since \\(a^2+ab+b^2\\ge 0\\), we only need consider positive divisors.\n\nNow\n\\[\n2013=3\\cdot 11\\cdot 61.\n\\]\nA standard parity/modulo argument helps: cubes modulo \\(9\\) are \\(0,\\pm1\\), so differences of two cubes modulo \\(9\\) can only be\n\\[\n0,\\pm1,\\pm2 \\equiv 0,1,2,7,8 \\pmod 9.\n\\]\nBut\n\\[\n2013 \\equiv 6 \\pmod 9,\n\\]\nwhich is not among these possibilities.\n\nTherefore \\(2013\\) cannot be written as the difference of two integer cubes.\n\nFinal answer: No.",
+  "usage": {
+    "input_tokens": 64,
+    "output_tokens": 236,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 2.2445709980092943,
+  "cached": false
+}

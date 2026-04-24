@@ -1,0 +1,25 @@
+{
+  "id": "0598",
+  "country": "Estonia",
+  "competition": "Estonian Math Competitions",
+  "gold_final_answer": "{5, 20}; {5, 6, 14}; {5, 7, 13}; {5, 8, 12}; {5, 9, 11}; {6, 12}",
+  "topics_flat": [
+    "Algebra > Prealgebra / Basic Algebra > Integers",
+    "Number Theory > Divisibility / Factorization > Factorization techniques"
+  ],
+  "prompt": "There are some distinct positive integers written on a blackboard. If we erase the smallest number written on the blackboard, then the ratio of the sum and the product of the remaining numbers will be 4 times greater than the ratio of the sum and the product of the numbers initially on the blackboard. Find all possibilities for the set of numbers that could have been on the blackboard initially.",
+  "model": "gpt-5.4",
+  "response_text": "Let the distinct positive integers on the blackboard be\n\\[\na_1<a_2<\\cdots<a_n,\n\\]\nand let\n\\[\na_1=m\n\\]\nbe the smallest one.\n\nDefine:\n\n- initial sum: \\(\\displaystyle S=a_1+a_2+\\cdots+a_n\\),\n- initial product: \\(\\displaystyle P=a_1a_2\\cdots a_n\\).\n\nAfter erasing the smallest number \\(m\\), the remaining sum and product are\n\\[\nS-m,\\qquad \\frac{P}{m}.\n\\]\n\nWe are told that\n\\[\n\\frac{S-m}{P/m}=4\\cdot \\frac{S}{P}.\n\\]\n\n## Step 1: Simplify the condition\nMultiply both sides by \\(P\\):\n\\[\nm(S-m)=4S.\n\\]\nSo\n\\[\nmS-m^2=4S,\n\\]\nhence\n\\[\n(m-4)S=m^2.\n\\]\nTherefore\n\\[\nS=\\frac{m^2}{m-4}.\n\\]\n\nSince \\(S\\) is an integer, \\(m-4\\mid m^2\\). But\n\\[\nm^2=(m-4)(m+4)+16,\n\\]\nso \\(m-4\\mid 16\\).\n\nAlso \\(m\\) is the smallest positive integer in the set, so \\(m\\ge1\\), and since \\(S>0\\), we need \\(m\\neq4\\). Moreover \\(m-4>0\\) must hold, otherwise \\(S\\) would be nonpositive. So \\(m>4\\).\n\nThus \\(m-4\\) is a positive divisor of \\(16\\):\n\\[\nm-4\\in\\{1,2,4,8,16\\},\n\\]\ngiving\n\\[\nm\\in\\{5,6,8,12,20\\}.\n\\]\n\nNow compute\n\\[\nS=\\frac{m^2}{m-4}.\n\\]\n\n## Step 2: Check each possible \\(m\\)\n\n### 1) \\(m=5\\)\n\\[\nS=\\frac{25}{1}=25.\n\\]\nSo the remaining numbers must be distinct integers greater than \\(5\\) with sum\n\\[\n25-5=20.\n\\]\nBut the smallest possible sum of distinct integers greater than \\(5\\) is \\(6+7=13\\), and possibilities exist. We need all distinct subsets of \\(\\{6,7,8,\\dots\\}\\) summing to \\(20\\):\n\n- \\(6+14\\)\n- \\(7+13\\)\n- \\(8+12\\)\n- \\(9+11\\)\n- \\(6+7+8\\)\n\nThus the sets are\n\\[\n\\{5,6,14\\},\\ \\{5,7,13\\},\\ \\{5,8,12\\},\\ \\{5,9,11\\},\\ \\{5,6,7,8\\}.\n\\]\n\n### 2) \\(m=6\\)\n\\[\nS=\\frac{36}{2}=18.\n\\]\nRemaining numbers are distinct integers greater than \\(6\\) summing to \\(12\\), impossible.\n\n### 3) \\(m=8\\)\n\\[\nS=\\frac{64}{4}=16.\n\\]\nRemaining numbers are distinct integers greater than \\(8\\) summing to \\(8\\), impossible.\n\n### 4) \\(m=12\\)\n\\[\nS=\\frac{144}{8}=18.\n\\]\nRemaining numbers sum to \\(6\\), impossible.\n\n### 5) \\(m=20\\)\n\\[\nS=\\frac{400}{16}=25.\n\\]\nRemaining numbers sum to \\(5\\), impossible.\n\nSo only \\(m=5\\) works.\n\n## Step 3: Verify\nTake for example \\(\\{5,6,14\\}\\). Then\n\\[\nS=25,\\quad P=420.\n\\]\nInitial ratio:\n\\[\n\\frac{S}{P}=\\frac{25}{420}.\n\\]\nAfter removing \\(5\\):\n\\[\n\\frac{20}{84}=\\frac{100}{420}=4\\cdot \\frac{25}{420}.\n\\]\nWorks. The same is true for all the listed sets since they all have smallest element \\(5\\) and total sum \\(25\\), which is exactly the derived condition.\n\nFinal answer: \\(\\{5,6,14\\},\\ \\{5,7,13\\},\\ \\{5,8,12\\},\\ \\{5,9,11\\},\\ \\{5,6,7,8\\}\\).",
+  "usage": {
+    "input_tokens": 127,
+    "output_tokens": 998,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 14.118107818067074,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "\\(\\{5,6,14\\},\\ \\{5,7,13\\},\\ \\{5,8,12\\},\\ \\{5,9,11\\},\\ \\{5,6,7,8\\}\\)."
+  }
+}

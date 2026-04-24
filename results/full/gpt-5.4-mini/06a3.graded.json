@@ -1,0 +1,27 @@
+{
+  "id": "06a3",
+  "country": "Greece",
+  "competition": "37th Hellenic Mathematical Olympiad 2020",
+  "gold_final_answer": "(a) No; (b) No",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Invariants / monovariants",
+    "Algebra > Prealgebra / Basic Algebra > Integers",
+    "Algebra > Algebraic Expressions > Polynomials > Polynomial operations",
+    "Algebra > Algebraic Expressions > Sequences and Series > Sums and products"
+  ],
+  "prompt": "On the blackboard are written in a line the numbers from $1$ to $2030$ in increasing turn. We have the possibility of the “movement” $K$: *We select two numbers $\\alpha$, $\\beta$ from the blackboard written in successive positions and we substitute the pair ($\\alpha$, $\\beta$) with the number $(\\alpha - \\beta)^{2020}$.*\n\nWe perform the movement as many times as we need in order to have on the blackboard only one number. Examine, if this number can be:\n\n(a) $2020^{2020}$,\n\n(b) $2021^{2020}$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let \\(f(x,y)=(x-y)^{2020}\\). Since \\(2020\\) is even, \\(f(x,y)=|x-y|^{2020}\\ge 0\\).\n\nA key invariant is the greatest common divisor of all numbers on the board:\n\n- Initially the numbers are \\(1,2,\\dots,2030\\), so \\(\\gcd=1\\).\n- If we replace \\(\\alpha,\\beta\\) by \\((\\alpha-\\beta)^{2020}\\), then this new number is divisible by \\(\\alpha-\\beta\\), hence by every common divisor of \\(\\alpha,\\beta\\). So the gcd of all numbers on the board does not change.\n\nTherefore, throughout the process the gcd of all current numbers remains \\(1\\). In particular, when only one number \\(N\\) remains, we must have \\(N=1\\) or at least \\(\\gcd(\\{N\\})=N=1\\), so the final number must be \\(1\\).\n\nBut this is not enough alone, because the operation can create huge numbers; we need a stronger congruence observation:\n\nSince \\(a^{2020}\\equiv a \\pmod 2\\) for any integer \\(a\\), we have\n\\[\n(\\alpha-\\beta)^{2020}\\equiv \\alpha-\\beta \\pmod 2.\n\\]\nSo parity behaves like subtraction mod \\(2\\). Starting from the list \\(1,2,\\dots,2030\\), there are \\(1015\\) odd numbers, hence the total sum of the numbers mod \\(2\\) is\n\\[\n1015 \\equiv 1 \\pmod 2.\n\\]\nEach move replaces two numbers by one number congruent to their difference mod \\(2\\), so the parity of the total sum changes by\n\\[\n(\\alpha-\\beta)-(\\alpha+\\beta)\\equiv -2\\beta\\equiv 0 \\pmod 2.\n\\]\nThus the total sum modulo \\(2\\) is invariant, and the final single number must be odd.\n\nNow check the proposed values:\n\n- \\(2020^{2020}\\) is even, so it is impossible.\n- \\(2021^{2020}\\) is odd, so parity does not rule it out; but we need more.\n\nConsider modulo \\(3\\). Since \\(2020\\equiv 1\\pmod 2\\), that does not help directly; instead note that for any integer \\(a\\),\n\\[\na^{2020}\\equiv \n\\begin{cases}\n0 & (3\\mid a),\\\\\n1 & (3\\nmid a),\n\\end{cases}\n\\pmod 3\n\\]\nbecause \\(2020\\equiv 1 \\pmod 2\\) and by Fermat \\(a^2\\equiv 1\\pmod 3\\) when \\(3\\nmid a\\).\n\nHence every number on the board is always congruent to \\(0\\) or \\(1\\) mod \\(3\\). The initial sum\n\\[\n1+2+\\cdots+2030=\\frac{2030\\cdot 2031}{2}\n\\]\nis divisible by \\(3\\) (since \\(2031\\) is divisible by \\(3\\)). The same “sum modulo \\(3\\)” is preserved under the move because\n\\[\n(\\alpha-\\beta)^{2020}\\equiv \\alpha-\\beta \\pmod 3\n\\]\nwhenever \\(\\alpha,\\beta\\) are taken modulo \\(3\\) in this setup. Thus the final number must be divisible by \\(3\\).\n\nNow:\n\n- \\(2020^{2020}\\) is not divisible by \\(3\\) because \\(2020\\equiv 1\\pmod 3\\).\n- \\(2021^{2020}\\) is divisible by \\(3\\) because \\(2021\\equiv 2\\pmod 3\\), and \\(2^{2020}\\equiv 1\\pmod 3\\), so actually \\(2021^{2020}\\equiv 1\\pmod 3\\), not divisible by \\(3\\).\n\nSo neither candidate matches the necessary congruence condition.\n\nTherefore neither number can appear as the final remaining number.\n\nFinal answer: (a) No, (b) No.",
+  "usage": {
+    "input_tokens": 181,
+    "output_tokens": 916,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 6.589112336980179,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "(a) No, (b) No."
+  }
+}

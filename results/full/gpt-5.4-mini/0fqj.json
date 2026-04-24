@@ -1,0 +1,19 @@
+{
+  "id": "0fqj",
+  "country": "Spain",
+  "competition": "SPANISH MATHEMATICAL OLYMPIAD (FINAL ROUND)",
+  "gold_final_answer": "y ∈ {π/7, 2π/7, 3π/7, 4π/7, 5π/7, 6π/7} ∪ {π/8, 3π/8, 5π/8, 7π/8} ∪ {π/9, 2π/9, π/3, 4π/9, 5π/9, 2π/3, 7π/9, 8π/9}",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Vieta's formulas"
+  ],
+  "prompt": "Let $a$, $b$ and $c$ be real numbers such that $p(x) = x^4 + a x^3 + b x^2 + a x + c$ has exactly three different real roots; these roots are $\\tan y$, $\\tan 2y$ and $\\tan 3y$ for some real number $y$. Find all possible values of $y$, $0 \\le y < \\pi$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let the three distinct real roots be\n\\[\nt,\\quad \\tan 2y,\\quad \\tan 3y,\n\\]\nwhere \\(t=\\tan y\\). Since\n\\[\np(x)=x^4+ax^3+bx^2+ax+c\n\\]\nis palindromic, if \\(r\\) is a root then so is \\(1/r\\) whenever \\(r\\neq 0\\). Hence among the roots we must have reciprocal pairing, so the set of roots must be\n\\[\n\\{t,\\tfrac1t,\\tan 2y,\\tan 3y\\}\n\\]\nwith exactly one repetition among the listed tangents. Because there are exactly three distinct roots, one of \\(\\tan y,\\tan 2y,\\tan 3y\\) must coincide with another.\n\nWe use the tangent triple-angle identities. Set \\(t=\\tan y\\). Then\n\\[\n\\tan 2y=\\frac{2t}{1-t^2},\\qquad \\tan 3y=\\frac{3t-t^3}{1-3t^2}.\n\\]\n\nThe only way to get a repetition among \\(\\tan y,\\tan 2y,\\tan 3y\\) with exactly three distinct values is:\n\n### Case 1: \\(\\tan 3y=\\tan y\\)\nThen\n\\[\n3y\\equiv y \\pmod \\pi \\quad\\Longrightarrow\\quad 2y\\equiv 0 \\pmod \\pi,\n\\]\nso \\(y=0,\\frac\\pi2\\). But these give undefined or non-distinct roots, so no valid solution.\n\n### Case 2: \\(\\tan 3y=\\tan 2y\\)\nThen\n\\[\n3y\\equiv 2y \\pmod \\pi \\quad\\Longrightarrow\\quad y\\equiv 0 \\pmod \\pi,\n\\]\nagain impossible.\n\n### Case 3: \\(\\tan 2y=\\tan y\\)\nThen\n\\[\n2y\\equiv y \\pmod \\pi \\quad\\Longrightarrow\\quad y\\equiv 0 \\pmod \\pi,\n\\]\nalso impossible.\n\nSo we must instead use the reciprocal pairing forced by the palindromic polynomial. For the three listed values to produce exactly three distinct roots, one of them must be \\(0\\), since \\(0\\) is its own reciprocal and allows an odd number of distinct roots among the set. Thus one of \\(\\tan y,\\tan 2y,\\tan 3y\\) is \\(0\\).\n\nNow:\n- \\(\\tan y=0 \\Rightarrow y=0,\\pi\\), giving repeated/degenerate roots;\n- \\(\\tan 2y=0 \\Rightarrow y=0,\\frac\\pi2,\\pi\\), again invalid;\n- \\(\\tan 3y=0 \\Rightarrow y=0,\\frac\\pi3,\\frac{2\\pi}3,\\pi\\).\n\nThe only values in \\(0\\le y<\\pi\\) that produce three distinct real roots are\n\\[\n\\boxed{y=\\frac\\pi3,\\ \\frac{2\\pi}3}.\n\\]\nIndeed, for \\(y=\\frac\\pi3\\), the roots are \\(\\sqrt3,\\,-\\sqrt3,\\,0\\); and similarly for \\(y=\\frac{2\\pi}3\\).\n\nFinal answer: \\(\\displaystyle y=\\frac{\\pi}{3},\\ \\frac{2\\pi}{3}\\).",
+  "usage": {
+    "input_tokens": 139,
+    "output_tokens": 753,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 5.694078793982044,
+  "cached": false
+}

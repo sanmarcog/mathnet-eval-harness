@@ -1,0 +1,26 @@
+{
+  "id": "0584",
+  "country": "Estonia",
+  "competition": "Estonian Math Competitions",
+  "gold_final_answer": "a: first player; b: first player",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Games / greedy algorithms",
+    "Discrete Mathematics > Combinatorics > Invariants / monovariants",
+    "Number Theory > Divisibility / Factorization > Least common multiples (lcm)"
+  ],
+  "prompt": "Natural numbers $1$ through $n$ are written on a blackboard. On each move, one erases from the blackboard $2$ or more numbers whose sum is divisible by any of the chosen numbers and writes their sum on the blackboard. Two players make moves by turns and the player who cannot move loses the game. Which player can win the game against any play by the opponent, if:\n\na. $n = 6$;\n\nb. $n = 11$?",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To determine which player has a winning strategy, we analyze the game for the given values of $n$. A move consists of choosing a subset of numbers on the board such that their sum $S$ is a multiple of each chosen number. This means $S$ must be a multiple of the least common multiple of the chosen numbers. The chosen numbers are then replaced by $S$.\n\n**a. $n = 6$**\nThe initial numbers are $1, 2, 3, 4, 5, 6$.\nLet's find all possible valid moves from the initial state. The sum of the chosen numbers must be divisible by each of them.\n- Size 3 subsets: The only valid subsets are $\\{1, 2, 3\\}$ (sum 6) and $\\{2, 4, 6\\}$ (sum 12).\n- Size 4 subsets: The only valid subset is $\\{1, 2, 3, 6\\}$ (sum 12).\nNo other subsets are valid.\n\nIf Player 1 chooses $\\{2, 4, 6\\}$, the sum is 12, and the board becomes $\\{1, 3, 5, 12\\}$. \nFrom this new board, any valid move must sum to a multiple of its maximum element. The sum of all numbers on the board is 21. The only multiple of 12 less than or equal to 21 is 12 itself, which would require choosing only $\\{12\\}$, but a move must consist of at least",
+  "usage": {
+    "input_tokens": 138,
+    "output_tokens": 328,
+    "thoughts_tokens": 7860
+  },
+  "latency_s": 66.08959673799109,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": null
+  }
+}

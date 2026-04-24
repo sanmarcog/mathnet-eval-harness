@@ -1,0 +1,26 @@
+{
+  "id": "048x",
+  "country": "Croatia",
+  "competition": "Hrvatska 2011",
+  "gold_final_answer": "3 - 2√2",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Circles > Tangents",
+    "Geometry > Plane Geometry > Analytic / Coordinate Methods > Cartesian coordinates",
+    "Geometry > Plane Geometry > Miscellaneous > Distance chasing"
+  ],
+  "prompt": "Let $ABCD$ be a unit square. The unit circle $k$ has center $C$. Determine the radius of the circle $k_1$ which touches the circle $k$ and line segments $\\overline{AB}$ and $\\overline{AD}$.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find the radius of the circle $k_1$, let's set up a coordinate system. Let the vertices of the unit square $ABCD$ be placed at $A(0, 1)$, $B(1, 1)$, $C(1, 0)$, and $D(0, 0)$. \nThe line segment $AB$ lies on the line $y = 1$ (for $0 \\le x \\le 1$) and the line segment $AD$ lies on the line $x = 0$ (for $0 \\le y \\le 1$).\n\nThe circle $k$ has its center at $C(1, 0)$ and a radius of $R = 1$.\nLet $r$ be the radius of the circle $k_1$. Because $k_1$ touches the segments $AB$ and $AD$, its center $O_1$ must be at a distance $r$ from both the line $y = 1$ and the line $x = 0$. Since it lies inside the angle $\\angle DAB$, the coordinates of $O_1$ are $(r, 1 - r)$.\n\nThe circle $k_1$ also touches the circle $k$ externally. Therefore, the distance between their centers $O_1$ and $C$ must be equal to the sum of their radii, which is $1 + r$.\nUsing the distance formula for $O_1(r, 1 - r)$ and $C(1, 0)$:\n$$O_1C = \\sqrt{(1 - r)^2 + (0 - (1 - r))^2}$$\n$$O_1C = \\sqrt{(1 - r)^2 + (r - 1)^2}$$\n$$O_1C = \\sqrt{2(1 - r)^2}$$\nSince $k_1$ touches the segments of the unit square, $r < 1$, so we can simplify this to:\n$$O_1C = \\sqrt{2}(1 - r)$$\n\nEquating the two expressions for the distance $O_1C$:\n$$\\sqrt{2}(1 - r) = 1 + r$$\n$$\\sqrt{2} - r\\sqrt{2} = 1 + r$$\n$$r(1 + \\sqrt{2}) = \\sqrt{2} - 1$$\n\nSolving for $r$, we rationalize the denominator:\n$$r = \\frac{\\sqrt{2} - 1}{\\sqrt{2} + 1}$$\n$$r = \\frac{(\\sqrt{2} - 1)(\\sqrt{2} - 1)}{(\\sqrt{2} + 1)(\\sqrt{2} - 1)}$$\n$$r = \\frac{2 - 2\\sqrt{2} + 1}{2 - 1}$$\n$$r = 3 - 2\\sqrt{2}$$\n\nFinal answer: 3 - 2\\sqrt{2}",
+  "usage": {
+    "input_tokens": 91,
+    "output_tokens": 635,
+    "thoughts_tokens": 2287
+  },
+  "latency_s": 22.522068210993893,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "3 - 2\\sqrt{2}"
+  }
+}

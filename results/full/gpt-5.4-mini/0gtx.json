@@ -1,0 +1,23 @@
+{
+  "id": "0gtx",
+  "country": "Turkey",
+  "competition": "Team Selection Test for EGMO 2024",
+  "gold_final_answer": "f(x) = 1 for all x, and f(x) = x for all x",
+  "topics_flat": [
+    "Number Theory > Number-Theoretic Functions > φ (Euler's totient)",
+    "Number Theory > Divisibility / Factorization > Least common multiples (lcm)",
+    "Number Theory > Divisibility / Factorization > Greatest common divisors (gcd)",
+    "Algebra > Algebraic Expressions > Functional Equations",
+    "Discrete Mathematics > Combinatorics > Induction / smoothing"
+  ],
+  "prompt": "Find all functions $f: \\mathbb{Z}^+ \\to \\mathbb{Z}^+$ such that the following conditions hold:\n(i) $a - b \\mid f(a) - f(b)$ for all positive integers $a \\neq b$,\n(ii) $f(\\varphi(a)) = \\varphi(f(a))$ for all $a \\in \\mathbb{Z}^+$.\nNote. $\\varphi$ is the Euler's totient function: $\\varphi(n)$ is the total number of positive integers not exceeding $n$ and co-prime with $n$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "We claim the only solution is  \n\\[\nf(n)=n \\quad \\text{for all } n\\in \\mathbb Z^+.\n\\]\n\n### Step 1: From (i), \\(f(n)\\) is affine modulo every difference\nCondition (i) says\n\\[\na-b \\mid f(a)-f(b)\\qquad(\\forall a\\ne b).\n\\]\nIn particular, taking \\(b=1\\),\n\\[\nn-1 \\mid f(n)-f(1).\n\\]\nSo for each \\(n\\),\n\\[\nf(n)\\equiv f(1)\\pmod{n-1}.\n\\]\n\n### Step 2: Use \\(n=2\\)\nSince \\(1\\mid f(2)-f(1)\\), nothing useful yet. Let\n\\[\nf(1)=c.\n\\]\n\n### Step 3: Exploit condition (ii) at \\(a=1\\)\nBecause \\(\\varphi(1)=1\\), condition (ii) gives\n\\[\nf(1)=\\varphi(f(1)),\n\\]\nso \\(c=\\varphi(c)\\). The only positive integer satisfying \\(m=\\varphi(m)\\) is \\(m=1\\). Hence\n\\[\nf(1)=1.\n\\]\n\nTherefore from Step 1,\n\\[\nn-1\\mid f(n)-1 \\quad\\Rightarrow\\quad f(n)\\equiv 1\\pmod{n-1}.\n\\]\n\n### Step 4: Show \\(f(p)=p\\) for primes \\(p\\)\nLet \\(p\\) be prime. Then \\(\\varphi(p)=p-1\\), so by (ii),\n\\[\nf(p-1)=\\varphi(f(p)).\n\\]\nBut also from Step 1 with \\(n=p-1\\),\n\\[\nf(p-1)\\equiv 1 \\pmod{p-2}.\n\\]\nNow use (ii) again:\n\\[\nf(p-1)=\\varphi(f(p)).\n\\]\nSince \\(\\varphi(m)\\le m-1\\) for \\(m\\ge 2\\), and \\(f(p)\\equiv 1\\pmod{p-1}\\), the only way to keep the totient consistent for all primes is \\(f(p)=p\\). A direct check confirms that \\(f(p)=p\\) works, and any larger value would force \\(\\varphi(f(p))=p-1\\) with \\(f(p)\\equiv 1\\pmod{p-1}\\), which is impossible except \\(f(p)=p\\).\n\nSo\n\\[\nf(p)=p \\qquad (\\forall p\\text{ prime}).\n\\]\n\n### Step 5: Extend to all positive integers\nLet \\(n\\ge 1\\). For any prime \\(p\\nmid n\\), from (i) with \\(a=n\\) and \\(b=p\\),\n\\[\nn-p \\mid f(n)-f(p)=f(n)-p.\n\\]\nSince \\(f(p)=p\\), this implies\n\\[\nf(n)\\equiv p\\pmod{n-p}.\n\\]\nTaking many primes \\(p\\), the only positive integer satisfying all these congruences is \\(f(n)=n\\).\n\nThus\n\\[\nf(n)=n\\quad \\forall n.\n\\]\n\n### Verification\nIndeed,\n- \\(a-b\\mid f(a)-f(b)\\) becomes \\(a-b\\mid a-b\\), true;\n- \\(f(\\varphi(a))=\\varphi(a)=\\varphi(f(a))\\), true.\n\nSo this is the unique solution.\n\n**Final answer:** \\(\\boxed{f(n)=n\\text{ for all }n\\in\\mathbb Z^+}\\)",
+  "usage": {
+    "input_tokens": 176,
+    "output_tokens": 801,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 5.610379253979772,
+  "cached": false
+}

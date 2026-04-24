@@ -1,0 +1,26 @@
+{
+  "id": "0di2",
+  "country": "Saudi Arabia",
+  "competition": "SAUDI ARABIAN IMO Booklet 2023",
+  "gold_final_answer": "No",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Invariants / monovariants",
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments",
+    "Algebra > Algebraic Expressions > Sequences and Series > Sums and products"
+  ],
+  "prompt": "Determine whether or not it is possible to partition the set of positive integers in infinite subsets $A_1, A_2, \\dots$ such that for every positive integer $k$, the sum of elements of $A_k$ is $k + 2023$.\n\n*Remark*: a partition of a set $X$ is a collection of subsets of $X$ such that every element of $X$ is contained in exactly one the subsets.",
+  "model": "gpt-5.4-mini",
+  "response_text": "It is **not possible**.\n\n### Reason\nFor each \\(k\\), the set \\(A_k\\) is an infinite subset of the positive integers, so it contains at least one element. Since all elements of \\(A_k\\) are positive integers, the sum of the elements of \\(A_k\\) is at least the smallest possible sum of an infinite subset of positive integers, which is certainly not finite.\n\nMore directly: the sum of elements of an infinite set of positive integers cannot equal a finite number. But the problem requires\n\\[\n\\sum_{a\\in A_k} a = k+2023,\n\\]\nwhich is finite for every \\(k\\). This is impossible.\n\nSo no such partition exists.\n\nFinal answer: No, such a partition is impossible.",
+  "usage": {
+    "input_tokens": 140,
+    "output_tokens": 169,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 1.6488644819473848,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "No, such a partition is impossible."
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "id": "04cw",
+  "country": "Croatia",
+  "competition": "Mathematica competitions in Croatia",
+  "gold_final_answer": "Exactly the prime powers, i.e., all integers of the form p^k with p prime and k a positive integer.",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Prime numbers",
+    "Number Theory > Divisibility / Factorization > Factorization techniques"
+  ],
+  "prompt": "Find all integers greater than $1$ whose all divisors written in an increasing sequence make a geometric sequence.",
+  "model": "gpt-5.4",
+  "response_text": "Let the positive divisors of \\(n>1\\) be\n\\[\n1=d_1<d_2<\\cdots<d_k=n,\n\\]\nand suppose they form a geometric sequence.\n\nWe must find all such integers \\(n\\).\n\n## Step 1: Use the fact that the first divisor is \\(1\\)\n\nSince the divisors are in geometric progression, there is a ratio \\(r>1\\) such that\n\\[\nd_i=r^{\\,i-1}\\qquad (i=1,2,\\dots,k),\n\\]\nbecause \\(d_1=1\\).\n\nSo all divisors of \\(n\\) are\n\\[\n1,r,r^2,\\dots,r^{k-1}.\n\\]\n\nSince every divisor is an integer, \\(r\\) must be an integer. Thus the divisors are exactly\n\\[\n1,a,a^2,\\dots,a^{k-1}\n\\]\nfor some integer \\(a>1\\).\n\n## Step 2: Compare with the divisor structure of \\(n\\)\n\nThe largest divisor is \\(n\\), so\n\\[\nn=a^{k-1}.\n\\]\n\nNow \\(a\\) itself is a divisor of \\(n\\), so every divisor of \\(n\\) is a power of \\(a\\). That means \\(n\\) has only one prime factor; otherwise there would be divisors involving different primes not equal to powers of one integer.\n\nHence \\(n\\) must be a prime power:\n\\[\nn=p^m\n\\]\nfor some prime \\(p\\) and integer \\(m\\ge1\\).\n\nIts divisors are then exactly\n\\[\n1,p,p^2,\\dots,p^m,\n\\]\nwhich indeed form a geometric sequence with ratio \\(p\\).\n\n## Step 3: Verify\n\nFor any prime power \\(p^m\\), the increasing list of divisors is\n\\[\n1,p,p^2,\\dots,p^m,\n\\]\na geometric progression.\n\nSo these and only these work.\n\nFinal answer: All such integers are exactly the prime powers \\(n=p^m\\), where \\(p\\) is prime and \\(m\\ge 1\\).",
+  "usage": {
+    "input_tokens": 70,
+    "output_tokens": 456,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 7.308597006951459,
+  "cached": false
+}

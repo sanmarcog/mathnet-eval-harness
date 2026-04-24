@@ -1,0 +1,20 @@
+{
+  "id": "04bb",
+  "country": "Croatia",
+  "competition": "Mathematica competitions in Croatia",
+  "gold_final_answer": "∠EBF = 108°, ∠BEF = 54°, ∠BFE = 18°",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Miscellaneous > Angle chasing",
+    "Geometry > Plane Geometry > Transformations > Rotation"
+  ],
+  "prompt": "Let $ABCDE$ be a regular pentagon. The lines $BC$ and $DE$ intersect at point $F$. Determine the angles of triangle $BEF$.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "In a regular pentagon, each interior angle is 108°.\n\n**Setting up the triangle:**\n\nLines BC and DE are sides of the regular pentagon extended to meet at point F.\n\n**Finding angle at F:**\n\nConsider triangle BEF where F is the intersection of lines BC and DE extended.\n\nIn the regular pentagon ABCDE, the vertices are in order. The sides BC and DE, when extended, meet at F outside the pentagon.\n\nLet me find angle BFE (angle at F).\n\nThe exterior angle approach: In the pentagon, side BC extended beyond C and side DE extended beyond E meet at F.\n\nActually, let me think about which extensions. Lines BC and DE:\n- Line BC passes through B and C\n- Line DE passes through D and E\n\nThese lines meet at F. Since BC and DE are non-adjacent sides of the pentagon, they intersect outside.\n\n**Using the pentagon's properties:**\n\nEach interior angle of the regular pentagon = 108°.\n\nConsider the diagonal BE. In triangle BEF, I need angles at B, E, and F.\n\n**Angle at B (angle FBE):**\nAt vertex B, the interior angle ABC = 108°. The angle EBC is the angle from BE to BC at vertex B.\n\nIn the regular pentagon, BE is a diagonal. The diagonal from B to E: since the pentagon is ABCDE, BE skips vertices C and D... wait, BE connects B to E which are separated by one vertex (going B→A→E or B→C→D→E).\n\nActually B and E are adjacent to A, so BE is a \"long diagonal\" skipping 2 vertices going one way (B,C,D,E) or 1 vertex going the other (B,A,E).\n\nThe angle ABE: In triangle ABE, AB = AE (sides of pentagon), so it's isoceles. Angle BAE = 108°, so angles ABE = AEB = (180°-108°)/2 = 36°.\n\nAngle ABC = 108°, so angle EBC = angle ABC - angle ABE = 108° - 36° = 72°.\n\nSo **angle FBE = 72°** (angle at B in triangle BEF, since F is on line BC beyond C... wait, I need to check which direction).\n\nActually F is the intersection of lines BC and DE. Let me reconsider: F could be on the extension of BC beyond C, and extension of DE beyond E.\n\n**Angle at E (angle FEB):**\nBy symmetry of the pentagon (B and E are symmetric about the axis through A and the midpoint of CD), the configuration is symmetric, so angle FEB = angle FBE.\n\nWait, but F is intersection of BC and DE. The axis of symmetry through A and midpoint of CD maps B↔E and C↔D, so it maps line BC to line ED. Thus F lies on this axis of symmetry, and triangle BEF is isoceles with FB = FE.\n\nSo angles at B and E are equal.\n\n**Angle at E:** Line DE extended beyond E meets line BC extended beyond C at F.\n\nAt vertex E: interior angle DEA = 108°. Angle BEA: In triangle ABE, angle AEB = 36°. So angle BED = angle DEA - angle BEA... \n\nAngle BEA = 36°, angle DEA = 108°, so angle BED = 108° - 36° = 72°.\n\nSince F is on ray ED extended beyond E (or on ray DE beyond E?): \n\nLine DE extended beyond E: angle BEF = 180° - angle BED = 180° - 72° = 108°? That seems too large.\n\nLet me reconsider: F is on line DE. The angle FEB where F is beyond E on line DE:\nangle FEB = 180° - angle BED = 180° - 72° = 108°. But that's too big for a triangle angle.\n\nSo F must be on the extension of DE beyond D (not E). Then angle at E in triangle BEF:\nangle FEB = angle BED = 72°... but wait, if F is beyond D, then from E, F is in the direction past D.\n\nBy symmetry, angle at B = angle at E = 72°, and angle at F = 180° - 72° - 72° = 36°.\n\n**The angles of triangle BEF are: 36°, 72°, 72°.**\n\nFinal answer: The angles of triangle $BEF$ are $36°$, $72°$, and $72°$.",
+  "usage": {
+    "input_tokens": 86,
+    "output_tokens": 1066,
+    "thinking_tokens": 0
+  },
+  "latency_s": 18.60644233506173,
+  "cached": false
+}

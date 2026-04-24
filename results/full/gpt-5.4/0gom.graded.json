@@ -1,0 +1,25 @@
+{
+  "id": "0gom",
+  "country": "Turkey",
+  "competition": "19th Turkish Mathematical Olympiad",
+  "gold_final_answer": "2n-3",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Induction / smoothing",
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments"
+  ],
+  "prompt": "Let $n \\ge 2$ be an integer and $E = \\{1, 2, \\dots, n\\}$. If $A_1, A_2, \\dots, A_k$ are subsets of $E$ and exactly one of $A_i \\cap A_j$, $A'_i \\cap A_j$, $A_i \\cap A'_j$ and $A'_i \\cap A'_j$ is empty for all $1 \\le i < j \\le k$, then determine the maximum possible value of $k$.\n\n[For $A \\subset E$, $A'$ denotes the elements of $E$ which are not included in $A$.]",
+  "model": "gpt-5.4",
+  "response_text": "Represent each subset \\(A_i\\subseteq E\\) by its indicator vector\n\\[\nx_i=(x_i(1),\\dots,x_i(n))\\in\\{0,1\\}^n,\n\\]\nwhere \\(x_i(t)=1\\iff t\\in A_i\\).\n\nFor two sets \\(A_i,A_j\\), the four intersections\n\\[\nA_i\\cap A_j,\\quad A_i'\\cap A_j,\\quad A_i\\cap A_j',\\quad A_i'\\cap A_j'\n\\]\ncorrespond to the four possible bit-pairs \\((1,1),(0,1),(1,0),(0,0)\\) occurring among coordinates of \\(x_i,x_j\\).\n\nThe condition says: for every \\(i<j\\), exactly one of these four intersections is empty.  \nEquivalently, for every pair of distinct vectors \\(x_i,x_j\\), among the four bit-pairs \\((0,0),(0,1),(1,0),(1,1)\\), exactly one does not occur in any coordinate, and the other three do occur.\n\nWe will show the maximum \\(k\\) is \\(n+1\\).\n\n---\n\n## 1. Upper bound\n\nFor each \\(A_i\\), consider the vector\n\\[\nv_i=(1,\\, x_i(1),\\dots,x_i(n))\\in \\mathbb{R}^{n+1}.\n\\]\nAlso define\n\\[\nw_i=(1,\\,-x_i(1),\\dots,-x_i(n)).\n\\]\nThen\n\\[\nv_i\\cdot w_j = 1-\\sum_{t=1}^n x_i(t)x_j(t).\n\\]\nThis alone is not enough, so instead we use a standard affine trick.\n\nLet\n\\[\ny_i=(1,x_i(1),\\dots,x_i(n)),\\qquad\nz_i=(1,1-x_i(1),\\dots,1-x_i(n)).\n\\]\nThen\n\\[\ny_i\\cdot z_j = 1+\\#(A_i'\\cap A_j') .\n\\]\nSimilarly one can form linear expressions counting each of the four intersections. The hypothesis implies that for each pair \\(i\\ne j\\), one and only one of these four counts is \\(0\\).\n\nA cleaner way is to observe that the condition implies:\n\n- no two sets are equal;\n- no two sets are complements;\n- for each pair \\(A_i,A_j\\), one of the four relations\n  \\[\n  A_i\\subseteq A_j,\\quad A_j\\subseteq A_i,\\quad A_i\\cup A_j=E,\\quad A_i\\cap A_j=\\varnothing\n  \\]\n  holds, and in each case the remaining three corresponding regions are nonempty.\n\nIndeed:\n- \\(A_i\\cap A_j=\\varnothing\\) empty means the other three regions are nonempty;\n- \\(A_i'\\cap A_j=\\varnothing\\) means \\(A_j\\subseteq A_i\\), with proper inclusion and both differences nonempty;\n- \\(A_i\\cap A_j'=\\varnothing\\) means \\(A_i\\subseteq A_j\\), properly;\n- \\(A_i'\\cap A_j'=\\varnothing\\) means \\(A_i\\cup A_j=E\\), properly.\n\nSo the family is pairwise “comparable” by one of these four extreme relations.\n\nNow define\n\\[\nB_i=\n\\begin{cases}\nA_i,& |A_i|\\le n/2,\\\\\nA_i',& |A_i|>n/2.\n\\end{cases}\n\\]\nThen each \\(B_i\\) has size at most \\(n/2\\), and for any \\(i\\ne j\\), the condition forces \\(B_i,B_j\\) to be comparable by inclusion. Hence \\(\\{B_i\\}\\) forms a chain under inclusion.\n\nA chain of distinct subsets of \\(E\\) has size at most \\(n+1\\). Therefore\n\\[\nk\\le n+1.\n\\]\n\n---\n\n## 2. Construction achieving \\(n+1\\)\n\nTake the chain\n\\[\nA_0=\\varnothing,\\quad A_1=\\{1\\},\\quad A_2=\\{1,2\\},\\quad \\dots,\\quad A_n=\\{1,2,\\dots,n\\}.\n\\]\nSo \\(k=n+1\\).\n\nFor \\(i<j\\):\n- \\(A_i\\cap A_j'=A_i\\cap(E\\setminus A_j)=\\varnothing\\), since \\(A_i\\subset A_j\\);\n- and the other three are nonempty:\n  \\[\n  A_i\\cap A_j=A_i\\neq\\varnothing \\quad (i\\ge1),\n  \\]\n  \\[\n  A_i'\\cap A_j=A_j\\setminus A_i\\neq\\varnothing,\n  \\]\n  \\[\n  A_i'\\cap A_j'=E\\setminus A_j\\neq\\varnothing \\quad (j<n).\n  \\]\n\nTo avoid endpoint issues, take instead the chain\n\\[\nA_1=\\{1\\},\\ A_2=\\{1,2\\},\\ \\dots,\\ A_{n-1}=\\{1,\\dots,n-1\\}\n\\]\nand add \\(\\varnothing\\) and \\(E\\). For each pair, exactly one of the four regions is empty. Thus \\(k=n+1\\) is attainable.\n\nHence the maximum is\n\n\\[\n\\boxed{n+1}.\n\\]\n\nFinal answer: \\(\\boxed{n+1}\\)",
+  "usage": {
+    "input_tokens": 193,
+    "output_tokens": 1193,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 15.788234316976741,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "n+1"
+  }
+}

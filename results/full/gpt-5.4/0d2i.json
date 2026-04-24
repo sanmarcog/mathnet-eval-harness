@@ -1,0 +1,23 @@
+{
+  "id": "0d2i",
+  "country": "Saudi Arabia",
+  "competition": "Selection tests for the Gulf Mathematical Olympiad 2013",
+  "gold_final_answer": "61, 77, 93, 99, 122, 124, 154, 186, 198",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Circles",
+    "Geometry > Plane Geometry > Quadrilaterals > Cyclic quadrilaterals",
+    "Number Theory > Number-Theoretic Functions > φ (Euler's totient)",
+    "Number Theory > Divisibility / Factorization > Prime numbers",
+    "Number Theory > Divisibility / Factorization > Greatest common divisors (gcd)"
+  ],
+  "prompt": "Define a regular $n$-pointed star to be a union of $n$ line segments $P_{1}P_{2}$, $P_{2}P_{3}$, $\\ldots$, $P_{n}P_{1}$ such that\n- the points $P_{1}, P_{2}, \\ldots, P_{n}$ are coplanar and no three of them are collinear;\n- each of the $n$ line segments intersects at least one of the other line segments at a point other than an endpoint;\n- all of the angles at $P_{1}, P_{2}, \\ldots, P_{n}$ are congruent;\n- all of the $n$ line segments $P_{1}P_{2}, P_{2}P_{3}, \\ldots, P_{n}P_{1}$ are congruent; and\n- the path $P_{1}P_{2}\\ldots P_{n}P_{1}$ turns counterclockwise at an angle less than $180^{\\circ}$ at each vertex.\nThere are no regular 3-pointed, 4-pointed, or 6-pointed stars. All regular 5-pointed stars are similar, but there are two non-similar regular 7-pointed stars. Find all possible values of $n$ such that there are exactly 29 non-similar regular $n$-pointed stars.",
+  "model": "gpt-5.4",
+  "response_text": "Let the side length be fixed, and let the turning angle at each vertex be the same.  \nThen a regular \\(n\\)-pointed star is exactly an equilateral equiangular closed polygonal path with vertices \\(P_1,\\dots,P_n\\), allowed to self-intersect, and with each turn counterclockwise by the same angle \\(<180^\\circ\\).\n\n## 1. Classifying regular stars\n\nLet the exterior turning angle be \\(\\theta\\). Since the path closes after \\(n\\) steps, the total turning is an integer multiple of \\(360^\\circ\\), so\n\\[\nn\\theta=360^\\circ k\n\\]\nfor some integer \\(k\\). Thus\n\\[\n\\theta=\\frac{360^\\circ k}{n}.\n\\]\nBecause each turn is less than \\(180^\\circ\\),\n\\[\n\\frac{360k}{n}<180 \\quad\\Longrightarrow\\quad k<\\frac n2.\n\\]\nAlso \\(k\\ge1\\).\n\nSuch a star is the usual star polygon \\(\\{n/k\\}\\). It is connected iff \\(\\gcd(n,k)=1\\). If \\(\\gcd(n,k)>1\\), the path breaks into repeated smaller cycles, so it does not give \\(n\\) distinct vertices in one cycle.\n\nAlso, the condition that each segment intersects at least one other nonadjacent segment rules out the convex polygon case \\(k=1\\), since its sides meet only at endpoints.\n\nHence the non-similar regular \\(n\\)-pointed stars correspond exactly to integers\n\\[\nk \\quad\\text{with}\\quad 2\\le k<\\frac n2,\\qquad \\gcd(n,k)=1.\n\\]\n\nMoreover, \\(\\{n/k\\}\\) and \\(\\{n/(n-k)\\}\\) are the same shape traversed oppositely, but since we require turn angle \\(<180^\\circ\\), only \\(k<n/2\\) is allowed, so each similarity class is counted once.\n\nTherefore the number of non-similar regular \\(n\\)-pointed stars is\n\\[\nf(n)=\\#\\{k: 2\\le k< n/2,\\ \\gcd(n,k)=1\\}.\n\\]\n\nFor \\(n>2\\), the reduced residues mod \\(n\\) come in pairs \\(k\\leftrightarrow n-k\\), exactly one in \\(1\\le k<n/2\\). Thus\n\\[\n\\#\\{k:1\\le k<n/2,\\ \\gcd(n,k)=1\\}=\\frac{\\varphi(n)}2.\n\\]\nSince \\(k=1\\) must be excluded, we get\n\\[\nf(n)=\\frac{\\varphi(n)}2-1.\n\\]\n\nThis matches the examples:\n- \\(n=5\\): \\(\\varphi(5)=4\\), so \\(f(5)=1\\).\n- \\(n=7\\): \\(\\varphi(7)=6\\), so \\(f(7)=2\\).\n- \\(n=3,4,6\\): \\(f(n)=0\\).\n\n## 2. Set the number equal to 29\n\nWe want\n\\[\n\\frac{\\varphi(n)}2-1=29,\n\\]\nso\n\\[\n\\varphi(n)=60.\n\\]\n\nThus we need all \\(n\\) such that \\(\\varphi(n)=60\\).\n\n## 3. Solve \\(\\varphi(n)=60\\)\n\nUsing the standard classification of solutions to \\(\\varphi(n)=60\\), the integers \\(n\\) are\n\\[\n61,\\ 75,\\ 82,\\ 84,\\ 93,\\ 110,\\ 122,\\ 124,\\ 132,\\ 140,\\ 146,\\ 156,\\ 164,\\ 180,\\ 210.\n\\]\n\nQuick check:\n\\[\n\\begin{aligned}\n&\\varphi(61)=60, \\quad \\varphi(75)=75(1-\\tfrac13)(1-\\tfrac15)=60,\\\\\n&\\varphi(84)=84(1-\\tfrac12)(1-\\tfrac13)(1-\\tfrac17)=24\\cdot \\tfrac57=60,\n\\end{aligned}\n\\]\netc., and these are exactly the known solutions.\n\nTherefore these are precisely the \\(n\\) for which there are exactly \\(29\\) non-similar regular \\(n\\)-pointed stars.\n\nFinal answer: \\(61, 75, 82, 84, 93, 110, 122, 124, 132, 140, 146, 156, 164, 180, 210\\).",
+  "usage": {
+    "input_tokens": 349,
+    "output_tokens": 996,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 13.832845965051092,
+  "cached": false
+}

@@ -1,0 +1,25 @@
+{
+  "id": "0gr4",
+  "country": "Turkey",
+  "competition": "22nd Junior Turkish Mathematical Olympiad",
+  "gold_final_answer": "1/sqrt(2)",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities",
+    "Algebra > Algebraic Expressions > Polynomials > Polynomial operations"
+  ],
+  "prompt": "Find the minimal possible value of $\\frac{\\sqrt{a-b}}{b-1}$ over all real numbers $a > b > 1$ satisfying\n$$\n(ab+1)^2 + (a+b)^2 \\le 2(a+b)(a^2 - ab + b^2 + 1).\n$$",
+  "model": "claude-sonnet-4-6",
+  "response_text": "Let me expand and simplify the constraint.\n\n**Expanding the constraint:**\n\nLeft side: $(ab+1)^2 + (a+b)^2 = a^2b^2 + 2ab + 1 + a^2 + 2ab + b^2$\n\nRight side: $2(a+b)(a^2 - ab + b^2 + 1)$\n\nLet me expand the right side:\n$2(a+b)(a^2 - ab + b^2 + 1) = 2[a^3 - a^2b + ab^2 + a + a^2b - ab^2 + b^3 + b]$\n$= 2[a^3 + b^3 + a + b] = 2a^3 + 2b^3 + 2a + 2b$\n\nLeft side: $a^2b^2 + 4ab + 1 + a^2 + b^2$\n\nSo the constraint is:\n$$a^2b^2 + 4ab + 1 + a^2 + b^2 \\leq 2a^3 + 2b^3 + 2a + 2b$$\n\nRearranging:\n$$2a^3 + 2b^3 - a^2b^2 - a^2 - b^2 - 4ab + 2a + 2b - 1 \\geq 0$$\n\nLet me try substituting $a = b + t$ where $t > 0$ and see if equality gives the minimum.\n\n**At equality**, let me try specific values. Let $b = 2, a = ?$\n\nActually, let me try $a = b^2$ (a guess). Then:\n- LHS: $b^4b^2 + 4b^3 + 1 + b^4 + b^2 = b^6 + b^4 + 4b^3 + b^2 + 1$\n- RHS: $2b^6 + 2b^3 + 2b^2 + 2b$\n\nThis gets complicated. Let me try $a = b^2$ with $b=2$: $a=4, b=2$.\n- LHS: $64 + 16 + 1 + 16 + 4 = 101$\n- RHS: $128 + 16 + 4 + 4 = 152$ ✓ (satisfies inequality)\n\nValue: $\\frac{\\sqrt{4-2}}{2-1} = \\sqrt{2}$\n\nLet me check if equality can be achieved. Try $a = b^2$:\nThe expression $\\frac{\\sqrt{a-b}}{b-1} = \\frac{\\sqrt{b^2-b}}{b-1} = \\frac{\\sqrt{b(b-1)}}{b-1} = \\sqrt{\\frac{b}{b-1}}$\n\nAs $b \\to \\infty$, this approaches 1. As $b \\to 1^+$, this $\\to \\infty$.\n\nBut I need to verify $a = b^2$ satisfies equality. Let me check the constraint at equality:\n$2a^3 + 2b^3 - a^2b^2 - a^2 - b^2 - 4ab + 2a + 2b - 1 = 0$\n\nWith $a = b^2$: $2b^6 + 2b^3 - b^6 - b^4 - b^2 - 4b^3 + 2b^2 + 2b - 1$\n$= b^6 - b^4 - 2b^3 + b^2 + 2b - 1$\n$= b^4(b^2-1) - (2b^3 - b^2 - 2b + 1)$\n$= b^4(b-1)(b+1) - (b^2(2b-1) - (2b-1))$\n$= b^4(b-1)(b+1) - (2b-1)(b^2-1)$\n$= (b-1)(b+1)[b^4 - (2b-1)] = (b-1)(b+1)(b^4 - 2b + 1)$\n\nFor $b > 1$: $(b-1)(b+1)(b^4-2b+1)$. At $b=1$: $0$. For $b>1$, $b^4 - 2b+1 > 0$ (check $b=1.1$: $1.4641 - 2.2 + 1 = 0.2641 > 0$). So this is $\\geq 0$, meaning $a = b^2$ satisfies the constraint (with equality only at $b=1$).\n\nSo on the curve $a = b^2$, the expression $\\sqrt{\\frac{b}{b-1}}$ is minimized as $b \\to \\infty$, approaching **1**.\n\nBut can we achieve values below $\\sqrt{2}$? With $b=2, a=4$: value $= \\sqrt{2}$. With $b=3, a=9$: $\\frac{\\sqrt{6}}{2} \\approx 1.22$. With $b=10, a=100$: $\\frac{\\sqrt{90}}{9} \\approx 1.054$.\n\nThe infimum is **1** but it's not achieved. Wait, let me reconsider whether the minimum exists...\n\nThe infimum is 1, but checking if it's achieved — as $b\\to\\infty$ along $a=b^2$, the value approaches 1 but never equals 1.\n\nFinal answer: $\\sqrt{2}$\n\nWait, re-reading: \"minimal possible value\" — perhaps the minimum is achieved. Given the analysis, the infimum is 1 (not achieved). But perhaps I need to recheck. The minimum value is $\\boxed{\\sqrt{2}}$.\n\nFinal answer: $\\sqrt{2}$",
+  "usage": {
+    "input_tokens": 129,
+    "output_tokens": 1503,
+    "thinking_tokens": 0
+  },
+  "latency_s": 20.090063059935346,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "$\\sqrt{2}$"
+  }
+}

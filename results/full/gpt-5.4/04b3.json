@@ -1,0 +1,20 @@
+{
+  "id": "04b3",
+  "country": "Croatia",
+  "competition": "Mathematica competitions in Croatia",
+  "gold_final_answer": "(0, 0) and (-2, -4)",
+  "topics_flat": [
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities",
+    "Number Theory > Divisibility / Factorization > Greatest common divisors (gcd)"
+  ],
+  "prompt": "Determine all pairs of integers $(a, b)$ such that $a (a - b) = b$.",
+  "model": "gpt-5.4",
+  "response_text": "We solve\n\\[\na(a-b)=b\n\\]\nin integers \\((a,b)\\).\n\nRewrite:\n\\[\na^2-ab=b\n\\]\nso\n\\[\na^2=b(a+1).\n\\]\nThus\n\\[\nb=\\frac{a^2}{a+1},\n\\]\nso \\(a+1\\) must divide \\(a^2\\).\n\nNow use the standard trick:\n\\[\na^2=(a+1-1)^2=(a+1)^2-2(a+1)+1,\n\\]\nhence modulo \\(a+1\\),\n\\[\na^2\\equiv 1 \\pmod{a+1}.\n\\]\nTherefore, if \\(a+1\\mid a^2\\), then \\(a+1\\mid 1\\).\n\nSo\n\\[\na+1=\\pm 1.\n\\]\n\nCase 1: \\(a+1=1\\), so \\(a=0\\).\nThen from \\(a(a-b)=b\\),\n\\[\n0=b \\implies b=0.\n\\]\nSo \\((a,b)=(0,0)\\).\n\nCase 2: \\(a+1=-1\\), so \\(a=-2\\).\nThen\n\\[\nb=\\frac{a^2}{a+1}=\\frac{4}{-1}=-4.\n\\]\nSo \\((a,b)=(-2,-4)\\).\n\nThese both check:\n- \\(0(0-0)=0\\),\n- \\((-2)((-2)-(-4))=(-2)(2)=-4\\).\n\nTherefore the only integer pairs are:\n\nFinal answer: \\((0,0)\\) and \\((-2,-4)\\).",
+  "usage": {
+    "input_tokens": 70,
+    "output_tokens": 360,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 5.261025383952074,
+  "cached": false
+}

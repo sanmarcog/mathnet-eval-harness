@@ -1,0 +1,21 @@
+{
+  "id": "0c96",
+  "country": "Romania",
+  "competition": "Romanian Mathematical Olympiad",
+  "gold_final_answer": "a = 1 or a = 2",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Sequences and Series > Recurrence relations",
+    "Algebra > Intermediate Algebra > Logarithmic functions",
+    "Number Theory > Divisibility / Factorization > Factorization techniques"
+  ],
+  "prompt": "Consider a real number $a \\ge 1$. The sequence $(x_n)_{n \\ge 1}$ is given by $x_1 = a$ and $x_{n+1} = 1 + \\log_2 x_n$, for any $n \\in \\mathbb{N}^*$. Determine values of $a$ such that all terms of the sequence are rational numbers.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let  \n\\[\nf(x)=1+\\log_2 x.\n\\]\nWe are given \\(x_{n+1}=f(x_n)\\) and \\(x_1=a\\ge 1\\), and we want **every** \\(x_n\\) to be rational.\n\nSince \\(x_2=1+\\log_2 a\\) must be rational, write\n\\[\nx_2 = r \\in \\mathbb{Q}.\n\\]\nThen\n\\[\na = 2^{\\,x_2-1}=2^{r-1}.\n\\]\nSo \\(a\\) must be a power of \\(2\\) with rational exponent.\n\nNow we need \\(x_3, x_4,\\dots\\) all rational. But\n\\[\nx_3 = 1+\\log_2 x_2 = 1+\\log_2 r\n\\]\nmust be rational, so \\(r\\) must be of the form \\(r=2^q\\) with \\(q\\in\\mathbb{Q}\\). Then \\(x_4=1+\\log_2 x_3\\) rational forces \\(x_3\\) itself to be a rational power of \\(2\\), and so on.\n\nA key fact is:\n\n- If a rational number \\(u>0\\) satisfies \\(\\log_2 u\\in\\mathbb{Q}\\), then \\(u\\) must be of the form \\(2^t\\) with \\(t\\in\\mathbb{Q}\\).\n- But if \\(u\\in\\mathbb{Q}\\) and \\(u=2^t\\) with \\(t\\in\\mathbb{Q}\\), then in fact \\(u\\) must be an integer power of \\(2\\).  \n  Indeed, writing \\(t=m/n\\) in lowest terms gives \\(u^n=2^m\\), so the rational number \\(u\\) can only have denominator \\(1\\), hence \\(u=2^k\\) for some integer \\(k\\).\n\nTherefore every \\(x_n\\) must be a power of \\(2\\) with integer exponent. Let\n\\[\nx_n = 2^{k_n},\\qquad k_n\\in\\mathbb{Z}.\n\\]\nThen the recurrence becomes\n\\[\n2^{k_{n+1}} = 1+\\log_2(2^{k_n})=1+k_n,\n\\]\nso \\(1+k_n\\) must itself be a power of \\(2\\), hence an integer power of \\(2\\). Thus \\(k_n\\) must satisfy\n\\[\nk_{n+1}=\\log_2(1+k_n),\n\\]\nwith all \\(k_n\\in\\mathbb{Z}\\). This forces \\(1+k_n\\) to be a power of \\(2\\) for all \\(n\\), and the only integer fixed point of this iteration is \\(k_n=1\\), since\n\\[\nx=1+\\log_2 x\n\\]\nhas unique solution \\(x=2\\). So the sequence must be constant:\n\\[\nx_n=2\\quad \\text{for all }n.\n\\]\nHence \\(x_1=a=2\\).\n\nCheck:\n\\[\nx_2=1+\\log_2 2=2,\n\\]\nso indeed all terms are rational.\n\nTherefore the only possible value is \\(a=2\\).\n\n**Final answer:** \\(\\boxed{2}\\)",
+  "usage": {
+    "input_tokens": 133,
+    "output_tokens": 728,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 5.537667945958674,
+  "cached": false
+}

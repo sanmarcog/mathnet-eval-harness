@@ -1,0 +1,27 @@
+{
+  "id": "0cyz",
+  "country": "Saudi Arabia",
+  "competition": "Saudi Arabia Mathematical Competitions",
+  "gold_final_answer": "42",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Greatest common divisors (gcd)",
+    "Number Theory > Divisibility / Factorization > Factorization techniques",
+    "Number Theory > Modular Arithmetic > Fermat / Euler / Wilson theorems",
+    "Algebra > Algebraic Expressions > Polynomials > Polynomial operations"
+  ],
+  "prompt": "Consider the set $S=\\{(a+b)^{7}-a^{7}-b^{7}: a, b \\in \\mathbb{Z}\\}$. Find the greatest common divisor of all members in $S$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Using the binomial theorem,\n\\[\n(a+b)^7-a^7-b^7=\\sum_{k=1}^{6}\\binom{7}{k}a^k b^{7-k}.\n\\]\nSo every element of \\(S\\) is divisible by \\(7\\), since every binomial coefficient \\(\\binom{7}{k}\\) for \\(1\\le k\\le 6\\) is divisible by \\(7\\).\n\nNow we check whether anything larger than \\(7\\) divides all values. Take \\(a=b=1\\):\n\\[\n(1+1)^7-1^7-1^7=2^7-2=128-2=126.\n\\]\nAlso take \\(a=1,\\ b=2\\):\n\\[\n3^7-1-2^7=2187-1-128=2058.\n\\]\nTheir gcd is\n\\[\n\\gcd(126,2058)=42.\n\\]\nBut since every element of \\(S\\) is divisible by \\(7\\), the common gcd must divide \\(42\\) and be a multiple of \\(7\\).\n\nTo determine it exactly, use \\(a=1,\\ b=0\\), giving \\(0\\), not useful; instead take \\(a=1,\\ b=-1\\):\n\\[\n0^7-1^7-(-1)^7=-1+1=0.\n\\]\nMore importantly, take \\(a=1,\\ b=3\\):\n\\[\n4^7-1-3^7=16384-1-2187=14196,\n\\]\nand\n\\[\n\\gcd(126,14196)=126.\n\\]\nThus the gcd of all elements is at least \\(126\\). Since every value is divisible by \\(7\\), let us test a value that is exactly \\(7\\) times an odd number: \\(a=1,b=2\\) gave \\(2058=7\\cdot 294\\), not enough. The key is to factor:\n\\[\n(a+b)^7-a^7-b^7 = 7ab(a+b)\\bigl(a^3+a^2b+ab^2+b^3\\bigr)+14a^2b^2(a+b)^3\n\\]\nso every value is divisible by \\(7\\), but not necessarily by \\(49\\). For \\(a=1,b=1\\), the value is \\(126=7\\cdot 18\\), not divisible by \\(49\\). Hence the gcd is exactly \\(7\\).\n\nFinal answer: \\(7\\)",
+  "usage": {
+    "input_tokens": 95,
+    "output_tokens": 548,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 4.132693488965742,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "\\(7\\)"
+  }
+}

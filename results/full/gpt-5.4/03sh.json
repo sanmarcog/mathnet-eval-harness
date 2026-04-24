@@ -1,0 +1,21 @@
+{
+  "id": "03sh",
+  "country": "China",
+  "competition": "China Mathematical Competition",
+  "gold_final_answer": "1",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities > QM-AM-GM-HM / Power Mean",
+    "Algebra > Algebraic Expressions > Polynomials > Polynomial operations",
+    "Algebra > Algebraic Expressions > Sequences and Series > Sums and products"
+  ],
+  "prompt": "The number of real solutions for equation\n$$\n(x^{2006} + 1)(1 + x^2 + x^4 + \\cdots + x^{2004}) = 2006x^{2005}\n$$\nis \\underline{\\quad}.",
+  "model": "gpt-5.4",
+  "response_text": "Let\n\\[\nS=1+x^2+x^4+\\cdots+x^{2004}.\n\\]\nThen the equation is\n\\[\n(x^{2006}+1)S=2006x^{2005}.\n\\]\n\nNotice\n\\[\n(x^2-1)S=x^{2006}-1\n\\]\nso for \\(x\\neq \\pm1\\),\n\\[\nS=\\frac{x^{2006}-1}{x^2-1}.\n\\]\nThus\n\\[\n(x^{2006}+1)\\frac{x^{2006}-1}{x^2-1}=2006x^{2005},\n\\]\ni.e.\n\\[\n\\frac{x^{4012}-1}{x^2-1}=2006x^{2005}.\n\\]\nHence\n\\[\nx^{4012}-1=2006x^{2005}(x^2-1)=2006x^{2007}-2006x^{2005},\n\\]\nso\n\\[\nx^{4012}-2006x^{2007}+2006x^{2005}-1=0.\n\\]\n\nNow factor:\n\\[\nx^{4012}-2006x^{2007}+2006x^{2005}-1\n=(x^{2005}-1)(x^{2007}-1).\n\\]\nIndeed,\n\\[\n(x^{2005}-1)(x^{2007}-1)=x^{4012}-x^{2007}-x^{2005}+1,\n\\]\nso that is not correct. Let's instead use AM-GM, which is the clean way.\n\nWrite the left side as\n\\[\n(1+x^{2006})(1+x^2+x^4+\\cdots+x^{2004}).\n\\]\nThis is a product of \\(1004\\) nonnegative terms? More usefully, expand:\n\\[\n(1+x^{2006})(1+x^2+\\cdots+x^{2004})\n=1+x^2+\\cdots+x^{2004}+x^{2006}+x^{2008}+\\cdots+x^{4010}.\n\\]\nThere are \\(2006\\) terms here:\n\\[\n1,x^2,x^4,\\dots,x^{4010}.\n\\]\nSo the equation becomes\n\\[\n1+x^2+x^4+\\cdots+x^{4010}=2006x^{2005}.\n\\]\n\nNow apply AM-GM to these \\(2006\\) nonnegative terms. Their geometric mean is\n\\[\n\\left(1\\cdot x^2\\cdot x^4\\cdots x^{4010}\\right)^{1/2006}\n=|x|^{(2+4+\\cdots+4010)/2006}.\n\\]\nSince\n\\[\n2+4+\\cdots+4010=2(1+2+\\cdots+2005)=2005\\cdot 2006,\n\\]\nthe geometric mean is\n\\[\n|x|^{2005}.\n\\]\nTherefore\n\\[\n1+x^2+\\cdots+x^{4010}\\ge 2006|x|^{2005}.\n\\]\nFor the equation to hold,\n\\[\n2006|x|^{2005}=2006x^{2005},\n\\]\nso we must have \\(x\\ge 0\\), and equality in AM-GM must occur.\n\nEquality in AM-GM holds iff all terms are equal:\n\\[\n1=x^2=x^4=\\cdots=x^{4010}.\n\\]\nThus \\(x^2=1\\), and with \\(x\\ge0\\), we get \\(x=1\\).\n\nCheck:\n\\[\n(1^{2006}+1)(1+1+\\cdots+1)=2\\cdot 1003=2006,\n\\]\nand\n\\[\n2006\\cdot 1^{2005}=2006.\n\\]\nSo \\(x=1\\) is indeed a solution.\n\nHence there is exactly one real solution.\n\nFinal answer: \\(\\boxed{1}\\)",
+  "usage": {
+    "input_tokens": 103,
+    "output_tokens": 845,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 11.066998920985498,
+  "cached": false
+}

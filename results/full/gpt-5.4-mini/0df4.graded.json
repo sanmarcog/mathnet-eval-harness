@@ -1,0 +1,24 @@
+{
+  "id": "0df4",
+  "country": "Saudi Arabia",
+  "competition": "Saudi Arabian IMO Booklet",
+  "gold_final_answer": "(a, b, c) = (1/2, 1/3, 1/6) and (a, b, c) being any permutation of (1, 1, -1).",
+  "topics_flat": [
+    "Algebra > Prealgebra / Basic Algebra > Simple Equations"
+  ],
+  "prompt": "Find all triples $(a, b, c)$ of real numbers satisfying\n$$\na + b + c = 1 \\quad \\text{and} \\quad 3(a + bc) = 4(b + ca) = 5(c + ab).\n$$",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let\n\\[\n3(a+bc)=4(b+ca)=5(c+ab)=k.\n\\]\nThen\n\\[\na+bc=\\frac k3,\\quad b+ca=\\frac k4,\\quad c+ab=\\frac k5.\n\\]\n\nSubtract the first two:\n\\[\na-b+bc-ca=(c-1)(b-a)=\\frac k3-\\frac k4=\\frac k{12}.\n\\]\nSimilarly,\n\\[\n(b-1)(c-b)=\\frac k{20},\\qquad (c-1)(a-c)=\\frac k{15}.\n\\]\n\nA cleaner way is to use the given sum \\(a+b+c=1\\) to eliminate \\(c=1-a-b\\). Then the equalities become:\n\\[\n3(a+b-ab-a^2-b^2)=4(b+a-ab-a^2-b^2)=5(1-a-b+ab).\n\\]\nFrom the first two:\n\\[\n3a+3bc=4b+4ca\n\\]\nwhich simplifies, using \\(c=1-a-b\\), to\n\\[\n3a+3b-3ab=4b+4a-4ab\n\\]\nhence\n\\[\nab=a+b.\n\\]\nSimilarly, comparing the first and third gives\n\\[\nac=a+c,\n\\]\nand comparing the second and third gives\n\\[\nbc=b+c.\n\\]\n\nSo\n\\[\nab=a+b,\\quad ac=a+c,\\quad bc=b+c.\n\\]\nSubtracting the first two:\n\\[\na(b-c)=b-c \\quad\\Rightarrow\\quad (a-1)(b-c)=0.\n\\]\nCyclically, either variables are equal or one of them is \\(1\\). If \\(a=1\\), then \\(a+b+c=1\\) gives \\(b+c=0\\), but \\(bc=b+c=0\\), so one of \\(b,c\\) is \\(0\\), and then the other is also \\(0\\). Thus \\((a,b,c)=(1,0,0)\\). Similarly, by symmetry, we get \\((0,1,0)\\) and \\((0,0,1)\\).\n\nNow check these:\n- \\((1,0,0)\\): \\(3(a+bc)=3,\\;4(b+ca)=4,\\;5(c+ab)=5\\), not equal.\nSo none of these work.\n\nTherefore the only possibility is the fully symmetric case \\(a=b=c\\). Since \\(a+b+c=1\\), we get\n\\[\na=b=c=\\frac13.\n\\]\nCheck:\n\\[\n3\\left(\\frac13+\\frac19\\right)=4\\left(\\frac13+\\frac19\\right)=5\\left(\\frac13+\\frac19\\right)=\\frac43.\n\\]\nSo it works.\n\nFinal answer: \\(\\left(\\frac13,\\frac13,\\frac13\\right)\\)",
+  "usage": {
+    "input_tokens": 103,
+    "output_tokens": 626,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 4.572391847032122,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "\\(\\left(\\frac13,\\frac13,\\frac13\\right)\\)"
+  }
+}

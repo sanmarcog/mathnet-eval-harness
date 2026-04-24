@@ -1,0 +1,24 @@
+{
+  "id": "04vo",
+  "country": "Czech Republic",
+  "competition": "First Round (take-home)",
+  "gold_final_answer": "-1/4",
+  "topics_flat": [
+    "Algebra > Intermediate Algebra > Quadratic functions"
+  ],
+  "prompt": "Suppose that $a, b$ are real numbers such that the expressions $a^2 + b$ and $a + b^2$ share the same value. What is the smallest possible shared value?",
+  "model": "claude-sonnet-4-6",
+  "response_text": "We need $a^2 + b = a + b^2$.\n\nThis gives $a^2 - b^2 = a - b$, so $(a-b)(a+b) = (a-b)$.\n\nEither $a = b$ or $a + b = 1$.\n\n**Case 1: $a = b$**\nThe shared value is $a^2 + a$. Minimizing: derivative $2a + 1 = 0$, so $a = -1/2$, giving $1/4 - 1/2 = -1/4$.\n\n**Case 2: $a + b = 1$, so $b = 1-a$**\nThe shared value is $a^2 + b = a^2 + 1 - a$. Minimizing: $2a - 1 = 0$, so $a = 1/2$, $b = 1/2$, giving $1/4 + 1/2 = 3/4$.\n\nThe smallest possible shared value is $-1/4$.\n\nFinal answer: $-\\dfrac{1}{4}$",
+  "usage": {
+    "input_tokens": 90,
+    "output_tokens": 273,
+    "thinking_tokens": 0
+  },
+  "latency_s": 4.820465393946506,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "symbolic",
+    "predicted": "$-\\dfrac{1}{4}$"
+  }
+}

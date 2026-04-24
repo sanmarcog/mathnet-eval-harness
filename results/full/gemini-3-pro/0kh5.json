@@ -1,0 +1,20 @@
+{
+  "id": "0kh5",
+  "country": "United States",
+  "competition": "Fall 2021 AMC 10 B",
+  "gold_final_answer": "D",
+  "topics_flat": [
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities",
+    "Algebra > Prealgebra / Basic Algebra > Simple Equations"
+  ],
+  "prompt": "Which of the following conditions is sufficient to guarantee that integers $x$, $y$, and $z$ satisfy the equation\n$$\nx(x - y) + y(y - z) + z(z - x) = 1?\n$$\n(A) $x > y$ and $y = z$\n(B) $x = y - 1$ and $y = z - 1$\n(C) $x = z + 1$ and $y = x + 1$\n(D) $x = z$ and $y - 1 = x$\n(E) $x + y + z = 1$",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To determine which condition is sufficient, we can simplify the given equation:\n$$ x(x - y) + y(y - z) + z(z - x) = 1 $$\nExpanding the left side, we get:\n$$ x^2 - xy + y^2 - yz + z^2 - zx = 1 $$\nWe can multiply the entire equation by 2:\n$$ 2x^2 - 2xy + 2y^2 - 2yz + 2z^2 - 2zx = 2 $$\nThis can be rewritten by grouping the terms into perfect squares:\n$$ (x^2 - 2xy + y^2) + (y^2 - 2yz + z^2) + (z^2 - 2zx + x^2) = 2 $$\n$$ (x - y)^2 + (y - z)^2 + (z - x)^2 = 2 $$\nSince $x$, $y$, and $z$ are integers, their differences are also integers. The only way the sum of three perfect squares can equal 2 is if two of the squares are 1 and the third square is 0. This means two of the numbers must differ by 1, and the third number must be equal to one of them.\n\nLet's test the given options:\n(A) $x > y$ and $y = z$: This gives $(y-z)^2 = 0$, but $x-y$ could be any integer greater than 0 (e.g., $x-y=2$), which would make the sum greater than 2.\n(B) $x = y - 1$ and $y = z - 1$: This means $x, y, z$ are consecutive integers. The differences are $1, 1,$ and $2$. The sum of their squares is $1^2 + 1^2 + 2^2 = 6 \\neq 2$.\n(C) $x = z + 1$ and $y = x + 1$: Similar to (B), these are consecutive integers, so the sum of the squares of their differences is 6.\n(D) $x = z$ and $y - 1 = x$: This means $x = z$ and $y = x + 1$. The differences are $x - y = -1$, $y - z = 1$, and $z - x = 0$. The sum of their squares is $(-1)^2 + 1^2 + 0^2 = 1 + 1 + 0 = 2$. This perfectly satisfies the equation.\n(E) $x + y + z = 1$: This does not guarantee the differences between the variables, so it is not sufficient.\n\nFinal answer: (D)",
+  "usage": {
+    "input_tokens": 181,
+    "output_tokens": 610,
+    "thoughts_tokens": 954
+  },
+  "latency_s": 12.283135663019493,
+  "cached": false
+}

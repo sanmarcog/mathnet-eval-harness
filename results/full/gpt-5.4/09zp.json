@@ -1,0 +1,21 @@
+{
+  "id": "09zp",
+  "country": "Netherlands",
+  "competition": "Second Round",
+  "gold_final_answer": "39",
+  "topics_flat": [
+    "Algebra > Prealgebra / Basic Algebra > Integers",
+    "Number Theory > Divisibility / Factorization > Factorization techniques",
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities"
+  ],
+  "prompt": "For how many integers $n$ with $1 \\le n \\le 800$ is the number $8n + 1$ a square?",
+  "model": "gpt-5.4",
+  "response_text": "We want integers \\(n\\) with \\(1 \\le n \\le 800\\) such that\n\\[\n8n+1\n\\]\nis a perfect square.\n\nLet\n\\[\n8n+1 = k^2\n\\]\nfor some integer \\(k\\). Then\n\\[\nn=\\frac{k^2-1}{8}.\n\\]\nSo we need \\(k^2 \\equiv 1 \\pmod 8\\), which happens exactly when \\(k\\) is odd.\n\nAlso, since \\(1 \\le n \\le 800\\),\n\\[\n9 \\le 8n+1 \\le 6401,\n\\]\nso\n\\[\n3 \\le k \\le \\lfloor \\sqrt{6401}\\rfloor = 80.\n\\]\nThus \\(k\\) must be an odd integer from \\(3\\) to \\(79\\).\n\nCount these:\n\\[\n3,5,7,\\dots,79\n\\]\nis an arithmetic sequence with\n\\[\n\\frac{79-3}{2}+1=39\n\\]\nterms.\n\nTherefore there are \\(\\boxed{39}\\) such integers \\(n\\).\n\nFinal answer: 39",
+  "usage": {
+    "input_tokens": 79,
+    "output_tokens": 250,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 4.580011292011477,
+  "cached": false
+}

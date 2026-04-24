@@ -1,0 +1,25 @@
+{
+  "id": "09v7",
+  "country": "Netherlands",
+  "competition": "Second Round, March 2019",
+  "gold_final_answer": "11",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments",
+    "Algebra > Algebraic Expressions > Sequences and Series > Recurrence relations"
+  ],
+  "prompt": "In a tall hat there are one hundred notes, numbered from $1$ to $100$. You want to have three notes with the property that each of the three numbers is smaller than the sum of the other two. For example, the three notes numbered $10$, $15$, and $20$ would be suitable (as $10 < 15 + 20$, $15 < 10 + 20$, and $20 < 10 + 15$), but the notes numbered $3$, $4$, and $7$ would not (as $7$ is not smaller than $3 + 4$). You may (without looking at the numbers on the notes) take some notes from the hat.\nWhat is the smallest number of notes you have to take to be sure to have three notes that meet your wish?",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find the smallest number of notes you must draw to guarantee that three of them can form a triangle (i.e., each number is smaller than the sum of the other two), we can consider the worst-case scenario. We want to find the maximum number of notes we can draw *without* any three notes satisfying this property.\n\nLet the numbers on the drawn notes be sorted in increasing order: $x_1 < x_2 < x_3 < \\dots < x_k$.\nFor these numbers to *not* satisfy the property, there must be no three numbers $a < b < c$ such that $c < a + b$. (The other two conditions, $a < b + c$ and $b < a + c$, are automatically satisfied since $c$ is the largest). \nTherefore, to avoid having such a triplet, every set of three numbers must satisfy $c \\ge a + b$. To maximize the number of notes we can draw without forming a triangle, we should make the numbers grow as slowly as possible. This means we want $x_{i+2} = x_{i+1} + x_i$, starting with the smallest possible distinct positive integers.\n\nThe smallest possible values for the notes are the Fibonacci numbers:\n$x_1 = 1$\n$x_2 = 2$\n$x_3 = 1 + 2 = 3$\n$x_4 = 2 + 3 = 5$\n$x_5 = 3 + 5 = 8$\n$x_6 = 5 + 8 = 13$\n$x_7 = 8 + 13 = 21$\n$x_8 = 13 + 21 = 34$\n$x_9 = 21 + 34 = 55$\n$x_{10} = 34 + 55 = 89$\n\nIf we were to draw an 11th note without creating a triangle, its value would have to be at least:\n$x_{11} = 55 + 89 = 144$\n\nHowever, the notes in the hat are only numbered from $1$ to $100$. It is impossible to draw 11 notes without at least one triplet satisfying the triangle inequality, because the 11th note would need to be at least 144 to avoid it, which exceeds the maximum available number of 100. \n\nThus, you can draw at most 10 notes without satisfying the condition (by drawing exactly the 10 Fibonacci numbers listed above). Drawing one more note guarantees that you will have at least one suitable triplet.\n\nFinal answer: 11",
+  "usage": {
+    "input_tokens": 221,
+    "output_tokens": 588,
+    "thoughts_tokens": 1789
+  },
+  "latency_s": 19.434720710967667,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "exact",
+    "predicted": "11"
+  }
+}

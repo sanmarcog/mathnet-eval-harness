@@ -1,0 +1,25 @@
+{
+  "id": "08sx",
+  "country": "Japan",
+  "competition": "Japan Junior Mathematical Olympiad",
+  "gold_final_answer": "720",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Recursion, bijection",
+    "Discrete Mathematics > Combinatorics > Counting two ways"
+  ],
+  "prompt": "In a certain fencing competition there were $6$ participants. Each participant had one match each with $5$ other participants. The number of winning matches of the participants turned out to be all different. Assume that there was no draw in all of the matches. How many distinct winner-loser combinations were possible for this competition?",
+  "model": "gpt-5.4",
+  "response_text": "Each of the 6 participants fenced 5 matches, so each participant’s number of wins is an integer from 0 to 5.\n\nWe are told the 6 win-counts are all different. Since there are exactly 6 participants and exactly 6 possible values \\(0,1,2,3,4,5\\), the win-counts must be exactly\n\\[\n0,1,2,3,4,5.\n\\]\n\nThis is a tournament on 6 players with score sequence \\(0,1,2,3,4,5\\).\n\nNow show that such a tournament is uniquely determined:\n\n- The player with 5 wins beat everyone.\n- The player with 0 wins lost to everyone.\n\nRemove these two players. The remaining 4 players must then have win-counts reduced by 1 (because each lost to the 5-win player and beat the 0-win player), so their internal win-counts are\n\\[\n0,1,2,3.\n\\]\n\nApply the same reasoning again:\n\n- In those 4, the one with 3 internal wins beat the other 3.\n- The one with 0 internal wins lost to the other 3.\n\nRemove them, leaving 2 players with internal scores \\(0,1\\), which determines their match as well.\n\nSo the entire outcome is forced: after ordering players by number of wins, each player beats exactly those below them.\n\nThus, once the 6 participants are labeled, there is exactly **one** possible winner-loser assignment of all matches that gives distinct numbers of wins.\n\nFinal answer: \\(\\boxed{1}\\)",
+  "usage": {
+    "input_tokens": 113,
+    "output_tokens": 336,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 5.665908549912274,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "1"
+  }
+}

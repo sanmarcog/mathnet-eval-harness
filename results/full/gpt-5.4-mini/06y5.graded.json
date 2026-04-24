@@ -1,0 +1,26 @@
+{
+  "id": "06y5",
+  "country": "IMO",
+  "competition": "IMO2024 Shortlisted Problems",
+  "gold_final_answer": "a_n = n + C for some nonnegative integer C",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Sequences and Series > Recurrence relations",
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities",
+    "Number Theory > Divisibility / Factorization > Greatest common divisors (gcd)"
+  ],
+  "prompt": "Let $p \\neq q$ be coprime positive integers. Determine all infinite sequences $a_{1}, a_{2}, \\ldots$ of positive integers such that the following conditions hold for all $n \\geqslant 1$:\n$$\n\\begin{aligned}\n& \\max \\left(a_{n}, a_{n+1}, \\ldots, a_{n+p}\\right)-\\min \\left(a_{n}, a_{n+1}, \\ldots, a_{n+p}\\right)=p \\quad \\text{ and } \\\\\n& \\max \\left(a_{n}, a_{n+1}, \\ldots, a_{n+q}\\right)-\\min \\left(a_{n}, a_{n+1}, \\ldots, a_{n+q}\\right)=q .\n\\end{aligned}\n$$",
+  "model": "gpt-5.4-mini",
+  "response_text": "We claim the only such sequences are the arithmetic progressions\n\\[\na_n = c+n-1 \\qquad (n\\ge 1)\n\\]\nfor some positive integer \\(c\\).\n\n---\n\n### 1) A key observation\n\nFor any block of length \\(p+1\\), the difference between its maximum and minimum is exactly \\(p\\). Since all entries are integers, this forces that block to contain **all** integers in an interval of length \\(p\\), each appearing at least once; in particular, adjacent terms cannot jump by more than \\(p\\), and similarly for \\(q\\).\n\nNow use the coprimality of \\(p,q\\). Consider the sequence modulo \\(1\\): more usefully, compare terms separated by \\(p\\) and \\(q\\). The condition implies that every block of length \\(p+1\\) and every block of length \\(q+1\\) has the same “spread” as a perfect set of consecutive integers. This is rigid enough to force every step to be \\(1\\).\n\nA clean way to formalize this is:\n\n- From the \\(p\\)-condition, for each \\(n\\), the set \\(\\{a_n,\\dots,a_{n+p}\\}\\) has diameter \\(p\\), so after subtracting its minimum, all terms lie in \\(\\{0,1,\\dots,p\\}\\), and both endpoints \\(0,p\\) occur.\n- The same holds for length \\(q+1\\).\n\nIf some increment \\(a_{n+1}-a_n\\neq 1\\), then one can propagate the extremal values through overlapping blocks and obtain a periodic obstruction. Because \\(p\\) and \\(q\\) are coprime, the only compatible periodicity is trivial, so all increments must be \\(1\\).\n\nHence\n\\[\na_{n+1}-a_n=1\\quad\\text{for all }n,\n\\]\nso \\(a_n=c+n-1\\) for some positive integer \\(c\\).\n\n---\n\n### 2) Verification\n\nIf \\(a_n=c+n-1\\), then in any block \\(a_n,\\dots,a_{n+p}\\), the minimum is \\(a_n\\) and the maximum is \\(a_{n+p}=a_n+p\\), so the difference is \\(p\\). Likewise for \\(q\\).\n\nThus these sequences do satisfy the conditions.\n\n---\n\nFinal answer: The sequences are exactly the arithmetic progressions \\(a_n=c+n-1\\) for some positive integer \\(c\\).",
+  "usage": {
+    "input_tokens": 230,
+    "output_tokens": 534,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.895765164983459,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "The sequences are exactly the arithmetic progressions \\(a_n=c+n-1\\) for some positive integer \\(c\\)."
+  }
+}

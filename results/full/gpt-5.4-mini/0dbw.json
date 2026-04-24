@@ -1,0 +1,19 @@
+{
+  "id": "0dbw",
+  "country": "Saudi Arabia",
+  "competition": "SAUDI ARABIAN MATHEMATICAL COMPETITIONS",
+  "gold_final_answer": "8",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments"
+  ],
+  "prompt": "What is the biggest number of queens of two colors (black and white) one can place on a chessboard, such that no two of them beat one another (the queens do not beat through each other)?\n\nNote: The queen is able to move any number of squares vertically, horizontally or diagonally.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Because queens attack along rows, columns, and diagonals, we need a placement where every queen is “shielded” from every other queen by another queen on each shared line of attack.\n\nA key observation is that on an \\(8\\times 8\\) board, the maximum number of queens you can place so that no two attack each other is \\(8\\) (one per row and column).  \nBut here queens **may** share rows/columns/diagonals if they are separated by another queen, since queens do not attack “through” each other.\n\nSo we want the densest arrangement where every attacking line between two queens contains a third queen.\n\nA standard extremal construction is to fill the board with queens in a \\(2\\times 2\\) repeating pattern:\n- Put queens on all squares of the same color (say all black squares).\n\nThen:\n- Every row contains 4 queens, but any queen sees only adjacent queens on the same row, and the line of attack is blocked by other queens.\n- Similarly for columns and diagonals.\n\nThis gives \\(32\\) queens, and it is not possible to do better: a chessboard has 64 squares, and the largest set with no unblocked attacks is exactly one color class.\n\nSo the maximum is \\(32\\).\n\nFinal answer: 32",
+  "usage": {
+    "input_tokens": 109,
+    "output_tokens": 279,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 2.919332818943076,
+  "cached": false
+}

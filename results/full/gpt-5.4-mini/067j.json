@@ -1,0 +1,19 @@
+{
+  "id": "067j",
+  "country": "Greece",
+  "competition": "Hellenic Mathematical Olympiad ARCHIMEDES",
+  "gold_final_answer": "2, 5/4, sqrt(2), -sqrt(2)",
+  "topics_flat": [
+    "Algebra > Intermediate Algebra > Quadratic functions"
+  ],
+  "prompt": "Determine the values of the parameter $\\alpha \\in \\mathbb{R}$ for which the equation $x^2 + (\\alpha - 2)x - (\\alpha - 1)(2\\alpha - 3) = 0$ has two roots such that the one of them is equal to the square of the other.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let the roots be \\(r\\) and \\(r^2\\) for some real \\(r\\).  \nBy Vieta’s formulas for\n\\[\nx^2+(\\alpha-2)x-(\\alpha-1)(2\\alpha-3)=0,\n\\]\nwe have\n\\[\nr+r^2 = 2-\\alpha\n\\]\nand\n\\[\nr^3 = -(\\alpha-1)(2\\alpha-3).\n\\]\n\nFrom the first equation,\n\\[\n\\alpha = 2-r-r^2.\n\\]\nSubstitute into the second:\n\\[\nr^3 = -\\bigl(1-(r+r^2)\\bigr)\\bigl(1-2r-2r^2\\bigr).\n\\]\nA cleaner way is to use the identity\n\\[\n\\text{product of roots} = r\\cdot r^2 = r^3,\n\\]\nand since product \\(=-(\\alpha-1)(2\\alpha-3)\\), substitute \\(\\alpha=2-r-r^2\\). This simplifies to\n\\[\nr^3 = (1+r+r^2)(1+2r+2r^2).\n\\]\nExpanding and moving all terms to one side gives\n\\[\n2r^4+4r^3+4r^2+3r+1=0.\n\\]\nFactor:\n\\[\n(2r+1)(r+1)(r^2+r+1)=0.\n\\]\nSince \\(r^2+r+1=0\\) has no real roots, the real possibilities are\n\\[\nr=-1 \\quad \\text{or} \\quad r=-\\frac12.\n\\]\n\nNow compute \\(\\alpha=2-r-r^2\\):\n\n- If \\(r=-1\\), then \\(\\alpha=2-(-1)-1=2\\).\n- If \\(r=-\\frac12\\), then\n  \\[\n  \\alpha=2+\\frac12-\\frac14=\\frac94.\n  \\]\n\nTherefore the required values are:\n\nFinal answer: \\(\\alpha=2\\) or \\(\\alpha=\\dfrac94\\).",
+  "usage": {
+    "input_tokens": 115,
+    "output_tokens": 461,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 6.958196009974927,
+  "cached": false
+}

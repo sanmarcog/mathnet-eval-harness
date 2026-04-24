@@ -1,0 +1,20 @@
+{
+  "id": "01vw",
+  "country": "Belarus",
+  "competition": "69th Belarusian Mathematical Olympiad",
+  "gold_final_answer": "(-11/8, 2)",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Analytic / Coordinate Methods > Cartesian coordinates",
+    "Geometry > Plane Geometry > Triangles > Triangle centers: centroid, incenter, circumcenter, orthocenter, Euler line, nine-point circle"
+  ],
+  "prompt": "The point $C$ with an abscissa $-2$ lie on the hyperbola $y = 1/x$. Two lines with slopes $2$ and $1/2$ passes through $C$ and intersect the hyperbola for the second time at the points $A$ and $B$.\nFind the coordinates of the circumcenter of the triangle $ABC$.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find the coordinates of the circumcenter of triangle $ABC$, we first need to determine the coordinates of its vertices.\n\n1. **Coordinates of $C$:**\nSince $C$ lies on the hyperbola $y = 1/x$ and has an abscissa (x-coordinate) of $-2$, its ordinate (y-coordinate) is $y = 1/(-2) = -1/2$. \nThus, $C = (-2, -1/2)$.\n\n2. **Coordinates of $A$ and $B$:**\nThe lines passing through $C$ have slopes $m_1 = 2$ and $m_2 = 1/2$.\nThe equation of a line passing through $C$ with slope $m$ is:\n$$y - \\left(-\\frac{1}{2}\\right) = m(x - (-2)) \\implies y = m(x + 2) - \\frac{1}{2}$$\nTo find the intersection points with the hyperbola, we substitute $y = 1/x$:\n$$\\frac{1}{x} = m(x + 2) - \\frac{1}{2} \\implies 2mx^2 + (4m - 1)x - 2 = 0$$\nSince $C(-2, -1/2)$ is an intersection point, $x = -2$ is a root of this quadratic equation. By Vieta's formulas, the product of the roots is $x_1 x_2 = \\frac{-2}{2m} = -\\frac{1}{m}$. \nGiven $x_1 = -2$, the other root is $x_2 = \\frac{1}{2m}$.\n\n- For the first line with slope $m_1 = 2$:\n  $x_A = \\frac{1}{2(2)} = \\frac{1}{4}$\n  $y_A = \\frac{1}{x_A} = 4$\n  So, $A = \\left(\\frac{1}{4}, 4\\right)$.\n\n- For the second line with slope $m_2 = \\frac{1}{2}$:\n  $x_B = \\frac{1}{2(1/2)} = 1$\n  $y_B = \\frac{1}{x_B} = 1$\n  So, $B = (1, 1)$.\n\n3. **Circumcenter of $\\triangle ABC$:**\nThe circumcenter is the intersection of the perpendicular bisectors of the sides of the triangle.\n- **Perpendicular bisector of $BC$:**\n  The midpoint of $BC$ is $M_{BC} = \\left(\\frac{1 - 2}{2}, \\frac{1 - 1/2}{2}\\right) = \\left(-\\frac{1}{2}, \\frac{1}{4}\\right)$.\n  The slope of $BC$ is $\\frac{1 - (-1/2)}{1 - (-2)} = \\frac{3/2}{3} = \\frac{1}{2}$.\n  The slope of the perpendicular bisector is $-2$.\n  Its equation is: $y - \\frac{1}{4} = -2\\left(x + \\frac{1}{2}\\right) \\implies y = -2x - \\frac{3}{4}$.\n\n- **Perpendicular bisector of $AB$:**\n  The midpoint of $AB$ is $M_{AB} = \\left(\\frac{1/4 + 1}{2}, \\frac{4 + 1}{2}\\right) = \\left(\\frac{5}{8}, \\frac{5}{2}\\right)$.\n  The slope of $AB$ is $\\frac{1 - 4}{1 - 1/4} = \\frac{-3}{3/4} = -4$.\n  The slope of the perpendicular bisector is $\\frac{1}{4}$.\n  Its equation is: $y - \\frac{5}{2} = \\frac{1}{4}\\left(x - \\frac{5}{8}\\right) \\implies y = \\frac{1}{4}x + \\frac{75}{32}$.\n\nNow, we find the intersection of these two perpendicular bisectors:\n$$-2x - \\frac{3}{4} = \\frac{1}{4}x + \\frac{75}{32}$$\nMultiplying the entire equation by 32 to clear the denominators:\n$$-64x - 24 = 8x + 75$$\n$$-72x = 99 \\implies x = -\\frac{99}{72} = -\\frac{11}{8}$$\nSubstitute $x = -11/8$ back into the equation of the first perpendicular bisector to find $y$:\n$$y = -2\\left(-\\frac{11}{8}\\right) - \\frac{3}{4} = \\frac{11}{4} - \\frac{3}{4} = \\frac{8}{4} = 2$$\n\nFinal answer: (-11/8, 2)",
+  "usage": {
+    "input_tokens": 115,
+    "output_tokens": 1126,
+    "thoughts_tokens": 2162
+  },
+  "latency_s": 23.31848135101609,
+  "cached": false
+}

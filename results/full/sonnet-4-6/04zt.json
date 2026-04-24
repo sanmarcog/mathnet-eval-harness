@@ -1,0 +1,20 @@
+{
+  "id": "04zt",
+  "country": "Estonia",
+  "competition": "Selected Problems from the Final Round of National Olympiad",
+  "gold_final_answer": "(w, x, y, z) = (2, n, n, n+1) for any positive integer n",
+  "topics_flat": [
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities",
+    "Algebra > Intermediate Algebra > Exponential functions"
+  ],
+  "prompt": "Find all quadruples $(w, x, y, z)$ of positive integers such that $w^x + w^y = w^z$.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "We need $w^x + w^y = w^z$ with positive integers $w, x, y, z$.\n\nWithout loss of generality, assume $x \\leq y$. Factor out $w^x$:\n\n$$w^x(1 + w^{y-x}) = w^z$$\n\nSo $1 + w^{y-x} = w^{z-x}$.\n\nLet $a = y - x \\geq 0$ and $b = z - x > 0$. We need:\n$$1 + w^a = w^b$$\n\n**Case 1: $a = 0$** (i.e., $x = y$)\nThen $1 + 1 = 2 = w^b$, so $w = 2, b = 1$, giving $z - x = 1$, so $z = x + 1$.\n\nThis gives solutions: $w = 2$, $x = y$, $z = x + 1$ for any positive integer $x$.\nSo $(2, n, n, n+1)$ for any positive integer $n$.\n\n**Case 2: $a \\geq 1$**\nWe need $w^b - w^a = 1$, i.e., $w^a(w^{b-a} - 1) = 1$.\n\nSince $w, a$ are positive integers, $w^a \\geq 1$ and $w^{b-a} - 1 \\geq 0$. For the product to equal 1, we need $w^a = 1$ and $w^{b-a} - 1 = 1$, but $w^a = 1$ with $w$ a positive integer means $w = 1$.\n\nIf $w = 1$: $1 + 1^a = 1^b \\Rightarrow 2 = 1$, which is impossible.\n\nAlternatively, $w^a = 1$ requires $w = 1$ (since $a \\geq 1$), which fails. So no solutions in Case 2.\n\nWait, let me reconsider. We need $1 + w^a = w^b$ with $a \\geq 1$.\n\nIf $b > a$: $w^a(w^{b-a} - 1) = 1$ requires $w = 1$, impossible.\nIf $b = a$: $1 + w^a = w^a \\Rightarrow 1 = 0$, impossible.\nIf $b < a$: $w^b(1 - w^{a-b}) = -1$... wait, let me redo.\n\n$1 + w^a = w^b$. Since $w \\geq 1$ and $a \\geq 1$, we have $w^b > w^a$, so $b > a$ (for $w \\geq 2$). Then $w^a(w^{b-a} - 1) = 1$, requiring $w^a = 1$, so $w = 1$, contradiction.\n\nFor $w = 1$: $1 + 1 = 1$ is false.\n\nSo the only solutions come from Case 1.\n\nThe complete set of solutions (allowing $x \\leq y$ or $x \\geq y$ by symmetry in $x, y$):\n\nSince $x$ and $y$ are symmetric in the original equation, the solutions are:\n\n$(w, x, y, z) = (2, n, n, n+1)$ for any positive integer $n$.\n\nBut we should also include the case where $x > y$ (i.e., $y \\leq x$), which by symmetry gives the same family.\n\nSo all solutions are $(w, x, y, z) = (2, n, n, n+1)$ for positive integers $n$.\n\n**Verification:** $2^n + 2^n = 2 \\cdot 2^n = 2^{n+1}$ ✓\n\nFinal answer: All quadruples are $(w, x, y, z) = (2, n, n, n+1)$ for any positive integer $n$ (i.e., $w=2$, $x=y$, $z=x+1$).",
+  "usage": {
+    "input_tokens": 79,
+    "output_tokens": 1033,
+    "thinking_tokens": 0
+  },
+  "latency_s": 12.741867905948311,
+  "cached": false
+}

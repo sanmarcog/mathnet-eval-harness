@@ -1,0 +1,26 @@
+{
+  "id": "0d95",
+  "country": "Saudi Arabia",
+  "competition": "SAUDI ARABIAN MATHEMATICAL COMPETITIONS",
+  "gold_final_answer": "403",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Invariants / monovariants",
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments",
+    "Algebra > Prealgebra / Basic Algebra > Integers"
+  ],
+  "prompt": "Consider the set $X=\\{1,2,3, \\ldots, 2018\\}$. How many positive integers $k$ with $2 \\leq k \\leq 2017$ that satisfy the following conditions:\n\ni) There exists some partition of the set $X$ into $1009$ disjoint pairs which are $(a_{1}, b_{1}), (a_{2}, b_{2}), \\ldots, (a_{1009}, b_{1009})$ with $|a_{i}-b_{i}| \\in \\{1, k\\}$.\n\nii) For all partitions satisfy the condition (i), the sum $T=\\sum_{i=1}^{1009}|a_{i}-b_{i}|$ has the right most digit is $9$.",
+  "model": "gpt-5.4",
+  "response_text": "Model the problem as a perfect matching on the numbers \\(1,2,\\dots,2018\\), where each pair must connect two numbers differing by either \\(1\\) or \\(k\\).\n\nWe seek all \\(k\\in\\{2,\\dots,2017\\}\\) such that:\n\n1. at least one such perfect matching exists;\n2. in every such perfect matching, the total\n   \\[\n   T=\\sum |a_i-b_i|\n   \\]\n   ends in digit \\(9\\).\n\n---\n\n## 1) When does a partition exist?\n\nLet there be \\(x\\) pairs of difference \\(k\\), and \\(1009-x\\) pairs of difference \\(1\\). Then\n\\[\nT=xk+(1009-x)=1009+x(k-1).\n\\]\nSo the last digit of \\(T\\) depends only on \\(x\\pmod{10}\\).\n\nBut first we need existence of at least one perfect matching using edges of length \\(1\\) or \\(k\\).\n\nA standard parity observation:\n\n- If \\(k\\) is odd, then both allowed differences \\(1\\) and \\(k\\) are odd, so every pair joins one odd and one even number. Since \\(X\\) has equally many odds and evens, existence is plausible.\n- In fact, for every odd \\(k\\), a perfect matching exists: just pair\n  \\[\n  (1,2),(3,4),\\dots,(2017,2018),\n  \\]\n  all with difference \\(1\\).\n\nIf \\(k\\) is even, difference \\(k\\) preserves parity while difference \\(1\\) flips parity. One can show the graph splits in a way that forces each connected component to have even size for a perfect matching. Here the graph on \\(1,\\dots,2018\\) with edges \\(\\pm1,\\pm k\\) has two endpoint components of odd size when \\(k\\) is even, so no perfect matching exists. A simpler way: modulo parity, only the \\(1\\)-edges connect odd to even; removing them leaves parity-separated chains, and the whole interval structure gives obstruction. So only **odd \\(k\\)** can satisfy (i).\n\nThus we only consider odd \\(k\\).\n\n---\n\n## 2) For fixed odd \\(k\\), what values of \\(x\\) are possible?\n\nWe need the number of \\(k\\)-edges in a perfect matching.\n\nKey invariant: for odd \\(k\\), every edge (difference \\(1\\) or \\(k\\)) connects an odd and an even number. So orient each pair from odd to even. Then each edge contributes either \\(+1\\) or \\(-1\\) modulo \\(k-1\\)? A cleaner route is to use the sum of all elements.\n\nFor a pair \\((a,b)\\) with \\(b>a\\), we have \\(b-a\\in\\{1,k\\}\\). The parity alternates, so if \\(a\\) is odd then \\(b\\) is even, and vice versa. Count modulo \\(10\\) is enough, but we need a stronger invariant.\n\nA standard decomposition of the graph by residues mod \\(k+1\\) / \\(k-1\\) is cumbersome. Instead, observe that one perfect matching certainly exists with all differences \\(1\\), giving \\(x=0\\).\n\nNow ask whether \\(x\\) can vary. If it can vary, then\n\\[\nT=1009+x(k-1)\n\\]\nwould vary by multiples of \\(k-1\\). Condition (ii) says **all** possible \\(T\\) must end in \\(9\\), so modulo \\(10\\),\n\\[\nx(k-1)\\equiv 0\\pmod{10}\n\\]\nfor every feasible \\(x\\).\n\nSo either all feasible \\(x\\) are congruent mod \\(10/\\gcd(k-1,10)\\), or \\(k-1\\equiv 0\\pmod{10}\\).\n\nNow the crucial local move: whenever two adjacent \\(k\\)-edges can be replaced by \\(1\\)-edges (or vice versa), \\(x\\) changes by \\(2\\). In fact for odd \\(k\\), if\n\\[\n(a,a+k),\\ (a+1,a+k+1)\n\\]\nare two \\(k\\)-pairs, they can be replaced by\n\\[\n(a,a+1),\\ (a+k,a+k+1),\n\\]\ntwo \\(1\\)-pairs. Hence feasible \\(x\\)'s vary by \\(2\\). Therefore, unless \\(k-1\\) is divisible by \\(5\\), the last digit of \\(T\\) will not be fixed.\n\nSince \\(k\\) is odd, \\(k-1\\) is even; to make \\(2(k-1)\\equiv 0\\pmod{10}\\), we need\n\\[\nk-1\\equiv 0\\pmod{5}.\n\\]\nTogether with oddness, this means\n\\[\nk\\equiv 1 \\pmod{10}\\quad\\text{or}\\quad k\\equiv 6\\pmod{10},\n\\]\nbut \\(k\\) odd, so actually\n\\[\nk\\equiv 1\\pmod{10}.\n\\]\n\nThen for any feasible \\(x\\),\n\\[\nT=1009+x(k-1)\\equiv 9+ x\\cdot 0 \\equiv 9 \\pmod{10}.\n\\]\nSo condition (ii) holds automatically.\n\nThus the valid \\(k\\) are exactly the odd integers with\n\\[\nk\\equiv 1\\pmod{10}, \\qquad 2\\le k\\le 2017.\n\\]\nThese are\n\\[\n11,21,31,\\dots,2011.\n\\]\nCount:\n\\[\n\\frac{2011-11}{10}+1=201.\n\\]\n\n---\n\nFinal answer: \\(201\\)",
+  "usage": {
+    "input_tokens": 218,
+    "output_tokens": 1255,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 19.81229552300647,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "\\(201\\)"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "id": "0esh",
+  "country": "South Africa",
+  "competition": "South African Mathematics Olympiad First Round",
+  "gold_final_answer": "D",
+  "topics_flat": [
+    "Algebra > Prealgebra / Basic Algebra > Other"
+  ],
+  "prompt": "Which one of the following is not a rational number?\n(A) $\\sqrt{4}$\n(B) $\\pi^0$\n(C) $\\sqrt{6.25}$\n(D) $\\sqrt{14}$\n(E) $\\sqrt{0.49}$",
+  "model": "gpt-5.4",
+  "response_text": "Evaluate each choice:\n\n- (A) \\(\\sqrt{4} = 2\\), rational.\n- (B) \\(\\pi^0 = 1\\), rational.\n- (C) \\(\\sqrt{6.25} = 2.5\\), rational.\n- (D) \\(\\sqrt{14}\\): since \\(14\\) is not a perfect square, this is irrational.\n- (E) \\(\\sqrt{0.49} = 0.7\\), rational.\n\nSo the only one that is **not** rational is \\((D)\\).\n\nFinal answer: \\(\\boxed{D}\\)",
+  "usage": {
+    "input_tokens": 101,
+    "output_tokens": 134,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 2.294826115015894,
+  "cached": false
+}

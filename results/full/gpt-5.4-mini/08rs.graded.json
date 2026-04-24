@@ -1,0 +1,26 @@
+{
+  "id": "08rs",
+  "country": "Japan",
+  "competition": "Japan 2007",
+  "gold_final_answer": "20",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Factorization techniques",
+    "Number Theory > Divisibility / Factorization > Prime numbers",
+    "Discrete Mathematics > Combinatorics > Recursion, bijection"
+  ],
+  "prompt": "There are some cards with positive integers on them, and the sum of these integers is $2007$. For any integer $1 \\le k \\le 2006$ we can choose some cards so that the sum of the numbers written on those cards is $k$, and there is only one way (if cards with same number are considered to be the same) to do so for each $k$. How many kinds of such a set of cards are possible?",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let the multiset of card values be \\(a_1,\\dots,a_n\\), with total sum \\(2007\\).  \nThe condition says that every integer \\(1,2,\\dots,2006\\) is representable as a subset sum, and that the representation is unique up to identical cards.\n\nA standard fact: a multiset of positive integers has **all** subset sums from \\(0\\) to \\(S\\), each exactly once, iff after sorting\n\\[\na_1 \\le a_2 \\le \\cdots \\le a_n,\n\\]\nwe have\n\\[\na_1=1,\\qquad a_{i+1}\\le 1+\\sum_{j=1}^i a_j\n\\]\nfor all \\(i\\), and in fact uniqueness for every sum forces the extremal case\n\\[\na_{i+1}=1+\\sum_{j=1}^i a_j.\n\\]\nIndeed, if some \\(a_{i+1}\\) were smaller, then some sum would have two representations; if larger, some sum would be missing.\n\nThus the cards must be\n\\[\n1,2,4,8,\\dots,2^{m-1}\n\\]\nfor some \\(m\\), because each next term equals one more than the sum before it.\n\nTheir total sum is then\n\\[\n1+2+4+\\cdots+2^{m-1}=2^m-1.\n\\]\nSince this must equal \\(2007\\), we get\n\\[\n2^m-1=2007 \\quad\\Longrightarrow\\quad 2^m=2008,\n\\]\nwhich is impossible because \\(2008\\) is not a power of \\(2\\).\n\nSo no such set of cards exists.\n\nFinal answer: \\(0\\)",
+  "usage": {
+    "input_tokens": 142,
+    "output_tokens": 386,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 2.986659368034452,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "\\(0\\)"
+  }
+}

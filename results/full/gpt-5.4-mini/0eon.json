@@ -1,0 +1,21 @@
+{
+  "id": "0eon",
+  "country": "South Africa",
+  "competition": "South African Mathematics Olympiad",
+  "gold_final_answer": "2, 3, 31",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Factorization techniques",
+    "Number Theory > Modular Arithmetic",
+    "Algebra > Prealgebra / Basic Algebra > Integers"
+  ],
+  "prompt": "Find three prime factors of: $5^{2015} + 5^{2016} + 5^{2017} + 31^{2016}$\nNB: Show all your working!",
+  "model": "gpt-5.4-mini",
+  "response_text": "Factor the expression step by step:\n\n\\[\n5^{2015}+5^{2016}+5^{2017}+31^{2016}\n\\]\n\nFirst factor the powers of 5:\n\n\\[\n5^{2015}(1+5+25)+31^{2016}\n\\]\n\nSince \\(1+5+25=31\\), this becomes\n\n\\[\n31\\cdot 5^{2015}+31^{2016}\n\\]\n\nNow factor out \\(31\\):\n\n\\[\n31\\left(5^{2015}+31^{2015}\\right)\n\\]\n\nSo one prime factor is clearly:\n\n\\[\n31\n\\]\n\nNext, note that \\(5^{2015}+31^{2015}\\) is a sum of odd powers, so it is divisible by \\(5+31=36\\) only in general not useful for primes, but we can find a smaller prime divisor by checking modulo 2 and 3:\n\n- \\(5^{2015}+31^{2015}\\equiv 1+1\\equiv 0 \\pmod 2\\), so divisible by \\(2\\)\n- \\(5^{2015}+31^{2015}\\equiv 2^{2015}+1^{2015}\\equiv 2+1\\equiv 0 \\pmod 3\\) since \\(5\\equiv 2\\), \\(31\\equiv 1\\pmod 3\\) and \\(2^{2015}\\equiv 2\\pmod 3\\)\n\nHence it is divisible by \\(6\\), giving prime factors \\(2\\) and \\(3\\).\n\nSo three prime factors are:\n\n\\[\n2,\\ 3,\\ 31\n\\]\n\nFinal answer: \\(2,\\ 3,\\ 31\\)",
+  "usage": {
+    "input_tokens": 89,
+    "output_tokens": 376,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.004618239006959,
+  "cached": false
+}

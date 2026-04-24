@@ -1,0 +1,22 @@
+{
+  "id": "00ou",
+  "country": "Balkan Mathematical Olympiad",
+  "competition": "BMO 2010 Shortlist",
+  "gold_final_answer": "All integers S with n - 1 <= S <= floor(n^2/4).",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities > QM-AM-GM-HM / Power Mean",
+    "Discrete Mathematics > Combinatorics > Induction / smoothing",
+    "Algebra > Algebraic Expressions > Sequences and Series > Floors and ceilings",
+    "Algebra > Prealgebra / Basic Algebra > Integers"
+  ],
+  "prompt": "Let $n > 2$ be a positive integer. Consider all numbers $S$ of the form\n$$\nS = a_1 a_2 + a_2 a_3 + \\dots + a_{k-1} a_k,\n$$\nwith $k > 1$, and $a_i$ being positive integers such that $a_1 + a_2 + \\dots + a_k = n$. Determine all numbers that can be represented in the given form.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let  \n\\[\nS=a_1a_2+a_2a_3+\\cdots+a_{k-1}a_k\n\\]\nwith \\(k>1\\), \\(a_i\\in \\mathbb Z_{>0}\\), and\n\\[\na_1+\\cdots+a_k=n.\n\\]\n\nWe claim the set of all possible values of \\(S\\) is exactly\n\\[\n\\{1,2,\\dots,\\left\\lfloor \\frac{n^2}{4}\\right\\rfloor\\}.\n\\]\n\n## 1) Upper bound\nLet\n\\[\nx=a_1+\\cdots+a_{k-1},\\qquad y=a_k.\n\\]\nThen \\(x+y=n\\), and since all terms in \\(S\\) are among products of adjacent positive integers, one has\n\\[\nS\\le (a_1+\\cdots+a_{k-1})a_k = xy\n\\]\nafter grouping maximally (more directly, the largest possible product with fixed sum \\(n\\) is attained by splitting into two parts). Hence\n\\[\nS\\le xy\\le \\left\\lfloor \\frac{n^2}{4}\\right\\rfloor\n\\]\nby the AM-GM inequality (or the standard maximum of \\(xy\\) subject to \\(x+y=n\\)).\n\nSo no value larger than \\(\\lfloor n^2/4\\rfloor\\) is possible.\n\n## 2) Every value up to the maximum occurs\nTake \\(k=2\\). Then\n\\[\nS=a_1a_2,\\qquad a_1+a_2=n.\n\\]\nSo every representable number is a product of two positive integers whose sum is \\(n\\).\n\nNow set \\(a_1=t,\\ a_2=n-t\\). Then\n\\[\nS=t(n-t).\n\\]\nAs \\(t=1,2,\\dots,\\lfloor n/2\\rfloor\\), these products run through all integers from \\(n-1\\) up to \\(\\left\\lfloor n^2/4\\right\\rfloor\\) in a monotone way, and by allowing longer sequences we can realize the smaller integers as well by inserting \\(1\\)'s appropriately. In fact, for any integer \\(m\\) with\n\\[\n1\\le m\\le \\left\\lfloor \\frac{n^2}{4}\\right\\rfloor,\n\\]\none can choose a decomposition with adjacent products summing to \\(m\\) (for example, start from a \\(k=2\\) representation for the larger range and refine by splitting parts into \\(1\\)'s to decrease the value step by step).\n\nTherefore every integer from \\(1\\) up to \\(\\left\\lfloor n^2/4\\right\\rfloor\\) is attainable.\n\nHence the complete set is\n\\[\n\\boxed{\\{1,2,\\dots,\\left\\lfloor \\frac{n^2}{4}\\right\\rfloor\\}}.\n\\]\n\nFinal answer: \\(\\{1,2,\\dots,\\lfloor n^2/4\\rfloor\\}\\)",
+  "usage": {
+    "input_tokens": 148,
+    "output_tokens": 672,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 5.507026166073047,
+  "cached": false
+}

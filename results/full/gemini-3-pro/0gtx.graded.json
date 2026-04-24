@@ -1,0 +1,28 @@
+{
+  "id": "0gtx",
+  "country": "Turkey",
+  "competition": "Team Selection Test for EGMO 2024",
+  "gold_final_answer": "f(x) = 1 for all x, and f(x) = x for all x",
+  "topics_flat": [
+    "Number Theory > Number-Theoretic Functions > φ (Euler's totient)",
+    "Number Theory > Divisibility / Factorization > Least common multiples (lcm)",
+    "Number Theory > Divisibility / Factorization > Greatest common divisors (gcd)",
+    "Algebra > Algebraic Expressions > Functional Equations",
+    "Discrete Mathematics > Combinatorics > Induction / smoothing"
+  ],
+  "prompt": "Find all functions $f: \\mathbb{Z}^+ \\to \\mathbb{Z}^+$ such that the following conditions hold:\n(i) $a - b \\mid f(a) - f(b)$ for all positive integers $a \\neq b$,\n(ii) $f(\\varphi(a)) = \\varphi(f(a))$ for all $a \\in \\mathbb{Z}^+$.\nNote. $\\varphi$ is the Euler's totient function: $\\varphi(n)$ is the total number of positive integers not exceeding $n$ and co-prime with $n$.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find all functions $f: \\mathbb{Z}^+ \\to \\mathbb{Z}^+$ satisfying the given conditions, we proceed as follows:\n\nFirst, let $a = 1$. Condition (ii) gives $f(\\varphi(1)) = \\varphi(f(1))$. Since $\\varphi(1) = 1$, we have $f(1) = \\varphi(f(1))$. The only positive integer $x$ that satisfies $\\varphi(x) = x$ is $x = 1$. Thus, $f(1) = 1$.\n\nNext, let $a = 2$. Condition (ii) gives $f(\\varphi(2)) = \\varphi(f(2))$. Since $\\varphi(2) = 1$ and $f(1) = 1$, we get $\\varphi(f(2)) = 1$. The only positive integers $x$ such that $\\varphi(x) = 1$ are $x = 1$ and $x = 2$. Thus, $f(2) \\in \\{1, 2\\}$. \n\nWe divide this into two cases:\n\n**Case 1: $f(2) = 1$**\nWe will prove by strong induction that $f(n) = 1$ for all $n \\ge 1$. \nAssume $f(k) = 1$ for all $k < n$. \n- If $n$ is prime, then $\\varphi(n) = n - 1 < n$. By our inductive hypothesis, $f(\\varphi(n)) = 1$. Condition (ii) then implies $\\varphi(f(n)) = 1$, so $f(n) \\in \\{1, 2\\}$. By condition (i), $n - 1 \\mid f(n) - f(1) = f(n) - 1$. Since $n \\ge 3$, $n - 1 \\ge 2$. The only way $f(n) \\in \\{1, 2\\}$ can satisfy this is if $f(n) - 1 = 0$, meaning $f(n) = 1$.\n- If $n$ is composite, $\\varphi(n) < n - 1 < n$. Again, $f(\\varphi(n)) = 1$, which means $f(n) \\in \\{1, 2\\}$. By condition (i), $n - 1 \\mid f(n) - 1$. Since $n \\ge 4$, $n - 1 \\ge 3$, which forces $f(n) = 1$.\nThus, $f(n) = 1$ for all $n \\in \\mathbb{Z}^+$. This function clearly satisfies both conditions.\n\n**Case 2: $f(2) = 2$**\nWe will prove by strong induction that $f(n) = n$ for all $n \\ge 1$.\nAssume $f(k) = k$ for all $k < n$. \nSince $\\varphi(n) < n$, the inductive hypothesis gives $f(\\varphi(n)) = \\varphi(n)$. Condition (ii) then implies $\\varphi(f(n)) = \\varphi(n)$.\nBy condition (i), for all $k < n$, we must have $n - k \\mid f(n) - f(k) = f(n) - k$. This can be rewritten as $n - k \\mid f(n) - n$. \nThis means $f(n) - n$ is a multiple of every integer from $1$ to $n - 1$, so it must be a multiple of their least common multiple, $L = \\text{lcm}(1, 2, \\dots, n-1)$. \nThus, $f(n) = n + cL$ for some integer $c \\ge 0$. \nWe need $\\varphi(n + cL) = \\varphi(n)$. \n- For $n \\in \\{3, 4, 5, 6, 7\\}$, checking the small values of $L$ (which are $2, 6, 12, 60, 60$ respectively) and the maximum possible inputs that yield $\\varphi(x) = \\varphi(n)$ strictly forces $c = 0$.\n- For $n \\ge 8$, it is a known bound that $\\varphi(x) \\ge \\sqrt{x/2}$. If $c \\ge 1$, then $\\varphi(n + cL) \\ge \\sqrt{(n + L)/2}$. However, for $n \\ge 8$, $L \\ge 2n^2$, which would imply $\\varphi(n + cL) > n > \\varphi(n)$, a contradiction. \nTherefore, $c = 0$ for all $n$, which means $f(n) = n$. This function also clearly satisfies both conditions.\n\nFinal answer: f(n) = 1, f(n) = n",
+  "usage": {
+    "input_tokens": 167,
+    "output_tokens": 1092,
+    "thoughts_tokens": 5466
+  },
+  "latency_s": 47.51320675108582,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "f(n) = 1, f(n) = n"
+  }
+}

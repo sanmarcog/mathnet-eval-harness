@@ -1,0 +1,21 @@
+{
+  "id": "06x3",
+  "country": "IMO",
+  "competition": "International Mathematical Olympiad",
+  "gold_final_answer": "smallest 2500, largest 7500",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Functional Equations > Injectivity / surjectivity",
+    "Discrete Mathematics > Combinatorics > Counting two ways",
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments"
+  ],
+  "prompt": "Let $\\mathbb{Z}_{\\geqslant 0}$ be the set of non-negative integers, and let $f: \\mathbb{Z}_{\\geqslant 0} \\times \\mathbb{Z}_{\\geqslant 0} \\rightarrow \\mathbb{Z}_{\\geqslant 0}$ be a bijection such that whenever $f\\left(x_{1}, y_{1}\\right)>f\\left(x_{2}, y_{2}\\right)$, we have $f\\left(x_{1}+1, y_{1}\\right)>f\\left(x_{2}+1, y_{2}\\right)$ and $f\\left(x_{1}, y_{1}+1\\right)>f\\left(x_{2}, y_{2}+1\\right)$.\nLet $N$ be the number of pairs of integers $(x, y)$, with $0 \\leqslant x, y<100$, such that $f(x, y)$ is odd. Find the smallest and largest possible value of $N$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let us write the condition in a more usable form.\n\nSince \\(f\\) is a bijection \\(\\mathbb Z_{\\ge 0}^2 \\to \\mathbb Z_{\\ge 0}\\), it assigns a unique rank to each lattice point.  \nThe hypothesis says that if one point has larger value than another, then after shifting both points one step right, or one step up, the inequality is preserved.\n\nThis means the order induced by \\(f\\) is compatible with moving in either coordinate direction. In particular, the parity pattern of the values is forced to alternate in a very rigid way.\n\nA standard consequence is that along any row and any column, the odd/even pattern must alternate like a checkerboard. More precisely, for any two adjacent points \\((x,y)\\) and \\((x+1,y)\\), their values must have opposite parity; similarly for \\((x,y)\\) and \\((x,y+1)\\). Otherwise, the monotonicity of order under shifts would be violated when comparing consecutive values in the bijection.\n\nSo the parity of \\(f(x,y)\\) must be determined by the parity of \\(x+y\\), up to a global swap:\n- either \\(f(x,y)\\) is odd exactly when \\(x+y\\) is even,\n- or \\(f(x,y)\\) is odd exactly when \\(x+y\\) is odd.\n\nNow count pairs \\((x,y)\\) with \\(0\\le x,y<100\\).  \nThere are \\(100\\times 100=10000\\) points total, and since \\(100\\) is even, exactly half of them have \\(x+y\\) even and half have \\(x+y\\) odd. Thus the number of odd values is always\n\n\\[\nN = 5000.\n\\]\n\nSo the smallest and largest possible values coincide.\n\nFinal answer: \\(5000\\)",
+  "usage": {
+    "input_tokens": 276,
+    "output_tokens": 398,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.865195535006933,
+  "cached": false
+}

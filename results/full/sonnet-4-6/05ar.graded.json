@@ -1,0 +1,25 @@
+{
+  "id": "05ar",
+  "country": "Estonia",
+  "competition": "Estonian Mathematical Olympiad",
+  "gold_final_answer": "a) Yes; for example n = 100010001. b) No; such an integer does not exist.",
+  "topics_flat": [
+    "Number Theory > Modular Arithmetic",
+    "Number Theory > Divisibility / Factorization"
+  ],
+  "prompt": "a. Does there exist a positive integer $n$ such that the eight last digits of the number $n^2 + 1$ are the same as in the number $2n$, but the ninth digit from the end of these two numbers are different?\n\nb. Does there exist a positive integer $n$ such that the nine last digits of the number $n^2 + 1$ are the same as in the number $2n$, but the tenth digit from the end of these two numbers are different?",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Part a\n\nWe need $n^2 + 1 \\equiv 2n \\pmod{10^8}$ but $n^2 + 1 \\not\\equiv 2n \\pmod{10^9}$.\n\nThe condition $n^2 + 1 \\equiv 2n \\pmod{10^8}$ means $(n-1)^2 \\equiv 0 \\pmod{10^8}$, i.e., $10^4 \\mid (n-1)$.\n\nSo $n = 1 + 10^4 k$ for some integer $k$.\n\nThen $n^2 + 1 - 2n = (n-1)^2 = 10^8 k^2$.\n\nWe need $10^8 k^2 \\not\\equiv 0 \\pmod{10^9}$, i.e., $10 \\nmid k^2$, i.e., $10 \\nmid k$.\n\nTake $k = 1$: $n = 10001$. Then $(n-1)^2 = 10^8$, so $n^2 + 1 - 2n = 10^8$. The last 8 digits of $n^2+1$ and $2n$ agree, but the 9th digit from the end differs (one has a 1 there, the other a 0).\n\n**Yes**, such $n$ exists (e.g., $n = 10001$).\n\n## Part b\n\nWe need $n^2 + 1 \\equiv 2n \\pmod{10^9}$ but $n^2 + 1 \\not\\equiv 2n \\pmod{10^{10}}$.\n\nThe condition $(n-1)^2 \\equiv 0 \\pmod{10^9}$ requires $v_2((n-1)^2) \\geq 9$ and $v_5((n-1)^2) \\geq 9$.\n\nSo $v_2(n-1) \\geq 5$ (since $2\\cdot 5 = 10 > 9$, we need $v_2(n-1) \\geq 5$) and $v_5(n-1) \\geq 5$.\n\nWait, more carefully: $v_2((n-1)^2) \\geq 9$ means $2v_2(n-1) \\geq 9$, so $v_2(n-1) \\geq 5$. Similarly $2v_5(n-1) \\geq 9$ means $v_5(n-1) \\geq 5$.\n\nSo $n - 1 = 2^5 \\cdot 5^5 \\cdot m = 10^5 \\cdot m / (2^0 \\cdot 5^0)$... Actually $\\text{lcm}(2^5, 5^5) = 2^5 \\cdot 5^5$, so $n - 1$ must be divisible by $2^5 \\cdot 5^5 = 32 \\cdot 3125 = 100000 = 10^5$.\n\nSo $n = 1 + 10^5 k$, and $(n-1)^2 = 10^{10} k^2$.\n\nThen $n^2 + 1 - 2n = 10^{10} k^2 \\equiv 0 \\pmod{10^{10}}$ for **any** integer $k$.\n\nThis means whenever the last 9 digits of $n^2+1$ and $2n$ agree, the last 10 digits also agree! So we cannot have the 9 last digits the same but the 10th different.\n\nWait, let me recheck: $(n-1)^2 \\equiv 0 \\pmod{10^9}$ requires $v_2(n-1) \\geq 5$ AND $v_5(n-1) \\geq 5$, giving $10^5 \\mid (n-1)$, so $(n-1)^2$ is divisible by $10^{10}$. Hence $10^{10} \\mid (n^2+1-2n)$ automatically.\n\nSo if the last 9 digits agree, the last 10 digits must also agree. **No** such $n$ exists.\n\n## Answers\n\n**a.** Yes. For example, $n = 10001$: $(n-1)^2 = 10^8$, so the last 8 digits of $n^2+1$ and $2n$ coincide, but the 9th digits differ.\n\n**b.** No. If $(n-1)^2 \\equiv 0 \\pmod{10^9}$, then $10^5 \\mid (n-1)$, so $(n-1)^2 \\equiv 0 \\pmod{10^{10}}$, meaning the last 10 digits automatically agree as well.\n\nFinal answer: a. Yes (e.g. $n=10001$); b. No.",
+  "usage": {
+    "input_tokens": 157,
+    "output_tokens": 1237,
+    "thinking_tokens": 0
+  },
+  "latency_s": 16.29793076601345,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "a. Yes (e.g. $n=10001$); b. No."
+  }
+}

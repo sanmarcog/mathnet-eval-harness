@@ -1,0 +1,25 @@
+{
+  "id": "08r4",
+  "country": "Japan",
+  "competition": "The 4th Japanese Junior Mathematical Olympiad",
+  "gold_final_answer": "Part (1): (1, -2), (1, -5). Part (2): (-2, -2), (-1, -4), (-1, -1), (1, -5), (1, -2), (2, -4).",
+  "topics_flat": [
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities",
+    "Algebra > Intermediate Algebra > Quadratic functions"
+  ],
+  "prompt": "Consider the equation\n$$\nx^2 + xy + y^2 + 3x + 6y + 6 = 0. \\quad (*)\n$$\n(1) Find all pair $(x, y)$ of integers with $x = 1$ which satisfy equation $(*)$.\n(2) Find all pair $(x, y)$ of integers which satisfy equation $(*)$.",
+  "model": "gpt-5.4",
+  "response_text": "We solve\n\\[\nx^2+xy+y^2+3x+6y+6=0.\n\\]\n\nWe want integer solutions.\n\n## 1) Solutions with \\(x=1\\)\n\nSubstitute \\(x=1\\):\n\\[\n1+y+y^2+3+6y+6=0\n\\]\n\\[\ny^2+7y+10=0\n\\]\n\\[\n(y+5)(y+2)=0.\n\\]\nSo\n\\[\ny=-5 \\quad \\text{or} \\quad y=-2.\n\\]\n\nHence the pairs are\n\\[\n(1,-5),\\ (1,-2).\n\\]\n\n---\n\n## 2) All integer solutions\n\nWe rewrite the equation as a quadratic in \\(x\\):\n\\[\nx^2+(y+3)x+(y^2+6y+6)=0.\n\\]\nFor integer \\(x\\), the discriminant must be a perfect square:\n\\[\n\\Delta=(y+3)^2-4(y^2+6y+6).\n\\]\nCompute:\n\\[\n\\Delta=y^2+6y+9-4y^2-24y-24\n=-3y^2-18y-15\n=-3(y^2+6y+5).\n\\]\nFactor:\n\\[\n\\Delta=-3(y+1)(y+5).\n\\]\nWe need\n\\[\n-3(y+1)(y+5)\\ge 0.\n\\]\nSo\n\\[\n(y+1)(y+5)\\le 0,\n\\]\nwhich gives\n\\[\n-5\\le y\\le -1.\n\\]\nThus only \\(y=-5,-4,-3,-2,-1\\) are possible.\n\nNow test each:\n\n### \\(y=-5\\)\n\\[\nx^2-2x+1=0 \\implies (x-1)^2=0 \\implies x=1.\n\\]\nSolution: \\((1,-5)\\).\n\n### \\(y=-4\\)\n\\[\nx^2-x-2=0 \\implies (x-2)(x+1)=0.\n\\]\nSolutions: \\((2,-4),\\,(-1,-4)\\).\n\n### \\(y=-3\\)\n\\[\nx^2+0x-3=0,\n\\]\nno integer solution.\n\n### \\(y=-2\\)\n\\[\nx^2+x-2=0 \\implies (x+2)(x-1)=0.\n\\]\nSolutions: \\((1,-2),\\,(-2,-2)\\).\n\n### \\(y=-1\\)\n\\[\nx^2+2x+1=0 \\implies (x+1)^2=0.\n\\]\nSolution: \\((-1,-1)\\).\n\nSo all integer solutions are\n\\[\n(1,-5),\\ (2,-4),\\ (-1,-4),\\ (1,-2),\\ (-2,-2),\\ (-1,-1).\n\\]\n\nFinal answer: (1) \\((1,-5),(1,-2)\\).  (2) All integer solutions are \\((1,-5),(2,-4),(-1,-4),(1,-2),(-2,-2),(-1,-1)\\).",
+  "usage": {
+    "input_tokens": 130,
+    "output_tokens": 685,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 8.96801081392914,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "(1) \\((1,-5),(1,-2)\\).  (2) All integer solutions are \\((1,-5),(2,-4),(-1,-4),(1,-2),(-2,-2),(-1,-1)\\)."
+  }
+}

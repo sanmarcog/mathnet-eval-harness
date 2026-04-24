@@ -1,0 +1,328 @@
+{
+  "model": "opus-4-7",
+  "split": "data/splits/eval.jsonl",
+  "n_problems": 100,
+  "n_errors": 0,
+  "cached_hits": 0,
+  "total_input_tokens": 18339,
+  "total_output_tokens": 241764,
+  "elapsed_s": 3022.5278821849497,
+  "errors": [],
+  "provider_model_id": "claude-opus-4-7",
+  "n_responses": 100,
+  "n_scored": 100,
+  "n_correct": 84,
+  "accuracy": 0.84,
+  "method_counts": {
+    "miss": 16,
+    "judge": 56,
+    "exact": 20,
+    "normalized": 5,
+    "symbolic": 3
+  },
+  "per_competition": {
+    "Mathematical Olympiad Rioplatense": {
+      "n": 1,
+      "correct": 0
+    },
+    "XXIX Olimpíada Matemática Argentina National Round": {
+      "n": 1,
+      "correct": 0
+    },
+    "XXI Olimpiada Matemática Rioplatense": {
+      "n": 1,
+      "correct": 1
+    },
+    "APMO": {
+      "n": 2,
+      "correct": 2
+    },
+    "AustriaMO2013": {
+      "n": 1,
+      "correct": 1
+    },
+    "48th Austrian Mathematical Olympiad": {
+      "n": 1,
+      "correct": 1
+    },
+    "Austrian Mathematical Olympiad": {
+      "n": 1,
+      "correct": 1
+    },
+    "AUT_ABooklet_2023": {
+      "n": 1,
+      "correct": 1
+    },
+    "Balkan 2012 shortlist": {
+      "n": 1,
+      "correct": 1
+    },
+    "Baltic Way shortlist": {
+      "n": 1,
+      "correct": 1
+    },
+    "Belarusian Mathematical Olympiad": {
+      "n": 2,
+      "correct": 0
+    },
+    "SELECTION and TRAINING SESSION": {
+      "n": 1,
+      "correct": 1
+    },
+    "66th Belarusian Mathematical Olympiad": {
+      "n": 1,
+      "correct": 1
+    },
+    "Selection and Training Session": {
+      "n": 1,
+      "correct": 1
+    },
+    "69th Belarusian Mathematical Olympiad": {
+      "n": 3,
+      "correct": 3
+    },
+    "Spring Mathematical Tournament": {
+      "n": 1,
+      "correct": 1
+    },
+    "Fall Mathematical Competition": {
+      "n": 1,
+      "correct": 1
+    },
+    "Bulgarian Mathematical Olympiad": {
+      "n": 1,
+      "correct": 1
+    },
+    "Bulgarian National Mathematical Olympiad": {
+      "n": 1,
+      "correct": 1
+    },
+    "China Mathematical Competition (Jiangxi)": {
+      "n": 1,
+      "correct": 1
+    },
+    "Chinese Mathematical Olympiad": {
+      "n": 1,
+      "correct": 1
+    },
+    "China Mathematical Competition": {
+      "n": 2,
+      "correct": 2
+    },
+    "2024 CGMO": {
+      "n": 1,
+      "correct": 0
+    },
+    "Mathematica competitions in Croatia": {
+      "n": 2,
+      "correct": 1
+    },
+    "Croatian Mathematical Olympiad": {
+      "n": 1,
+      "correct": 1
+    },
+    "63rd Czech and Slovak Mathematical Olympiad": {
+      "n": 1,
+      "correct": 1
+    },
+    "Czech and Slovak Mathematical Olympiad": {
+      "n": 1,
+      "correct": 1
+    },
+    "First Round (take-home)": {
+      "n": 1,
+      "correct": 1
+    },
+    "First Round of the 73rd Czech and Slovak Mathematical Olympiad (take-home part)": {
+      "n": 1,
+      "correct": 1
+    },
+    "Estonian Math Competitions": {
+      "n": 2,
+      "correct": 2
+    },
+    "Estonian Mathematical Olympiad": {
+      "n": 3,
+      "correct": 2
+    },
+    "33rd Hellenic Mathematical Olympiad": {
+      "n": 1,
+      "correct": 0
+    },
+    "HongKong 2022-23 IMO Selection Tests": {
+      "n": 1,
+      "correct": 1
+    },
+    "49th International Mathematical Olympiad Spain": {
+      "n": 1,
+      "correct": 1
+    },
+    "IMO2024 Shortlisted Problems": {
+      "n": 1,
+      "correct": 1
+    },
+    "Iranian Mathematical Olympiad": {
+      "n": 2,
+      "correct": 2
+    },
+    "Irska": {
+      "n": 1,
+      "correct": 1
+    },
+    "Ireland_2017": {
+      "n": 1,
+      "correct": 1
+    },
+    "Mongolian Mathematical Olympiad": {
+      "n": 2,
+      "correct": 2
+    },
+    "MMO2025 Round 2": {
+      "n": 1,
+      "correct": 0
+    },
+    "First Round, January 2019": {
+      "n": 1,
+      "correct": 1
+    },
+    "Junior Mathematical Olympiad, September 2019": {
+      "n": 1,
+      "correct": 0
+    },
+    "IMO Team Selection Test 3": {
+      "n": 1,
+      "correct": 1
+    },
+    "Junior Mathematical Olympiad": {
+      "n": 1,
+      "correct": 1
+    },
+    "Second Round": {
+      "n": 1,
+      "correct": 1
+    },
+    "IMO Team Selection Test 1": {
+      "n": 1,
+      "correct": 1
+    },
+    "Balkan Mathematical Olympiad": {
+      "n": 1,
+      "correct": 1
+    },
+    "Local Mathematical Competitions": {
+      "n": 1,
+      "correct": 1
+    },
+    "67th Romanian Mathematical Olympiad": {
+      "n": 1,
+      "correct": 1
+    },
+    "67th NMO Selection Tests for BMO and IMO": {
+      "n": 1,
+      "correct": 1
+    },
+    "Romanian Mathematical Olympiad": {
+      "n": 1,
+      "correct": 1
+    },
+    "75th Romanian Mathematical Olympiad": {
+      "n": 1,
+      "correct": 1
+    },
+    "SAMC": {
+      "n": 1,
+      "correct": 1
+    },
+    "Saudi Arabia Mathematical Competitions": {
+      "n": 2,
+      "correct": 2
+    },
+    "SAUDI ARABIAN MATHEMATICAL COMPETITIONS": {
+      "n": 6,
+      "correct": 5
+    },
+    "Team selection tests for JBMO 2018": {
+      "n": 1,
+      "correct": 1
+    },
+    "Saudi Arabian IMO Booklet": {
+      "n": 2,
+      "correct": 2
+    },
+    "SAUDI ARABIAN IMO Booklet 2023": {
+      "n": 1,
+      "correct": 1
+    },
+    "Saudi Arabia booklet 2024": {
+      "n": 1,
+      "correct": 1
+    },
+    "South African Mathematics Olympiad": {
+      "n": 5,
+      "correct": 4
+    },
+    "South African Mathematics Olympiad First Round": {
+      "n": 4,
+      "correct": 4
+    },
+    "The South African Mathematical Olympiad Third Round": {
+      "n": 1,
+      "correct": 1
+    },
+    "Spanija 2012": {
+      "n": 1,
+      "correct": 1
+    },
+    "SPANISH MATHEMATICAL OLYMPIAD (FINAL ROUND)": {
+      "n": 1,
+      "correct": 0
+    },
+    "Team Selection Test": {
+      "n": 1,
+      "correct": 0
+    },
+    "Team Selection Test for IMO 2024": {
+      "n": 1,
+      "correct": 1
+    },
+    "The Problems of Ukrainian Authors": {
+      "n": 1,
+      "correct": 1
+    },
+    "58th Ukrainian National Mathematical Olympiad": {
+      "n": 2,
+      "correct": 2
+    },
+    "59th Ukrainian National Mathematical Olympiad": {
+      "n": 1,
+      "correct": 1
+    },
+    "62nd Ukrainian National Mathematical Olympiad": {
+      "n": 1,
+      "correct": 1
+    },
+    "Fall 2021 AMC 10 B": {
+      "n": 1,
+      "correct": 1
+    },
+    "2003 Vietnamese Mathematical Olympiad": {
+      "n": 1,
+      "correct": 1
+    },
+    "VMO": {
+      "n": 1,
+      "correct": 0
+    },
+    "Vietnamese MO": {
+      "n": 1,
+      "correct": 0
+    }
+  },
+  "used_judge": true,
+  "estimated_eval_cost_usd": 6.1358,
+  "cost_notes": "excludes LLM-as-judge API spend (not yet tracked)",
+  "thinking_tokens_stats": {
+    "n": 100,
+    "note": "no thinking/reasoning tokens reported by this backend"
+  }
+}

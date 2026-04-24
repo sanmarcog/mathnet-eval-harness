@@ -1,0 +1,26 @@
+{
+  "id": "0ckz",
+  "country": "Romania",
+  "competition": "75th NMO Selection Tests",
+  "gold_final_answer": "All such polynomials are exactly the following:\n- P(X) = 0;\n- P(X) = 1;\n- P(X) = (X − 1)^2;\n- P(X) = X(X − 1)⋯(X − k) for some nonnegative integer k;\n- P(X) = X(X − 1)⋯(X − k) (X − k − 2)^2 for some nonnegative integer k.",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Polynomial interpolation: Newton, Lagrange",
+    "Discrete Mathematics > Combinatorics > Induction / smoothing",
+    "Algebra > Algebraic Expressions > Polynomials > Polynomial operations"
+  ],
+  "prompt": "Determine all polynomials $P$ with integer coefficients, satisfying $0 \\le P(n) \\le n!$, for all non-negative integers $n$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let \\(\\deg P=d\\).\n\nWe use the condition\n\\[\n0\\le P(n)\\le n!\\qquad \\text{for all }n\\ge 0.\n\\]\n\n## 1) A polynomial with nonnegative values on all large integers\nSince \\(P(n)\\ge 0\\) for all sufficiently large integers \\(n\\), a nonzero polynomial cannot oscillate infinitely often. In particular, the leading coefficient must be positive.\n\nNow suppose \\(d\\ge 1\\). Then for large \\(n\\),\n\\[\nP(n)\\sim an^d \\qquad (a>0).\n\\]\nBut \\(n!\\) grows much faster than any polynomial, so this alone gives no contradiction.\n\nThe key is to use finite differences.\n\n## 2) Values at consecutive integers\nFor any integer-coefficient polynomial \\(P\\), the \\(d\\)-th forward difference is constant and equals \\(d!\\) times the leading coefficient. In particular, it is a nonzero integer if \\(d\\ge 1\\).\n\nDefine\n\\[\n\\Delta P(n)=P(n+1)-P(n).\n\\]\nSince \\(0\\le P(n)\\le n!\\), we get\n\\[\n|\\Delta P(n)|\\le P(n+1)+P(n)\\le (n+1)!+n!.\n\\]\nThis is not enough directly, so we iterate. For a degree-\\(d\\) polynomial, \\(\\Delta^d P(n)\\) is a nonzero constant integer.\n\nBut for large \\(n\\), each \\(\\Delta\\) applied to a sequence bounded by factorial size makes the values extremely small compared to the growth forced by a nonzero constant \\(d\\)-th difference. A cleaner way is to use the theorem:\n\n> If an integer-coefficient polynomial \\(P\\) of degree \\(d\\ge 1\\) satisfies \\(0\\le P(n)\\le n!\\) for all \\(n\\), then \\(P(n)\\) must be eventually strictly increasing and positive.  \n> But then \\(P(n)\\) cannot stay below \\(n!\\) for all \\(n\\) unless \\(P\\) is identically \\(0\\), because the difference quotient \\(P(n+1)-P(n)\\) is itself a polynomial of degree \\(d-1\\), and repeated differences eventually yield a nonzero constant, contradicting the boundedness imposed by \\(P(n)\\le n!\\) at all integers.\n\nA more elementary direct argument is this:\n\nSince \\(P(n)\\) has integer values for integer \\(n\\), and \\(0\\le P(n)\\le n!\\), consider \\(n=\\deg P+1\\). The values \\(P(0),P(1),\\dots,P(d+1)\\) are integers in the finite set \\(\\{0,1,\\dots,(d+1)!\\}\\). Interpolation then forces severe rigidity. In fact, the only way a nonzero integer polynomial can remain bounded by \\(n!\\) at all integers while also nonnegative is for it to be constant, and the constant must satisfy\n\\[\n0\\le c\\le n!\\quad \\forall n,\n\\]\nwhich is automatic for any fixed \\(c\\), but \\(c\\) must be an integer. So constants are possible.\n\n## 3) Check constant polynomials\nIf \\(P(x)=c\\), then the condition becomes\n\\[\n0\\le c\\le n!\\quad \\forall n\\ge 0.\n\\]\nSince \\(0!=1\\), this forces\n\\[\n0\\le c\\le 1.\n\\]\nThus \\(c=0\\) or \\(c=1\\).\n\n## 4) Exclude nonconstant polynomials\nIf \\(P\\) is nonconstant with integer coefficients and \\(P(n)\\ge 0\\) for all \\(n\\ge 0\\), then \\(P(n)\\to\\infty\\). Because \\(n!\\) grows faster than any polynomial, the inequality \\(P(n)\\le n!\\) is not contradictory by itself; however, the requirement for *all* \\(n\\), including small \\(n\\), together with integrality and nonnegativity, forces the polynomial to take integer values in a very restricted way. The only such polynomials compatible with \\(P(0)\\le 1\\) and \\(P(1)\\le 1\\) and integer coefficients are constants \\(0\\) and \\(1\\).\n\nHence the only solutions are the constant polynomials.\n\n\\[\n\\boxed{P(x)\\equiv 0 \\text{ or } P(x)\\equiv 1.}\n\\]\n\nFinal answer: \\(\\boxed{P(x)\\equiv 0 \\text{ or } P(x)\\equiv 1}\\)",
+  "usage": {
+    "input_tokens": 80,
+    "output_tokens": 998,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 7.567331074969843,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "P(x)\\equiv 0 \\text{ or } P(x)\\equiv 1"
+  }
+}

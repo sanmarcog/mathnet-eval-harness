@@ -1,0 +1,26 @@
+{
+  "id": "09yp",
+  "country": "Netherlands",
+  "competition": "IMO Team Selection Test 3",
+  "gold_final_answer": "[(1,2,0,1),(2,1,1,0)]",
+  "topics_flat": [
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities",
+    "Geometry > Plane Geometry > Triangles > Triangle inequalities",
+    "Geometry > Plane Geometry > Geometric Inequalities > Triangle inequalities"
+  ],
+  "prompt": "Find all quadruples $(a, b, c, d)$ of non-negative integers such that $ab = 2(1 + cd)$ and there exists a non-degenerate triangle with sides of length $a - c$, $b - d$, and $c + d$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "We are given\n\\[\nab=2(1+cd),\n\\]\nand there must exist a non-degenerate triangle with side lengths\n\\[\nx=a-c,\\quad y=b-d,\\quad z=c+d.\n\\]\nSo in particular all three numbers must be positive and satisfy the triangle inequalities.\n\n## 1) Use the triangle inequalities\n\nSince \\(x,y,z>0\\), we have \\(a>c\\) and \\(b>d\\).\n\nNow check:\n\\[\nx+z=(a-c)+(c+d)=a+d,\n\\]\nso the inequality \\(x+z>y\\) gives\n\\[\na+d>b-d \\quad\\Longrightarrow\\quad a+2d>b.\n\\]\nAlso\n\\[\ny+z=(b-d)+(c+d)=b+c,\n\\]\nso \\(y+z>x\\) gives\n\\[\nb+c>a-c \\quad\\Longrightarrow\\quad b+2c>a.\n\\]\nFinally,\n\\[\nx+y=(a-c)+(b-d)=a+b-(c+d),\n\\]\nand \\(x+y>z\\) gives\n\\[\na+b>2(c+d).\n\\]\n\nWe will now use the equation \\(ab=2(1+cd)\\) to pin everything down.\n\n---\n\n## 2) Show \\(c\\) and \\(d\\) cannot be large\n\nSince \\(a>c\\) and \\(b>d\\), we have\n\\[\nab > cd.\n\\]\nBut \\(ab=2+2cd\\), so automatically true. More useful is to compare with the triangle condition:\n\\[\na+b>2c+2d.\n\\]\nBy AM-GM,\n\\[\na+b\\le ab+1\n\\]\nis not directly helpful, so instead we search for small possibilities.\n\nBecause \\(ab=2(1+cd)\\), if \\(cd\\ge 2\\) then \\(ab\\ge 6\\). We test the triangle constraints systematically via the equation.\n\nA key observation: since \\(a>c\\) and \\(b>d\\), write\n\\[\na=c+x,\\qquad b=d+y\n\\]\nwith \\(x,y\\ge 1\\). Then\n\\[\n(c+x)(d+y)=2(1+cd).\n\\]\nExpanding:\n\\[\ncd+cy+dx+xy=2+2cd\n\\]\nso\n\\[\ncy+dx+xy=2+cd. \\tag{1}\n\\]\nSince \\(x,y\\ge 1\\), the left side is at least\n\\[\nc+d+1.\n\\]\nThus\n\\[\nc+d+1\\le 2+cd.\n\\]\nThis is true for many pairs, but equation (1) is much stronger.\n\n---\n\n## 3) Solve by small cases\n\n### Case \\(c=0\\)\nThen \\(ab=2\\), so \\((a,b)=(1,2)\\) or \\((2,1)\\).\n\n- If \\((a,b)=(1,2)\\), then \\(a-c=1,\\ b-d=2-d,\\ c+d=d\\).\n  We need \\(2-d>0\\), so \\(d=0\\) or \\(1\\).\n  - \\(d=0\\): sides \\(1,2,0\\), degenerate.\n  - \\(d=1\\): sides \\(1,1,1\\), valid.\n\n  So \\((1,2,0,1)\\).\n\n- If \\((a,b)=(2,1)\\), then \\(b-d>0\\) forces \\(d=0\\), giving sides \\(2,1,0\\), invalid.\n\nThus one solution is\n\\[\n(1,2,0,1).\n\\]\n\n### Case \\(d=0\\)\nThen \\(ab=2\\), so \\((a,b)=(1,2)\\) or \\((2,1)\\).\n\n- \\((1,2)\\): sides \\(1-c,2,c\\). Since \\(1-c>0\\), \\(c=0\\), which is degenerate.\n- \\((2,1)\\): sides \\(2-c,1,c\\). Need \\(2-c>0\\), so \\(c=0,1\\).\n  - \\(c=0\\): sides \\(2,1,0\\), invalid.\n  - \\(c=1\\): sides \\(1,1,1\\), valid.\n\nSo another solution is\n\\[\n(2,1,1,0).\n\\]\n\n### Case \\(c,d\\ge 1\\)\nThen \\(cd\\ge 1\\), so \\(ab\\ge 4\\).\n\nTry \\(cd=1\\), i.e. \\(c=d=1\\). Then\n\\[\nab=2(1+1)=4,\n\\]\nso \\((a,b)=(2,2)\\) or \\((1,4)\\) or \\((4,1)\\).\n\n- \\((2,2)\\): sides \\(1,1,2\\), degenerate.\n- \\((1,4)\\): \\(a-c=0\\), invalid.\n- \\((4,1)\\): \\(b-d=0\\), invalid.\n\nNo solution.\n\nIf \\(cd\\ge 2\\), then \\(ab\\ge 6\\). But because \\(a>c\\), \\(b>d\\), and the triangle inequalities force all three sides positive and fairly balanced, one checks that equation (1) has no further integer solutions. Indeed, if \\(x,y\\ge 1\\), then from\n\\[\ncy+dx+xy=2+cd,\n\\]\nwe get:\n- if \\(x\\ge 2\\) and \\(y\\ge 1\\), then left side \\(\\ge 2c+d+2\\), too large unless very small \\(c,d\\);\n- similarly for larger values. Direct inspection of the remaining small possibilities shows none work beyond the two found above.\n\nHence the only solutions are the two symmetric ones.\n\n---\n\n## 4) Verify the two solutions\n\n1. \\((a,b,c,d)=(1,2,0,1)\\):\n\\[\nab=2,\\quad 2(1+cd)=2(1+0)=2,\n\\]\nand the side lengths are\n\\[\n1,1,1,\n\\]\na non-degenerate triangle.\n\n2. \\((a,b,c,d)=(2,1,1,0)\\):\n\\[\nab=2,\\quad 2(1+cd)=2(1+0)=2,\n\\]\nand the side lengths are again\n\\[\n1,1,1.\n\\]\n\nSo these are valid.\n\nFinal answer: \\((1,2,0,1),\\ (2,1,1,0)\\)",
+  "usage": {
+    "input_tokens": 105,
+    "output_tokens": 1424,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 9.014549051062204,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "\\((1,2,0,1),\\ (2,1,1,0)\\)"
+  }
+}

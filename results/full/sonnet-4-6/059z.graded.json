@@ -1,0 +1,25 @@
+{
+  "id": "059z",
+  "country": "Estonia",
+  "competition": "Estonian Math Competitions",
+  "gold_final_answer": "509545/2021",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Sequences and Series > Telescoping series",
+    "Algebra > Algebraic Expressions > Sequences and Series > Sums and products"
+  ],
+  "prompt": "Find the value of\n$$\n\\frac{1 \\cdot 3}{3 \\cdot 5} + \\frac{2 \\cdot 4}{5 \\cdot 7} + \\frac{3 \\cdot 5}{7 \\cdot 9} + \\frac{4 \\cdot 6}{9 \\cdot 11} + \\dots + \\frac{1009 \\cdot 1011}{2019 \\cdot 2021}\n$$",
+  "model": "claude-sonnet-4-6",
+  "response_text": "I need to find a general term and sum the series.\n\nThe general term is $\\frac{n(n+2)}{(2n+1)(2n+3)}$ for $n = 1, 2, \\ldots, 1009$.\n\n**Partial fraction decomposition:**\n\n$$\\frac{n(n+2)}{(2n+1)(2n+3)}$$\n\nLet me write $n(n+2) = (n+\\frac{1}{2}+\\frac{1}{2})(n+\\frac{3}{2}-\\frac{1}{2})$... Instead, let me do polynomial division or partial fractions.\n\n$$\\frac{n(n+2)}{(2n+1)(2n+3)} = \\frac{n^2+2n}{4n^2+8n+3}$$\n\nSince degrees are equal, divide: $n^2+2n = \\frac{1}{4}(4n^2+8n+3) - \\frac{3}{4}$\n\nSo: $\\frac{n(n+2)}{(2n+1)(2n+3)} = \\frac{1}{4} - \\frac{3}{4} \\cdot \\frac{1}{(2n+1)(2n+3)}$\n\nNow use partial fractions: $\\frac{1}{(2n+1)(2n+3)} = \\frac{1}{2}\\left(\\frac{1}{2n+1} - \\frac{1}{2n+3}\\right)$\n\nSo: $\\frac{n(n+2)}{(2n+1)(2n+3)} = \\frac{1}{4} - \\frac{3}{8}\\left(\\frac{1}{2n+1} - \\frac{1}{2n+3}\\right)$\n\n**Summing from $n=1$ to $n=1009$:**\n\n$$S = \\sum_{n=1}^{1009}\\frac{1}{4} - \\frac{3}{8}\\sum_{n=1}^{1009}\\left(\\frac{1}{2n+1} - \\frac{1}{2n+3}\\right)$$\n\nThe first sum: $\\frac{1009}{4}$\n\nThe second sum is telescoping:\n$$\\sum_{n=1}^{1009}\\left(\\frac{1}{2n+1} - \\frac{1}{2n+3}\\right) = \\frac{1}{3} - \\frac{1}{2021}$$\n\n$$= \\frac{2021 - 3}{3 \\cdot 2021} = \\frac{2018}{6063} = \\frac{2018}{6063}$$\n\nSimplify: $\\gcd(2018, 6063)$. $2018 = 2 \\times 1009$, $6063 = 3 \\times 2021 = 3 \\times 43 \\times 47$. Since 1009 is prime (check: not divisible by primes up to 31), and $6063 = 3 \\times 2021$. $2021 = 43 \\times 47$. So $\\gcd(2018, 6063) = 1$.\n\nThus the telescoping sum $= \\frac{2018}{6063}$.\n\n$$S = \\frac{1009}{4} - \\frac{3}{8} \\cdot \\frac{2018}{6063}$$\n\nSimplify $\\frac{3 \\times 2018}{8 \\times 6063}$: Note $2018 = 2 \\times 1009$ and $6063 = 3 \\times 2021 = 3 \\times 43 \\times 47$.\n\n$$\\frac{3 \\times 2 \\times 1009}{8 \\times 3 \\times 2021} = \\frac{2 \\times 1009}{8 \\times 2021} = \\frac{1009}{4 \\times 2021}$$\n\nSo:\n$$S = \\frac{1009}{4} - \\frac{1009}{4 \\times 2021} = \\frac{1009}{4}\\left(1 - \\frac{1}{2021}\\right) = \\frac{1009}{4} \\cdot \\frac{2020}{2021}$$\n\n$$= \\frac{1009 \\times 2020}{4 \\times 2021} = \\frac{1009 \\times 505}{2021}$$\n\nNow $2021 = 43 \\times 47$ and $1009$ is prime, $505 = 5 \\times 101$. So no common factors.\n\n$$S = \\frac{1009 \\times 505}{2021} = \\frac{509545}{2021}$$\n\nCheck: $2021 \\times 252 = 509292$, $509545 - 509292 = 253$, so $S = 252\\frac{253}{2021}$.\n\nHmm, let me verify: $\\frac{1009 \\times 505}{2021}$. Since $2021 = 2 \\times 1009 + 3$... not simplifiable.\n\n$$S = \\frac{509545}{2021}$$\n\nFinal answer: $\\dfrac{509545}{2021}$",
+  "usage": {
+    "input_tokens": 166,
+    "output_tokens": 1320,
+    "thinking_tokens": 0
+  },
+  "latency_s": 15.800060007954016,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "symbolic",
+    "predicted": "$\\dfrac{509545}{2021}$"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "id": "0cgv",
+  "country": "Romania",
+  "competition": "74th NMO Selection Tests for BMO and IMO",
+  "gold_final_answer": "minimum: n−1; maximum: floor(n/2) * floor((n+1)/2)",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Counting two ways",
+    "Algebra > Algebraic Expressions > Sequences and Series > Sums and products",
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities",
+    "Algebra > Equations and Inequalities > Combinatorial optimization"
+  ],
+  "prompt": "Fix an integer $n \\ge 2$. Consider $n$ real numbers $a_1, a_2, \\dots, a_n$, not all equal, and let\n$$\nd = d(a_1, a_2, \\dots, a_n) = \\max_{1 \\le i < j \\le n} |a_i - a_j|\n$$\nand\n$$\ns = s(a_1, a_2, \\dots, a_n) = \\sum_{1 \\le i < j \\le n} |a_i - a_j|.\n$$\n\nDetermine, in terms of $n$, the smallest and the largest values the quotient $s/d$ may achieve.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find the smallest and largest values of the quotient $s/d$, we can assume without loss of generality that the sequence is sorted such that $a_1 \\le a_2 \\le \\dots \\le a_n$. \nSince the numbers are not all equal, $d = a_n - a_1 > 0$. We can apply a linear transformation to the numbers (shifting and scaling) which does not change the ratio $s/d$. Thus, we can set $a_1 = 0$ and $a_n = 1$, which makes $d = 1$. The sequence then satisfies $0 = a_1 \\le a_2 \\le \\dots \\le a_n = 1$.\n\nThe sum of all pairwise differences is given by:\n$$ s = \\sum_{1 \\le i < j \\le n} (a_j - a_i) = \\sum_{i=1}^n a_i (2i - 1 - n) $$\nSubstituting $a_1 = 0$ and $a_n = 1$, we get:\n$$ s = (2n - 1 - n) + \\sum_{i=2}^{n-1} a_i (2i - 1 - n) = n - 1 + \\sum_{i=2}^{n-1} a_i (2i - 1 - n) $$\nWe can pair the terms in the sum from the ends towards the center. For any $i$, the coefficients of $a_i$ and $a_{n+1-i}$ are $(2i - 1 - n)$ and $(2(n+1-i) - 1 - n) = (n + 1 - 2i)$, respectively. These coefficients are exact opposites. Grouping them yields:\n$$ s = n - 1 + \\sum_{i=2}^{\\lfloor n/2 \\rfloor} (n + 1 - 2i)(a_{n+1-i} - a_i) $$\nFor $i \\le \\lfloor n/2 \\rfloor$, the coefficient $(n + 1 - 2i)$ is strictly positive. Because the sequence is non-decreasing, we also have $0 \\le a_{n+1-i} - a_i \\le 1$.\n\n**Minimum Value:**\nTo minimize $s$, we must minimize each term $(a_{n+1-i} - a_i)$. The smallest possible value is $0$, which occurs when $a_i = a_{n+1-i}$ for all $2 \\le i \\le \\lfloor n/2 \\rfloor$. This means all intermediate terms are equal (e.g., $a_2 = a_3 = \\dots = a_{n-1} = c$ for some $c \\in [0, 1]$). \nIn this case, the sum evaluates to $0$, giving the minimum value:\n$$ s_{\\min} = n - 1 $$\n\n**Maximum Value:**\nTo maximize $s$, we must maximize each difference $(a_{n+1-i} - a_i)$. The largest possible value is $1$, which occurs when $a_i = 0$ and $a_{n+1-i} = 1$ for all $2 \\le i \\le \\lfloor n/2 \\rfloor$. This means the first half of the sequence is $0$ and the second half is $1$.\nIn this case, the sum evaluates to:\n$$ s_{\\max} = n - 1 + \\sum_{i=2}^{\\lfloor n/2 \\rfloor} (n + 1 - 2i) $$\nWe can evaluate this sum by considering the parity of $n$:\n- If $n = 2k$, $s_{\\max} = 2k - 1 + \\sum_{i=2}^k (2k + 1 - 2i) = 2k - 1 + (k-1)^2 = k^2 = \\frac{n^2}{4}$.\n- If $n = 2k+1$, $s_{\\max} = 2k + \\sum_{i=2}^k (2k + 2 - 2i) = 2k + k(k-1) = k^2 + k = \\frac{n^2-1}{4}$.\n\nBoth cases can be compactly written using the floor function as $\\lfloor \\frac{n^2}{4} \\rfloor$.\n\nFinal answer: n-1 \\text{ and } \\lfloor \\frac{n^2}{4} \\rfloor",
+  "usage": {
+    "input_tokens": 198,
+    "output_tokens": 1000,
+    "thoughts_tokens": 3157
+  },
+  "latency_s": 31.731527962954715,
+  "cached": false
+}

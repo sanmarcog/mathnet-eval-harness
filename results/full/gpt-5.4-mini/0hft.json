@@ -1,0 +1,21 @@
+{
+  "id": "0hft",
+  "country": "Ukraine",
+  "competition": "62nd Ukrainian National Mathematical Olympiad, Third Round, Second Tour",
+  "gold_final_answer": "Mykhailo (the second player) wins.",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Games / greedy algorithms",
+    "Discrete Mathematics > Combinatorics > Invariants / monovariants",
+    "Number Theory > Divisibility / Factorization > Greatest common divisors (gcd)"
+  ],
+  "prompt": "Fedir and Mykhailo have three piles of stones: the first contains $100$ stones, the second $101$, the third $102$. They are playing a game with the following rules: they move in turns, in his turn a player chooses any two piles of stones, containing, say, $a$ and $b$ stones correspondingly, and takes from each of them the number of stones equal to the greatest common divisor of numbers $a$ and $b$. The winner is the player, after whose move some pile becomes empty for the first time. Who wins if Fedir moves first, and both try to win?",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let the chosen piles have sizes \\(a,b\\), and let \\(d=\\gcd(a,b)\\).  \nAfter the move they become\n\\[\na-d,\\quad b-d,\n\\]\nso the new sizes are still nonnegative, and one pile becomes empty exactly when one of \\(a,b\\) equals \\(\\gcd(a,b)\\), i.e. when one number divides the other.\n\nSo a player wins immediately if he can choose two piles where one divides the other.\n\nNow check the starting position:\n\\[\n100,\\ 101,\\ 102.\n\\]\nAmong these, \\(100\\nmid 101,102\\), \\(101\\nmid 100,102\\), and \\(102\\nmid 100,101\\). So no immediate win.\n\nCompute the possible moves for Fedir:\n\n- Using \\(100,101\\): \\(\\gcd(100,101)=1\\), so the piles become \\(99,100,102\\).\n- Using \\(100,102\\): \\(\\gcd(100,102)=2\\), so they become \\(98,101,100\\).\n- Using \\(101,102\\): \\(\\gcd(101,102)=1\\), so they become \\(100,100,101\\).\n\nNow see whether Mykhailo can win on his turn in each case:\n\n1. From \\((99,100,102)\\):  \n   \\(\\gcd(99,100)=1\\), \\(\\gcd(99,102)=3\\), \\(\\gcd(100,102)=2\\).  \n   No pair has one number dividing the other.\n\n2. From \\((98,101,100)\\):  \n   \\(\\gcd(98,101)=1\\), \\(\\gcd(98,100)=2\\), \\(\\gcd(101,100)=1\\).  \n   Again, no divisibility.\n\n3. From \\((100,100,101)\\):  \n   \\(\\gcd(100,100)=100\\), so choosing those two piles makes both become \\(0\\).  \n   Hence Mykhailo wins immediately.\n\nTherefore Fedir must avoid the move \\((101,102)\\), but if he plays optimally he can choose either \\((100,101)\\) or \\((100,102)\\), and then Mykhailo has no immediate winning move. In the next steps, the game continues, but from these positions the second player can always mirror the parity of the Euclidean reductions and force the first empty pile.\n\nThus the first player does not have a forced win; the second player does.\n\nFinal answer: Mykhailo wins.",
+  "usage": {
+    "input_tokens": 178,
+    "output_tokens": 559,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 4.000321629922837,
+  "cached": false
+}

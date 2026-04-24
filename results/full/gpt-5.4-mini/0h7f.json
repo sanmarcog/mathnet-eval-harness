@@ -1,0 +1,20 @@
+{
+  "id": "0h7f",
+  "country": "Ukraine",
+  "competition": "56th Ukrainian National Mathematical Olympiad, Third Round",
+  "gold_final_answer": "16",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments",
+    "Discrete Mathematics > Combinatorics > Pigeonhole principle"
+  ],
+  "prompt": "30 children – boys and girls – formed a circle. It occurred that there is no child such that both its neighbors are boys. What is the least possible number of girls there?",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let \\(g\\) be the number of girls and \\(b=30-g\\) the number of boys.\n\nThe condition says: **no child has two boy neighbors**. In particular, around the circle there cannot be a run of 3 consecutive boys.\n\nSo every block of consecutive boys has length at most 2, and each such block must be separated from the next by at least one girl.\n\nTo minimize the number of girls, we should make the boy blocks as long as possible, namely of length 2. Then each girl can separate two boy pairs:\n\n\\[\nBB\\,G\\,BB\\,G\\,BB\\,G\\,\\cdots\n\\]\n\nThus each girl can account for at most 2 boys, so with \\(g\\) girls we can have at most \\(2g\\) boys. Since there are 30 children total,\n\n\\[\n2g + g = 30 \\quad \\Rightarrow \\quad 3g = 30 \\quad \\Rightarrow \\quad g=10.\n\\]\n\nThis is achievable by repeating the pattern \\(BBG\\) ten times around the circle.\n\nFinal answer: 10",
+  "usage": {
+    "input_tokens": 84,
+    "output_tokens": 241,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 2.9006982459686697,
+  "cached": false
+}

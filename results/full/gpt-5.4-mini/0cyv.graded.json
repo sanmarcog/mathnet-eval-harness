@@ -1,0 +1,26 @@
+{
+  "id": "0cyv",
+  "country": "Saudi Arabia",
+  "competition": "Saudi Arabia Mathematical Competitions",
+  "gold_final_answer": "a_1432 = 16, a_1433 = 8; and in general\n- a_n = 4·tau(n) if n is odd,\n- a_n = 0 if n ≡ 2 mod 4,\n- a_n = 4·tau(n/4) if n is divisible by 4.",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Factorization techniques",
+    "Number Theory > Number-Theoretic Functions > τ (number of divisors)",
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities"
+  ],
+  "prompt": "For any positive integer $n$ let $a_{n}$ be the number of pairs $(x, y)$ of integers satisfying $|x^{2}-y^{2}|=n$.\n\na. Find $a_{1432}$ and $a_{1433}$.\n\nb. Find $a_{n}$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "We factor\n\\[\n|x^2-y^2|=|(x-y)(x+y)|=n.\n\\]\nSo each solution corresponds to a factorization \\(n=uv\\) with \\(u=x-y\\), \\(v=x+y\\), and \\(u,v\\) having the same parity, since then\n\\[\nx=\\frac{u+v}{2},\\qquad y=\\frac{v-u}{2}\n\\]\nare integers.\n\nNow:\n\n- If \\(n\\) is odd, then every factorization \\(n=uv\\) has \\(u,v\\) odd, so every divisor pair works.\n- If \\(n\\) is even, then \\(u,v\\) must both be even. Write \\(n=2^k m\\) with \\(m\\) odd. Then both factors must contain all powers of 2 in a compatible way; in fact, this is possible only when \\(k\\ge 1\\), and the number of valid pairs is the number of positive divisor pairs of \\(n\\) after accounting for signs.\n\nA cleaner way is to use positive factor pairs. Let \\(n=ab\\) with \\(a\\le b\\), same parity. Then each such factor pair gives:\n- 4 integer pairs \\((x,y)\\) if \\(a\\ne b\\) and both signs are allowed,\n- 2 if \\(a=b\\).\n\nBut it is simpler to use the divisor-count formula:\n- If \\(n\\) is odd, then\n  \\[\n  a_n = 4d(n),\n  \\]\n  where \\(d(n)\\) is the number of positive divisors of \\(n\\).\n- If \\(n\\equiv 2\\pmod 4\\), then \\(a_n=0\\).\n- If \\(4\\mid n\\), write \\(n=2^s m\\) with \\(m\\) odd and \\(s\\ge 2\\). Then\n  \\[\n  a_n = 4d(m).\n  \\]\n\nActually, this can be unified as:\n\\[\na_n=\n\\begin{cases}\n4d(n), & n \\text{ odd},\\\\[4pt]\n0, & n\\equiv 2\\pmod 4,\\\\[4pt]\n4d\\!\\left(\\dfrac n4\\right), & 4\\mid n.\n\\end{cases}\n\\]\n\nNow apply this.\n\n### a) \\(a_{1432}\\) and \\(a_{1433}\\)\n\n- \\(1432=4\\cdot 358\\), and \\(358=2\\cdot 179\\), so \\(1432\\equiv 0\\pmod 4\\).\n  Then\n  \\[\n  a_{1432}=4d(358).\n  \\]\n  Since \\(358=2\\cdot 179\\) with \\(179\\) prime,\n  \\[\n  d(358)=d(2)d(179)=2\\cdot 2=4.\n  \\]\n  Hence\n  \\[\n  a_{1432}=16.\n  \\]\n\n- \\(1433\\) is odd. Factor:\n  \\[\n  1433=11\\cdot 131,\n  \\]\n  and both are prime, so\n  \\[\n  d(1433)=4.\n  \\]\n  Thus\n  \\[\n  a_{1433}=4d(1433)=16.\n  \\]\n\n### b) General formula\n\nLet \\(n=2^k m\\) with \\(m\\) odd.\n\n- If \\(k=0\\), then \\(a_n=4d(n)\\).\n- If \\(k=1\\), then \\(a_n=0\\).\n- If \\(k\\ge 2\\), then \\(a_n=4d(m)\\).\n\nEquivalently,\n\\[\na_n=\n\\begin{cases}\n4d(n), & n\\text{ odd},\\\\\n0, & n\\equiv 2\\pmod 4,\\\\\n4d\\!\\left(\\dfrac n4\\right), & 4\\mid n.\n\\end{cases}\n\\]\n\nFinal answer: \\(a_{1432}=16,\\ a_{1433}=16,\\) and\n\\[\na_n=\n\\begin{cases}\n4d(n), & n\\text{ odd},\\\\\n0, & n\\equiv 2\\pmod 4,\\\\\n4d\\!\\left(\\dfrac n4\\right), & 4\\mid n,\n\\end{cases}\n\\]\nwhere \\(d(n)\\) is the number of positive divisors of \\(n\\).",
+  "usage": {
+    "input_tokens": 114,
+    "output_tokens": 987,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 5.8822582609718665,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "\\(a_{1432}=16,\\ a_{1433}=16,\\) and"
+  }
+}

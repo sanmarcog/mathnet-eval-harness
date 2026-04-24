@@ -1,0 +1,20 @@
+{
+  "id": "067y",
+  "country": "Greece",
+  "competition": "33rd Hellenic Mathematical Olympiad",
+  "gold_final_answer": "[(4, 8, 0), (35, 70, 1), (14, 77, 1)]",
+  "topics_flat": [
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities",
+    "Number Theory > Divisibility / Factorization > Factorization techniques"
+  ],
+  "prompt": "Find all possible triads of non negative integers $(x, y, z)$ with $x \\le y$, which satisfy the equation: $x^2 + y^2 = 3 \\cdot 2016^z + 77$",
+  "model": "gpt-5.4",
+  "response_text": "We seek all nonnegative integer triples \\((x,y,z)\\) with \\(x\\le y\\) such that\n\\[\nx^2+y^2=3\\cdot 2016^z+77.\n\\]\n\nWe will use modular arithmetic and then solve the remaining case.\n\n---\n\n### 1. First reduce modulo \\(8\\)\n\nSince \\(2016\\) is divisible by \\(8\\), for every \\(z\\ge 1\\),\n\\[\n3\\cdot 2016^z+77 \\equiv 0+77 \\equiv 5 \\pmod 8.\n\\]\nBut a square modulo \\(8\\) is only \\(0,1,4\\). The sum of two such residues can be\n\\[\n0,1,2,4,5.\n\\]\nTo get \\(5\\pmod 8\\), the only possibility is\n\\[\nx^2\\equiv 1,\\qquad y^2\\equiv 4 \\pmod 8\n\\]\n(or vice versa). Hence one of \\(x,y\\) is odd and the other is \\(2\\pmod 4\\).\n\nThis does not yet contradict anything, so continue.\n\n---\n\n### 2. Consider \\(z=0\\)\n\nIf \\(z=0\\), then\n\\[\nx^2+y^2=3\\cdot 1+77=80.\n\\]\nNow check squares up to \\(80\\):\n\\[\n0,1,4,9,16,25,36,49,64.\n\\]\nWe need two of these summing to \\(80\\). The possibilities are:\n\\[\n16+64=80.\n\\]\nSo\n\\[\n(x,y)=(4,8)\n\\]\n(with \\(x\\le y\\)).\n\nThus \\((4,8,0)\\) is a solution.\n\n---\n\n### 3. Show there are no solutions for \\(z\\ge 1\\)\n\nFor \\(z\\ge 1\\), note that \\(2016\\equiv 0\\pmod 3\\), so\n\\[\n3\\cdot 2016^z \\equiv 0 \\pmod 9.\n\\]\nHence\n\\[\nx^2+y^2 \\equiv 77 \\equiv 5 \\pmod 9.\n\\]\nBut squares modulo \\(9\\) are\n\\[\n0,1,4,7.\n\\]\nPossible sums of two such residues are\n\\[\n0,1,2,4,5,7,8\n\\]\nso \\(5\\pmod 9\\) is possible; no contradiction yet.\n\nNow work modulo \\(7\\). Since\n\\[\n2016=7\\cdot 288,\n\\]\nfor \\(z\\ge 1\\),\n\\[\n3\\cdot 2016^z \\equiv 0 \\pmod 7,\n\\]\nthus\n\\[\nx^2+y^2 \\equiv 77 \\equiv 0 \\pmod 7.\n\\]\nSquares modulo \\(7\\) are \\(0,1,2,4\\). The only way two such residues sum to \\(0\\pmod 7\\) is\n\\[\n0+0,\\quad 1+6\\text{ impossible},\\quad 2+5\\text{ impossible},\\quad 4+3\\text{ impossible}.\n\\]\nSo actually\n\\[\nx^2\\equiv y^2\\equiv 0 \\pmod 7,\n\\]\nhence\n\\[\n7\\mid x,\\qquad 7\\mid y.\n\\]\n\nTherefore \\(49\\mid x^2+y^2\\). So the right-hand side must be divisible by \\(49\\):\n\\[\n3\\cdot 2016^z+77.\n\\]\nFor \\(z\\ge 1\\), since \\(2016\\equiv 0\\pmod 7\\),\n\\[\n3\\cdot 2016^z+77 \\equiv 0+77 \\equiv 28 \\pmod{49},\n\\]\nbecause \\(77\\equiv 28\\pmod{49}\\). This is **not** divisible by \\(49\\), contradiction.\n\nSo no solutions exist for \\(z\\ge 1\\).\n\n---\n\nHence the only solution is\n\\[\n(x,y,z)=(4,8,0).\n\\]\n\nFinal answer: \\((4,8,0)\\)",
+  "usage": {
+    "input_tokens": 99,
+    "output_tokens": 936,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 12.251610339037143,
+  "cached": false
+}

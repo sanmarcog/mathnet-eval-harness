@@ -1,0 +1,25 @@
+{
+  "id": "0h27",
+  "country": "Ukraine",
+  "competition": "51st Ukrainian National Mathematical Olympiad, 3rd Round",
+  "gold_final_answer": "30",
+  "topics_flat": [
+    "Number Theory > Other",
+    "Algebra > Prealgebra / Basic Algebra > Integers"
+  ],
+  "prompt": "Find all natural numbers $N$, that have two digits and are equal to the sum of their digits added to the cube of this sum.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "Let the sum of digits of N be s.\n\nWe need: N = s + s³\n\nSince N is a two-digit number: 10 ≤ N ≤ 99\n\nAlso, for a two-digit number, the sum of digits s satisfies 1 ≤ s ≤ 18.\n\nCheck values of s:\n- s = 1: N = 1 + 1 = 2 (not two digits)\n- s = 2: N = 2 + 8 = 10 ✓ (sum of digits of 10 = 1+0 = 1 ≠ 2, fails)\n- s = 3: N = 3 + 27 = 30 ✓ (sum of digits of 30 = 3+0 = 3 ✓)\n- s = 4: N = 4 + 64 = 68 ✓ (sum of digits of 68 = 6+8 = 14 ≠ 4, fails)\n- s = 5: N = 5 + 125 = 130 (three digits, too large)\n\nSo the only solution is N = 30.\n\nFinal answer: 30",
+  "usage": {
+    "input_tokens": 75,
+    "output_tokens": 302,
+    "thinking_tokens": 0
+  },
+  "latency_s": 4.415894867037423,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "exact",
+    "predicted": "30"
+  }
+}

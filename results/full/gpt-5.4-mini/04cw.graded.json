@@ -1,0 +1,25 @@
+{
+  "id": "04cw",
+  "country": "Croatia",
+  "competition": "Mathematica competitions in Croatia",
+  "gold_final_answer": "Exactly the prime powers, i.e., all integers of the form p^k with p prime and k a positive integer.",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Prime numbers",
+    "Number Theory > Divisibility / Factorization > Factorization techniques"
+  ],
+  "prompt": "Find all integers greater than $1$ whose all divisors written in an increasing sequence make a geometric sequence.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let the positive divisors of \\(n\\) in increasing order be\n\\[\nd_1<d_2<\\cdots<d_k,\n\\]\nand suppose they form a geometric sequence.\n\nSince the divisors are increasing, the common ratio must be \\(r>1\\). Also \\(d_1=1\\), so the sequence has the form\n\\[\n1,\\ r,\\ r^2,\\ \\dots,\\ r^{k-1}=n.\n\\]\nBecause every term is an integer, \\(r\\) must be an integer. Hence the divisors of \\(n\\) are exactly\n\\[\n1,r,r^2,\\dots,r^{k-1},\n\\]\nso \\(n=r^{k-1}\\).\n\nNow we use the number of divisors. A prime power \\(r^m\\) has exactly \\(m+1\\) divisors, and they are precisely\n\\[\n1,r,r^2,\\dots,r^m,\n\\]\nwhich indeed form a geometric sequence.\n\nSo all such integers are exactly the prime powers:\n\\[\n\\boxed{n=p^m \\text{ for some prime } p \\text{ and integer } m\\ge 1.}\n\\]\n\nFinal answer: all integers of the form \\(p^m\\), where \\(p\\) is prime and \\(m\\ge 1\\).",
+  "usage": {
+    "input_tokens": 70,
+    "output_tokens": 291,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 2.7842076630331576,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "all integers of the form \\(p^m\\), where \\(p\\) is prime and \\(m\\ge 1\\)."
+  }
+}

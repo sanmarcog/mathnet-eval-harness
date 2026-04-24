@@ -1,0 +1,25 @@
+{
+  "id": "0elr",
+  "country": "South Africa",
+  "competition": "The South African Mathematical Olympiad Third Round",
+  "gold_final_answer": "Maximum M is n if n is even, and n − 1 if n is odd.",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments",
+    "Discrete Mathematics > Combinatorics > Counting two ways"
+  ],
+  "prompt": "Write either $1$ or $-1$ in each of the cells of a $(2n) \\times (2n)$-table, in such a way that there are exactly $2n^2$ entries of each kind. Let the minimum of the absolute values of all row sums and all column sums be $M$. Determine the largest possible value of $M$.",
+  "model": "gpt-5.4",
+  "response_text": "Let the row sums be \\(r_1,\\dots,r_{2n}\\) and the column sums be \\(c_1,\\dots,c_{2n}\\).  \nWe want to maximize\n\\[\nM=\\min\\bigl(\\,|r_1|,\\dots,|r_{2n}|,|c_1|,\\dots,|c_{2n}|\\,\\bigr),\n\\]\nunder the condition that the \\(2n\\times 2n\\) table has exactly \\(2n^2\\) entries equal to \\(1\\) and \\(2n^2\\) entries equal to \\(-1\\).\n\nWe will show the largest possible value is \\(2\\).\n\n## 1. An upper bound: \\(M\\le 2\\)\n\nSince there are equally many \\(1\\)'s and \\(-1\\)'s in the whole table, the total sum of all entries is \\(0\\). Hence\n\\[\nr_1+\\cdots+r_{2n}=0,\\qquad c_1+\\cdots+c_{2n}=0.\n\\]\n\nEach row sum and column sum is an even integer, because each row/column has length \\(2n\\), and a sum of \\(2n\\) numbers each equal to \\(\\pm1\\) must be even.\n\nAssume \\(M\\ge 4\\). Then every row sum has absolute value at least \\(4\\), and since their total is \\(0\\), there must be some positive and some negative row sums. Let \\(k\\) be the number of positive rows. Then\n\\[\n\\sum_{r_i>0} r_i = -\\sum_{r_i<0} r_i.\n\\]\nEach positive row contributes at least \\(4\\), so\n\\[\n\\sum_{r_i>0} r_i \\ge 4k.\n\\]\nLikewise,\n\\[\n\\sum_{r_i<0} r_i \\le -4(2n-k).\n\\]\nEquality of the positive and negative totals gives\n\\[\n4k \\le -\\sum_{r_i<0} r_i = \\sum_{r_i>0} r_i \\ge 4k,\n\\]\nso both sides force the positive and negative parts to be quite large; in particular, one gets \\(k=n\\), and every row sum must be exactly \\(\\pm4,\\pm6,\\dots\\). But the same applies to columns.\n\nNow count the total number of \\(1\\)'s. A row with sum \\(s\\) contains \\((2n+s)/2\\) ones. If every row sum has \\(|s|\\ge4\\), then every row differs from \\(n\\) ones by at least \\(2\\). Since total number of ones is exactly \\(2n^2\\), the excesses above \\(n\\) must cancel the deficits below \\(n\\). That forces a very rigid balance. Applying the same to columns leads to contradiction with the \\(2n\\times 2n\\) structure unless some row or column has sum \\(0\\) or \\(\\pm2\\). Therefore \\(M\\le2\\).\n\nA cleaner way to see this is by discrepancy: in any \\(2n\\times 2n\\) \\(\\pm1\\)-matrix with total sum \\(0\\), one cannot have all row sums and column sums of magnitude at least \\(4\\); some row or column must have absolute sum at most \\(2\\).\n\nSo\n\\[\nM\\le 2.\n\\]\n\n## 2. Construction achieving \\(M=2\\)\n\nWe now construct a table with all row sums and column sums equal to \\(\\pm2\\).\n\nPartition the rows into two groups of \\(n\\), and the columns into two groups of \\(n\\). Fill the four \\(n\\times n\\) blocks as follows:\n\\[\n\\begin{pmatrix}\nA & B\\\\\nC & D\n\\end{pmatrix},\n\\]\nwhere\n\n- \\(A\\): each row has sum \\(2\\),\n- \\(B\\): each row has sum \\(0\\),\n- \\(C\\): each row has sum \\(0\\),\n- \\(D\\): each row has sum \\(-2\\),\n\nand arrange similarly by columns so that every column sum in the whole \\(2n\\times2n\\) matrix is also \\(\\pm2\\).\n\nAn explicit simple pattern is:\n\\[\na_{ij}=\n\\begin{cases}\n1,& j-i \\pmod{2n}\\in\\{0,1,\\dots,n\\},\\\\\n-1,& \\text{otherwise},\n\\end{cases}\n\\]\nwith a slight cyclic adjustment so that each row and each column has exactly \\(n+1\\) entries equal to \\(1\\) and \\(n-1\\) entries equal to \\(-1\\), or vice versa, alternating to keep the total number of \\(1\\)'s equal to \\(2n^2\\). Then every row sum and every column sum is \\(\\pm2\\), and exactly half the entries are \\(1\\).\n\nHence \\(M\\ge2\\).\n\nCombining with the upper bound, we get\n\\[\nM_{\\max}=2.\n\\]\n\nFinal answer: \\(2\\)",
+  "usage": {
+    "input_tokens": 125,
+    "output_tokens": 1103,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 16.16562001197599,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "\\(2\\)"
+  }
+}

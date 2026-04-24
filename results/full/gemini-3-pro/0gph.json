@@ -1,0 +1,21 @@
+{
+  "id": "0gph",
+  "country": "Turkey",
+  "competition": "Team Selection Test for IMO 2011",
+  "gold_final_answer": "p^n",
+  "topics_flat": [
+    "Number Theory > Modular Arithmetic",
+    "Number Theory > Residues and Primitive Roots > Multiplicative order",
+    "Algebra > Algebraic Expressions > Functional Equations"
+  ],
+  "prompt": "Let $p$ be a prime, $n$ be a positive integer, and let $Z_{p^n}$ denote the set of congruence classes modulo $p^n$. Determine the number of functions $f : Z_{p^n} \\to Z_{p^n}$ satisfying the condition\n$$\nf(a) + f(b) \\equiv f(a + b + pab) \\pmod{p^n}\n$$\nfor all $a, b \\in Z_{p^n}$.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find the number of functions $f : Z_{p^n} \\to Z_{p^n}$ satisfying the given condition, we can rewrite the condition using a new operation. \n\nLet us define the operation $\\ast$ on $Z_{p^n}$ by \n$$a \\ast b \\equiv a + b + pab \\pmod{p^n}$$\nWe can see that $1 + p(a \\ast b) = 1 + pa + pb + p^2ab = (1+pa)(1+pb)$. \nThis implies that the map $\\phi: Z_{p^n} \\to (\\mathbb{Z}/p^{n+1}\\mathbb{Z})^\\times$ defined by $\\phi(x) = 1+px \\pmod{p^{n+1}}$ is a homomorphism from $(Z_{p^n}, \\ast)$ to the multiplicative group of integers modulo $p^{n+1}$. \n\nSince $x \\not\\equiv y \\pmod{p^n}$ implies $1+px \\not\\equiv 1+py \\pmod{p^{n+1}}$, the map $\\phi$ is injective. The image of $\\phi$ is exactly the subgroup $G$ of $(\\mathbb{Z}/p^{n+1}\\mathbb{Z})^\\times$ consisting of all elements congruent to $1 \\pmod p$. \nThus, $(Z_{p^n}, \\ast)$ is a group isomorphic to $G$. The order of $G$ is exactly $p^n$, so $(Z_{p^n}, \\ast)$ is an abelian group of order $p^n$.\n\nThe given functional equation is:\n$$f(a) + f(b) \\equiv f(a \\ast b) \\pmod{p^n}$$\nThis condition precisely states that $f$ is a group homomorphism from $(Z_{p^n}, \\ast)$ to the additive group $(Z_{p^n}, +)$. \n\nBy the Fundamental Theorem of Finite Abelian Groups, the group $(Z_{p^n}, \\ast)$ is isomorphic to a direct product of cyclic groups:\n$$(Z_{p^n}, \\ast) \\cong C_{p^{a_1}} \\times C_{p^{a_2}} \\times \\cdots \\times C_{p^{a_k}}$$\nwhere $\\sum_{i=1}^k a_i = n$, and each $a_i \\ge 1$.\n\nWe are looking for the number of homomorphisms from this group to $(Z_{p^n}, +)$, which is isomorphic to the cyclic group $C_{p^n}$. \nThe number of homomorphisms from a cyclic group $C_{p^{a_i}}$ to $C_{p^n}$ is given by $\\gcd(p^{a_i}, p^n)$. Since $a_i \\le n$ for all $i$, we have $\\gcd(p^{a_i}, p^n) = p^{a_i}$.\n\nBecause homomorphisms from a direct product of groups to another group are uniquely determined by the homomorphisms from each of the factor groups, the total number of homomorphisms from $(Z_{p^n}, \\ast)$ to $(Z_{p^n}, +)$ is the product of the number of homomorphisms from each cyclic factor:\n$$\\prod_{i=1}^k p^{a_i} = p^{\\sum_{i=1}^k a_i} = p^n$$\n\nThus, there are exactly $p^n$ such functions.\n\nFinal answer: p^n",
+  "usage": {
+    "input_tokens": 147,
+    "output_tokens": 759,
+    "thoughts_tokens": 3943
+  },
+  "latency_s": 34.45106797700282,
+  "cached": false
+}

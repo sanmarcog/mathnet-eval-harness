@@ -1,0 +1,24 @@
+{
+  "id": "0db7",
+  "country": "Saudi Arabia",
+  "competition": "SAUDI ARABIAN MATHEMATICAL COMPETITIONS",
+  "gold_final_answer": "-1",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Symmetric functions"
+  ],
+  "prompt": "Real nonzero numbers $x$, $y$, $z$ are such that $x + y + z = 0$. Moreover, it is known that\n$$\nA = \\frac{x}{y} + \\frac{y}{z} + \\frac{z}{x} = \\frac{x}{z} + \\frac{z}{y} + \\frac{y}{x} + 1.\n$$\nDetermine $A$.",
+  "model": "claude-opus-4-7",
+  "response_text": "<think>\nLet S = x/y+y/z+z/x, T = x/z+z/y+y/x. S-T = 1.\n\nCompute S-T = (x/y - y/x) + (y/z - z/y) + (z/x - x/z) = (x²-y²)/(xy) + (y²-z²)/(yz) + (z²-x²)/(zx).\n\nCommon denominator xyz: = [z(x²-y²) + x(y²-z²) + y(z²-x²)]/(xyz).\n\nNumerator = z x² - zy² + xy² - xz² + yz² - yx² = x²(z-y) + y²(x-z) + z²(y-x). This factors as -(x-y)(y-z)(z-x)... let me check. Known: (x-y)(y-z)(z-x) = ? Expand: (x-y)(y-z) = xy-xz-y²+yz. Times (z-x) = (xy-xz-y²+yz)(z-x) = xyz -x²y -xz²+x²z -y²z+xy² + yz² -xyz = -x²y+x²z -xz²+yz² +xy² -y²z = x²(z-y) + z²(y-x) + y²(x-z). Yes matches.\n\nSo S-T = (x-y)(y-z)(z-x)/(xyz) = 1.\n\nAlso compute S+T = sum of all x/y+y/x etc = (x²+y²)/(xy) + (y²+z²)/(yz) + (x²+z²)/(xz).\n\nHmm. Maybe use x+y+z=0. Let's compute ST or use identity.\n\nActually with x+y+z=0, x³+y³+z³ = 3xyz.\n\nLet me compute S·something. Consider S = (x²z + y²x + z²y)/(xyz), T = (x²y+y²z+z²x)/(xyz).\n\nS-T = [x²z+xy²+yz² - x²y - y²z - xz²]/(xyz) = (x-y)(y-z)(z-x)... wait sign. Let me redo: x²z - x²y = x²(z-y), xy²-y²z=y²(x-z), yz²-xz²=z²(y-x). So numerator = x²(z-y)+y²(x-z)+z²(y-x) = (x-y)(y-z)(z-x). Hmm earlier I got same. OK.\n\nS+T = (x²z+x²y + xy²+y²z + yz²+xz²)/(xyz) = [x²(y+z)+y²(x+z)+z²(x+y)]/(xyz).\nWith x+y+z=0: y+z=-x, etc. So numerator = -x³-y³-z³ = -3xyz.\nThus S+T = -3.\n\nGiven S - T = 1 (since A=S, and S = T+1 so S-T=1). Wait the equation says A = S and S = T+1. So S-T=1.\n\nThen S+T=-3, S-T=1, so S = -1, T=-2. A = -1.\n</think>\n\nLet $S = \\frac{x}{y}+\\frac{y}{z}+\\frac{z}{x}$ and $T = \\frac{x}{z}+\\frac{z}{y}+\\frac{y}{x}$. We have $A = S$ and $S = T+1$.\n\n**Computing $S+T$:** \n$$S+T = \\frac{x^2(y+z)+y^2(x+z)+z^2(x+y)}{xyz}$$\nSince $x+y+z=0$, we get $y+z=-x$, etc., so the numerator becomes $-(x^3+y^3+z^3) = -3xyz$ (using $x^3+y^3+z^3=3xyz$ when $x+y+z=0$).\n\nTherefore $S+T = -3$.\n\nCombined with $S-T = 1$: $S = -1$.\n\nFinal answer: <answer>-1</answer>",
+  "usage": {
+    "input_tokens": 190,
+    "output_tokens": 1278,
+    "thinking_tokens": 0
+  },
+  "latency_s": 14.305031886091456,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "<answer>-1</answer>"
+  }
+}

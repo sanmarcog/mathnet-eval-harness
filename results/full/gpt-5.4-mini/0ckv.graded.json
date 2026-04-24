@@ -1,0 +1,25 @@
+{
+  "id": "0ckv",
+  "country": "Romania",
+  "competition": "75th Romanian Mathematical Olympiad",
+  "gold_final_answer": "All solutions are f(z) = c z for all z, where c is a complex constant with |c| = 1.",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Functional Equations",
+    "Algebra > Intermediate Algebra > Complex numbers"
+  ],
+  "prompt": "Determine all functions $f: \\mathbb{C} \\to \\mathbb{C}$ such that $|wf(z) + zf(w)| = 2|zw|$, for any $z, w \\in \\mathbb{C}$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "We seek all functions \\(f:\\mathbb C\\to\\mathbb C\\) such that\n\\[\n|wf(z)+zf(w)|=2|zw| \\qquad \\forall z,w\\in\\mathbb C.\n\\]\n\n### Step 1: Plug in \\(w=0\\)\nThen\n\\[\n|0\\cdot f(z)+z f(0)|=0,\n\\]\nso\n\\[\n|z f(0)|=0 \\quad \\forall z.\n\\]\nHence\n\\[\nf(0)=0.\n\\]\n\n### Step 2: Plug in \\(w=z\\)\nWe get\n\\[\n|z f(z)+z f(z)|=2|z|^2.\n\\]\nSo for \\(z\\neq 0\\),\n\\[\n|2z f(z)|=2|z|^2 \\implies |f(z)|=|z|.\n\\]\n\n### Step 3: Use \\(w=iz\\)\nFor \\(z\\neq 0\\),\n\\[\n|iz f(z)+z f(իզ)|=2|z|^2.\n\\]\nDividing by \\(|z|\\),\n\\[\n|i f(z)+f(iz)|=2|z|.\n\\]\nSince \\(|f(z)|=|z|\\) and \\(|f(iz)|=|iz|=|z|\\), the triangle inequality shows equality must be attained:\n\\[\n|i f(z)+f(iz)|\\le |f(z)|+|f(iz)|=2|z|.\n\\]\nThus equality occurs. This strongly suggests a linear phase relation. A standard symmetry argument now gives that for each nonzero \\(z\\), \\(f(z)\\) must be a unimodular multiple of \\(z\\):\n\\[\nf(z)=\\alpha(z) z,\\qquad |\\alpha(z)|=1.\n\\]\n\nSubstitute this into the original equation:\n\\[\n|w\\alpha(z)z+z\\alpha(w)w|=|zw||\\alpha(z)+\\alpha(w)|=2|zw|.\n\\]\nFor \\(zw\\neq 0\\),\n\\[\n|\\alpha(z)+\\alpha(w)|=2.\n\\]\nBut two complex numbers of modulus \\(1\\) have sum of modulus \\(2\\) iff they are equal. Hence\n\\[\n\\alpha(z)=\\alpha(w)\\quad \\forall z,w\\neq 0.\n\\]\nSo \\(\\alpha\\) is constant on \\(\\mathbb C\\setminus\\{0\\}\\). Let \\(\\alpha=c\\) with \\(|c|=1\\). Then\n\\[\nf(z)=cz \\quad \\forall z\\neq 0,\n\\]\nand also \\(f(0)=0\\), so this holds for all \\(z\\in\\mathbb C\\).\n\n### Step 4: Check\nIf \\(f(z)=cz\\) with \\(|c|=1\\), then\n\\[\nwf(z)+zf(w)=wcz+z cw=2czw,\n\\]\nhence\n\\[\n|wf(z)+zf(w)|=2|zw|.\n\\]\nSo these all work.\n\n---\n\nFinal answer: \\(\\boxed{f(z)=cz\\text{ for all }z\\in\\mathbb C,\\ \\text{where }|c|=1}\\).",
+  "usage": {
+    "input_tokens": 102,
+    "output_tokens": 709,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 4.395197749021463,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "f(z)=cz\\text{ for all }z\\in\\mathbb C,\\ \\text{where }|c|=1"
+  }
+}

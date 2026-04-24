@@ -1,0 +1,26 @@
+{
+  "id": "0dhz",
+  "country": "Saudi Arabia",
+  "competition": "SAUDI ARABIAN IMO Booklet 2023",
+  "gold_final_answer": "(15 + 4√13, -1, 15 - 4√13), (15 - 4√13, -1, 15 + 4√13), (2, -14, -2), (3, -9, -3), (-5, 7, 5)",
+  "topics_flat": [
+    "Algebra > Prealgebra / Basic Algebra > Simple Equations",
+    "Algebra > Algebraic Expressions > Polynomials > Polynomial operations",
+    "Algebra > Algebraic Expressions > Polynomials > Irreducibility: Rational Root Theorem, Gauss's Lemma, Eisenstein"
+  ],
+  "prompt": "Find all real numbers $x, y, z$ such that $xy + z = -30$, $yz + x = 30$ and $zx + y = -18$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "We are given\n\\[\nxy+z=-30,\\qquad yz+x=30,\\qquad zx+y=-18.\n\\]\nRewrite as\n\\[\nxy=-30-z,\\quad yz=30-x,\\quad zx=-18-y.\n\\]\n\nNow add the three original equations:\n\\[\n(xy+yz+zx)+(x+y+z)=-18.\n\\]\nLet\n\\[\nS=x+y+z,\\qquad P=xy+yz+zx.\n\\]\nThen\n\\[\nP+S=-18. \\tag{1}\n\\]\n\nNext, use the standard identity\n\\[\n(x+y+z)^2=x^2+y^2+z^2+2P.\n\\]\nBut a more direct route is to note that from the three equations,\n\\[\n(x+30)(y-30)(z+18)\n\\]\nis not immediately helpful; instead, subtract pairs:\n\nFrom \\((yz+x)-(xy+z)=60\\),\n\\[\ny(z-x)+(x-z)=60 \\implies (x-z)(1-y)=60. \\tag{2}\n\\]\n\nFrom \\((zx+y)-(yz+x)=-48\\),\n\\[\nz(x-y)+(y-x)=-48 \\implies (x-y)(z-1)=48. \\tag{3}\n\\]\n\nFrom \\((xy+z)-(zx+y)=-12\\),\n\\[\nx(y-z)+(z-y)=-12 \\implies (y-z)(x-1)=12. \\tag{4}\n\\]\n\nNow multiply (2)(3)(4):\n\\[\n(x-z)(x-y)(y-z)(1-y)(z-1)(x-1)=60\\cdot 48\\cdot 12.\n\\]\nA cleaner way is to try the obvious symmetry-breaking values. Since the right-hand sides are large and the coefficients are linear, let us solve systematically by eliminating variables.\n\nFrom the first equation,\n\\[\nz=-30-xy.\n\\]\nSubstitute into the second and third:\n\\[\ny(-30-xy)+x=30 \\implies x-30y-xy^2=30, \\tag{5}\n\\]\n\\[\nx(-30-xy)+y=-18 \\implies y-30x-x^2y=-18. \\tag{6}\n\\]\nTreating as linear in \\(x\\) and \\(y\\), a quick check of integer-looking solutions suggests \\(y=-1\\), since then (5) becomes\n\\[\nx+30-x=30,\n\\]\nwhich works identically. Then from the first equation,\n\\[\nz=-30- x(-1)=x-30.\n\\]\nUse the third equation:\n\\[\nx(x-30)+(-1)=-18 \\implies x^2-30x-1=-18,\n\\]\nso\n\\[\nx^2-30x+17=0.\n\\]\nThis gives\n\\[\nx=\\frac{30\\pm \\sqrt{900-68}}{2}=15\\pm \\sqrt{208}=15\\pm 4\\sqrt{13}.\n\\]\nThen\n\\[\nz=x-30=-15\\pm 4\\sqrt{13}.\n\\]\n\nWe should verify in the second equation:\n\\[\nyz+x = (-1)z+x = x-z = 30,\n\\]\nwhich is indeed true since \\(z=x-30\\).\n\nThus the solutions are\n\\[\n\\boxed{(x,y,z)=\\left(15+4\\sqrt{13},-1,-15+4\\sqrt{13}\\right)}\n\\]\nand\n\\[\n\\boxed{(x,y,z)=\\left(15-4\\sqrt{13},-1,-15-4\\sqrt{13}\\right)}.\n\\]\n\nFinal answer: \\(\\left(15+4\\sqrt{13},-1,-15+4\\sqrt{13}\\right)\\) and \\(\\left(15-4\\sqrt{13},-1,-15-4\\sqrt{13}\\right)\\).",
+  "usage": {
+    "input_tokens": 86,
+    "output_tokens": 854,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 5.32671059097629,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "\\(\\left(15+4\\sqrt{13},-1,-15+4\\sqrt{13}\\right)\\) and \\(\\left(15-4\\sqrt{13},-1,-15-4\\sqrt{13}\\right)\\)."
+  }
+}

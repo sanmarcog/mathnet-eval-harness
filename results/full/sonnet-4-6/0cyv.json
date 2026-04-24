@@ -1,0 +1,21 @@
+{
+  "id": "0cyv",
+  "country": "Saudi Arabia",
+  "competition": "Saudi Arabia Mathematical Competitions",
+  "gold_final_answer": "a_1432 = 16, a_1433 = 8; and in general\n- a_n = 4·tau(n) if n is odd,\n- a_n = 0 if n ≡ 2 mod 4,\n- a_n = 4·tau(n/4) if n is divisible by 4.",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Factorization techniques",
+    "Number Theory > Number-Theoretic Functions > τ (number of divisors)",
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities"
+  ],
+  "prompt": "For any positive integer $n$ let $a_{n}$ be the number of pairs $(x, y)$ of integers satisfying $|x^{2}-y^{2}|=n$.\n\na. Find $a_{1432}$ and $a_{1433}$.\n\nb. Find $a_{n}$.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Solution\n\nWe need to count pairs $(x, y)$ of integers with $|x^2 - y^2| = n$.\n\n**Setting up the factorization:**\n\n$|x^2 - y^2| = |(x+y)(x-y)| = n$\n\nLet $u = x+y$ and $v = x-y$. Then $uv = \\pm n$, and $u,v$ have the same parity (since $x = \\frac{u+v}{2}$, $y = \\frac{u-v}{2}$ must be integers).\n\nSo we need to count ordered pairs $(u,v)$ of integers with $uv = \\pm n$ and $u \\equiv v \\pmod{2}$.\n\n**Counting factorizations:**\n\nFor each factorization $uv = m$ (where $m = n$ or $m = -n$), we need $u \\equiv v \\pmod 2$.\n\nNote: $u \\equiv v \\pmod 2$ iff $u$ and $v$ are both even or both odd.\n\n- Both odd: possible only when $n$ is odd\n- Both even: $u = 2u'$, $v = 2v'$, so $4u'v' = \\pm n$, requiring $4 \\mid n$\n\n**Let $d(n)$ = number of positive divisors of $n$.**\n\nFor $uv = \\pm n$: the number of ordered pairs $(u,v)$ of integers with $uv = n$ is $2d(n)$ (for each positive divisor $d$ of $n$: $(d, n/d)$ and $(-d, -n/d)$), and similarly for $uv = -n$: pairs $(d, -n/d)$ and $(-d, n/d)$. Total pairs with $|uv| = n$: $4d(n)$.\n\nAmong these, we need $u \\equiv v \\pmod 2$.\n\n**Case 1: $n$ is odd.** All divisors are odd, so all pairs $(u,v)$ with $uv = \\pm n$ have both $u,v$ odd. Thus $a_n = 4d(n)$.\n\n**Case 2: $n \\equiv 2 \\pmod 4$.** Write $n = 2m$ with $m$ odd. For $uv = \\pm n$: one of $u,v$ is even and the other odd (since $n \\equiv 2 \\pmod 4$). So no pairs have the same parity. Thus $a_n = 0$.\n\n**Case 3: $4 \\mid n$.** Write $n = 4k$. Both-even pairs: $u=2u', v=2v'$ with $u'v' = \\pm k$, giving $4d(k)$ pairs... but we need $|u'v'| = k$, giving $4d(k)$ pairs total. Both-odd pairs: impossible since $n$ is even. So $a_n = 4d(n/4)$.\n\nWait, let me recheck Case 3. We need $4u'v' = \\pm n = \\pm 4k$, so $u'v' = \\pm k$, giving $4d(k)$ pairs $(u',v')$, hence $4d(k) = 4d(n/4)$ pairs $(u,v)$.\n\n**Summary:**\n$$a_n = \\begin{cases} 4d(n) & \\text{if } n \\text{ is odd} \\\\ 0 & \\text{if } n \\equiv 2 \\pmod{4} \\\\ 4d(n/4) & \\text{if } 4 \\mid n \\end{cases}$$\n\n## Part (a)\n\n**$a_{1433}$:** $1433$ is prime (check: not divisible by 2,3,5,7,11,13,17,19,23,29,31,37 — $37^2=1369<1433<1521=39^2$, and $1433/37\\approx 38.7$). So $d(1433) = 2$.\n$$a_{1433} = 4 \\cdot 2 = 8$$\n\n**$a_{1432}$:** $1432 = 8 \\times 179$. Since $4 \\mid 1432$, we have $1432/4 = 358 = 2 \\times 179$. Since $179$ is prime, $d(358) = d(2 \\times 179) = 4$.\n$$a_{1432} = 4 \\cdot 4 = 16$$\n\n## Final Answers\n\n**Part (a):** $a_{1432} = 16$, $a_{1433} = 8$\n\n**Part (b):**\n$$\\boxed{a_n = \\begin{cases} 4d(n) & \\text{if } n \\text{ is odd} \\\\ 0 & \\text{if } n \\equiv 2 \\pmod{4} \\\\ 4d(n/4) & \\text{if } 4 \\mid n \\end{cases}}$$\n\nwhere $d(n)$ denotes the number of positive divisors of $n$.\n\nFinal answer: $a_{1432}=16,\\quad a_{1433}=8;\\quad a_n=4d(n)$ if $n$ odd, $0$ if $n\\equiv 2\\pmod4$, $4d(n/4)$ if $4\\mid n$.",
+  "usage": {
+    "input_tokens": 120,
+    "output_tokens": 1353,
+    "thinking_tokens": 0
+  },
+  "latency_s": 16.83751163096167,
+  "cached": false
+}

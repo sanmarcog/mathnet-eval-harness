@@ -1,0 +1,25 @@
+{
+  "id": "0l9y",
+  "country": "Vietnam",
+  "competition": "Vijetnam 2007",
+  "gold_final_answer": "1506",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Pigeonhole principle",
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments"
+  ],
+  "prompt": "Given a regular 2007-polygon. Find the smallest positive integer $k$ satisfying the following property: In every set of $k$ vertices there are 4 vertices which form a quadrilateral with 3 edges of the given 2007-polygon.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Setting Up the Problem\n\nWe have a regular 2007-gon. We need to find the smallest $k$ such that every set of $k$ vertices contains 4 vertices forming a quadrilateral with exactly 3 edges being sides of the polygon.\n\nA quadrilateral with 3 edges of the polygon means 3 consecutive sides of the polygon are included. This means we need 4 vertices that include 3 consecutive vertices of the polygon (say $v_i, v_{i+1}, v_{i+2}, v_{i+3}$ would give 3 consecutive edges, but we need exactly 3 edges of the polygon).\n\nWait - let me reconsider. A quadrilateral with 3 edges of the polygon: the 4 vertices form a quadrilateral where 3 of its 4 sides are edges of the 2007-gon. For 3 sides of the quadrilateral to be polygon edges, we need 3 consecutive edges of the polygon, meaning 4 consecutive vertices $v_i, v_{i+1}, v_{i+2}, v_{i+3}$ (these give 3 consecutive polygon edges, and the 4th side closes the quadrilateral).\n\nSo we need 4 consecutive vertices of the polygon in our set.\n\n## Finding the Maximum Set Without 4 Consecutive Vertices\n\nWe need to find the maximum set of vertices with no 4 consecutive vertices, then $k$ is one more than this maximum.\n\nWe want to choose vertices from a cycle of 2007 vertices such that no 4 consecutive vertices are all chosen (i.e., we must avoid any 4 in a row).\n\nTo maximize the number of chosen vertices while avoiding 4 consecutive chosen vertices, we should use the pattern: choose 3, skip 1, choose 3, skip 1, ...\n\nWith pattern \"3 chosen, 1 skipped\" repeating, each block has 4 vertices with 3 chosen.\n\n$2007 = 4 \\times 501 + 3$\n\nSo we can have 501 complete blocks of (3 chosen, 1 skipped) = $501 \\times 3 = 1503$ chosen vertices, using $501 \\times 4 = 2004$ vertices, with 3 remaining vertices.\n\nFor the remaining 3 vertices, we can choose all 3 (since they're at the end of the cycle, we need to check the wrap-around).\n\nWith 501 blocks: positions $1,2,3$ chosen, $4$ skipped, $5,6,7$ chosen, $8$ skipped, ..., up to position 2004. Then positions 2005, 2006, 2007 remain.\n\nIf we choose 2005, 2006, 2007: check if 2005, 2006, 2007, 1 are all chosen — position 1 is chosen, so we'd have 4 consecutive: 2005, 2006, 2007, 1. That's bad.\n\nSo from the last 3, we can choose at most 2 (positions 2005, 2006 but not 2007, to avoid 2007,1,2,3 being consecutive — wait, 2007 is skipped, so 1,2,3 are chosen but 2007 is not, that's fine).\n\nActually if we skip 2007: chosen = 2005, 2006, and the pattern gives 1503 + 2 = 1505. Check: last chosen are ..., 2005, 2006, then 2007 skipped, then 1, 2, 3 chosen. No 4 consecutive.\n\nCan we do better? Try choosing 2005, 2006, 2007 and adjusting: skip position 1 instead. Then: 2005,2006,2007 chosen, 1 skipped, 2,3,4 chosen... but now position 4 is chosen (it was previously skipped). This shifts the pattern. We'd get the same count.\n\nMaximum is $501 \\times 3 + 2 = 1505$.\n\nLet me verify: with $n = 2007$ vertices on a cycle, maximum independent set avoiding 4 consecutive = $\\lfloor 3n/4 \\rfloor$.\n\n$\\lfloor 3 \\times 2007/4 \\rfloor = \\lfloor 6021/4 \\rfloor = \\lfloor 1505.25 \\rfloor = 1505$.\n\nSo the maximum number of vertices with no 4 consecutive is **1505**.\n\nTherefore $k = 1505 + 1 = 1506$.\n\nFinal answer: 1006\n\nWait, let me recheck: $\\lfloor 3 \\cdot 2007/4 \\rfloor = 1505$, so $k = 1506$.\n\nFinal answer: 1506",
+  "usage": {
+    "input_tokens": 103,
+    "output_tokens": 1157,
+    "thinking_tokens": 0
+  },
+  "latency_s": 19.762219067895785,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "exact",
+    "predicted": "1506"
+  }
+}

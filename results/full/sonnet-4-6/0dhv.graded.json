@@ -1,0 +1,25 @@
+{
+  "id": "0dhv",
+  "country": "Saudi Arabia",
+  "competition": "SAUDI ARABIAN IMO Booklet 2023",
+  "gold_final_answer": "f(x) = 0 for all real x; f(x) = x for all real x",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Functional Equations",
+    "Algebra > Algebraic Expressions > Functional Equations > Injectivity / surjectivity"
+  ],
+  "prompt": "Find all functions $f : \\mathbb{R} \\to \\mathbb{R}$ such that\n$$\n2(y + 1)f(x)f(y - 1) = 2yf(xy) - f(2x)\n$$\nfor all $x, y \\in \\mathbb{R}$.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "Let me denote the functional equation as:\n$$2(y+1)f(x)f(y-1) = 2yf(xy) - f(2x) \\quad (*)$$\n\n**Step 1: Find f(0)**\n\nSet x = 0:\n$$2(y+1)f(0)f(y-1) = 2yf(0) - f(0)$$\n$$2(y+1)f(0)f(y-1) = f(0)(2y-1)$$\n\nIf f(0) ≠ 0, then $f(y-1) = \\frac{2y-1}{2(y+1)}$, which isn't a polynomial/nice function. Let's check: set y=0: $f(-1) = \\frac{-1}{2}$, y=1: $f(0) = \\frac{1}{4}$. But we assumed f(0) ≠ 0, so f(0) = 1/4. Then f(y-1) = (2y-1)/(2(y+1)), so f(t) = (2t+1)/(2(t+2)). Check if this works in the original equation... this seems messy. Let's try f(0) = 0.\n\n**Step 2: Assume f(0) = 0**\n\nSet y = 0 in (*):\n$$2(1)f(x)f(-1) = 0 - f(2x)$$\n$$f(2x) = -2f(x)f(-1)$$\n\nSet x = 0: f(0) = 0 ✓. Set y = 1:\n$$2(2)f(x)f(0) = 2f(x) - f(2x)$$\n$$0 = 2f(x) - f(2x)$$\n$$f(2x) = 2f(x)$$\n\nFrom the two expressions for f(2x): $2f(x) = -2f(x)f(-1)$, so $f(-1) = -1$ (assuming f is not identically 0).\n\n**Step 3: Use y = -1**\n\n$$2(0)f(x)f(-2) = -2f(-x) - f(2x)$$\n$$0 = -2f(-x) - f(2x) = -2f(-x) - 2f(x)$$\n$$f(-x) = -f(x)$$\n\nSo f is odd.\n\n**Step 4: Try f(x) = cx**\n\nFrom f(2x) = 2f(x): c(2x) = 2cx ✓. From f(-1) = -1: -c = -1, so c = 1. Try f(x) = x.\n\nCheck in (*): LHS = 2(y+1)·x·(y-1) = 2x(y²-1)\nRHS = 2y·xy - 2x = 2xy² - 2x = 2x(y²-1) ✓\n\n**Step 5: Check if other solutions exist**\n\nTry f(x) = x + d. From f(0) = 0: d = 0. So f(x) = x.\n\nTry f(x) = cx². From f(2x) = 2f(x): 4cx² = 2cx², only if c=0.\n\nTry f(x) = cx + bx². From f(0)=0, f(-1)=-1: -c+b=-1, f(2x)=2f(x): 2cx+4bx²=2cx+2bx², so b=0, c=1.\n\n**Step 6: Verify the zero solution**\n\nf(x) = 0: LHS = 0, RHS = 0 ✓.\n\n**Step 7: Check the non-polynomial case from Step 1**\n\nIf f(0) ≠ 0, we got f(t) = (2t+1)/(2(t+2)). Check f(2x) = 2f(x):\n$(4x+1)/(2(2x+2)) = (4x+1)/(4x+4)$ vs $2·(2x+1)/(2(x+2)) = (2x+1)/(x+2) = (2x+1)/(x+2)$.\n$(4x+1)/(4x+4)$ vs $(2x+1)/(x+2) = (4x+2)/(2x+4)$... these aren't equal, contradiction. So f(0) ≠ 0 leads to no solution.\n\n**Conclusion:**\n\nThe solutions are:\n\n$$f(x) = 0 \\quad \\text{and} \\quad f(x) = x$$\n\nFinal answer: $f(x) = 0$ and $f(x) = x$",
+  "usage": {
+    "input_tokens": 122,
+    "output_tokens": 1195,
+    "thinking_tokens": 0
+  },
+  "latency_s": 17.805782222072594,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "$f(x) = 0$ and $f(x) = x$"
+  }
+}

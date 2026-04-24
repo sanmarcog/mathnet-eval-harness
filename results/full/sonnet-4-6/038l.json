@@ -1,0 +1,20 @@
+{
+  "id": "038l",
+  "country": "Bulgaria",
+  "competition": "Spring Mathematical Tournament",
+  "gold_final_answer": "x = (37 + sqrt(13)) / 2, y = (5 + sqrt(13)) / 2",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Irreducibility: Rational Root Theorem, Gauss's Lemma, Eisenstein",
+    "Algebra > Intermediate Algebra > Quadratic functions"
+  ],
+  "prompt": "Solve the system\n$$\n\\left|\n\\begin{array}{l}\n\\sqrt{x^2 + y^2 - 16(x + y) - 9y + 7} = y - 2 \\\\\nx + 13\\sqrt[4]{x - y} = y + 42\n\\end{array}\n\\right.\n$$",
+  "model": "claude-sonnet-4-6",
+  "response_text": "Let me work through this system carefully.\n\n**Equation 1:** √(x² + y² - 16(x+y) - 9y + 7) = y - 2\n\nWait, let me re-read: x² + y² - 16(x+y) - 9y + 7. Let me check if this might be x² + y² - 16x + y - 9y + 7 or similar. I'll take it as written: x² + y² - 16x - 16y - 9y + 7 = x² + y² - 16x - 25y + 7.\n\nFor the square root to be defined and equal y - 2, we need y ≥ 2.\n\n**Equation 2:** x + 13·∜(x - y) = y + 42\n\nLet t = ∜(x - y), so t ≥ 0 and x - y = t⁴.\n\nFrom equation 2: x - y + 13t = 42, so t⁴ + 13t = 42.\n\nTesting t = 2: 16 + 26 = 42 ✓\n\nSo t = 2, meaning x - y = 16, i.e., x = y + 16.\n\n**Back to Equation 1** with x = y + 16:\n\nx² + y² - 16x - 25y + 7 = (y+16)² + y² - 16(y+16) - 25y + 7\n\n= y² + 32y + 256 + y² - 16y - 256 - 25y + 7\n\n= 2y² - 9y + 7\n\nSo equation 1 becomes: √(2y² - 9y + 7) = y - 2\n\nSquaring: 2y² - 9y + 7 = y² - 4y + 4\n\ny² - 5y + 3 = 0... wait let me redo:\n\n2y² - 9y + 7 = y² - 4y + 4\n\ny² - 5y + 3 = 0\n\nHmm, that gives non-integer solutions. Let me recheck the original expression. Perhaps it's -16(x+y) - 9y meaning -16x - 16y - 9y = -16x - 25y. Let me try another reading: maybe it's x² + y² - 16(x+y) + 9y + 7 = x² + y² - 16x - 7y + 7.\n\nWith x = y + 16:\n(y+16)² + y² - 16(y+16) - 7y + 7\n= y² + 32y + 256 + y² - 16y - 256 - 7y + 7\n= 2y² + 9y + 7\n\nSet equal to (y-2)²: 2y² + 9y + 7 = y² - 4y + 4\ny² + 13y + 3 = 0... still messy.\n\nLet me try: x² + y² - 16x + y - 9y + 7 = x² + y² - 16x - 8y + 7.\n\nWith x = y + 16:\n(y+16)² + y² - 16(y+16) - 8y + 7\n= y² + 32y + 256 + y² - 16y - 256 - 8y + 7\n= 2y² + 8y + 7... not clean.\n\nTry the expression as x² + y² - 16(x+y) + 9y + 7 = x² + y² - 16x - 7y + 7... already tried.\n\nLet me try original: 2y² - 9y + 7 = (y-2)²:\ny² - 5y + 3 = 0 gives y = (5 ± √13)/2. Not clean.\n\nPerhaps the problem has -16x - 9y + 7 (no y in the -16 term):\nWith x = y+16: (y+16)² + y² - 16(y+16) - 9y + 7 = y²+32y+256+y²-16y-256-9y+7 = 2y²+7y+7.\nSet = (y-2)²: 2y²+7y+7 = y²-4y+4 → y²+11y+3=0. Not clean.\n\nGoing back to 2y² - 9y + 7 = (y-2)²:\ny² - 5y + 3 = 0, y = (5+√13)/2 (taking + since y≥2).\n\nThen x = y + 16 = (37+√13)/2.\n\nCheck: y = (5+√13)/2 ≈ (5+3.606)/2 ≈ 4.303 ≥ 2 ✓\n\n**Solution:**\n\n$$x = \\frac{37 + \\sqrt{13}}{2}, \\quad y = \\frac{5 + \\sqrt{13}}{2}$$\n\nFinal answer: $x = \\dfrac{37+\\sqrt{13}}{2},\\quad y = \\dfrac{5+\\sqrt{13}}{2}$",
+  "usage": {
+    "input_tokens": 132,
+    "output_tokens": 1320,
+    "thinking_tokens": 0
+  },
+  "latency_s": 15.32373413699679,
+  "cached": false
+}

@@ -1,0 +1,19 @@
+{
+  "id": "01m1",
+  "country": "Belarus",
+  "competition": "61st Belarusian Mathematical Olympiad",
+  "gold_final_answer": "-1",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Symmetric functions"
+  ],
+  "prompt": "Three distinct real numbers satisfy the following condition: the square of any of them is $1$ greater than the product of the remaining two.\n\nFind all possible values of the sum of pairwise products of these numbers.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "Let the three numbers be $a, b, c$. The conditions are:\n- $a^2 = bc + 1$\n- $b^2 = ac + 1$\n- $c^2 = ab + 1$\n\nSubtract the first equation from the second:\n$b^2 - a^2 = ac - bc = c(a-b)$\n\n$(b-a)(b+a) = c(a-b) = -c(b-a)$\n\nSince $a \\neq b$, divide by $(b-a)$:\n$b + a = -c$, so $a + b + c = 0$.\n\nSimilarly, subtracting other pairs gives $a + c = -b$ and $b + c = -a$, all consistent with $a + b + c = 0$.\n\nNow use $a + b + c = 0$, so $c = -(a+b)$.\n\nFrom $a^2 = bc + 1$:\n$a^2 = b \\cdot (-(a+b)) + 1 = -ab - b^2 + 1$\n\n$a^2 + ab + b^2 = 1$\n\nThe sum of pairwise products is $ab + bc + ca$.\n\nSince $a + b + c = 0$:\n$(a + b + c)^2 = a^2 + b^2 + c^2 + 2(ab + bc + ca) = 0$\n\nSo $a^2 + b^2 + c^2 = -2(ab + bc + ca)$.\n\nLet $s = ab + bc + ca$. Then $a^2 + b^2 + c^2 = -2s$.\n\nFrom $a^2 = bc + 1$ and summing all three equations:\n$a^2 + b^2 + c^2 = ab + bc + ca + 3 = s + 3$\n\nSo $-2s = s + 3$, giving $-3s = 3$, thus $s = -1$.\n\nWe should verify that distinct real numbers exist. With $a + b + c = 0$ and $ab + bc + ca = -1$, the numbers are roots of $t^3 - t - p = 0$ where $p = abc$. From $a^2 = bc + 1$ and $a + b + c = 0$: $bc = a^2 - 1$, so $abc = a(a^2-1) = a^3 - a$. \n\nThe discriminant of $t^3 + pt + q$ (here $t^3 - t - p$) is $-4(-1)^3 - 27(-p)^2 = 4 - 27p^2$. For three distinct real roots, we need $4 - 27p^2 > 0$, i.e., $p^2 < 4/27$, which is achievable.\n\nFinal answer: $-1$",
+  "usage": {
+    "input_tokens": 91,
+    "output_tokens": 726,
+    "thinking_tokens": 0
+  },
+  "latency_s": 9.658017060952261,
+  "cached": false
+}

@@ -1,0 +1,25 @@
+{
+  "id": "0hg9",
+  "country": "Ukraine",
+  "competition": "62nd Ukrainian National Mathematical Olympiad, Third Round, First Tour",
+  "gold_final_answer": "6",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Geometric Inequalities > Triangle inequalities",
+    "Algebra > Prealgebra / Basic Algebra > Integers"
+  ],
+  "prompt": "There are $n \\ge 3$ segments, their lengths in centimeters are distinct positive integers. It's known that it's possible to form a nondegenerate triangle from any three of these $n$ segments. Suppose that among these segments there are segments with lengths $5$ cm and $12$ cm. What's the largest value $n$ can attain?",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Setting Up the Problem\n\nWe need $n \\geq 3$ segments with distinct positive integer lengths, including 5 and 12, such that any three segments form a non-degenerate triangle.\n\n**Key condition:** Any three segments form a non-degenerate triangle. The critical constraint is that for any three lengths $a \\leq b \\leq c$, we need $a + b > c$.\n\nThe hardest constraint to satisfy is when we pick the two smallest and one largest, or the smallest and two largest. Actually, the binding constraint is: for any three segments, the sum of the two smaller ones exceeds the largest.\n\n**Equivalent condition:** If we sort all lengths $a_1 < a_2 < \\cdots < a_n$, then any three must satisfy the triangle inequality. The hardest case is always $a_i + a_{i+1} > a_{i+2}$ for consecutive triples... wait, actually the hardest case is $a_1 + a_2 > a_n$ (smallest two vs largest).\n\nWait, more carefully: for ANY three segments, we need the two smallest to sum to more than the largest. The most restrictive constraint is $a_1 + a_2 > a_n$ (the two smallest must exceed the largest).\n\nBut also, we need $a_i + a_j > a_k$ for all $i < j < k$. The binding constraint is $a_1 + a_2 > a_n$.\n\n## Finding the Constraints\n\nWith 5 and 12 in our set, and all lengths distinct positive integers:\n\n- We need $a_1 + a_2 > a_n$ (two smallest exceed the largest)\n- All lengths are distinct positive integers\n- 5 and 12 are included\n\nSince 5 is likely one of the smaller values, and 12 is included, we need the two smallest values to sum to more than the maximum.\n\nIf 5 is the smallest ($a_1 = 5$), then we need $5 + a_2 > a_n$.\n\nTo maximize $n$, we want as many integers as possible. The integers must all be distinct, include 5 and 12, and satisfy $a_1 + a_2 > a_n$.\n\nIf $a_1 = 5$ and $a_2 = 6$ (next smallest), then $5 + 6 = 11 > a_n$, so $a_n \\leq 10$. But 12 is in the set and $12 > 10$. Contradiction.\n\nIf $a_1 = 5$ and $a_2 = 7$, then $a_n \\leq 11$. Still can't include 12.\n\nIf $a_1 = 5$ and $a_2 = 8$, then $a_n \\leq 12$. We can include 12! The set would be $\\{5, 8, 9, 10, 11, 12\\}$ — but we need to check if we can include values between 5 and 8. We can't include 6 or 7 (since $a_2 = 8$ means 6 and 7 aren't in the set, but we could include them if they're not $a_2$).\n\nWait — if we include 6: set has 5, 6, ..., then $a_1=5, a_2=6$, giving $a_n \\leq 10$, excluding 12.\n\nSo we cannot include any integer less than 8 other than 5 (since that would make $a_2 \\leq 7$, forcing $a_n \\leq 11$).\n\n**So the set must be:** $\\{5\\} \\cup S$ where all elements of $S$ are $\\geq 8$, and $S$ includes 12, and $5 + \\min(S) > \\max(S)$.\n\nWith $\\min(S) = 8$: $5 + 8 = 13 > \\max(S)$, so $\\max(S) \\leq 12$.\n\nThe set is $\\{5, 8, 9, 10, 11, 12\\}$ — that's 6 elements.\n\nCan we do better? What if $a_1 = 5, a_2 = 9$? Then $a_n \\leq 13$, set: $\\{5, 9, 10, 11, 12, 13\\}$ — 6 elements (can't include 6,7,8).\n\nWith $a_2 = 8$: $\\{5, 8, 9, 10, 11, 12\\}$ — **6 elements**.\n\nCheck: any three from $\\{5, 8, 9, 10, 11, 12\\}$: worst case is $5 + 8 = 13 > 12$. ✓\n\nCan we get 7 elements? We'd need another integer in $[8,12]$, but $\\{8,9,10,11,12\\}$ only has 5 elements, giving total 6.\n\nFinal answer: **6**\n\nFinal answer: 6",
+  "usage": {
+    "input_tokens": 126,
+    "output_tokens": 1250,
+    "thinking_tokens": 0
+  },
+  "latency_s": 19.32505217893049,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "exact",
+    "predicted": "6"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "id": "0651",
+  "country": "Greece",
+  "competition": "24th Balkan Mathematical Olympiad",
+  "gold_final_answer": "n = 1 or n = 3",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities",
+    "Algebra > Prealgebra / Basic Algebra > Integers"
+  ],
+  "prompt": "Find all positive integers $n$ such that there is a permutation $\\sigma$ of the set $\\{1,2,...,n\\}$ for which $\\sqrt{\\sigma(1)+\\sigma(2)+\\dots+\\sigma(n)}$ is a rational number.\n\n*: A permutation of the set $\\{1,2,...,n\\}$ is a one-to-one function of this set to itself.*",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find all positive integers $n$ such that there is a permutation $\\sigma$ of the set $\\{1,2,...,n\\}$ for which $\\sqrt{\\sigma(1)+\\sigma(2)+\\dots+\\sigma(n)}$ is a rational number, we can analyze the sum inside the square root.\n\nSince $\\sigma$ is a permutation of the set $\\{1, 2, \\dots, n\\}$, the sum of its elements is simply the sum of the first $n$ positive integers, regardless of the permutation chosen:\n$$ \\sigma(1) + \\sigma(2) + \\dots + \\sigma(n) = 1 + 2 + \\dots + n = \\frac{n(n+1)}{2} $$\n\nThe problem requires that the square root of this sum is a rational number. Therefore, $\\frac{n(n+1)}{2}$ must be the square of a rational number. Since $n$ is an integer, $\\frac{n(n+1)}{2}$ is an integer, and its square root is rational if and only if it is a perfect square. \n\nThus, we are looking for all positive integers $n$ such that:\n$$ \\frac{n(n+1)}{2} = k^2 $$\nfor some integer $k$. This is the well-known condition for a number to be both a triangular number and a square number (Square Triangular Numbers). \n\nMultiplying by 8 and completing the square, we get:\n$$ 4n^2 + 4n =",
+  "usage": {
+    "input_tokens": 117,
+    "output_tokens": 324,
+    "thoughts_tokens": 7864
+  },
+  "latency_s": 87.4989019659115,
+  "cached": false
+}

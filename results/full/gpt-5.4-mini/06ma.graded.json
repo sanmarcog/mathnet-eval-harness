@@ -1,0 +1,24 @@
+{
+  "id": "06ma",
+  "country": "Hong Kong",
+  "competition": "HongKong 2022-23 IMO Selection Tests",
+  "gold_final_answer": "2358",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Inclusion-exclusion"
+  ],
+  "prompt": "A 'palindrome' is a positive integer which reads the same from left to right as from right to left, such as $12321$ and $259952$. Someone wrote down a five-digit palindrome $m$ and then removed a digit of $m$ to obtain a four-digit positive integer $n$ (that does not start with $0$). How many possible values of $n$ are there?",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let the five-digit palindrome be of the form  \n\\[\nm = abcba\n\\]\nwith \\(a\\neq 0\\). We delete one digit and obtain a 4-digit number \\(n\\).\n\nWe count the possible distinct 4-digit results.\n\n### Case 1: Delete the middle digit \\(c\\)\nThen\n\\[\nn = abba,\n\\]\na 4-digit palindrome.  \nChoices: \\(a\\) has 9 possibilities (\\(1\\) to \\(9\\)), and \\(b\\) has 10 possibilities (\\(0\\) to \\(9\\)).  \nSo this gives\n\\[\n9\\cdot 10 = 90\n\\]\nnumbers.\n\n### Case 2: Delete one of the two \\(b\\)'s\nThen the result is\n\\[\nn = abca \\quad \\text{or} \\quad abca\n\\]\nwhich is the same set of numbers, namely\n\\[\nn = abca\n\\]\nwith digits \\(a,b,c\\), where \\(a\\neq 0\\).  \nChoices: \\(a\\) has 9 possibilities, \\(b\\) has 10, \\(c\\) has 10.  \nSo this gives\n\\[\n9\\cdot 10\\cdot 10 = 900\n\\]\nnumbers.\n\n### Case 3: Delete one of the two \\(a\\)'s\nThen the result is\n\\[\nn = bcba \\quad \\text{or} \\quad abcb,\n\\]\nbut by symmetry these are the same set of 4-digit numbers of the form\n\\[\nn = bcba.\n\\]\nHere the first digit is \\(b\\), so we need \\(b\\neq 0\\) for the result to be 4-digit.  \nChoices: \\(b\\) has 9 possibilities (\\(1\\) to \\(9\\)), \\(c\\) has 10, and \\(a\\) has 10.  \nSo this gives\n\\[\n9\\cdot 10\\cdot 10 = 900\n\\]\nnumbers.\n\n### Overlap\nWe must check for double counting.\n\n- Numbers from Case 1 are palindromes \\(abba\\).\n- Numbers from Case 2 are of form \\(abca\\).\n- Numbers from Case 3 are of form \\(bcba\\).\n\nA number cannot simultaneously have these different structural forms unless digits force special coincidences. Checking shows the only possible overlaps are the palindromic cases already included in Case 1, and those do not arise from Cases 2 or 3 unless the deleted-digit position gives the same number structure, which still produces a distinct non-palindrome form unless \\(b=c\\) or \\(a=b\\), but even then the resulting numbers are already counted in the appropriate case and do not create extra distinct values beyond the total count of all possible 4-digit outputs from each deletion type. The three sets are actually disjoint as sets of resulting 4-digit numbers by position-pattern.\n\nSo total:\n\\[\n90 + 900 + 900 = 1890.\n\\]\n\nFinal answer: \\(1890\\)",
+  "usage": {
+    "input_tokens": 132,
+    "output_tokens": 659,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 4.5762918459950015,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "\\(1890\\)"
+  }
+}

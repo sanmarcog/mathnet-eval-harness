@@ -1,0 +1,21 @@
+{
+  "id": "0081",
+  "country": "Argentina",
+  "competition": "Mathematical Olympiad Rioplatense",
+  "gold_final_answer": "all primes p with 500 < p < 1000",
+  "topics_flat": [
+    "Number Theory > Modular Arithmetic > Inverses mod n",
+    "Number Theory > Divisibility / Factorization > Least common multiples (lcm)",
+    "Number Theory > Divisibility / Factorization > Prime numbers"
+  ],
+  "prompt": "Let $r_2, r_3, \\dots, r_{1000}$ be the remainders of an odd positive integer upon division by $2, 3, \\dots, 1000$. It is known that they are pairwise distinct and one of them is $0$. Find all values of $k$ for which it is possible that $r_k = 0$.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find all possible values of $k$ for which $r_k = 0$, we analyze the conditions given:\n1. $N$ is an odd positive integer.\n2. The remainders $r_2, r_3, \\dots, r_{1000}$ are pairwise distinct.\n3. Exactly one remainder is $0$.\n\nSince $N$ is odd, $r_2 = 1$. For any even divisor $2m \\le 1000$, $r_{2m}$ must be an odd number because $N$ is odd. There are exactly 500 even divisors between 2 and 1000, and their remainders must be chosen from the 500 available odd numbers in the range $0 \\le r_i \\le 999$. To make them distinct, the remainders for the even divisors must be exactly the set of all odd numbers from $1$ to $999$. \n\nSince $r_i \\le i-1$, the only way to assign these odd remainders without exceeding $i-1$ is if $r_i = i-1$ for all even $i$. \nThis implies $N \\equiv -1 \\pmod i$ for all even $i \\le 1000$. Consequently, $N+1$ is divisible by the least common multiple of all even numbers up to 1000, which we will call $L$.\n\nFor any odd integer $i \\le 500",
+  "usage": {
+    "input_tokens": 123,
+    "output_tokens": 327,
+    "thoughts_tokens": 7861
+  },
+  "latency_s": 64.6601316940505,
+  "cached": false
+}

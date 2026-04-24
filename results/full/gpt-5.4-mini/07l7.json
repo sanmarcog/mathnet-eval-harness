@@ -1,0 +1,19 @@
+{
+  "id": "07l7",
+  "country": "Ireland",
+  "competition": "Irska",
+  "gold_final_answer": "x^3 - 3/4 x",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Chebyshev polynomials"
+  ],
+  "prompt": "Find a polynomial $x^3 + a x^2 + b x + c$ for which $\\max_{x \\in [-1, 1]} |x^3 + a x^2 + b x + c|$ is minimised. You may assume that such a polynomial exists.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let  \n\\[\np(x)=x^3+ax^2+bx+c,\n\\]\nand we want to minimize\n\\[\n\\|p\\|_\\infty=\\max_{x\\in[-1,1]}|p(x)|.\n\\]\n\nBy the Chebyshev alternation principle, the minimax monic cubic on \\([-1,1]\\) is the scaled Chebyshev polynomial of degree 3:\n\\[\nT_3(x)=4x^3-3x.\n\\]\nTo make the leading coefficient \\(1\\), divide by \\(4\\):\n\\[\n\\frac14 T_3(x)=x^3-\\frac34 x.\n\\]\nThis polynomial has sup norm\n\\[\n\\max_{x\\in[-1,1]}\\left|x^3-\\frac34x\\right|=\\frac14,\n\\]\nand it alternates between \\(\\pm \\frac14\\) at four points, so it is optimal.\n\nThus\n\\[\na=0,\\qquad b=-\\frac34,\\qquad c=0.\n\\]\n\nFinal answer: \\(\\boxed{x^3-\\frac34x}\\), with minimum \\(\\max_{[-1,1]}|p(x)|=\\frac14\\).",
+  "usage": {
+    "input_tokens": 109,
+    "output_tokens": 269,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 2.0643893249798566,
+  "cached": false
+}

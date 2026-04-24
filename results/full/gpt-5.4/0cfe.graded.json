@@ -1,0 +1,25 @@
+{
+  "id": "0cfe",
+  "country": "Romania",
+  "competition": "74th NMO Shortlisted Problems",
+  "gold_final_answer": "No solutions",
+  "topics_flat": [
+    "Number Theory > Modular Arithmetic",
+    "Number Theory > Divisibility / Factorization"
+  ],
+  "prompt": "Find all the positive integers $m$ and $n$ so that $n = 3^m + s(n) + 35$, where $s(n)$ is the sum of the digits of $n$.",
+  "model": "gpt-5.4",
+  "response_text": "Let\n\\[\nn=3^m+s(n)+35,\n\\]\nwhere \\(s(n)\\) is the sum of the decimal digits of \\(n\\). We seek all positive integers \\(m,n\\).\n\nWe will use congruences and size bounds.\n\n## 1) A mod \\(9\\) condition\n\nSince \\(s(n)\\equiv n \\pmod 9\\), the equation gives\n\\[\nn \\equiv 3^m + n + 35 \\pmod 9.\n\\]\nSo\n\\[\n0 \\equiv 3^m + 35 \\pmod 9.\n\\]\nNow \\(35\\equiv 8\\pmod 9\\), hence\n\\[\n3^m \\equiv 1 \\pmod 9.\n\\]\nBut for positive \\(m\\),\n- if \\(m=1\\), then \\(3^m\\equiv 3\\pmod 9\\),\n- if \\(m\\ge 2\\), then \\(3^m\\equiv 0\\pmod 9\\).\n\nNeither is \\(1\\pmod 9\\). Contradiction.\n\nTherefore no positive integer \\(m\\) can satisfy the equation.\n\nSo there are no positive integer pairs \\((m,n)\\).\n\nFinal answer: There are no positive integers \\(m,n\\) satisfying \\(n=3^m+s(n)+35\\).",
+  "usage": {
+    "input_tokens": 92,
+    "output_tokens": 295,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 4.136869404930621,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "There are no positive integers \\(m,n\\) satisfying \\(n=3^m+s(n)+35\\)."
+  }
+}

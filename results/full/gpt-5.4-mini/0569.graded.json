@@ -1,0 +1,25 @@
+{
+  "id": "0569",
+  "country": "Estonia",
+  "competition": "Estonian Mathematical Olympiad",
+  "gold_final_answer": "No",
+  "topics_flat": [
+    "Number Theory > Modular Arithmetic",
+    "Discrete Mathematics > Combinatorics > Pigeonhole principle"
+  ],
+  "prompt": "Do there exist five distinct prime numbers for which the sum of any three of them is a prime number as well?",
+  "model": "gpt-5.4-mini",
+  "response_text": "No.\n\nHere is a short proof:\n\nLet the five distinct primes be \\(p_1,p_2,p_3,p_4,p_5\\). Since the sum of any three of them is prime, consider parity.\n\n- Any prime except \\(2\\) is odd.\n- A sum of three odd numbers is odd, so it could be prime.\n- But if \\(2\\) is among the five primes, then choosing \\(2\\) plus two odd primes gives an even sum greater than \\(2\\), hence not prime.\n\nSo \\(2\\) cannot be included. Therefore all five primes are odd.\n\nNow the sum of any three odd numbers is odd. For it to be prime, it must be an odd prime, which is possible. But look at the five sums:\n\\[\np_1+p_2+p_3,\\quad p_1+p_2+p_4,\\quad \\dots\n\\]\nTake two of them and subtract:\n\\[\n(p_1+p_2+p_3) - (p_1+p_2+p_4)=p_3-p_4.\n\\]\nSince all these sums are primes, they are all odd primes greater than \\(2\\). In particular, each is at least \\(3\\). But among three distinct odd primes, one can always choose two so that their difference is even and nonzero, while the corresponding triple sums remain odd primes. This forces too many distinct odd primes in a way that is impossible modulo \\(3\\): among five odd primes, at least three are congruent mod \\(3\\), and the sum of those three is divisible by \\(3\\), hence cannot be prime unless it equals \\(3\\), impossible since the sum is much larger.\n\nThus such five distinct primes cannot exist.\n\nFinal answer: No, there do not exist five distinct prime numbers with the property that the sum of any three of them is prime.",
+  "usage": {
+    "input_tokens": 71,
+    "output_tokens": 400,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.009977175970562,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "No, there do not exist five distinct prime numbers with the property that the sum of any three of them is prime."
+  }
+}

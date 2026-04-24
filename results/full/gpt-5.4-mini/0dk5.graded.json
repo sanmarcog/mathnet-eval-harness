@@ -1,0 +1,24 @@
+{
+  "id": "0dk5",
+  "country": "Saudi Arabia",
+  "competition": "Saudi Arabia booklet 2024",
+  "gold_final_answer": "2, 4, 10",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Greatest common divisors (gcd)"
+  ],
+  "prompt": "Given an integer $n > 1$, let $1 = a_1 < a_2 < \\dots < a_t = n - 1$ be all the positive integers that are less than $n$ and coprime to $n$. Determine all values of $n$ for which there is no index $i \\in \\{1, \\dots, t-1\\}$ satisfying $3 \\mid a_i + a_{i+1}$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "We want the reduced residues modulo \\(n\\), listed in increasing order:\n\\[\n1=a_1<a_2<\\cdots<a_t=n-1,\n\\]\nand we ask for which \\(n\\) no consecutive pair has sum divisible by \\(3\\).\n\nLet us work modulo \\(3\\).\n\n## Step 1: Residues modulo \\(3\\) among numbers coprime to \\(n\\)\n\n- If \\(3\\mid n\\), then no number congruent to \\(0 \\pmod 3\\) is coprime to \\(n\\), so every \\(a_i\\) is \\(1\\) or \\(2 \\pmod 3\\).\n- If \\(3\\nmid n\\), then numbers congruent to \\(0 \\pmod 3\\) may appear among the \\(a_i\\), provided they are coprime to \\(n\\).\n\nNow note:\n\\[\n3\\mid (a_i+a_{i+1}) \\iff (a_i,a_{i+1}) \\equiv (1,2)\\text{ or }(2,1)\\pmod 3.\n\\]\nSo we need the sequence of reduced residues to avoid adjacent terms of different nonzero residues mod \\(3\\).\n\n---\n\n## Step 2: If \\(n\\) has a prime factor \\(p\\equiv 1 \\pmod 3\\) or \\(p\\equiv 2\\pmod 3\\), trouble occurs unless \\(n\\) is very small\n\nA clean way to see the structure is to test small \\(n\\) and then use the fact that reduced residues come in blocks between multiples of \\(3\\). The only way to avoid a \\(1\\) next to a \\(2\\) modulo \\(3\\) throughout the increasing list is that all reduced residues are congruent to the same nonzero class mod \\(3\\), or else \\(0\\pmod 3\\) terms separate them everywhere. That is extremely restrictive.\n\nLet's inspect the possibilities:\n\n### Case 1: \\(n=2\\)\nReduced residues: \\(1\\). There is no index \\(i\\). So the condition holds.\n\n### Case 2: \\(n=3\\)\nReduced residues: \\(1,2\\). Their sum is \\(3\\), divisible by \\(3\\), so condition fails.\n\n### Case 3: \\(n=4\\)\nReduced residues: \\(1,3\\). Sum \\(4\\not\\equiv 0\\pmod 3\\). Condition holds.\n\n### Case 4: \\(n=6\\)\nReduced residues: \\(1,5\\). Sum \\(6\\equiv 0\\pmod 3\\), so fails.\n\nWe now show no other \\(n\\) work.\n\n---\n\n## Step 3: Exclude all \\(n\\ge 5\\) except \\(4\\)\n\nIf \\(n\\ge 5\\) and \\(n\\neq 4\\), then among the reduced residues there are at least two numbers \\(<n\\) with different residues mod \\(3\\) that occur consecutively after ordering.\n\n- If \\(3\\nmid n\\), then \\(1\\) is coprime to \\(n\\), and among numbers \\(<n\\) there will be reduced residues in more than one residue class mod \\(3\\) unless \\(n\\) is very small. In particular, for \\(n\\ge 5\\), the reduced residues include some number \\(\\equiv 1\\pmod 3\\) and some \\(\\equiv 2\\pmod 3\\), and since the list is increasing, one finds an adjacent pair whose sum is divisible by \\(3\\).\n- If \\(3\\mid n\\), then among numbers coprime to \\(n\\) there are reduced residues in both classes \\(1\\) and \\(2\\pmod 3\\) once \\(n\\ge 6\\), again forcing an adjacent pair of opposite nonzero residues mod \\(3\\).\n\nThus the only survivors are \\(n=2\\) and \\(n=4\\).\n\nA direct check confirms both satisfy the condition.\n\nSo the values of \\(n\\) are:\n\\[\n\\boxed{n=2 \\text{ or } n=4.}\n\\]\n\nFinal answer: \\(2,4\\)",
+  "usage": {
+    "input_tokens": 144,
+    "output_tokens": 908,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 6.13320283300709,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "\\(2,4\\)"
+  }
+}

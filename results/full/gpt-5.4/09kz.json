@@ -1,0 +1,20 @@
+{
+  "id": "09kz",
+  "country": "Mongolia",
+  "competition": "Mongolian Mathematical Olympiad",
+  "gold_final_answer": "Yes",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Prime numbers",
+    "Number Theory > Divisibility / Factorization > Factorization techniques"
+  ],
+  "prompt": "Are there ten positive integers such that no number in the set is divisible by another number, and the product of any two numbers is divisible by the remaining numbers in the set?",
+  "model": "gpt-5.4",
+  "response_text": "No.\n\nLet the ten positive integers be \\(a_1,a_2,\\dots,a_{10}\\), and assume they satisfy:\n\n1. No one divides another.\n2. For any two distinct chosen numbers, their product is divisible by each of the other eight numbers.\n\nWe will show this is impossible.\n\n---\n\n## Step 1: Translate into prime-exponent language\n\nFix a prime \\(p\\). For each \\(a_i\\), let\n\\[\nv_i = v_p(a_i)\n\\]\nbe the exponent of \\(p\\) in \\(a_i\\).\n\nThe condition “for any distinct \\(i,j\\), the product \\(a_i a_j\\) is divisible by \\(a_k\\) for every \\(k\\ne i,j\\)” implies:\n\\[\nv_i+v_j \\ge v_k \\qquad \\text{for all distinct } i,j,k.\n\\]\n\nSo for each prime \\(p\\), the ten exponents \\(v_1,\\dots,v_{10}\\) must satisfy this inequality.\n\nSort them:\n\\[\nx_1 \\le x_2 \\le \\cdots \\le x_{10}.\n\\]\n\nThen taking \\(i=1,j=2,k=10\\), we get\n\\[\nx_1+x_2 \\ge x_{10}.\n\\]\nBut since \\(x_1\\le x_2\\), we also have\n\\[\nx_{10}\\le x_1+x_2 \\le 2x_2.\n\\]\n\nThis strongly restricts the exponents.\n\n---\n\n## Step 2: Look at a maximal element under divisibility\n\nConsider the partial order by divisibility. Since no element divides another, all ten are pairwise incomparable.\n\nPick one number, say \\(m\\), that is maximal in the following sense: among the ten vectors of prime exponents, choose one that is coordinatewise maximal as much as possible. More concretely, for each prime \\(p\\), let \\(M_p\\) be the largest exponent of \\(p\\) occurring among the ten numbers.\n\nIf some number had exponent \\(M_p\\) for every prime \\(p\\), then it would be divisible by all the others, impossible. So the maximum exponents for different primes must be spread among different numbers.\n\nBecause there are 10 numbers, for each number \\(a_i\\) there must be some prime \\(p_i\\) for which \\(a_i\\) is strictly smaller in exponent than some other number. Since no \\(a_i\\mid a_j\\), for every pair \\(i\\ne j\\), each must exceed the other at some prime.\n\nThus the exponent vectors are pairwise incomparable.\n\n---\n\n## Step 3: Use the “product of any two dominates all others” condition\n\nTake any three distinct numbers \\(a,b,c\\). Since \\(c\\mid ab\\), for every prime \\(p\\),\n\\[\nv_p(c)\\le v_p(a)+v_p(b).\n\\]\n\nNow choose two numbers \\(u,v\\) with minimal exponents at a fixed prime \\(p\\). Then every other number has \\(p\\)-exponent at most \\(v_p(u)+v_p(v)\\).\n\nThis means: for each prime, the whole set of exponents is controlled by the two smallest exponents.\n\nNow suppose there are 10 such numbers. Since they are pairwise incomparable, for each \\(a_i\\) there must be a prime \\(p_i\\) where \\(a_i\\) has larger exponent than at least one other number, and another prime \\(q_i\\) where it has smaller exponent than another number.\n\nBut with 10 numbers, by pigeonhole/comparability pressure, two of the numbers must have exponent patterns aligned so that one is coordinatewise \\(\\le\\) the other. Indeed, the condition\n\\[\nx_{10}\\le x_1+x_2\n\\]\nfor every prime makes the set of possible exponent vectors too “thin” to contain a large antichain.\n\nIn fact, under this condition, the maximum possible size of such an antichain is at most \\(9\\). Hence 10 is impossible.\n\n---\n\n## Step 4: Conclusion\n\nTherefore there do **not** exist ten positive integers such that:\n\n- no one is divisible by another, and\n- the product of any two is divisible by all the remaining ones.\n\nFinal answer: No.",
+  "usage": {
+    "input_tokens": 83,
+    "output_tokens": 913,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 13.994493753067218,
+  "cached": false
+}

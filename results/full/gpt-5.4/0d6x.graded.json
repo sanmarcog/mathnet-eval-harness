@@ -1,0 +1,25 @@
+{
+  "id": "0d6x",
+  "country": "Saudi Arabia",
+  "competition": "SAUDI ARABIAN MATHEMATICAL COMPETITIONS",
+  "gold_final_answer": "All real-coefficient polynomials P are:\n- If b = 0: P(x) = c for any real constant c.\n- If k = b/a is a natural number: P(x) = c · x(x − a)(x − 2a) ··· (x − (k − 1)a) for any real constant c.\n- If k = b/a is not a natural number: P(x) ≡ 0.",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Polynomial operations",
+    "Algebra > Algebraic Expressions > Functional Equations"
+  ],
+  "prompt": "Let $a, b$ be given two real numbers with $a \\neq 0$. Find all polynomials $P$ with real coefficients such that\n$$\nx P(x-a) = (x-b) P(x) \\text{ for all } x \\in \\mathbb{R}.\n$$",
+  "model": "gpt-5.4",
+  "response_text": "We seek all real-coefficient polynomials \\(P\\) such that\n\\[\nxP(x-a)=(x-b)P(x)\\qquad \\forall x\\in\\mathbb R,\n\\]\nwhere \\(a\\neq 0\\).\n\nWe will show that the only possibilities are:\n\n- \\(P\\equiv 0\\), always;\n- and if \\(\\dfrac ba=n\\in \\mathbb Z_{\\ge 0}\\), then\n  \\[\n  P(x)=C\\prod_{k=0}^{n-1}(x-ka)\n  \\]\n  for arbitrary real constant \\(C\\) (empty product \\(=1\\) when \\(n=0\\)).\n\n---\n\n## 1. Degree comparison\n\nLet \\(P\\not\\equiv 0\\), and let \\(\\deg P=d\\) with leading coefficient \\(c\\neq 0\\).\n\nThen both sides are polynomials of degree \\(d+1\\). Compare the coefficient of \\(x^{d+1}\\): both are \\(c\\), so no information yet.\n\nCompare the coefficient of \\(x^d\\):\n\n- Since\n  \\[\n  P(x-a)=c(x-a)^d+\\cdots = c(x^d-da\\,x^{d-1}+\\cdots)+\\cdots,\n  \\]\n  we get\n  \\[\n  xP(x-a)=c x^{d+1}-cda\\,x^d+\\cdots.\n  \\]\n\n- Also\n  \\[\n  (x-b)P(x)=xP(x)-bP(x)=c x^{d+1}-bc\\,x^d+\\cdots.\n  \\]\n\nThus\n\\[\n-cda=-bc \\quad\\Rightarrow\\quad da=b.\n\\]\nSince \\(c\\neq 0\\), we obtain\n\\[\nb=da.\n\\]\nHence necessarily\n\\[\n\\frac ba=d\\in \\mathbb Z_{\\ge 0}.\n\\]\nSo if \\(b/a\\) is not a nonnegative integer, the only solution is \\(P\\equiv 0\\).\n\n---\n\n## 2. Structure of the roots\n\nNow assume \\(P\\not\\equiv 0\\) and \\(d=\\frac ba\\in\\mathbb Z_{\\ge0}\\).\n\nWe prove that \\(P\\) must have roots at\n\\[\n0,\\ a,\\ 2a,\\ \\dots,\\ (d-1)a.\n\\]\n\nSet \\(x=0\\) in the identity:\n\\[\n0\\cdot P(-a)=(-b)P(0),\n\\]\nso if \\(b\\neq 0\\) then \\(P(0)=0\\).  \nIf \\(b=0\\), then \\(d=0\\), so \\(P\\) is constant, which will match the final formula.\n\nNow suppose \\(r\\) is a root of \\(P\\) with \\(r\\neq b\\). Plugging \\(x=r\\) gives\n\\[\nrP(r-a)=(r-b)P(r)=0,\n\\]\nhence if \\(r\\neq 0\\), then \\(P(r-a)=0\\). So roots propagate downward by steps of \\(a\\).\n\nSince \\(P\\) has degree \\(d\\), it cannot have infinitely many distinct roots. Starting from the root \\(0\\) and using the original equation more directly is cleaner:\n\nIf \\(P(ka)=0\\) for some \\(k\\), then substituting \\(x=(k+1)a\\) gives\n\\[\n(k+1)a\\,P(ka)=((k+1)a-b)P((k+1)a).\n\\]\nThus\n\\[\n0=((k+1)a-b)P((k+1)a).\n\\]\nSo as long as \\((k+1)a\\neq b=da\\), i.e. \\(k+1\\neq d\\), we get\n\\[\nP((k+1)a)=0.\n\\]\n\nStarting from \\(P(0)=0\\), this yields\n\\[\nP(a)=P(2a)=\\cdots=P((d-1)a)=0.\n\\]\nSo \\(P\\) is divisible by\n\\[\nQ(x):=\\prod_{k=0}^{d-1}(x-ka).\n\\]\nBut \\(\\deg Q=d=\\deg P\\), hence\n\\[\nP(x)=C\\,Q(x)\n\\]\nfor some constant \\(C\\in\\mathbb R\\).\n\n---\n\n## 3. Verification\n\nLet\n\\[\nP(x)=C\\prod_{k=0}^{d-1}(x-ka),\\qquad d=\\frac ba\\in\\mathbb Z_{\\ge0}.\n\\]\nThen\n\\[\nP(x-a)=C\\prod_{k=0}^{d-1}(x-a-ka)\n= C\\prod_{k=1}^{d}(x-ka).\n\\]\nThus\n\\[\nxP(x-a)=C\\,x\\prod_{k=1}^{d}(x-ka)\n= C\\prod_{k=0}^{d}(x-ka),\n\\]\nand\n\\[\n(x-b)P(x)=(x-da)\\,C\\prod_{k=0}^{d-1}(x-ka)\n= C\\prod_{k=0}^{d}(x-ka).\n\\]\nSo the identity holds.\n\nFor \\(d=0\\) (i.e. \\(b=0\\)), this says \\(P(x)=C\\), and indeed\n\\[\nxC=(x-0)C.\n\\]\n\nAlso \\(C=0\\) gives the zero polynomial.\n\n---\n\nTherefore all solutions are exactly as stated.\n\nFinal answer: If \\(b/a\\notin \\mathbb Z_{\\ge 0}\\), then the only solution is \\(P(x)\\equiv 0\\). If \\(b/a=n\\in \\mathbb Z_{\\ge 0}\\), then all solutions are\n\\[\nP(x)=C\\prod_{k=0}^{n-1}(x-ka)\\qquad (C\\in\\mathbb R),\n\\]\nwith the convention that for \\(n=0\\) the product is \\(1\\), so \\(P\\) is any constant polynomial.",
+  "usage": {
+    "input_tokens": 111,
+    "output_tokens": 1298,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 16.84055312606506,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "If \\(b/a\\notin \\mathbb Z_{\\ge 0}\\), then the only solution is \\(P(x)\\equiv 0\\). If \\(b/a=n\\in \\mathbb Z_{\\ge 0}\\), then all solutions are"
+  }
+}

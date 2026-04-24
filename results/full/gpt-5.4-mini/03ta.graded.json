@@ -1,0 +1,25 @@
+{
+  "id": "03ta",
+  "country": "China",
+  "competition": "China Mathematical Competition",
+  "gold_final_answer": "[-√5/5, √5/5]",
+  "topics_flat": [
+    "Algebra > Intermediate Algebra > Complex numbers",
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities"
+  ],
+  "prompt": "Let complex number $z = (a + \\cos \\theta) + (2a - \\sin \\theta)i$. If $|z| \\le 2$ for any $\\theta \\in \\mathbb{R}$, then the range of real number $a$ is ______.",
+  "model": "gpt-5.4-mini",
+  "response_text": "We need\n\\[\n|z|^2=(a+\\cos\\theta)^2+(2a-\\sin\\theta)^2\\le 4 \\quad \\text{for all }\\theta.\n\\]\nExpand:\n\\[\n|z|^2=a^2+2a\\cos\\theta+\\cos^2\\theta+4a^2-4a\\sin\\theta+\\sin^2\\theta\n=5a^2+1+2a(\\cos\\theta-2\\sin\\theta).\n\\]\nSo the condition becomes\n\\[\n5a^2+1+2a(\\cos\\theta-2\\sin\\theta)\\le 4 \\quad \\forall \\theta.\n\\]\nSince\n\\[\n\\cos\\theta-2\\sin\\theta\n\\]\nhas maximum \\( \\sqrt{1^2+2^2}=\\sqrt5 \\) and minimum \\(-\\sqrt5\\), we need the maximum possible value of the left-hand side to be at most 4. Thus\n\\[\n5a^2+1+2|a|\\sqrt5\\le 4.\n\\]\nLet \\(x=|a|\\ge 0\\). Then\n\\[\n5x^2+2\\sqrt5\\,x-3\\le 0.\n\\]\nSolve:\n\\[\nx=\\frac{-2\\sqrt5\\pm \\sqrt{20+60}}{10}\n=\\frac{-2\\sqrt5\\pm 4\\sqrt5}{10}.\n\\]\nThe nonnegative root is\n\\[\nx=\\frac{\\sqrt5}{5}=\\frac1{\\sqrt5}.\n\\]\nHence\n\\[\n|a|\\le \\frac1{\\sqrt5}.\n\\]\n\nFinal answer: \\(\\displaystyle -\\frac1{\\sqrt5}\\le a\\le \\frac1{\\sqrt5}\\).",
+  "usage": {
+    "input_tokens": 108,
+    "output_tokens": 393,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.3381927849259228,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "\\(\\displaystyle -\\frac1{\\sqrt5}\\le a\\le \\frac1{\\sqrt5}\\)."
+  }
+}

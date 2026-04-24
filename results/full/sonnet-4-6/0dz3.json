@@ -1,0 +1,20 @@
+{
+  "id": "0dz3",
+  "country": "Slovenia",
+  "competition": "Slovenija 2008",
+  "gold_final_answer": "4",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Symmetric functions",
+    "Algebra > Algebraic Expressions > Polynomials > Polynomial operations"
+  ],
+  "prompt": "Let the numbers $a$ and $b$ be such that $a^3 + b^3 = 13$ and $a^9 + b^9 = -299$. Find the value of $ab$, given that $ab$ is real.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "Let me denote s = a + b and p = ab.\n\nWe know:\n- a³ + b³ = (a + b)³ - 3ab(a + b) = s³ - 3ps = 13\n- a⁹ + b⁹ = (a³)³ + (b³)³\n\nLet x = a³, y = b³. Then:\n- x + y = 13\n- x³ + y³ = -299\n\nFrom x³ + y³ = (x + y)³ - 3xy(x + y):\n-299 = 13³ - 3·xy·13\n-299 = 2197 - 39xy\n39xy = 2496\nxy = 64\n\nSo a³b³ = 64, meaning (ab)³ = 64, thus ab = 4.\n\nLet me verify: if ab = 4 and a³ + b³ = 13, then a⁶b⁶ = 64, so a³b³ = 64 (taking real cube root).\n\nCheck: a⁹ + b⁹ = (a³ + b³)³ - 3a³b³(a³ + b³) = 13³ - 3(64)(13) = 2197 - 2496 = -299 ✓\n\nFinal answer: 4",
+  "usage": {
+    "input_tokens": 105,
+    "output_tokens": 341,
+    "thinking_tokens": 0
+  },
+  "latency_s": 4.635698797996156,
+  "cached": false
+}

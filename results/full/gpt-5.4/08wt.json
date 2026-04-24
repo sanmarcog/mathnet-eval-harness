@@ -1,0 +1,22 @@
+{
+  "id": "08wt",
+  "country": "Japan",
+  "competition": "Japan Junior Mathematical Olympiad",
+  "gold_final_answer": "199998",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Enumeration with symmetry",
+    "Discrete Mathematics > Combinatorics > Recursion, bijection",
+    "Discrete Mathematics > Combinatorics > Invariants / monovariants",
+    "Number Theory > Other"
+  ],
+  "prompt": "Suppose you write down on a blackboard without repetition each of those positive integers which are less than or equal to $10^6$ and are divisible by $3$. How many $1$'s do you have to write on the blackboard?",
+  "model": "gpt-5.4",
+  "response_text": "We need count how many times the digit \\(1\\) appears when writing all positive multiples of \\(3\\) up to \\(10^6\\).\n\nThe multiples are\n\\[\n3,6,9,\\dots,999999,\n\\]\nand also \\(1000000\\) is not divisible by \\(3\\), so only the 6-digit numbers up to \\(999999\\) matter.\n\nSo we are counting digit \\(1\\)'s among all 6-digit strings from \\(000001\\) to \\(999999\\) that represent multiples of \\(3\\), excluding \\(000000\\). It is convenient to include \\(000000\\); it contributes no \\(1\\)'s anyway.\n\n## Key symmetry idea\nA 6-digit number is divisible by \\(3\\) iff the sum of its digits is divisible by \\(3\\).\n\nFix one position, say the first digit. Among all 6-digit strings with digit sum divisible by \\(3\\), how many have first digit \\(1\\)?\n\nIf the first digit is fixed as \\(1\\), then the remaining 5 digits must have sum congruent to \\(2 \\pmod 3\\).\n\nNow among all \\(10^5\\) choices of the remaining 5 digits, the digit sums are equally distributed among residues \\(0,1,2 \\pmod 3\\). Hence exactly\n\\[\n\\frac{10^5}{3}\n\\]\nwould be tempting—but \\(10^5\\) is not divisible by \\(3\\), so we must be more careful.\n\n## Exact count for 5 digits by residue mod 3\nAmong digits \\(0,\\dots,9\\), the counts of residues mod \\(3\\) are:\n- residue \\(0\\): \\(4\\) digits \\((0,3,6,9)\\),\n- residue \\(1\\): \\(3\\) digits \\((1,4,7)\\),\n- residue \\(2\\): \\(3\\) digits \\((2,5,8)\\).\n\nLet \\(a_n,b_n,c_n\\) be the numbers of \\(n\\)-digit strings with digit sum congruent to \\(0,1,2 \\pmod 3\\), respectively.\n\nStarting from \\(n=0\\): \\((1,0,0)\\).  \nEach added digit transforms counts by\n\\[\n(a',b',c')=(4a+3b+3c,\\ 3a+4b+3c,\\ 3a+3b+4c).\n\\]\nBy symmetry, for \\(n\\ge1\\), \\(b_n=c_n\\). Let \\(b_n=c_n=x_n\\). Then\n\\[\na_{n+1}=4a_n+6x_n,\\qquad x_{n+1}=3a_n+7x_n.\n\\]\nComputing quickly:\n- \\(n=1:\\ (4,3,3)\\)\n- \\(n=2:\\ (34,33,33)\\)\n- \\(n=3:\\ (334,333,333)\\)\n\nPattern:\n\\[\na_n=\\frac{10^n+2}{3},\\qquad b_n=c_n=\\frac{10^n-1}{3}.\n\\]\nSo for \\(n=5\\),\n\\[\nb_5=c_5=\\frac{100000-1}{3}=33333.\n\\]\n\nThus for any fixed position, the number of multiples of \\(3\\) (among \\(000000\\) to \\(999999\\)) having digit \\(1\\) in that position is \\(33333\\).\n\nThere are 6 positions, so total number of \\(1\\)'s is\n\\[\n6\\cdot 33333=199998.\n\\]\n\nSince \\(000000\\) contributes no \\(1\\)'s and \\(1000000\\) is not included, this is exactly the desired count.\n\nFinal answer: 199998",
+  "usage": {
+    "input_tokens": 100,
+    "output_tokens": 813,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 12.05349689500872,
+  "cached": false
+}

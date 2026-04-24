@@ -1,0 +1,26 @@
+{
+  "id": "0akn",
+  "country": "North Macedonia",
+  "competition": "Asian-Pacific Mathematical Olympiad",
+  "gold_final_answer": "All odd positive integers",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Transformations > Rotation",
+    "Geometry > Plane Geometry > Analytic / Coordinate Methods > Vectors",
+    "Geometry > Plane Geometry > Miscellaneous > Constructions and loci"
+  ],
+  "prompt": "Problem:\n\nLet $ABC$ be an equilateral triangle. From the vertex $A$ we draw a ray towards the interior of the triangle such that the ray reaches one of the sides of the triangle. When the ray reaches a side, it then bounces off following the law of reflection, that is, if it arrives with a directed angle $\\alpha$, it leaves with a directed angle $180^\\circ - \\alpha$. After $n$ bounces, the ray returns to $A$ without ever landing on any of the other vertices. Find all possible values of $n$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Unfold the reflections of the equilateral triangle. Each bounce across a side is equivalent to continuing the ray straight into the reflected copy of the triangle. Since the angle of an equilateral triangle is \\(60^\\circ\\), the reflections tile the plane by equilateral triangles, and the ray becomes a straight line in this tiling.\n\nTo return to \\(A\\), the unfolded straight line must land on a copy of \\(A\\). The copies of \\(A\\) form a triangular lattice. A line starting at one lattice point and ending at another with no intermediate lattice vertices corresponds to a primitive lattice segment. In the triangular lattice, the number of side-crossings made by such a segment equals exactly the “lattice length” of the displacement, and the condition that the ray never hits another vertex means the segment is primitive.\n\nFor the ray to start and end at the same vertex \\(A\\) after unfolding, the path in the plane must connect \\(A\\) to one of its images under a rotation by a multiple of \\(60^\\circ\\). The only way this happens without passing through other vertices is when the total number of side crossings is a multiple of \\(3\\). Moreover, every multiple of \\(3\\) is achievable by choosing a suitable initial direction.\n\nTherefore the possible numbers of bounces are exactly those divisible by \\(3\\).\n\nFinal answer: \\(\\boxed{n\\equiv 0 \\pmod 3}\\)",
+  "usage": {
+    "input_tokens": 166,
+    "output_tokens": 303,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.3913025899091735,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "n\\equiv 0 \\pmod 3"
+  }
+}

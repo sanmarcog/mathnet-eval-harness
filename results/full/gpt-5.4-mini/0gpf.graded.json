@@ -1,0 +1,24 @@
+{
+  "id": "0gpf",
+  "country": "Turkey",
+  "competition": "Team Selection Test",
+  "gold_final_answer": "34",
+  "topics_flat": [
+    "Discrete Mathematics > Graph Theory"
+  ],
+  "prompt": "Graph Air (GA) is running two way flights between some cities of a country so that it is possible to travel between any two cities using GA flights. It turned out that after adding one flight, one may travel between any two cities by using at most 17 GA flights. Determine the maximal possible number (if exists) of GA flights necessary to use for traveling between any two cities of a country before adding the flight.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let the cities and flights form a connected graph \\(G\\).  \nThe condition says that after adding one new flight (one new edge), the diameter of the graph becomes at most \\(17\\).\n\nWe want the maximum possible original diameter.\n\n## Key observation\nAdding one edge can shorten any route by at most the effect of going through that new edge once.  \nSo if the original graph has diameter \\(D\\), after adding one edge the diameter can drop by at most \\(1\\) on the “best” pair, but more importantly, in a worst-case graph shaped like a path, adding one edge between the ends turns a path into a cycle, and the new diameter becomes about half of the original.\n\nSo we should look for the graph with the largest possible diameter whose diameter becomes \\(\\le 17\\) after adding one edge.  \nThe extremal example is a path on \\(2k+1\\) vertices: its diameter is \\(2k\\), and adding an edge between the endpoints makes a cycle of length \\(2k+1\\), whose diameter is \\(k\\).\n\nWe need\n\\[\nk \\le 17.\n\\]\nThus the largest possible original diameter is\n\\[\n2k = 34.\n\\]\n\nThis is achievable by a path on \\(35\\) cities: before adding the flight, the maximum number of flights needed is \\(34\\); after adding one flight joining the endpoints, the graph becomes a \\(35\\)-cycle, whose diameter is \\(17\\).\n\nFinal answer: \\(34\\)",
+  "usage": {
+    "input_tokens": 133,
+    "output_tokens": 324,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 2.8302690940909088,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "normalized",
+    "predicted": "\\(34\\)"
+  }
+}

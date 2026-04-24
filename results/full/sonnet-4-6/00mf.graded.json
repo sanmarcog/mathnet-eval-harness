@@ -1,0 +1,25 @@
+{
+  "id": "00mf",
+  "country": "Austria",
+  "competition": "48th Austrian Mathematical Olympiad National Competition (Final Round, part 1)",
+  "gold_final_answer": "131070",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Games / greedy algorithms",
+    "Discrete Mathematics > Combinatorics > Induction / smoothing"
+  ],
+  "prompt": "Anna and Berta play a game in which they take turns in removing marbles from a table. Anna takes the first turn. When at the beginning of a turn there are $n \\ge 1$ marbles on the table, then the player whose turn it is removes $k$ marbles, where $k \\ge 1$ either is an even number with $k \\le \\frac{n}{2}$ or an odd number with $\\frac{n}{2} \\le k \\le n$. A player wins the game if she removes the last marble from the table.\n\n*Determine the smallest number $N \\ge 100\\,000$ such that Berta can enforce a victory if there are exactly $N$ marbles on the table in the beginning.*",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Setting Up the Analysis\n\nLet me determine which positions are winning (W) for the current player and losing (L) for the current player.\n\n**Rules:** With $n$ marbles, you can remove $k$ where:\n- $k$ is even and $k \\leq n/2$, OR  \n- $k$ is odd and $n/2 \\leq k \\leq n$\n\n**Base cases:**\n- $n=1$: Can take $k=1$ (odd, $1/2 \\leq 1 \\leq 1$). Take all → W\n- $n=2$: Even $k \\leq 1$: none. Odd $k$ with $1 \\leq k \\leq 2$: $k=1$. Take 1, leave 1 → opponent wins. So only move leaves W position → L\n- $n=3$: Odd $k$ with $3/2 \\leq k \\leq 3$: $k=3$. Take all → W\n- $n=4$: Even $k \\leq 2$: $k=2$. Odd $k$ with $2 \\leq k \\leq 4$: $k=3$. \n  - Take 2: leave 2 (L) → W\n- $n=5$: Even $k \\leq 2$: $k=2$. Odd $k \\geq 2.5$: $k=3,5$.\n  - Take 5 → W\n- $n=6$: Even $k \\leq 3$: $k=2$. Odd $k$ with $3 \\leq k \\leq 6$: $k=3,5$.\n  - Take 2: leave 4 (W). Take 3: leave 3 (W). Take 5: leave 1 (W). → L\n- $n=7$: Even $k \\leq 3$: $k=2$. Odd $k \\geq 3.5$: $k=5,7$.\n  - Take 2: leave 5 (W). Take 5: leave 2 (L) → W\n- $n=8$: Even $k \\leq 4$: $k=2,4$. Odd $k \\geq 4$: $k=5,7$.\n  - Take 2: leave 6 (L) → W\n- $n=9$: Even $k \\leq 4$: $k=2,4$. Odd $k \\geq 4.5$: $k=5,7,9$.\n  - Take 9 → W\n- $n=10$: Even $k \\leq 5$: $k=2,4$. Odd $k \\geq 5$: $k=5,7,9$.\n  - Take 4: leave 6 (L) → W\n- $n=11$: Even $k \\leq 5$: $k=2,4$. Odd $k \\geq 5.5$: $k=7,9,11$.\n  - Take 2: leave 9 (W). Take 4: leave 7 (W). Take 7: leave 4 (W). Take 9: leave 2 (L) → W\n- $n=12$: Even $k \\leq 6$: $k=2,4,6$. Odd $k \\geq 6$: $k=7,9,11$.\n  - Take 6: leave 6 (L) → W\n- $n=13,14$: Check... \n- $n=14$: Even $k \\leq 7$: $k=2,4,6$. Odd $k \\geq 7$: $k=7,9,11,13$.\n  - Take 8? No. Take 6: leave 8 (W). Take 2: leave 12(W). Take 4: leave 10(W). Take 7: leave 7... need to check $n=7$ W. Take 9: leave 5(W). Take 11: leave 3(W). Take 13: leave 1(W). → L?\n\nLet me compute systematically. The L positions I find: 2, 6, 14, ...\n\nDifferences: 4, 8, ... doubling? Next: 14+16=30, 30+32=62, 62+64=126, 126+128=254, 254+256=510, 510+512=1022, ...\n\nPattern: $L_n = 2(2^n - 1)/... $ Actually: 2, 6, 14, 30, 62, 126, 254, 510, 1022, 2046, 4094, 8190, 16382, 32766, 65534, 131070...\n\nThe L positions are $2^n - 2$ for $n \\geq 1$: 2, 6 (no, $2^3-2=6$✓), 14=$2^4-2$✓, 30=$2^5-2$✓...\n\nSmallest $N \\geq 100000$: $2^{17}-2 = 131072-2 = 131070$.\n\nFinal answer: 131070",
+  "usage": {
+    "input_tokens": 215,
+    "output_tokens": 1288,
+    "thinking_tokens": 0
+  },
+  "latency_s": 14.058928635087796,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "exact",
+    "predicted": "131070"
+  }
+}

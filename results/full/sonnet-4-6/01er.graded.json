@@ -1,0 +1,26 @@
+{
+  "id": "01er",
+  "country": "Baltic Way",
+  "competition": "Baltic Way shortlist",
+  "gold_final_answer": "0",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization",
+    "Number Theory > Modular Arithmetic",
+    "Discrete Mathematics > Combinatorics > Pigeonhole principle"
+  ],
+  "prompt": "Let's say that a digit is *eternal* for a positive integer $n$, if it is contained in every multiple of $n$. Find all digits which are eternal for at least one positive integer.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Solution\n\nI need to find all digits $d \\in \\{0,1,2,...,9\\}$ such that there exists a positive integer $n$ where every multiple of $n$ contains the digit $d$.\n\n**First, note that 0 cannot be eternal.**\nThe multiple $n \\cdot 1 = n$ itself might not contain 0, but more importantly, consider multiples like $n, 2n, 3n, \\ldots$ — we can find multiples that are powers of some digit pattern. Actually, let me think more carefully. For any $n$, the multiple $n \\cdot 10^k$ contains 0, but we need 0 in *every* multiple. Consider $n=5$: multiples include 5, 15, 25... which don't all contain 0. For any $n$, the multiple $n$ itself: if $n$ doesn't contain 0, then 0 isn't eternal. But we need to check if some $n$ forces all multiples to contain 0. Since multiples of $n$ include numbers like $n, 2n, \\ldots$, and we can find multiples without 0 (e.g., $n \\cdot 1 = n$; if $n$ has no 0, done; if $n$ has 0, consider that multiples of any $n$ are dense enough that some avoid 0). Indeed, for any $n$, there exist multiples of $n$ with no 0 digit (this follows since numbers without digit 0 have positive density in a suitable sense, and multiples of $n$ hit every residue class). So **0 is not eternal for any $n$**.\n\n**Checking digit 1:**\nConsider $n = 1$. Every positive integer is a multiple of 1, and clearly not every positive integer contains digit 1 (e.g., 2). \n\nConsider larger $n$. We need every multiple of $n$ to contain digit 1. Try $n = 1$ fails. What about specific $n$?\n\n**Key insight:** For a digit $d \\neq 0$, consider whether we can find $n$ such that all multiples contain $d$.\n\n**Digit 1 with $n$ related to repunits:** Consider numbers where all multiples must contain 1. This seems hard since multiples grow and can avoid any digit.\n\n**Reconsidering:** Actually, for large enough $n$, multiples of $n$ are sparse, but they still cover all residues. The question is whether the multiples can avoid a digit.\n\n**Claim:** No digit is eternal for any $n$.\n\nWait — let me reconsider. For any $n$ and any digit $d$, can we always find a multiple of $n$ not containing $d$?\n\nBy a result related to the fact that for any $n$ and digit $d$, there exists a multiple of $n$ using only digits from $\\{0,1,...,9\\} \\setminus \\{d\\}$ (when $d \\neq 0$, this follows since numbers avoiding digit $d$ still form a set with multiples of any $n$).\n\n**Formal argument:** Numbers avoiding digit $d$ (for $d \\neq 0$): these numbers have density approaching... actually they have density 0 but are still infinite. By a pigeonhole/greedy argument, for any $n$, we can find a multiple of $n$ avoiding any given digit $d$.\n\nConsider numbers with digits only from $S = \\{0,1,...,9\\}\\setminus\\{d\\}$. These form an infinite set. Among any $n$ consecutive integers, we might not find one in $S$-digit numbers, but over longer ranges, by considering $n$-digit numbers avoiding $d$: there are $8 \\cdot 9^{n-1}$ such numbers (for $d\\neq 0$), and they cover $n$ residue classes mod $n$ (roughly). By pigeonhole over sufficiently many such numbers, some two are congruent mod $n$, and their difference... this doesn't directly work.\n\nActually, a cleaner approach: numbers consisting only of digits from $\\{1,2,...,9\\}\\setminus\\{d\\}$ and 0 are infinite, and by the pigeonhole principle applied to residues mod $n$, some such number is $\\equiv 0 \\pmod{n}$.\n\nThis shows **no digit is eternal for any positive integer $n$**.\n\nWait, but the problem says \"find all digits which are eternal for at least one positive integer,\" implying some exist. Let me reconsider digit 0: multiples of 10 all end in 0... but 10 itself contains 0, 20 contains 0, etc. Every multiple of 10 contains 0! So **0 is eternal for $n = 10$**.\n\nSimilarly, multiples of 100 all contain at least two 0s. So **0 is eternal for $n=10$**.\n\nFor other digits: multiples of 10 are 10,20,...,100,... — 100 contains two 0s, all fine. So 0 works.\n\nFor digit $d \\neq 0$: multiples of $n$ include arbitrarily large numbers, and we can find multiples avoiding $d$ using the pigeonhole on residues among numbers with digits $\\subseteq \\{0,...,9\\}\\setminus\\{d\\}$.\n\nSo the only eternal digit is **0**, achieved by $n = 10$.\n\nFinal answer: $\\boxed{0}$",
+  "usage": {
+    "input_tokens": 89,
+    "output_tokens": 1310,
+    "thinking_tokens": 0
+  },
+  "latency_s": 28.040665964013897,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "exact",
+    "predicted": "0"
+  }
+}

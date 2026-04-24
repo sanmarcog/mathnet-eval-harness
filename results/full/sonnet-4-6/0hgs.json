@@ -1,0 +1,20 @@
+{
+  "id": "0hgs",
+  "country": "Ukraine",
+  "competition": "62nd Ukrainian National Mathematical Olympiad",
+  "gold_final_answer": "B",
+  "topics_flat": [
+    "Algebra > Intermediate Algebra > Logarithmic functions",
+    "Algebra > Intermediate Algebra > Exponential functions"
+  ],
+  "prompt": "Which number is larger, $A = \\frac{1}{9} : \\sqrt[3]{\\frac{1}{2023}}$ or $B = \\log_{2023} 91125$?",
+  "model": "claude-sonnet-4-6",
+  "response_text": "I need to compare A = (1/9) ÷ ∛(1/2023) and B = log₂₀₂₃(91125).\n\n## Computing A\n\nA = (1/9) ÷ (1/2023)^(1/3) = (1/9) · 2023^(1/3)\n\nNote that 2023 = 7 × 17^2... let me check: 7 × 289 = 2023. Yes.\n\nSo A = 2023^(1/3) / 9.\n\n## Computing B\n\nB = log₂₀₂₃(91125)\n\nLet me factor 91125: 91125 / 5 = 18225, /5 = 3645, /5 = 729 = 3^6.\nSo 91125 = 5³ · 3⁶ = 125 · 729 = (5 · 9)^... wait: 5³ · 3⁶ = (5 · 3²)³ = 45³.\n\nSo B = log₂₀₂₃(45³) = 3·log₂₀₂₃(45).\n\n## Comparing A and B\n\nCompare 2023^(1/3)/9 vs 3·log₂₀₂₃(45).\n\nLet me set x = log₂₀₂₃(45), so 2023^x = 45.\n\nThen B = 3x.\n\nFor A: 2023^(1/3)/9. Since 2023^x = 45, we have 2023^(1/3) = 2023^(1/3).\n\nCompare 2023^(1/3)/9 vs 3·log₂₀₂₃(45).\n\nLet me compute numerically. 2023^(1/3): since 12³ = 1728 and 13³ = 2197, so 2023^(1/3) ≈ 12.65.\n\nA ≈ 12.65/9 ≈ 1.405.\n\nFor B: log₂₀₂₃(45) = ln(45)/ln(2023).\nln(45) = ln(9·5) = 2ln3 + ln5 ≈ 2(1.0986) + 1.6094 = 3.8066.\nln(2023) ≈ ln(2000) + ln(1.0115) ≈ 7.6009 + 0.01143 ≈ 7.6009. \nActually ln(2023): ln(2000) = ln(2) + 3ln(10) ≈ 0.6931 + 6.9078 = 7.6009. ln(2023) ≈ 7.6009 + 23/2000 ≈ 7.6009 + 0.0115 = 7.6124.\n\nlog₂₀₂₃(45) ≈ 3.8066/7.6124 ≈ 0.5001.\n\nB = 3 × 0.5001 ≈ 1.5003.\n\nSo A ≈ 1.405 and B ≈ 1.500.\n\n**B is larger.**\n\n## Verification\n\nLet me verify more carefully. Is log₂₀₂₃(45) close to 1/2?\n\n2023^(1/2) = √2023 ≈ 44.978 ≈ 45. Indeed √2023 ≈ 44.978, which is just barely less than 45.\n\nSo log₂₀₂₃(45) is slightly greater than 1/2, meaning B = 3·log₂₀₂₃(45) is slightly greater than 3/2.\n\nAnd A = 2023^(1/3)/9: since 2023^(1/3) ≈ 12.648, A ≈ 12.648/9 ≈ 1.4053 < 3/2.\n\nSo B > 3/2 > A.\n\nFinal answer: $B = \\log_{2023} 91125$ is larger.",
+  "usage": {
+    "input_tokens": 93,
+    "output_tokens": 1060,
+    "thinking_tokens": 0
+  },
+  "latency_s": 14.721312909969129,
+  "cached": false
+}

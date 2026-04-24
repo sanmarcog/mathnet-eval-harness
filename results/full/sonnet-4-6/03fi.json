@@ -1,0 +1,22 @@
+{
+  "id": "03fi",
+  "country": "Bulgaria",
+  "competition": "Bulgarian Spring Tournament",
+  "gold_final_answer": "m = 1, M = 9/8; No, the minimum cannot be attained by any triple of nonnegative rational numbers.",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities > QM-AM-GM-HM / Power Mean",
+    "Algebra > Algebraic Expressions > Polynomials > Symmetric functions",
+    "Number Theory > Diophantine Equations > Infinite descent / root flipping",
+    "Number Theory > Algebraic Number Theory > Unique factorization"
+  ],
+  "prompt": "The nonnegative real numbers $x, y, z$ are such that $(x + y)(y+z)(z+x) = 1$. We denote by $m$ and $M$ respectively the smallest and largest possible values of the expression $A = (xy + yz + zx)(x + y + z)$.\n\na) Find $m$ and $M$.\n\nb) Is there a triple of nonnegative rational numbers $(x, y, z)$ satisfying the given equality for which $A = m$?",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Part a) Finding m and M\n\n**Setting up the problem:**\n\nLet $p = x+y+z$, $q = xy+yz+zx$, $r = xyz$.\n\nNote that $(x+y)(y+z)(z+x) = (x+y+z)(xy+yz+zx) - xyz = pq - r = 1$.\n\nSo $A = pq = 1 + r \\geq 1$ (since $r \\geq 0$).\n\n**Finding the minimum m:**\n\nSince $r = xyz \\geq 0$, we have $A = pq = 1 + r \\geq 1$.\n\nEquality holds when $r = 0$, i.e., when at least one of $x, y, z = 0$.\n\n**Check:** Let $z = 0$. Then $(x+y)(y)(x) = xy(x+y) = 1$, and $A = (xy)(x+y) = 1$. ✓\n\nSo **m = 1**.\n\n**Finding the maximum M:**\n\nWe need to maximize $A = 1 + xyz$ subject to $(x+y)(y+z)(z+x) = 1$.\n\nBy AM-GM: $(x+y)(y+z)(z+x) \\geq 8xyz$, so $xyz \\leq \\frac{1}{8}$.\n\nEquality holds when $x = y = z$. Check: $(2x)^3 = 1 \\Rightarrow x = \\frac{1}{2}$.\n\nThen $xyz = \\frac{1}{8}$, giving $A = 1 + \\frac{1}{8} = \\frac{9}{8}$.\n\n**Verify:** $x = y = z = \\frac{1}{2}$: $(x+y)(y+z)(z+x) = (1)(1)(1) = 1$ ✓, and $A = (xy+yz+zx)(x+y+z) = \\frac{3}{4} \\cdot \\frac{3}{2} = \\frac{9}{8}$ ✓.\n\nSo **M = 9/8**.\n\n**Conclusion:** $m = 1$, $M = \\frac{9}{8}$.\n\n## Part b) Rational triple achieving A = m\n\nWe need nonneg rational $x, y, z$ with $(x+y)(y+z)(z+x) = 1$ and $A = 1$ (so $xyz = 0$).\n\nSet $z = 0$. We need $xy(x+y) = 1$ with $x, y$ nonneg rationals.\n\nWe need rational solutions to $xy(x+y) = 1$.\n\nTry $x = y$: $x \\cdot x \\cdot 2x = 2x^3 = 1 \\Rightarrow x = \\frac{1}{\\sqrt[3]{2}}$, which is irrational.\n\nTry a parametric approach: Let $x = t$, $y = s$ with $ts(t+s) = 1$.\n\nLet $t = \\frac{a}{b}$ and $s = \\frac{c}{d}$ in lowest terms. We need $\\frac{ac(ad+bc)}{b^2d^2} = 1$.\n\nTry $x = 1, y = \\frac{-1+\\sqrt{5}}{2}$... irrational.\n\nTry $x = \\frac{p}{q}$, $y = 1$: $\\frac{p}{q}(1 + \\frac{p}{q}) = 1 \\Rightarrow \\frac{p(q+p)}{q^2} = 1 \\Rightarrow p^2 + pq - q^2 = 0$.\n\nDiscriminant: $q^2 + 4q^2 = 5q^2$, so $p = \\frac{-q + q\\sqrt{5}}{2}$, irrational.\n\nTry $y = \\frac{m}{n}$: $x \\cdot \\frac{m}{n}(x + \\frac{m}{n}) = 1 \\Rightarrow x^2 + \\frac{m}{n}x - \\frac{n}{m} = 0$.\n\nDiscriminant: $\\frac{m^2}{n^2} + \\frac{4n}{m}$. For this to be a perfect square of a rational, we need $\\frac{m^3 + 4n^3}{mn^2}$ to be a perfect square of a rational, i.e., $m^3 + 4n^3 = k^2 \\cdot mn^2$ for some rational $k$.\n\nThe equation $xy(x+y) = 1$ defines an elliptic curve (after homogenization). Since it has rational points only at infinity or involving irrationals in the affine patch, one can show (by the theory of elliptic curves) that there are **no nonneg rational solutions** to $xy(x+y)=1$.\n\n**Answer:** No, there is no such triple of nonneg rational numbers.\n\n## Summary\n\n**a)** $m = 1$ and $M = \\dfrac{9}{8}$.\n\n**b)** No — the equation $xy(x+y) = 1$ (with $z=0$) has no nonnegative rational solutions, so $A = m$ cannot be achieved by a nonneg rational triple.\n\nFinal answer: $m = 1,\\ M = \\dfrac{9}{8}$; and no nonneg rational triple achieves $A = m$.",
+  "usage": {
+    "input_tokens": 167,
+    "output_tokens": 1383,
+    "thinking_tokens": 0
+  },
+  "latency_s": 17.37479551602155,
+  "cached": false
+}

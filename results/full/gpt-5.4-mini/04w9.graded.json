@@ -1,0 +1,25 @@
+{
+  "id": "04w9",
+  "country": "Czech Republic",
+  "competition": "National Round",
+  "gold_final_answer": "3",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Vieta's formulas",
+    "Algebra > Algebraic Expressions > Polynomials > Symmetric functions"
+  ],
+  "prompt": "Real numbers $a, b, c, d$ are such that\n$$\na + b + c + d = 0 \\quad \\text{and} \\quad \\frac{1}{a} + \\frac{1}{b} + \\frac{1}{c} + \\frac{1}{d} = 0.\n$$\nHow many of the equalities\n$$ab = cd, \\quad ac = bd, \\quad ad = bc$$\ncan hold simultaneously?",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let  \n\\[\nx=\\frac1a,\\quad y=\\frac1b,\\quad z=\\frac1c,\\quad w=\\frac1d.\n\\]\nThen the conditions become\n\\[\nx+y+z+w=0\n\\]\nand, since\n\\[\n\\frac1a+\\frac1b+\\frac1c+\\frac1d=0,\n\\]\nalso\n\\[\nx+y+z+w=0.\n\\]\nSo both sums are the same condition in reciprocal form. We now examine the three equalities:\n\n\\[\nab=cd,\\qquad ac=bd,\\qquad ad=bc.\n\\]\n\nRewrite them by dividing appropriately:\n\n- \\(ab=cd \\iff \\frac a c = \\frac d b\\),\n- \\(ac=bd \\iff \\frac a d = \\frac b c\\),\n- \\(ad=bc \\iff \\frac a b = \\frac c d\\).\n\nBut if any two of these hold, then multiplying them gives the third. For example,\n\\[\n(ab=cd)\\ \\text{and}\\ (ac=bd)\n\\]\nimply\n\\[\na^2bc=b^2cd \\implies a^2=b^2,\n\\]\nand similarly the rest forces the third. More directly, the three equations are not independent: any two imply the third.\n\nNow check whether all three can hold. If all three hold, then\n\\[\nab=ac=ad,\n\\]\nso \\(a(b-c)=a(c-d)=0\\). Since the reciprocals exist, \\(a\\neq 0\\), hence\n\\[\nb=c=d.\n\\]\nThen \\(a+b+c+d=0\\) gives \\(a+3b=0\\), and the reciprocal condition gives\n\\[\n\\frac1a+\\frac3b=0.\n\\]\nSubstituting \\(a=-3b\\) gives\n\\[\n-\\frac1{3b}+\\frac3b=\\frac{8}{3b}=0,\n\\]\nimpossible.\n\nSo all three cannot hold. Since any two imply the third, at most one can hold.\n\nFinal answer: At most \\(1\\) of the three equalities can hold simultaneously.",
+  "usage": {
+    "input_tokens": 150,
+    "output_tokens": 464,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.537185637978837,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "At most \\(1\\) of the three equalities can hold simultaneously."
+  }
+}

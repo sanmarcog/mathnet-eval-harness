@@ -1,0 +1,25 @@
+{
+  "id": "0le5",
+  "country": "Vietnam",
+  "competition": "VMO",
+  "gold_final_answer": "a) f(x) = (x^16 + (223/256)x^8 + 1) / [(x^2 + (sqrt(15)/2)x + 1)(x^4 + (7/4)x^2 + 1)(x^8 + (17/16)x^4 + 1)]. b) All real alpha with alpha < 2.",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Polynomial operations",
+    "Algebra > Algebraic Expressions > Sequences and Series > Recurrence relations"
+  ],
+  "prompt": "Consider the following polynomial\n$$\nf(x) = x^2 - \\alpha x + 1\n$$\nwith $\\alpha \\in \\mathbb{R}$.\n\na) For $\\alpha = \\frac{\\sqrt{15}}{2}$, express $f(x)$ as the quotient of two polynomials with non-negative coefficients.\n\nb) Find all values of $\\alpha$ such that $f(x)$ can be written as the quotient of two polynomials with non-negative coefficients.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let  \n\\[\nf(x)=x^2-\\alpha x+1.\n\\]\n\nWe want to write \\(f(x)=\\dfrac{P(x)}{Q(x)}\\), where \\(P,Q\\) are polynomials with **non-negative coefficients**.\n\nA key observation is that if \\(P,Q\\) have non-negative coefficients and\n\\[\n\\frac{P(x)}{Q(x)}=x^2-\\alpha x+1,\n\\]\nthen\n\\[\nP(x)=Q(x)\\,(x^2-\\alpha x+1).\n\\]\nSo we need a polynomial \\(Q\\) with non-negative coefficients such that all coefficients of \\(Q(x)(x^2-\\alpha x+1)\\) are non-negative.\n\n---\n\n### a) \\(\\alpha=\\frac{\\sqrt{15}}{2}\\)\n\nTake\n\\[\nQ(x)=2x^2+\\sqrt{15}\\,x+2.\n\\]\nThen\n\\[\nQ(x)\\left(x^2-\\frac{\\sqrt{15}}{2}x+1\\right)\n\\]\nexpands to\n\\[\n2x^4+\\left(2-\\frac{15}{2}+2\\right)x^2+2\n=2x^4- \\frac{11}{2}x^2+2,\n\\]\nwhich is not good.\n\nInstead, use the factorization idea based on roots. Since\n\\[\nx^2-\\frac{\\sqrt{15}}{2}x+1\n\\]\nhas discriminant\n\\[\n\\frac{15}{4}-4=-\\frac14<0,\n\\]\nit is positive for all real \\(x\\), and in fact one can represent it as a ratio using a geometric series trick:\n\n\\[\nx^2-\\frac{\\sqrt{15}}{2}x+1\n=\n\\frac{(x^2+1)^2+\\left(\\frac{\\sqrt{15}}{2}\\right)^2x^2-2\\cdot \\frac{\\sqrt{15}}{2}x(x^2+1)}{x^2+1}.\n\\]\n\nA cleaner direct representation is:\n\\[\nx^2-\\frac{\\sqrt{15}}{2}x+1\n=\n\\frac{(x^2+1)^2+\\left(x-\\frac{\\sqrt{15}}{2}\\right)^2x^2}{x^2+1},\n\\]\nbut this still has negative coefficients after expansion, so let us instead use the standard construction for \\(|\\alpha|\\le 2\\):\n\nChoose\n\\[\nQ(x)=1+\\frac{\\alpha}{2}x+x^2.\n\\]\nThen\n\\[\n(x^2-\\alpha x+1)(1+\\frac{\\alpha}{2}x+x^2)\n\\]\nhas coefficients\n\\[\nx^4+\\left(2-\\frac{\\alpha^2}{2}\\right)x^2+1.\n\\]\nFor \\(\\alpha=\\frac{\\sqrt{15}}{2}\\),\n\\[\n2-\\frac{\\alpha^2}{2}=2-\\frac{15/4}{2}=2-\\frac{15}{8}=\\frac18>0.\n\\]\nHence\n\\[\nx^2-\\frac{\\sqrt{15}}{2}x+1\n=\n\\frac{x^4+\\frac18 x^2+1}{x^2+\\frac{\\sqrt{15}}{4}x+1},\n\\]\nand both numerator and denominator have non-negative coefficients.\n\nSo one valid answer is:\n\\[\n\\boxed{\nx^2-\\frac{\\sqrt{15}}{2}x+1\n=\n\\frac{x^4+\\frac18 x^2+1}{x^2+\\frac{\\sqrt{15}}{4}x+1}\n}.\n\\]\n\n---\n\n### b) All \\(\\alpha\\) for which this is possible\n\nWe claim the necessary and sufficient condition is\n\\[\n\\boxed{|\\alpha|\\le 2}.\n\\]\n\n#### Sufficiency\nIf \\(|\\alpha|\\le 2\\), let\n\\[\nQ(x)=x^2+\\frac{\\alpha}{2}x+1,\n\\]\nwhich has non-negative coefficients when \\(\\alpha\\ge 0\\). More generally, if \\(\\alpha\\) can be negative, we can use the symmetry \\(x\\mapsto -x\\) and the same construction for \\(|\\alpha|\\). Then\n\\[\n(x^2-\\alpha x+1)\\left(x^2+\\frac{\\alpha}{2}x+1\\right)\n=\nx^4+\\left(2-\\frac{\\alpha^2}{2}\\right)x^2+1.\n\\]\nThis has non-negative coefficients precisely when\n\\[\n2-\\frac{\\alpha^2}{2}\\ge 0 \\iff |\\alpha|\\le 2.\n\\]\nThus for \\(|\\alpha|\\le 2\\), a quotient representation exists.\n\n#### Necessity\nIf \\(|\\alpha|>2\\), then \\(f(x)=x^2-\\alpha x+1\\) has two distinct real roots, one of which is positive if \\(\\alpha>2\\) (and similarly after replacing \\(x\\) by \\(-x\\) for \\(\\alpha<-2\\)). A quotient of polynomials with non-negative coefficients cannot have such a factor with “too large” a linear term without forcing a sign change in the coefficients of the product; equivalently, the above explicit construction shows the coefficient \\(2-\\alpha^2/2\\) would be negative, and no choice of \\(Q\\) can fix this because the linear term must be compensated by a non-negative coefficient relation that leads to the same bound.\n\nHence the full set is exactly\n\\[\n\\boxed{|\\alpha|\\le 2}.\n\\]\n\n---\n\nFinal answer:  \na) \\(\\displaystyle x^2-\\frac{\\sqrt{15}}{2}x+1=\\frac{x^4+\\frac18x^2+1}{x^2+\\frac{\\sqrt{15}}{4}x+1}\\).  \nb) \\(\\displaystyle \\alpha\\in[-2,2]\\).",
+  "usage": {
+    "input_tokens": 148,
+    "output_tokens": 1298,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 8.428181192022748,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "a) \\(\\displaystyle x^2-\\frac{\\sqrt{15}}{2}x+1=\\frac{x^4+\\frac18x^2+1}{x^2+\\frac{\\sqrt{15}}{4}x+1}\\)."
+  }
+}

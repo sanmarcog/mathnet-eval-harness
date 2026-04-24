@@ -1,0 +1,19 @@
+{
+  "id": "04p3",
+  "country": "Croatia",
+  "competition": "Croatian Mathematical Society Competitions",
+  "gold_final_answer": "Equality holds if and only if a = b (which, under the given constraint, means a = b in the interval from zero to one).",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities > QM-AM-GM-HM / Power Mean"
+  ],
+  "prompt": "Prove that for non-negative real numbers $a$ and $b$ such that $a + b \\le 2$ the inequality\n$$\n\\frac{1}{1+a^2} + \\frac{1}{1+b^2} \\le \\frac{2}{1+ab}\n$$\nholds. When is the equality attained? (Austria 2018)",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let  \n\\[\nf(x)=\\frac1{1+x^2}.\n\\]\nWe want to prove\n\\[\n\\frac1{1+a^2}+\\frac1{1+b^2}\\le \\frac2{1+ab}\n\\qquad (a,b\\ge0,\\ a+b\\le2).\n\\]\n\n### Step 1: Rewrite the inequality\nMultiply both sides by \\((1+a^2)(1+b^2)(1+ab)\\), which is positive. The inequality is equivalent to\n\\[\n(1+b^2)(1+ab)+(1+a^2)(1+ab)\\le 2(1+a^2)(1+b^2).\n\\]\nExpanding and simplifying gives\n\\[\n2+ a b(a+b)+a^2+b^2 \\le 2+2a^2+2b^2+2a^2b^2,\n\\]\nso\n\\[\nab(a+b)\\le a^2+b^2+2a^2b^2.\n\\]\nA cleaner route is to compare the difference directly:\n\n\\[\n\\frac2{1+ab}-\\frac1{1+a^2}-\\frac1{1+b^2}\n=\\frac{(a-b)^2(2-a-b)}{(1+ab)(1+a^2)(1+b^2)}.\n\\]\n\nIndeed, expanding the numerator gives exactly\n\\[\n(1+a^2)(1+b^2)\\cdot 2-(1+ab)(1+b^2)-(1+ab)(1+a^2)\n=(a-b)^2(2-a-b).\n\\]\n\n### Step 2: Sign of the difference\nSince \\(a,b\\ge 0\\) and \\(a+b\\le 2\\), we have\n\\[\n(a-b)^2\\ge 0,\\qquad 2-a-b\\ge 0,\n\\]\nand the denominator is positive. Therefore\n\\[\n\\frac2{1+ab}-\\frac1{1+a^2}-\\frac1{1+b^2}\\ge 0,\n\\]\nwhich proves\n\\[\n\\frac1{1+a^2}+\\frac1{1+b^2}\\le \\frac2{1+ab}.\n\\]\n\n### Equality case\nEquality holds iff\n\\[\n(a-b)^2(2-a-b)=0,\n\\]\ni.e. iff either\n\n- \\(a=b\\), or\n- \\(a+b=2\\).\n\nSo equality is attained exactly when \\(a=b\\) or \\(a+b=2\\) (including the point \\(a=b=1\\), which belongs to both cases).\n\nFinal answer: \\(\\displaystyle \\frac1{1+a^2}+\\frac1{1+b^2}\\le \\frac2{1+ab}\\), with equality iff \\(a=b\\) or \\(a+b=2\\).",
+  "usage": {
+    "input_tokens": 128,
+    "output_tokens": 618,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.690523330005817,
+  "cached": false
+}

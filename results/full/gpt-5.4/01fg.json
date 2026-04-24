@@ -1,0 +1,20 @@
+{
+  "id": "01fg",
+  "country": "Baltic Way",
+  "competition": "Baltic Way 2019",
+  "gold_final_answer": "A",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Games / greedy algorithms",
+    "Discrete Mathematics > Combinatorics > Invariants / monovariants"
+  ],
+  "prompt": "On a board the numbers $1, 2, 3, \\ldots, 500$ are written. In a game two players $A$ and $B$ take turns alternately and $A$ starts. In each turn they have to erase two numbers $n$ and $2n$ on the board. If a player can not take a turn, the player loses. Determine who has a winning strategy.",
+  "model": "gpt-5.4",
+  "response_text": "Write each number \\(m\\in\\{1,2,\\dots,500\\}\\) uniquely as\n\\[\nm=2^k\\cdot t,\n\\]\nwhere \\(t\\) is odd. Then all numbers with the same odd part \\(t\\) form a chain\n\\[\nt,\\ 2t,\\ 4t,\\ 8t,\\ \\dots\n\\]\nup to \\(500\\).\n\nA move consists of erasing \\(n\\) and \\(2n\\), i.e. two adjacent elements in exactly one such chain. Thus the whole game is the disjoint sum of these chains, and each chain is just the game:\n\n- a row of \\(L\\) vertices,\n- a move removes two adjacent vertices.\n\nSo for a chain of length \\(L\\), its Grundy value is the same as the octal game of deleting a domino from a path. We only need whether each component is a \\(P\\)-position or not.\n\n## Step 1: lengths of the chains\nFor each odd \\(t\\le 500\\), the chain length is\n\\[\nL(t)=\\left\\lfloor \\log_2\\frac{500}{t}\\right\\rfloor+1.\n\\]\nHence:\n\n- \\(L=9\\): \\(t=1\\) only.\n- \\(L=8\\): odd \\(t\\le 3\\): \\(t=3\\) only.\n- \\(L=7\\): odd \\(t=5,7\\): \\(2\\) chains.\n- \\(L=6\\): odd \\(t=9,11,\\dots,15\\): \\(4\\) chains.\n- \\(L=5\\): odd \\(t=17,19,\\dots,31\\): \\(8\\) chains.\n- \\(L=4\\): odd \\(t=33,35,\\dots,61\\): \\(15\\) chains.\n- \\(L=3\\): odd \\(t=65,67,\\dots,125\\): \\(31\\) chains.\n- \\(L=2\\): odd \\(t=129,131,\\dots,249\\): \\(61\\) chains.\n- \\(L=1\\): odd \\(t=251,253,\\dots,499\\): \\(125\\) chains.\n\n(These counts sum to \\(250\\), the number of odd \\(t\\le 500\\).)\n\nChains of length \\(1\\) contribute nothing.\n\n## Step 2: Grundy values for short path-domino game\nLet \\(g(L)\\) be the Grundy number for a path of length \\(L\\), where a move deletes two adjacent vertices and splits the path. Standard recursion gives:\n\\[\ng(0)=g(1)=0,\n\\]\nand for \\(L\\ge 2\\),\n\\[\ng(L)=\\mathrm{mex}\\{\\,g(i)\\oplus g(L-i-2): 0\\le i\\le L-2\\,\\}.\n\\]\nComputing up to \\(9\\):\n\\[\n\\begin{aligned}\ng(2)&=1,\\\\\ng(3)&=1,\\\\\ng(4)&=2,\\\\\ng(5)&=0,\\\\\ng(6)&=3,\\\\\ng(7)&=1,\\\\\ng(8)&=1,\\\\\ng(9)&=0.\n\\end{aligned}\n\\]\n\n## Step 3: xor all components\nThe total Grundy value is\n\\[\ng(9)\\oplus g(8)\\oplus 2g(7)\\oplus 4g(6)\\oplus 8g(5)\\oplus 15g(4)\\oplus 31g(3)\\oplus 61g(2),\n\\]\nwhere repeated terms xor according to parity.\n\nUsing the values above:\n\n- \\(g(9)=0\\),\n- \\(g(8)=1\\),\n- \\(2\\) copies of \\(g(7)=1\\) xor to \\(0\\),\n- \\(4\\) copies of \\(g(6)=3\\) xor to \\(0\\),\n- \\(8\\) copies of \\(g(5)=0\\) give \\(0\\),\n- \\(15\\) copies of \\(g(4)=2\\) xor to \\(2\\) (odd count),\n- \\(31\\) copies of \\(g(3)=1\\) xor to \\(1\\),\n- \\(61\\) copies of \\(g(2)=1\\) xor to \\(1\\).\n\nSo total xor is\n\\[\n0\\oplus 1\\oplus 0\\oplus 0\\oplus 0\\oplus 2\\oplus 1\\oplus 1\n=3\\neq 0.\n\\]\n\nTherefore the initial position is an \\(N\\)-position, so the first player has a winning strategy.\n\nFinal answer: \\(A\\) has a winning strategy.",
+  "usage": {
+    "input_tokens": 135,
+    "output_tokens": 1039,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 15.976677865954116,
+  "cached": false
+}

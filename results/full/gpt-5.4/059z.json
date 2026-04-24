@@ -1,0 +1,20 @@
+{
+  "id": "059z",
+  "country": "Estonia",
+  "competition": "Estonian Math Competitions",
+  "gold_final_answer": "509545/2021",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Sequences and Series > Telescoping series",
+    "Algebra > Algebraic Expressions > Sequences and Series > Sums and products"
+  ],
+  "prompt": "Find the value of\n$$\n\\frac{1 \\cdot 3}{3 \\cdot 5} + \\frac{2 \\cdot 4}{5 \\cdot 7} + \\frac{3 \\cdot 5}{7 \\cdot 9} + \\frac{4 \\cdot 6}{9 \\cdot 11} + \\dots + \\frac{1009 \\cdot 1011}{2019 \\cdot 2021}\n$$",
+  "model": "gpt-5.4",
+  "response_text": "Let\n\\[\nS=\\frac{1\\cdot 3}{3\\cdot 5}+\\frac{2\\cdot 4}{5\\cdot 7}+\\frac{3\\cdot 5}{7\\cdot 9}+\\cdots+\\frac{1009\\cdot 1011}{2019\\cdot 2021}.\n\\]\n\nThe general term is\n\\[\n\\frac{n(n+2)}{(2n+1)(2n+3)},\\qquad n=1,2,\\dots,1009.\n\\]\nSo\n\\[\nS=\\sum_{n=1}^{1009}\\frac{n(n+2)}{(2n+1)(2n+3)}.\n\\]\n\nNow rewrite:\n\\[\nn(n+2)=\\frac{(2n+1)(2n+3)-3}{4},\n\\]\nbecause\n\\[\n(2n+1)(2n+3)=4n^2+8n+3=4n(n+2)+3.\n\\]\nHence\n\\[\n\\frac{n(n+2)}{(2n+1)(2n+3)}\n=\\frac14-\\frac{3}{4(2n+1)(2n+3)}.\n\\]\nThus\n\\[\nS=\\sum_{n=1}^{1009}\\left(\\frac14-\\frac{3}{4(2n+1)(2n+3)}\\right)\n=\\frac{1009}{4}-\\frac34\\sum_{n=1}^{1009}\\frac{1}{(2n+1)(2n+3)}.\n\\]\n\nNow use\n\\[\n\\frac{1}{(2n+1)(2n+3)}\n=\\frac12\\left(\\frac{1}{2n+1}-\\frac{1}{2n+3}\\right).\n\\]\nSo the sum telescopes:\n\\[\n\\sum_{n=1}^{1009}\\frac{1}{(2n+1)(2n+3)}\n=\\frac12\\sum_{n=1}^{1009}\\left(\\frac{1}{2n+1}-\\frac{1}{2n+3}\\right)\n=\\frac12\\left(\\frac13-\\frac{1}{2021}\\right).\n\\]\nCompute:\n\\[\n\\frac13-\\frac{1}{2021}=\\frac{2021-3}{6063}=\\frac{2018}{6063},\n\\]\nso\n\\[\n\\sum_{n=1}^{1009}\\frac{1}{(2n+1)(2n+3)}\n=\\frac{1009}{6063}.\n\\]\n\nTherefore\n\\[\nS=\\frac{1009}{4}-\\frac34\\cdot \\frac{1009}{6063}\n=\\frac{1009}{4}\\left(1-\\frac{1}{2021}\\right)\n=\\frac{1009}{4}\\cdot \\frac{2020}{2021}.\n\\]\nSince \\(2021=1009\\cdot 2+3\\) is not needed further, simplify:\n\\[\n\\frac{1009\\cdot 2020}{4\\cdot 2021}\n=\\frac{1009\\cdot 505}{2021}.\n\\]\nBut \\(2021=2\\cdot 1010+1\\), and more directly\n\\[\n\\frac{2020}{2021}=1-\\frac1{2021},\n\\]\nso\n\\[\nS=\\frac{1009\\cdot 2020}{8084}=\\frac{509545}{2021}.\n\\]\nSince \\(2021=43\\cdot 47\\) and \\(509545=5\\cdot 1009\\cdot 101\\), no reduction occurs.\n\nThus\n\\[\nS=\\frac{509545}{2021}.\n\\]\n\nFinal answer: \\(\\displaystyle \\frac{509545}{2021}\\)",
+  "usage": {
+    "input_tokens": 152,
+    "output_tokens": 842,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 11.348497026017867,
+  "cached": false
+}

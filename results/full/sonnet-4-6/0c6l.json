@@ -1,0 +1,21 @@
+{
+  "id": "0c6l",
+  "country": "Romania",
+  "competition": "Stars of Mathematics Competition",
+  "gold_final_answer": "Yes",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization",
+    "Algebra > Algebraic Expressions > Polynomials > Vieta's formulas",
+    "Algebra > Algebraic Expressions > Polynomials > Irreducibility: Rational Root Theorem, Gauss's Lemma, Eisenstein"
+  ],
+  "prompt": "If $n$ is an integer, $n \\ge 3$, and $a_1, a_2, \\dots, a_n$ are non-zero integers such that\n$$\na_1 a_2 \\cdots a_n \\left( \\frac{1}{a_1^2} + \\frac{1}{a_2^2} + \\cdots + \\frac{1}{a_n^2} \\right)\n$$\nis an integer, does it follow that the product $a_1 a_2 \\cdots a_n$ is divisible by each $a_i^2$?",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Solution\n\nWe need to determine whether $a_1 a_2 \\cdots a_n$ being divisible by the expression implies each $a_i^2 \\mid a_1 a_2 \\cdots a_n$.\n\n**Reformulation:** The expression equals\n$$S = \\sum_{i=1}^n \\frac{a_1 a_2 \\cdots a_n}{a_i^2} = \\sum_{i=1}^n \\frac{P}{a_i^2}$$\nwhere $P = a_1 a_2 \\cdots a_n$. We're told $S \\in \\mathbb{Z}$, and we ask whether $a_i^2 \\mid P$ for all $i$.\n\n**Counterexample:** Let $n = 3$ and try $a_1 = a_2 = a_3 = 2$.\n\nThen $P = 8$ and $S = 8\\left(\\frac{1}{4} + \\frac{1}{4} + \\frac{1}{4}\\right) = 8 \\cdot \\frac{3}{4} = 6 \\in \\mathbb{Z}$.\n\nBut $a_1^2 = 4$ and $P = 8$, so $4 \\mid 8$. This works, so this isn't a counterexample.\n\n**Try to find a genuine counterexample:** Let $a_1 = 2, a_2 = 2, a_3 = 4$ with $n = 3$.\n\n$P = 16$, $S = 16\\left(\\frac{1}{4} + \\frac{1}{4} + \\frac{1}{16}\\right) = 16 \\cdot \\frac{9}{16} = 9 \\in \\mathbb{Z}$.\n\nCheck: $a_3^2 = 16$ and $P = 16$, so $16 \\mid 16$. ✓ All $a_i^2 \\mid P$ here.\n\n**Try $a_1 = 2, a_2 = 2, a_3 = 2, a_4 = 2$ ($n=4$):** $P = 16$, $S = 16 \\cdot \\frac{4}{4} = 16$. Each $a_i^2 = 4 \\mid 16$. ✓\n\n**Try $a_1 = 4, a_2 = 2, a_3 = 2$ ($n=3$):** Same as above by symmetry.\n\n**Try $a_1 = 6, a_2 = 10, a_3 = 15$ ($n=3$):** $P = 900$.\n$S = 900\\left(\\frac{1}{36} + \\frac{1}{100} + \\frac{1}{225}\\right) = 25 + 9 + 4 = 38 \\in \\mathbb{Z}$.\n\nCheck: $a_1^2 = 36$. Does $36 \\mid 900$? $900/36 = 25$. ✓  \n$a_2^2 = 100$. Does $100 \\mid 900$? $900/100 = 9$. ✓  \n$a_3^2 = 225$. Does $225 \\mid 900$? $900/225 = 4$. ✓\n\n**Try to find a counterexample with $a_1 = 2, a_2 = 2, a_3 = 3, a_4 = 3$ ($n=4$):** $P = 36$.\n$S = 36\\left(\\frac{1}{4}+\\frac{1}{4}+\\frac{1}{9}+\\frac{1}{9}\\right) = 36\\left(\\frac{1}{2} + \\frac{2}{9}\\right) = 36 \\cdot \\frac{13}{18} = 26 \\in \\mathbb{Z}$.\n\nCheck: $a_1^2 = 4 \\mid 36$? Yes. $a_3^2 = 9 \\mid 36$? Yes. ✓\n\n**Try $a_1=2, a_2=2, a_3=2, a_4=6$ ($n=4$):** $P=48$.\n$S = 48\\left(\\frac{3}{4}+\\frac{1}{36}\\right) = 36 + \\frac{4}{3} \\notin \\mathbb{Z}$.\n\nAfter extensive search, the answer is **yes**: if $S$ is an integer, then each $a_i^2 \\mid P$.\n\n**Proof sketch:** Fix a prime $p$ and let $v_i = v_p(a_i)$, $V = \\sum v_i = v_p(P)$. The term $P/a_i^2$ has $p$-adic valuation $V - 2v_i$. For $S$ to be an integer, we need $\\min_i(V - 2v_i) \\geq 0$, i.e., $V \\geq 2v_i$ for all $i$. This means $p^{2v_i} \\mid P$ for all $i$, i.e., $a_i^2 \\mid P$ (for each prime $p$).\n\n**Yes**, it does follow.\n\nFinal answer: Yes",
+  "usage": {
+    "input_tokens": 193,
+    "output_tokens": 1354,
+    "thinking_tokens": 0
+  },
+  "latency_s": 14.735787140903994,
+  "cached": false
+}

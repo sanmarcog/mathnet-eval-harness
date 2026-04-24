@@ -1,0 +1,20 @@
+{
+  "id": "066d",
+  "country": "Greece",
+  "competition": "Hellenic Mathematical Olympiad",
+  "gold_final_answer": "A = [(k-1)^2 + 1^2][(k+1)^2 + 1^2]; K = (2n)^2 + (2n+1)^2",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Factorization techniques",
+    "Algebra > Algebraic Expressions > Sequences and Series > Sums and products"
+  ],
+  "prompt": "(α) Write the expression $A = k^4 + 4$, where $k$ is a positive integer, as a product of two factors each of them being a sum of two squares of integers.\n\n(β) Simplify the expression\n$$\nK = \\frac{\\left(2^4 + \\frac{1}{4}\\right)\\left(4^4 + \\frac{1}{4}\\right)\\left(6^4 + \\frac{1}{4}\\right) \\cdots \\left((2n)^4 + \\frac{1}{4}\\right)}{\\left(1^4 + \\frac{1}{4}\\right)\\left(3^4 + \\frac{1}{4}\\right)\\left(5^4 + \\frac{1}{4}\\right) \\cdots \\left((2n-1)^4 + \\frac{1}{4}\\right)}\n$$\nand write it as a sum of the squares of two successive integers.",
+  "model": "gpt-5.4",
+  "response_text": "Use Sophie Germain’s identity\n\\[\nx^4+4y^4=(x^2-2xy+2y^2)(x^2+2xy+2y^2).\n\\]\n\nFor \\(y=1\\), we get\n\\[\nk^4+4=(k^2-2k+2)(k^2+2k+2).\n\\]\nNow\n\\[\nk^2-2k+2=(k-1)^2+1^2,\\qquad k^2+2k+2=(k+1)^2+1^2.\n\\]\n\nSo this already gives the required factorization into two sums of two squares.\n\nFor part (β), first rewrite each factor:\n\\[\nm^4+\\frac14=\\frac{4m^4+1}{4}=\\frac{m^4+4\\left(\\frac12\\right)^4?}{}\n\\]\nMore directly,\n\\[\n4m^4+1=(2m^2-2m+1)(2m^2+2m+1),\n\\]\nsince\n\\[\n(2m^2-2m+1)(2m^2+2m+1)=(2m^2+1)^2-(2m)^2=4m^4+1.\n\\]\nHence\n\\[\nm^4+\\frac14=\\frac{(2m^2-2m+1)(2m^2+2m+1)}4.\n\\]\n\nApply this with \\(m=1,2,\\dots,2n\\). Then\n\\[\nK=\\prod_{m=1}^{2n}\\left(m^4+\\frac14\\right)^{(-1)^{m}}\n\\]\nin the even-over-odd sense, so the factors \\(1/4\\) cancel between numerator and denominator. Thus\n\\[\nK=\n\\frac{\\prod_{r=1}^n (8r^2-4r+1)(8r^2+4r+1)}\n{\\prod_{r=1}^n (8r^2-12r+5)(8r^2-4r+1)}.\n\\]\nIndeed, for even \\(m=2r\\),\n\\[\n2m^2-2m+1=8r^2-4r+1,\\qquad 2m^2+2m+1=8r^2+4r+1,\n\\]\nand for odd \\(m=2r-1\\),\n\\[\n2m^2+2m+1=8r^2-4r+1,\\qquad 2m^2-2m+1=8r^2-12r+5.\n\\]\nSo the common factors \\((8r^2-4r+1)\\) cancel, leaving\n\\[\nK=\\frac{\\prod_{r=1}^n (8r^2+4r+1)}{\\prod_{r=1}^n (8r^2-12r+5)}.\n\\]\nNow note\n\\[\n8r^2-12r+5=8(r-1)^2+4(r-1)+1.\n\\]\nSo this is telescoping:\n\\[\n\\prod_{r=1}^n (8r^2-12r+5)=\\prod_{s=0}^{n-1}(8s^2+4s+1).\n\\]\nTherefore\n\\[\nK=\\frac{\\prod_{r=1}^n (8r^2+4r+1)}{\\prod_{s=0}^{n-1}(8s^2+4s+1)}\n=8n^2+4n+1.\n\\]\nFinally,\n\\[\n8n^2+4n+1=(2n)^2+(2n+1)^2.\n\\]\n\nSo:\n\n\\[\n\\boxed{k^4+4=\\big((k-1)^2+1^2\\big)\\big((k+1)^2+1^2\\big)}\n\\]\nand\n\\[\n\\boxed{K=(2n)^2+(2n+1)^2.}\n\\]\n\nFinal answer: \\(\\displaystyle (a)\\ k^4+4=\\big((k-1)^2+1^2\\big)\\big((k+1)^2+1^2\\big),\\qquad (b)\\ K=(2n)^2+(2n+1)^2=8n^2+4n+1.\\)",
+  "usage": {
+    "input_tokens": 255,
+    "output_tokens": 960,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 17.121508441050537,
+  "cached": false
+}

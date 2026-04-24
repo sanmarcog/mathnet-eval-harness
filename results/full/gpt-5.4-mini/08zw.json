@@ -1,0 +1,21 @@
+{
+  "id": "08zw",
+  "country": "Japan",
+  "competition": "Japan Mathematical Olympiad",
+  "gold_final_answer": "a1 = a2 = ... = an = 0",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Sequences and Series > Sums and products",
+    "Discrete Mathematics > Combinatorics > Invariants / monovariants",
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities"
+  ],
+  "prompt": "Let $n \\ge 2$ be an integer. Find all sets of real numbers $(a_1, a_2, \\dots, a_n)$ such that $a_1 - 2a_2, a_2 - 2a_3, \\dots, a_{n-1} - 2a_n, a_n - 2a_1$ is a permutation of $a_1, a_2, \\dots, a_n$. Note that $a_1, a_2, \\dots, a_n$ itself is also a permutation of $a_1, a_2, \\dots, a_n$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let  \n\\[\nb_i=a_i-2a_{i+1}\\qquad (i=1,\\dots,n),\n\\]\nwhere indices are taken modulo \\(n\\), so \\(a_{n+1}=a_1\\).  \nWe are given that \\((b_1,\\dots,b_n)\\) is a permutation of \\((a_1,\\dots,a_n)\\).\n\nSo the two multisets are equal:\n\\[\n\\{a_1,\\dots,a_n\\}=\\{a_1-2a_2,\\ a_2-2a_3,\\ \\dots,\\ a_n-2a_1\\}.\n\\]\n\nWe look for all possible \\(n\\)-tuples.\n\n## Step 1: Sum the numbers\nBecause the two multisets are the same, their sums are equal:\n\\[\n\\sum_{i=1}^n a_i=\\sum_{i=1}^n (a_i-2a_{i+1})\n=\\sum_{i=1}^n a_i-2\\sum_{i=1}^n a_i\n=-\\sum_{i=1}^n a_i.\n\\]\nHence\n\\[\n\\sum_{i=1}^n a_i=0.\n\\]\n\n## Step 2: A maximum argument\nLet \\(M=\\max\\{a_1,\\dots,a_n\\}\\), and choose \\(a_k=M\\).\n\nSince the \\(b_i\\)'s are a permutation of the \\(a_i\\)'s, one of the \\(b_i\\)'s equals \\(M\\). But for every \\(i\\),\n\\[\nb_i=a_i-2a_{i+1}\\le a_i-2(\\min a_j),\n\\]\nwhich is not directly enough. Instead, use the maximal element more cleverly:\n\nSince \\(a_k=M\\), the value \\(a_{k-1}-2a_k\\) satisfies\n\\[\na_{k-1}-2a_k\\le M-2M=-M.\n\\]\nSo every term involving \\(a_k\\) as the second entry is at most \\(-M\\).\n\nNow consider the permutation relation on the multiset. Since the sum of all \\(a_i\\) is \\(0\\), if \\(M>0\\) then there must also be some negative numbers. But the image multiset contains terms of the form \\(a_i-2a_{i+1}\\), and the presence of the maximum \\(M\\) forces some \\(a_j-2a_{j+1}=M\\). Then\n\\[\na_j=M+2a_{j+1}\\ge M.\n\\]\nSo \\(a_j\\ge M\\), hence \\(a_j=M\\). Therefore \\(a_{j+1}\\le 0\\). Repeating around the cycle, one sees that all terms must be \\(M\\) or \\(\\le 0\\), and the sum being \\(0\\) forces \\(M=0\\).\n\nA cleaner direct argument is this: let \\(M=\\max a_i\\). Then every \\(b_i=a_i-2a_{i+1}\\le M-2\\min a_i\\), but more importantly, if \\(b_i=M\\), then\n\\[\na_i=M+2a_{i+1}\\ge M,\n\\]\nso \\(a_i=M\\) and \\(a_{i+1}=0\\). Thus any occurrence of the maximum in the \\(b\\)-multiset forces a zero next to a maximum in the original tuple. Iterating around the cycle and using that the multisets are identical, the only possible way is all entries \\(0\\).\n\nSo \\(M\\le 0\\). Applying the same argument to \\(-a_1,\\dots,-a_n\\) (or equivalently using the minimum) gives \\(\\min a_i\\ge 0\\). Therefore all \\(a_i=0\\).\n\n## Step 3: Check\nIf \\(a_1=\\cdots=a_n=0\\), then\n\\[\na_i-2a_{i+1}=0\n\\]\nfor all \\(i\\), so the condition is satisfied.\n\nThus the unique solution is\n\\[\n(a_1,\\dots,a_n)=(0,\\dots,0).\n\\]\n\nFinal answer: \\((a_1,a_2,\\dots,a_n)=(0,0,\\dots,0)\\) for every \\(n\\ge 2\\).",
+  "usage": {
+    "input_tokens": 185,
+    "output_tokens": 941,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 6.249645316973329,
+  "cached": false
+}

@@ -1,0 +1,26 @@
+{
+  "id": "01er",
+  "country": "Baltic Way",
+  "competition": "Baltic Way shortlist",
+  "gold_final_answer": "0",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization",
+    "Number Theory > Modular Arithmetic",
+    "Discrete Mathematics > Combinatorics > Pigeonhole principle"
+  ],
+  "prompt": "Let's say that a digit is *eternal* for a positive integer $n$, if it is contained in every multiple of $n$. Find all digits which are eternal for at least one positive integer.",
+  "model": "gpt-5.4-mini",
+  "response_text": "A digit is eternal for \\(n\\) if every multiple of \\(n\\) contains that digit in its decimal expansion.\n\nWe will show that the only eternal digits are\n\\[\n0,1,2,3,4,5,6,7,8,9.\n\\]\nIn other words, **every digit is eternal for some positive integer**.\n\nIndeed, for each digit \\(d\\), we can choose an \\(n\\) so that every multiple of \\(n\\) must contain \\(d\\):\n\n- \\(d=0\\): take \\(n=10\\). Every multiple ends in \\(0\\).\n- \\(d=1,2,3,4,5,6,7,8,9\\): take \\(n=9\\cdot 10^k\\) with a suitable \\(k\\), and use divisibility/decimal-pattern forcing to ensure that multiples must pass through a number containing the desired digit.  \n  But there is an even simpler direct construction: take \\(n\\) to be a number whose multiples all have a fixed digit in a fixed position because of the carry structure of decimal multiplication.\n\nA standard explicit choice is:\n- \\(n=1\\) for any digit, since every integer is a multiple of \\(1\\), but not every integer contains the digit. So this does **not** work.\n\nSo we must be careful: we need a digit that appears in **every** multiple of some fixed \\(n\\). The only way this can happen is if the multiples are all forced to have a certain decimal pattern.\n\nNow:\n- For \\(d=0\\), \\(n=10\\) works.\n- For \\(d=5\\), \\(n=5\\) does not work, since \\(10\\) is a multiple of \\(5\\) and does not contain \\(5\\). So the obvious approach fails.\n\nIn fact, the correct observation is that **no digit is eternal**.\n\nTo prove this, fix any positive integer \\(n\\). We will construct a multiple of \\(n\\) that avoids any prescribed digit \\(d\\).\n\nChoose \\(k\\) so that \\(10^k > n\\), and consider the multiples\n\\[\nn,\\,2n,\\,3n,\\,\\dots,\\,10^k n.\n\\]\nThere are \\(10^k\\) of them, and modulo \\(10^k\\) they occupy all residues in a single arithmetic progression. By choosing a suitable multiple among them, we can make the last \\(k\\) digits avoid any specified digit \\(d\\). Repeating this idea and using larger and larger blocks, we can construct a multiple of \\(n\\) whose decimal expansion avoids \\(d\\) entirely.\n\nThus for every \\(n\\), every digit can be avoided by some multiple of \\(n\\), so no digit is contained in every multiple of \\(n\\).\n\nTherefore the set of eternal digits is empty.\n\nFinal answer: \\(\\varnothing\\)",
+  "usage": {
+    "input_tokens": 89,
+    "output_tokens": 621,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 5.064775031991303,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "\\(\\varnothing\\)"
+  }
+}

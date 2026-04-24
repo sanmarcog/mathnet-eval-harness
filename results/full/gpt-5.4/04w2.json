@@ -1,0 +1,19 @@
+{
+  "id": "04w2",
+  "country": "Czech Republic",
+  "competition": "First Round of the 73rd Czech and Slovak Mathematical Olympiad (take-home part)",
+  "gold_final_answer": "No",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Prime numbers"
+  ],
+  "prompt": "We shall say that an odd prime $p$ is *kooky* if the sum of all primes smaller than $p$ is a multiple of $p$. Can two consecutive primes be kooky?",
+  "model": "gpt-5.4",
+  "response_text": "Let\n\\[\nS(p)=\\sum_{\\substack{q<p\\\\ q\\text{ prime}}} q.\n\\]\nThen \\(p\\) is *kooky* iff \\(p\\mid S(p)\\).\n\nWe ask whether two consecutive primes can both be kooky.\n\nLet the consecutive primes be \\(p<r\\). Since they are consecutive,\n\\[\nS(r)=S(p)+p.\n\\]\nIf both are kooky, then\n\\[\nS(p)\\equiv 0 \\pmod p,\\qquad S(r)\\equiv 0 \\pmod r.\n\\]\nSo\n\\[\nS(p)=kp\n\\]\nfor some integer \\(k\\), and then\n\\[\n0\\equiv S(r)=S(p)+p=kp+p=(k+1)p \\pmod r.\n\\]\nBecause \\(r\\) is prime and \\(r>p\\), we have \\(\\gcd(r,p)=1\\), hence\n\\[\nr\\mid (k+1).\n\\]\nThus\n\\[\nk+1\\ge r \\quad\\Rightarrow\\quad k\\ge r-1,\n\\]\nso\n\\[\nS(p)=kp\\ge (r-1)p.\n\\]\n\nBut since \\(r\\) is the next prime after \\(p\\), every prime less than \\(p\\) is at most \\(p\\), and in fact all are among \\(2,3,\\dots,p-2\\). Hence the sum of all primes less than \\(p\\) is certainly less than the sum of all integers from \\(1\\) to \\(p-1\\), so in particular\n\\[\nS(p)<p^2.\n\\]\nThat estimate alone is not enough. We use the stronger consequence \\(r\\ge p+2\\) (both odd primes), so\n\\[\n(r-1)p\\ge (p+1)p> S(p)?\n\\]\nIndeed, \\(S(p)\\) is the sum of some numbers all \\(<p\\), and there are fewer than \\(p\\) of them, so \\(S(p)<p(p-1)\\), but we need a sharper contradiction.\n\nA cleaner route is to check the congruence modulo \\(r\\) more directly:\n\\[\nS(p)\\equiv -p \\pmod r.\n\\]\nSince \\(S(p)\\) is a multiple of \\(p\\), write \\(S(p)=kp\\). Then\n\\[\nkp\\equiv -p \\pmod r \\implies p(k+1)\\equiv 0\\pmod r.\n\\]\nThus \\(r\\mid k+1\\), so \\(k\\ge r-1\\), giving\n\\[\nS(p)=kp\\ge (r-1)p.\n\\]\nBut \\(S(p)\\) is the sum of all primes less than \\(p\\), and there are at most \\(p-1\\) such terms, each at most \\(p-2\\), hence\n\\[\nS(p)\\le (p-1)(p-2).\n\\]\nTherefore\n\\[\n(r-1)p\\le (p-1)(p-2).\n\\]\nSince \\(r\\ge p+2\\),\n\\[\n(p+1)p\\le (p-1)(p-2).\n\\]\nExpanding,\n\\[\np^2+p\\le p^2-3p+2,\n\\]\nso\n\\[\n4p\\le 2,\n\\]\nimpossible for an odd prime \\(p\\).\n\nHence two consecutive primes cannot both be kooky.\n\nFinal answer: No, two consecutive primes cannot both be kooky.",
+  "usage": {
+    "input_tokens": 89,
+    "output_tokens": 757,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 13.630260091042146,
+  "cached": false
+}

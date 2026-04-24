@@ -1,0 +1,24 @@
+{
+  "id": "04ol",
+  "country": "Croatia",
+  "competition": "Croatian Mathematical Society Competitions",
+  "gold_final_answer": "16",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Transformations > Homothety"
+  ],
+  "prompt": "Points $P_1$, $P_2$ and $P_3$ are located on the side $AB$ of the triangle $ABC$ so that\n$$\n|AP_1| = |P_1P_2| = |P_2P_3| = |P_3B| = \\frac{1}{4}|AB|.\n$$\nParallels with the side $BC$ are drawn through those points and divide the triangle $ABC$ into four parts. The area of the part between the parallels through $P_2$ and $P_3$ equals $5$.\nWhat is the area of the triangle $ABC$? (Purple Comet! Math Meet)",
+  "model": "claude-sonnet-4-6",
+  "response_text": "The parallel through P_k divides the triangle creating a smaller similar triangle. The line through P_1 (at distance 1/4 from A) creates a similar triangle with ratio 1/4, through P_2 ratio 2/4=1/2, through P_3 ratio 3/4.\n\nAreas of the similar triangles: (1/4)²S, (1/2)²S, (3/4)²S where S is the area of ABC.\n\nThe strip between parallels through P_2 and P_3 has area = (3/4)²S - (2/4)²S = (9/16 - 4/16)S = (5/16)S.\n\nSetting (5/16)S = 5: S = 16.\n\nFinal answer: 16",
+  "usage": {
+    "input_tokens": 200,
+    "output_tokens": 191,
+    "thinking_tokens": 0
+  },
+  "latency_s": 3.777293030056171,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "exact",
+    "predicted": "16"
+  }
+}

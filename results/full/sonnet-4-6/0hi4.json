@@ -1,0 +1,20 @@
+{
+  "id": "0hi4",
+  "country": "Ukraine",
+  "competition": "62nd Ukrainian National Mathematical Olympiad",
+  "gold_final_answer": "(x, y) = (1, 0)",
+  "topics_flat": [
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities",
+    "Algebra > Intermediate Algebra > Exponential functions"
+  ],
+  "prompt": "Find all pairs of non-negative integers $x \\ge y$ for which $x + 3^y$ and $y + 3^x$ are two consecutive integers.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "We need to find non-negative integers $x \\ge y$ such that $x + 3^y$ and $y + 3^x$ are consecutive integers.\n\nConsecutive integers differ by 1, so:\n$$|(x + 3^y) - (y + 3^x)| = 1$$\n\nThis gives us:\n$$(x - y) + (3^y - 3^x) = \\pm 1$$\n\nLet $d = x - y \\ge 0$.\n\n**Case 1:** $(x - y) + (3^y - 3^x) = 1$\n\n$(x - y) - (3^x - 3^y) = 1$\n\nSo $d - (3^x - 3^y) = 1$, meaning $3^x - 3^y = d - 1$.\n\nSince $x \\ge y$, we have $3^x - 3^y \\ge 0$, so $d \\ge 1$.\n\nIf $x = y$: $d = 0$, then $0 - 0 = 0 \\ne 1$. No solution.\n\nIf $x > y$: $3^x - 3^y = 3^y(3^d - 1) = d - 1$.\n\nSince $3^y(3^d - 1) \\ge 0$ and equals $d-1$, we need $d \\ge 1$.\n\nFor $y = 0$: $3^d - 1 = d - 1$, so $3^d = d$. No solution for positive integers.\n\nFor $y \\ge 1$: $3^y(3^d - 1) = d - 1$. Left side $\\ge 3(3^1 - 1) = 6$ when $d \\ge 1, y \\ge 1$, but right side $= d - 1 \\le d$. For $d = 1$: right side = 0, left side = 0 only if $3^d = 1$, impossible. No solutions here.\n\n**Case 2:** $(x - y) + (3^y - 3^x) = -1$\n\n$(3^x - 3^y) - (x - y) = 1$\n\nSo $3^x - 3^y - d = 1$.\n\nIf $x = y$ (so $d = 0$): $0 = 1$. No solution.\n\nIf $d \\ge 1$: $3^y(3^d - 1) = d + 1$.\n\n**$y = 0$:** $3^d - 1 = d + 1$, so $3^d = d + 2$.\n- $d = 1$: $3 = 3$. ✓ So $y = 0, x = 1$.\n- $d = 2$: $9 = 4$. No.\n- Larger $d$: $3^d$ grows faster. No more solutions.\n\n**$y = 1$:** $3(3^d - 1) = d + 1$, so $3^{d+1} - 3 = d + 1$, $3^{d+1} = d + 4$.\n- $d = 1$: $9 = 5$. No.\n- No solutions.\n\n**$y \\ge 2$:** $3^y(3^d - 1) = d + 1$. Left side $\\ge 9 \\cdot 2 = 18$ for $d \\ge 1$, right side $= d + 1$. Need $d + 1 \\ge 18$, so $d \\ge 17$. But then left side $\\ge 9(3^{17} - 1)$ which is enormous. No solutions.\n\n**Check $d = 0$ separately in Case 2:** Already done, no solution.\n\n**What about $x = y = 0$?** $x + 3^y = 1$, $y + 3^x = 1$. These are equal, not consecutive. No.\n\n**Verify $(x, y) = (1, 0)$:**\n- $x + 3^y = 1 + 1 = 2$\n- $y + 3^x = 0 + 3 = 3$\n- $|3 - 2| = 1$ ✓ Consecutive!\n\nAre there solutions with $x = y$? Then both expressions equal $x + 3^x$, same value, not consecutive.\n\nLet me check small cases systematically:\n- $(1,0)$: works ✓\n- $(2,0)$: $2+1=3$, $0+9=9$. Difference 6. No.\n- $(2,1)$: $2+3=5$, $1+9=10$. Difference 5. No.\n- $(3,0)$: $3+1=4$, $0+27=27$. No.\n- $(3,1)$: $3+3=6$, $1+27=28$. No.\n- $(3,2)$: $3+9=12$, $2+27=29$. No.\n\nThe only solution is $(x, y) = (1, 0)$.\n\nFinal answer: $(x, y) = (1, 0)$",
+  "usage": {
+    "input_tokens": 84,
+    "output_tokens": 1303,
+    "thinking_tokens": 0
+  },
+  "latency_s": 17.772036827984266,
+  "cached": false
+}

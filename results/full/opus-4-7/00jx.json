@@ -1,0 +1,19 @@
+{
+  "id": "00jx",
+  "country": "Austria",
+  "competition": "AustriaMO2013",
+  "gold_final_answer": "a_n = F_{n+3} - 2, where F_0 = 0 and F_1 = 1",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Sequences and Series > Recurrence relations"
+  ],
+  "prompt": "We order the positive integers in two rows in the following manner:\n1 3 6 11 19 32 53 ...\n2 4 5 7 8 9 10 12 13 14 15 16 17 18 20 to 31 33 to 52 54 ...\nWe first write $1$ in the first row, $2$ in the second and $3$ in the first. After this, the following integers are written in such a way that an individual integer is always added in the first row and blocks of consecutive integers are added in the second row, with the leading number of a block giving the number of (consecutive) integers to be written in the next block.\nWe name the numbers in the first row $a_1, a_2, a_3, \\dots$\nDetermine an explicit formula for $a_n$.\nG. Baron, Vienna",
+  "model": "claude-opus-4-7",
+  "response_text": "<think>\nThe sequence a_n: 1,3,6,11,19,32,53,...\nDifferences: 2,3,5,8,13,21 — Fibonacci.\n\nSo a_{n+1} = a_n + F(n+2) where F(1)=1,F(2)=1,F(3)=2,...\nCheck: a_1=1, a_2=1+2=3 (F(3)=2) ✓, a_3=3+3=6 (F(4)=3)✓, a_4=6+5=11 (F(5)=5)✓.\n\nSo a_n = 1 + sum_{k=3}^{n+1} F(k) = 1 + (F(n+3) - 1 - F(1) - F(2)) = F(n+3) - 2.\n\nCheck: n=1: F(4)-2 = 3-2=1 ✓. n=2: F(5)-2=5-2=3 ✓. n=3: F(6)-2=8-2=6 ✓. n=4: F(7)-2=13-2=11✓. n=5: F(8)-2=21-2=19✓. n=6: F(9)-2=34-2=32✓. n=7: F(10)-2=55-2=53✓.\n\nSo a_n = F_{n+3} - 2.\n\nExplicit: using Binet, F_k = (φ^k - ψ^k)/√5.\na_n = (φ^{n+3} - ψ^{n+3})/√5 - 2.\n</think>\n\n**Solution sketch.**\n\nThe differences of consecutive terms in the top row are  \n$$a_2-a_1=2,\\ a_3-a_2=3,\\ a_4-a_3=5,\\ a_5-a_4=8,\\ a_6-a_5=13,\\ a_7-a_6=21,\\dots$$  \nThese are Fibonacci numbers. Indeed, between $a_n$ and $a_{n+1}$ one writes a block of $a_n$ consecutive integers in the second row plus one integer in the first row, and the recursion leads to $a_{n+1}-a_n = F_{n+2}$.\n\nSumming gives  \n$$a_n = 1 + \\sum_{k=3}^{n+1} F_k = F_{n+3} - 2.$$\n\nVerification: $F_4-2=1,\\ F_5-2=3,\\ F_6-2=6,\\ F_7-2=11,\\ F_8-2=19,\\ F_9-2=32,\\ F_{10}-2=53.$ ✓\n\nUsing Binet's formula with $\\varphi=\\tfrac{1+\\sqrt5}{2}$, $\\psi=\\tfrac{1-\\sqrt5}{2}$:  \n$$a_n = \\frac{\\varphi^{n+3}-\\psi^{n+3}}{\\sqrt 5} - 2.$$\n\nFinal answer: $a_n = F_{n+3} - 2$",
+  "usage": {
+    "input_tokens": 303,
+    "output_tokens": 936,
+    "thinking_tokens": 0
+  },
+  "latency_s": 9.110168487997726,
+  "cached": false
+}

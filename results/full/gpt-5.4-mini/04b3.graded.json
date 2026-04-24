@@ -1,0 +1,25 @@
+{
+  "id": "04b3",
+  "country": "Croatia",
+  "competition": "Mathematica competitions in Croatia",
+  "gold_final_answer": "(0, 0) and (-2, -4)",
+  "topics_flat": [
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities",
+    "Number Theory > Divisibility / Factorization > Greatest common divisors (gcd)"
+  ],
+  "prompt": "Determine all pairs of integers $(a, b)$ such that $a (a - b) = b$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "We solve\n\\[\na(a-b)=b\n\\]\nin integers \\(a,b\\).\n\nRearrange:\n\\[\na^2-ab=b\n\\]\n\\[\na^2=b(a+1).\n\\]\nSo \\(a+1\\mid a^2\\). Now take the identity\n\\[\na^2 = a(a+1)-a,\n\\]\nwhich implies\n\\[\na^2 \\equiv 1 \\pmod{a+1}\n\\]\nsince \\(a\\equiv -1\\pmod{a+1}\\), hence \\(a^2\\equiv 1\\).\n\nBut \\(a+1\\mid a^2\\), so \\(a+1\\) must divide \\(1\\). Therefore\n\\[\na+1=\\pm 1.\n\\]\nThus \\(a=0\\) or \\(a=-2\\).\n\nCheck each:\n\n- If \\(a=0\\), then \\(0=b\\), so \\(b=0\\).\n- If \\(a=-2\\), then \\(4=b(-1)\\), so \\(b=-4\\).\n\nSo the integer solutions are\n\\[\n(a,b)=(0,0)\\quad \\text{and}\\quad (-2,-4).\n\\]\n\nFinal answer: \\((0,0)\\) and \\((-2,-4)\\).",
+  "usage": {
+    "input_tokens": 70,
+    "output_tokens": 287,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 2.1029243919765577,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "\\((0,0)\\) and \\((-2,-4)\\)."
+  }
+}

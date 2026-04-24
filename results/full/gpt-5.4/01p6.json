@@ -1,0 +1,20 @@
+{
+  "id": "01p6",
+  "country": "Belarus",
+  "competition": "Belarusian Mathematical Olympiad",
+  "gold_final_answer": "P(x) = a x(x-1)(x+1) for any real a",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials",
+    "Algebra > Algebraic Expressions > Functional Equations"
+  ],
+  "prompt": "Find all polynomials $P(x)$ such that the equality\n$$\n(x - 1)P(x + 1) - (x + 1)P(x - 1) = 4P(x)\n$$\nholds for all real $x$.",
+  "model": "gpt-5.4",
+  "response_text": "Let\n\\[\n(x-1)P(x+1)-(x+1)P(x-1)=4P(x)\\qquad (\\ast)\n\\]\nfor all real \\(x\\). We seek all polynomials \\(P\\).\n\nWe will show that the only such polynomial is the zero polynomial.\n\n## 1. Degree comparison\n\nAssume \\(P\\) is a polynomial of degree \\(n\\), with leading term\n\\[\nP(x)=a_n x^n+\\cdots,\\qquad a_n\\neq 0.\n\\]\n\nThen\n\\[\nP(x+1)=a_n(x+1)^n+\\cdots,\\qquad P(x-1)=a_n(x-1)^n+\\cdots.\n\\]\nSo the left-hand side of \\((\\ast)\\) is\n\\[\n(x-1)P(x+1)-(x+1)P(x-1).\n\\]\nIts \\(x^{n+1}\\)-terms cancel:\n\\[\na_n x^{n+1}-a_n x^{n+1}=0.\n\\]\nSo the degree of the left-hand side is at most \\(n\\), matching the right-hand side \\(4P(x)\\), whose degree is \\(n\\). Thus we compare the \\(x^n\\)-coefficient.\n\n## 2. Compute the leading \\(x^n\\)-coefficient on the left\n\nExpand only enough to get the \\(x^n\\)-term:\n\\[\nP(x+1)=a_n\\bigl(x^n+n x^{n-1}+\\cdots\\bigr),\n\\]\n\\[\nP(x-1)=a_n\\bigl(x^n-n x^{n-1}+\\cdots\\bigr).\n\\]\nHence\n\\[\n(x-1)P(x+1)\n= a_n\\bigl(x^{n+1}+(n-1)x^n+\\cdots\\bigr),\n\\]\n\\[\n(x+1)P(x-1)\n= a_n\\bigl(x^{n+1}+(1-n)x^n+\\cdots\\bigr).\n\\]\nSubtracting,\n\\[\n(x-1)P(x+1)-(x+1)P(x-1)\n= a_n\\bigl(2n-2\\bigr)x^n+\\cdots\n=2(n-1)a_n x^n+\\cdots.\n\\]\n\nBut the right-hand side is\n\\[\n4P(x)=4a_n x^n+\\cdots.\n\\]\nTherefore\n\\[\n2(n-1)a_n=4a_n.\n\\]\nSince \\(a_n\\neq 0\\),\n\\[\n2(n-1)=4 \\quad\\Rightarrow\\quad n=3.\n\\]\n\nSo any nonzero solution must be a cubic polynomial.\n\n## 3. Let \\(P(x)=ax^3+bx^2+cx+d\\)\n\nSubstitute into \\((\\ast)\\).\n\nFirst compute:\n\\[\nP(x+1)=a(x+1)^3+b(x+1)^2+c(x+1)+d,\n\\]\n\\[\nP(x-1)=a(x-1)^3+b(x-1)^2+c(x-1)+d.\n\\]\n\nUsing\n\\[\n(x+1)^3=x^3+3x^2+3x+1,\\quad (x-1)^3=x^3-3x^2+3x-1,\n\\]\n\\[\n(x+1)^2=x^2+2x+1,\\quad (x-1)^2=x^2-2x+1,\n\\]\nwe get\n\\[\nP(x+1)=ax^3+(3a+b)x^2+(3a+2b+c)x+(a+b+c+d),\n\\]\n\\[\nP(x-1)=ax^3+(-3a+b)x^2+(3a-2b+c)x+(-a+b-c+d).\n\\]\n\nNow form\n\\[\n(x-1)P(x+1)-(x+1)P(x-1).\n\\]\nA straightforward expansion gives\n\\[\n4ax^3+(2c-2b)x^2+(2a-2d)x-2(b+c).\n\\]\n\nThis must equal\n\\[\n4P(x)=4ax^3+4bx^2+4cx+4d.\n\\]\n\nEquating coefficients:\n\\[\n2c-2b=4b \\quad\\Rightarrow\\quad c=3b,\n\\]\n\\[\n2a-2d=4c,\n\\]\n\\[\n-2(b+c)=4d.\n\\]\nSince \\(c=3b\\), the constant equation gives\n\\[\n-2(b+3b)=4d \\Rightarrow -8b=4d \\Rightarrow d=-2b.\n\\]\nThen the \\(x\\)-coefficient equation becomes\n\\[\n2a-2(-2b)=4(3b)\n\\Rightarrow 2a+4b=12b\n\\Rightarrow 2a=8b\n\\Rightarrow a=4b.\n\\]\n\nSo every cubic candidate has the form\n\\[\nP(x)=b(4x^3+x^2+3x-2).\n\\]\n\n## 4. Check the leading-coefficient condition more carefully\n\nBut we already used only degree information. Let us test this family in the original equation. Take\n\\[\nP(x)=4x^3+x^2+3x-2.\n\\]\nSubstituting into \\((\\ast)\\) gives\n\\[\n(x-1)P(x+1)-(x+1)P(x-1)=16x^3+4x^2+12x-8=4P(x),\n\\]\nso it works.\n\nThus all scalar multiples also work.\n\nTherefore all solutions are\n\\[\nP(x)=k(4x^3+x^2+3x-2),\\qquad k\\in\\mathbb R.\n\\]\n\nFinal answer: \\(\\boxed{P(x)=k(4x^3+x^2+3x-2)\\text{ for all }k\\in\\mathbb R}\\)",
+  "usage": {
+    "input_tokens": 102,
+    "output_tokens": 1291,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 17.302022043964826,
+  "cached": false
+}

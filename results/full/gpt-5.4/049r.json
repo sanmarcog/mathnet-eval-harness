@@ -1,0 +1,19 @@
+{
+  "id": "049r",
+  "country": "Croatia",
+  "competition": "Hrvatska 2011",
+  "gold_final_answer": "27/8",
+  "topics_flat": [
+    "Geometry > Solid Geometry > Volume"
+  ],
+  "prompt": "Determine the greatest possible ratio of the volume of a sphere and the volume of a right circular cone inscribed in it.",
+  "model": "gpt-5.4",
+  "response_text": "Let the sphere have radius \\(R\\). We inscribe a right circular cone in it with:\n\n- base radius \\(r\\),\n- height \\(h\\).\n\nWe want to maximize\n\\[\n\\frac{V_{\\text{sphere}}}{V_{\\text{cone}}}.\n\\]\nSince the sphere volume is fixed, this is equivalent to minimizing the cone volume.\n\nBut among all cones inscribed in a sphere, the meaningful extremal problem is to maximize the cone volume, which gives the smallest possible ratio \\(\\frac{V_{\\text{sphere}}}{V_{\\text{cone}}}\\). The standard interpretation of this problem is thus to find that extremal ratio.\n\n## Step 1: Express cone volume in terms of \\(h\\)\n\nPlace the sphere centered at the origin, with the cone’s vertex at the “top” of the sphere, so the vertex is at height \\(R\\), and the base plane is at height \\(R-h\\).\n\nThen the radius of the base circle satisfies\n\\[\nr^2 = R^2-(R-h)^2 = 2Rh-h^2.\n\\]\n\nSo the cone volume is\n\\[\nV_{\\text{cone}}=\\frac13 \\pi r^2 h\n= \\frac13\\pi(2Rh-h^2)h\n= \\frac13\\pi(2Rh^2-h^3).\n\\]\n\n## Step 2: Maximize the cone volume\n\nDifferentiate:\n\\[\n\\frac{d}{dh}(2Rh^2-h^3)=4Rh-3h^2=h(4R-3h).\n\\]\nSo the nonzero critical point is\n\\[\nh=\\frac{4R}{3}.\n\\]\n\nThen\n\\[\nr^2 = 2R\\cdot \\frac{4R}{3}-\\left(\\frac{4R}{3}\\right)^2\n= \\frac{8R^2}{3}-\\frac{16R^2}{9}\n= \\frac{8R^2}{9}.\n\\]\n\nHence\n\\[\nV_{\\text{cone,max}}\n= \\frac13\\pi r^2 h\n= \\frac13\\pi\\cdot \\frac{8R^2}{9}\\cdot \\frac{4R}{3}\n= \\frac{32}{81}\\pi R^3.\n\\]\n\n## Step 3: Compute the ratio\n\nThe sphere volume is\n\\[\nV_{\\text{sphere}}=\\frac43\\pi R^3.\n\\]\n\nThus\n\\[\n\\frac{V_{\\text{sphere}}}{V_{\\text{cone,max}}}\n=\n\\frac{\\frac43\\pi R^3}{\\frac{32}{81}\\pi R^3}\n=\n\\frac43\\cdot \\frac{81}{32}\n=\n\\frac{27}{8}.\n\\]\n\nFinal answer: \\(\\frac{27}{8}\\)",
+  "usage": {
+    "input_tokens": 72,
+    "output_tokens": 608,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 9.161563012050465,
+  "cached": false
+}

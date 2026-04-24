@@ -1,0 +1,25 @@
+{
+  "id": "01uh",
+  "country": "Belarus",
+  "competition": "Belarusian Mathematical Olympiad",
+  "gold_final_answer": "60°",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Miscellaneous > Angle chasing",
+    "Geometry > Plane Geometry > Miscellaneous > Constructions and loci"
+  ],
+  "prompt": "Point $M$ is marked inside a convex quadrilateral $ABCD$. It appears that $AM = BM$, $CM = DM$, and $\\angle AMB = \\angle CMD = 60^\\circ$. Let $K$, $L$, and $N$ be the midpoints of the segments $BC$, $AM$, and $DM$, respectively. Find the value of the angle $LKN$.\n\n(S. Mazanik)",
+  "model": "gpt-5.4",
+  "response_text": "Let  \n\\[\nAM=BM,\\qquad CM=DM,\\qquad \\angle AMB=\\angle CMD=60^\\circ.\n\\]\n\nWe must find \\(\\angle LKN\\), where\n\n- \\(K\\) is the midpoint of \\(BC\\),\n- \\(L\\) is the midpoint of \\(AM\\),\n- \\(N\\) is the midpoint of \\(DM\\).\n\nWe will use vectors with \\(M\\) as the origin.\n\n## 1) Express the given geometry\n\nLet\n\\[\n\\vec a=\\overrightarrow{MA},\\qquad \\vec c=\\overrightarrow{MC}.\n\\]\nThen \\(|\\vec a|=|AM|\\), \\(|\\vec c|=|CM|\\).\n\nSince \\(AM=BM\\) and \\(\\angle AMB=60^\\circ\\), the triangle \\(AMB\\) has two equal sides with included angle \\(60^\\circ\\), hence it is equilateral. So\n\\[\n|MA|=|MB|,\\quad \\angle AMB=60^\\circ\n\\]\nimplies \\(\\vec b=\\overrightarrow{MB}\\) is obtained from \\(\\vec a\\) by rotation through \\(60^\\circ\\).\n\nSimilarly, triangle \\(CMD\\) is equilateral, so \\(\\vec d=\\overrightarrow{MD}\\) is obtained from \\(\\vec c\\) by rotation through \\(60^\\circ\\).\n\nBecause \\(ABCD\\) is convex and \\(M\\) is inside it, the relevant rotations are in opposite directions; write\n\\[\n\\vec b=R_{60^\\circ}(\\vec a),\\qquad \\vec d=R_{-60^\\circ}(\\vec c).\n\\]\n\n## 2) Coordinates of the midpoints\n\nSince \\(M\\) is the origin,\n\n- midpoint of \\(AM\\):\n\\[\n\\vec L=\\frac{\\vec a}{2},\n\\]\n- midpoint of \\(DM\\):\n\\[\n\\vec N=\\frac{\\vec d}{2},\n\\]\n- midpoint of \\(BC\\):\n\\[\n\\vec K=\\frac{\\vec b+\\vec c}{2}.\n\\]\n\nHence\n\\[\n\\overrightarrow{KL}=\\vec L-\\vec K=\\frac{\\vec a-\\vec b-\\vec c}{2},\n\\]\n\\[\n\\overrightarrow{KN}=\\vec N-\\vec K=\\frac{\\vec d-\\vec b-\\vec c}{2}.\n\\]\n\nSo the angle \\(\\angle LKN\\) is the angle between\n\\[\n\\vec u=\\vec a-\\vec b-\\vec c,\\qquad \\vec v=\\vec d-\\vec b-\\vec c.\n\\]\n\n## 3) Use the \\(60^\\circ\\) rotations\n\nSince \\(\\vec b=R_{60^\\circ}(\\vec a)\\), we have the standard identity\n\\[\n\\vec a-\\vec b = R_{-60^\\circ}(\\vec b).\n\\]\nAlso, since \\(\\vec d=R_{-60^\\circ}(\\vec c)\\),\n\\[\n\\vec d-\\vec c = R_{-120^\\circ}(\\vec c).\n\\]\n\nBut an even cleaner way is to use complex numbers / rotation notation directly.\n\nLet \\(R=R_{60^\\circ}\\). Then\n\\[\n\\vec b=R\\vec a,\\qquad \\vec d=R^{-1}\\vec c.\n\\]\nThus\n\\[\n\\vec u=\\vec a-R\\vec a-\\vec c,\n\\qquad\n\\vec v=R^{-1}\\vec c-R\\vec a-\\vec c.\n\\]\n\nNow note that\n\\[\n1-R = R^{-1}\\quad\\text{(up to scale/rotation: specifically }1-e^{i\\pi/3}=e^{-i\\pi/3}\\text{ in complex form)}.\n\\]\nIndeed, in complex notation with \\(R=e^{i\\pi/3}\\),\n\\[\n1-e^{i\\pi/3}=\\frac12-\\frac{\\sqrt3}{2}i=e^{-i\\pi/3}.\n\\]\nTherefore\n\\[\n\\vec u=R^{-1}\\vec a-\\vec c.\n\\]\nAlso\n\\[\nR^{-1}-1=-e^{i2\\pi/3},\n\\]\nso\n\\[\n\\vec v=-R\\vec a+(R^{-1}-1)\\vec c.\n\\]\nBut more usefully,\n\\[\n\\vec v=R^{-1}\\vec c-R\\vec a-\\vec c\n=(R^{-1}-1)\\vec c-R\\vec a.\n\\]\nIn complex form this simplifies to\n\\[\n\\vec v=-R(\\,R^{-1}\\vec a-\\vec c\\,)=-R\\vec u.\n\\]\n\nSo \\(\\vec v\\) is obtained from \\(\\vec u\\) by rotation through \\(120^\\circ\\) (or equivalently by \\(60^\\circ\\) plus reversal). Therefore the angle between \\(\\vec u\\) and \\(\\vec v\\) is\n\\[\n120^\\circ.\n\\]\nThe smaller angle at \\(K\\) is then\n\\[\n180^\\circ-120^\\circ=60^\\circ.\n\\]\n\nHence\n\\[\n\\angle LKN=60^\\circ.\n\\]\n\nFinal answer: \\(60^\\circ\\)",
+  "usage": {
+    "input_tokens": 137,
+    "output_tokens": 1119,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 15.507783976965584,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "\\(60^\\circ\\)"
+  }
+}

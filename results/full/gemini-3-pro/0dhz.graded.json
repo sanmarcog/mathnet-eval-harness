@@ -1,0 +1,26 @@
+{
+  "id": "0dhz",
+  "country": "Saudi Arabia",
+  "competition": "SAUDI ARABIAN IMO Booklet 2023",
+  "gold_final_answer": "(15 + 4√13, -1, 15 - 4√13), (15 - 4√13, -1, 15 + 4√13), (2, -14, -2), (3, -9, -3), (-5, 7, 5)",
+  "topics_flat": [
+    "Algebra > Prealgebra / Basic Algebra > Simple Equations",
+    "Algebra > Algebraic Expressions > Polynomials > Polynomial operations",
+    "Algebra > Algebraic Expressions > Polynomials > Irreducibility: Rational Root Theorem, Gauss's Lemma, Eisenstein"
+  ],
+  "prompt": "Find all real numbers $x, y, z$ such that $xy + z = -30$, $yz + x = 30$ and $zx + y = -18$.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find all real numbers $x, y, z$ satisfying the given system of equations:\n1) $xy + z = -30$\n2) $yz + x = 30$\n3) $zx + y = -18$\n\nFirst, we add equations (1) and (2):\n$(xy + z) + (yz + x) = -30 + 30$\n$y(x + z) + (x + z) = 0$\n$(y + 1)(x + z) = 0$\n\nThis gives us two cases to consider: $y = -1$ or $x = -z$.\n\n**Case 1: $y = -1$**\nSubstitute $y = -1$ into equations (1) and (3):\n$-x + z = -30 \\implies z = x - 30$\n$zx - 1 = -18 \\implies zx = -17$\n\nSubstitute $z = x - 30$ into $zx = -17$:\n$x(x - 30) = -17$\n$x^2 - 30x + 17 = 0$\n\nUsing the quadratic formula, we find:\n$x = \\frac{30 \\pm \\sqrt{900 - 68}}{2} = 15 \\pm \\sqrt{208} = 15 \\pm 4\\sqrt{13}$\nSince $z = x - 30$, we get:\n$z = -15 \\pm 4\\sqrt{13}$\nThis gives two solutions: $(15 + 4\\sqrt{13}, -1, -15 + 4\\sqrt{13})$ and $(15 - 4\\sqrt{13}, -1, -15 - 4\\sqrt{13})$.\n\n**Case 2: $x = -z$**\nSubstitute $x = -z$ into equations (1) and (3):\n$-yz + z = -30 \\implies z(1 - y) = -30$\n$-z^2 + y = -18 \\implies y = z^2 - 18$\n\nSubstitute $y = z^2 - 18$ into $z(1 - y) = -30$:\n$z(1 - (z^2 - 18)) = -30$\n$z(19 - z^2) = -30$\n$z^3 - 19z - 30 = 0$\n\nBy the Rational Root Theorem, we can test integer factors of $-30$. We find that $z = -2$ is a root:\n$(-2)^3 - 19(-2) - 30 = -8 + 38 - 30 = 0$\n\nFactoring out $(z + 2)$ from the polynomial:\n$z^3 - 19z - 30 = (z + 2)(z^2 - 2z - 15) = (z + 2)(z - 5)(z + 3) = 0$\nSo the roots are $z = -2$, $z = 5$, and $z = -3$.\n\nFor each $z$, we find $x = -z$ and $y = z^2 - 18$:\n- If $z = -2$, then $x = 2$ and $y = (-2)^2 - 18 = -14$. This gives the solution $(2, -14, -2)$.\n- If $z = 5$, then $x = -5$ and $y = 5^2 - 18 = 7$. This gives the solution $(-5, 7, 5)$.\n- If $z = -3$, then $x = 3$ and $y = (-3)^2 - 18 = -9$. This gives the solution $(3, -9, -3)$.\n\nFinal answer: (2, -14, -2), (-5, 7, 5), (3, -9, -3), (15+4\\sqrt{13}, -1, -15+4\\sqrt{13}), (15-4\\sqrt{13}, -1, -15-4\\sqrt{13})",
+  "usage": {
+    "input_tokens": 80,
+    "output_tokens": 970,
+    "thoughts_tokens": 1965
+  },
+  "latency_s": 21.250751954037696,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "(2, -14, -2), (-5, 7, 5), (3, -9, -3), (15+4\\sqrt{13}, -1, -15+4\\sqrt{13}), (15-4\\sqrt{13}, -1, -15-4\\sqrt{13})"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "id": "056l",
+  "country": "Estonia",
+  "competition": "IMO Team Selection Contest",
+  "gold_final_answer": "f(x) = 0 for all x; f(x) = x for all x",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Functional Equations"
+  ],
+  "prompt": "Find all functions $f : \\mathbb{R} \\to \\mathbb{R}$ that satisfy $f(xy + f(xy)) = 2x f(y)$ for all $x, y \\in \\mathbb{R}$.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "Let me denote the functional equation as $f(xy + f(xy)) = 2xf(y)$.\n\n**Step 1: Initial substitutions**\n\nLet $x = 0$: $f(f(0)) = 0$.\n\nLet $y = 0$: $f(f(0)) = 2xf(0)$ for all $x$. Since $f(f(0)) = 0$, we get $2xf(0) = 0$ for all $x$, so $f(0) = 0$.\n\n**Step 2: Try $f(t) = ct$ for some constant $c$**\n\nSubstitute: $f(xy + cxy) = 2xf(y)$\n$c \\cdot xy(1+c) = 2x \\cdot cy$\n$c(1+c)xy = 2cxy$\n\nIf $c \\neq 0$: $1 + c = 2$, so $c = 1$.\n\nCheck $f(t) = t$: $f(xy + xy) = f(2xy) = 2xy$ and $2xf(y) = 2xy$. ✓\n\n**Step 3: Check if other solutions exist**\n\nLet $x = 1$: $f(y + f(y)) = 2f(y)$.\n\nLet $x = -1$: $f(-y + f(-y)) = -2f(y)$.\n\nSo $f(-y + f(-y)) = -f(y + f(y))$.\n\n**Step 4: Try $f(t) = 0$**\n\nCheck: $f(0) = 0$ and $2xf(y) = 0$. ✓ This works.\n\n**Step 5: Determine if there are other solutions**\n\nSuppose $f$ is not identically zero. Let $g(t) = t + f(t)$, so the equation becomes $f(g(xy)) = 2xf(y)$.\n\nFrom $x=1$: $f(g(y)) = 2f(y)$, so the equation becomes $2f(xy) = 2xf(y)$... wait, let me redo.\n\nActually $f(g(xy)) = 2xf(y)$ and $f(g(y)) = 2f(y)$, so $f(g(xy)) = x \\cdot f(g(y))$.\n\nLet $u = g(y)$. If $g$ is surjective, then $f(g(xy)) = xf(g(y))$ for all $x,y$.\n\nSetting $y = 1$: $f(g(x)) = xf(g(1)) = 2xf(1)$.\n\nBut also $f(g(x)) = 2f(x)$, so $f(x) = xf(1)$ for all $x$.\n\nThis gives $f(x) = cx$ where $c = f(1)$, and from Step 2, $c = 0$ or $c = 1$.\n\n**Step 6: Verify $g$ is surjective when $f \\neq 0$**\n\nIf $f(x) = x$, then $g(x) = 2x$, which is surjective. ✓\n\nIf $f$ is not of the form $cx$, we need to check more carefully. But from the equation $f(g(xy)) = xf(g(y))$, setting $y=1$ gives $f(g(x)) = xf(g(1))$. Since $f(g(y)) = 2f(y)$, we have $2f(x) = xf(g(1)) = 2xf(1)$, giving $f(x) = xf(1)$.\n\nThis argument works as long as we can use $y=1$ freely, which we can. So all solutions are $f(x) = cx$ with $c=0$ or $c=1$.\n\n**The solutions are:**\n\n$$f(x) = 0 \\quad \\text{and} \\quad f(x) = x$$\n\nFinal answer: $f(x) = 0$ and $f(x) = x$",
+  "usage": {
+    "input_tokens": 102,
+    "output_tokens": 1019,
+    "thinking_tokens": 0
+  },
+  "latency_s": 14.830010097008198,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "$f(x) = 0$ and $f(x) = x$"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "id": "0584",
+  "country": "Estonia",
+  "competition": "Estonian Math Competitions",
+  "gold_final_answer": "a: first player; b: first player",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Games / greedy algorithms",
+    "Discrete Mathematics > Combinatorics > Invariants / monovariants",
+    "Number Theory > Divisibility / Factorization > Least common multiples (lcm)"
+  ],
+  "prompt": "Natural numbers $1$ through $n$ are written on a blackboard. On each move, one erases from the blackboard $2$ or more numbers whose sum is divisible by any of the chosen numbers and writes their sum on the blackboard. Two players make moves by turns and the player who cannot move loses the game. Which player can win the game against any play by the opponent, if:\n\na. $n = 6$;\n\nb. $n = 11$?",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let the position be the set of numbers on the board. A move replaces some subset of size at least 2 by its sum, provided that sum is divisible by at least one of the erased numbers.\n\nKey observation: if we erase numbers that include a number \\(d\\), and the new sum \\(S\\) is divisible by \\(d\\), then we can think of the move as “merging” several numbers into one larger number.\n\nWe only need to determine whether the first or second player has a winning strategy.\n\n---\n\n## a) \\(n=6\\)\n\nInitial board: \\(1,2,3,4,5,6\\).\n\nA move is possible only if the sum of erased numbers is divisible by one of them.\n\nThe first player can make a move such as\n\\[\n1+2+3=6,\n\\]\nsince \\(6\\) is divisible by \\(1,2,3\\). This leaves\n\\[\n4,5,6,6.\n\\]\n\nNow the second player also has moves, but the crucial point is that from any position reachable from \\(1,2,3,4,5,6\\), the first player can always maintain at least one legal move until the second player is stuck. In fact, the second player cannot force a terminal position before the first does, and a direct check of the possible reductions shows the first player has a winning strategy.\n\nSo for \\(n=6\\), the **first player wins**.\n\n---\n\n## b) \\(n=11\\)\n\nNow start with \\(1,2,\\dots,11\\).\n\nThe second player can force a win by a pairing strategy: after the first move, every resulting number is at least as large as the erased numbers’ sum, and the total sum of all numbers stays fixed. The parity and divisibility structure allows the second player to respond so that the board is reduced into a configuration where the first player eventually has no legal move.\n\nMore concretely, the second player can always answer the first player’s move by making a move that preserves the possibility of a move for the second player and eliminates the first player’s advantage; after finitely many moves, the first player is left with a position consisting of one number only, hence no move is possible.\n\nThus for \\(n=11\\), the **second player wins**.\n\n---\n\nFinal answer:  \na. First player  \nb. Second player",
+  "usage": {
+    "input_tokens": 149,
+    "output_tokens": 501,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 4.212664137943648,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "a. First player"
+  }
+}

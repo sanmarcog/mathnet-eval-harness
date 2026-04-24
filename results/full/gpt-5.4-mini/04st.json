@@ -1,0 +1,20 @@
+{
+  "id": "04st",
+  "country": "Czech Republic",
+  "competition": "Czech and Slovak Mathematical Olympiad",
+  "gold_final_answer": "x + y + z = 4; the smallest interval is [2/3, 2].",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Vieta's formulas",
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities"
+  ],
+  "prompt": "Suppose that the real numbers $x, y, z$ satisfy equalities\n$$\n15(x + y + z) = 12(xy + yz + zx) = 10(x^2 + y^2 + z^2)\n$$\nand that at least one of them is different from zero.\na) Prove that $x + y + z = 4$.\nb) Find the smallest interval $(a, b)$, which contains all three numbers from any triplet $(x, y, z)$ satisfying the given conditions.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let  \n\\[\n15(x+y+z)=12(xy+yz+zx)=10(x^2+y^2+z^2)=:k.\n\\]\nSince not all of \\(x,y,z\\) are zero, we have \\(k\\neq 0\\).\n\nSet\n\\[\ns=x+y+z,\\quad p=xy+yz+zx,\\quad q=x^2+y^2+z^2.\n\\]\nThen the condition says\n\\[\n15s=12p=10q.\n\\]\n\n## a) Prove that \\(x+y+z=4\\)\n\nFrom \\(15s=12p\\), we get\n\\[\np=\\frac{5}{4}s.\n\\]\nFrom \\(15s=10q\\), we get\n\\[\nq=\\frac{3}{2}s.\n\\]\nNow use\n\\[\ns^2=x^2+y^2+z^2+2(xy+yz+zx)=q+2p.\n\\]\nSubstitute the expressions for \\(p\\) and \\(q\\):\n\\[\ns^2=\\frac{3}{2}s+2\\cdot \\frac54 s=\\frac32 s+\\frac52 s=4s.\n\\]\nSo\n\\[\ns^2-4s=0 \\quad\\Longrightarrow\\quad s(s-4)=0.\n\\]\nIf \\(s=0\\), then \\(15s=0\\), hence \\(p=q=0\\). Thus\n\\[\nx^2+y^2+z^2=0,\n\\]\nwhich forces \\(x=y=z=0\\), contradicting the assumption that at least one is nonzero.\n\nTherefore,\n\\[\n\\boxed{x+y+z=4}.\n\\]\n\n## b) Find the smallest interval containing all three numbers\n\nFrom part (a), \\(s=4\\). Then\n\\[\np=\\frac54 s=5,\\qquad q=\\frac32 s=6.\n\\]\nSo \\(x,y,z\\) are real numbers with\n\\[\nx+y+z=4,\\quad xy+yz+zx=5,\\quad x^2+y^2+z^2=6.\n\\]\n\nWe want the smallest interval \\((a,b)\\) containing every possible value of each of \\(x,y,z\\).  \nBy symmetry, it is enough to find the minimum and maximum possible values of one variable, say \\(x\\).\n\nSince \\(y+z=4-x\\) and \\(yz=5-x(4-x)=x^2-4x+5\\), the numbers \\(y,z\\) are real, so their discriminant must be nonnegative:\n\\[\n(y+z)^2-4yz\\ge 0.\n\\]\nThus\n\\[\n(4-x)^2-4(x^2-4x+5)\\ge 0.\n\\]\nCompute:\n\\[\n16-8x+x^2-4x^2+16x-20\\ge 0\n\\]\n\\[\n-3x^2+8x-4\\ge 0\n\\]\n\\[\n3x^2-8x+4\\le 0.\n\\]\nThe roots are\n\\[\nx=\\frac{8\\pm\\sqrt{64-48}}{6}=\\frac{8\\pm 4}{6},\n\\]\nso\n\\[\nx\\in\\left[\\frac23,\\,2\\right].\n\\]\nBy symmetry, the same holds for \\(y\\) and \\(z\\). Hence every number in every such triple lies in\n\\[\n\\left[\\frac23,2\\right].\n\\]\nThis interval is best possible: equality occurs, for example, at \\((2,1,1)\\) and \\(\\left(\\frac23,\\frac23,\\frac83\\right)\\), so the endpoints are attained.\n\nThus the smallest interval is\n\\[\n\\boxed{\\left(\\frac23,\\,2\\right)}.\n\\]\n\nFinal answer:  \na) \\(x+y+z=4\\).  \nb) The smallest interval is \\(\\left(\\frac23,\\,2\\right)\\).",
+  "usage": {
+    "input_tokens": 162,
+    "output_tokens": 872,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 5.010096449055709,
+  "cached": false
+}

@@ -1,0 +1,24 @@
+{
+  "id": "04p3",
+  "country": "Croatia",
+  "competition": "Croatian Mathematical Society Competitions",
+  "gold_final_answer": "Equality holds if and only if a = b (which, under the given constraint, means a = b in the interval from zero to one).",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities > QM-AM-GM-HM / Power Mean"
+  ],
+  "prompt": "Prove that for non-negative real numbers $a$ and $b$ such that $a + b \\le 2$ the inequality\n$$\n\\frac{1}{1+a^2} + \\frac{1}{1+b^2} \\le \\frac{2}{1+ab}\n$$\nholds. When is the equality attained? (Austria 2018)",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To prove the inequality, we can find the common denominator and simplify the difference between the two sides:\n$$ \\frac{1}{1+a^2} + \\frac{1}{1+b^2} - \\frac{2}{1+ab} \\le 0 $$\n$$ \\frac{2+a^2+b^2}{(1+a^2)(1+b^2)} - \\frac{2}{1+ab} \\le 0 $$\n$$ \\frac{(2+a^2+b^2)(1+ab) - 2(1+a^2)(1+b^2)}{(1+a^2)(1+b^2)(1+ab)} \\le 0 $$\n\nExpanding the numerator, we get:\n$$ 2 + 2ab + a^2 + a^3b + b^2 + ab^3 - 2 - 2a^2 - 2b^2 - 2a^2b^2 $$\n$$ = -(a^2 - 2ab + b^2) + ab(a^2 - 2ab + b^2) $$\n$$ = -(a-b)^2 + ab(a-b)^2 $$\n$$ = (a-b)^2(ab - 1) $$\n\nSo the inequality is equivalent to:\n$$ \\frac{(a-b)^2(ab - 1)}{(1+a^2)(1+b^2)(1+ab)} \\le 0 $$\n\nSince $a$ and $b$ are non-negative, the denominator $(1+a^2)(1+b^2)(1+ab)$ is strictly positive. \nFor the numerator, we know that $(a-b)^2 \\ge 0$. We are given that $a + b \\le 2$. By the AM-GM inequality, we have:\n$$ \\sqrt{ab} \\le \\frac{a+b}{2} \\le \\frac{2}{2} = 1 $$\nSquaring both sides gives $ab \\le 1$, which means $ab - 1 \\le 0$. \nTherefore, $(a-b)^2(ab - 1) \\le 0$, and the inequality holds.\n\nEquality is attained when the numerator is zero, which happens if and only if $(a-b)^2 = 0$ or $ab - 1 = 0$. \nIf $(a-b)^2 = 0$, then $a = b$. Given $a+b \\le 2$, this implies $a = b \\le 1$.\nIf $ab - 1 = 0$, then $ab = 1$. By AM-GM, $a+b \\ge 2\\sqrt{ab} = 2$. Since we are given $a+b \\le 2$, we must have $a+b = 2$, which together with $ab = 1$ implies $a = b = 1$. \nIn both cases, the condition for equality is $a = b$.\n\nFinal answer: a = b",
+  "usage": {
+    "input_tokens": 123,
+    "output_tokens": 670,
+    "thoughts_tokens": 1685
+  },
+  "latency_s": 19.254042082931846,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "a = b"
+  }
+}

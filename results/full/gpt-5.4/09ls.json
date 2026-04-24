@@ -1,0 +1,20 @@
+{
+  "id": "09ls",
+  "country": "Mongolia",
+  "competition": "Mongolian Mathematical Olympiad",
+  "gold_final_answer": "630",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Algebraic properties of binomial coefficients",
+    "Algebra > Algebraic Expressions > Sequences and Series > Sums and products"
+  ],
+  "prompt": "A number whose digits first increase and then decrease is called a *mountain-shaped number*. For example, $1310$ is mountain-shaped, while $1331$, $1234$, $4321$, and $3412$ are not mountain-shaped. How many four-digit mountain-shaped numbers are there in total?",
+  "model": "gpt-5.4",
+  "response_text": "Let the four-digit number be \\(abcd\\), with \\(a\\neq 0\\).\n\n“Digits first increase and then decrease” for a 4-digit number means there is a peak in one of the middle positions, and the changes must be strict (as the examples show). So the only possible patterns are:\n\n1. \\(a<b>c>d\\)\n2. \\(a<b<c>d\\)\n\nWe count each case.\n\n### Case 1: \\(a<b>c>d\\)\nChoose the three distinct digits \\(b,c,d\\) with \\(b>c>d\\).  \nFrom any choice of 3 digits from \\(\\{0,1,\\dots,9\\}\\), the largest is \\(b\\), and the other two are \\(c,d\\) in forced order.\n\nSo first choose \\(\\{b,c,d\\}\\): \\(\\binom{10}{3}=120\\).\n\nNow choose \\(a\\) with \\(1\\le a<b\\), and also \\(a\\ne b\\) automatically.  \nFor fixed \\(b\\), there are \\(b-1\\) choices for \\(a\\) (namely \\(1,2,\\dots,b-1\\)).\n\nHow many triples \\((b,c,d)\\) have given \\(b\\)? We need to choose \\(c,d\\) from \\(\\{0,1,\\dots,b-1\\}\\), so there are \\(\\binom{b}{2}\\).\n\nThus this case contributes\n\\[\n\\sum_{b=2}^9 (b-1)\\binom{b}{2}.\n\\]\nCompute:\n\\[\n\\sum_{b=2}^9 (b-1)\\frac{b(b-1)}2\n=\\frac12\\sum_{b=2}^9 b(b-1)^2\n=546.\n\\]\n\n### Case 2: \\(a<b<c>d\\)\nHere \\(a,b,c\\) are strictly increasing and then decrease to \\(d\\).\n\nChoose \\(a,b,c\\) with \\(1\\le a<b<c\\le 9\\), then choose \\(d\\) with \\(0\\le d<c\\), \\(d\\ne b\\).  \nFor fixed \\(c\\), the number of choices for \\(a,b\\) is \\(\\binom{c-1}{2}\\) (choose 2 digits from \\(1,\\dots,c-1\\)).  \nThen \\(d\\) can be any digit in \\(\\{0,1,\\dots,c-1\\}\\) except \\(b\\), so there are \\(c-1\\) choices.\n\nThus this case contributes\n\\[\n\\sum_{c=3}^9 \\binom{c-1}{2}(c-1).\n\\]\nLet \\(n=c-1\\). Then \\(n=2,\\dots,8\\):\n\\[\n\\sum_{n=2}^8 \\binom{n}{2}n\n=\\sum_{n=2}^8 \\frac{n^2(n-1)}2\n=378.\n\\]\n\n### Total\n\\[\n546+378=924.\n\\]\n\nFinal answer: 924",
+  "usage": {
+    "input_tokens": 112,
+    "output_tokens": 661,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 10.129000796936452,
+  "cached": false
+}

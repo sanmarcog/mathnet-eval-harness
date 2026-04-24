@@ -1,0 +1,24 @@
+{
+  "id": "04n7",
+  "country": "Croatia",
+  "competition": "Croatia_2018",
+  "gold_final_answer": "All real x with sin x in [0, 1/2], i.e., for any integer k: x in [2kπ, 2kπ + π/6] ∪ [2kπ + 5π/6, 2kπ + π].",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities"
+  ],
+  "prompt": "Determine all real numbers $x$ such that\n$$\n1 \\le \\frac{1 + \\sin x}{1 - \\sin x} \\le 3.\n$$",
+  "model": "claude-sonnet-4-6",
+  "response_text": "We need to find all real $x$ such that $1 \\le \\frac{1+\\sin x}{1-\\sin x} \\le 3$.\n\nFirst, note that $\\sin x \\neq 1$ (so $1 - \\sin x \\neq 0$), and we need $1 - \\sin x > 0$ (i.e., $\\sin x < 1$) for the fraction to be positive (which it must be since $\\ge 1 > 0$). Actually, let me check: if $\\sin x < 1$, then $1 - \\sin x > 0$, and $1 + \\sin x > 0$ when $\\sin x > -1$. Since $\\sin x \\in [-1, 1)$, we have $1 + \\sin x \\ge 0$.\n\nIf $\\sin x = -1$: fraction = $0/2 = 0 < 1$, so not included.\n\nSo we need $\\sin x \\in (-1, 1)$, meaning $1 - \\sin x > 0$.\n\n**Left inequality:** $\\frac{1+\\sin x}{1-\\sin x} \\ge 1$\n\nSince $1 - \\sin x > 0$: $1 + \\sin x \\ge 1 - \\sin x \\Rightarrow 2\\sin x \\ge 0 \\Rightarrow \\sin x \\ge 0$.\n\n**Right inequality:** $\\frac{1+\\sin x}{1-\\sin x} \\le 3$\n\nSince $1 - \\sin x > 0$: $1 + \\sin x \\le 3(1 - \\sin x) = 3 - 3\\sin x \\Rightarrow 4\\sin x \\le 2 \\Rightarrow \\sin x \\le \\frac{1}{2}$.\n\nSo we need $0 \\le \\sin x \\le \\frac{1}{2}$ (with $\\sin x \\neq 1$, which is already satisfied).\n\nNow find all $x$ where $0 \\le \\sin x \\le \\frac{1}{2}$.\n\n$\\sin x \\ge 0$: $x \\in [2k\\pi, (2k+1)\\pi]$ for integer $k$.\n\n$\\sin x \\le \\frac{1}{2}$: On $[0, \\pi]$, this means $x \\in [0, \\pi/6] \\cup [5\\pi/6, \\pi]$.\n\nCombining: $x \\in [2k\\pi, 2k\\pi + \\pi/6] \\cup [2k\\pi + 5\\pi/6, (2k+1)\\pi]$ for integer $k$.\n\nWe can write $(2k+1)\\pi = 2k\\pi + \\pi$ and $2(k+1)\\pi - \\pi = (2k+1)\\pi$, so the second interval connects to the next period's start... Let me write it cleanly.\n\nThe solution set is:\n$$x \\in \\bigcup_{k \\in \\mathbb{Z}} \\left[2k\\pi, \\, 2k\\pi + \\frac{\\pi}{6}\\right] \\cup \\left[2k\\pi + \\frac{5\\pi}{6}, \\, (2k+1)\\pi\\right]$$\n\nNote that $[2k\\pi + 5\\pi/6, (2k+1)\\pi]$ and $[(2k+1)\\pi, (2k+1)\\pi + \\pi/6] = [(2k+1)\\pi, 2k\\pi + 7\\pi/6]$ — these two intervals share the endpoint $(2k+1)\\pi$, so they merge into $[2k\\pi + 5\\pi/6, 2k\\pi + 7\\pi/6]$ when combined across periods.\n\nMore cleanly: the solution is all $x$ such that $\\sin x \\in [0, 1/2]$, which can be written as:\n\n$$x \\in \\left[2k\\pi - \\pi, \\, 2k\\pi - \\frac{5\\pi}{6}\\right] \\cup \\left[2k\\pi, \\, 2k\\pi + \\frac{\\pi}{6}\\right], \\quad k \\in \\mathbb{Z}$$\n\nOr equivalently combining the intervals around odd multiples of $\\pi$:\n\n$$\\boxed{x \\in \\left[2k\\pi,\\, 2k\\pi + \\frac{\\pi}{6}\\right] \\cup \\left[2k\\pi + \\frac{5\\pi}{6},\\, 2k\\pi + \\pi\\right], \\quad k \\in \\mathbb{Z}}$$\n\nFinal answer: $x \\in \\displaystyle\\bigcup_{k\\in\\mathbb{Z}}\\!\\left[2k\\pi,\\,2k\\pi+\\tfrac{\\pi}{6}\\right]\\cup\\left[2k\\pi+\\tfrac{5\\pi}{6},\\,(2k+1)\\pi\\right]$, i.e., all $x$ with $0\\le \\sin x\\le \\tfrac{1}{2}$.",
+  "usage": {
+    "input_tokens": 88,
+    "output_tokens": 1254,
+    "thinking_tokens": 0
+  },
+  "latency_s": 16.574637443060055,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "$x \\in \\displaystyle\\bigcup_{k\\in\\mathbb{Z}}\\!\\left[2k\\pi,\\,2k\\pi+\\tfrac{\\pi}{6}\\right]\\cup\\left[2k\\pi+\\tfrac{5\\pi}{6},\\,(2k+1)\\pi\\right]$, i.e., all $x$ with $0\\le \\sin x\\le \\tfrac{1}{2}$."
+  }
+}

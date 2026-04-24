@@ -1,0 +1,25 @@
+{
+  "id": "0cjq",
+  "country": "Romania",
+  "competition": "75th NMO Selection Tests",
+  "gold_final_answer": "n-1",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Induction / smoothing",
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments"
+  ],
+  "prompt": "Turbo the snail is in the lower left cell of an $n \\times n$ array, $n \\ge 2$, and aims to reach the upper right cell by moving one cell rightwards or one cell upwards. Some cells contain monsters, visible to Turbo, and they must be avoided. Assume there is a unique way for Turbo to achieve his goal. In terms of $n$, determine the smallest possible number of monsters such an array may contain. (The minimum is over all configurations satisfying the unique path condition.)",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let the cells Turbo can use be the lattice points in an \\(n\\times n\\) grid, with moves only \\(R\\) (right) and \\(U\\) (up). Any valid path from the lower-left to the upper-right uses exactly \\(n-1\\) rights and \\(n-1\\) ups, so every path has length \\(2n-2\\).\n\nWe want the **fewest monsters** that can force the path to be **unique**.\n\n## Key idea\nA unique path must be the only monotone path avoiding monsters.  \nSuppose the chosen path is \\(P\\). Every other monotone path must be blocked by at least one monster.\n\nNow consider the “turns” of a path. If the path ever has two consecutive moves of the same type, say \\(RR\\) or \\(UU\\), then one can often locally reroute around a single monster-free square unless enough obstruction is present. The minimum obstruction occurs when the path is forced to alternate as much as possible, creating a “staircase” boundary.\n\nA standard extremal construction is to place monsters on all cells of one monotone staircase boundary except the endpoints of the desired path. Then the only remaining route is the complementary staircase.\n\nMore concretely, the minimum number of monsters needed is achieved by forcing Turbo to follow one of the two boundary paths:\n- all rights, then all ups, or\n- all ups, then all rights,\n\nand blocking every alternative at the decisive “corner” cells.  \nThis requires exactly \\(n-1\\) monsters.\n\n## Why \\(n-1\\) is enough\nFor example, block the cells\n\\[\n(1,2), (2,2), \\dots, (n-1,2)\n\\]\nin suitable coordinates so that the only available route is to go all the way along one edge and then up the other edge. More generally, one can construct a zig-zag barrier of \\(n-1\\) monsters that leaves exactly one monotone path.\n\n## Why fewer than \\(n-1\\) cannot suffice\nA monotone path from one corner to the opposite corner has \\(n-1\\) horizontal “choices” and \\(n-1\\) vertical “choices.” To make the path unique, each of the \\(n-1\\) essential turns/steps must be forced by at least one monster barrier. With fewer than \\(n-1\\) monsters, there is always at least one “free” stage where Turbo can detour, producing a second path.\n\nHence the minimum number of monsters is\n\n\\[\nn-1.\n\\]\n\nFinal answer: \\(\\boxed{n-1}\\)",
+  "usage": {
+    "input_tokens": 153,
+    "output_tokens": 559,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 5.319573892978951,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "exact",
+    "predicted": "n-1"
+  }
+}

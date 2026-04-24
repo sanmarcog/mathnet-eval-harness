@@ -1,0 +1,20 @@
+{
+  "id": "04gk",
+  "country": "Croatia",
+  "competition": "Mathematica competitions in Croatia",
+  "gold_final_answer": "a^3/8",
+  "topics_flat": [
+    "Geometry > Solid Geometry > Volume",
+    "Geometry > Solid Geometry > Other 3D problems"
+  ],
+  "prompt": "Let $ABCD A_1 B_1 C_1 D_1$ be a rectangular cuboid with edge-lengths $|AB| = |AD| = a$ and $|AA_1| = 2a$. Let $A', B', C'$ and $D'$ be the midpoints of $AA_1, BB_1, CC_1$ and $DD_1$ respectively.\nFind the volume of the intersection of the cube $ABCD A'B'C'D'$ and the pyramid $A_1A'B'B_1D$.",
+  "model": "gpt-5.4",
+  "response_text": "Let the cuboid be placed in coordinates:\n\n\\[\nA(0,0,0),\\quad B(a,0,0),\\quad D(0,a,0),\\quad A_1(0,0,2a).\n\\]\n\nThen\n\n\\[\nC(a,a,0),\\quad B_1(a,0,2a),\\quad D_1(0,a,2a),\\quad C_1(a,a,2a).\n\\]\n\nSince \\(A',B',C',D'\\) are midpoints of the vertical edges,\n\n\\[\nA'(0,0,a),\\quad B'(a,0,a),\\quad C'(a,a,a),\\quad D'(0,a,a).\n\\]\n\nSo the cube \\(ABCD A'B'C'D'\\) is simply\n\n\\[\n0\\le x\\le a,\\quad 0\\le y\\le a,\\quad 0\\le z\\le a.\n\\]\n\nIts volume is \\(a^3\\).\n\n---\n\n## 1) Equation of the pyramid \\(A_1A'B'B_1D\\)\n\nThe base is the rectangle \\(A'B'B_1A_1\\), lying in the plane \\(y=0\\), and the apex is \\(D=(0,a,0)\\).\n\nA point in the pyramid is obtained by joining \\(D\\) to the base.  \nAt height \\(y\\), the cross-section is a scaled copy of the base with factor \\(1-\\frac ya\\).\n\nSince the base rectangle is\n\n\\[\n0\\le x\\le a,\\qquad a\\le z\\le 2a \\qquad (y=0),\n\\]\n\nat level \\(y\\) the section is\n\n\\[\n0\\le x\\le a\\left(1-\\frac ya\\right)=a-y,\n\\]\n\\[\nz\\in \\left[y,\\ a+y\\right].\n\\]\n\nThus inside the pyramid we have\n\n\\[\n0\\le y\\le a,\\qquad 0\\le x\\le a-y,\\qquad y\\le z\\le a+y.\n\\]\n\n---\n\n## 2) Intersect with the cube\n\nInside the cube, \\(0\\le z\\le a\\).  \nCombining with the pyramid condition \\(y\\le z\\le a+y\\), we get simply\n\n\\[\ny\\le z\\le a\n\\]\n\nbecause \\(a\\le a+y\\).\n\nSo the intersection is described by\n\n\\[\n0\\le y\\le a,\\qquad 0\\le x\\le a-y,\\qquad y\\le z\\le a.\n\\]\n\nHence its volume is\n\n\\[\nV=\\int_0^a \\int_0^{a-y}\\int_y^a dz\\,dx\\,dy.\n\\]\n\nCompute:\n\n\\[\n\\int_y^a dz = a-y,\n\\]\n\nso\n\n\\[\nV=\\int_0^a (a-y)(a-y)\\,dy\n=\\int_0^a (a-y)^2\\,dy.\n\\]\n\nLet \\(u=a-y\\). Then\n\n\\[\nV=\\int_0^a u^2\\,du=\\frac{a^3}{3}.\n\\]\n\n---\n\n\\[\n\\boxed{\\frac{a^3}{3}}\n\\]\n\nFinal answer: \\(\\frac{a^3}{3}\\).",
+  "usage": {
+    "input_tokens": 169,
+    "output_tokens": 716,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 9.64906978001818,
+  "cached": false
+}

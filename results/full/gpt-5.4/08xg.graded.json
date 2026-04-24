@@ -1,0 +1,25 @@
+{
+  "id": "08xg",
+  "country": "Japan",
+  "competition": "Japan Mathematical Olympiad Initial Round",
+  "gold_final_answer": "3",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Circles > Tangents",
+    "Geometry > Plane Geometry > Circles > Radical axis theorem"
+  ],
+  "prompt": "Circle $C_1$ is internally tangent to circle $C_2$ at point $A$. Let $O$ be the center of circle $C_2$. A tangent line to circle $C_1$ at point $P$ on $C_1$ goes through point $O$. Let $Q$ be the point of intersection of half-line $OP$ and circle $C_2$, and let $R$ be the point of intersection of the line tangent to circle $C_1$ at point $A$ and the line $OP$. Suppose that the radius of circle $C_2$ is $9$ and that $PQ = QR$ is satisfied. Here we denote the length of the line segment $XY$ also by $XY$. Determine the value of $OP$.",
+  "model": "gpt-5.4",
+  "response_text": "Let the radius of \\(C_2\\) be \\(9\\), and let the radius of \\(C_1\\) be \\(r\\).\n\nSince \\(C_1\\) is internally tangent to \\(C_2\\) at \\(A\\), the centers and \\(A\\) are collinear, and if \\(S\\) is the center of \\(C_1\\), then\n\\[\nOS=9-r.\n\\]\n\nBecause \\(OP\\) is tangent to \\(C_1\\) at \\(P\\), we have\n\\[\nSP\\perp OP.\n\\]\nThus in right triangle \\(OSP\\),\n\\[\nOP^2=OS^2-r^2=(9-r)^2-r^2=81-18r.\n\\]\nLet\n\\[\nx=OP.\n\\]\nThen\n\\[\nx^2=81-18r. \\qquad (1)\n\\]\n\nNow place coordinates so that \\(O=(0,0)\\), and the common tangency point is \\(A=(9,0)\\). Then the tangent to \\(C_1\\) at \\(A\\) is the vertical line \\(x=9\\).\n\nPoint \\(P\\) lies on the ray from \\(O\\), and \\(Q\\) is where this ray meets \\(C_2\\), so since \\(OQ=9\\),\n\\[\nPQ = OP-OQ = x-9.\n\\]\n\nAlso, \\(R\\) is the intersection of line \\(OP\\) with \\(x=9\\). If the line \\(OP\\) makes angle \\(\\theta\\) with the \\(x\\)-axis, then points on it are \\((t\\cos\\theta,t\\sin\\theta)\\). Since \\(P\\) is the tangency point to \\(C_1\\), in right triangle \\(OSP\\),\n\\[\n\\cos\\theta=\\frac{OP}{OO_1?}\n\\]\nA cleaner way: from triangle \\(OSP\\),\n\\[\n\\cos\\theta=\\frac{x}{9-r},\n\\]\nbecause \\(OS\\) lies on the \\(x\\)-axis. Hence the parameter value at which the line reaches \\(x=9\\) is\n\\[\nOR=\\frac{9}{\\cos\\theta}= \\frac{9(9-r)}{x}.\n\\]\nSo\n\\[\nQR=OR-OQ=\\frac{9(9-r)}{x}-9.\n\\]\n\nGiven \\(PQ=QR\\), we get\n\\[\nx-9=\\frac{9(9-r)}{x}-9,\n\\]\nso\n\\[\nx=\\frac{9(9-r)}{x}\n\\quad\\Longrightarrow\\quad\nx^2=9(9-r). \\qquad (2)\n\\]\n\nFrom (1) and (2):\n\\[\n81-18r=81-9r,\n\\]\nso\n\\[\nr=0?\n\\]\nThis indicates a sign issue in the cosine relation. Let us compute it correctly.\n\nIn triangle \\(OSP\\), the angle at \\(O\\) is \\(\\theta\\), and\n\\[\n\\sin\\theta=\\frac{SP}{OS}=\\frac{r}{9-r}.\n\\]\nHence\n\\[\n\\cos\\theta=\\sqrt{1-\\sin^2\\theta}\n=\\frac{\\sqrt{(9-r)^2-r^2}}{9-r}\n=\\frac{x}{9-r}.\n\\]\nThat part was correct.\n\nBut \\(P\\) lies between \\(O\\) and \\(Q\\) or beyond \\(Q\\)? Since \\(P\\) is inside \\(C_2\\), we have \\(OP<9\\), so actually\n\\[\nPQ=9-x.\n\\]\nThus the condition becomes\n\\[\n9-x=\\frac{9(9-r)}{x}-9.\n\\]\nSo\n\\[\n18-x=\\frac{9(9-r)}{x},\n\\]\nand multiplying by \\(x\\),\n\\[\n18x-x^2=81-9r. \\qquad (3)\n\\]\n\nUsing (1), \\(x^2=81-18r\\), so \\(9r=\\frac{81-x^2}{2}\\). Substitute into (3):\n\\[\n18x-x^2 = 81-\\frac{81-x^2}{2}\n= \\frac{81+x^2}{2}.\n\\]\nThus\n\\[\n36x-2x^2=81+x^2\n\\]\n\\[\n3x^2-36x+81=0\n\\]\n\\[\nx^2-12x+27=0\n\\]\n\\[\n(x-3)(x-9)=0.\n\\]\nSince \\(P\\) is strictly inside \\(C_2\\), \\(x<9\\), so\n\\[\nx=3.\n\\]\n\nTherefore,\n\\[\nOP=3.\n\\]\n\nFinal answer: 3",
+  "usage": {
+    "input_tokens": 213,
+    "output_tokens": 1027,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 15.310233116033487,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "exact",
+    "predicted": "3"
+  }
+}

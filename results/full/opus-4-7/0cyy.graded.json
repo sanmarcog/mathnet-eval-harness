@@ -1,0 +1,24 @@
+{
+  "id": "0cyy",
+  "country": "Saudi Arabia",
+  "competition": "Saudi Arabia Mathematical Competitions",
+  "gold_final_answer": "a1 = 2^{2010}, a2 = 3^{2010} − 1, a3 = 4^{2010} − 1, ..., a2010 = 2011^{2010} − 1",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Sequences and Series > Telescoping series"
+  ],
+  "prompt": "Find positive integers $a_{1} < a_{2} < \\ldots < a_{2010}$ such that\n$$\na_{1}(1!)^{2010} + a_{2}(2!)^{2010} + \\ldots + a_{2010}(2010!)^{2010} = (2011!)^{2010}.\n$$",
+  "model": "claude-opus-4-7",
+  "response_text": "<think>\nWe need a_k such that sum a_k (k!)^2010 = (2011!)^2010.\n\nNote (2011!)^2010 = (2011)^2010 · (2010!)^2010.\n\nTry telescoping: (k+1)^2010 (k!)^2010 = ((k+1)!)^2010. So ((k+1)!)^2010 - (k!)^2010 = ((k+1)^2010 - 1)(k!)^2010.\n\nWe want to express (2011!)^2010 as sum. Let me think: (2011!)^2010 - (1!)^2010·something...\n\nActually standard trick: (n+1)! - n! · ? Let's use n!·n = (n+1)! - n!. For 2010th powers it's messier.\n\nTry: a_k = (k+1)^2010 - 1 for k=1,...,2009, and a_2010 = ? \n\nSum_{k=1}^{2009} ((k+1)^2010 - 1)(k!)^2010 + a_2010 (2010!)^2010\n= Sum_{k=1}^{2009} [((k+1)!)^2010 - (k!)^2010] + a_2010 (2010!)^2010\n= (2010!)^2010 - (1!)^2010 + a_2010 (2010!)^2010\n= (1+a_2010)(2010!)^2010 - 1.\n\nSet equal to (2011!)^2010 = 2011^2010 (2010!)^2010.\nSo (1+a_2010)(2010!)^2010 - 1 = 2011^2010 (2010!)^2010.\nThen (1+a_2010 - 2011^2010)(2010!)^2010 = 1, impossible.\n\nNeed to absorb the -1. Replace a_1: instead of a_1 = 2^2010 - 1, use something. We need sum = (2011!)^2010. The issue is the -1 from (1!)^2010.\n\nLet a_1 = 2^2010 (skip the -1), then sum becomes (2010!)^2010 + a_2010(2010!)^2010... wait let me redo.\n\nIf a_1 = 2^2010, a_k = (k+1)^2010 - 1 for k=2,...,2009:\nSum = 2^2010 · 1 + sum_{k=2}^{2009}((k+1)^2010-1)(k!)^2010 + a_2010(2010!)^2010\n\nHmm, the telescoping: sum_{k=1}^{2009}((k+1)^2010-1)(k!)^2010 = (2010!)^2010 - 1. I want it to equal (2010!)^2010 without -1, or compensate.\n\nAlternative: a_1 = 2^2010 - 1 + 1 = 2^2010, but then need ordering a_1 < a_2. a_2 = 3^2010 - 1. Is 2^2010 < 3^2010 - 1? Yes.\n\nWith a_1 = 2^2010: contribution is 2^2010, vs the telescoped contribution would give 2^2010 - 1 for k=1. So we've added 1 extra. Then total sum = (2010!)^2010 - 1 + 1 + a_2010(2010!)^2010 = (1+a_2010)(2010!)^2010.\n\nSet = 2011^2010 (2010!)^2010, so a_2010 = 2011^2010 - 1.\n\nCheck ordering: a_1 = 2^2010, a_2 = 3^2010-1, ..., a_k = (k+1)^2010 - 1 for k=2,...,2009, a_2010 = 2011^2010 - 1.\n\nIs a_1 < a_2? 2^2010 < 3^2010 - 1. Yes.\nIs a_2 < a_3? 3^2010 - 1 < 4^2010 - 1. Yes.\nAll good, strictly increasing.\n\nSo answer: a_1 = 2^2010, a_k = (k+1)^2010 - 1 for 2 ≤ k ≤ 2010.\n</think>\n\n**Solution.** Use the telescoping identity\n$$((k+1)!)^{2010} - (k!)^{2010} = \\big((k+1)^{2010}-1\\big)(k!)^{2010}.$$\n\nDefine\n$$a_1 = 2^{2010}, \\qquad a_k = (k+1)^{2010} - 1 \\text{ for } 2 \\le k \\le 2010.$$\n\n**Strictly increasing:** $2^{2010} < 3^{2010}-1 < 4^{2010}-1 < \\cdots < 2011^{2010}-1$. ✓\n\n**Verification:** \n$$\\sum_{k=1}^{2010} a_k (k!)^{2010} = 2^{2010} + \\sum_{k=2}^{2010}\\big((k+1)^{2010}-1\\big)(k!)^{2010}$$\n$$= 1 + \\sum_{k=1}^{2010}\\big((k+1)^{2010}-1\\big)(k!)^{2010} = 1 + \\sum_{k=1}^{2010}\\big(((k+1)!)^{2010}-(k!)^{2010}\\big)$$\n$$= 1 + (2011!)^{2010} - (1!)^{2010} = (2011!)^{2010}. \\checkmark$$\n\nFinal answer: $a_1 = 2^{2010},\\ a_k = (k+1)^{2010}-1$ for $2 \\le k \\le 2010$.",
+  "usage": {
+    "input_tokens": 170,
+    "output_tokens": 1794,
+    "thinking_tokens": 0
+  },
+  "latency_s": 19.088627243996598,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "$a_1 = 2^{2010},\\ a_k = (k+1)^{2010}-1$ for $2 \\le k \\le 2010$."
+  }
+}

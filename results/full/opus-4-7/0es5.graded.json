@@ -1,0 +1,25 @@
+{
+  "id": "0es5",
+  "country": "South Africa",
+  "competition": "The South African Mathematical Olympiad Third Round",
+  "gold_final_answer": "2017",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Games / greedy algorithms",
+    "Discrete Mathematics > Combinatorics > Induction / smoothing"
+  ],
+  "prompt": "Andile and Zandre play a game on a $2017 \\times 2017$ board. At the beginning, Andile declares some of the squares *forbidden*, meaning that nothing may be placed on such a square. After that, they take turns to place coins on the board, with Zandre placing the first coin. It is not allowed to place a coin on a forbidden square or in the same row or column where another coin has already been placed. The player who places the last coin wins the game.\nWhat is the least number of squares Andile needs to declare as forbidden at the beginning to ensure a win? (Assume that both players use an optimal strategy.)",
+  "model": "claude-opus-4-7",
+  "response_text": "Final answer: <answer>2017</answer>",
+  "usage": {
+    "input_tokens": 257,
+    "output_tokens": 19,
+    "thinking_tokens": 0
+  },
+  "latency_s": 1.2504590699682012,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "<answer>2017</answer>"
+  }
+}

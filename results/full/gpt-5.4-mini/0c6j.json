@@ -1,0 +1,20 @@
+{
+  "id": "0c6j",
+  "country": "Romania",
+  "competition": "70th NMO SELECTION TESTS FOR THE JUNIOR BALKAN MATHEMATICAL OLYMPIAD",
+  "gold_final_answer": "1/16",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities > Cauchy-Schwarz",
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities"
+  ],
+  "prompt": "Find the maximum value of the expression\n\n$$\nE(a, b) = \\frac{a + b}{(4a^2 + 3)(4b^2 + 3)}\n$$\n\nwhen $a, b \\in \\mathbb{R}$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let  \n\\[\nE(a,b)=\\frac{a+b}{(4a^2+3)(4b^2+3)}.\n\\]\n\nWe want its maximum over all real \\(a,b\\).\n\nSet\n\\[\nf(x)=\\frac{x}{4x^2+3}.\n\\]\nThen\n\\[\nE(a,b)=\\frac{a+b}{(4a^2+3)(4b^2+3)}\n\\]\nis not directly separable, but we can use the fact that the denominator is always positive and look for a sharp bound.\n\nBy AM-GM,\n\\[\n(4a^2+3)(4b^2+3)\\ge (2\\sqrt{3}|a|+2\\sqrt{3}|b|)^2/4\n\\]\nis not the cleanest route; instead, optimize by symmetry.\n\nSince the expression is linear in \\(a+b\\) and symmetric in \\(a,b\\), the maximum occurs for \\(a=b=x\\) (this can be justified by considering the function under fixed \\(a+b\\), or by checking the extremal condition from partial derivatives). Then\n\\[\nE(x,x)=\\frac{2x}{(4x^2+3)^2}.\n\\]\nSo we maximize\n\\[\ng(x)=\\frac{2x}{(4x^2+3)^2}.\n\\]\n\nDifferentiate:\n\\[\ng'(x)=\\frac{2(4x^2+3)^2-2x\\cdot 2(4x^2+3)\\cdot 8x}{(4x^2+3)^4}.\n\\]\nThe numerator simplifies to\n\\[\n2(4x^2+3)\\bigl((4x^2+3)-16x^2\\bigr)\n=2(4x^2+3)(3-12x^2).\n\\]\nThus critical points satisfy\n\\[\n3-12x^2=0 \\quad\\Rightarrow\\quad x^2=\\frac14,\\quad x=\\pm\\frac12.\n\\]\nSince we want maximum, take \\(x=\\frac12\\). Then\n\\[\nE\\left(\\frac12,\\frac12\\right)\n=\\frac{1}{(4\\cdot \\frac14+3)^2}\n=\\frac{1}{4^2}\n=\\frac1{16}.\n\\]\n\nSo the maximum value is\n\n\\[\n\\boxed{\\frac{1}{16}}.\n\\]\n\nFinal answer: \\(\\frac{1}{16}\\)",
+  "usage": {
+    "input_tokens": 104,
+    "output_tokens": 542,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.603732579969801,
+  "cached": false
+}

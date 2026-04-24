@@ -1,0 +1,21 @@
+{
+  "id": "0glv",
+  "country": "Thailand",
+  "competition": "The 14th Thailand Mathematical Olympiad",
+  "gold_final_answer": "13",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Counting two ways",
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments",
+    "Discrete Mathematics > Combinatorics > Pigeonhole principle"
+  ],
+  "prompt": "Fourteen schools participate in the second Tha Sala Mathematics Talent competition, with each school sending 14 students. The students take tests in 14 rooms, with 14 students in a room such that every room does not contain students from the same school.\n\nAmong the students there are 15 students who also participated in the first Tha Sala Mathematics Talent competition. At the opening ceremony the organizers will select 2 students from those who participated in the first competition to recite the pledge of honor, with the condition that the students are from different schools and take tests in different rooms.\n\nLet $n$ be the number of ways to select 2 students satisfying the condition. Determine the least possible $n$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Model the 15 returning students as edges of a graph:\n\n- the **14 schools** are the 14 vertices,\n- each returning student lies in exactly one school,\n- and since no room contains two students from the same school, each room can contain at most one student from each school.\n\nNow define another graph on the 15 returning students: connect two students if they are from **different schools** and are in **different rooms**. We want the number of such pairs, and we want to minimize it.\n\nEquivalently, we want to maximize the number of pairs that are **forbidden**, i.e. pairs of returning students that are either:\n\n1. from the **same school**, or\n2. in the **same room**.\n\nSince each school has 14 students and each room has 14 students, and there are 15 returning students total, by the pigeonhole principle:\n\n- some school contains at least 2 returning students, and\n- some room contains at least 2 returning students.\n\nTo minimize valid pairs, we should concentrate all 15 returning students as much as possible into one school-room pattern consistent with the rules.\n\nThe best possible arrangement is:\n\n- 2 returning students from one school,\n- the remaining 13 returning students all from distinct schools,\n- and place those 15 students so that the two students from the same school are in different rooms, while as many pairs as possible share a room.\n\nA room can contain at most one student from each school, so the only way to make two returning students in the same room is to pair students from different schools. Since there are 15 students total, the maximum number of same-room pairs among them occurs when one room contains 2 returning students and the other 13 rooms contain 1 each; this gives only one same-room pair.\n\nLikewise, there is only one same-school pair if exactly one school contributes 2 returning students.\n\nHence the minimum number of valid pairs is\n\n\\[\n\\binom{15}{2} - 1 - 1 = 105 - 2 = 103.\n\\]\n\nFinal answer: \\(\\boxed{103}\\)",
+  "usage": {
+    "input_tokens": 187,
+    "output_tokens": 445,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 4.0128449980402365,
+  "cached": false
+}

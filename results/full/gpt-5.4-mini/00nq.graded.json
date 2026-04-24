@@ -1,0 +1,25 @@
+{
+  "id": "00nq",
+  "country": "Austria",
+  "competition": "Austrian Mathematical Olympiad",
+  "gold_final_answer": "All cyclic permutations of (1,1,1), (1,1,2), (1,3,2), (3,5,4). Equivalently, the ten triples: (1,1,1), (1,1,2), (1,2,1), (2,1,1), (1,3,2), (3,2,1), (2,1,3), (3,5,4), (5,4,3), (4,3,5).",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization",
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities"
+  ],
+  "prompt": "Determine all triples $(x, y, z)$ of positive integers satisfying\n$$\nx \\mid (y+1), \\quad y \\mid (z+1) \\quad \\text{and} \\quad z \\mid (x+1).\n$$",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let\n\\[\ny+1=ax,\\qquad z+1=by,\\qquad x+1=cz\n\\]\nfor some positive integers \\(a,b,c\\).\n\nThen\n\\[\ny=ax-1,\\quad z=b(ax-1)-1=abx-b-1,\n\\]\nand also\n\\[\nx+1=c(abx-b-1).\n\\]\nRearranging,\n\\[\nx+1=cabx-cb-c.\n\\]\nSo\n\\[\nx(1-cab)=-(cb+c+1),\n\\]\nhence\n\\[\nx=\\frac{cb+c+1}{cab-1}.\n\\]\n\nNow \\(x\\) is positive, so \\(cab>1\\). Also,\n\\[\ncab-1 \\le cb+c+1\n\\]\nmust hold. We inspect small possibilities.\n\nA standard way is to use the chain of inequalities:\n\\[\nx \\mid y+1 \\implies x \\le y+1,\\quad y\\le z+1,\\quad z\\le x+1.\n\\]\nMultiplying the three divisibility relations gives\n\\[\nxyz \\mid (y+1)(z+1)(x+1).\n\\]\nExpanding and using positivity, one obtains that equality must be very restrictive. A cleaner direct approach is to check the cyclic possibilities by symmetry and small bounds.\n\nSince \\(x \\mid y+1\\), we have \\(y\\ge x-1\\).\nSimilarly, \\(z\\ge y-1\\) and \\(x\\ge z-1\\). Thus all three numbers differ by at most 1 in a cyclic sense, forcing\n\\[\nx=y=z\n\\]\nor one of them equals 1.\n\nIf \\(x=y=z=t\\), then \\(t\\mid t+1\\), impossible for \\(t>1\\), and \\(t=1\\) works.\n\nNow suppose one of them is 1. Without loss of generality let \\(x=1\\). Then \\(z\\mid 2\\), so \\(z=1\\) or \\(2\\).\n\n- If \\(z=1\\), then \\(y\\mid 2\\), so \\(y=1\\) or \\(2\\). But \\(x\\mid y+1\\) is automatic.\n  Checking:\n  - \\((1,1,1)\\) works.\n  - \\((1,2,1)\\) works since \\(1\\mid 3\\), \\(2\\mid 2\\), \\(1\\mid 2\\).\n\n- If \\(z=2\\), then \\(y\\mid 3\\), so \\(y=1\\) or \\(3\\).\n  - \\((1,1,2)\\) works: \\(1\\mid2\\), \\(1\\mid3\\), \\(2\\mid2\\).\n  - \\((1,3,2)\\) works: \\(1\\mid4\\), \\(3\\mid3\\), \\(2\\mid2\\).\n\nBy cyclic symmetry, these generate all solutions:\n\\[\n(1,1,1),\\ (1,1,2),\\ (1,2,1),\\ (1,3,2),\n\\]\nand their cyclic permutations. But \\((1,1,2)\\) cyclically gives \\((2,1,1)\\), and \\((1,3,2)\\) cyclically gives \\((2,1,3)\\), \\((3,2,1)\\).\n\nSo the complete set is\n\\[\n(1,1,1),\\ (1,1,2),\\ (1,2,1),\\ (2,1,1),\\ (1,3,2),\\ (2,1,3),\\ (3,2,1).\n\\]\n\nFinal answer: \\((1,1,1),\\ (1,1,2),\\ (1,2,1),\\ (2,1,1),\\ (1,3,2),\\ (2,1,3),\\ (3,2,1)\\)",
+  "usage": {
+    "input_tokens": 101,
+    "output_tokens": 862,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 5.530725855962373,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "\\((1,1,1),\\ (1,1,2),\\ (1,2,1),\\ (2,1,1),\\ (1,3,2),\\ (2,1,3),\\ (3,2,1)\\)"
+  }
+}

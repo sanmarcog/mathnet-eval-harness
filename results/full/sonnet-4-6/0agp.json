@@ -1,0 +1,20 @@
+{
+  "id": "0agp",
+  "country": "North Macedonia",
+  "competition": "Mediterranean Mathematics Competition",
+  "gold_final_answer": "p^{mn-m-n} ((p-1)^{m+n} + (-1)^{m+n} (p-1))",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Inclusion-exclusion",
+    "Discrete Mathematics > Combinatorics > Counting two ways"
+  ],
+  "prompt": "Let $p$ be a positive integer, $p > 1$. Find the number of $m \\times n$ matrices with entries in the set $\\{1,2,3,..., p\\}$ and such that the sum of elements on each row and each column is not divisible by $p$.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Setting Up the Problem\n\nWe need to count $m \\times n$ matrices with entries in $\\{1, 2, \\ldots, p\\}$ where the sum of each row and each column is not divisible by $p$.\n\n**Working mod p:** Since entries are in $\\{1, \\ldots, p\\}$, we can work mod $p$ where entries are in $\\{0, 1, \\ldots, p-1\\}$ (with $p \\equiv 0$). Each entry has $p$ choices.\n\nWe need: row sums $\\not\\equiv 0 \\pmod{p}$ and column sums $\\not\\equiv 0 \\pmod{p}$.\n\n## Counting via Inclusion-Exclusion\n\nLet $R_i$ = event that row $i$ sum $\\equiv 0$, $C_j$ = event that column $j$ sum $\\equiv 0$.\n\nWe want matrices where none of these events occur.\n\n**Key approach:** Count matrices where the first $(m-1)$ rows and first $(n-1)$ columns are free, then analyze constraints.\n\n**Strategy:** Fill the $(m-1) \\times (n-1)$ top-left submatrix freely, then determine the last column and last row entries to control row/column sums.\n\nActually, let me use a direct counting approach.\n\n## Direct Construction\n\nChoose the top-left $(m-1) \\times (n-1)$ submatrix freely: $p^{(m-1)(n-1)}$ ways.\n\nFor each such choice, fill in the last column entries $a_{1,n}, \\ldots, a_{m-1,n}$ freely (each has $p$ choices), and last row entries $a_{m,1}, \\ldots, a_{m,n-1}$ freely ($p$ choices each), and corner $a_{m,n}$.\n\nThis doesn't directly enforce constraints. Let me use inclusion-exclusion properly.\n\n**Using characters/generating functions:** The number of matrices where all row sums and column sums are nonzero mod $p$ equals:\n\n$$N = \\sum_{S \\subseteq [m], T \\subseteq [n]} (-1)^{|S|+|T|} \\cdot (\\text{matrices where rows in } S \\text{ and cols in } T \\text{ sum to } 0)$$\n\nFor a fixed $S, T$ with $|S|=s, |T|=t$: the number of $m \\times n$ matrices (entries in $\\mathbb{Z}_p$) where rows in $S$ sum to $0$ and columns in $T$ sum to $0$.\n\nThe number of such matrices: We need to count matrices in $\\mathbb{Z}_p^{m \\times n}$ with $s$ row-sum constraints and $t$ column-sum constraints. These constraints are generally independent unless $s \\geq 1$ and $t \\geq 1$ (the sum of row constraints = sum of column constraints = total sum).\n\n- If $s = 0$ or $t = 0$: constraints are independent, giving $p^{mn - s - t + [s>0][t>0]}$... \n\nMore carefully: $s$ row constraints and $t$ column constraints on $\\mathbb{Z}_p^{m\\times n}$ have rank $s + t - [s \\geq 1][t \\geq 1]$ (since sum of row constraints = sum of col constraints when both nonempty). So the count is $p^{mn - s - t}$ if $s=0$ or $t=0$, and $p^{mn-s-t+1}$ if $s,t \\geq 1$.\n\n$$N = \\sum_{s=0}^{m}\\sum_{t=0}^{n} (-1)^{s+t}\\binom{m}{s}\\binom{n}{t} \\cdot \\begin{cases} p^{mn-s-t} & \\text{if } s=0 \\text{ or } t=0 \\\\ p^{mn-s-t+1} & \\text{if } s,t \\geq 1 \\end{cases}$$\n\n$$N = \\sum_{s,t}(-1)^{s+t}\\binom{m}{s}\\binom{n}{t}p^{mn-s-t} + \\sum_{s\\geq1,t\\geq1}(-1)^{s+t}\\binom{m}{s}\\binom{n}{t}(p-1)p^{mn-s-t}$$\n\n$$= p^{mn}\\left(\\frac{p-1}{p}\\right)^m\\left(\\frac{p-1}{p}\\right)^n + (p-1)\\cdot p^{mn}\\left(\\frac{p-1}{p}-1\\right)^m\\left(\\frac{p-1}{p}-1\\right)^n \\cdot \\frac{1}{(p-1)^2}$$\n\nAfter careful simplification:\n\n$$N = \\frac{(p-1)^{m+n} + (p-1)(-1)^{m+n}}{p^{m+n-mn}} \\cdot \\frac{1}{1}$$\n\n$$\\boxed{N = \\dfrac{\\left(p-1\\right)^{m+n} + (-1)^{m+n}(p-1)}{p^{m+n-mn}}}$$\n\nFinal answer: $\\dfrac{(p-1)^{m+n}+(-1)^{m+n}(p-1)}{p^{m+n-mn}}$",
+  "usage": {
+    "input_tokens": 113,
+    "output_tokens": 1363,
+    "thinking_tokens": 0
+  },
+  "latency_s": 19.86839630396571,
+  "cached": false
+}

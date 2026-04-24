@@ -1,0 +1,26 @@
+{
+  "id": "07e1",
+  "country": "Iran",
+  "competition": "Iranian Mathematical Olympiad",
+  "gold_final_answer": "n^2",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Geometric Inequalities > Optimization in geometry",
+    "Algebra > Equations and Inequalities > QM-AM-GM-HM / Power Mean",
+    "Discrete Mathematics > Combinatorics > Games / greedy algorithms"
+  ],
+  "prompt": "Let $n$ be a positive integer. Two players are playing a game in a field of a shape of a $2n \\times 2n$ grid. Initially, the first player is on the top right point and second player is on the bottom left point. Each player, in his turn, moves to an adjacent point, by passing on an edge, such that none of the players have reached it previously. The first player wants to get back to his start position finally and make a non-self-intersecting closed polygon with maximum possible area. On the other hand, the second player wants to minimize this area. Without considering second's player moves, what would be the maximum possible area that first player can always achieve?",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find the maximum possible area the first player can always guarantee to enclose, we can analyze the game by looking at the distances and the \"bottleneck\" vertices that the second player can threaten.\n\nThe game is played on a $2n \\times 2n$ grid. The first player (P1) starts at $(2n, 2n)$ and the second player (P2) starts at $(0, 0)$. P1 wants to maximize the area of a closed, non-self-intersecting polygon, while P2 wants to minimize it. \n\nFor P1 to successfully enclose a region, they must be able to traverse the entire boundary of that region without P2 intercepting them. Because P2 can move towards any vertex of P1's intended boundary, P1 must be able to reach every vertex on that boundary before or at the exact same turn P2 could possibly reach it.\n\nLet's consider P1 enclosing the top-right $n \\times n$ square, which has vertices in the range $[n, 2n] \\times [n, 2n]$. \nThe boundary of this square has a perimeter of $4n$. The vertex on this boundary closest to P2's starting position $(0,0)$ is $(n, n)$, which is at a Manhattan distance of $n + n = 2n$ from $(0,0)$. \nP1 starts at $(2n, 2n)$ and can move along the boundary of this square. The distance from $(2n, 2n)$",
+  "usage": {
+    "input_tokens": 188,
+    "output_tokens": 327,
+    "thoughts_tokens": 7861
+  },
+  "latency_s": 68.51514898298774,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": null
+  }
+}

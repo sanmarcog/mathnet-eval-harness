@@ -1,0 +1,27 @@
+{
+  "id": "0lcw",
+  "country": "Vietnam",
+  "competition": "VMO",
+  "gold_final_answer": "Either the multiset contains at least four zeros; or all numbers have the same nonzero absolute value and the number of negative numbers k satisfies k not in {1, 2, 2012, 2013}.",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Factorization techniques",
+    "Discrete Mathematics > Combinatorics > Invariants / monovariants",
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments",
+    "Algebra > Algebraic Expressions > Sequences and Series > Sums and products"
+  ],
+  "prompt": "Find all sets of 2014 rational numbers not necessarily distinct such that: If an arbitrary number in the set is removed, one always can divide the remaining 2013 numbers into three sets such that each set has exactly 671 elements and the products of all elements in each set are equal.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find all sets of 2014 rational numbers satisfying the condition, we analyze the properties of the products. Let the set of numbers be $S = \\{x_1, x_2, \\dots, x_{2014}\\}$. \n\n**Case 1: The set contains zeros.**\nIf we remove an element, the remaining 2013 elements must be divided into 3 sets of 671 elements with equal products. \n- If the remaining elements contain at least 3 zeros, we can place at least one zero in each of the 3 sets, making all three products equal to 0. \n- If the original set contains exactly $k$ zeros, removing a zero leaves $k-1$ zeros. To ensure each of the 3 sets gets at least one zero (so all products are 0), we must have $k-1 \\ge 3$, which means $k \\ge 4$. \nThus, any set containing at least 4 zeros satisfies the condition.\n\n**Case 2: The set contains no zeros.**\nFor any prime $p$, let $v_p(x)$ be the exponent of $p$ in the prime factorization of $x$. When $x_i$ is removed, the remaining elements can be partitioned into 3 sets of equal product, meaning the sum of their valuations must be equal. This implies that the sum of the valuations of the remaining 2013 elements is a multiple of 3. \nThis is equivalent to the classic problem of 2",
+  "usage": {
+    "input_tokens": 104,
+    "output_tokens": 328,
+    "thoughts_tokens": 7860
+  },
+  "latency_s": 67.33101730898488,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": null
+  }
+}

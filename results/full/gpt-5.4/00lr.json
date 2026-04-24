@@ -1,0 +1,20 @@
+{
+  "id": "00lr",
+  "country": "Austria",
+  "competition": "48th Austrian Mathematical Olympiad",
+  "gold_final_answer": "3026",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Inclusion-exclusion",
+    "Number Theory > Divisibility / Factorization > Least common multiples (lcm)"
+  ],
+  "prompt": "Anthony writes down in order all positive integers which are divisible by $2$. Bertha writes down in order all positive integers which are divisible by $3$. Claire writes down in order all positive integers which are divisible by $4$. Orderly Dora writes all numbers written by the other three. Thereby she puts them in order by size and does not repeat a number. What is the $2017$th number in her list?\n(Richard Henner)",
+  "model": "gpt-5.4",
+  "response_text": "Dora’s list contains exactly the positive integers divisible by at least one of \\(2,3,4\\).\n\nBut every multiple of \\(4\\) is already a multiple of \\(2\\), so her list is just all positive integers divisible by \\(2\\) or \\(3\\).\n\nWe want the \\(2017\\)th positive integer divisible by \\(2\\) or \\(3\\).\n\nLet \\(N(x)\\) be the number of positive integers \\(\\le x\\) divisible by \\(2\\) or \\(3\\). By inclusion-exclusion,\n\\[\nN(x)=\\left\\lfloor \\frac x2\\right\\rfloor+\\left\\lfloor \\frac x3\\right\\rfloor-\\left\\lfloor \\frac x6\\right\\rfloor.\n\\]\n\nWe seek the smallest \\(x\\) such that \\(N(x)\\ge 2017\\).\n\nSince numbers divisible by \\(2\\) or \\(3\\) have density\n\\[\n\\frac12+\\frac13-\\frac16=\\frac23,\n\\]\nwe expect \\(x\\approx \\frac{2017}{2/3}=3025.5\\), so try around \\(3025\\).\n\nCompute:\n\\[\nN(3025)=\\left\\lfloor \\frac{3025}{2}\\right\\rfloor+\\left\\lfloor \\frac{3025}{3}\\right\\rfloor-\\left\\lfloor \\frac{3025}{6}\\right\\rfloor\n=1512+1008-504=2016.\n\\]\nAnd\n\\[\nN(3026)=\\left\\lfloor \\frac{3026}{2}\\right\\rfloor+\\left\\lfloor \\frac{3026}{3}\\right\\rfloor-\\left\\lfloor \\frac{3026}{6}\\right\\rfloor\n=1513+1008-504=2017.\n\\]\n\nSo the \\(2017\\)th number is \\(3026\\).\n\nFinal answer: 3026",
+  "usage": {
+    "input_tokens": 141,
+    "output_tokens": 428,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 6.269172854023054,
+  "cached": false
+}

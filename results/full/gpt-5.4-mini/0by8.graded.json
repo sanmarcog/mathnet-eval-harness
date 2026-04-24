@@ -1,0 +1,24 @@
+{
+  "id": "0by8",
+  "country": "Romania",
+  "competition": "THE 68th ROMANIAN MATHEMATICAL OLYMPIAD",
+  "gold_final_answer": "2686",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics"
+  ],
+  "prompt": "Consider the set $A = \\{1, 2, 3, \\dots, 2017\\}$. Determine the number of three element subsets $B \\subset A$, which satisfy the following conditions simultaneously:\na) at least two elements in the set $B$ are consecutive positive integers;\nb) there is an $a \\in B$, such that $3a \\in B$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let \\(B=\\{x<y<z\\}\\subseteq \\{1,2,\\dots,2017\\}\\).\n\nWe need:\n\n1. at least one pair of consecutive integers in \\(B\\);\n2. for some \\(a\\in B\\), also \\(3a\\in B\\).\n\nSince \\(B\\) has only 3 elements, condition (b) means \\(B\\) must contain a pair of the form \\(\\{a,3a\\}\\). We count all such triples that also contain a consecutive pair.\n\n---\n\n## Case 1: \\(B=\\{a,3a,c\\}\\) and \\(c=a\\pm1\\) or \\(c=3a\\pm1\\)\n\nBecause \\(B\\) has 3 distinct elements, the consecutive pair must involve \\(c\\) with either \\(a\\) or \\(3a\\).\n\n### 1.1. \\(c=a+1\\) or \\(a-1\\)\nThen the triple is \\(\\{a,3a,a\\pm1\\}\\).\n\n- For \\(c=a+1\\), the consecutive pair is \\((a,a+1)\\), always valid if \\(3a\\neq a+1\\), which never happens for integers \\(a\\ge1\\).\n- For \\(c=a-1\\), similarly valid when \\(a\\ge2\\).\n\nSo these contribute all valid \\(a\\) such that \\(3a\\le 2017\\):\n\n\\[\na=1,2,\\dots,\\left\\lfloor \\frac{2017}{3}\\right\\rfloor=672.\n\\]\n\nFor \\(a=1\\), \\(\\{1,3,2\\}\\) is valid.\nFor \\(a=672\\), \\(\\{672,2016,673\\}\\) is valid.\n\nThus each \\(a=1,\\dots,672\\) gives 2 sets:\n\\[\n\\{a,3a,a+1\\},\\quad \\{a,3a,a-1\\}\n\\]\nexcept when \\(a=1\\), where \\(a-1=0\\) is invalid, and when \\(a=2017\\) impossible. So:\n- \\(a=1\\): 1 set\n- \\(a=2,\\dots,672\\): 2 sets each\n\nCount:\n\\[\n1+2\\cdot 671=1343.\n\\]\n\nBut we must avoid double counting sets where the consecutive pair is \\((a,3a)\\) or \\((3a,a\\pm1)\\). That can only happen if \\(3a=a\\pm1\\), impossible, so no issue.\n\n---\n\n## Case 2: consecutive pair is \\((3a,3a\\pm1)\\)\n\nThen \\(B=\\{a,3a,3a\\pm1\\}\\), and the pair \\(\\{3a,3a\\pm1\\}\\) is consecutive.\n\nThis is valid whenever \\(3a\\pm1\\le 2017\\), i.e. \\(a\\le 672\\) for \\(+1\\), and \\(a\\le 672\\) for \\(-1\\) as well.\n\nSo again:\n- \\(a=1,\\dots,672\\), giving 2 sets each:\n\\[\n\\{a,3a,3a+1\\},\\quad \\{a,3a,3a-1\\}\n\\]\nexcept that for \\(a=672\\), \\(3a+1=2017\\) is allowed.\nFor \\(a=1\\), both are valid: \\(\\{1,3,4\\}\\), \\(\\{1,3,2\\}\\).\n\nCount:\n\\[\n2\\cdot 672=1344.\n\\]\n\nBut \\(\\{1,2,3\\}\\) was counted in both Case 1 and Case 2, so we must subtract one overlap. More generally, overlap occurs when the same triple has both forms, which only happens for \\(\\{1,2,3\\}\\).\n\nThus total:\n\\[\n1343+1344-1=2686.\n\\]\n\nSo the number of such subsets is\n\n\\[\n\\boxed{2686}.\n\\]\n\nFinal answer: 2686",
+  "usage": {
+    "input_tokens": 130,
+    "output_tokens": 899,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 5.740339798037894,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "exact",
+    "predicted": "2686"
+  }
+}

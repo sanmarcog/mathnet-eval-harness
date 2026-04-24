@@ -1,0 +1,25 @@
+{
+  "id": "02g5",
+  "country": "Brazil",
+  "competition": "XXI OBM",
+  "gold_final_answer": "n-1 if n is even; n if n is odd",
+  "topics_flat": [
+    "Discrete Mathematics > Graph Theory > Matchings, Marriage Lemma, Tutte's theorem",
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments"
+  ],
+  "prompt": "There are $n$ football teams in *Tumbólia*.\nA championship is to be organized in which each team plays against every other exactly once. Every match takes place on Sundays and one team must not play more than once in the same day.\nFind the least integer $m$ for which it's possible to set up a championship lasting $m$ Sundays.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Setting Up the Problem\n\nWe need to schedule a round-robin tournament with $n$ teams where each team plays every other team exactly once, and on any given Sunday, each team plays at most once. We want to find the minimum number of Sundays $m$.\n\n## Analysis\n\n**Total matches:** $\\binom{n}{2} = \\frac{n(n-1)}{2}$\n\n**Matches per Sunday:** On each Sunday, we can have multiple matches, but each team plays at most once. So on any Sunday, the matches form a **matching** in the complete graph $K_n$.\n\nThe maximum matching in $K_n$ has size $\\lfloor n/2 \\rfloor$.\n\n**Lower bound:** The minimum number of Sundays needed is at least:\n$$m \\geq \\left\\lceil \\frac{\\binom{n}{2}}{\\lfloor n/2 \\rfloor} \\right\\rceil$$\n\nAlso, each team must play $n-1$ games, and plays at most once per Sunday, so $m \\geq n-1$.\n\n**Case 1: $n$ is odd.**\n- Each team plays $n-1$ games (even number).\n- Maximum matching size = $\\frac{n-1}{2}$ (since one team must sit out).\n- Lower bound from total matches: $\\frac{n(n-1)/2}{(n-1)/2} = n$ Sundays.\n- Also $m \\geq n-1$.\n- So $m \\geq n$.\n\n**Case 2: $n$ is even.**\n- Each team plays $n-1$ games.\n- Maximum matching size = $n/2$.\n- Lower bound from total matches: $\\frac{n(n-1)/2}{n/2} = n-1$ Sundays.\n- Also $m \\geq n-1$.\n- So $m \\geq n-1$.\n\n## Achievability\n\n**$n$ even:** A round-robin tournament for $n$ even can be scheduled in exactly $n-1$ rounds (each round is a perfect matching). This is the standard result — $K_n$ for even $n$ is $(n-1)$-edge-colorable, giving $n-1$ perfect matchings. So $m = n-1$.\n\n**$n$ odd:** $K_n$ for odd $n$ has chromatic index $n$ (since each vertex has odd degree $n-1$, and the graph is not class 1). We need $n$ rounds. In each round, we can have a near-perfect matching of size $\\frac{n-1}{2}$. Total matches scheduled: $n \\cdot \\frac{n-1}{2} = \\frac{n(n-1)}{2}$ ✓. This is achievable by the standard construction (add a dummy team to make $n+1$ teams, schedule $n$ rounds of perfect matchings, remove the dummy). So $m = n$.\n\n## Summary\n\n- If $n$ is **even**: $m = n - 1$\n- If $n$ is **odd**: $m = n$\n\nBoth cases can be written as $m = n - 1$ when $n$ is even and $m = n$ when $n$ is odd, which equals:\n\n$$m = \\begin{cases} n-1 & \\text{if } n \\text{ is even} \\\\ n & \\text{if } n \\text{ is odd} \\end{cases}$$\n\nThis can be written uniformly as $m = 2\\left\\lfloor \\frac{n}{2} \\right\\rfloor - 1 + \\left(n \\bmod 2\\right)$... more cleanly:\n\n$$m = \\begin{cases} n-1 & \\text{if } n \\text{ is even} \\\\ n & \\text{if } n \\text{ is odd} \\end{cases}$$\n\nFinal answer: $m = \\begin{cases} n-1 & \\text{if } n \\text{ is even,} \\\\ n & \\text{if } n \\text{ is odd.} \\end{cases}$",
+  "usage": {
+    "input_tokens": 127,
+    "output_tokens": 983,
+    "thinking_tokens": 0
+  },
+  "latency_s": 14.748042298015207,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "$m = \\begin{cases} n-1 & \\text{if } n \\text{ is even,} \\\\ n & \\text{if } n \\text{ is odd.} \\end{cases}$"
+  }
+}

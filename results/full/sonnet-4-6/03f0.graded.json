@@ -1,0 +1,25 @@
+{
+  "id": "03f0",
+  "country": "Bulgaria",
+  "competition": "Bulgarian Winter Tournament",
+  "gold_final_answer": "4045 * 2^2025 + 6",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Sequences and Series > Sums and products",
+    "Algebra > Algebraic Expressions > Sequences and Series > Telescoping series"
+  ],
+  "prompt": "Find $A_{2024}$, where\n$$\nA_n = 1 \\cdot 2 + 3 \\cdot 4 + 5 \\cdot 8 + \\dots + (2n-1) \\cdot 2^n.\n$$",
+  "model": "claude-sonnet-4-6",
+  "response_text": "We need to find $A_n = \\sum_{k=1}^{n} (2k-1) \\cdot 2^k$.\n\nSplit: $A_n = 2\\sum_{k=1}^{n} k \\cdot 2^k - \\sum_{k=1}^{n} 2^k$.\n\n**Compute $\\sum_{k=1}^{n} 2^k = 2^{n+1} - 2$.**\n\n**Compute $S = \\sum_{k=1}^{n} k \\cdot 2^k$:**\n\nUsing the formula $\\sum_{k=1}^{n} k x^k = \\frac{x(1-(n+1)x^n + nx^{n+1})}{(1-x)^2}$, with $x=2$:\n\nStandard result: $\\sum_{k=1}^{n} k \\cdot 2^k = 2 + (n-1) \\cdot 2^{n+1}$.\n\nVerify: $n=1$: $1\\cdot2=2$, formula: $2+0\\cdot4=2$. ✓  \n$n=2$: $2+2\\cdot4=10$, formula: $2+1\\cdot8=10$. ✓  \n$n=3$: $10+3\\cdot8=34$, formula: $2+2\\cdot16=34$. ✓\n\nSo $S = 2 + (n-1)\\cdot 2^{n+1}$.\n\n**Therefore:**\n$$A_n = 2[2 + (n-1)\\cdot 2^{n+1}] - (2^{n+1}-2)$$\n$$= 4 + (n-1)\\cdot 2^{n+2} - 2^{n+1} + 2$$\n$$= 6 + 2^{n+1}[2(n-1) - 1]$$\n$$= 6 + 2^{n+1}(2n-3)$$\n\n**Verify:**\n- $n=1$: $A_1 = 1\\cdot2 = 2$. Formula: $6 + 4(2-3) = 6-4=2$. ✓\n- $n=2$: $A_2 = 2 + 3\\cdot4 = 14$. Formula: $6 + 8(4-3)=6+8=14$. ✓\n- $n=3$: $A_3 = 14 + 5\\cdot8=54$. Formula: $6+16(6-3)=6+48=54$. ✓\n\n**For $n=2024$:**\n$$A_{2024} = 6 + 2^{2025}(2\\cdot2024 - 3) = 6 + 2^{2025} \\cdot 4045$$\n\nFinal answer: $6 + 4045 \\cdot 2^{2025}$",
+  "usage": {
+    "input_tokens": 112,
+    "output_tokens": 760,
+    "thinking_tokens": 0
+  },
+  "latency_s": 9.44799884094391,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "symbolic",
+    "predicted": "$6 + 4045 \\cdot 2^{2025}$"
+  }
+}

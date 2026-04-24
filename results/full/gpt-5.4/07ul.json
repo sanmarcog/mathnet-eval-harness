@@ -1,0 +1,19 @@
+{
+  "id": "07ul",
+  "country": "Ireland",
+  "competition": "IRL_ABooklet",
+  "gold_final_answer": "Equality holds if and only if x = y = √3 or x = y = −√3.",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities > QM-AM-GM-HM / Power Mean"
+  ],
+  "prompt": "Show that for all $x, y \\in \\mathbb{R}$:\n$$\nx^4 + y^4 + 18 \\ge 12xy.\n$$\nWhen do we get equality?",
+  "model": "gpt-5.4",
+  "response_text": "We want to prove\n\\[\nx^4+y^4+18\\ge 12xy \\qquad \\text{for all }x,y\\in\\mathbb R.\n\\]\n\nA clean way is to use the standard inequality\n\\[\na^2+b^2\\ge 2ab.\n\\]\nApply it to \\(a=x^2,\\ b=y^2\\):\n\\[\nx^4+y^4\\ge 2x^2y^2.\n\\]\nSo it is enough to show\n\\[\n2x^2y^2+18\\ge 12xy.\n\\]\nNow let \\(t=xy\\). Then this becomes\n\\[\n2t^2-12t+18\\ge 0,\n\\]\ni.e.\n\\[\n2(t^2-6t+9)=2(t-3)^2\\ge 0.\n\\]\nThis is always true.\n\nHence\n\\[\nx^4+y^4+18\\ge 12xy\n\\]\nfor all real \\(x,y\\).\n\nFor equality, we need equality in both steps:\n\n1. \\(x^4+y^4\\ge 2x^2y^2\\), which requires\n   \\[\n   x^2=y^2;\n   \\]\n2. \\(2(xy-3)^2\\ge 0\\), which requires\n   \\[\n   xy=3.\n   \\]\n\nCombining these, \\(x^2=y^2\\) and \\(xy=3\\). Since \\(xy>0\\), \\(x\\) and \\(y\\) must have the same sign, so \\(x=y\\). Then\n\\[\nx^2=3 \\implies x=\\pm\\sqrt3,\n\\]\nand similarly \\(y=\\pm\\sqrt3\\) with the same sign.\n\nThus equality holds exactly at\n\\[\n(x,y)=(\\sqrt3,\\sqrt3)\\quad\\text{or}\\quad(-\\sqrt3,-\\sqrt3).\n\\]\n\nFinal answer: \\(\\;x^4+y^4+18\\ge 12xy\\) for all real \\(x,y\\), with equality exactly when \\((x,y)=(\\sqrt3,\\sqrt3)\\) or \\((-\\sqrt3,-\\sqrt3)\\).",
+  "usage": {
+    "input_tokens": 91,
+    "output_tokens": 481,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 7.614684602012858,
+  "cached": false
+}

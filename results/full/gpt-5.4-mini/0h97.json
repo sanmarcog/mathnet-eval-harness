@@ -1,0 +1,20 @@
+{
+  "id": "0h97",
+  "country": "Ukraine",
+  "competition": "The Problems of Ukrainian Authors",
+  "gold_final_answer": "2197",
+  "topics_flat": [
+    "Geometry > Solid Geometry > 3D Shapes",
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities"
+  ],
+  "prompt": "The cube is cut into $2010$ smaller cubes. $2008$ of them are unit cubes (cubes of side $1$) and edges of another $2$ cubes are assigned integer numbers (different from $1$). Find the volume of the big cube.\n\n(Serhiy Zhydkov)",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let the side lengths of the three possible cube sizes be:\n\n- \\(1\\) for the \\(2008\\) unit cubes,\n- \\(a\\) and \\(b\\), where \\(a,b\\in \\mathbb Z\\), \\(a,b\\neq 1\\), for the other two cubes.\n\nSince these cubes partition a larger cube, if the big cube has side length \\(L\\), then\n\n\\[\nL = 2008 + a + b\n\\]\n\nby counting lengths along each “stacked” direction of the subdivision is not directly justified, so instead use volume:\n\n\\[\nL^3 = 2008\\cdot 1^3 + a^3 + b^3 = 2008 + a^3 + b^3.\n\\]\n\nNow the number of cubes is \\(2010\\), so the tiling must be by a full 3D decomposition into cube sizes. A standard way to proceed is to note that the only way to partition a cube into cubes with all but two being unit cubes is that the remaining two cubes must also be unit cubes in terms of volume balance unless their side lengths satisfy a special identity. So we search for integer \\(a,b\\neq 1\\) with\n\n\\[\nL^3 - 2008 = a^3+b^3,\n\\]\nand \\(L\\) an integer side length.\n\nTry \\(L=13\\), since\n\\[\n13^3=2197,\\qquad 2197-2008=189.\n\\]\nWe need \\(a^3+b^3=189\\). The integer cubes near this are \\(3^3=27\\), \\(4^3=64\\), \\(5^3=125\\), \\(6^3=216\\). The only decomposition is\n\\[\n189=64+125=4^3+5^3.\n\\]\nThus the three cube sizes are \\(1,4,5\\), and the big cube side is \\(13\\).\n\nTherefore the volume is\n\n\\[\n13^3=2197.\n\\]\n\nFinal answer: \\(2197\\)",
+  "usage": {
+    "input_tokens": 113,
+    "output_tokens": 446,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.876295365043916,
+  "cached": false
+}

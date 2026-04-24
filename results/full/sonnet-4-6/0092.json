@@ -1,0 +1,20 @@
+{
+  "id": "0092",
+  "country": "Argentina",
+  "competition": "XXI Olimpiada Matemática Rioplatense",
+  "gold_final_answer": "1:2",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Quadrilaterals",
+    "Geometry > Plane Geometry > Analytic / Coordinate Methods > Vectors"
+  ],
+  "prompt": "Let $ABCD$ be a convex quadrilateral. Let $P$ and $Q$ be points on the sides $AB$ and $AD$, respectively, such that $area(ABQ) = area(ADP) = \\frac{1}{3} area(ABCD)$.  \n$PQ$ and the diagonal $AC$ meet at the point $R$.\nCalculate the ratio $\\frac{AR}{RC}$.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "Let me set up coordinates. Let A be the origin.\n\nLet me use area ratios. We have area(ABQ) = area(ADP) = (1/3)area(ABCD).\n\nSince area(ABQ)/area(ABD) = AQ/AD (triangles sharing base AB... wait, let me think more carefully).\n\nArea(ABQ) = (1/2)·AB·AQ·sin(A) where AQ is along AD... No.\n\nArea(ABQ): Q is on AD, so area(ABQ) = (1/2)·AB·AQ·sin(∠BAD) ... wait, Q is on AD, so area(ABQ) = (1/2)·|AB|·|AQ|·sin(∠BAD).\n\nArea(ADP): P is on AB, so area(ADP) = (1/2)·|AD|·|AP|·sin(∠BAD).\n\nLet me denote |AB| = c, |AD| = b, and let S = area(ABCD).\n\nArea(ABQ) = (1/2)·c·AQ·sin A = S/3, so AQ = 2S/(3c·sin A).\n\nArea(ADP) = (1/2)·b·AP·sin A = S/3, so AP = 2S/(3b·sin A).\n\nAlso, area(ABD) = (1/2)·b·c·sin A.\n\nSo AQ/AD = AQ/b = 2S/(3bc·sin A) = (2/3)·S/(bc·sin A) = (2/3)·area(ABD)/(bc·sin A)·... \n\nLet me set: area(ABD) = (1/2)bc·sin A = T. Then S = area(ABCD).\n\nAQ = 2S/(3c·sin A) = S·b/(3T·... let me just use coordinates.\n\nLet A = (0,0), B = (1,0), D = (0,1). Let C = (p,q).\n\nArea(ABCD) = area(ABD) + area(BCD). Area(ABD) = 1/2.\nArea(BCD): vertices B=(1,0), C=(p,q), D=(0,1). Area = (1/2)|det([p-1,q;-1,1])| = (1/2)|p-1+q| = (1/2)(p+q-1) assuming p+q>1.\n\nSo S = 1/2 + (p+q-1)/2 = (p+q)/2.\n\nArea(ABQ) = S/3: Q is on AD, so Q = (0,t) for some t. Area(ABQ) = (1/2)·base·height = (1/2)·1·t = t/2. So t/2 = S/3 = (p+q)/6, giving t = (p+q)/3. So Q = (0, (p+q)/3).\n\nArea(ADP) = S/3: P is on AB, so P = (s,0). Area(ADP) = (1/2)·1·s = s/2. So s/2 = (p+q)/6, giving s = (p+q)/3. So P = ((p+q)/3, 0).\n\nLine PQ: from P = ((p+q)/3, 0) to Q = (0, (p+q)/3).\nLet k = (p+q)/3. Line PQ: x/k + y/k = 1, so x + y = k = (p+q)/3.\n\nLine AC: from A=(0,0) to C=(p,q). Parametrize as (tp, tq).\n\nIntersection R: tp + tq = (p+q)/3, so t(p+q) = (p+q)/3, giving t = 1/3.\n\nSo R = (p/3, q/3), which divides AC such that AR/AC = 1/3.\n\nTherefore AR/RC = (1/3)/(2/3) = **1/2**.\n\nFinal answer: $\\dfrac{AR}{RC} = \\dfrac{1}{2}$",
+  "usage": {
+    "input_tokens": 146,
+    "output_tokens": 1023,
+    "thinking_tokens": 0
+  },
+  "latency_s": 12.87868189101573,
+  "cached": false
+}

@@ -1,0 +1,26 @@
+{
+  "id": "00ph",
+  "country": "Balkan Mathematical Olympiad",
+  "competition": "Balkan 2012 shortlist",
+  "gold_final_answer": "2012",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Symmetric functions",
+    "Algebra > Algebraic Expressions > Polynomials > Polynomial operations",
+    "Algebra > Equations and Inequalities > QM-AM-GM-HM / Power Mean"
+  ],
+  "prompt": "Determine the maximum possible number of distinct real roots of a polynomial $P(x)$ of degree $2012$ with real coefficients satisfying the condition\n$$\nP(a)^3 + P(b)^3 + P(c)^3 \\geq 3P(a)P(b)P(c)\n$$\nfor all real numbers $a, b, c$ with $a + b + c = 0$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let  \n\\[\nx=P(a),\\quad y=P(b),\\quad z=P(c).\n\\]\nThe condition says that for all real \\(a,b,c\\) with \\(a+b+c=0\\),\n\\[\nx^3+y^3+z^3\\ge 3xyz.\n\\]\nUsing the identity\n\\[\nx^3+y^3+z^3-3xyz=\\frac12(x+y+z)\\big((x-y)^2+(y-z)^2+(z-x)^2\\big),\n\\]\nwe see that the inequality is equivalent to\n\\[\n(x+y+z)\\big((x-y)^2+(y-z)^2+(z-x)^2\\big)\\ge 0.\n\\]\nSince the squared term is always nonnegative, this is certainly true whenever\n\\[\nx+y+z\\ge 0.\n\\]\nSo the given condition is implied by\n\\[\nP(a)+P(b)+P(c)\\ge 0\\qquad\\text{whenever }a+b+c=0.\n\\]\n\nNow consider the roots of \\(P\\). If \\(r\\) is a real root, then \\(P(r)=0\\). To maximize the number of distinct real roots, we want as many sign changes as possible while preserving the condition above.\n\nA standard way to produce many roots is to take\n\\[\nP(x)=Q(x^2)\n\\]\nwith \\(Q\\) of degree \\(1006\\), so the roots come in \\(\\pm\\)-pairs, plus possibly \\(0\\). This gives at most\n\\[\n2\\cdot 1006=2012\n\\]\ndistinct real roots only if all roots are real and nonzero, but then the condition fails in general because the cubic inequality is not preserved for arbitrary triples.\n\nThe key observation is that if \\(P\\) has more than one distinct real root, then by choosing \\(a,b,c\\) to be those roots appropriately (using \\(a+b+c=0\\)), one can force \\(P(a),P(b),P(c)\\) to take values making the inequality fail unless \\(P\\) is of a very restricted form. The only polynomials satisfying the condition for all such triples are constant-sign polynomials of the form\n\\[\nP(x)=\\lambda\n\\]\nor polynomials with at most one real root of even multiplicity. Since the degree is \\(2012\\), the maximum number of **distinct** real roots is therefore \\(1\\) if nonconstant, but this can be improved by taking\n\\[\nP(x)=x^{2012},\n\\]\nwhich has exactly one distinct real root, namely \\(0\\).\n\nHence the maximum possible number of distinct real roots is\n\n\\[\n\\boxed{1}.\n\\]\n\nFinal answer: 1",
+  "usage": {
+    "input_tokens": 131,
+    "output_tokens": 588,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 4.113586317049339,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "1"
+  }
+}

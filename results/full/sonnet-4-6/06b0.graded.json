@@ -1,0 +1,26 @@
+{
+  "id": "06b0",
+  "country": "Greece",
+  "competition": "Selection Examination",
+  "gold_final_answer": "[-72, -26, -16, -8, -2, 6, 16, 62]",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Factorization techniques",
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities",
+    "Algebra > Intermediate Algebra > Quadratic functions"
+  ],
+  "prompt": "Determine all values of the integer $v$ for which the number $v^2 + 10v + 160$ is a perfect square.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "We need $v^2 + 10v + 160 = k^2$ for some non-negative integer $k$.\n\nComplete the square: $(v+5)^2 + 135 = k^2$\n\nSo $k^2 - (v+5)^2 = 135$\n\nLet $u = v+5$: $k^2 - u^2 = 135$\n\n$(k-u)(k+u) = 135$\n\nSince $k^2 = u^2 + 135 > 0$, we have $k > 0$. Also $k^2 \\geq 135$ so $k \\geq 12$.\n\nLet $k - u = a$ and $k + u = b$ where $ab = 135$, $b \\geq a$, and $a, b$ have the same parity (since $k = (a+b)/2$ and $u = (b-a)/2$ must be integers).\n\nSince $135$ is odd, both $a$ and $b$ must be odd (same parity ✓).\n\nFactor pairs of 135 with $a \\leq b$ and both positive or both negative:\n\n**Both positive:**\n- $(1, 135)$: $k = 68, u = 67$ → $v = u - 5 = 62$\n- $(3, 45)$: $k = 24, u = 21$ → $v = 16$\n- $(5, 27)$: $k = 16, u = 11$ → $v = 6$\n- $(9, 15)$: $k = 12, u = 3$ → $v = -2$\n\n**Both negative** (gives same $k^2, u^2$ values but $k < 0$, which still gives perfect squares):\n- $(-1, -135)$: $k = -68, u = -67$ → $v = -72$\n- $(-3, -45)$: $k = -24, u = -21$ → $v = -26$\n- $(-5, -27)$: $k = -16, u = -11$ → $v = -16$\n- $(-9, -15)$: $k = -12, u = -3$ → $v = -8$\n\nLet me verify a few:\n- $v = 6$: $36 + 60 + 160 = 256 = 16^2$ ✓\n- $v = -2$: $4 - 20 + 160 = 144 = 12^2$ ✓\n- $v = -8$: $64 - 80 + 160 = 144 = 12^2$ ✓\n- $v = -16$: $256 - 160 + 160 = 256 = 16^2$ ✓\n\nThe values are symmetric around $v = -5$ (i.e., $u = 0$).\n\nThe integer values of $v$ are: $\\boxed{-72, -26, -16, -8, -2, 6, 16, 62}$\n\nFinal answer: $v \\in \\{-72,\\ -26,\\ -16,\\ -8,\\ -2,\\ 6,\\ 16,\\ 62\\}$",
+  "usage": {
+    "input_tokens": 78,
+    "output_tokens": 800,
+    "thinking_tokens": 0
+  },
+  "latency_s": 9.760948273004033,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "$v \\in \\{-72,\\ -26,\\ -16,\\ -8,\\ -2,\\ 6,\\ 16,\\ 62\\}$"
+  }
+}

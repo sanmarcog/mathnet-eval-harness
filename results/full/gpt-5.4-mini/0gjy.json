@@ -1,0 +1,19 @@
+{
+  "id": "0gjy",
+  "country": "Thailand",
+  "competition": "Thai Mathematical Olympiad",
+  "gold_final_answer": "All continuous solutions are f(x) = a x^2 for any real constant a.",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Functional Equations"
+  ],
+  "prompt": "Let $\\alpha = \\frac{1 + \\sqrt{5}}{2}$. Find all continuous functions $f: \\mathbb{R} \\to \\mathbb{R}$ such that, for all $x, y, z \\in \\mathbb{R}$,\n$$\n\\begin{aligned}\n& f(\\alpha x + y) + f(\\alpha y + z) + f(\\alpha z + x) \\\\\n&= \\alpha f(x + y + z) + 2f(x) + 2f(y) + 2f(z).\n\\end{aligned}\n$$",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let  \n\\[\nP(x,y,z):\\quad f(\\alpha x+y)+f(\\alpha y+z)+f(\\alpha z+x)\n=\\alpha f(x+y+z)+2f(x)+2f(y)+2f(z),\n\\]\nwhere \\(\\alpha=\\frac{1+\\sqrt5}{2}\\) so that \\(\\alpha^2=\\alpha+1\\).\n\nWe look for continuous solutions \\(f:\\mathbb R\\to\\mathbb R\\).\n\n## 1) First try a linear function\nAssume \\(f(t)=ct\\). Then the left side becomes\n\\[\nc\\big((\\alpha x+y)+(\\alpha y+z)+(\\alpha z+x)\\big)\n= c(\\alpha+1)(x+y+z)=c\\alpha^2(x+y+z).\n\\]\nThe right side becomes\n\\[\n\\alpha c(x+y+z)+2c(x+y+z)=(\\alpha+2)c(x+y+z).\n\\]\nSo we need\n\\[\n\\alpha^2=\\alpha+2,\n\\]\nbut since \\(\\alpha^2=\\alpha+1\\), this is impossible unless \\(c=0\\). Thus no nonzero linear solution.\n\n## 2) Show \\(f(0)=0\\)\nSet \\(x=y=z=0\\):\n\\[\n3f(0)=\\alpha f(0)+6f(0),\n\\]\nso\n\\[\n(\\,3-\\alpha-6\\,)f(0)=0 \\implies f(0)=0.\n\\]\n\n## 3) Use symmetry to force additivity-type behavior\nSet \\(y=z=0\\) in \\(P(x,y,z)\\):\n\\[\nf(\\alpha x)+f(0)+f(x)=\\alpha f(x)+2f(x)+4f(0).\n\\]\nSince \\(f(0)=0\\),\n\\[\nf(\\alpha x)+f(x)=(\\alpha+2)f(x),\n\\]\nhence\n\\[\nf(\\alpha x)=(\\alpha+1)f(x)=\\alpha^2 f(x). \\tag{1}\n\\]\n\nNow set \\(z=0\\):\n\\[\nf(\\alpha x+y)+f(\\alpha y)+f(x)=\\alpha f(x+y)+2f(x)+2f(y).\n\\]\nUsing (1) for \\(f(\\alpha y)\\),\n\\[\nf(\\alpha x+y)+\\alpha^2 f(y)+f(x)=\\alpha f(x+y)+2f(x)+2f(y),\n\\]\nso\n\\[\nf(\\alpha x+y)=\\alpha f(x+y)+f(x)-( \\alpha^2-2)f(y).\n\\]\nBecause \\(\\alpha^2=\\alpha+1\\), we have \\(\\alpha^2-2=\\alpha-1\\). Thus\n\\[\nf(\\alpha x+y)=\\alpha f(x+y)+f(x)-(\\alpha-1)f(y). \\tag{2}\n\\]\n\nNow swap \\(x\\) and \\(y\\) in (2):\n\\[\nf(\\alpha y+x)=\\alpha f(x+y)+f(y)-(\\alpha-1)f(x). \\tag{3}\n\\]\nBut the left sides of (2) and (3) are the same, so\n\\[\nf(x)-(\\alpha-1)f(y)=f(y)-(\\alpha-1)f(x).\n\\]\nRearranging,\n\\[\n\\alpha f(x)=\\alpha f(y)\\quad\\text{for all }x,y,\n\\]\nso \\(f\\) is constant. Since \\(f(0)=0\\), the constant must be \\(0\\).\n\nTherefore \\(f\\equiv 0\\).\n\n---\n\nCheck: \\(f\\equiv 0\\) clearly satisfies the equation.\n\nFinal answer: \\(\\boxed{f(x)=0\\text{ for all }x\\in\\mathbb R}\\).",
+  "usage": {
+    "input_tokens": 175,
+    "output_tokens": 831,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 5.031757372082211,
+  "cached": false
+}

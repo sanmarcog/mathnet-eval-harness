@@ -1,0 +1,19 @@
+{
+  "id": "0c7s",
+  "country": "Romania",
+  "competition": "2019 ROMANIAN MATHEMATICAL OLYMPIAD",
+  "gold_final_answer": "All constant functions f(x) = c for some real constant c.",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Functional Equations > Existential quantifiers"
+  ],
+  "prompt": "Find all functions $f : \\mathbb{R} \\to \\mathbb{R}$ satisfying\n$$\nf(x + y) \\leq f(x^2 + y),\n$$\nfor all $x, y \\in \\mathbb{R}$.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "We need to find all functions $f : \\mathbb{R} \\to \\mathbb{R}$ satisfying $f(x + y) \\leq f(x^2 + y)$ for all $x, y \\in \\mathbb{R}$.\n\n**Step 1: Analyze the constraint.**\n\nThe inequality says $f(x + y) \\leq f(x^2 + y)$ for all $x, y \\in \\mathbb{R}$.\n\nLet $a = x + y$ and $b = x^2 + y$. Then $b - a = x^2 - x = x(x-1)$.\n\nNote that $x^2 - x = x(x-1) \\geq -\\frac{1}{4}$ for all real $x$, so $b \\geq a - \\frac{1}{4}$.\n\nAlso, $x^2 - x$ can take any value in $[-\\frac{1}{4}, \\infty)$.\n\n**Step 2: Determine what pairs $(a, b)$ are achievable.**\n\nGiven $x$ and $y$, we have $a = x + y$, $b = x^2 + y$. For fixed $x$, as $y$ varies over $\\mathbb{R}$, $a$ varies over $\\mathbb{R}$ and $b = a + (x^2 - x)$.\n\nSo the condition says: for every $x \\in \\mathbb{R}$ and every $a \\in \\mathbb{R}$:\n$$f(a) \\leq f(a + x^2 - x).$$\n\nLet $t = x^2 - x$. As $x$ ranges over $\\mathbb{R}$, $t = x^2 - x$ ranges over $[-\\frac{1}{4}, \\infty)$.\n\nSo the condition is: **for all $a \\in \\mathbb{R}$ and all $t \\geq -\\frac{1}{4}$:**\n$$f(a) \\leq f(a + t).$$\n\n**Step 3: Derive consequences.**\n\nFor any $a \\in \\mathbb{R}$ and $t \\geq -\\frac{1}{4}$: $f(a) \\leq f(a + t)$.\n\nIn particular, for $t \\geq 0$: $f(a) \\leq f(a + t)$, meaning $f$ is non-decreasing.\n\nAlso, for $t = -\\frac{1}{4}$: $f(a) \\leq f(a - \\frac{1}{4})$ for all $a$.\n\nBut since $f$ is non-decreasing and $a - \\frac{1}{4} < a$, we have $f(a - \\frac{1}{4}) \\leq f(a)$.\n\nCombined: $f(a) \\leq f(a - \\frac{1}{4}) \\leq f(a)$, so $f(a) = f(a - \\frac{1}{4})$ for all $a$.\n\n**Step 4: Conclude $f$ is constant.**\n\nSince $f(a) = f(a - \\frac{1}{4})$ for all $a$, $f$ is periodic with period $\\frac{1}{4}$.\n\nBut $f$ is also non-decreasing. A non-decreasing periodic function must be constant.\n\n**Step 5: Verify.**\n\nAny constant function $f(x) = c$ satisfies $f(x+y) = c \\leq c = f(x^2 + y)$. ✓\n\n**Conclusion:**\n\nThe solutions are all constant functions.\n\nFinal answer: $f$ is constant, i.e., $f(x) = c$ for some $c \\in \\mathbb{R}$.",
+  "usage": {
+    "input_tokens": 108,
+    "output_tokens": 930,
+    "thinking_tokens": 0
+  },
+  "latency_s": 11.869751980993897,
+  "cached": false
+}

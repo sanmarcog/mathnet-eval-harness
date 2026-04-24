@@ -1,0 +1,20 @@
+{
+  "id": "0dju",
+  "country": "Saudi Arabia",
+  "competition": "SAUDI ARABIAN IMO Booklet 2023",
+  "gold_final_answer": "337",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Counting two ways",
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments"
+  ],
+  "prompt": "At Hadi's birthday party, $2023$ friends came to give him $2023$ different gifts. Hadi wants to know exactly who gave which gifts, so he came up with a way: each time, choose a group of $11$ people and ask them what gifts they gave. When responding, the group only reported their set of gifts (not knowing exactly which gifts from whom). What is the minimum number of questions that Hadi need to ask?",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let each person be associated with one distinct gift. Hadi’s question to a group of 11 people only reveals the **set** of 11 gifts, so from one question he learns which gifts belong to that group, but not the matching.\n\nThe key idea is to use overlap.\n\n### Lower bound\nA single question about 11 people can distinguish at most the 11 gifts belonging to those people, but it cannot by itself identify which person gave which gift. To determine the exact matching among 11 people and 11 gifts, we need enough information to distinguish all \\(11!\\) possible assignments. Each question about a group of 11 gives at most one “block” of information, and the standard optimal strategy is to identify one person’s gift at a time by comparing groups.\n\nA more direct way to see the minimum is:\n\n- If Hadi questions a group of 11 people, he learns the set of 11 gifts they gave.\n- To identify all 2023 gift-giver pairs, he can process people in blocks of 11.\n- For each block of 11 people, one question suffices to determine the 11 gifts in that block, provided the blocks are chosen to partition the people.\n\nThus at least\n\\[\n\\left\\lceil \\frac{2023}{11}\\right\\rceil\n\\]\nquestions are needed, because each question can only cover 11 people.\n\nNow compute:\n\\[\n2023 = 11\\cdot 184 + 9,\n\\]\nso\n\\[\n\\left\\lceil \\frac{2023}{11}\\right\\rceil = 185.\n\\]\n\n### Achievability\nPartition the 2023 friends into 184 groups of 11 people and one remaining group of 9 people. For the last 9 people, include them with any 2 already queried people to make a final group of 11, using the gift sets already learned to resolve the overlap. In total, 185 questions are enough.\n\nSo the minimum number of questions is\n\nFinal answer: \\(185\\)",
+  "usage": {
+    "input_tokens": 143,
+    "output_tokens": 430,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 4.113763114903122,
+  "cached": false
+}

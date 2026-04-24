@@ -1,0 +1,20 @@
+{
+  "id": "03bp",
+  "country": "Bulgaria",
+  "competition": "Team selection test for the 54th IMO",
+  "gold_final_answer": "(mn+mr+2r)(n-r)",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Pigeonhole principle",
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments"
+  ],
+  "prompt": "Let $m$, $n$ and $r$ be positive integers with $n \\ge 2$ and $1 \\le r \\le n-1$. Consider a square table of size $(mn+r) \\times (mn+r)$. The table is covered by squares of size $n \\times n$ with sides parallel to the sides of the table. Each unit square is covered at least once and some unit squares are covered multiple times. Find the minimum possible number of unit squares covered at least two times.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let the table have side length  \n\\[\nN=mn+r \\qquad (1\\le r\\le n-1).\n\\]\n\nWe cover it by axis-parallel \\(n\\times n\\) squares, and every unit square must be covered at least once. We want to minimize the number of unit squares covered at least twice.\n\n## 1) A lower bound\n\nLook at one row of the table. The projection of the \\(n\\times n\\) squares onto that row is a covering of an interval of length \\(N\\) by intervals of length \\(n\\).\n\nSince \\(N=mn+r\\) with \\(0<r<n\\), at least \\(m+1\\) such intervals are needed in each row. The total length contributed by \\(m+1\\) intervals is \\((m+1)n=mn+n\\), which exceeds \\(N\\) by\n\\[\n(m+1)n - N = n-r.\n\\]\nSo in each row, there must be overlap of total length at least \\(n-r\\). Hence each row contains at least \\(n-r\\) unit squares covered at least twice.\n\nThere are \\(N\\) rows, so the total number of unit squares covered at least twice is at least\n\\[\nN(n-r)=(mn+r)(n-r).\n\\]\n\n## 2) Construction achieving the bound\n\nArrange the \\(n\\times n\\) squares in an \\( (m+1)\\times (m+1)\\) grid of blocks, shifted so that in each row and each column the overlap occurs in exactly \\(n-r\\) consecutive unit squares, and the overlaps in different rows are disjoint.\n\nConcretely, place \\(m+1\\) vertical strips of width \\(n\\), each shifted right by \\(r\\), and similarly \\(m+1\\) horizontal strips of height \\(n\\), shifted down by \\(r\\). Their intersections tile the table so that:\n- every unit square is covered at least once,\n- and the only double-covered unit squares are exactly the \\(n-r\\) overlap columns in each of the \\(N\\) rows.\n\nThus the number of unit squares covered at least twice is exactly\n\\[\nN(n-r)=(mn+r)(n-r).\n\\]\n\nSo this is the minimum.\n\nFinal answer: \\(\\boxed{(mn+r)(n-r)}\\)",
+  "usage": {
+    "input_tokens": 154,
+    "output_tokens": 500,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.705274131963961,
+  "cached": false
+}

@@ -1,0 +1,26 @@
+{
+  "id": "040b",
+  "country": "China",
+  "competition": "China Mathematical Competition",
+  "gold_final_answer": "1",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Triangles > Triangle trigonometry",
+    "Geometry > Plane Geometry > Miscellaneous > Constructions and loci",
+    "Geometry > Plane Geometry > Geometric Inequalities > Optimization in geometry"
+  ],
+  "prompt": "Let the focus and directrix of parabola $y^2 = 2px$ ($p > 0$) be $F$ and $l$, respectively. $A$ and $B$ are moving points on the parabola satisfying $\\angle AFB = \\frac{\\pi}{3}$. Let the projection of $M$, the midpoint of segment $AB$, on $l$ be $N$. Then the maximum value of $\\frac{|MN|}{|AB|}$ is ______.",
+  "model": "gpt-5.4",
+  "response_text": "Write the parabola in the standard form\n\\[\ny^2=4ax.\n\\]\nSince here\n\\[\ny^2=2px,\n\\]\nwe have\n\\[\n4a=2p \\quad\\Rightarrow\\quad a=\\frac p2.\n\\]\nSo the focus is\n\\[\nF=(a,0),\n\\]\nand the directrix is\n\\[\nl:\\ x=-a.\n\\]\n\n## 1. Parametrize points on the parabola\nA standard parametrization of \\(y^2=4ax\\) is\n\\[\nP(t)=(at^2,\\,2at).\n\\]\nLet\n\\[\nA=(at_1^2,2at_1),\\qquad B=(at_2^2,2at_2).\n\\]\n\nA useful fact: the slope of \\(FA\\) is\n\\[\n\\frac{2at_1}{at_1^2-a}=\\frac{2t_1}{t_1^2-1},\n\\]\nso if we set \\(t_1=\\tan \\alpha\\), then the direction angle of \\(FA\\) is \\(2\\alpha\\). Similarly, if \\(t_2=\\tan\\beta\\), then the direction angle of \\(FB\\) is \\(2\\beta\\).\n\nGiven\n\\[\n\\angle AFB=\\frac\\pi3,\n\\]\nwe get\n\\[\n|2\\alpha-2\\beta|=\\frac\\pi3\n\\quad\\Rightarrow\\quad\n|\\alpha-\\beta|=\\frac\\pi6.\n\\]\n\n## 2. Express \\(|AB|\\)\nFor two points \\(P(t_1),P(t_2)\\) on \\(y^2=4ax\\),\n\\[\nAB=a|t_1-t_2|\\sqrt{(t_1+t_2)^2+4}.\n\\]\n\nNow put\n\\[\nt_1=\\tan\\alpha,\\qquad t_2=\\tan\\beta,\\qquad \\alpha-\\beta=\\frac\\pi6.\n\\]\nUsing\n\\[\n\\tan\\alpha-\\tan\\beta=\\frac{\\sin(\\alpha-\\beta)}{\\cos\\alpha\\cos\\beta},\n\\]\nand\n\\[\n1+\\tan\\alpha\\tan\\beta=\\frac{\\cos(\\alpha-\\beta)}{\\cos\\alpha\\cos\\beta},\n\\]\nwe get\n\\[\n(t_1-t_2)^2\\big((t_1+t_2)^2+4\\big)\n=(t_1-t_2)^2\\big((1+t_1t_2)^2+(t_1-t_2)^2\\big).\n\\]\nSince \\(\\alpha-\\beta=\\pi/6\\),\n\\[\nt_1-t_2=\\frac{1/2}{\\cos\\alpha\\cos\\beta},\\qquad\n1+t_1t_2=\\frac{\\sqrt3/2}{\\cos\\alpha\\cos\\beta}.\n\\]\nHence\n\\[\nAB=a\\cdot \\frac{1}{2\\cos^2\\alpha\\cos^2\\beta}.\n\\]\n\n## 3. Express \\(|MN|\\)\nThe midpoint \\(M\\) of \\(AB\\) is\n\\[\nM=\\left(\\frac a2(t_1^2+t_2^2),\\ a(t_1+t_2)\\right).\n\\]\nIts projection onto the directrix \\(x=-a\\) is horizontal, so\n\\[\n|MN|=\\text{distance from }M\\text{ to }x=-a\n=\\frac a2(t_1^2+t_2^2)+a\n=\\frac a2\\big((t_1^2+t_2^2)+2\\big).\n\\]\nBut\n\\[\nt_1^2+t_2^2+2=(1+t_1t_2)^2+(t_1-t_2)^2,\n\\]\nthus\n\\[\n|MN|\n=\\frac a2\\left(\\frac{3/4+1/4}{\\cos^2\\alpha\\cos^2\\beta}\\right)\n=\\frac a2\\cdot \\frac1{\\cos^2\\alpha\\cos^2\\beta}.\n\\]\n\n## 4. Compute the ratio\nTherefore\n\\[\n\\frac{|MN|}{|AB|}\n=\n\\frac{\\frac a2\\cdot \\frac1{\\cos^2\\alpha\\cos^2\\beta}}\n{a\\cdot \\frac1{2\\cos^2\\alpha\\cos^2\\beta}}\n=1.\n\\]\n\nSo in fact this ratio is constant for all such \\(A,B\\), hence its maximum value is\n\n\\[\n\\boxed{1}.\n\\]\n\nFinal answer: 1",
+  "usage": {
+    "input_tokens": 151,
+    "output_tokens": 1014,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 13.30800163501408,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "exact",
+    "predicted": "1"
+  }
+}

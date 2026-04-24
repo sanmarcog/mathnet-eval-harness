@@ -1,0 +1,25 @@
+{
+  "id": "0h0f",
+  "country": "Ukraine",
+  "competition": "50th Mathematical Olympiad in Ukraine, Fourth Round (March 24, 2010)",
+  "gold_final_answer": "1006",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Prime numbers",
+    "Number Theory > Divisibility / Factorization > Factorization techniques"
+  ],
+  "prompt": "Find the least possible value $k$ for which there exist $2010$ distinct natural numbers that satisfy the following condition: the product of any $k$ numbers from the chosen set is divisible by the product of the rest $2010 - k$ numbers.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let the chosen numbers be \\(a_1,\\dots,a_{2010}\\), and write\n\\[\nv_p(a_i)=e_{i,p}\n\\]\nfor each prime \\(p\\). The condition says:\n\nFor any set \\(S\\) of \\(k\\) indices,\n\\[\n\\prod_{i\\in S} a_i \\text{ is divisible by } \\prod_{i\\notin S} a_i.\n\\]\nEquivalently, for every prime \\(p\\),\n\\[\n\\sum_{i\\in S} e_{i,p}\\ge \\sum_{i\\notin S} e_{i,p}.\n\\]\nSo for each prime \\(p\\), if we sort the exponents\n\\[\ne_{1,p}\\le e_{2,p}\\le \\cdots \\le e_{2010,p},\n\\]\nthen the smallest possible left-hand side occurs when \\(S\\) is the set of \\(k\\) smallest exponents. Thus we must have\n\\[\ne_{1,p}+\\cdots+e_{k,p}\\ge e_{k+1,p}+\\cdots+e_{2010,p}.\n\\]\nBut this must hold for every prime \\(p\\).\n\nNow consider the exponents for each chosen number as vectors. If we take two numbers \\(a_i,a_j\\), the condition for \\(k=1005\\) would force a strong balance; more generally, the only way the condition can hold for every choice of \\(k\\) numbers is that no prime can appear too unevenly across the set.\n\nA standard extremal argument shows the least possible \\(k\\) is the point where one side can be as large as the other under all subsets, namely\n\\[\nk=\\left\\lceil \\frac{2010}{2}\\right\\rceil=1005.\n\\]\n\nThis bound is attainable: take\n\\[\n\\underbrace{1,\\dots,1}_{1005\\text{ times}},\\underbrace{2,\\dots,2}_{1005\\text{ times}}.\n\\]\nThen any \\(1005\\) chosen numbers have product at least \\(2^{t}\\), while the remaining \\(1005\\) have product at most \\(2^{t}\\) in the opposite direction, and the divisibility condition is satisfied by symmetry.\n\nHence the least possible \\(k\\) is\n\nFinal answer: \\(1005\\)",
+  "usage": {
+    "input_tokens": 101,
+    "output_tokens": 508,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.9486378190340474,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "\\(1005\\)"
+  }
+}

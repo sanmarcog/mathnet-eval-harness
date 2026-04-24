@@ -1,0 +1,20 @@
+{
+  "id": "00ai",
+  "country": "Argentina",
+  "competition": "Argentine National Olympiad 2016",
+  "gold_final_answer": "S(nk) < S(n) + S(k)",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Sequences and Series > Telescoping series",
+    "Algebra > Algebraic Expressions > Sequences and Series > Sums and products"
+  ],
+  "prompt": "For an integer $m \\ge 3$ set $S(m) = 1 + \\frac{1}{3} + \\dots + \\frac{1}{m}$ (the fraction $1/m$ does not participate in the sum). Let $n \\ge 3$ and $k \\ge 3$. Compare the numbers $S(nk)$ and $S(n) + S(k)$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Write\n\\[\nS(t)=1+\\frac13+\\cdots+\\frac1{t-1}\n\\]\nso the missing terms are exactly the reciprocals of even integers.\n\nA convenient way to compare is to split the harmonic sums into odd and even parts:\n\\[\nH_{m-1}=\\sum_{j=1}^{m-1}\\frac1j\n\\]\nand\n\\[\nS(m)=H_{m-1}-\\sum_{j=1}^{\\lfloor (m-1)/2\\rfloor}\\frac1{2j}\n=H_{m-1}-\\frac12 H_{\\lfloor (m-1)/2\\rfloor}.\n\\]\n\nThus\n\\[\nS(nk)-S(n)-S(k)\n\\]\ncan be analyzed by telescoping the omitted even terms. A cleaner direct computation uses the fact that\n\\[\nS(m)=\\sum_{\\substack{1\\le j\\le m-1\\\\ j\\text{ odd}}}\\frac1j.\n\\]\nSo \\(S(nk)\\) contains all odd reciprocals up to \\(nk-1\\), while \\(S(n)+S(k)\\) contains only the odd reciprocals up to \\(n-1\\) and \\(k-1\\). Since \\(n,k\\ge 3\\), the extra odd terms in \\(S(nk)\\) dominate the duplication, and one gets\n\\[\nS(nk) > S(n)+S(k).\n\\]\n\nIn fact, the inequality is strict for all integers \\(n,k\\ge 3\\).\n\nFinal answer: \\(\\boxed{S(nk) > S(n)+S(k)}\\)",
+  "usage": {
+    "input_tokens": 133,
+    "output_tokens": 356,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.3924080029828474,
+  "cached": false
+}

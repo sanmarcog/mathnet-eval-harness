@@ -1,0 +1,20 @@
+{
+  "id": "0d9r",
+  "country": "Saudi Arabia",
+  "competition": "Team selection tests for JBMO 2018",
+  "gold_final_answer": "1980",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Prime numbers",
+    "Number Theory > Divisibility / Factorization > Factorization techniques"
+  ],
+  "prompt": "Distinct prime numbers $p$, $q$, $r$ satisfy the equation\n$$\n2 p q r + 50 p q = 7 p q r + 55 p r = 8 p q r + 12 q r = A\n$$\nfor some positive integer $A$. Find $A$.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find the value of $A$, we are given the equations:\n$$ 2pqr + 50pq = 7pqr + 55pr = 8pqr + 12qr = A $$\n\nLet's set the first two expressions equal to each other:\n$$ 2pqr + 50pq = 7pqr + 55pr $$\nSubtracting $2pqr$ from both sides gives:\n$$ 50pq - 55pr = 5pqr $$\nSince $p$ is a prime number, $p \\neq 0$, so we can divide the entire equation by $5p$:\n$$ 10q - 11r = qr $$\nRearranging this into a factorable form, we get:\n$$ qr - 10q + 11r = 0 $$\n$$ q(r - 10) + 11(r - 10) = -110 $$\n$$ (q + 11)(r - 10) = -110 $$\n\nSince $q$ is a prime number, $q \\ge 2$, which means $q + 11 \\ge 13$. Because the product is negative and $q + 11$ is positive, $r - 10$ must be negative, meaning $r < 10$. The possible prime values for $r$ are 2, 3, 5, and 7. \nLet's test these values:\n- If $r = 2$, $r - 10 = -8$, but $-110$ is not divisible by $-8$.\n- If $r = 3$, $r - 10 = -7$, but $-110$ is not divisible by $-7$.\n- If $r = 5$, $r - 10 = -5$. Then $q + 11 = \\frac{-110}{-5} = 22$, which gives $q = 11$. Since 11 is prime, this is a valid solution.\n- If $r = 7$, $r - 10 = -3$, but $-110$ is not divisible by $-3$.\n\nSo we have $q = 11$ and $r = 5$.\n\nNow, let's set the first and third expressions equal to each other:\n$$ 2pqr + 50pq = 8pqr + 12qr $$\nSubtracting $2pqr$ from both sides gives:\n$$ 50pq - 12qr = 6pqr $$\nDivide by 2:\n$$ 25pq - 6qr = 3pqr $$\nSubstitute $q = 11$ and $r = 5$ into the equation:\n$$ 25p(11) - 6(11)(5) = 3p(11)(5) $$\n$$ 275p - 330 = 165p $$\n$$ 110p = 330 $$\n$$ p = 3 $$\nThe primes $p=3$, $q=11$, and $r=5$ are all distinct, which satisfies the problem's conditions.\n\nFinally, we calculate $A$ using the first expression:\n$$ A = 2pqr + 50pq $$\n$$ A = 2(3)(11)(5) + 50(3)(11) $$\n$$ A = 2(165) + 50(33) $$\n$$ A = 330 + 1650 = 1980 $$\n\nFinal answer: 1980",
+  "usage": {
+    "input_tokens": 107,
+    "output_tokens": 823,
+    "thoughts_tokens": 851
+  },
+  "latency_s": 14.186453494010493,
+  "cached": true
+}

@@ -1,0 +1,25 @@
+{
+  "id": "0d6l",
+  "country": "Saudi Arabia",
+  "competition": "SAUDI ARABIAN MATHEMATICAL COMPETITIONS",
+  "gold_final_answer": "All triples that are permutations of (a, a, 0) with a ≥ 0 (including (0, 0, 0)).",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Sequences and Series > Recurrence relations",
+    "Discrete Mathematics > Combinatorics > Invariants / monovariants"
+  ],
+  "prompt": "Given three numbers $x$, $y$, $z$, and set $x_{1} = |x - y|$, $y_{1} = |y - z|$, $z_{1} = |z - x|$. From $x_{1}$, $y_{1}$, $z_{1}$, form in the same fashion the numbers $x_{2}$, $y_{2}$, $z_{2}$, and so on. It is known that $x_{n} = x$, $y_{n} = y$, $z_{n} = z$ for some $n$. Find all possible values of $(x, y, z)$.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Solution\n\nWe need to find all triples $(x, y, z)$ such that after applying the operation $n$ times, we return to $(x, y, z)$.\n\n**The operation:** $(x, y, z) \\mapsto (|x-y|, |y-z|, |z-x|)$\n\n**Key observations:**\n\n**Step 1: The operation preserves non-negativity eventually.**\nAfter one application, all values are non-negative. So if $(x_n, y_n, z_n) = (x, y, z)$, then $(x, y, z)$ must equal $(x_1, y_1, z_1)$ after $n$ steps, meaning $x, y, z \\geq 0$.\n\nActually, since $x_1, y_1, z_1 \\geq 0$ and $x_n = x$, we need $x, y, z \\geq 0$.\n\n**Step 2: The sum behavior.**\nLet $S = x + y + z$. After one step:\n$$S_1 = |x-y| + |y-z| + |z-x|$$\n\nNote that $|x-y| + |y-z| + |z-x| \\leq 2(x+y+z) = 2S$ (with equality impossible unless values are spread out), but more importantly:\n\nIf $x \\geq y \\geq z \\geq 0$, then:\n$$S_1 = (x-y) + (y-z) + (x-z) = 2x - 2z \\leq 2(x-z) \\leq 2S$$\n\nAlso $S_1 = 2(x-z) \\leq 2x \\leq 2S$.\n\n**Step 3: The maximum value decreases.**\nLet $M_n = \\max(x_n, y_n, z_n)$. We have:\n$$M_1 = \\max(|x-y|, |y-z|, |z-x|) \\leq \\max(x,y,z) - \\min(x,y,z) \\leq M_0$$\n\nMore precisely, if $M = \\max$ and $m = \\min$, then $M_1 = M - m \\leq M$.\n\nActually $M_1 = M - m$. For the sequence to be periodic, we need $M_n = M$ for all $n$, so $M - m = M$, meaning $m = 0$.\n\n**Step 4: Applying this repeatedly.**\nAt each step, $M_{k+1} = M_k - m_k$ where $m_k = \\min(x_k, y_k, z_k)$.\n\nFor periodicity: $M_n = M_0$ requires $\\sum_{k=0}^{n-1} m_k = 0$, so each $m_k = 0$.\n\nThis means at every step, the minimum of the triple is 0.\n\n**Step 5: What triples with minimum 0 are fixed points of the period?**\n\nSuppose $z = 0$, $x \\geq y \\geq 0$. Then:\n$$x_1 = |x-y| = x-y, \\quad y_1 = |y-0| = y, \\quad z_1 = |0-x| = x$$\n\nNew triple: $(x-y, y, x)$. The minimum is $\\min(x-y, y, x)$.\n\nFor this to eventually return to $(x, y, 0)$, we need the process to cycle. But the maximum at step 1 is $x$, same as before. The minimum must be 0 at each step.\n\nIf $y = 0$: triple is $(x, 0, 0)$. Next step: $(x, 0, x)$. Then $(x, x, 0)$. Then $(0, x, x)$. Then $(x, 0, x)$... This cycles with period 3 (not returning to $(x,0,0)$ unless $x=0$).\n\nWait, let me check $(x, 0, x) \\to (x, x, 0) \\to (0, x, x) \\to (x, 0, x)$: period 3, not returning to $(x, 0, 0)$.\n\nFor $(x, 0, 0)$ to be periodic, we need $x = 0$.\n\n**Step 6: Conclusion.**\nThe only triple that returns to itself is $(0, 0, 0)$.\n\n**Verification:** $(0,0,0) \\to (0,0,0)$. ✓\n\nAny nonzero triple: the maximum stays the same but the structure cycles without returning unless all are 0.\n\nFinal answer: $(x, y, z) = (0, 0, 0)$",
+  "usage": {
+    "input_tokens": 205,
+    "output_tokens": 1181,
+    "thinking_tokens": 0
+  },
+  "latency_s": 18.463759889942594,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "$(x, y, z) = (0, 0, 0)$"
+  }
+}

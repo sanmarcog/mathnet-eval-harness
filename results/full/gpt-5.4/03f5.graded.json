@@ -1,0 +1,25 @@
+{
+  "id": "03f5",
+  "country": "Bulgaria",
+  "competition": "3 Bulgarian Spring Tournament",
+  "gold_final_answer": "Part (a): a ∈ (-∞, -2√2) ∪ (-√2/2, 0) ∪ (0, √2/2) ∪ (2√2, ∞). Part (b): 1/2.",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities",
+    "Algebra > Intermediate Algebra > Logarithmic functions"
+  ],
+  "prompt": "a) Find all values of $a$ for which the inequality\n$$\nx \\log_{\\frac{1}{2}} a^4 - x^2 > 3 + 2 \\log_2 a^2\n$$\nhas a solution.\n\nb) Calculate the limit\n$$\n\\lim_{a \\to -\\infty} \\left( \\sqrt{a^2 - a + 1} + a \\right).\n$$",
+  "model": "gpt-5.4",
+  "response_text": "Let\n\\[\nx\\log_{\\frac12} a^4 - x^2 > 3+2\\log_2 a^2.\n\\]\n\nWe solve part (a) by viewing the left side as a quadratic in \\(x\\).\n\n## a) Values of \\(a\\) for which the inequality has a solution\n\nFirst, note the logarithms require\n\\[\na\\ne 0.\n\\]\n\nAlso,\n\\[\n\\log_{\\frac12} a^4 = -\\log_2 a^4.\n\\]\nSince \\(a^4=(a^2)^2\\),\n\\[\n\\log_2 a^4 = 2\\log_2 a^2.\n\\]\nSo the inequality becomes\n\\[\n-x^2 - x\\log_2 a^4 > 3+\\log_2 a^4.\n\\]\nLet\n\\[\nt=\\log_2 a^4.\n\\]\nThen\n\\[\n-x^2-tx-(3+t)>0.\n\\]\nEquivalently,\n\\[\nx^2+tx+(3+t)<0.\n\\]\n\nA quadratic \\(x^2+tx+(3+t)\\) is negative for some real \\(x\\) iff its discriminant is positive:\n\\[\n\\Delta=t^2-4(3+t)=t^2-4t-12=(t-6)(t+2)>0.\n\\]\nHence\n\\[\nt<-2 \\quad \\text{or} \\quad t>6.\n\\]\n\nNow substitute back:\n\\[\n\\log_2 a^4<-2 \\quad \\text{or} \\quad \\log_2 a^4>6.\n\\]\nThus\n\\[\na^4<2^{-2}=\\frac14\n\\quad\\text{or}\\quad\na^4>2^6=64.\n\\]\nSo\n\\[\n|a|<\\frac1{\\sqrt2},\\ a\\ne 0\n\\quad\\text{or}\\quad\n|a|>2\\sqrt2.\n\\]\n\nTherefore,\n\\[\na\\in (-\\infty,-2\\sqrt2)\\cup\\left(-\\frac1{\\sqrt2},0\\right)\\cup\\left(0,\\frac1{\\sqrt2}\\right)\\cup(2\\sqrt2,\\infty).\n\\]\n\n---\n\n## b) Compute\n\\[\n\\lim_{a\\to-\\infty}\\left(\\sqrt{a^2-a+1}+a\\right).\n\\]\n\nRationalize:\n\\[\n\\sqrt{a^2-a+1}+a\n=\n\\frac{(a^2-a+1)-a^2}{\\sqrt{a^2-a+1}-a}\n=\n\\frac{-a+1}{\\sqrt{a^2-a+1}-a}.\n\\]\n\nNow write \\(\\sqrt{a^2-a+1}=|a|\\sqrt{1-\\frac1a+\\frac1{a^2}}\\). Since \\(a\\to -\\infty\\), we have \\(|a|=-a\\), so\n\\[\n\\sqrt{a^2-a+1}=-a\\sqrt{1-\\frac1a+\\frac1{a^2}}.\n\\]\nHence\n\\[\n\\sqrt{a^2-a+1}-a\n=\n-a\\left(\\sqrt{1-\\frac1a+\\frac1{a^2}}+1\\right).\n\\]\nTherefore\n\\[\n\\frac{-a+1}{\\sqrt{a^2-a+1}-a}\n=\n\\frac{-a+1}{-a\\left(\\sqrt{1-\\frac1a+\\frac1{a^2}}+1\\right)}\n=\n\\frac{1-\\frac1a}{\\sqrt{1-\\frac1a+\\frac1{a^2}}+1}.\n\\]\nAs \\(a\\to-\\infty\\), this tends to\n\\[\n\\frac{1}{1+1}=\\frac12.\n\\]\n\nSo the limit is\n\\[\n\\frac12.\n\\]\n\nFinal answer: \\[\n\\text{a) }a\\in (-\\infty,-2\\sqrt2)\\cup\\left(-\\frac1{\\sqrt2},0\\right)\\cup\\left(0,\\frac1{\\sqrt2}\\right)\\cup(2\\sqrt2,\\infty),\n\\qquad\n\\text{b) }\\frac12.\n\\]",
+  "usage": {
+    "input_tokens": 141,
+    "output_tokens": 934,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 11.753276934963651,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "\\["
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "id": "0c6j",
+  "country": "Romania",
+  "competition": "70th NMO SELECTION TESTS FOR THE JUNIOR BALKAN MATHEMATICAL OLYMPIAD",
+  "gold_final_answer": "1/16",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities > Cauchy-Schwarz",
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities"
+  ],
+  "prompt": "Find the maximum value of the expression\n\n$$\nE(a, b) = \\frac{a + b}{(4a^2 + 3)(4b^2 + 3)}\n$$\n\nwhen $a, b \\in \\mathbb{R}$.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "We need to maximize $E(a,b) = \\frac{a+b}{(4a^2+3)(4b^2+3)}$.\n\n**Step 1: Use symmetry.**\n\nBy symmetry, at the maximum we expect $a = b$. Let's verify this and find the optimal $a$.\n\nWith $a = b$, we maximize $f(a) = \\frac{2a}{(4a^2+3)^2}$.\n\n**Step 2: Optimize over $a$.**\n\nTake derivative and set to zero:\n$$f'(a) = \\frac{2(4a^2+3)^2 - 2a \\cdot 2(4a^2+3) \\cdot 8a}{(4a^2+3)^4} = \\frac{2(4a^2+3) - 32a^2}{(4a^2+3)^3} = \\frac{8a^2+6 - 32a^2}{(4a^2+3)^3} = \\frac{6 - 24a^2}{(4a^2+3)^3}$$\n\nSetting numerator to zero: $6 - 24a^2 = 0 \\Rightarrow a^2 = 1/4 \\Rightarrow a = 1/2$.\n\n**Step 3: Compute the value at $a = b = 1/2$.**\n\n$$4a^2 + 3 = 4 \\cdot \\frac{1}{4} + 3 = 1 + 3 = 4$$\n\n$$E(1/2, 1/2) = \\frac{1/2 + 1/2}{4 \\cdot 4} = \\frac{1}{16}$$\n\n**Step 4: Verify this is indeed the global maximum.**\n\nWe need to confirm $a = b$ is optimal. Fix $s = a + b$ and consider the denominator. Actually, let's verify by checking if non-symmetric points could do better.\n\nFor fixed $a+b = s$, we want to minimize $(4a^2+3)(4b^2+3)$. Let $b = s - a$:\n\nActually, let's use a different approach. We can write:\n$$E = \\frac{a+b}{(4a^2+3)(4b^2+3)}$$\n\nNote that $4a^2 + 3 \\geq 4|a|\\sqrt{3} \\cdot \\frac{1}{\\sqrt{3}} \\cdot \\sqrt{3}$... Let me use AM-GM differently.\n\nFor any real $x$: $4x^2 + 3 \\geq 4x\\sqrt{3} \\cdot \\frac{\\sqrt{3}}{...}$. Actually $4x^2 + 3 \\geq 4x$ when... let me just bound directly.\n\nWe have $4x^2 + 3 \\geq 2\\sqrt{12}|x| = 4\\sqrt{3}|x|$ by AM-GM (when $x > 0$: $4x^2 + 3 \\geq 2\\sqrt{12x^2} = 4\\sqrt{3}x$).\n\nSo if $a, b > 0$:\n$$E \\leq \\frac{a+b}{16\\sqrt{3} \\cdot ab}$$\n\nThis doesn't immediately give a clean bound. Let me instead just confirm the critical point analysis.\n\nSince $E \\to 0$ as $\\|a\\|$ or $\\|b\\| \\to \\infty$, and $E$ is continuous, the maximum exists. The critical point equations:\n\n$$\\frac{\\partial E}{\\partial a} = 0: \\quad (4b^2+3)(4a^2+3) - (a+b)(4b^2+3)(8a) = 0$$\n$$\\Rightarrow (4a^2+3) = 8a(a+b)$$\n\nSimilarly: $(4b^2+3) = 8b(a+b)$.\n\nSubtracting: $4a^2 - 4b^2 = 8(a-b)(a+b)$, i.e., $4(a-b)(a+b) = 8(a-b)(a+b)$.\n\nThis gives $4(a-b)(a+b) = 0$, so either $a = b$ or $a + b = 0$.\n\nIf $a + b = 0$, then $E = 0$ (not a maximum).\n\nSo $a = b$, confirming our earlier analysis. The maximum is $\\frac{1}{16}$.\n\nFinal answer: $\\dfrac{1}{16}$",
+  "usage": {
+    "input_tokens": 107,
+    "output_tokens": 1156,
+    "thinking_tokens": 0
+  },
+  "latency_s": 16.39726395602338,
+  "cached": false
+}

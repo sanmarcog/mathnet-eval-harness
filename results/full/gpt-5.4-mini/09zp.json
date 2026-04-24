@@ -1,0 +1,21 @@
+{
+  "id": "09zp",
+  "country": "Netherlands",
+  "competition": "Second Round",
+  "gold_final_answer": "39",
+  "topics_flat": [
+    "Algebra > Prealgebra / Basic Algebra > Integers",
+    "Number Theory > Divisibility / Factorization > Factorization techniques",
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities"
+  ],
+  "prompt": "For how many integers $n$ with $1 \\le n \\le 800$ is the number $8n + 1$ a square?",
+  "model": "gpt-5.4-mini",
+  "response_text": "We want\n\\[\n8n+1 = k^2\n\\]\nfor some integer \\(k\\). Then\n\\[\nn=\\frac{k^2-1}{8}.\n\\]\nSo we need \\(k^2 \\equiv 1 \\pmod 8\\). This happens exactly when \\(k\\) is odd.\n\nNow count odd \\(k\\) such that\n\\[\n1 \\le \\frac{k^2-1}{8} \\le 800.\n\\]\nThe upper bound gives\n\\[\nk^2 \\le 6401,\n\\]\nso \\(k \\le 80\\) since \\(80^2=6400\\) and \\(81^2=6561\\).\n\nThus \\(k\\) can be any odd integer from \\(1\\) to \\(79\\). There are\n\\[\n\\frac{79+1}{2}=40\n\\]\nsuch values.\n\nSo there are \\(40\\) integers \\(n\\).\n\nFinal answer: 40",
+  "usage": {
+    "input_tokens": 79,
+    "output_tokens": 216,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 1.8109408160671592,
+  "cached": false
+}

@@ -1,0 +1,20 @@
+{
+  "id": "00a6",
+  "country": "Argentina",
+  "competition": "Argentine National Olympiad 2015",
+  "gold_final_answer": "All n that are multiples of 4",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Invariants / monovariants",
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments"
+  ],
+  "prompt": "A $+1$ or $-1$ is written at each vertex of a regular $n$-gonal prism so that the product of numbers on each face is $-1$. For which $n \\geq 3$ is this possible?",
+  "model": "gpt-5.4",
+  "response_text": "Let the prism have top vertices \\(t_1,\\dots,t_n\\) and bottom vertices \\(b_1,\\dots,b_n\\), with indices mod \\(n\\).  \nEach vertex gets a value in \\(\\{\\pm 1\\}\\).\n\nThe faces are:\n\n- top \\(n\\)-gon: \\(\\prod_{i=1}^n t_i=-1\\),\n- bottom \\(n\\)-gon: \\(\\prod_{i=1}^n b_i=-1\\),\n- side face \\(i\\): \\(t_i t_{i+1} b_{i+1} b_i=-1\\).\n\nWe want to determine for which \\(n\\) this system is solvable.\n\n## Step 1: A necessary condition\n\nMultiply all \\(n\\) side-face equations:\n\\[\n\\prod_{i=1}^n (t_i t_{i+1} b_{i+1} b_i)=(-1)^n.\n\\]\nOn the left, each \\(t_i\\) appears exactly twice, and each \\(b_i\\) appears exactly twice, so\n\\[\n\\prod_{i=1}^n (t_i t_{i+1} b_{i+1} b_i)\n= \\left(\\prod_{i=1}^n t_i\\right)^2 \\left(\\prod_{i=1}^n b_i\\right)^2=1.\n\\]\nHence\n\\[\n(-1)^n=1,\n\\]\nso \\(n\\) must be even.\n\nThus odd \\(n\\) is impossible.\n\n## Step 2: Show every even \\(n\\) works\n\nAssume \\(n\\) is even. We construct a labeling.\n\nTake\n\\[\nt_i=1 \\quad (1\\le i\\le n-1), \\qquad t_n=-1.\n\\]\nThen\n\\[\n\\prod_{i=1}^n t_i=-1,\n\\]\nso the top face condition holds.\n\nNow define\n\\[\nx_i:=t_i b_i.\n\\]\nThen the \\(i\\)-th side face condition becomes\n\\[\nt_i t_{i+1} b_{i+1} b_i\n=(t_i b_i)(t_{i+1} b_{i+1})\n= x_i x_{i+1}=-1.\n\\]\nSo we need\n\\[\nx_{i+1}=-x_i \\quad \\text{for all } i.\n\\]\nHence the \\(x_i\\)'s must alternate:\n\\[\nx_1, -x_1, x_1, -x_1,\\dots\n\\]\nThis is consistent exactly because \\(n\\) is even.\n\nChoose \\(x_1=1\\). Then \\(x_i=(-1)^{i-1}\\), and define\n\\[\nb_i=t_i x_i.\n\\]\nAll side-face products are then \\(-1\\).\n\nFinally,\n\\[\n\\prod_{i=1}^n b_i\n=\\left(\\prod_{i=1}^n t_i\\right)\\left(\\prod_{i=1}^n x_i\\right).\n\\]\nSince \\(n\\) is even, the alternating sequence \\(x_i\\) has equally many \\(1\\)'s and \\(-1\\)'s, so\n\\[\n\\prod_{i=1}^n x_i = (-1)^{n/2}.\n\\]\nThus\n\\[\n\\prod_{i=1}^n b_i = (-1)\\cdot (-1)^{n/2}.\n\\]\nTo make this equal to \\(-1\\), we need \\((-1)^{n/2}=1\\), i.e. \\(n\\equiv 0\\pmod 4\\).\n\nSo this particular construction only works for \\(n\\equiv 0\\pmod 4\\). We need to check whether \\(n\\equiv 2\\pmod 4\\) is also possible.\n\n## Step 3: A sharper condition\n\nMultiply the top and bottom face equations:\n\\[\n\\left(\\prod t_i\\right)\\left(\\prod b_i\\right)=(-1)(-1)=1.\n\\]\nSo\n\\[\n\\prod_{i=1}^n (t_i b_i)=1.\n\\]\nThat is,\n\\[\n\\prod_{i=1}^n x_i=1.\n\\]\n\nBut from the side-face equations, \\(x_i x_{i+1}=-1\\), so the \\(x_i\\)'s alternate. For even \\(n\\),\n\\[\nx_i = a(-1)^{i-1}\n\\]\nfor some \\(a=\\pm 1\\). Therefore\n\\[\n\\prod_{i=1}^n x_i = a^n \\cdot (-1)^{1+3+\\cdots+(n-1)} = (-1)^{n/2}.\n\\]\nSo necessarily\n\\[\n(-1)^{n/2}=1,\n\\]\nhence \\(n/2\\) is even, i.e.\n\\[\nn\\equiv 0\\pmod 4.\n\\]\n\nThus \\(n\\equiv 2\\pmod 4\\) is impossible.\n\n## Step 4: Existence for \\(n\\equiv 0\\pmod 4\\)\n\nFrom the construction above, if \\(n\\equiv 0\\pmod 4\\), then \\(\\prod x_i=1\\), so the bottom face condition also holds. Hence a labeling exists.\n\nTherefore the labeling is possible exactly when \\(n\\) is divisible by \\(4\\).\n\nFinal answer: \\(\\boxed{n\\equiv 0 \\pmod{4}}\\)",
+  "usage": {
+    "input_tokens": 101,
+    "output_tokens": 1209,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 16.39904719090555,
+  "cached": false
+}

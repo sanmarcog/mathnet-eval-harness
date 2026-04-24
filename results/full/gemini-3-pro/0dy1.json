@@ -1,0 +1,21 @@
+{
+  "id": "0dy1",
+  "country": "Slovenia",
+  "competition": "Slovenija 2008",
+  "gold_final_answer": "4",
+  "topics_flat": [
+    "Number Theory > Residues and Primitive Roots > Quadratic residues",
+    "Number Theory > Divisibility / Factorization > Factorization techniques",
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities"
+  ],
+  "prompt": "Find the smallest possible value of the expression $|5^{4m+3} - n^2|$, given that $m$ and $n$ are non-negative integers.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find the smallest possible value of the expression $E = |5^{4m+3} - n^2|$, we can test small values of $m$ and $n$ and then prove that no smaller value is possible.\n\nLet's test $m = 0$:\n$5^{4(0)+3} = 5^3 = 125$.\nWe want to find a perfect square $n^2$ as close to 125 as possible. \nThe closest perfect squares are $11^2 = 121$ and $12^2 = 144$.\nFor $n = 11$, we get $E = |125 - 121| = 4$.\nFor $n = 12$, we get $E = |125 - 144| = 19$.\nSo, $E = 4$ is a possible value. We must now check if $E$ can be $0, 1, 2,$ or $3$.\n\n1. **Can $E = 0$?**\n$5^{4m+3} - n^2 = 0 \\implies n^2 = 5^{4m+3}$.\nThis would mean $n = 5^{2m + 1.5}$, which is not an integer. Thus, $E \\neq 0$.\n\n2. **Can $E = 1$?**\nCase 2a: $5^{4m+3} - n^2 = 1 \\implies n^2 + 1 = 5^{4m+3}$.\nBy Lebesgue's Theorem, the Diophantine equation $n^2 + 1 = y^k$ has no non-trivial integer solutions for $k \\ge 2$. Since $4m+3 \\ge 3$, there are no solutions here.\nCase 2b: $n^2 - 5^{4m+3} = 1 \\implies (n-1)(n+1) = 5^{4m+3}$.\nThis requires both $n-1$ and $n+1$ to be powers of 5. However, the difference between these two factors is $(n+1) - (n-1) = 2$, and no two powers of 5 differ by 2. Thus, $E \\neq 1$.\n\n3. **Can $E = 2$?**\nCase 3a: $5^{4m+3} - n^2 = 2 \\implies n^2 = 5^{4m+3} - 2$.\nTaking modulo 4, we know $5 \\equiv 1 \\pmod 4$, so $5^{4m+3} \\equiv 1 \\pmod 4$.\nThis gives $n^2 \\equiv 1 - 2 \\equiv 3 \\pmod 4$. But no perfect square can be congruent to 3 modulo 4.\nCase 3b: $n^2 - 5^{4m+3} = 2 \\implies n^2 = 5^{4m+3} + 2$.\nModulo 4, this gives $n^2 \\equiv 1 + 2 \\equiv 3 \\pmod 4$, which is again impossible. Thus, $E \\neq 2$.\n\n4. **Can $E = 3$?**\nCase 4a: $5^{4m+3} - n^2 = 3 \\implies n^2 = 5^{4m+3} - 3$.\nModulo 4, this gives $n^2 \\equiv 1 - 3 \\equiv 2 \\pmod 4$. No perfect square can be congruent to 2 modulo 4.\nCase 4b: $n^2 - 5^{4m+3} = 3 \\implies n^2 = 5^{4m+3} + 3$.\nTaking modulo 3, we know $5 \\equiv -1 \\pmod 3$, so $5^{4m+3} \\equiv (-1)^{4m+3} \\equiv -1 \\pmod 3$ (since $4m+3$ is odd).\nThis gives $n^2 \\equiv -1 + 3 \\equiv 2 \\pmod 3$. But no perfect square can be congruent to 2 modulo 3. Thus, $E \\neq 3$.\n\nSince $E$ cannot be $0, 1, 2,$ or $3$, the smallest possible value is indeed $4$.\n\nFinal answer: 4",
+  "usage": {
+    "input_tokens": 75,
+    "output_tokens": 993,
+    "thoughts_tokens": 2608
+  },
+  "latency_s": 26.806827630964108,
+  "cached": false
+}

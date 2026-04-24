@@ -1,0 +1,25 @@
+{
+  "id": "03yv",
+  "country": "China",
+  "competition": "China Southeastern Mathematical Olympiad",
+  "gold_final_answer": "The only solutions are (1,1,1) and all permutations of (1,2,3).",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Greatest common divisors (gcd)",
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities"
+  ],
+  "prompt": "Let $a$, $b$ and $c$ be coprime positive integers so that $a^2 \\mid (b^3 + c^3)$, $b^2 \\mid (a^3 + c^3)$ and $c^2 \\mid (a^3 + b^3)$. Find the values of $a$, $b$ and $c$. (posed by Yang Xiaoming)",
+  "model": "gpt-5.4-mini",
+  "response_text": "We will show that the only possibility is\n\n\\[\na=b=c=1.\n\\]\n\n### Step 1: Use the divisibility conditions modulo prime factors\n\nFrom\n\\[\na^2 \\mid b^3+c^3,\n\\]\nevery prime \\(p\\mid a\\) must satisfy\n\\[\nb^3+c^3 \\equiv 0 \\pmod p.\n\\]\nSimilarly, if \\(p\\mid b\\), then\n\\[\na^3+c^3 \\equiv 0 \\pmod p,\n\\]\nand if \\(p\\mid c\\), then\n\\[\na^3+b^3 \\equiv 0 \\pmod p.\n\\]\n\nSince \\(a,b,c\\) are pairwise coprime, no prime divides more than one of them.\n\n---\n\n### Step 2: Suppose a prime \\(p\\mid a\\)\n\nThen \\(\\gcd(p,b)=\\gcd(p,c)=1\\), and\n\\[\nb^3 \\equiv -c^3 \\pmod p.\n\\]\nSo \\((b c^{-1})^3 \\equiv -1 \\pmod p\\), hence \\(-1\\) is a cube mod \\(p\\).\n\nLikewise, from \\(b^2\\mid a^3+c^3\\) and \\(c^2\\mid a^3+b^3\\), the same kind of reasoning shows that if any prime divides one variable, it forces strong congruence conditions linking the other two.\n\nThe key point is that since the numbers are pairwise coprime, any common prime factor of expressions like \\(b^3+c^3\\) and \\(b^2\\) is impossible unless the relevant prime is absent. Iterating this leads to no nontrivial prime divisors at all.\n\nA cleaner way to finish is by size:\n\nBecause \\(a,b,c\\) are positive and pairwise coprime, assume wlog \\(a\\ge b\\ge c\\). Then\n\\[\na^2 \\mid b^3+c^3 \\le 2b^3 \\le 2a^3,\n\\]\nso \\(a \\le 2\\). Similarly, from the other two divisibilities we get \\(b\\le 2\\) and \\(c\\le 2\\).\n\nThus each of \\(a,b,c\\) is either \\(1\\) or \\(2\\). But pairwise coprime positive integers among \\(\\{1,2\\}\\) can only be at most one equal to \\(2\\). If one of them were \\(2\\), say \\(a=2\\), then\n\\[\n4 \\mid b^3+c^3.\n\\]\nSince \\(b,c\\in\\{1,2\\}\\) and are coprime to \\(2\\), we must have \\(b=c=1\\), but then \\(4\\nmid 2\\), impossible.\n\nTherefore no variable can be \\(2\\), so all must be \\(1\\).\n\nHence\n\\[\n(a,b,c)=(1,1,1).\n\\]\n\nFinal answer: \\((a,b,c)=(1,1,1)\\)",
+  "usage": {
+    "input_tokens": 136,
+    "output_tokens": 673,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 4.47814792196732,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "\\((a,b,c)=(1,1,1)\\)"
+  }
+}

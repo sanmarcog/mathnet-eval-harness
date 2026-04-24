@@ -1,0 +1,26 @@
+{
+  "id": "03wv",
+  "country": "China",
+  "competition": "Chinese Mathematical Olympiad",
+  "gold_final_answer": "All odd integers greater than 1",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Counting two ways",
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments",
+    "Discrete Mathematics > Graph Theory > Matchings, Marriage Lemma, Tutte's theorem"
+  ],
+  "prompt": "Find all integers $n$ such that we can color all the edges and the diagonals of a convex $n$-polygon by $n$ given colors satisfying the following conditions;\n(1) Each of the edges or the diagonals is colored by only one color;\n(2) For any three distinct colors, there exists a triangle whose vertices are vertices of the $n$-polygon and three edges are colored by these three colors.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find all integers $n$ satisfying the given conditions, we can model the edges and diagonals of the convex $n$-polygon as the complete graph $K_n$ on $n$ vertices. We are coloring the edges of $K_n$ with $n$ colors.\n\nCondition (2) states that for any combination of 3 distinct colors, there is at least one triangle whose edges are colored with these 3 colors. \nThe number of ways to choose 3 distinct colors out of $n$ is $\\binom{n}{3}$. \nThe total number of triangles in $K_n$ is also exactly $\\binom{n}{3}$. \nFor every 3-color combination to appear on at least one triangle, each of the $\\binom{n}{3}$ triangles must be colored with 3 distinct colors (i.e., be a \"rainbow\" triangle), and no two triangles can have the same set of 3 colors.\n\nBecause every triangle must have 3 distinct colors, no two incident edges can share the same color (otherwise, the triangle formed by those two edges and the third connecting edge would have at most 2 colors). Therefore, the coloring must be a proper edge coloring of $K_n$.\n\nIn a proper edge coloring, the edges of any given color $c$ form a matching. Let $k$ be the number of edges of color $c$. \nEach of these $k$ edges forms a triangle with each of the remaining $n-2$ vertices. Since no two edges of color $c$ can share a vertex, no triangle can contain more than one edge of color $c$. Thus, the number of triangles containing an edge of color $c$ is exactly $k(n-2)$.\n\nOn the other hand, the number of 3-color combinations containing color $c$ is $\\binom{n-1}{2} = \\frac{(n-1)(n-2)}{2}$. \nSince every 3-color combination must appear on exactly one triangle, we equate the two quantities:\n$$k(n-2) = \\frac{(n-1)(n-2)}{2}$$\nSince $n \\ge 3$ (as it forms a polygon), $n-2 \\neq 0$, and we can divide by $n-2$ to get:\n$$k = \\frac{n-1}{2}$$\nFor $k$ to be an integer (as it represents the number of edges of color $c$), $n-1$ must be even, which means $n$ must be an odd integer.\n\nTo show that such a coloring always exists for any odd $n \\ge 3$, we can label the vertices of the polygon as $0, 1, \\dots, n-1$ and color the edge between vertices $i$ and $j$ with the color $(i+j) \\pmod n$. \n- This uses exactly $n$ colors.\n- It is a proper coloring because if $i+j \\equiv i+k \\pmod n$, then $j \\equiv k \\pmod n$.\n- For any triangle with vertices $x, y, z$, the colors of its edges are $x+y, y+z, z+x \\pmod n$. The sum of these colors is $2(x+y+z) \\pmod n$. Because $n$ is odd, $2$ is invertible modulo $n$, meaning the sum of the vertices $S \\equiv x+y+z \\pmod n$ is uniquely determined by the sum of the colors. The colors can be rewritten as $S-z, S-x, S-y \\pmod n$, which uniquely identifies the set of vertices $\\{x, y, z\\}$. Thus, all $\\binom{n}{3}$ triangles have distinct color triples, perfectly satisfying the conditions.\n\nFinal answer: n \\ge 3 \\text{ is odd}",
+  "usage": {
+    "input_tokens": 126,
+    "output_tokens": 827,
+    "thoughts_tokens": 4815
+  },
+  "latency_s": 46.848327276995406,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "n \\ge 3 \\text{ is odd}"
+  }
+}

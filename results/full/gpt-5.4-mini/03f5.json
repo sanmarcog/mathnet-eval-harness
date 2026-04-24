@@ -1,0 +1,20 @@
+{
+  "id": "03f5",
+  "country": "Bulgaria",
+  "competition": "3 Bulgarian Spring Tournament",
+  "gold_final_answer": "Part (a): a ∈ (-∞, -2√2) ∪ (-√2/2, 0) ∪ (0, √2/2) ∪ (2√2, ∞). Part (b): 1/2.",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities",
+    "Algebra > Intermediate Algebra > Logarithmic functions"
+  ],
+  "prompt": "a) Find all values of $a$ for which the inequality\n$$\nx \\log_{\\frac{1}{2}} a^4 - x^2 > 3 + 2 \\log_2 a^2\n$$\nhas a solution.\n\nb) Calculate the limit\n$$\n\\lim_{a \\to -\\infty} \\left( \\sqrt{a^2 - a + 1} + a \\right).\n$$",
+  "model": "gpt-5.4-mini",
+  "response_text": "### a) Values of \\(a\\) for which the inequality has a solution\n\nWe first simplify the logarithms:\n\n\\[\n\\log_{\\frac12} a^4 = \\frac{\\ln a^4}{\\ln(1/2)} = -\\log_2(a^4) = -4\\log_2|a|\n\\]\nand\n\\[\n2\\log_2 a^2 = \\log_2(a^4)=4\\log_2|a|.\n\\]\n\nSo the inequality becomes\n\\[\nx\\bigl(-4\\log_2|a|\\bigr)-x^2 > 3+4\\log_2|a|.\n\\]\n\nLet\n\\[\nt=4\\log_2|a|.\n\\]\nThen\n\\[\n-x^2-tx-(3+t)>0\n\\]\nor equivalently\n\\[\nx^2+tx+(3+t)<0.\n\\]\n\nThis quadratic in \\(x\\) has a solution iff its discriminant is positive:\n\\[\n\\Delta=t^2-4(3+t)=t^2-4t-12=(t-6)(t+2)>0.\n\\]\nHence\n\\[\nt<-2 \\quad \\text{or} \\quad t>6.\n\\]\n\nSubstitute back \\(t=4\\log_2|a|\\):\n\n- \\(4\\log_2|a|<-2 \\iff \\log_2|a|<-\\frac12 \\iff |a|<\\frac1{\\sqrt2}\\),\n- \\(4\\log_2|a|>6 \\iff \\log_2|a|>\\frac32 \\iff |a|>2\\sqrt2\\).\n\nSince the logarithms require \\(a\\neq 0\\), the values are\n\n\\[\n0<|a|<\\frac1{\\sqrt2}\\quad \\text{or}\\quad |a|>2\\sqrt2.\n\\]\n\n---\n\n### b) Limit\n\n\\[\n\\lim_{a\\to -\\infty}\\left(\\sqrt{a^2-a+1}+a\\right)\n\\]\n\nRationalize:\n\n\\[\n\\sqrt{a^2-a+1}+a\n=\n\\frac{(a^2-a+1)-a^2}{\\sqrt{a^2-a+1}-a}\n=\n\\frac{-a+1}{\\sqrt{a^2-a+1}-a}.\n\\]\n\nNow divide numerator and denominator by \\(|a|=-a\\) since \\(a\\to-\\infty\\):\n\n\\[\n\\sqrt{a^2-a+1}+a\n=\n\\frac{1-\\frac1a}{\\sqrt{1-\\frac1a+\\frac1{a^2}}+1}.\n\\]\n\nAs \\(a\\to-\\infty\\), this tends to\n\n\\[\n\\frac{1}{1+1}=\\frac12.\n\\]\n\n---\n\nFinal answer:  \na) \\(0<|a|<\\frac1{\\sqrt2}\\) or \\(|a|>2\\sqrt2\\);\\quad b) \\(\\frac12\\)",
+  "usage": {
+    "input_tokens": 141,
+    "output_tokens": 665,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 4.0315902819857,
+  "cached": false
+}

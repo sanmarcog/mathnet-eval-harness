@@ -1,0 +1,19 @@
+{
+  "id": "04mp",
+  "country": "Croatia",
+  "competition": "Croatia_2018",
+  "gold_final_answer": "9, 9 + 15i, 9 - 15i",
+  "topics_flat": [
+    "Algebra > Intermediate Algebra > Complex numbers"
+  ],
+  "prompt": "Find all complex numbers $z$ such that\n$$ \\mathrm{Re}(z) = 9 \\quad \\text{and} \\quad \\mathrm{Im}(z^2) = \\mathrm{Im}(z^3). \\qquad (\\text{AIME 2007}) $$",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let \\(z=9+bi\\), where \\(b\\in\\mathbb R\\).\n\nCompute:\n\\[\nz^2=(9+bi)^2=81-b^2+18bi\n\\]\nso\n\\[\n\\operatorname{Im}(z^2)=18b.\n\\]\n\nAlso,\n\\[\nz^3=z\\cdot z^2=(9+bi)(81-b^2+18bi).\n\\]\nThe imaginary part is\n\\[\n9(18b)+b(81-b^2)=162b+81b-b^3=243b-b^3.\n\\]\nGiven \\(\\operatorname{Im}(z^2)=\\operatorname{Im}(z^3)\\), we have\n\\[\n18b=243b-b^3.\n\\]\nSo\n\\[\nb^3-225b=0\n\\]\n\\[\nb(b^2-225)=0.\n\\]\nThus\n\\[\nb=0,\\ 15,\\ -15.\n\\]\n\nTherefore,\n\\[\nz=9,\\quad 9+15i,\\quad 9-15i.\n\\]\n\nFinal answer: \\(\\boxed{9,\\ 9+15i,\\ 9-15i}\\)",
+  "usage": {
+    "input_tokens": 110,
+    "output_tokens": 266,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 2.0245514600537717,
+  "cached": false
+}

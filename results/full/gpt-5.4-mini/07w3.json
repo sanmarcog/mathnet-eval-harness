@@ -1,0 +1,19 @@
+{
+  "id": "07w3",
+  "country": "Ireland",
+  "competition": "IRL_ABooklet_2023",
+  "gold_final_answer": "The bound |ad + bc + ca − db| ≤ 2 holds. Equality |ad + bc + ca − db| = 2 occurs exactly in the following cases:\n- a = b = ±1 and c = ±1 (with d arbitrary in [−1, 1]);\n- a = −b = ±1 and d = ±1 (with c arbitrary in [−1, 1]);\n- a = ±1, |b| < 1, and c = d = ±1;\n- b = ±1, |a| < 1, and c = −d = ±1.",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities"
+  ],
+  "prompt": "Suppose $a$, $b$, $c$, $d \\in [-1, 1]$. Prove that\n$$\n|ad + bc + ca - db| \\leq 2\n$$\nand determine the case of equality.",
+  "model": "gpt-5.4-mini",
+  "response_text": "We rewrite the expression as\n\\[\nad+bc+ca-db=a(c+d)+b(c-d).\n\\]\nNow use \\(|a|,|b|\\le 1\\):\n\\[\n|ad+bc+ca-db|\n=|a(c+d)+b(c-d)|\n\\le |c+d|+|c-d|.\n\\]\nSo it remains to show that for \\(c,d\\in[-1,1]\\),\n\\[\n|c+d|+|c-d|\\le 2.\n\\]\n\nThis is a standard identity:\n\\[\n|c+d|+|c-d|=2\\max\\{|c|,|d|\\}.\n\\]\nIndeed, if \\(|c|\\ge |d|\\), then \\(c+d\\) and \\(c-d\\) have the same sign pattern giving sum \\(2|c|\\); similarly if \\(|d|\\ge |c|\\), the sum is \\(2|d|\\). Hence\n\\[\n|c+d|+|c-d|=2\\max\\{|c|,|d|\\}\\le 2,\n\\]\nbecause \\(c,d\\in[-1,1]\\).\n\nTherefore\n\\[\n|ad+bc+ca-db|\\le 2.\n\\]\n\n### Equality case\nEquality requires:\n1. \\(|a|=|b|=1\\) in the estimate \\(|a(c+d)+b(c-d)|\\le |c+d|+|c-d|\\),\n2. and \\(\\max\\{|c|,|d|\\}=1\\).\n\nFrom the expression\n\\[\nad+bc+ca-db=(a+b)c+(a-b)d,\n\\]\none checks that equality is attained exactly when \\(c\\) or \\(d\\) is \\(\\pm 1\\) and the signs of \\(a,b\\) are chosen so that the two terms add with the same sign.\n\nA concise description of all equality cases is:\n- \\(a,b,c,d\\in\\{\\pm1\\}\\), and\n- either \\(a=b\\) with \\(c=\\pm1\\), or \\(a=-b\\) with \\(d=\\pm1\\),\n\nup to the obvious sign symmetries.\n\nFor example, equality holds at \\((a,b,c,d)=(1,1,1,1)\\), giving value \\(2\\), and at \\((1,-1,1,1)\\), giving value \\(2\\).\n\nFinal answer: \\(\\;|ad+bc+ca-db|\\le 2\\), with equality exactly when the variables take boundary values \\(\\pm1\\) and the signs are aligned so that \\(a(c+d)\\) and \\(b(c-d)\\) have the same sign; equivalently, equality occurs for \\(a,b,c,d\\in\\{\\pm1\\}\\) with \\(a=b\\) and \\(|c|=1\\), or \\(a=-b\\) and \\(|d|=1\\) (and the corresponding sign choices).",
+  "usage": {
+    "input_tokens": 100,
+    "output_tokens": 626,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 4.471801480045542,
+  "cached": false
+}

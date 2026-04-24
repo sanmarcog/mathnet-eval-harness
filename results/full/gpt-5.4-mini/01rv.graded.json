@@ -1,0 +1,26 @@
+{
+  "id": "01rv",
+  "country": "Belarus",
+  "competition": "FINAL ROUND",
+  "gold_final_answer": "79 and 114",
+  "topics_flat": [
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities",
+    "Algebra > Prealgebra / Basic Algebra > Integers",
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities"
+  ],
+  "prompt": "After division of a positive integer $n$ by $29$, $41$, and $59$ one has three nonzero remainders such that their sum is equal to $n$.\nFind all possible values of $n$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let the remainders be \\(r_{29}, r_{41}, r_{59}\\), where\n\n\\[\nn \\equiv r_{29}\\pmod{29},\\quad 1\\le r_{29}\\le 28\n\\]\n\\[\nn \\equiv r_{41}\\pmod{41},\\quad 1\\le r_{41}\\le 40\n\\]\n\\[\nn \\equiv r_{59}\\pmod{59},\\quad 1\\le r_{59}\\le 58\n\\]\n\nand we are told\n\n\\[\nr_{29}+r_{41}+r_{59}=n.\n\\]\n\nSince each remainder is positive, the sum is positive. Also, because \\(n\\) leaves remainder \\(r_{29}\\) mod \\(29\\), we have\n\n\\[\nn-r_{29} \\text{ is divisible by } 29.\n\\]\n\nBut \\(n=r_{29}+r_{41}+r_{59}\\), so\n\n\\[\nr_{41}+r_{59} \\equiv 0 \\pmod{29}.\n\\]\n\nSimilarly,\n\n\\[\nr_{29}+r_{59} \\equiv 0 \\pmod{41},\\qquad r_{29}+r_{41} \\equiv 0 \\pmod{59}.\n\\]\n\nNow set\n\\[\na=r_{29},\\quad b=r_{41},\\quad c=r_{59}.\n\\]\nThen\n\\[\nb+c\\equiv 0\\pmod{29},\\quad a+c\\equiv 0\\pmod{41},\\quad a+b\\equiv 0\\pmod{59}.\n\\]\n\nSince \\(a,b,c\\) are in the given ranges, the only way these sums can be multiples of the moduli is:\n\n\\[\nb+c=29,\\quad a+c=41,\\quad a+b=59.\n\\]\n\n(They cannot be \\(58,87,\\dots\\), etc., because the sums are too small: \\(b+c\\le 40+58=98\\), etc., and the only positive multiples of \\(29,41,59\\) in the possible ranges are the first ones.)\n\nNow solve:\n\n\\[\n\\begin{cases}\na+b=59\\\\\na+c=41\\\\\nb+c=29\n\\end{cases}\n\\]\n\nAdding the first two and subtracting the third:\n\n\\[\n2a=59+41-29=71 \\implies a=\\frac{71}{2},\n\\]\n\nwhich is impossible. Hence no such triple \\((a,b,c)\\) exists.\n\nTherefore there is no positive integer \\(n\\) satisfying the condition.\n\nFinal answer: no such positive integer \\(n\\) exists",
+  "usage": {
+    "input_tokens": 95,
+    "output_tokens": 582,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.6636968549573794,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "no such positive integer \\(n\\) exists"
+  }
+}

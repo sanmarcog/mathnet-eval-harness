@@ -1,0 +1,19 @@
+{
+  "id": "0flu",
+  "country": "Spain",
+  "competition": "Spanija 2012",
+  "gold_final_answer": "n^3 - n",
+  "topics_flat": [
+    "Geometry > Solid Geometry > Other 3D problems"
+  ],
+  "prompt": "With several identical spheres, we build up a tetrahedron using $n$ spheres for each side. Determine, in terms of $n$, the number of tangency points between the spheres in the construction.",
+  "model": "gpt-5.4-mini",
+  "response_text": "A tetrahedral stacking with side length \\(n\\) has spheres arranged in layers:\n\n- bottom layer: \\(\\frac{n(n+1)}{2}\\) spheres\n- next layer: \\(\\frac{(n-1)n}{2}\\) spheres\n- ...\n- top layer: \\(1\\) sphere\n\nWe count tangencies by counting adjacent pairs of spheres. In this tetrahedral arrangement, tangencies occur along the three coordinate directions, and the total number of touching pairs is\n\n\\[\n3\\sum_{k=1}^{n-1}\\frac{k(k+1)}{2}.\n\\]\n\nNow compute:\n\n\\[\n3\\sum_{k=1}^{n-1}\\frac{k(k+1)}{2}\n= \\frac{3}{2}\\sum_{k=1}^{n-1}(k^2+k).\n\\]\n\nUsing\n\\[\n\\sum_{k=1}^{n-1}k=\\frac{(n-1)n}{2},\\qquad\n\\sum_{k=1}^{n-1}k^2=\\frac{(n-1)n(2n-1)}{6},\n\\]\nwe get\n\n\\[\n\\frac{3}{2}\\left(\\frac{(n-1)n(2n-1)}{6}+\\frac{(n-1)n}{2}\\right)\n= \\frac{3}{2}\\cdot \\frac{(n-1)n((2n-1)+3)}{6}\n\\]\n\n\\[\n= \\frac{3}{2}\\cdot \\frac{(n-1)n(2n+2)}{6}\n= \\frac{n(n-1)(n+1)}{2}.\n\\]\n\nSo the number of tangency points is\n\n\\[\n\\boxed{\\frac{n(n-1)(n+1)}{2}=\\frac{n(n^2-1)}{2}}.\n\\]\n\nFinal answer: \\(\\displaystyle \\frac{n(n^2-1)}{2}\\)",
+  "usage": {
+    "input_tokens": 89,
+    "output_tokens": 436,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.1391661730594933,
+  "cached": false
+}

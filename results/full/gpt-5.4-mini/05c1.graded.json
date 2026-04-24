@@ -1,0 +1,25 @@
+{
+  "id": "05c1",
+  "country": "Estonia",
+  "competition": "Estonian Mathematical Olympiad",
+  "gold_final_answer": "a: 675; b: 2025",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Factorization techniques",
+    "Number Theory > Divisibility / Factorization > Prime numbers"
+  ],
+  "prompt": "Find the least positive integer $n$ such that:\n\na. both $n$ and $n+1$ are divisible by the squares of two distinct prime numbers;\n\nb. both $n$ and $n+3$ are divisible by the squares of two distinct prime numbers.",
+  "model": "gpt-5.4-mini",
+  "response_text": "We need the least positive integer \\(n\\) satisfying each condition separately.\n\n---\n\n### a) Both \\(n\\) and \\(n+1\\) are divisible by the squares of two distinct primes\n\nSince \\(n\\) and \\(n+1\\) are consecutive, they are coprime. So we want the smallest pair of consecutive integers where each is divisible by a prime square, with the primes distinct.\n\nThe smallest prime squares are:\n\\[\n2^2=4,\\quad 3^2=9,\\quad 5^2=25,\\quad 7^2=49,\\dots\n\\]\n\nWe look for consecutive integers one divisible by one prime square and the next by another:\n\n- \\(8,9\\): \\(9\\) is a square, but \\(8\\) is not divisible by any prime square.\n- \\(15,16\\): \\(16\\) is divisible by \\(2^2\\), but \\(15\\) by no prime square.\n- \\(24,25\\): \\(24\\) not divisible by a prime square.\n- \\(48,49\\): \\(48\\) not divisible by a prime square.\n- \\(80,81\\):  \n  \\[\n  80 \\text{ is divisible by } 4=2^2,\\qquad 81=3^4 \\text{ is divisible by } 9=3^2.\n  \\]\n  The primes are distinct.\n\nSo the least \\(n\\) for part (a) is:\n\\[\n\\boxed{80}\n\\]\n\n---\n\n### b) Both \\(n\\) and \\(n+3\\) are divisible by the squares of two distinct prime numbers\n\nNow \\(n\\) and \\(n+3\\) differ by 3, so we seek the smallest such pair.\n\nTry small multiples of prime squares:\n\n- \\(4\\) and \\(7\\): \\(7\\) no.\n- \\(8\\) and \\(11\\): no.\n- \\(9\\) and \\(12\\): \\(12\\) no.\n- \\(16\\) and \\(19\\): no.\n- \\(20\\) and \\(23\\): no.\n- \\(24\\) and \\(27\\):  \n  \\[\n  24 \\text{ is divisible by } 4=2^2,\\qquad 27 \\text{ is divisible by } 9=3^2.\n  \\]\n  The primes are distinct.\n\nThus the least \\(n\\) for part (b) is:\n\\[\n\\boxed{24}\n\\]\n\n---\n\nFinal answer: a) \\(80\\), b) \\(24\\)",
+  "usage": {
+    "input_tokens": 105,
+    "output_tokens": 553,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.4475570949725807,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "a) \\(80\\), b) \\(24\\)"
+  }
+}

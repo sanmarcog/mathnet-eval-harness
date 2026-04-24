@@ -1,0 +1,25 @@
+{
+  "id": "040q",
+  "country": "China",
+  "competition": "China Mathematical Olympiad",
+  "gold_final_answer": "1008",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Induction / smoothing",
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments"
+  ],
+  "prompt": "Find the smallest positive integer $k$ with the following property: for any $k$ element subset $A$ of the set $S = \\{1, 2, \\dots, 2012\\}$, there exist three pairwise distinct elements $a, b, c$ of $S$ such that $a+b$, $b+c$, $c+a$ all belong to $A$.",
+  "model": "gpt-5.4",
+  "response_text": "We want the smallest \\(k\\) such that **every** \\(k\\)-element subset \\(A\\subseteq \\{1,2,\\dots,2012\\}\\) contains three distinct numbers of the form\n\\[\na+b,\\quad b+c,\\quad c+a\n\\]\nfor some pairwise distinct positive integers \\(a,b,c\\).\n\nSo we need the largest possible size of a subset \\(A\\subseteq S\\) that avoids containing such a triple; then \\(k\\) is one more than that maximum.\n\n## Key observation\nIf\n\\[\nx=a+b,\\quad y=b+c,\\quad z=c+a,\n\\]\nthen\n\\[\na=\\frac{x+z-y}{2},\\quad b=\\frac{x+y-z}{2},\\quad c=\\frac{y+z-x}{2}.\n\\]\nThus \\(x,y,z\\) arise in the desired way with positive distinct integers \\(a,b,c\\) iff:\n\n1. \\(x,y,z\\) have the same parity (since \\(x+y-z\\), etc. must be even),\n2. they satisfy the triangle inequalities strictly:\n   \\[\n   x+y>z,\\ y+z>x,\\ z+x>y,\n   \\]\n3. and the resulting \\(a,b,c\\) are distinct, which means \\(x,y,z\\) are distinct as well.\n\nSo an avoiding set \\(A\\) must contain no three distinct same-parity elements that form side lengths of a (nondegenerate) triangle.\n\nBecause parity is required, odd and even elements can be treated separately.\n\n---\n\n## Reduce to one parity class\nThere are \\(1006\\) odd numbers and \\(1006\\) even numbers in \\(S\\).\n\nDivide all even numbers by \\(2\\); then the condition on three even numbers becomes exactly the same triangle condition on three distinct integers in \\(\\{1,2,\\dots,1006\\}\\).  \nSimilarly, the odd numbers correspond (after subtracting 1 and dividing by 2, or just by order) to another copy of \\(\\{1,\\dots,1006\\}\\).\n\nSo it suffices to solve:\n\n> What is the maximum size of a subset \\(T\\subseteq \\{1,2,\\dots,n\\}\\) containing no three distinct elements \\(x<y<z\\) with \\(x+y>z\\)?\n\nSince for \\(x<y<z\\), the other triangle inequalities are automatic; only \\(x+y>z\\) matters.  \nThus avoiding triangles means:\n\\[\nx+y\\le z\n\\quad\\text{for every }x<y<z\\text{ in }T.\n\\]\n\n---\n\n## Maximal triangle-free subset of \\(\\{1,\\dots,n\\}\\)\nLet the elements of \\(T\\) be\n\\[\nt_1<t_2<\\cdots<t_m.\n\\]\nThen for every \\(i\\ge 3\\), applying the condition to \\(t_{i-2},t_{i-1},t_i\\),\n\\[\nt_i\\ge t_{i-1}+t_{i-2}.\n\\]\nSo the sequence grows at least like Fibonacci.\n\nTo maximize \\(m\\) while keeping \\(t_m\\le n\\), we should choose the smallest possible start:\n\\[\nt_1=1,\\quad t_2=2,\n\\]\nand then minimally\n\\[\nt_i=t_{i-1}+t_{i-2}.\n\\]\nThis gives\n\\[\n1,2,3,5,8,13,\\dots\n\\]\nIn fact \\(t_i=F_{i+1}\\), where \\(F_1=1,F_2=1\\).\n\nWe need the largest \\(m\\) with \\(F_{m+1}\\le 1006\\).\n\nThe Fibonacci numbers are:\n\\[\nF_{15}=610,\\qquad F_{16}=987,\\qquad F_{17}=1597.\n\\]\nHence \\(F_{16}=987\\le 1006<1597=F_{17}\\), so\n\\[\nm+1=16 \\implies m=15.\n\\]\n\nThus in each parity class, the largest triangle-free subset has size \\(15\\).\n\nTherefore the largest subset \\(A\\subseteq S\\) avoiding the desired configuration has size\n\\[\n15+15=30.\n\\]\n\nSo any \\(31\\)-element subset must contain such a triple, and \\(30\\) is not enough.\n\nIndeed, an example of size \\(30\\) avoiding the property is:\n- evens: \\(2,4,6,10,16,\\dots,1974\\) corresponding to \\(1,2,3,5,\\dots,987\\),\n- odds: \\(1,3,5,9,15,\\dots,1973\\) corresponding similarly.\n\nHence the minimum \\(k\\) is\n\n\\[\n\\boxed{31}.\n\\]\n\nFinal answer: 31",
+  "usage": {
+    "input_tokens": 131,
+    "output_tokens": 1039,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 16.24119371001143,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "31"
+  }
+}

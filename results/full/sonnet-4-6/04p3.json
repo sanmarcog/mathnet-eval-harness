@@ -1,0 +1,19 @@
+{
+  "id": "04p3",
+  "country": "Croatia",
+  "competition": "Croatian Mathematical Society Competitions",
+  "gold_final_answer": "Equality holds if and only if a = b (which, under the given constraint, means a = b in the interval from zero to one).",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities > QM-AM-GM-HM / Power Mean"
+  ],
+  "prompt": "Prove that for non-negative real numbers $a$ and $b$ such that $a + b \\le 2$ the inequality\n$$\n\\frac{1}{1+a^2} + \\frac{1}{1+b^2} \\le \\frac{2}{1+ab}\n$$\nholds. When is the equality attained? (Austria 2018)",
+  "model": "claude-sonnet-4-6",
+  "response_text": "We want to prove that for non-negative reals $a, b$ with $a + b \\le 2$:\n$$\\frac{1}{1+a^2} + \\frac{1}{1+b^2} \\le \\frac{2}{1+ab}.$$\n\n**Proof:**\n\nThe inequality is equivalent to:\n$$\\frac{2}{1+ab} - \\frac{1}{1+a^2} - \\frac{1}{1+b^2} \\ge 0.$$\n\nCombining over the common denominator $(1+ab)(1+a^2)(1+b^2)$, the numerator is:\n$$2(1+a^2)(1+b^2) - (1+ab)(1+b^2) - (1+ab)(1+a^2).$$\n\nExpand each term:\n- $2(1+a^2)(1+b^2) = 2(1 + a^2 + b^2 + a^2b^2) = 2 + 2a^2 + 2b^2 + 2a^2b^2$\n- $(1+ab)(1+b^2) = 1 + b^2 + ab + ab^3$\n- $(1+ab)(1+a^2) = 1 + a^2 + ab + a^3b$\n\nSo the numerator equals:\n$$2 + 2a^2 + 2b^2 + 2a^2b^2 - (1 + b^2 + ab + ab^3) - (1 + a^2 + ab + a^3b)$$\n$$= 2 + 2a^2 + 2b^2 + 2a^2b^2 - 2 - a^2 - b^2 - 2ab - ab^3 - a^3b$$\n$$= a^2 + b^2 - 2ab + 2a^2b^2 - ab^3 - a^3b$$\n$$= (a-b)^2 + ab(2ab - b^2 - a^2)$$\n$$= (a-b)^2 - ab(a^2 - 2ab + b^2)$$\n$$= (a-b)^2 - ab(a-b)^2$$\n$$= (a-b)^2(1 - ab).$$\n\nSo the inequality becomes:\n$$(a-b)^2(1-ab) \\ge 0.$$\n\nSince $a, b \\ge 0$, we have $(a-b)^2 \\ge 0$. It remains to show $1 - ab \\ge 0$, i.e., $ab \\le 1$.\n\nBy AM-GM: $ab \\le \\left(\\frac{a+b}{2}\\right)^2 \\le \\left(\\frac{2}{2}\\right)^2 = 1$,\n\nwhere we used $a + b \\le 2$.\n\nTherefore $(a-b)^2(1-ab) \\ge 0$, which proves the inequality. $\\blacksquare$\n\n**Equality conditions:**\n\nEquality holds if and only if $(a-b)^2(1-ab) = 0$, i.e., either $a = b$ or $ab = 1$.\n\n- If $a = b$: combined with $a + b \\le 2$, this gives $a = b \\in [0,1]$.\n- If $ab = 1$: since $ab \\le \\left(\\frac{a+b}{2}\\right)^2$, we need $\\left(\\frac{a+b}{2}\\right)^2 \\ge 1$, so $a+b \\ge 2$. Combined with $a+b \\le 2$, we get $a+b = 2$ and $ab = 1$, giving $a = b = 1$.\n\nThus equality holds if and only if $a = b \\in [0,1]$. (Note that $a = b = 1$ is included in both cases.)\n\nFinal answer: Equality holds if and only if $a = b$ with $0 \\le a = b \\le 1$.",
+  "usage": {
+    "input_tokens": 133,
+    "output_tokens": 1025,
+    "thinking_tokens": 0
+  },
+  "latency_s": 11.121683699078858,
+  "cached": false
+}

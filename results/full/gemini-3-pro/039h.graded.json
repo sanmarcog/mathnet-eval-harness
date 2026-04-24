@@ -1,0 +1,25 @@
+{
+  "id": "039h",
+  "country": "Bulgaria",
+  "competition": "Second selection test for IMO 2007, Vietnam",
+  "gold_final_answer": "f(x) = x and g(x) = x",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Functional Equations",
+    "Algebra > Algebraic Expressions > Functional Equations > Injectivity / surjectivity"
+  ],
+  "prompt": "Find all pairs of functions $f, g : \\mathbb{R} \\to \\mathbb{R}$ such that:\n(1) $f(xg(y+1)) + y = x f(y) + f(x+g(y))$ for any two $x, y \\in \\mathbb{R}$;\n(2) $f(0) + g(0) = 0$.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find all pairs of functions $f, g : \\mathbb{R} \\to \\mathbb{R}$ satisfying the given conditions, we analyze the given equations:\n(1) $f(xg(y+1)) + y = x f(y) + f(x+g(y))$\n(2) $f(0) + g(0) = 0$\n\nLet $f(0) = c$, which implies $g(0) = -c$.\nSubstituting $x = 0$ into (1), we get:\n$f(0) + y = 0 \\cdot f(y) + f(g(y)) \\implies f(g(y)) = y + c$.\nThis shows that $f$ is surjective and $g$ is injective.\n\nNext, substitute $y = 0$ into (1):\n$f(xg(1)) = xf(0) + f(x+g(0)) = cx + f(x-c)$.\n\nSince $f$ is surjective, there exists some $y_0 \\in \\mathbb{R}$ such that $g(y_0+1) = 0$. \nSubstitute $y = y_0$ into (1):\n$f(0) + y_0 = xf(y_0) + f(x+g(y_0)) \\implies f(x+g(y_0)) = -xf(y_0) + c + y_0$.\nThis equation demonstrates that $f$ is a linear function. Let $f(x) = ax + b$. \nSince $f(0) = c$, we have $b = c$, so $f(x) = ax + c$. \nBecause $f$ is surjective, $a \\neq 0$.\n\nUsing $f(g(y)) = y + c$, we can find $g(y)$:\n$a g(y) + c = y + c \\implies g(y) = \\frac{y}{a}$.\n\nNow, substitute $f(x) = ax + c$ and $g(x) = \\frac{x}{a}$ back into (1):\nLHS: $f\\left(x \\frac{y+1}{a}\\right) + y = a\\left(x \\frac{y+1}{a}\\right) + c + y = xy + x + y + c$.\nRHS: $x(ay+c) + f\\left(x + \\frac{y}{a}\\right) = axy + cx + a\\left(x + \\frac{y}{a}\\right) + c = axy + (a+c)x + y + c$.\n\nFor the LHS and RHS to be equal for all $x, y \\in \\mathbb{R}$, the coefficients of corresponding terms must match:\nComparing the $xy$ terms: $1 = a$.\nComparing the $x$ terms: $1 = a + c$.\n\nSubstituting $a = 1$ into the second equation gives $1 = 1 + c \\implies c = 0$.\nThus, $a = 1$ and $c = 0$. \n\nThis yields the functions:\n$f(x) = x$\n$g(x) = x$\n\nChecking condition (2), $f(0) + g(0) = 0 + 0 = 0$, which is satisfied.\n\nFinal answer: f(x) = x, g(x) = x",
+  "usage": {
+    "input_tokens": 126,
+    "output_tokens": 766,
+    "thoughts_tokens": 4606
+  },
+  "latency_s": 41.03415499103721,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "f(x) = x, g(x) = x"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "id": "0glv",
+  "country": "Thailand",
+  "competition": "The 14th Thailand Mathematical Olympiad",
+  "gold_final_answer": "13",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Counting two ways",
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments",
+    "Discrete Mathematics > Combinatorics > Pigeonhole principle"
+  ],
+  "prompt": "Fourteen schools participate in the second Tha Sala Mathematics Talent competition, with each school sending 14 students. The students take tests in 14 rooms, with 14 students in a room such that every room does not contain students from the same school.\n\nAmong the students there are 15 students who also participated in the first Tha Sala Mathematics Talent competition. At the opening ceremony the organizers will select 2 students from those who participated in the first competition to recite the pledge of honor, with the condition that the students are from different schools and take tests in different rooms.\n\nLet $n$ be the number of ways to select 2 students satisfying the condition. Determine the least possible $n$.",
+  "model": "gpt-5.4",
+  "response_text": "Model the situation as a \\(14\\times 14\\) grid:\n\n- rows = schools,\n- columns = rooms,\n- each cell contains exactly one student,\n\nbecause each of 14 schools sends 14 students, and each room has 14 students with no two from the same school, so in every room there is exactly one student from each school.\n\nAmong these 196 students, 15 are “special” (they participated before). We must count pairs of special students from different schools and different rooms. In the grid, that means pairs of special cells in different rows and different columns.\n\nWe want the minimum possible number of such pairs.\n\n---\n\nLet the 15 special students be distributed by rows and columns.\n\nA pair is **bad** if the two students are in the same row or the same column; otherwise it is **good**.  \nWe need to minimize the number of good pairs.\n\nSince the total number of pairs of 15 students is\n\\[\n\\binom{15}{2}=105,\n\\]\nit suffices to maximize the number of bad pairs.\n\n---\n\nSuppose row \\(i\\) contains \\(r_i\\) special students, and column \\(j\\) contains \\(c_j\\) special students. Then\n\n- pairs in the same row: \\(\\sum \\binom{r_i}{2}\\),\n- pairs in the same column: \\(\\sum \\binom{c_j}{2}\\).\n\nA pair cannot be both in the same row and same column unless it is the same student, so bad pairs equal\n\\[\n\\sum \\binom{r_i}{2}+\\sum \\binom{c_j}{2}.\n\\]\n\nAlso,\n\\[\n\\sum r_i = 15,\\qquad \\sum c_j = 15.\n\\]\n\nTo maximize \\(\\sum \\binom{r_i}{2}\\) with fixed sum 15, we concentrate as much as possible in one row:\n\\[\n15 = 14+1,\n\\]\nso the maximum is\n\\[\n\\binom{14}{2}+\\binom{1}{2}=91.\n\\]\nSimilarly, for columns the maximum is also \\(91\\).\n\nBut these two maxima cannot occur independently; we need an actual placement of 15 cells.\n\nA natural extremal arrangement is: place 14 special students all in one row, one in each column, and place the 15th special student somewhere else in one of those 14 columns. Then:\n\n- same-row pairs: \\(\\binom{14}{2}=91\\),\n- same-column pairs: \\(1\\),\n- total bad pairs: \\(92\\).\n\nHence\n\\[\nn \\ge 105-92=13.\n\\]\n\nNow we show this is best possible by constructing such an arrangement.  \nTake all 14 students from one school (one in each room), and one more student from another school in one of those rooms. Then among the 15 special students:\n\n- any pair among the 14 from the same school is invalid,\n- the extra student shares a room with exactly one of those 14, giving one more invalid pair,\n- all remaining pairs are valid.\n\nSo the number of valid pairs is\n\\[\n105-91-1=13.\n\\]\n\nTherefore the least possible value of \\(n\\) is\n\nFinal answer: 13",
+  "usage": {
+    "input_tokens": 187,
+    "output_tokens": 696,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 11.046501402975991,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "exact",
+    "predicted": "13"
+  }
+}

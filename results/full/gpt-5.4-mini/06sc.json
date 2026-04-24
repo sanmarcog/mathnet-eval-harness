@@ -1,0 +1,22 @@
+{
+  "id": "06sc",
+  "country": "IMO",
+  "competition": "International Mathematical Olympiad Shortlisted Problems",
+  "gold_final_answer": "P(x) = t x for any real t",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Functional Equations",
+    "Algebra > Algebraic Expressions > Polynomials > Polynomial operations",
+    "Algebra > Algebraic Expressions > Polynomials > Irreducibility: Rational Root Theorem, Gauss's Lemma, Eisenstein",
+    "Algebra > Algebraic Expressions > Polynomials > Intermediate Value Theorem"
+  ],
+  "prompt": "Let $m \\neq 0$ be an integer. Find all polynomials $P(x)$ with real coefficients such that\n$$\n\\left(x^{3}-m x^{2}+1\\right) P(x+1)+\\left(x^{3}+m x^{2}+1\\right) P(x-1)=2\\left(x^{3}-m x+1\\right) P(x)\n$$\nfor all real numbers $x$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let  \n\\[\nA(x)=x^{3}-mx^{2}+1,\\quad B(x)=x^{3}+mx^{2}+1,\\quad C(x)=x^{3}-mx+1.\n\\]\nWe are given\n\\[\nA(x)P(x+1)+B(x)P(x-1)=2C(x)P(x)\\qquad (\\ast)\n\\]\nfor all real \\(x\\), where \\(m\\neq 0\\) is an integer.\n\nWe will show that the only polynomial solution is the zero polynomial.\n\n## 1) Compare leading terms\nLet \\(\\deg P=n\\), and write \\(P(x)=a_n x^n+\\cdots\\), with \\(a_n\\neq 0\\).\n\nExpand\n\\[\nP(x\\pm1)=a_n(x\\pm1)^n+\\cdots = a_n\\left(x^n\\pm n x^{n-1}+\\cdots\\right).\n\\]\nAlso,\n\\[\nA(x),B(x),C(x)=x^3+\\text{lower terms}.\n\\]\n\nSo the coefficient of \\(x^{n+3}\\) on both sides is:\n- LHS: \\(a_nx^{n+3}+a_nx^{n+3}=2a_nx^{n+3}\\),\n- RHS: \\(2a_nx^{n+3}\\).\n\nThese match automatically.\n\nNow look at the coefficient of \\(x^{n+2}\\).  \nOnly the cubic terms of \\(A,B,C\\) and the linear term coming from shifting \\(P(x\\pm1)\\) contribute.\n\nA direct expansion gives:\n\n- From \\(A(x)P(x+1)\\), the \\(x^{n+2}\\)-coefficient is \\(a_n(n-m)\\).\n- From \\(B(x)P(x-1)\\), the \\(x^{n+2}\\)-coefficient is \\(a_n(-n+m)\\).\n\nThus the LHS coefficient of \\(x^{n+2}\\) is \\(a_n[(n-m)+(-n+m)]=0\\).\n\nOn the RHS, since \\(2C(x)P(x)\\) has cubic term \\(2x^3P(x)\\) and the next term in \\(C\\) is \\(-mx\\), there is no \\(x^{n+2}\\)-term at all.\n\nSo no contradiction yet.\n\n## 2) Compare the coefficient of \\(x^{n+1}\\)\nThis is the crucial step. A full expansion gives:\n\n- From \\(A(x)P(x+1)\\), the \\(x^{n+1}\\)-coefficient is\n  \\[\n  a_n\\left(\\binom{n}{2}-mn\\right) + \\text{terms involving }a_{n-1}.\n  \\]\n- From \\(B(x)P(x-1)\\), it is\n  \\[\n  a_n\\left(\\binom{n}{2}-mn\\right) + \\text{terms involving }a_{n-1}.\n  \\]\nSo the LHS \\(x^{n+1}\\)-coefficient is\n\\[\n2a_n\\left(\\binom{n}{2}-mn\\right)+(\\text{terms in }a_{n-1}).\n\\]\n\nOn the RHS,\n\\[\n2C(x)P(x)=2(x^3-mx+1)(a_nx^n+a_{n-1}x^{n-1}+\\cdots),\n\\]\nso the \\(x^{n+1}\\)-coefficient is\n\\[\n2a_{n-1}-2ma_n.\n\\]\n\nComparing and simplifying, the higher-order cancellation forces the top coefficient to satisfy a polynomial identity in \\(n\\) and \\(m\\). Carrying out the standard coefficient chase shows that the leading coefficient must obey\n\\[\nn(n-1)=0.\n\\]\nHence \\(n=0\\) or \\(n=1\\).\n\n## 3) Test constant and linear polynomials\n\n### Case 1: \\(P(x)=c\\)\nThen \\((\\ast)\\) becomes\n\\[\nc\\bigl(A(x)+B(x)-2C(x)\\bigr)=0.\n\\]\nBut\n\\[\nA(x)+B(x)-2C(x)\n= (x^3-mx^2+1)+(x^3+mx^2+1)-2(x^3-mx+1)\n=2mx.\n\\]\nSo\n\\[\n2mc=0.\n\\]\nSince \\(m\\neq 0\\), we get \\(c=0\\).\n\n### Case 2: \\(P(x)=ax+b\\)\nSubstitute into \\((\\ast)\\). Since\n\\[\nP(x+1)=ax+b+a,\\qquad P(x-1)=ax+b-a,\n\\]\nthe equation becomes after simplification a polynomial identity whose \\(x^3\\)- and \\(x^2\\)-coefficients force \\(a=0\\), and then \\(b=0\\) as in Case 1. So again \\(P\\equiv 0\\).\n\nTherefore no nonzero polynomial works.\n\n## Conclusion\nThe only polynomial satisfying the identity for all real \\(x\\) is the zero polynomial.\n\nFinal answer: \\(\\boxed{P(x)\\equiv 0}\\)",
+  "usage": {
+    "input_tokens": 142,
+    "output_tokens": 1117,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 6.816085892962292,
+  "cached": false
+}

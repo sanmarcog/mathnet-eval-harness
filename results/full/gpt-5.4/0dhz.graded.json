@@ -1,0 +1,26 @@
+{
+  "id": "0dhz",
+  "country": "Saudi Arabia",
+  "competition": "SAUDI ARABIAN IMO Booklet 2023",
+  "gold_final_answer": "(15 + 4√13, -1, 15 - 4√13), (15 - 4√13, -1, 15 + 4√13), (2, -14, -2), (3, -9, -3), (-5, 7, 5)",
+  "topics_flat": [
+    "Algebra > Prealgebra / Basic Algebra > Simple Equations",
+    "Algebra > Algebraic Expressions > Polynomials > Polynomial operations",
+    "Algebra > Algebraic Expressions > Polynomials > Irreducibility: Rational Root Theorem, Gauss's Lemma, Eisenstein"
+  ],
+  "prompt": "Find all real numbers $x, y, z$ such that $xy + z = -30$, $yz + x = 30$ and $zx + y = -18$.",
+  "model": "gpt-5.4",
+  "response_text": "Let\n\\[\n\\begin{cases}\nxy+z=-30\\\\\nyz+x=30\\\\\nzx+y=-18\n\\end{cases}\n\\]\nWe seek all real \\((x,y,z)\\).\n\nWe solve by taking differences.\n\nFrom\n\\[\n(xy+z)-(yz+x)= -30-30=-60\n\\]\nwe get\n\\[\nxy-yz+z-x = -60\n\\]\n\\[\n(x-z)(y-1)=-60.\n\\]\n\nFrom\n\\[\n(yz+x)-(zx+y)=30-(-18)=48\n\\]\nwe get\n\\[\nyz-zx+x-y=48\n\\]\n\\[\n(y-x)(z-1)=48.\n\\]\n\nFrom\n\\[\n(zx+y)-(xy+z)=-18-(-30)=12\n\\]\nwe get\n\\[\nzx-xy+y-z=12\n\\]\n\\[\n(z-y)(x-1)=12.\n\\]\n\nA cleaner way is to subtract pairwise directly in symmetric form:\n\n\\[\n(xy+z)-(yz+x)=(x-z)(y-1)=-60 \\tag{1}\n\\]\n\\[\n(yz+x)-(zx+y)=(y-x)(z-1)=48 \\tag{2}\n\\]\n\\[\n(zx+y)-(xy+z)=(z-y)(x-1)=12. \\tag{3}\n\\]\n\nNow look for simple linear relations by subtracting equations:\n\n\\[\n(xy+z)+(yz+x)-(zx+y)= -30+30-(-18)=18.\n\\]\nBut a more efficient route is to solve for \\(x,y,z\\) from the original equations:\n\\[\nx=30-yz,\\qquad y=-18-zx,\\qquad z=-30-xy.\n\\]\n\nInstead, add all three equations:\n\\[\nxy+yz+zx+x+y+z=-18. \\tag{4}\n\\]\n\nNow subtract the first two original equations:\n\\[\nxy+z-(yz+x)=-60 \\implies (x-z)(y-1)=-60.\n\\]\nSimilarly:\n\\[\n(y-x)(z-1)=48,\\qquad (z-y)(x-1)=12.\n\\]\n\nNotice\n\\[\n-60+48+12=0,\n\\]\nsuggesting trying \\(x-z,\\ y-x,\\ z-y\\) proportional to \\(12,-12,0\\)-type behavior. Let us instead solve directly.\n\nFrom the equations,\n\\[\nz=-30-xy.\n\\]\nSubstitute into the other two:\n\n\\[\ny(-30-xy)+x=30\n\\]\n\\[\n-30y-xy^2+x=30\n\\]\n\\[\nx(1-y^2)=30(1+y). \\tag{5}\n\\]\n\nAlso\n\\[\nx(-30-xy)+y=-18\n\\]\n\\[\n-30x-x^2y+y=-18\n\\]\n\\[\ny(1-x^2)=30x-18. \\tag{6}\n\\]\n\nFrom (5),\n\\[\nx(1-y)(1+y)=30(1+y).\n\\]\nSo either \\(y=-1\\), or\n\\[\nx(1-y)=30. \\tag{7}\n\\]\n\nCheck \\(y=-1\\):\nThen from \\(yz+x=30\\), \\(-z+x=30\\), so \\(x-z=30\\).\nFrom \\(zx+y=-18\\), \\(zx-1=-18\\), so \\(zx=-17\\).\nFrom \\(xy+z=-30\\), \\(-x+z=-30\\), same as \\(x-z=30\\).\nThus \\(z=x-30\\), and \\(x(x-30)=-17\\), i.e.\n\\[\nx^2-30x+17=0,\n\\]\nso\n\\[\nx=15\\pm 4\\sqrt{13},\\qquad z=-15\\pm 4\\sqrt{13}.\n\\]\nHence two solutions:\n\\[\n(15+4\\sqrt{13},-1,-15+4\\sqrt{13}),\\quad (15-4\\sqrt{13},-1,-15-4\\sqrt{13}).\n\\]\n\nNow assume \\(y\\neq -1\\). Then (7) holds:\n\\[\nx(1-y)=30. \\tag{7}\n\\]\n\nSimilarly, from (6),\n\\[\ny(1-x^2)=30x-18.\n\\]\nUsing \\(1-x^2=(1-x)(1+x)\\) is less direct, so instead use cyclic analogues from the same manipulation:\n\nFrom \\(yz+x=30\\),\n\\[\ny(zx+y?) \n\\]\nBetter: similarly derive\n\\[\ny(1-z)=18 \\quad\\text{and}\\quad z(1-x)=-30\n\\]\nby the same factorization method:\n\nFrom \\(zx+y=-18\\), substituting \\(x=30-yz\\):\n\\[\nz(30-yz)+y=-18\n\\]\n\\[\n30z-yz^2+y=-18\n\\]\n\\[\ny(1-z^2)=-18-30z=-6(3+5z),\n\\]\nnot as nice.\n\nSo use (7) in the original equations. From\n\\[\nx-xy=30 \\implies x=xy+30.\n\\]\nComparing with \\(yz+x=30\\),\n\\[\nyz+x=30 \\implies yz=30-x.\n\\]\nBut from \\(x=xy+30\\), we get \\(xy=x-30\\), hence\n\\[\nyz=-(xy).\n\\]\nSo\n\\[\ny(z+x)=0.\n\\]\n\nThus either \\(y=0\\) or \\(z=-x\\).\n\n### Case 1: \\(y=0\\)\nThen the system becomes\n\\[\nz=-30,\\quad x=30,\\quad zx=-18,\n\\]\nbut \\(30\\cdot(-30)=-900\\neq -18\\), impossible.\n\n### Case 2: \\(z=-x\\)\nThen from \\(zx+y=-18\\),\n\\[\n-x^2+y=-18 \\implies y=x^2-18.\n\\]\nUsing \\(x(1-y)=30\\),\n\\[\nx\\bigl(1-(x^2-18)\\bigr)=30\n\\]\n\\[\nx(19-x^2)=30\n\\]\n\\[\nx^3-19x+30=0.\n\\]\nFactor:\n\\[\nx^3-19x+30=(x-2)(x^2+2x-15)=(x-2)(x-3)(x+5).\n\\]\nSo\n\\[\nx=2,3,-5.\n\\]\nThen \\(z=-x\\), and \\(y=x^2-18\\), giving:\n- \\(x=2\\): \\(y=4-18=-14,\\ z=-2\\),\n- \\(x=3\\): \\(y=9-18=-9,\\ z=-3\\),\n- \\(x=-5\\): \\(y=25-18=7,\\ z=5\\).\n\nAll satisfy the system.\n\nTherefore all real solutions are\n\\[\n(2,-14,-2),\\quad (3,-9,-3),\\quad (-5,7,5),\n\\]\nand\n\\[\n(15+4\\sqrt{13},-1,-15+4\\sqrt{13}),\\quad (15-4\\sqrt{13},-1,-15-4\\sqrt{13}).\n\\]\n\nFinal answer: \\((x,y,z)\\in\\{(2,-14,-2),\\ (3,-9,-3),\\ (-5,7,5),\\ (15+4\\sqrt{13},-1,-15+4\\sqrt{13}),\\ (15-4\\sqrt{13},-1,-15-4\\sqrt{13})\\}\\).",
+  "usage": {
+    "input_tokens": 86,
+    "output_tokens": 1674,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 20.976991467992775,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "\\((x,y,z)\\in\\{(2,-14,-2),\\ (3,-9,-3),\\ (-5,7,5),\\ (15+4\\sqrt{13},-1,-15+4\\sqrt{13}),\\ (15-4\\sqrt{13},-1,-15-4\\sqrt{13})\\}\\)."
+  }
+}

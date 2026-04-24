@@ -1,0 +1,21 @@
+{
+  "id": "0cha",
+  "country": "Romania",
+  "competition": "74th Romanian Mathematical Olympiad",
+  "gold_final_answer": "2\\int_{0}^{1} x f(x) \\, dx",
+  "topics_flat": [
+    "Calculus > Integral Calculus > Techniques > Single-variable",
+    "Calculus > Differential Calculus > Applications",
+    "Precalculus > Limits"
+  ],
+  "prompt": "Consider a continuous function $f : [0, 1] \\to \\mathbb{R}$ with $f(1) = 0$. Prove that the following limit exists and calculate its value:\n$$\n\\lim_{t \\to 1^+} \\left( \\frac{1}{1-t} \\cdot \\int_{0}^{1} x(f(tx) - f(x)) \\, dx \\right).\n$$",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find the limit, let us define the function $I(t)$ as the integral:\n$$ I(t) = \\int_{0}^{1} x f(tx) \\, dx $$\nWe can rewrite the limit in terms of $I(t)$:\n$$ L = \\lim_{t \\to 1^-} \\frac{I(t) - I(1)}{1-t} $$\nNote that this is exactly the definition of the negative derivative of $I(t)$ evaluated at $t = 1$, so $L = -I'(1)$. (We assume $t \\to 1^-$ since $f$ is only defined on $[0, 1]$).\n\nTo find $I'(t)$, we can use integration by substitution. Let $u = tx$, which implies $dx = \\frac{du}{t}$ and $x = \\frac{u}{t}$. The limits of integration change from $x \\in [0, 1]$ to $u \\in [0, t]$. Substituting these into $I(t)$ gives:\n$$ I(t) = \\int_{0}^{t} \\frac{u}{t} f(u) \\frac{du}{t} = \\frac{1}{t^2} \\int_{0}^{t} u f(u) \\, du $$\n\nNow, we differentiate $I(t)$ with respect to $t$ using the product rule and the Fundamental Theorem of Calculus:\n$$ I'(t) = \\frac{d}{dt} \\left( t^{-2} \\right) \\int_{0}^{t} u f(u) \\, du + t^{-2} \\frac{d}{dt} \\left( \\int_{0}^{t} u f(u) \\, du \\right) $$\n$$ I'(t) = -2t^{-3} \\int_{0}^{t} u f(u) \\, du + t^{-2} (t f(t)) $$\n$$ I'(t) = -\\frac{2}{t^3} \\int_{0}^{t} u f(u) \\, du + \\frac{1}{t} f(t) $$\n\nWe want to evaluate this derivative at $t = 1$:\n$$ I'(1) = -2 \\int_{0}^{1} u f(u) \\, du + f(1) $$\nWe are given that $f(1) = 0$, so the second term vanishes:\n$$ I'(1) = -2 \\int_{0}^{1} u f(u) \\, du $$\n\nFinally, the limit is the negative of this derivative:\n$$ L = -I'(1) = 2 \\int_{0}^{1} u f(u) \\, du $$\n\nFinal answer: 2 \\int_{0}^{1} x f(x) \\, dx",
+  "usage": {
+    "input_tokens": 132,
+    "output_tokens": 610,
+    "thoughts_tokens": 2346
+  },
+  "latency_s": 22.17150172800757,
+  "cached": false
+}

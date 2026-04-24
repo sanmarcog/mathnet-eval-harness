@@ -1,0 +1,24 @@
+{
+  "id": "04nd",
+  "country": "Croatia",
+  "competition": "Croatia_2018",
+  "gold_final_answer": "[(1, 1), (1, 3)]",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Factorization techniques"
+  ],
+  "prompt": "Determine all pairs $(a, b)$ of positive integers such that $a^2 b$ divides $b^2 + 3a$.",
+  "model": "gpt-5.4",
+  "response_text": "We seek all positive integer pairs \\((a,b)\\) such that\n\\[\na^2b \\mid b^2+3a.\n\\]\nEquivalently, there exists a positive integer \\(k\\) with\n\\[\nb^2+3a = k a^2 b.\n\\]\n\nWe will show the only solution is \\((a,b)=(1,1)\\).\n\n## Step 1: A size bound\n\nSince \\(a^2b \\le b^2+3a\\), we have\n\\[\na^2b \\le b^2+3a.\n\\]\nWe will use this to force small values.\n\nRewrite as\n\\[\nb^2-a^2b+3a \\ge 0.\n\\]\nFor fixed \\(a\\), this is a quadratic in \\(b\\). But a cleaner approach is to split into cases.\n\n---\n\n## Step 2: If \\(a\\ge b\\)\n\nThen\n\\[\na^2b \\ge ab^2 \\ge b^2.\n\\]\nSo from \\(a^2b \\le b^2+3a\\),\n\\[\na^2b-b^2 \\le 3a.\n\\]\nFactor:\n\\[\nb(a^2-b)\\le 3a.\n\\]\nSince \\(a\\ge b\\), we have \\(a^2-b \\ge a^2-a = a(a-1)\\). Hence\n\\[\nb\\,a(a-1)\\le 3a.\n\\]\nCancelling \\(a>0\\),\n\\[\nb(a-1)\\le 3.\n\\]\nThus \\(a\\) is small.\n\n### Subcase \\(a=1\\)\nThen the divisibility becomes\n\\[\nb \\mid b^2+3,\n\\]\nso \\(b\\mid 3\\). Hence \\(b\\in\\{1,3\\}\\).\n\n- \\(b=1\\): \\(1^2\\cdot1=1\\mid 1+3=4\\), works.\n- \\(b=3\\): \\(1^2\\cdot3=3\\mid 9+3=12\\), works.\n\nSo \\((1,1)\\) and \\((1,3)\\) seem to work so far.\n\n### Subcase \\(a=2\\)\nThen \\(b(a-1)=b\\le 3\\), and since \\(a\\ge b\\), \\(b\\in\\{1,2\\}\\).\n\n- \\(b=1\\): \\(4\\nmid 1+6=7\\), no.\n- \\(b=2\\): \\(8\\nmid 4+6=10\\), no.\n\n### Subcase \\(a=3\\)\nThen \\(2b\\le 3\\), so \\(b=1\\).\n- \\(9\\nmid 1+9=10\\), no.\n\n### Subcase \\(a=4\\)\nThen \\(3b\\le 3\\), so \\(b=1\\).\n- \\(16\\nmid 1+12=13\\), no.\n\nFor \\(a\\ge 5\\), \\(b(a-1)\\le 3\\) is impossible.\n\nSo from this case, only \\((1,1)\\) and \\((1,3)\\) survive.\n\n---\n\n## Step 3: Check the remaining candidate \\((1,3)\\)\n\nIndeed,\n\\[\na^2b = 1^2\\cdot 3 = 3,\\qquad b^2+3a=9+3=12,\n\\]\nand \\(3\\mid 12\\). So \\((1,3)\\) also works.\n\nBut we must still examine the case \\(a<b\\).\n\n---\n\n## Step 4: If \\(a<b\\)\n\nThen \\(a\\le b-1\\), so \\(3a<3b\\). Since \\(a^2b\\mid b^2+3a\\), we have\n\\[\na^2b \\le b^2+3a < b^2+3b = b(b+3).\n\\]\nDividing by \\(b\\),\n\\[\na^2 < b+3.\n\\]\nBut since \\(b>a\\), this only gives a weak bound. We need something sharper.\n\nReduce the divisibility modulo \\(a\\):\n\\[\na^2b \\mid b^2+3a \\implies a\\mid b^2.\n\\]\nSo every prime dividing \\(a\\) divides \\(b\\). Let\n\\[\na = du,\\qquad b = dv,\\qquad \\gcd(u,v)=1,\n\\]\nwhere \\(d=\\gcd(a,b)\\). Since \\(a\\mid b^2\\), in fact \\(u=1\\), so \\(a\\mid b\\).\n\nThus write\n\\[\nb=ac\n\\]\nfor some positive integer \\(c\\).\n\nSubstitute:\n\\[\na^2(ac) \\mid (ac)^2+3a\n\\]\ni.e.\n\\[\na^3 c \\mid a^2c^2+3a = a(ac^2+3).\n\\]\nHence\n\\[\na^2 c \\mid ac^2+3.\n\\]\nSo\n\\[\na^2c \\le ac^2+3.\n\\]\nRearrange:\n\\[\nac(a-c)\\le 3.\n\\]\n\nNow if \\(a<b\\), then \\(c=b/a\\ge 2\\), so \\(a-c\\) may be positive or negative. We use divisibility more directly:\n\\[\na^2c \\mid ac^2+3.\n\\]\nReduce modulo \\(a\\): the right side is congruent to \\(3\\pmod a\\), so\n\\[\na\\mid 3.\n\\]\nThus\n\\[\na\\in\\{1,3\\}.\n\\]\n\n### If \\(a=1\\)\nThen the condition is\n\\[\nb\\mid b^2+3,\n\\]\nso \\(b\\mid 3\\), giving \\(b=1,3\\). Both work.\n\n### If \\(a=3\\)\nThen\n\\[\n9b \\mid b^2+9.\n\\]\nModulo \\(3\\), we need \\(3\\mid b^2\\), so \\(3\\mid b\\). Write \\(b=3t\\). Then\n\\[\n27t \\mid 9t^2+9 = 9(t^2+1),\n\\]\nso\n\\[\n3t \\mid t^2+1.\n\\]\nHence \\(t\\mid 1\\), so \\(t=1\\). Then we need\n\\[\n3 \\mid 2,\n\\]\nimpossible. So no solution.\n\nThus the only solutions are \\((1,1)\\) and \\((1,3)\\).\n\nFinal answer: \\((a,b)=(1,1)\\) and \\((1,3)\\).",
+  "usage": {
+    "input_tokens": 77,
+    "output_tokens": 1455,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 19.173888461082242,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "\\((a,b)=(1,1)\\) and \\((1,3)\\)."
+  }
+}

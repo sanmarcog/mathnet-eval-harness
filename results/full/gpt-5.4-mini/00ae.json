@@ -1,0 +1,20 @@
+{
+  "id": "00ae",
+  "country": "Argentina",
+  "competition": "Argentine National Olympiad",
+  "gold_final_answer": "no",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Invariants / monovariants",
+    "Number Theory > Divisibility / Factorization"
+  ],
+  "prompt": "Given 100 infinitely large boxes with markers in them, the following procedure is carried out. At step 1 one adds one marker in every box. At step 2 one marker is added in every box containing an even number of markers. At step 3 one marker is added in every box in which the number of markers is divisible by 3, and so on.\n\nBefore the process starts Bruno wants to distribute several markers in the boxes so that there is at least one marker in each box and the following holds: After any number of steps there exist two boxes containing different number of markers. Decide if this is possible to achieve.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Yes, it is possible.\n\n### Idea\nLet the initial number of markers in the 100 boxes be distinct positive integers \\(a_1,\\dots,a_{100}\\), and we want this property to remain true after every step:\n- after step \\(n\\), every box whose number of markers is divisible by \\(n\\) gets one extra marker.\n\nSo a box with initial content \\(a\\) evolves independently according to the rule:\n\\[\na \\mapsto a+1 \\text{ if } n\\mid a \\text{ at step } n.\n\\]\n\nA key observation is that if we choose all starting numbers to be **large and pairwise different modulo many small integers**, then the final numbers after each step will still remain distinct.\n\n### Concrete construction\nTake\n\\[\na_i = M+i \\qquad (i=1,2,\\dots,100),\n\\]\nwhere \\(M\\) is a very large multiple of\n\\[\n1\\cdot 2\\cdot 3\\cdots 100.\n\\]\nThen at step \\(n\\le 100\\), the divisibility pattern of the 100 numbers is completely determined by the residues \\(1,2,\\dots,100\\) modulo \\(n\\), and these residues are not all equal; in fact, among the 100 consecutive numbers there are always some divisible by \\(n\\) and some not divisible by \\(n\\). Hence at every step, not all boxes are modified in the same way, so the numbers cannot all become equal.\n\nMore strongly, since the starting numbers are distinct and the updates depend only on divisibility by the step number, the difference between two boxes cannot suddenly disappear for all pairs simultaneously. Therefore after every step, at least two boxes still contain different numbers.\n\nSo Bruno **can** choose an initial distribution satisfying the condition.\n\nFinal answer: Yes, it is possible.",
+  "usage": {
+    "input_tokens": 175,
+    "output_tokens": 395,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.9939831709489226,
+  "cached": false
+}

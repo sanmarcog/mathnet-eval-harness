@@ -1,0 +1,20 @@
+{
+  "id": "038l",
+  "country": "Bulgaria",
+  "competition": "Spring Mathematical Tournament",
+  "gold_final_answer": "x = (37 + sqrt(13)) / 2, y = (5 + sqrt(13)) / 2",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Irreducibility: Rational Root Theorem, Gauss's Lemma, Eisenstein",
+    "Algebra > Intermediate Algebra > Quadratic functions"
+  ],
+  "prompt": "Solve the system\n$$\n\\left|\n\\begin{array}{l}\n\\sqrt{x^2 + y^2 - 16(x + y) - 9y + 7} = y - 2 \\\\\nx + 13\\sqrt[4]{x - y} = y + 42\n\\end{array}\n\\right.\n$$",
+  "model": "claude-opus-4-7",
+  "response_text": "<think>\nLet me re-read. First equation: √(x²+y²−16(x+y)−9y+7) = y−2? Let me check: \"16(x+y)-9y\" — maybe it's 16(x+y) is odd. Perhaps original is x²+y²-16(x+y)+... Let me assume typo and try x²+y²−16x−9y+7 under the root, or something. \n\nActually let me try: √(x²+y²−16(x+y)+... hmm. Let me try to find values from second equation. Let t = ⁴√(x−y) ≥ 0. Then x−y = t⁴, and equation: x−y+13t = 42, so t⁴+13t = 42. Try t=... t=2: 16+26=42. Yes! So t=2, x−y=16.\n\nSo x = y+16. Substitute into first equation.\n\nFirst eq: √(x²+y²−16(x+y)−9y+7) = y−2.\nx²+y² = (y+16)²+y² = 2y²+32y+256\n−16(x+y) = −16(2y+16) = −32y−256\n−9y+7\nSum: 2y²+32y+256−32y−256−9y+7 = 2y²−9y+7\n\nSo √(2y²−9y+7) = y−2, need y≥2.\n2y²−9y+7 = y²−4y+4\ny²−5y+3 = 0\ny = (5±√13)/2\n\nNeed y≥2: (5+√13)/2 ≈ 4.30, (5−√13)/2 ≈ 0.70. So y=(5+√13)/2.\n\nThen x = y+16 = (37+√13)/2.\n\nCheck: y−2 = (1+√13)/2 >0 ✓\n2y²−9y+7 = (y−2)²: let's verify. y² = 5y−3, so 2y²=10y−6, 2y²−9y+7 = y+1. (y−2)² = y²−4y+4 = 5y−3−4y+4=y+1. ✓\n\nSo solution: x=(37+√13)/2, y=(5+√13)/2.\n</think>\n\nLooking at the second equation, let $t=\\sqrt[4]{x-y}\\ge 0$. Then $x-y=t^4$ and the equation becomes $t^4+13t=42$. Testing $t=2$: $16+26=42$ ✓. So $x-y=16$, i.e., $x=y+16$.\n\nSubstituting into the first equation:\n$$x^2+y^2-16(x+y)-9y+7 = (y+16)^2+y^2-16(2y+16)-9y+7 = 2y^2-9y+7$$\n\nSo $\\sqrt{2y^2-9y+7}=y-2$ with $y\\ge 2$. Squaring:\n$$2y^2-9y+7=y^2-4y+4 \\implies y^2-5y+3=0 \\implies y=\\frac{5\\pm\\sqrt{13}}{2}$$\n\nOnly $y=\\frac{5+\\sqrt{13}}{2}\\approx 4.30$ satisfies $y\\ge 2$. Then $x=y+16=\\frac{37+\\sqrt{13}}{2}$.\n\nFinal answer: $\\left(\\dfrac{37+\\sqrt{13}}{2},\\ \\dfrac{5+\\sqrt{13}}{2}\\right)$",
+  "usage": {
+    "input_tokens": 164,
+    "output_tokens": 1095,
+    "thinking_tokens": 0
+  },
+  "latency_s": 11.816145975957625,
+  "cached": false
+}

@@ -1,0 +1,24 @@
+{
+  "id": "0gyz",
+  "country": "Ukraine",
+  "competition": "50th Mathematical Olympiad in Ukraine, Third Round (January 23, 2010)",
+  "gold_final_answer": "4035077",
+  "topics_flat": [
+    "Algebra > Prealgebra / Basic Algebra > Integers"
+  ],
+  "prompt": "Consider an arbitrary arrangement of the brackets. Numbers $2010$ and $2009$ always have signs '+' and '-', respectively, that's why the sum reaches the maximum value when the other terms will have '+' sign.\n\nIn the expression\n$$\n\\frac{2010 - 2009 - 2010 - 2009 - 2010 - 2009 - \\dots - 2010 - 2009}{2010 \\text{ numbers}}\n$$\nthere are somehow placed brackets and the value is calculated. Find the maximum value that can be reached. Justify your answer.\n\n*Notice.* Left bracket can be placed only before a number and right - only after. For example, expressions $-2010(-2009 - 2010)$ and $-(2010 - 2009-)2010$ are incorrect.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Setting Up the Problem\n\nThe expression has 2010 numbers alternating: 2010, -2009, -2010, -2009, ..., -2010, -2009.\n\nWait, let me re-read. The expression is:\n$$2010 - 2009 - 2010 - 2009 - \\cdots - 2010 - 2009$$\nwith 2010 numbers total (so 1005 pairs of 2010 and 2009).\n\nThe numbers alternate: 2010, 2009, 2010, 2009, ... with signs between them being minus signs. So we have:\n$$2010 - 2009 - 2010 - 2009 - \\cdots - 2010 - 2009$$\n\nThere are 1005 copies of 2010 and 1005 copies of 2009, totaling 2010 numbers.\n\n## Effect of Brackets\n\nWithout brackets: $2010 - 2009 - 2010 - 2009 - \\cdots = 2010 - 2009 - 2010 - 2009 - \\cdots$\n\nThe first term is +2010. Every subsequent term has a minus sign. Brackets can change the effective signs of terms.\n\n**Key observation:** When we place brackets with a minus sign before them, the signs inside get flipped. Specifically, $-(a - b) = -a + b$.\n\nThe first number (2010) always has a '+' sign (it's the leading term). The problem states 2010 always has '+' and 2009 always has '-' — wait, re-reading: \"Numbers 2010 and 2009 always have signs '+' and '-', respectively.\"\n\nThis means: no matter how brackets are placed, every occurrence of 2010 gets a '+' sign and every occurrence of 2009 gets a '-' sign.\n\n**Verification:** The expression starts with 2010 (positive). Between any two numbers there's a minus sign. When we apply brackets, a number gets '+' if it's preceded by an even number of minus signs (from bracket negations), and '-' if odd. \n\nLet me verify the claim: Consider $2010 - 2009 - 2010$. With brackets: $2010 - (2009 - 2010) = 2010 - 2009 + 2010$. Here the second 2010 gets '+'. But can a 2009 get '+'? Try: $-(2010 - 2009) - 2010$... but we can't negate the whole expression since there's no leading minus.\n\nActually the first term is always +2010. For any subsequent term, the sign depends on bracket placement. The claim is that 2010s always end up '+' and 2009s always end up '-'.\n\n**Proof by structure:** The sequence is $a_1 - a_2 - a_3 - \\cdots - a_{2010}$ where odd-indexed terms are 2010 and even-indexed are 2009. \n\nWhen brackets are inserted, each $a_i$ (for $i \\geq 2$) gets sign $(-1)^{k_i}$ where $k_i$ is the number of minus signs \"outside\" that term due to bracket structure. The original sign before $a_i$ is always minus. \n\nThe key insight: $a_1 = 2010$ is always positive. For $i \\geq 2$: the sign of $a_i$ is $(-1)^{m_i}$ where $m_i$ counts bracket-induced negations. Since all separators are minus signs, and brackets can only flip signs, the parity of sign changes preserves the pattern: odd-positioned numbers (2010) always get '+' and even-positioned (2009) always get '-'.\n\nThis can be proven by induction on bracket structure — any bracketing of $x_1 - x_2 - \\cdots - x_n$ results in $+x_1$ for odd positions and $-x_i$ for even positions (since the expression is equivalent to $x_1 - (x_2 + x_3 - x_4 - x_5 + \\cdots)$ type forms, but the parity argument holds).\n\n## Maximum Value\n\nSince every 2010 always has '+' and every 2009 always has '-', the value is always:\n$$1005 \\times 2010 - 1005 \\times 2009 = 1005 \\times (2010 - 2009) = 1005 \\times 1 = 1005$$\n\nThe value is **constant** regardless of bracket placement, so the maximum value is:\n\n$$1005 \\times 2010 - 1005 \\times 2009 = 1005$$\n\nFinal answer: $\\boxed{1005}$",
+  "usage": {
+    "input_tokens": 236,
+    "output_tokens": 1150,
+    "thinking_tokens": 0
+  },
+  "latency_s": 18.891451950999908,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "1005"
+  }
+}

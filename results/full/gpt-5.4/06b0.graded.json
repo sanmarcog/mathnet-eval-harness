@@ -1,0 +1,26 @@
+{
+  "id": "06b0",
+  "country": "Greece",
+  "competition": "Selection Examination",
+  "gold_final_answer": "[-72, -26, -16, -8, -2, 6, 16, 62]",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Factorization techniques",
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities",
+    "Algebra > Intermediate Algebra > Quadratic functions"
+  ],
+  "prompt": "Determine all values of the integer $v$ for which the number $v^2 + 10v + 160$ is a perfect square.",
+  "model": "gpt-5.4",
+  "response_text": "Let\n\\[\nv^2+10v+160=n^2\n\\]\nfor some integer \\(n\\). We want all integers \\(v\\) making this a perfect square.\n\nComplete the square in \\(v\\):\n\\[\nv^2+10v+160=(v+5)^2+135.\n\\]\nSo\n\\[\nn^2-(v+5)^2=135.\n\\]\nFactor:\n\\[\n(n-(v+5))(n+(v+5))=135.\n\\]\n\nLet\n\\[\na=n-(v+5),\\qquad b=n+(v+5).\n\\]\nThen \\(ab=135\\), and since\n\\[\na+b=2n,\\qquad b-a=2(v+5),\n\\]\nthe numbers \\(a,b\\) must have the same parity. Because \\(135\\) is odd, both \\(a,b\\) are odd automatically.\n\nSo we just list factor pairs of \\(135\\):\n\\[\n(1,135),\\ (3,45),\\ (5,27),\\ (9,15)\n\\]\nand also their negative versions:\n\\[\n(-1,-135),\\ (-3,-45),\\ (-5,-27),\\ (-9,-15).\n\\]\n\nFrom\n\\[\nv+5=\\frac{b-a}{2},\n\\]\nwe compute:\n\n- \\((a,b)=(1,135)\\): \\(v+5=67\\Rightarrow v=62\\)\n- \\((3,45)\\): \\(v+5=21\\Rightarrow v=16\\)\n- \\((5,27)\\): \\(v+5=11\\Rightarrow v=6\\)\n- \\((9,15)\\): \\(v+5=3\\Rightarrow v=-2\\)\n\nFor negative pairs:\n\n- \\((-1,-135)\\): \\(v+5=-67\\Rightarrow v=-72\\)\n- \\((-3,-45)\\): \\(v+5=-21\\Rightarrow v=-26\\)\n- \\((-5,-27)\\): \\(v+5=-11\\Rightarrow v=-16\\)\n- \\((-9,-15)\\): \\(v+5=-3\\Rightarrow v=-8\\)\n\nThus all integer values are\n\\[\n\\boxed{-72,\\,-26,\\,-16,\\,-8,\\,-2,\\,6,\\,16,\\,62}.\n\\]\n\nFinal answer: \\(\\boxed{-72,\\,-26,\\,-16,\\,-8,\\,-2,\\,6,\\,16,\\,62}\\)",
+  "usage": {
+    "input_tokens": 78,
+    "output_tokens": 536,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 6.824927126057446,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "-72,\\,-26,\\,-16,\\,-8,\\,-2,\\,6,\\,16,\\,62"
+  }
+}

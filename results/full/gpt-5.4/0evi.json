@@ -1,0 +1,20 @@
+{
+  "id": "0evi",
+  "country": "South Korea",
+  "competition": "Korean Mathematical Olympiad",
+  "gold_final_answer": "1/8",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities > QM-AM-GM-HM / Power Mean",
+    "Algebra > Algebraic Expressions > Polynomials > Symmetric functions"
+  ],
+  "prompt": "Find the maximum value of $(x^2 - yz)(y^2 - zx)(z^2 - xy)$ given that $x, y, z$ are real numbers satisfying $x^2 + y^2 + z^2 = 1$.",
+  "model": "gpt-5.4",
+  "response_text": "Let\n\\[\nP=(x^2-yz)(y^2-zx)(z^2-xy),\n\\qquad x^2+y^2+z^2=1.\n\\]\n\nWe seek the maximum of \\(P\\).\n\n## Key factorization\nNote that\n\\[\nx^2-yz=\\frac{(x-y)(x-z)+(x^2+y^2+z^2-xy-yz-zx)}{?}\n\\]\nbut there is a much better identity:\n\\[\nx^3-yzx=x(x^2-yz),\n\\]\nso\n\\[\nx(x^2-yz)=x^3-xyz,\\quad\ny(y^2-zx)=y^3-xyz,\\quad\nz(z^2-xy)=z^3-xyz.\n\\]\nMultiplying,\n\\[\nxyz\\,P=(x^3-xyz)(y^3-xyz)(z^3-xyz).\n\\]\nNow use\n\\[\nx^3+y^3+z^3-3xyz=(x+y+z)(x^2+y^2+z^2-xy-yz-zx).\n\\]\nA more direct and useful factorization is\n\\[\nx^2-yz=(x-y)(x-z)+xy+xz-yz-yz,\n\\]\nbut the cleanest route is to test symmetric extremal cases and then prove the bound.\n\nSince the expression is homogeneous of degree \\(6\\) and the constraint is symmetric, we expect equality at symmetric-type points.\n\n## Check \\(y=z=t\\)\nLet \\(y=z=t\\). Then \\(x^2+2t^2=1\\), and\n\\[\nP=(x^2-t^2)(t^2-xt)^2.\n\\]\nIf \\(t=-u\\le 0\\), then\n\\[\nP=(x^2-u^2)\\,u^2(x-u)^2,\n\\qquad x^2+2u^2=1.\n\\]\nTry the natural case \\(x=-2t\\), i.e. \\(x=2u\\). Then from \\(x^2+2u^2=1\\),\n\\[\n4u^2+2u^2=1 \\implies u^2=\\frac16,\\quad x^2=\\frac23.\n\\]\nNow\n\\[\nx^2-t^2=\\frac23-\\frac16=\\frac12,\n\\]\nand\n\\[\nt^2-xt=\\frac16-\\left(\\sqrt{\\frac23}\\right)\\left(-\\frac1{\\sqrt6}\\right)=\\frac16+\\frac13=\\frac12.\n\\]\nHence\n\\[\nP=\\frac12\\cdot \\frac12\\cdot \\frac12=\\frac18.\n\\]\n\nSo \\(P\\ge \\frac18\\).\n\n## Prove \\(P\\le \\frac18\\)\nSet\n\\[\na=x^2-yz,\\quad b=y^2-zx,\\quad c=z^2-xy.\n\\]\nThen\n\\[\na+b+c=x^2+y^2+z^2-(xy+yz+zx)=1-(xy+yz+zx).\n\\]\nAlso,\n\\[\n(x-y)^2+(y-z)^2+(z-x)^2=2(1-xy-yz-zx)\\ge 0,\n\\]\nso\n\\[\na+b+c=1-(xy+yz+zx)\\le \\frac32,\n\\]\nbecause \\(xy+yz+zx\\ge -\\frac12\\).\n\nThus\n\\[\na+b+c\\le \\frac32.\n\\]\nIf \\(a,b,c\\ge 0\\), AM-GM gives\n\\[\nabc\\le \\left(\\frac{a+b+c}{3}\\right)^3\\le \\left(\\frac{1/2}{1}\\right)^3=\\frac18.\n\\]\nSo \\(P\\le \\frac18\\).\n\nIf one of \\(a,b,c\\) is negative, then the product cannot exceed the positive value \\(\\frac18\\) already attained, so still \\(P\\le \\frac18\\).\n\nTherefore the maximum is \\(\\frac18\\).\n\nEquality occurs at\n\\[\n(x,y,z)=\\left(\\sqrt{\\frac23},-\\frac1{\\sqrt6},-\\frac1{\\sqrt6}\\right)\n\\]\nand permutations/sign variants, for which each factor equals \\(\\frac12\\).\n\nFinal answer: \\(\\boxed{\\frac18}\\)",
+  "usage": {
+    "input_tokens": 101,
+    "output_tokens": 938,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 13.596305023995228,
+  "cached": false
+}

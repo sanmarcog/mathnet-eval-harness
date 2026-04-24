@@ -1,0 +1,24 @@
+{
+  "id": "0by8",
+  "country": "Romania",
+  "competition": "THE 68th ROMANIAN MATHEMATICAL OLYMPIAD",
+  "gold_final_answer": "2686",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics"
+  ],
+  "prompt": "Consider the set $A = \\{1, 2, 3, \\dots, 2017\\}$. Determine the number of three element subsets $B \\subset A$, which satisfy the following conditions simultaneously:\na) at least two elements in the set $B$ are consecutive positive integers;\nb) there is an $a \\in B$, such that $3a \\in B$.",
+  "model": "gpt-5.4",
+  "response_text": "Let \\(B=\\{x,y,z\\}\\subset A=\\{1,2,\\dots,2017\\}\\) with \\(|B|=3\\).\n\nWe want to count those \\(B\\) such that:\n\n1. at least two elements of \\(B\\) are consecutive;\n2. there exists \\(a\\in B\\) such that \\(3a\\in B\\).\n\nSince \\(B\\) has only 3 elements, condition (2) means \\(B\\) contains a pair of the form\n\\[\n(a,3a).\n\\]\nSo every valid set is of the form\n\\[\n\\{a,3a,b\\},\n\\]\nwith three distinct elements.\n\nNow impose condition (1): at least one consecutive pair must occur among these three numbers.\n\nThe possible consecutive pairs are:\n\n- \\(a\\) and \\(3a\\): impossible, since \\(3a-a=2a\\neq 1\\).\n- \\(a\\) and \\(b\\): so \\(b=a\\pm1\\).\n- \\(3a\\) and \\(b\\): so \\(b=3a\\pm1\\).\n\nThus candidates are\n\\[\n\\{a,3a,a-1\\},\\quad \\{a,3a,a+1\\},\\quad \\{a,3a,3a-1\\},\\quad \\{a,3a,3a+1\\}.\n\\]\n\nWe now count valid \\(a\\) for each form, making sure all elements lie in \\(A\\).\n\n---\n\n### 1. Sets of form \\(\\{a,3a,a-1\\}\\)\n\nNeed \\(a-1\\ge 1\\), so \\(a\\ge 2\\), and \\(3a\\le 2017\\), so\n\\[\na\\le \\left\\lfloor \\frac{2017}{3}\\right\\rfloor=672.\n\\]\nCount:\n\\[\n672-2+1=671.\n\\]\n\n### 2. Sets of form \\(\\{a,3a,a+1\\}\\)\n\nNeed \\(a+1\\le 2017\\) and \\(3a\\le 2017\\), so again \\(a\\le 672\\).\nCount:\n\\[\n672.\n\\]\n\n### 3. Sets of form \\(\\{a,3a,3a-1\\}\\)\n\nNeed \\(3a-1\\ge 1\\) automatically, and \\(3a\\le 2017\\), so \\(a\\le 672\\).\nCount:\n\\[\n672.\n\\]\n\n### 4. Sets of form \\(\\{a,3a,3a+1\\}\\)\n\nNeed \\(3a+1\\le 2017\\), so\n\\[\n3a\\le 2016 \\implies a\\le 672.\n\\]\nCount:\n\\[\n672.\n\\]\n\nSo total before removing overlaps:\n\\[\n671+672+672+672=2687.\n\\]\n\n---\n\n## Overlaps\n\nA set may be counted twice if it has two different consecutive pairs.\n\nThis happens only when the three numbers themselves are consecutive around one element:\n\n- \\(\\{a,a+1,3a\\}\\) with \\(3a=a+2\\), giving \\(2a=2\\), so \\(a=1\\), set \\(\\{1,2,3\\}\\).\n- \\(\\{a,3a-1,3a\\}\\) with \\(3a=a+1\\), giving \\(2a=1\\), impossible.\n- \\(\\{a,3a,3a+1\\}\\) and \\(\\{a+1,3(a+1),a\\}\\) cannot represent the same set except impossible cases.\n\nSo the only double-counted set is\n\\[\n\\{1,2,3\\}.\n\\]\n\nHence the number of valid subsets is\n\\[\n2687-1=2686.\n\\]\n\nFinal answer: 2686",
+  "usage": {
+    "input_tokens": 130,
+    "output_tokens": 837,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 12.475712963030674,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "exact",
+    "predicted": "2686"
+  }
+}

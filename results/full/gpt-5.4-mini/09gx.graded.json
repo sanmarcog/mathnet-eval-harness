@@ -1,0 +1,25 @@
+{
+  "id": "09gx",
+  "country": "Mongolia",
+  "competition": "Mongolian Mathematical Olympiad",
+  "gold_final_answer": "n if n is even; n−1 if n is odd",
+  "topics_flat": [
+    "Discrete Mathematics > Graph Theory > Matchings, Marriage Lemma, Tutte's theorem",
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments"
+  ],
+  "prompt": "Гүдгэр $n$-өнцөгтийн талууд ба диагоналиудыг $n-1$ өнгөөр буджээ. Хэрэв оройгоос гарсан талууд ба диагоналиуд нь бүгд өөр өнгөтэй байвал уг оройг “сайн” орой гэж нэрлэе. Сайн орой хамгийн олондоо хэдэн ширхэг байх вэ?",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let the polygon have vertices \\(V_1,\\dots,V_n\\).  \nAt a given vertex \\(V_i\\), there are exactly \\(n-1\\) segments incident to it: the two sides and the \\(n-3\\) diagonals.  \nSince these are colored with only \\(n-1\\) colors, for \\(V_i\\) to be “good” they must use **all** \\(n-1\\) colors exactly once.\n\nSo a good vertex is one whose incident segments realize every color.\n\nWe now count how many vertices can be good at most.\n\nFor each color, consider the graph formed by all segments of that color. Since each good vertex must be incident to exactly one segment of each color, at a good vertex each color contributes degree \\(1\\). Hence, in each color class, every good vertex has odd degree, so the number of good vertices cannot exceed the maximum number of vertices that can be simultaneously “hit” by all \\(n-1\\) colors in this way.\n\nThe sharp bound is achieved by the following construction: color all segments by the difference of their endpoint indices modulo \\(n-1\\). Then every vertex except one is incident to all \\(n-1\\) colors distinctly, so there are \\(n-1\\) good vertices.\n\nThis is best possible, because one cannot have all \\(n\\) vertices good: if every vertex were good, then each color would have to contribute exactly one incident segment at each vertex, forcing each color class to be a 1-regular graph on an odd number of vertices (or creating a parity contradiction), which is impossible in a convex \\(n\\)-gon setting.\n\nTherefore, the maximum possible number of good vertices is\n\n**Final answer: \\(n-1\\)**",
+  "usage": {
+    "input_tokens": 133,
+    "output_tokens": 372,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.2271476089954376,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "\\(n-1\\)**"
+  }
+}

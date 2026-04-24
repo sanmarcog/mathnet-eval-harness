@@ -1,0 +1,19 @@
+{
+  "id": "0gpf",
+  "country": "Turkey",
+  "competition": "Team Selection Test",
+  "gold_final_answer": "34",
+  "topics_flat": [
+    "Discrete Mathematics > Graph Theory"
+  ],
+  "prompt": "Graph Air (GA) is running two way flights between some cities of a country so that it is possible to travel between any two cities using GA flights. It turned out that after adding one flight, one may travel between any two cities by using at most 17 GA flights. Determine the maximal possible number (if exists) of GA flights necessary to use for traveling between any two cities of a country before adding the flight.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find the maximal possible number of flights necessary to travel between any two cities before adding the flight, we are looking for the maximum diameter $D$ of the original graph $G$. \n\nLet $x$ and $y$ be two cities such that the distance between them in $G$ is $D$. Let $P$ be a shortest path between $x$ and $y$, so $P$ has length $D$ and consists of vertices $v_0, v_1, \\dots, v_D$.\nAfter adding a single flight (edge) $e = (u, v)$, the diameter of the new graph $G+e$ becomes at most 17. This means the distance between any two vertices in $G+e$ is at most 17.\n\nFor the endpoints $v_0$ and $v_D$, their distance in $G+e$ must be at most 17. Since their original distance was $D > 17$, the shortest path between them in $G+e$ must use the new edge $e$. \nAssume $e$ connects $v_i$ and $v_j$ (with $i < j$). The distance between $v_0$ and $v_D$ in $G+e$ is:\n$d(v_0, v_i) + 1 + d(v_j, v_D) = i + 1 + (D - j) \\le 17 \\implies j - i \\ge D - 16$\n\nNow consider the vertices $v_{18}$ and $v_{D-18}$ (assuming $D \\ge 34$). \nThe distance from $v_0$ to $v_{18}$ in $G$ is 18. In $G+e$, it must be $\\le 17$, so the path must use $e$:\n$d(v_0, v_i) + 1 + d(v_j, v_{18}) = i + 1 + (j - 18) \\le 17 \\implies i + j \\le 34$\n\nSimilarly, the distance from $v_D$ to $v_{D-18}$ in $G$ is 18. In $G+e$, it must be $\\le 17$, so:\n$d(v_D, v_j) + 1 + d(v_i, v_{D-18}) = (D - j) + 1 + (D - 18 - i) \\le 17 \\implies i + j \\ge 2D - 34$\n\nCombining the two inequalities for $i + j$:\n$2D - 34 \\le i + j \\le 34 \\implies 2D \\le 68 \\implies D \\le 34$\n\nTo show that $D = 34$ is achievable, consider a path graph of 35 vertices (length 34) where the vertices are $v_0, v_1, \\dots, v_{34}$. \nIf we add an edge between $v_8$ and $v_{26}$, we form a cycle of length $26 - 8 + 1 = 19$ with two tails of length 8. \n- The maximum distance between the two tails is $d(v_0, v_{34}) = 8 + 1 + 8 = 17$.\n- The maximum distance from a tail endpoint to the cycle is $d(v_0, v_{17}) = 8 + 9 = 17$.\n- The maximum distance within the cycle is $\\lfloor 19/2 \\rfloor = 9 \\le 17$.\nAll pairs of vertices will have a distance of at most 17.\n\nFinal answer: 34",
+  "usage": {
+    "input_tokens": 125,
+    "output_tokens": 847,
+    "thoughts_tokens": 6086
+  },
+  "latency_s": 53.77825722203124,
+  "cached": false
+}

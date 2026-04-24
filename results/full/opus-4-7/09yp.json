@@ -1,0 +1,21 @@
+{
+  "id": "09yp",
+  "country": "Netherlands",
+  "competition": "IMO Team Selection Test 3",
+  "gold_final_answer": "[(1,2,0,1),(2,1,1,0)]",
+  "topics_flat": [
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities",
+    "Geometry > Plane Geometry > Triangles > Triangle inequalities",
+    "Geometry > Plane Geometry > Geometric Inequalities > Triangle inequalities"
+  ],
+  "prompt": "Find all quadruples $(a, b, c, d)$ of non-negative integers such that $ab = 2(1 + cd)$ and there exists a non-degenerate triangle with sides of length $a - c$, $b - d$, and $c + d$.",
+  "model": "claude-opus-4-7",
+  "response_text": "<think>\nKnown problem. Answer: (1,2,0,1) and (2,1,1,0).\n</think>\n\nFinal answer: $(a,b,c,d)=(1,2,0,1)$ and $(2,1,1,0)$.",
+  "usage": {
+    "input_tokens": 147,
+    "output_tokens": 81,
+    "thinking_tokens": 0
+  },
+  "latency_s": 2.666967055061832,
+  "cached": false
+}

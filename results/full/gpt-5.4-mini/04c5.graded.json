@@ -1,0 +1,26 @@
+{
+  "id": "04c5",
+  "country": "Croatia",
+  "competition": "Mathematica competitions in Croatia",
+  "gold_final_answer": "For any prime p, the solutions are n = 0 and n = -p. If p is odd (p > 2), there are two additional solutions: n = ((p−1)/2)^2 and n = −((p+1)/2)^2.",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Prime numbers",
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities",
+    "Algebra > Intermediate Algebra > Quadratic functions"
+  ],
+  "prompt": "For a given prime number $p$ determine all integers $n$ such that $\\sqrt{n^2 + pn}$ is an integer.",
+  "model": "gpt-5.4-mini",
+  "response_text": "We need\n\\[\n\\sqrt{n^2+pn}\\in \\mathbb Z.\n\\]\nLet\n\\[\nn^2+pn=m^2\n\\]\nfor some integer \\(m\\). Then\n\\[\n4m^2=4n^2+4pn=(2n+p)^2-p^2,\n\\]\nso\n\\[\n(2n+p)^2-4m^2=p^2.\n\\]\nFactor:\n\\[\n(2n+p-2m)(2n+p+2m)=p^2.\n\\]\n\nSince \\(p\\) is prime, the integer factors of \\(p^2\\) are limited. Also the two factors have the same parity, so both are odd when \\(p\\) is odd; the case \\(p=2\\) can be checked separately.\n\nLet\n\\[\na=2n+p-2m,\\qquad b=2n+p+2m,\n\\]\nso \\(ab=p^2\\) and \\(a\\le b\\).\n\n### Case 1: \\(p\\) odd\nThen \\(a,b\\) are odd divisors of \\(p^2\\), so the only possibilities are\n\\[\n(a,b)=(1,p^2),\\ (p,p),\\ (-1,-p^2),\\ (-p,-p).\n\\]\nBut \\(a+b=4n+2p\\), so:\n\n- If \\(a=b=p\\), then \\(2n+p=p\\), hence \\(n=0\\).\n- If \\(a=b=-p\\), then \\(2n+p=-p\\), hence \\(n=-p\\).\n- If \\((a,b)=(1,p^2)\\), then\n  \\[\n  4n+2p=1+p^2 \\implies n=\\frac{(p-1)^2}{4}.\n  \\]\n- If \\((a,b)=(-1,-p^2)\\), then\n  \\[\n  4n+2p=-(1+p^2) \\implies n=-\\frac{(p+1)^2}{4}.\n  \\]\n\nAll four values work.\n\n### Case 2: \\(p=2\\)\nWe need\n\\[\nn^2+2n=m^2 \\iff (n+1)^2-m^2=1,\n\\]\nso\n\\[\n(n+1-m)(n+1+m)=1.\n\\]\nThus both factors are \\(1\\) or both \\(-1\\), giving \\(m=0\\) and \\(n=0\\), or \\(m= -? \\) actually the only integer solution is\n\\[\nn=0.\n\\]\nBut checking directly, \\(n=-2\\) gives \\(n^2+2n=0\\), also a square. So for \\(p=2\\), the solutions are \\(n=0,-2\\).\n\nTherefore:\n\n- If \\(p\\) is odd, the solutions are\n\\[\nn\\in \\left\\{0,\\,-p,\\,\\frac{(p-1)^2}{4},\\, -\\frac{(p+1)^2}{4}\\right\\}.\n\\]\n- If \\(p=2\\), the solutions are\n\\[\nn\\in\\{0,-2\\}.\n\\]\n\nFinal answer: For odd prime \\(p\\), \\(n=0,\\,-p,\\,\\dfrac{(p-1)^2}{4},\\,-\\dfrac{(p+1)^2}{4}\\); for \\(p=2\\), \\(n=0,-2\\).",
+  "usage": {
+    "input_tokens": 77,
+    "output_tokens": 767,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 4.93686246604193,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "For odd prime \\(p\\), \\(n=0,\\,-p,\\,\\dfrac{(p-1)^2}{4},\\,-\\dfrac{(p+1)^2}{4}\\); for \\(p=2\\), \\(n=0,-2\\)."
+  }
+}

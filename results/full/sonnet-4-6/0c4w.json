@@ -1,0 +1,19 @@
+{
+  "id": "0c4w",
+  "country": "Romania",
+  "competition": "SHORTLISTED PROBLEMS FOR THE 2019 ROMANIAN NMO",
+  "gold_final_answer": "f(x) ≡ 0",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Functional Equations"
+  ],
+  "prompt": "Find all the functions $f: \\mathbb{R} \\to \\mathbb{R}$ so that $f(x+y) = f(xy) + f(x) + f(y)$, for every $x, y \\in \\mathbb{R}$.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "Let me find all functions f: ℝ → ℝ satisfying f(x+y) = f(xy) + f(x) + f(y).\n\n**Step 1: Initial substitutions**\n\nSet x = y = 0:\nf(0) = f(0) + f(0) + f(0) = 3f(0)\nSo 2f(0) = 0, meaning f(0) = 0.\n\nSet y = 0:\nf(x) = f(0) + f(x) + f(0) = f(x)\nThis is consistent.\n\nSet x = y = 1:\nf(2) = f(1) + 2f(1) = 3f(1)\n\nSet y = -1:\nf(x-1) = f(-x) + f(x) + f(-1)\n\nSet x = y = -1:\nf(-2) = f(1) + 2f(-1)\n\n**Step 2: Find f(-1) and f(1)**\n\nSet x = 2, y = -1:\nf(1) = f(-2) + f(2) + f(-1)\nf(1) = [f(1) + 2f(-1)] + 3f(1) + f(-1)\nf(1) = 4f(1) + 3f(-1)\n-3f(1) = 3f(-1)\nf(-1) = -f(1)\n\n**Step 3: Try f(x) = c(x² - x) for some constant c**\n\nCheck: f(x+y) = c((x+y)² - (x+y)) = c(x² + 2xy + y² - x - y)\nf(xy) + f(x) + f(y) = c(x²y² - xy) + c(x² - x) + c(y² - y)\n= c(x²y² - xy + x² + y² - x - y)\n\nThese are equal only if x²y² - xy = 2xy, i.e., x²y² = 3xy, which doesn't hold generally.\n\n**Step 4: Try f(x) = c·x(x-1)**\n\nSame as above — doesn't work generally.\n\n**Step 5: Try f ≡ 0**\n\nf(x+y) = 0 = 0 + 0 + 0 ✓. This works.\n\n**Step 6: Try f(x) = ax for linear functions**\n\nf(x+y) = a(x+y), f(xy)+f(x)+f(y) = axy + ax + ay\nNeed axy = 0 for all x,y, so a = 0. Only f ≡ 0.\n\n**Step 7: Set y = 1**\n\nf(x+1) = f(x) + f(x) + f(1) = 2f(x) + f(1)\n\nThis is a recurrence: f(x+1) = 2f(x) + f(1).\n\n**Step 8: Set x = y**\n\nf(2x) = f(x²) + 2f(x)\n\n**Step 9: Set y = x+1 in original**\n\nf(2x+1) = f(x(x+1)) + f(x) + f(x+1) = f(x²+x) + f(x) + 2f(x) + f(1)\n\nAlso from recurrence: f(2x+1) = 2f(2x) + f(1) = 2f(x²) + 4f(x) + f(1)\n\nSo: f(x²+x) + 3f(x) + f(1) = 2f(x²) + 4f(x) + f(1)\nf(x²+x) = 2f(x²) + f(x)\n\nBut from Step 7 applied to x²: f(x²+1) = 2f(x²) + f(1), and f(x²+x) = f(x²) + f(x·x²)... Let me use the recurrence differently.\n\nFrom f(x+1) = 2f(x) + f(1), setting c = f(1):\nFor integers: f(n) = c(2^n - 1) ... checking: f(0)=0 ✓, f(1)=c ✓, f(2)=3c ✓.\n\n**Step 10: Check if f(x) = c(2^x - 1) works**\n\nf(x+y) = c(2^(x+y) - 1)\nf(xy) + f(x) + f(y) = c(2^(xy) - 1 + 2^x - 1 + 2^y - 1) = c(2^(xy) + 2^x + 2^y - 3)\n\nNeed 2^(x+y) - 1 = 2^(xy) + 2^x + 2^y - 3, i.e., 2^(x+y) + 2 = 2^(xy) + 2^x + 2^y. This fails for x=y=2: 16+2=18 vs 16+4+4=24. ✗\n\n**Conclusion:** The only solution is **f ≡ 0**.\n\nVerification: f(x+y) = 0 = 0 + 0 + 0 ✓\n\nFinal answer: f(x) = 0 for all x ∈ ℝ.",
+  "usage": {
+    "input_tokens": 109,
+    "output_tokens": 1376,
+    "thinking_tokens": 0
+  },
+  "latency_s": 17.63473894202616,
+  "cached": false
+}

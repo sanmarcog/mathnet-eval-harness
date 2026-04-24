@@ -1,0 +1,19 @@
+{
+  "id": "0a0q",
+  "country": "Netherlands",
+  "competition": "IMO Team Selection Test 1",
+  "gold_final_answer": "2",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Sequences and Series > Recurrence relations"
+  ],
+  "prompt": "Determine the largest real number $M$ such that for each infinite sequence $x_0, x_1, x_2, \\dots$ of real numbers satisfying\n\na. $x_0 = 1$ and $x_1 = 3$,\n\nb. $x_0 + x_1 + \\dots + x_{n-1} \\ge 3x_n - x_{n+1}$ for all $n \\ge 1$,\n\nthe inequality\n$$\n\\frac{x_{n+1}}{x_n} > M,\n$$\nholds for all $n \\ge 0$.",
+  "model": "claude-opus-4-7",
+  "response_text": "<think>\nClassic problem. Answer is 2. Wait, let me think. The recurrence x_{n+1} >= 3x_n - S_{n-1} where S_{n-1}=x_0+...+x_{n-1}. With equality we get x_{n+1}=3x_n - S_{n-1}. Let's compute: x_0=1,x_1=3. n=1: S_0=1, x_2>=3·3-1=8. n=2: S_1=4, x_3>=3x_2-4. If x_2=8, x_3>=20. Ratios 3, 8/3≈2.67, 20/8=2.5,... approaching 2. So M=2.\n</think>\n\nLooking at the recurrence with equality: $x_{n+1} = 3x_n - S_{n-1}$ where $S_{n-1} = x_0+\\cdots+x_{n-1}$.\n\nSubtracting consecutive relations: $x_{n+1} - x_n = 3x_n - 3x_{n-1} - x_{n-1}$, giving $x_{n+1} = 4x_n - 4x_{n-1}$, with characteristic roots $2,2$. So $x_n = (an+b)2^n$, and the ratio $x_{n+1}/x_n \\to 2$.\n\nWith $x_0=1, x_1=3$: one finds $x_n = (n+2)2^{n-1}$, ratios $\\frac{(n+3)}{(n+2)} \\cdot 2 > 2$ always, tending to 2.\n\nOne shows any valid sequence has ratios $>2$, and 2 is the infimum.\n\nFinal answer: $2$",
+  "usage": {
+    "input_tokens": 239,
+    "output_tokens": 538,
+    "thinking_tokens": 0
+  },
+  "latency_s": 7.491531651001424,
+  "cached": false
+}

@@ -1,0 +1,24 @@
+{
+  "id": "0fqj",
+  "country": "Spain",
+  "competition": "SPANISH MATHEMATICAL OLYMPIAD (FINAL ROUND)",
+  "gold_final_answer": "y ∈ {π/7, 2π/7, 3π/7, 4π/7, 5π/7, 6π/7} ∪ {π/8, 3π/8, 5π/8, 7π/8} ∪ {π/9, 2π/9, π/3, 4π/9, 5π/9, 2π/3, 7π/9, 8π/9}",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Vieta's formulas"
+  ],
+  "prompt": "Let $a$, $b$ and $c$ be real numbers such that $p(x) = x^4 + a x^3 + b x^2 + a x + c$ has exactly three different real roots; these roots are $\\tan y$, $\\tan 2y$ and $\\tan 3y$ for some real number $y$. Find all possible values of $y$, $0 \\le y < \\pi$.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Setting Up the Problem\n\nSince $p(x) = x^4 + ax^3 + bx^2 + ax + c$ has exactly three different real roots, and the roots are $\\tan y$, $\\tan 2y$, $\\tan 3y$, one of these must be a repeated root (since a degree 4 polynomial has 4 roots counting multiplicity).\n\n## Using the Palindromic Structure\n\nNotice $p(x) = x^4 + ax^3 + bx^2 + ax + c$ is \"almost palindromic\" - the coefficients of $x^3$ and $x$ are both $a$. \n\nFor a palindromic polynomial, if $r$ is a root, then $1/r$ is also a root. So the roots come in pairs $\\{r, 1/r\\}$.\n\nThe four roots (with multiplicity) are $\\tan y$, $\\tan 2y$, $\\tan 3y$, and one repeated root. The palindromic property means roots pair as $\\{r, 1/r\\}$.\n\n## Applying the Tangent Addition Formula\n\nWe know $\\tan y + \\tan 2y + \\tan 3y = \\tan y \\cdot \\tan 2y \\cdot \\tan 3y$ when $y + 2y + 3y = n\\pi$, i.e., $6y = n\\pi$.\n\nActually, the identity: if $A + B + C = n\\pi$, then $\\tan A + \\tan B + \\tan C = \\tan A \\tan B \\tan C$.\n\nHere $y + 2y + 3y = 6y$. So if $6y = n\\pi$, then $\\tan y + \\tan 2y + \\tan 3y = \\tan y \\cdot \\tan 2y \\cdot \\tan 3y$.\n\n## Using Vieta's Formulas\n\nLet the four roots be $\\tan y$, $\\tan 2y$, $\\tan 3y$, and $r$ (the repeated root, so one of the three is repeated).\n\nFrom Vieta's: sum of roots = $-a$, sum of products of pairs = $b$, sum of products of triples = $-a$, product of all = $c$.\n\nSince sum of roots = sum of products of triples = $-a$:\n$$\\tan y + \\tan 2y + \\tan 3y + r = \\tan y \\cdot \\tan 2y \\cdot \\tan 3y \\cdot r \\cdot (\\text{something})$$\n\nWait, let me use: sum of roots $= -a$ and sum of products of triples $= -a$.\n\nSo: $(\\tan y + \\tan 2y + \\tan 3y + r) = (\\tan y \\cdot \\tan 2y \\cdot \\tan 3y + r(\\tan y \\tan 2y + \\tan y \\tan 3y + \\tan 2y \\tan 3y))$\n\nThis means $S_1 = S_3$ where $S_1$ = sum of roots, $S_3$ = sum of triple products.\n\nFor palindromic polynomial $x^4 + ax^3 + bx^2 + ax + c$: dividing by $x^2$ gives $x^2 + ax + b + a/x + c/x^2 = 0$, so $(x^2 + c/x^2) + a(x + 1/x) + b = 0$.\n\nThe palindromic condition requires $c = 1$ (constant term = leading coefficient). But here $c$ is free... Actually the polynomial is palindromic only if $c=1$.\n\n## Finding the Repeated Root\n\nThe palindromic structure with $c=1$ gives roots pairing as $\\{r, 1/r\\}$. So $\\{\\tan y, \\tan 2y, \\tan 3y, \\text{repeat}\\}$ must pair up. One pair could be $\\{\\tan y, 1/\\tan y\\}$ meaning $\\tan y \\cdot \\tan 2y = 1$ or similar.\n\nIf $\\tan y \\cdot \\tan 3y = 1$: then $\\tan 3y = \\cot y = \\tan(\\pi/2 - y)$, so $3y = \\pi/2 - y + n\\pi$, giving $4y = \\pi/2 + n\\pi$, so $y = \\pi/8, 5\\pi/8, 9\\pi/8, 13\\pi/8$.\n\nIn $[0, \\pi)$: $y = \\pi/8$ and $y = 5\\pi/8$.\n\nCheck $y = \\pi/8$: $\\tan(\\pi/8)$, $\\tan(\\pi/4) = 1$, $\\tan(3\\pi/8)$. Note $\\tan(\\pi/8)\\tan(3\\pi/8) = 1$ ✓, and the repeated root is $\\tan(2y) = 1$.\n\nCheck $y = 5\\pi/8$: $\\tan(5\\pi/8)$, $\\tan(5\\pi/4) = 1$, $\\tan(15\\pi/8)$. Similarly works.\n\nFinal answer: $y = \\dfrac{\\pi}{8}$ and $y = \\dfrac{5\\pi}{8}$",
+  "usage": {
+    "input_tokens": 149,
+    "output_tokens": 1309,
+    "thinking_tokens": 0
+  },
+  "latency_s": 16.788610583054833,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "$y = \\dfrac{\\pi}{8}$ and $y = \\dfrac{5\\pi}{8}$"
+  }
+}

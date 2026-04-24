@@ -1,0 +1,19 @@
+{
+  "id": "01lk",
+  "country": "Belarus",
+  "competition": "61st Belarusian Mathematical Olympiad",
+  "gold_final_answer": "9",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Polynomial operations"
+  ],
+  "prompt": "Non-zero real numbers $a, b, c$ satisfy the equality\n$$\n\\frac{ab}{b-c} + \\frac{bc}{c-a} + \\frac{ca}{a-b} = \\frac{ab}{b+c} + \\frac{bc}{c+a} + \\frac{ca}{a+b} + 6abc.\n$$\nFind all possible values of the expression\n$$\n\\frac{1}{(a^2 - b^2)^2} + \\frac{1}{(b^2 - c^2)^2} + \\frac{1}{(c^2 - a^2)^2}\n$$",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let  \n\\[\nS=\\frac{ab}{b-c}+\\frac{bc}{c-a}+\\frac{ca}{a-b}-\\left(\\frac{ab}{b+c}+\\frac{bc}{c+a}+\\frac{ca}{a+b}\\right).\n\\]\nUsing\n\\[\n\\frac{x}{y-z}-\\frac{x}{y+z}=\\frac{2xz}{y^2-z^2},\n\\]\nthe given condition becomes\n\\[\n\\frac{2abc}{b^2-c^2}+\\frac{2abc}{c^2-a^2}+\\frac{2abc}{a^2-b^2}=6abc.\n\\]\nSince \\(abc\\neq 0\\), divide by \\(2abc\\):\n\\[\n\\frac1{b^2-c^2}+\\frac1{c^2-a^2}+\\frac1{a^2-b^2}=3.\n\\]\nNow set\n\\[\nx=a^2-b^2,\\quad y=b^2-c^2,\\quad z=c^2-a^2.\n\\]\nThen \\(x+y+z=0\\), and the condition is\n\\[\n\\frac1x+\\frac1y+\\frac1z=3.\n\\]\nMultiplying by \\(xyz\\),\n\\[\nxy+yz+zx=3xyz.\n\\]\nBut since \\(x+y+z=0\\),\n\\[\nx^2+y^2+z^2=-2(xy+yz+zx).\n\\]\nThe target expression is\n\\[\n\\frac1{x^2}+\\frac1{y^2}+\\frac1{z^2}\n=\\frac{x^2y^2+y^2z^2+z^2x^2}{x^2y^2z^2}\n=\\frac{(xy+yz+zx)^2}{x^2y^2z^2}-\\frac{2xyz(x+y+z)}{x^2y^2z^2}.\n\\]\nSince \\(x+y+z=0\\),\n\\[\n\\frac1{x^2}+\\frac1{y^2}+\\frac1{z^2}\n=\\frac{(xy+yz+zx)^2}{x^2y^2z^2}.\n\\]\nUsing \\(xy+yz+zx=3xyz\\),\n\\[\n\\frac1{x^2}+\\frac1{y^2}+\\frac1{z^2}=9.\n\\]\n\nSo the expression has a unique value.\n\nFinal answer: \\(9\\)",
+  "usage": {
+    "input_tokens": 186,
+    "output_tokens": 551,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.7803174490109086,
+  "cached": false
+}

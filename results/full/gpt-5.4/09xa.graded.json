@@ -1,0 +1,24 @@
+{
+  "id": "09xa",
+  "country": "Netherlands",
+  "competition": "Dutch Mathematical Olympiad",
+  "gold_final_answer": "{14, 19}, {15, 18}, {16, 17}",
+  "topics_flat": [
+    "Algebra > Prealgebra / Basic Algebra > Integers"
+  ],
+  "prompt": "We have two integers consisting of two digits, and both numbers do not start with a $0$. If you add these numbers, you get the number $S$. If you interchange the two digits of both numbers and add the new numbers, you get $4S$.\nDetermine all possible pairs of two-digit numbers satisfying these constraints. Make sure to clearly indicate in your answer which numbers form a pair.",
+  "model": "gpt-5.4",
+  "response_text": "Let the two original two-digit numbers be\n\\[\n10a+b \\quad\\text{and}\\quad 10c+d,\n\\]\nwhere \\(a,c\\in\\{1,\\dots,9\\}\\) and \\(b,d\\in\\{0,\\dots,9\\}\\).\n\nTheir sum is\n\\[\nS=(10a+b)+(10c+d)=10(a+c)+(b+d).\n\\]\n\nIf we reverse the digits of both numbers, we get\n\\[\n10b+a \\quad\\text{and}\\quad 10d+c,\n\\]\nand their sum is\n\\[\n(10b+a)+(10d+c)=10(b+d)+(a+c).\n\\]\n\nWe are told this equals \\(4S\\), so\n\\[\n10(b+d)+(a+c)=4\\bigl(10(a+c)+(b+d)\\bigr).\n\\]\n\nLet\n\\[\nx=a+c,\\qquad y=b+d.\n\\]\nThen\n\\[\n10y+x=4(10x+y)=40x+4y.\n\\]\nSo\n\\[\n6y=39x,\n\\]\nhence\n\\[\n2y=13x.\n\\]\n\nSince \\(x,y\\) are integers, \\(x\\) must be even. Write \\(x=2k\\), then\n\\[\ny=13k.\n\\]\n\nNow use the digit bounds:\n- \\(a,c\\in\\{1,\\dots,9\\}\\), so \\(x=a+c\\in\\{2,\\dots,18\\}\\),\n- \\(b,d\\in\\{0,\\dots,9\\}\\), so \\(y=b+d\\in\\{0,\\dots,18\\}\\).\n\nBecause \\(y=13k\\le 18\\), we get \\(k=1\\) only. Thus\n\\[\nx=2,\\qquad y=13.\n\\]\n\nSo\n\\[\na+c=2,\\qquad b+d=13.\n\\]\n\nBut \\(a,c\\ge 1\\), so the only way to have \\(a+c=2\\) is\n\\[\na=c=1.\n\\]\n\nThus both numbers must be of the form\n\\[\n1b,\\ 1d\n\\]\nwith\n\\[\nb+d=13.\n\\]\n\nTherefore all possible pairs are:\n\\[\n(10,13),\\ (11,12),\\ (12,11),\\ (13,10),\\ (14,19),\\ (15,18),\\ (16,17),\n\\]\n\\[\n(17,16),\\ (18,15),\\ (19,14).\n\\]\n\nIf unordered pairs are intended, the distinct pairs are:\n\\[\n\\{10,13\\},\\ \\{11,12\\},\\ \\{14,19\\},\\ \\{15,18\\},\\ \\{16,17\\}.\n\\]\n\nFinal answer: The two numbers must both start with \\(1\\), and their units digits must sum to \\(13\\). Thus all ordered pairs are \\((10,13),(11,12),(12,11),(13,10),(14,19),(15,18),(16,17),(17,16),(18,15),(19,14)\\). Unordered, these are \\(\\{10,13\\},\\{11,12\\},\\{14,19\\},\\{15,18\\},\\{16,17\\}\\).",
+  "usage": {
+    "input_tokens": 129,
+    "output_tokens": 717,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 8.48747983505018,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "The two numbers must both start with \\(1\\), and their units digits must sum to \\(13\\). Thus all ordered pairs are \\((10,13),(11,12),(12,11),(13,10),(14,19),(15,18),(16,17),(17,16),(18,15),(19,14)\\). Unordered, these are \\(\\{10,13\\},\\{11,12\\},\\{14,19\\},\\{15,18\\},\\{16,17\\}\\)."
+  }
+}

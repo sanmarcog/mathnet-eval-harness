@@ -1,0 +1,20 @@
+{
+  "id": "04zt",
+  "country": "Estonia",
+  "competition": "Selected Problems from the Final Round of National Olympiad",
+  "gold_final_answer": "(w, x, y, z) = (2, n, n, n+1) for any positive integer n",
+  "topics_flat": [
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities",
+    "Algebra > Intermediate Algebra > Exponential functions"
+  ],
+  "prompt": "Find all quadruples $(w, x, y, z)$ of positive integers such that $w^x + w^y = w^z$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "We solve\n\\[\nw^x+w^y=w^z\n\\]\nin positive integers \\(w,x,y,z\\).\n\nWithout loss of generality, assume \\(x\\le y\\). Then\n\\[\nw^x(1+w^{y-x})=w^z.\n\\]\nSo \\(w^x\\mid w^z\\), hence \\(x\\le z\\), and after dividing by \\(w^x\\),\n\\[\n1+w^{y-x}=w^{z-x}.\n\\]\nNow consider cases.\n\n### 1) \\(w=1\\)\nThen the equation becomes\n\\[\n1+1=1,\n\\]\nimpossible. So \\(w\\ge 2\\).\n\n### 2) \\(x=y\\)\nThen\n\\[\n2w^x=w^z.\n\\]\nThe right-hand side is a power of \\(w\\), so \\(w\\) must divide \\(2\\). Since \\(w\\ge 2\\), we get \\(w=2\\). Then\n\\[\n2\\cdot 2^x=2^{x+1}=2^z,\n\\]\nso \\(z=x+1\\). Thus all solutions in this case are\n\\[\n(w,x,y,z)=(2,n,n,n+1), \\quad n\\ge 1.\n\\]\n\n### 3) \\(x<y\\)\nThen \\(y-x\\ge 1\\), and\n\\[\n1+w^{y-x}=w^{z-x}.\n\\]\nThe left side is congruent to \\(1 \\pmod w\\), while the right side is divisible by \\(w\\) if \\(z>x\\). So we must have \\(z=x\\), giving\n\\[\n1+w^{y-x}=1,\n\\]\nimpossible. Hence no solutions in this case.\n\nTherefore the only solutions are when \\(w=2\\) and \\(x=y\\), with \\(z=x+1\\).\n\nFinal answer: \\((w,x,y,z)=(2,n,n,n+1)\\) for any positive integer \\(n\\).",
+  "usage": {
+    "input_tokens": 79,
+    "output_tokens": 441,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 2.6698203899431974,
+  "cached": false
+}

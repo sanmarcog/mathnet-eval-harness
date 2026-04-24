@@ -1,0 +1,19 @@
+{
+  "id": "09xa",
+  "country": "Netherlands",
+  "competition": "Dutch Mathematical Olympiad",
+  "gold_final_answer": "{14, 19}, {15, 18}, {16, 17}",
+  "topics_flat": [
+    "Algebra > Prealgebra / Basic Algebra > Integers"
+  ],
+  "prompt": "We have two integers consisting of two digits, and both numbers do not start with a $0$. If you add these numbers, you get the number $S$. If you interchange the two digits of both numbers and add the new numbers, you get $4S$.\nDetermine all possible pairs of two-digit numbers satisfying these constraints. Make sure to clearly indicate in your answer which numbers form a pair.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let the two numbers be  \n\\[\n10a+b \\quad \\text{and} \\quad 10c+d,\n\\]\nwhere \\(a,c\\in\\{1,\\dots,9\\}\\) and \\(b,d\\in\\{0,\\dots,9\\}\\).\n\nTheir sum is\n\\[\nS=(10a+b)+(10c+d)=10(a+c)+(b+d).\n\\]\n\nAfter swapping digits in each number, we get\n\\[\n10b+a \\quad \\text{and} \\quad 10d+c,\n\\]\nwhose sum is\n\\[\n10(b+d)+(a+c).\n\\]\n\nWe are told this equals \\(4S\\), so\n\\[\n10(b+d)+(a+c)=4\\bigl(10(a+c)+(b+d)\\bigr).\n\\]\nExpanding:\n\\[\n10(b+d)+(a+c)=40(a+c)+4(b+d).\n\\]\nRearrange:\n\\[\n6(b+d)=39(a+c).\n\\]\nSo\n\\[\n2(b+d)=13(a+c).\n\\]\n\nNow \\(a+c\\) is an integer between \\(2\\) and \\(18\\). Since \\(13(a+c)\\) must be even, \\(a+c\\) must be even. Also \\(2(b+d)\\le 36\\), so\n\\[\n13(a+c)\\le 36 \\implies a+c\\le 2,\n\\]\nbecause \\(a+c\\) is positive. Thus\n\\[\na+c=2.\n\\]\nThen\n\\[\n2(b+d)=13\\cdot 2=26 \\implies b+d=13.\n\\]\n\nSince \\(a+c=2\\) and both \\(a,c\\ge 1\\), we must have\n\\[\na=c=1.\n\\]\nAnd \\(b+d=13\\), with \\(b,d\\in\\{0,\\dots,9\\}\\), gives all pairs of digits \\((b,d)\\) summing to \\(13\\).\n\nSo the two numbers are exactly of the form\n\\[\n(10+b,\\ 10+d)\n\\]\nwith\n\\[\nb+d=13.\n\\]\n\nThus the possible pairs are:\n\\[\n(10,23),\\ (11,22),\\ (12,21),\\ (13,20),\\ (14,19),\\ (15,18),\\ (16,17),\n\\]\nand the same pairs with the two numbers swapped.\n\nFinal answer: \\((10,23), (11,22), (12,21), (13,20), (14,19), (15,18), (16,17)\\) (and each pair can be written in either order).",
+  "usage": {
+    "input_tokens": 129,
+    "output_tokens": 567,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.385907892952673,
+  "cached": false
+}

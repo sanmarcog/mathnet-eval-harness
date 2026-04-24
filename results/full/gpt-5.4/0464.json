@@ -1,0 +1,22 @@
+{
+  "id": "0464",
+  "country": "China",
+  "competition": "China-TST-2023B",
+  "gold_final_answer": "No; such an irrational number does not exist. For every irrational number, there are infinitely many positive integers n satisfying the condition.",
+  "topics_flat": [
+    "Number Theory > Other",
+    "Algebra > Algebraic Expressions > Sequences and Series > Floors and ceilings",
+    "Geometry > Plane Geometry > Combinatorial Geometry > Pick's theorem",
+    "Geometry > Plane Geometry > Analytic / Coordinate Methods > Cartesian coordinates"
+  ],
+  "prompt": "Does there exist an irrational number $x$ such that there are at most finitely many positive integers $n$ satisfying\n$$\n\\{kx\\} \\geq \\frac{1}{n+1}\n$$\nfor every $k \\in \\{1, \\dots, n\\}$?\n\nNote: Here, for a positive real number $y$, $\\{y\\}$ denotes the fractional part of $y$.",
+  "model": "gpt-5.4",
+  "response_text": "Yes.\n\nLet  \n\\[\nm_n(x):=\\min_{1\\le k\\le n}\\{kx\\}.\n\\]\nThe condition in the problem for a given \\(n\\) is exactly\n\\[\nm_n(x)\\ge \\frac1{n+1}.\n\\]\nWe want an irrational \\(x\\) for which this happens for only finitely many \\(n\\).\n\nThe key fact is from continued fractions / Diophantine approximation:\n\n- If \\(p/q\\) is a convergent to irrational \\(x\\), then\n  \\[\n  \\left|x-\\frac pq\\right|<\\frac1{q^2}.\n  \\]\n  Hence\n  \\[\n  |qx-p|<\\frac1q,\n  \\]\n  so\n  \\[\n  \\{qx\\}<\\frac1q\n  \\quad\\text{or}\\quad\n  \\{qx\\}>1-\\frac1q.\n  \\]\n\nNow choose an irrational \\(x\\) whose continued-fraction partial quotients are eventually all \\(1\\); for example\n\\[\nx=\\frac{\\sqrt5-1}{2}.\n\\]\nFor this \\(x\\), infinitely many convergents satisfy the stronger property that the error alternates in sign, and in particular for infinitely many denominators \\(q\\) of convergents we get\n\\[\n\\{qx\\}<\\frac1q.\n\\]\nTake such a \\(q\\), and set \\(n=q\\). Then among \\(k=1,\\dots,n\\) we may choose \\(k=q\\), giving\n\\[\nm_n(x)\\le \\{qx\\}<\\frac1q=\\frac1n<\\frac1{n+1}\\cdot\\frac{n+1}{n},\n\\]\nand in fact since \\(\\frac1q<\\frac1{q+1}\\) is false, let us instead take \\(n=q-1\\) and use the same convergent denominator shifted one step: for infinitely many convergent denominators \\(q\\), one also has\n\\[\n\\{qx\\}<\\frac1{q+1}.\n\\]\nThen with \\(n=q\\),\n\\[\nm_n(x)\\le \\{qx\\}<\\frac1{q+1}=\\frac1{n+1},\n\\]\nso the required inequality fails.\n\nConcretely, for \\(x=\\frac{\\sqrt5-1}{2}\\), the convergent denominators are Fibonacci numbers \\(F_t\\), and one has\n\\[\n\\{F_t x\\}=\n\\begin{cases}\n\\frac1{\\varphi^{\\,t}}<\\frac1{F_t+1} & \\text{for infinitely many }t,\n\\end{cases}\n\\]\nso for infinitely many \\(n=F_t\\) the condition fails. In fact it fails for all sufficiently large such \\(n\\), hence the set of \\(n\\) for which the condition holds is finite.\n\nTherefore such an irrational number does exist.\n\nFinal answer: Yes; for example \\(x=\\frac{\\sqrt5-1}{2}\\) works.",
+  "usage": {
+    "input_tokens": 136,
+    "output_tokens": 657,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 10.655386789003387,
+  "cached": false
+}

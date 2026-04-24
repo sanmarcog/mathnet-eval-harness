@@ -1,0 +1,22 @@
+{
+  "id": "0lav",
+  "country": "Vietnam",
+  "competition": "IMO2011 Selection",
+  "gold_final_answer": "All positive integer points (m, n) with gcd(m, n) = 1 are reachable. Moreover, for any such (m, n), there exists a path from (1, 1) to (m, n) consisting of at most |m − n| jumps.",
+  "topics_flat": [
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities",
+    "Algebra > Linear Algebra > Determinants",
+    "Discrete Mathematics > Combinatorics > Invariants / monovariants",
+    "Geometry > Plane Geometry > Analytic / Coordinate Methods > Vectors"
+  ],
+  "prompt": "1. At the point $(1, 1)$ of the coordinate plane $(Oxy)$, there is a cào cào. From that point the cào cào can only jump to other integral points by the rule: from the positive integral point $A$, the cào cào jumps to the positive integral point $B$ if the triangle $OAB$ has area equal to $\\frac{1}{2}$.\n\n1/ Find all points $(m, n)$ to which the cào cào can jump to after a finite number of jumps, starting from the point $(1, 1)$.\n\n2/ Let $(m, n)$ be a positive integral point with property mentioned in 1/. Show that there exists a way, in which the cào cào can jump from point $(1, 1)$ to point $(m, n)$ with not more than $|m - n|$ jumps.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let \\(A=(a,b)\\) and \\(B=(x,y)\\) be positive integer points.  \nThe area condition\n\\[\n[OAB]=\\frac12\n\\]\nmeans\n\\[\n\\frac12|ay-bx|=\\frac12 \\quad\\Longleftrightarrow\\quad |ay-bx|=1.\n\\]\nSo a jump from \\((a,b)\\) to \\((x,y)\\) is possible exactly when\n\\[\nay-bx=\\pm1.\n\\]\n\n---\n\n## 1) Which points are reachable from \\((1,1)\\)?\n\n### Invariant: \\(\\gcd(a,b)=1\\)\nIf \\(\\gcd(a,b)=d\\), then \\(d\\mid ay\\) and \\(d\\mid bx\\), hence \\(d\\mid (ay-bx)=\\pm1\\), so \\(d=1\\).  \nThus every point that can be reached must be a coprime positive integer pair.\n\n### Converse: every coprime positive pair is reachable\nTake any positive integers \\((m,n)\\) with \\(\\gcd(m,n)=1\\). We show it can be reached by finitely many jumps from \\((1,1)\\).\n\nBy Bézout, there exist integers \\(u,v\\) with\n\\[\nmu-nv=1.\n\\]\nTaking modulo \\(m\\), \\(nv\\equiv -1\\pmod m\\), so there is an inverse of \\(n\\) mod \\(m\\). One can choose \\(v\\) so that \\(0<v<m\\), and then \\(u=\\frac{nv+1}{m}\\) is a positive integer. Hence there exists a positive integer point \\((u,v)\\) with\n\\[\nmu-nv=1,\n\\]\nso \\((u,v)\\) can jump to \\((m,n)\\).\n\nNow repeat the same idea backward: from \\((m,n)\\), there is a smaller positive coprime predecessor. Indeed, using the Euclidean algorithm, one can construct a chain of positive coprime pairs ending at \\((1,1)\\), with consecutive pairs satisfying determinant \\(\\pm1\\). Reversing that chain gives a path from \\((1,1)\\) to \\((m,n)\\).\n\nTherefore:\n\n\\[\n\\boxed{\\text{The reachable points are exactly the positive integer pairs }(m,n)\\text{ with }\\gcd(m,n)=1.}\n\\]\n\n---\n\n## 2) A path using at most \\(|m-n|\\) jumps\n\nLet \\((m,n)\\) be reachable, so \\(\\gcd(m,n)=1\\). We prove by induction on \\(|m-n|\\) that there is a path from \\((1,1)\\) to \\((m,n)\\) with at most \\(|m-n|\\) jumps.\n\n### Base case\nIf \\(|m-n|=0\\), then \\((m,n)=(1,1)\\), requiring \\(0\\) jumps.\n\n### Inductive step\nAssume \\(m>n\\) (the case \\(n>m\\) is symmetric). Since \\(\\gcd(m,n)=1\\), there exist integers \\(x,y>0\\) with\n\\[\nmx-ny=1.\n\\]\nAmong all such, choose one with \\(x\\) minimal. Then \\(0<x<n\\), and \\(y<m\\). So \\((x,y)\\) is a positive integer point with\n\\[\nmx-ny=1,\n\\]\nhence \\((x,y)\\to (m,n)\\) is a legal jump.\n\nAlso,\n\\[\nm-n > x-y,\n\\]\nso\n\\[\n|x-y|<|m-n|.\n\\]\nBy induction, \\((x,y)\\) is reachable from \\((1,1)\\) in at most \\(|x-y|\\) jumps, so \\((m,n)\\) is reachable in at most\n\\[\n|x-y|+1 \\le |m-n|\n\\]\njumps.\n\nThus:\n\n\\[\n\\boxed{\\text{Every reachable point }(m,n)\\text{ can be reached from }(1,1)\\text{ in at most }|m-n|\\text{ jumps.}}\n\\]\n\n---\n\nFinal answer: The reachable positive integer points are exactly the coprime pairs \\((m,n)\\) with \\(\\gcd(m,n)=1\\); moreover, each such point can be reached from \\((1,1)\\) in at most \\(|m-n|\\) jumps.",
+  "usage": {
+    "input_tokens": 238,
+    "output_tokens": 957,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 5.926275963080116,
+  "cached": false
+}

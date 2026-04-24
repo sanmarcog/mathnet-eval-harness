@@ -1,0 +1,20 @@
+{
+  "id": "02g5",
+  "country": "Brazil",
+  "competition": "XXI OBM",
+  "gold_final_answer": "n-1 if n is even; n if n is odd",
+  "topics_flat": [
+    "Discrete Mathematics > Graph Theory > Matchings, Marriage Lemma, Tutte's theorem",
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments"
+  ],
+  "prompt": "There are $n$ football teams in *Tumbólia*.\nA championship is to be organized in which each team plays against every other exactly once. Every match takes place on Sundays and one team must not play more than once in the same day.\nFind the least integer $m$ for which it's possible to set up a championship lasting $m$ Sundays.",
+  "model": "gpt-5.4",
+  "response_text": "Each Sunday, a team can play at most one match, so on any given Sunday the matches must form a **matching** in the complete graph \\(K_n\\), where vertices are teams and edges are matches.\n\nSo the problem asks for the minimum number of matchings needed to partition all edges of \\(K_n\\). This is exactly the **edge-chromatic number** of \\(K_n\\).\n\nThere are two easy bounds/constructions.\n\n## 1. Lower bound\nEach team must play \\(n-1\\) matches total, and can play at most one per Sunday, so we must have\n\\[\nm \\ge n-1.\n\\]\n\nIf \\(n\\) is odd, then on any Sunday at most \\(\\frac{n-1}{2}\\) matches can be played, since one team must be idle. The total number of matches is\n\\[\n\\binom{n}{2}=\\frac{n(n-1)}{2}.\n\\]\nHence\n\\[\nm \\ge \\frac{\\binom{n}{2}}{(n-1)/2}=n.\n\\]\nSo:\n- if \\(n\\) is even, \\(m\\ge n-1\\);\n- if \\(n\\) is odd, \\(m\\ge n\\).\n\n## 2. Achievability\n### Case 1: \\(n\\) even\nThere is a standard round-robin schedule with exactly \\(n-1\\) Sundays: on each Sunday all \\(n\\) teams are paired off, giving \\(n/2\\) matches, and over \\(n-1\\) Sundays every pair meets exactly once.\n\n### Case 2: \\(n\\) odd\nAdd one dummy team, making \\(n+1\\) teams, now even. Schedule the \\(n+1\\) teams in \\(n\\) Sundays as in the even case. Whenever a team is paired with the dummy team, that real team has a bye. Removing the dummy matches leaves a valid schedule for the original \\(n\\) teams in exactly \\(n\\) Sundays.\n\nThus the minimum number of Sundays is\n\\[\nm=\n\\begin{cases}\nn-1,& n\\text{ even},\\\\[4pt]\nn,& n\\text{ odd}.\n\\end{cases}\n\\]\n\nFinal answer: \\(\\boxed{m=n-1 \\text{ if } n \\text{ is even, and } m=n \\text{ if } n \\text{ is odd}.}\\)",
+  "usage": {
+    "input_tokens": 122,
+    "output_tokens": 521,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 8.59646602300927,
+  "cached": false
+}

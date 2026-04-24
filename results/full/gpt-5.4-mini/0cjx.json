@@ -1,0 +1,20 @@
+{
+  "id": "0cjx",
+  "country": "Romania",
+  "competition": "75th Romanian Mathematical Olympiad",
+  "gold_final_answer": "a) A must equal its transpose. b) Example: the matrix whose only nonzero entries are ones in the first row at the first and second columns (all other entries zero) satisfies the property but is not symmetric.",
+  "topics_flat": [
+    "Algebra > Linear Algebra > Determinants",
+    "Algebra > Linear Algebra > Matrices"
+  ],
+  "prompt": "Let $n \\ge 3$ be an integer number. We say that a matrix $A \\in \\mathcal{M}_n(\\mathbb{C})$ has the property $(\\mathcal{P})$ if $\\det(A + X_{ij}) = \\det(A + X_{ji})$, for any $i, j \\in \\{1, 2, \\dots, n\\}$, where $X_{ij} \\in \\mathcal{M}_n(\\mathbb{C})$ is the matrix with $1$ at the position $(i, j)$ and $0$ elsewhere.\n\na) Assume a matrix $A \\in \\mathcal{M}_n(\\mathbb{C})$ with the property $(\\mathcal{P})$, such that $\\det(A) \\neq 0$. Prove that $A = A^T$.\n\nb) Give an example of a matrix $A \\in \\mathcal{M}_n(\\mathbb{C})$ with the property $(\\mathcal{P})$, but $A \\neq A^T$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let \\(A=(a_{kl})\\in M_n(\\mathbb C)\\). Recall that\n\\[\n\\det(A+X_{ij})-\\det(A)\n\\]\nis exactly the \\((j,i)\\)-cofactor of \\(A\\), i.e.\n\\[\n\\det(A+X_{ij})=\\det(A)+C_{ji}(A),\n\\]\nbecause the determinant is linear in the added entry \\(a_{ij}\\) and the coefficient of \\(a_{ij}\\) in \\(\\det(A)\\) is the cofactor \\(C_{ji}(A)\\).\n\nSo property \\((\\mathcal P)\\) is equivalent to\n\\[\nC_{ji}(A)=C_{ij}(A)\\qquad \\forall\\, i,j.\n\\]\n\n## a) If \\(\\det(A)\\neq 0\\), prove \\(A=A^T\\)\n\nSince \\(A\\) is invertible, its adjugate satisfies\n\\[\n\\operatorname{adj}(A)=\\det(A)\\,A^{-1}.\n\\]\nAlso \\(C_{ji}(A)\\) is the \\((i,j)\\)-entry of \\(\\operatorname{adj}(A)\\). Thus\n\\[\nC_{ji}(A)=C_{ij}(A)\\ \\forall i,j\n\\quad\\Longleftrightarrow\\quad\n\\operatorname{adj}(A)^T=\\operatorname{adj}(A).\n\\]\nHence \\(\\operatorname{adj}(A)\\) is symmetric. But then\n\\[\n\\det(A)\\,A^{-1}=\\operatorname{adj}(A)\n\\]\nis symmetric, so \\(A^{-1}\\) is symmetric. Taking transposes,\n\\[\n(A^{-1})^T=A^{-1}.\n\\]\nNow invert both sides:\n\\[\n(A^T)^{-1}=A^{-1}.\n\\]\nTherefore \\(A^T=A\\).\n\nSo any invertible matrix with property \\((\\mathcal P)\\) must be symmetric.\n\n---\n\n## b) Example with \\((\\mathcal P)\\) but \\(A\\neq A^T\\)\n\nTake any non-symmetric singular matrix whose cofactors \\(C_{ij}\\) are all equal in the required way. A simple example is the all-ones matrix\n\\[\nA=J_n=\\begin{pmatrix}\n1&1&\\cdots&1\\\\\n1&1&\\cdots&1\\\\\n\\vdots&\\vdots&\\ddots&\\vdots\\\\\n1&1&\\cdots&1\n\\end{pmatrix}.\n\\]\nThis matrix is symmetric, so it does not serve.\n\nInstead, consider for \\(n\\ge 3\\):\n\\[\nA=\n\\begin{pmatrix}\n1&1&0&0&\\cdots&0\\\\\n0&0&0&0&\\cdots&0\\\\\n0&0&0&0&\\cdots&0\\\\\n\\vdots&\\vdots&\\vdots&\\vdots&&\\vdots\\\\\n0&0&0&0&\\cdots&0\n\\end{pmatrix}.\n\\]\nThen \\(\\det(A)=0\\), and for any \\(i,j\\), the matrices \\(A+X_{ij}\\) and \\(A+X_{ji}\\) each have at most two nonzero rows, with the same determinant value \\(0\\). Hence\n\\[\n\\det(A+X_{ij})=\\det(A+X_{ji})=0\n\\]\nfor all \\(i,j\\), so \\((\\mathcal P)\\) holds.\n\nBut \\(A\\neq A^T\\) because \\(a_{12}=1\\) while \\(a_{21}=0\\).\n\nThus this is a valid example.\n\nFinal answer:  \na) If \\(\\det(A)\\neq 0\\) and \\(A\\) has property \\((\\mathcal P)\\), then \\(A=A^T\\).  \nb) For \\(n\\ge 3\\),\n\\[\nA=\\begin{pmatrix}\n1&1&0&\\cdots&0\\\\\n0&0&0&\\cdots&0\\\\\n0&0&0&\\cdots&0\\\\\n\\vdots&\\vdots&\\vdots&&\\vdots\\\\\n0&0&0&\\cdots&0\n\\end{pmatrix}\n\\]\nhas property \\((\\mathcal P)\\) but \\(A\\ne A^T\\).",
+  "usage": {
+    "input_tokens": 281,
+    "output_tokens": 960,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 5.7931171000236645,
+  "cached": false
+}

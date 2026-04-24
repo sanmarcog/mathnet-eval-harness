@@ -1,0 +1,20 @@
+{
+  "id": "0dew",
+  "country": "Saudi Arabia",
+  "competition": "Saudi Arabian IMO Booklet",
+  "gold_final_answer": "0, 3, 4, 5, 8",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Polynomial operations",
+    "Algebra > Algebraic Expressions > Polynomials > Vieta's formulas"
+  ],
+  "prompt": "Let $x, y \\in \\mathbb{R}$ be such that $x = y(3 - y)^2$ and $y = x(3 - x)^2$. Find all possible values of $x + y$.",
+  "model": "gpt-5.4",
+  "response_text": "Let\n\\[\nx=y(3-y)^2,\\qquad y=x(3-x)^2.\n\\]\nWe want all possible values of \\(x+y\\).\n\nWe solve the system symmetrically.\n\n## 1. Use symmetry\n\nDefine\n\\[\nf(t)=t(3-t)^2.\n\\]\nThen the system is\n\\[\nx=f(y),\\qquad y=f(x).\n\\]\n\nSubtract the two equations:\n\\[\nx-y = y(3-y)^2 - x(3-x)^2.\n\\]\nBring all terms together:\n\\[\nx-y + x(3-x)^2 - y(3-y)^2=0.\n\\]\nNow expand:\n\\[\nx(3-x)^2 = 9x-6x^2+x^3,\\qquad y(3-y)^2=9y-6y^2+y^3.\n\\]\nSo\n\\[\n(x-y)+(9x-6x^2+x^3)-(9y-6y^2+y^3)=0.\n\\]\nGroup terms:\n\\[\n10(x-y)-6(x^2-y^2)+(x^3-y^3)=0.\n\\]\nFactor:\n\\[\n(x-y)\\bigl(10-6(x+y)+(x^2+xy+y^2)\\bigr)=0.\n\\]\nHence either\n\n### Case 1:\n\\[\nx=y,\n\\]\nor\n\n### Case 2:\n\\[\nx^2+xy+y^2-6(x+y)+10=0.\n\\]\n\n---\n\n## 2. Case 1: \\(x=y\\)\n\nThen\n\\[\nx=x(3-x)^2.\n\\]\nSo either \\(x=0\\), or\n\\[\n(3-x)^2=1.\n\\]\nThus\n\\[\n3-x=\\pm1 \\implies x=2 \\text{ or } x=4.\n\\]\nHence the solutions with \\(x=y\\) give\n\\[\nx+y=0,\\ 4,\\ 8.\n\\]\n\n---\n\n## 3. Case 2: \\(x\\ne y\\)\n\nLet\n\\[\ns=x+y,\\qquad p=xy.\n\\]\nThen\n\\[\nx^2+xy+y^2=(x+y)^2-xy=s^2-p.\n\\]\nSo the condition becomes\n\\[\ns^2-p-6s+10=0,\n\\]\ni.e.\n\\[\np=s^2-6s+10.\n\\]\n\nNow add the original equations:\n\\[\nx+y = y(3-y)^2 + x(3-x)^2.\n\\]\nExpanding,\n\\[\ns = (9y-6y^2+y^3)+(9x-6x^2+x^3).\n\\]\nUse\n\\[\nx^2+y^2=s^2-2p,\\qquad x^3+y^3=s^3-3ps.\n\\]\nThen\n\\[\ns = 9s - 6(s^2-2p) + (s^3-3ps).\n\\]\nSo\n\\[\n0=8s-6s^2+12p+s^3-3ps.\n\\]\nSubstitute \\(p=s^2-6s+10\\):\n\\[\n0=8s-6s^2+12(s^2-6s+10)+s^3-3s(s^2-6s+10).\n\\]\nSimplify:\n\\[\n0=8s-6s^2+12s^2-72s+120+s^3-3s^3+18s^2-30s\n\\]\n\\[\n0=-2s^3+24s^2-94s+120.\n\\]\nSo\n\\[\n2s^3-24s^2+94s-120=0\n\\]\n\\[\ns^3-12s^2+47s-60=0.\n\\]\nFactor:\n\\[\ns^3-12s^2+47s-60=(s-4)(s-3)(s-5).\n\\]\nThus\n\\[\ns=3,\\ 4,\\ 5.\n\\]\n\nBut \\(s=4\\) already arose from the case \\(x=y=2\\). We must check which values are possible for \\(x\\ne y\\).\n\nSince \\(x,y\\) are real roots of\n\\[\nt^2-st+p=0,\n\\]\nwe need discriminant\n\\[\n\\Delta=s^2-4p\\ge 0.\n\\]\nUsing \\(p=s^2-6s+10\\),\n\\[\n\\Delta=s^2-4(s^2-6s+10)=-3s^2+24s-40.\n\\]\n\nCheck the candidates:\n\n- \\(s=3\\): \\(\\Delta=-27+72-40=5>0\\), valid.\n- \\(s=4\\): \\(\\Delta=-48+96-40=8>0\\), valid.\n- \\(s=5\\): \\(\\Delta=-75+120-40=5>0\\), valid.\n\nSo all three are possible.\n\nTherefore the possible values of \\(x+y\\) are\n\\[\n0,\\ 3,\\ 4,\\ 5,\\ 8.\n\\]\n\nFinal answer: \\(\\boxed{0,3,4,5,8}\\)",
+  "usage": {
+    "input_tokens": 97,
+    "output_tokens": 1138,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 14.991199041949585,
+  "cached": false
+}

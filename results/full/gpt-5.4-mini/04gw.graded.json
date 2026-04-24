@@ -1,0 +1,27 @@
+{
+  "id": "04gw",
+  "country": "Croatia",
+  "competition": "Mathematica competitions in Croatia",
+  "gold_final_answer": "5√58 : 16",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Triangles > Triangle trigonometry",
+    "Geometry > Plane Geometry > Analytic / Coordinate Methods > Trigonometry",
+    "Geometry > Plane Geometry > Analytic / Coordinate Methods > Vectors",
+    "Geometry > Plane Geometry > Miscellaneous > Angle chasing"
+  ],
+  "prompt": "Let $\\triangle ABC$ be a right triangle. Point $M$ is chosen on the bisector of the right angle $\\angle ACB$. If we have $\\sin \\angle MAC = \\frac{8}{17}$ and $\\cos \\angle MBC = \\frac{3}{5}$, determine the ratio $|AB| : |CM|$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let \\( \\angle ACB=90^\\circ\\), and let \\(CM\\) be the angle bisector, so\n\\[\n\\angle ACM=\\angle MCB=45^\\circ.\n\\]\n\nSet\n\\[\nx=\\angle MAC,\\qquad y=\\angle MBC.\n\\]\nGiven\n\\[\n\\sin x=\\frac{8}{17}\\implies \\cos x=\\frac{15}{17},\n\\]\nand\n\\[\n\\cos y=\\frac{3}{5}\\implies \\sin y=\\frac{4}{5}.\n\\]\n\nSince \\(M\\) lies on the bisector of the right angle at \\(C\\), the angles at \\(A\\) and \\(B\\) satisfy\n\\[\n\\angle A+\\angle B=90^\\circ,\n\\]\nand because \\(M\\) is inside the triangle,\n\\[\n\\angle A = x+45^\\circ,\\qquad \\angle B = y+45^\\circ.\n\\]\nSo indeed \\(\\angle A+\\angle B=90^\\circ\\) is consistent.\n\nNow use the Law of Sines in triangles \\(AMC\\) and \\(BMC\\):\n\nIn \\(\\triangle AMC\\),\n\\[\n\\frac{CM}{\\sin x}=\\frac{AC}{\\sin(45^\\circ-x)}.\n\\]\nIn \\(\\triangle BMC\\),\n\\[\n\\frac{CM}{\\sin y}=\\frac{BC}{\\sin(45^\\circ-y)}.\n\\]\n\nA cleaner route is to compute the side ratios using the angle values. Since\n\\[\n\\angle A = 45^\\circ + x,\\qquad \\angle B = 45^\\circ + y,\n\\]\nwe get\n\\[\n\\angle A = 45^\\circ+\\arcsin\\frac{8}{17},\\qquad\n\\angle B = 45^\\circ+\\arccos\\frac35.\n\\]\nUsing the tangent formulas,\n\\[\n\\tan x=\\frac{8}{15},\\qquad \\tan y=\\frac{4}{3}.\n\\]\nHence\n\\[\n\\tan\\angle A=\\tan(45^\\circ+x)=\\frac{1+\\tan x}{1-\\tan x}\n=\\frac{1+\\frac{8}{15}}{1-\\frac{8}{15}}=\\frac{23}{7},\n\\]\nand\n\\[\n\\tan\\angle B=\\tan(45^\\circ+y)=\\frac{1+\\tan y}{1-\\tan y}\n=\\frac{1+\\frac43}{1-\\frac43}=-7.\n\\]\nSo in absolute value,\n\\[\n\\frac{BC}{AC}=\\tan\\angle A=\\frac{23}{7},\\qquad \\frac{AB}{AC}=\\tan\\angle B = 7.\n\\]\nThus if \\(AC=7k\\), then \\(AB=7k\\) and \\(BC=23k\\). But this is impossible for a right triangle with right angle at \\(C\\), so we instead use the correct interpretation:\n\\[\n\\tan\\angle A=\\frac{BC}{AC},\\qquad \\tan\\angle B=\\frac{AC}{BC}.\n\\]\nTherefore\n\\[\n\\frac{BC}{AC}=\\frac{7}{23}.\n\\]\n\nNow compute \\(CM\\). Since \\(M\\) is on the angle bisector of the right angle, the length formula gives\n\\[\nCM=\\frac{2\\cdot AC\\cdot BC\\cdot \\cos(45^\\circ)}{AC+BC}\n\\]\nequivalently, in a right triangle,\n\\[\nCM=\\frac{AC\\cdot BC}{AC+BC}\\sqrt2.\n\\]\nLet \\(AC=23k\\), \\(BC=7k\\). Then\n\\[\nAB=\\sqrt{(23k)^2+(7k)^2}=\\sqrt{578}\\,k=17\\sqrt2\\,k,\n\\]\nand\n\\[\nCM=\\frac{23k\\cdot 7k}{30k}\\sqrt2=\\frac{161}{30}\\sqrt2\\,k.\n\\]\nHence\n\\[\nAB:CM = 17\\sqrt2 k : \\frac{161}{30}\\sqrt2 k = 510:161.\n\\]\n\nSo the desired ratio is\n\n**Final answer: \\(\\boxed{510:161}\\)**",
+  "usage": {
+    "input_tokens": 121,
+    "output_tokens": 921,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 5.728508386993781,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "510:161"
+  }
+}

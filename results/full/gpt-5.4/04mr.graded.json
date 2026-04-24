@@ -1,0 +1,25 @@
+{
+  "id": "04mr",
+  "country": "Croatia",
+  "competition": "Croatia_2018",
+  "gold_final_answer": "All positive integers divisible by 9",
+  "topics_flat": [
+    "Number Theory > Modular Arithmetic",
+    "Number Theory > Divisibility / Factorization"
+  ],
+  "prompt": "Determine all positive integers $n$ such that there exist positive integers $a$ and $b$ which satisfy\n$$\nS(a) = S(b) = S(a + b) = n.\n$$\nHere $S(a)$ denotes the sum of digits of $a$. (Romania 1999)",
+  "model": "gpt-5.4",
+  "response_text": "We seek all positive integers \\(n\\) for which there exist positive integers \\(a,b\\) with\n\\[\nS(a)=S(b)=S(a+b)=n,\n\\]\nwhere \\(S(x)\\) is the sum of decimal digits of \\(x\\).\n\nWe will prove:\n\n- such \\(a,b\\) exist for every \\(n\\ge 2\\),\n- and they do **not** exist for \\(n=1\\).\n\nSo the answer is all positive integers \\(n\\neq 1\\).\n\n---\n\n## 1. A useful fact about digit sums\n\nFor any positive integers \\(x,y\\), when adding \\(x+y\\), every carry decreases the digit sum by \\(9\\). Hence\n\\[\nS(x+y)=S(x)+S(y)-9c\n\\]\nfor some nonnegative integer \\(c\\) (the number of carries).\n\nSo in our problem,\n\\[\nn=S(a+b)=S(a)+S(b)-9c=n+n-9c=2n-9c.\n\\]\nTherefore\n\\[\nn=9c.\n\\]\nWait: this would only be true if we used the same \\(n\\) for all three sums, and indeed we do. So necessarily\n\\[\nn=9c,\n\\]\nwhich seems to imply \\(n\\) must be divisible by \\(9\\). But this is actually too quick: the formula with \\(c\\) as “number of carries” is correct, so let us check carefully:\n\\[\nS(a+b)=S(a)+S(b)-9c = n+n-9c.\n\\]\nSince \\(S(a+b)=n\\), yes,\n\\[\nn=2n-9c \\implies n=9c.\n\\]\nThus a **necessary** condition is that \\(n\\) be divisible by \\(9\\).\n\nNow we show it is also sufficient.\n\n---\n\n## 2. Sufficiency for multiples of \\(9\\)\n\nLet \\(n=9k\\), \\(k\\ge 1\\).\n\nChoose\n\\[\na=\\underbrace{99\\cdots 9}_{k\\text{ digits}},\\qquad\nb=1\\underbrace{99\\cdots 9}_{k-1\\text{ digits}}.\n\\]\nThen\n\\[\nS(a)=9k=n,\n\\]\nand\n\\[\nS(b)=1+9(k-1)=9k-8,\n\\]\nwhich is not \\(n\\). So this choice fails.\n\nLet us try a better construction.\n\nTake\n\\[\na=\\underbrace{99\\cdots 9}_{k\\text{ digits}}1,\\qquad\nb=\\underbrace{99\\cdots 9}_{k\\text{ digits}}1.\n\\]\nThen \\(S(a)=S(b)=9k+1\\), not \\(9k\\). Also not good.\n\nWe need a systematic construction.\n\nLet\n\\[\na=18\\underbrace{9\\cdots 9}_{k-1\\text{ digits}},\\qquad\nb=81\\underbrace{0\\cdots 0}_{k-1\\text{ digits}}.\n\\]\nThen \\(S(a)=9+9(k-1)=9k\\), \\(S(b)=9\\), so also not good.\n\nInstead, we build from the case \\(n=9\\).\n\nTake\n\\[\na=18,\\qquad b=27.\n\\]\nThen\n\\[\nS(a)=9,\\quad S(b)=9,\\quad a+b=45,\\quad S(a+b)=9.\n\\]\nSo \\(n=9\\) works.\n\nNow if \\(n=9k\\), concatenate \\(k\\) independent blocks:\n\\[\na=\\underbrace{18\\,18\\,\\cdots\\,18}_{k\\text{ blocks}},\\qquad\nb=\\underbrace{27\\,27\\,\\cdots\\,27}_{k\\text{ blocks}}.\n\\]\nIn each block,\n\\[\n18+27=45,\n\\]\nwith no carry from one block to the next. Therefore\n\\[\na+b=\\underbrace{45\\,45\\,\\cdots\\,45}_{k\\text{ blocks}}.\n\\]\nHence\n\\[\nS(a)=k\\cdot 9=9k=n,\\quad S(b)=k\\cdot 9=9k=n,\\quad S(a+b)=k\\cdot 9=9k=n.\n\\]\nSo every multiple of \\(9\\) works.\n\n---\n\n## 3. Non-multiples of \\(9\\) do not work\n\nFrom the carry formula above, \\(n=9c\\), so \\(9\\mid n\\). Therefore if \\(9\\nmid n\\), no such \\(a,b\\) exist.\n\n---\n\nThus the set of all such \\(n\\) is exactly the set of positive multiples of \\(9\\).\n\nFinal answer: \\(\\boxed{\\text{all positive integers }n\\text{ divisible by }9}\\).",
+  "usage": {
+    "input_tokens": 112,
+    "output_tokens": 1040,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 14.037123933900148,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "\\text{all positive integers }n\\text{ divisible by }9"
+  }
+}

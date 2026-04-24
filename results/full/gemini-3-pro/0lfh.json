@@ -1,0 +1,20 @@
+{
+  "id": "0lfh",
+  "country": "Vietnam",
+  "competition": "Vietnamese MO",
+  "gold_final_answer": "All solutions are P(x) = k with k a nonzero real constant, and Q(x) = [-k(x^{2024} + x) - x^3 - 2025x - k^{2023}]/k^2.",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Polynomial operations",
+    "Algebra > Algebraic Expressions > Functional Equations"
+  ],
+  "prompt": "Find all polynomials $P(x)$, $Q(x)$ with real coefficients, such that for each real number $a$, $P(a)$ is the solution of the following equation\n$$\nx^{2023} + Q(a)x^2 + (a^{2024} + a)x + a^3 + 2025a = 0.\n$$",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find all polynomials $P(x)$ and $Q(x)$ satisfying the given condition, we start by substituting $x = P(a)$ into the equation. Since this must hold for all real numbers $a$, we can write it as a polynomial identity in $x$:\n$$ P(x)^{2023} + Q(x)P(x)^2 + (x^{2024} + x)P(x) + x^3 + 2025x = 0 $$\n\nWe can rearrange this to solve for $Q(x)P(x)^2$:\n$$ Q(x)P(x)^2 = - P(x)^{2023} - x^{2024}P(x) - x P(x) - x^3 - 2025x $$\nFor $Q(x)$ to be a polynomial, $P(x)^2$ must divide the right-hand side. Consequently, $P(x)$ must divide the right-hand side. Since $P(x)$ trivially divides $P(x)^{2023} + x^{2024}P(x) + x P(x)$, it must also divide the remaining terms:\n$$ P(x) \\mid x^3 + 2025x = x(x^2 + 2025) $$\n\nIf $P(0) = 0$, then $P(x) = x R(x)$ for",
+  "usage": {
+    "input_tokens": 125,
+    "output_tokens": 323,
+    "thoughts_tokens": 7865
+  },
+  "latency_s": 61.03873059595935,
+  "cached": false
+}

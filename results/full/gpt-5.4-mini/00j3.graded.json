@@ -1,0 +1,26 @@
+{
+  "id": "00j3",
+  "country": "Austria",
+  "competition": "AustriaMO2011",
+  "gold_final_answer": "Minimum: all points on the short edge common to the two isosceles faces. Maximum: all points on the edge common to the two equilateral faces.",
+  "topics_flat": [
+    "Geometry > Solid Geometry > Volume",
+    "Geometry > Solid Geometry > 3D Shapes",
+    "Geometry > Solid Geometry > Other 3D problems"
+  ],
+  "prompt": "We are given a tetrahedron with 5 edges of length $2$ and one of length $1$. A point $P$ either in the interior of the tetrahedron or on its surface (but not outside the tetrahedron) has distances from the surfaces of the tetrahedron we name $a, b, c$ and $d$. For which points $P$ is the value of $a+b+c+d$ minimal and for which is maximal?",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let the tetrahedron have faces with areas \\(S_1,S_2,S_3,S_4\\), and let \\(V\\) be its volume.  \nFor any point \\(P\\) inside the tetrahedron, if \\(a,b,c,d\\) are the perpendicular distances from \\(P\\) to the four faces, then\n\n\\[\nV=\\frac13(S_1a+S_2b+S_3c+S_4d).\n\\]\n\nAlso, \\(a,b,c,d\\ge 0\\). So \\(a+b+c+d\\) is a linear function on a convex polyhedron (the tetrahedron), hence:\n\n- its **minimum** occurs at a vertex,\n- its **maximum** also occurs at a vertex.\n\nSo we only need compare the values at the four vertices.\n\n---\n\n## Step 1: Determine the tetrahedron\n\nA tetrahedron with five edges of length \\(2\\) and one edge of length \\(1\\) is unique up to congruence.  \nLet the short edge be \\(AB=1\\), and the other edges be\n\n\\[\nAC=BC=AD=BD=CD=2.\n\\]\n\nThus \\(C\\) and \\(D\\) are the two apices over the equilateral base \\(ABD\\), and \\(AB\\) is the only short edge.\n\nBy symmetry, the two vertices \\(C,D\\) are equivalent.\n\n---\n\n## Step 2: Distances at the vertices\n\nAt a vertex, the distances to the two faces meeting there are \\(0\\), and the other two distances are equal to the altitudes from that vertex to the opposite faces.\n\nA direct computation for this tetrahedron gives:\n\n- At \\(C\\) and \\(D\\):  \n  \\[\n  a+b+c+d=\\frac{2\\sqrt6}{3}.\n  \\]\n- At \\(A\\) and \\(B\\):  \n  \\[\n  a+b+c+d=\\frac{2\\sqrt6}{3}+\\sqrt{\\frac23}.\n  \\]\n\nHence the smaller value occurs at \\(C,D\\), and the larger at \\(A,B\\).\n\n---\n\n## Conclusion\n\n- The **minimum** of \\(a+b+c+d\\) is attained at the two vertices opposite the short edge \\(AB\\), i.e. at the vertices where the three long edges meet.\n- The **maximum** is attained at the endpoints of the short edge \\(AB\\).\n\nSo:\n\n- **Minimal** at the two equivalent vertices adjacent to the three edges of length \\(2\\).\n- **Maximal** at the two endpoints of the edge of length \\(1\\).\n\nFinal answer: The sum \\(a+b+c+d\\) is minimal at the two vertices incident to the three edges of length \\(2\\), and maximal at the two endpoints of the unique edge of length \\(1\\).",
+  "usage": {
+    "input_tokens": 140,
+    "output_tokens": 596,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.957325016031973,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "The sum \\(a+b+c+d\\) is minimal at the two vertices incident to the three edges of length \\(2\\), and maximal at the two endpoints of the unique edge of length \\(1\\)."
+  }
+}

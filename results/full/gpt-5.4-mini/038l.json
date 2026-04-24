@@ -1,0 +1,20 @@
+{
+  "id": "038l",
+  "country": "Bulgaria",
+  "competition": "Spring Mathematical Tournament",
+  "gold_final_answer": "x = (37 + sqrt(13)) / 2, y = (5 + sqrt(13)) / 2",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Irreducibility: Rational Root Theorem, Gauss's Lemma, Eisenstein",
+    "Algebra > Intermediate Algebra > Quadratic functions"
+  ],
+  "prompt": "Solve the system\n$$\n\\left|\n\\begin{array}{l}\n\\sqrt{x^2 + y^2 - 16(x + y) - 9y + 7} = y - 2 \\\\\nx + 13\\sqrt[4]{x - y} = y + 42\n\\end{array}\n\\right.\n$$",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let  \n\\[\na=\\sqrt[4]{x-y}\\ge 0.\n\\]\nThen\n\\[\nx-y=a^4.\n\\]\nFrom the second equation,\n\\[\nx+13a=y+42 \\quad\\Longrightarrow\\quad x-y=42-13a.\n\\]\nSo\n\\[\na^4=42-13a\n\\quad\\Longrightarrow\\quad\na^4+13a-42=0.\n\\]\nTesting integer roots, \\(a=2\\) works:\n\\[\n2^4+13\\cdot 2-42=16+26-42=0.\n\\]\nHence\n\\[\na=2,\\qquad x-y=16.\n\\]\nUsing \\(x+13a=y+42\\),\n\\[\nx+26=y+42 \\quad\\Longrightarrow\\quad x-y=16\n\\]\n(consistently), so \\(x=y+16\\).\n\nNow substitute into the first equation:\n\\[\n\\sqrt{x^2+y^2-16(x+y)-9y+7}=y-2.\n\\]\nSince \\(x=y+16\\),\n\\[\nx^2+y^2=(y+16)^2+y^2=2y^2+32y+256,\n\\]\nand\n\\[\n-16(x+y)=-16(2y+16)=-32y-256.\n\\]\nSo the radicand becomes\n\\[\n2y^2+32y+256-32y-256-9y+7=2y^2-9y+7.\n\\]\nThus\n\\[\n\\sqrt{2y^2-9y+7}=y-2.\n\\]\nSquaring:\n\\[\n2y^2-9y+7=(y-2)^2=y^2-4y+4,\n\\]\nso\n\\[\ny^2-5y+3=0.\n\\]\nHence\n\\[\ny=\\frac{5\\pm \\sqrt{13}}{2}.\n\\]\nBut we need \\(y-2\\ge 0\\), so only\n\\[\ny=\\frac{5+\\sqrt{13}}{2}\n\\]\nworks. Then\n\\[\nx=y+16=\\frac{37+\\sqrt{13}}{2}.\n\\]\n\nFinal answer: \\(\\left(\\dfrac{37+\\sqrt{13}}{2},\\,\\dfrac{5+\\sqrt{13}}{2}\\right)\\)",
+  "usage": {
+    "input_tokens": 123,
+    "output_tokens": 526,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.561963299056515,
+  "cached": false
+}

@@ -1,0 +1,26 @@
+{
+  "id": "01rv",
+  "country": "Belarus",
+  "competition": "FINAL ROUND",
+  "gold_final_answer": "79 and 114",
+  "topics_flat": [
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities",
+    "Algebra > Prealgebra / Basic Algebra > Integers",
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities"
+  ],
+  "prompt": "After division of a positive integer $n$ by $29$, $41$, and $59$ one has three nonzero remainders such that their sum is equal to $n$.\nFind all possible values of $n$.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find all possible values of $n$, let the remainders when $n$ is divided by $29$, $41$, and $59$ be $r_1$, $r_2$, and $r_3$ respectively. We are given that $r_1, r_2, r_3 > 0$ and:\n$$n = r_1 + r_2 + r_3$$\n\nBy the division algorithm, we can write:\n$n = 29q_1 + r_1$\n$n = 41q_2 + r_2$\n$n = 59q_3 + r_3$\nwhere $q_1, q_2, q_3$ are the positive integer quotients. \n\nSince $r_1 < 29$, $r_2 < 41$, and $r_3 < 59$, we have:\n$$n = r_1 + r_2 + r_3 < 29 + 41 + 59 = 129$$\nThus, $n \\le 128$.\n\nWe can express the remainders as $r_1 = n - 29q_1$, $r_2 = n - 41q_2$, and $r_3 = n - 59q_3$. Substituting these into the sum of the remainders gives:\n$$n = (n - 29q_1) + (n - 41q_2) + (n - 59q_3)$$\n$$2n = 29q_1 + 41q_2 + 59q_3$$\n\nSince $n \\le 128$, $q_3$ can only be $1$ or $2$. \nLet's test the possible values for $q_3$:\n\n**Case 1: $q_3 = 1$**\nThe equation simplifies to $2n = 29q_1 + 41q_2 + 59$.\nSince $2n$ is even and $59$ is odd, $29q_1 + 41q_2$ must be odd. We test small integer values for $q_1$ and $q_2$:\n- If $q_2 = 1$, then $29q_1 + 41$ is odd, so $q_1$ must be even.\n  - For $q_1 = 2$: $2n = 29(2) + 41(1) + 59 = 158 \\implies n = 79$.\n    Checking $n = 79$: $79 = 29(2) + 21$, $79 = 41(1) + 38$, $79 = 59(1) + 20$. The remainders are $21, 38, 20$, which are all nonzero and sum to $21 + 38 + 20 = 79$. This is a valid solution.\n  - For $q_1 = 4$: $2n = 29(4) + 41(1) + 59 = 216 \\implies n = 108$.\n    Checking $n = 108$: $108 / 29 = 3$ with a remainder of $21$, which means $q_1 = 3 \\neq 4$. This is invalid.\n- If $q_2 = 2$, then $29q_1 + 82$ is odd, so $q_1$ must be odd.\n  - For $q_1 = 1$: $2n = 29(1) + 41(2) + 59 = 170 \\implies n = 85$.\n    Checking $n = 85$: $85 / 29 = 2$ with a remainder of $27$, so $q_1 = 2 \\neq 1$. Invalid.\n  - For $q_1 = 3$: $2n = 29(3) + 41(2) + 59 = 228 \\implies n = 114$.\n    Checking $n = 114$: $114 = 29(3) + 27$, $114 = 41(2) + 32$, $114 = 59(1) + 55$. The remainders are $27, 32, 55$, which are all nonzero and sum to $27 + 32 + 55 = 114$. This is a valid solution.\n\n**Case 2: $q_3 = 2$**\nThe equation simplifies to $2n = 29q_1 + 41q_2 + 118$.\nSince $q_3 = 2$, $n$ must be at least $59 \\times 2 + 1 = 119$. Thus $238 \\le 2n \\le 256$.\n- If $q_2 = 1$, $29q_1 = 2n - 159$. For $2n$ in the range $[238, 256]$, $29q_1$ must be between $79$ and $97$, which gives $q_1 = 3$.\n  Then $2n = 29(3) + 41(1) + 118 = 246 \\implies n = 123$.\n  Checking $n = 123$: $123 / 29 = 4$ with a remainder of $7$, so $q_1 = 4 \\neq 3$. Invalid.\n- Larger values of $q_2$ yield no integer solutions for $q_1$ within the valid range.\n\nFinal answer: 79, 114",
+  "usage": {
+    "input_tokens": 87,
+    "output_tokens": 1346,
+    "thoughts_tokens": 3331
+  },
+  "latency_s": 33.16211315093096,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "79, 114"
+  }
+}

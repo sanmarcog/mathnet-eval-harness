@@ -1,0 +1,26 @@
+{
+  "id": "0ai2",
+  "country": "North Macedonia",
+  "competition": "Macedonian Mathematical Olympiad",
+  "gold_final_answer": "302561952",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Combinatorial Geometry",
+    "Algebra > Equations and Inequalities > Jensen / smoothing",
+    "Discrete Mathematics > Combinatorics > Induction / smoothing"
+  ],
+  "prompt": "2014 lines are given in a plane, arranged in three groups of pairwise parallel lines. What is the greatest possible number of triangles formed by the lines (each side from such a triangle lies on one of the lines)?\n\nВо рамнина, 2014 прави се распоредени во три групи заемно паралелни прави. Кој е најголемиот можен број на триаголници кои ги образуваат правите (секоја страна од таков триаголник лежи на некоја од правите).",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let the three groups contain \\(a,b,c\\) lines, with\n\n\\[\na+b+c=2014.\n\\]\n\nA triangle is formed by choosing:\n- 1 line from the first group,\n- 1 line from the second group,\n- 1 line from the third group.\n\nSo the number of triangles is\n\n\\[\nabc.\n\\]\n\nWe must maximize \\(abc\\) subject to \\(a+b+c=2014\\), with \\(a,b,c\\) positive integers.  \nThe product is largest when the numbers are as equal as possible.\n\nNow\n\n\\[\n2014=3\\cdot 671 + 1,\n\\]\n\nso the most balanced split is\n\n\\[\n671,\\ 671,\\ 672.\n\\]\n\nHence the maximum number of triangles is\n\n\\[\n671\\cdot 671\\cdot 672 = 302{,}444{,}352.\n\\]\n\nFinal answer: \\(302{,}444{,}352\\)",
+  "usage": {
+    "input_tokens": 163,
+    "output_tokens": 212,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 1.8550418389495462,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "\\(302{,}444{,}352\\)"
+  }
+}

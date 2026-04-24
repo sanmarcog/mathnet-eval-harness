@@ -1,0 +1,21 @@
+{
+  "id": "09k1",
+  "country": "Mongolia",
+  "competition": "Mongolian Mathematical Olympiad",
+  "gold_final_answer": "(2, 3)",
+  "topics_flat": [
+    "Number Theory > Modular Arithmetic > Chinese remainder theorem",
+    "Number Theory > Divisibility / Factorization > Greatest common divisors (gcd)",
+    "Number Theory > Divisibility / Factorization > Prime numbers"
+  ],
+  "prompt": "Let $p$, $q$, $r$ be prime numbers such that $p < q < r$ and at least two of $p+n$, $q+n$, $r+n$ are relatively prime for any positive integer $n$. Find all possible values of the pair $(p, q)$.",
+  "model": "gpt-5.4",
+  "response_text": "We need determine all prime pairs \\((p,q)\\) for which there exists some prime \\(r>q\\) such that\n\n> for every positive integer \\(n\\), at least two of\n> \\[\n> p+n,\\quad q+n,\\quad r+n\n> \\]\n> are relatively prime.\n\nWe will show this forces \\((p,q)=(2,3)\\), and that this pair indeed works.\n\n## 1. Reformulate the condition\n\nIf for some \\(n\\), every pair among \\(p+n,q+n,r+n\\) had gcd \\(>1\\), then the condition would fail.\n\nSo for every \\(n\\), it is **not** allowed that all three pairwise gcds exceed \\(1\\).\n\nNow note:\n\\[\n\\gcd(p+n,q+n)\\mid (q+n)-(p+n)=q-p,\n\\]\nso any common divisor of \\(p+n\\) and \\(q+n\\) must divide \\(q-p\\). Similarly,\n\\[\n\\gcd(q+n,r+n)\\mid r-q,\\qquad \\gcd(p+n,r+n)\\mid r-p.\n\\]\n\nThis suggests using congruences modulo prime divisors of these differences.\n\n---\n\n## 2. First, \\(p\\) must be \\(2\\)\n\nAssume \\(p\\ge 3\\). Then \\(p,q,r\\) are all odd primes, so for odd \\(n\\),\n\\[\np+n,\\ q+n,\\ r+n\n\\]\nare all even and bigger than \\(2\\). Hence every pair has gcd at least \\(2\\). This violates the condition.\n\nTherefore,\n\\[\np=2.\n\\]\n\n---\n\n## 3. Then \\(q\\) must be \\(3\\)\n\nAssume \\(q>3\\). Since \\(q,r\\) are odd primes, both \\(q-2\\) and \\(r-2\\) are odd.\n\nLet \\(a\\) be any prime divisor of \\(q-2\\), and \\(b\\) any prime divisor of \\(r-2\\). Also let \\(c\\) be any prime divisor of \\(r-q\\) (note \\(r-q\\) is even, so \\(c\\) may be \\(2\\), but that is fine).\n\nChoose \\(n\\) by the system\n\\[\nn\\equiv -2 \\pmod a,\\qquad\nn\\equiv -2 \\pmod b,\\qquad\nn\\equiv -q \\pmod c.\n\\]\nThis is solvable by CRT after combining compatible congruences (the first two are the same residue class mod \\(a,b\\)); in particular we can choose positive \\(n\\).\n\nThen:\n- \\(2+n\\equiv 0\\pmod a\\), so \\(\\gcd(2+n,q+n)>1\\) because both differ by \\(q-2\\), and in fact \\(q+n\\equiv q-2\\equiv 0\\pmod a\\).\n- Similarly, \\(2+n\\equiv 0\\pmod b\\) and \\(r+n\\equiv r-2\\equiv 0\\pmod b\\), so \\(\\gcd(2+n,r+n)>1\\).\n- Also \\(q+n\\equiv 0\\pmod c\\) and \\(r+n\\equiv r-q\\equiv 0\\pmod c\\), so \\(\\gcd(q+n,r+n)>1\\).\n\nThus all three pairs have gcd \\(>1\\), contradiction.\n\nHence \\(q\\) cannot exceed \\(3\\). Since \\(q\\) is prime and \\(q>p=2\\), we get\n\\[\nq=3.\n\\]\n\nSo the only possible pair is\n\\[\n(p,q)=(2,3).\n\\]\n\n---\n\n## 4. Check that \\((2,3)\\) is actually possible\n\nWe need some prime \\(r>3\\) such that for every positive integer \\(n\\), at least two of\n\\[\n2+n,\\ 3+n,\\ r+n\n\\]\nare relatively prime.\n\nTake \\(r=5\\). Then the three numbers are\n\\[\nn+2,\\ n+3,\\ n+5.\n\\]\n\nSuppose no two were relatively prime. Then in particular:\n- \\(\\gcd(n+2,n+3)>1\\), impossible, since consecutive integers are coprime.\n\nSo already the pair \\((n+2,n+3)\\) is always relatively prime. Hence the condition is satisfied for every \\(n\\).\n\nThus \\((2,3)\\) indeed works.\n\n---\n\nTherefore the only possible pair is:\n\nFinal answer: \\((2,3)\\)",
+  "usage": {
+    "input_tokens": 110,
+    "output_tokens": 980,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 14.84302943595685,
+  "cached": false
+}

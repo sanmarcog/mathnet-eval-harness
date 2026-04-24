@@ -1,0 +1,19 @@
+{
+  "id": "07l7",
+  "country": "Ireland",
+  "competition": "Irska",
+  "gold_final_answer": "x^3 - 3/4 x",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Chebyshev polynomials"
+  ],
+  "prompt": "Find a polynomial $x^3 + a x^2 + b x + c$ for which $\\max_{x \\in [-1, 1]} |x^3 + a x^2 + b x + c|$ is minimised. You may assume that such a polynomial exists.",
+  "model": "claude-opus-4-7",
+  "response_text": "Final answer: <x^3 - (3/4)x>",
+  "usage": {
+    "input_tokens": 147,
+    "output_tokens": 22,
+    "thinking_tokens": 0
+  },
+  "latency_s": 1.405844046967104,
+  "cached": false
+}

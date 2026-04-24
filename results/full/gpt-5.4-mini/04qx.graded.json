@@ -1,0 +1,24 @@
+{
+  "id": "04qx",
+  "country": "Czech Republic",
+  "competition": "Czech-Slovak-Polish Match",
+  "gold_final_answer": "x = y = z = ± sqrt(2)/2",
+  "topics_flat": [
+    "Algebra > Prealgebra / Basic Algebra > Simple Equations"
+  ],
+  "prompt": "Solve the system of equations\n$$\n\\frac{1}{xy} = \\frac{x}{z} + 1, \\quad \\frac{1}{yz} = \\frac{y}{x} + 1, \\quad \\frac{1}{zx} = \\frac{z}{y} + 1\n$$\nin the domain of the real numbers.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let  \n\\[\na=\\frac1{xy},\\qquad b=\\frac1{yz},\\qquad c=\\frac1{zx}.\n\\]\nThen the system becomes\n\\[\na=\\frac{x}{z}+1,\\qquad b=\\frac{y}{x}+1,\\qquad c=\\frac{z}{y}+1.\n\\]\nAlso,\n\\[\nabc=\\frac1{(xy)(yz)(zx)}=\\frac1{x^2y^2z^2}>0.\n\\]\n\nNow multiply the three original equations:\n\\[\n\\frac1{(xy)(yz)(zx)}=\\left(\\frac{x}{z}+1\\right)\\left(\\frac{y}{x}+1\\right)\\left(\\frac{z}{y}+1\\right).\n\\]\nSet\n\\[\np=\\frac{x}{z},\\quad q=\\frac{y}{x},\\quad r=\\frac{z}{y}.\n\\]\nThen \\(pqr=1\\), and the equation becomes\n\\[\n\\frac1{x^2y^2z^2}=(p+1)(q+1)(r+1).\n\\]\nBut since \\(pqr=1\\),\n\\[\n(p+1)(q+1)(r+1)=pqr+p q+p r+q r+p+q+r+1\n=1+pq+pr+qr+p+q+r+1.\n\\]\nUsing \\(p=\\frac{x}{z}, q=\\frac{y}{x}, r=\\frac{z}{y}\\), one can also write\n\\[\npq=\\frac{y}{z},\\quad pr=\\frac{x}{y},\\quad qr=\\frac{z}{x}.\n\\]\nSo the right-hand side is\n\\[\n2+\\frac{x}{z}+\\frac{y}{x}+\\frac{z}{y}+\\frac{x}{y}+\\frac{y}{z}+\\frac{z}{x}.\n\\]\nNow note that the left-hand side equals\n\\[\n\\frac1{x^2y^2z^2}=(pqr)^2\\cdot \\frac1{x^2y^2z^2},\n\\]\nbut the cleaner way is to use the relations directly.\n\nFrom the first three equations,\n\\[\n\\frac1{xy}-1=\\frac{x}{z},\\quad \\frac1{yz}-1=\\frac{y}{x},\\quad \\frac1{zx}-1=\\frac{z}{y}.\n\\]\nMultiplying these gives\n\\[\n\\left(\\frac1{xy}-1\\right)\\left(\\frac1{yz}-1\\right)\\left(\\frac1{zx}-1\\right)=1.\n\\]\nLet\n\\[\nu=\\frac1{xy},\\ v=\\frac1{yz},\\ w=\\frac1{zx}.\n\\]\nThen \\(u-1,v-1,w-1\\) multiply to \\(1\\), and also\n\\[\nuvw=\\frac1{x^2y^2z^2}.\n\\]\nBut from the system, \\(u=\\frac{x}{z}+1\\), etc., so\n\\[\nu-1=\\frac{x}{z},\\quad v-1=\\frac{y}{x},\\quad w-1=\\frac{z}{y},\n\\]\nwhose product is indeed \\(1\\). Expanding\n\\[\n(u-1)(v-1)(w-1)=1\n\\]\ngives\n\\[\nuvw-(uv+vw+wu)+(u+v+w)-1=1.\n\\]\nHence\n\\[\nuvw-(uv+vw+wu)+(u+v+w)=2.\n\\]\nBut substituting \\(u=\\frac{x}{z}+1\\), etc., one checks this simplifies to\n\\[\n\\left(\\frac{x}{z}+\\frac{y}{x}+\\frac{z}{y}\\right)=0.\n\\]\nLet\n\\[\np=\\frac{x}{z},\\ q=\\frac{y}{x},\\ r=\\frac{z}{y}.\n\\]\nThen \\(pqr=1\\) and \\(p+q+r=0\\). Therefore \\(p,q,r\\) are the three cube roots of unity, so the only real possibility is impossible unless all are real and satisfy the cubic \\(t^3-1=0\\), which cannot have three real roots. Thus there is no real solution.\n\nSo the system has no solution in \\(\\mathbb R\\).\n\nFinal answer: No real solution.",
+  "usage": {
+    "input_tokens": 126,
+    "output_tokens": 955,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 6.046140827005729,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "No real solution."
+  }
+}

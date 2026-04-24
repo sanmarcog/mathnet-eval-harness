@@ -1,0 +1,26 @@
+{
+  "id": "054k",
+  "country": "Estonia",
+  "competition": "National Olympiad Final Round",
+  "gold_final_answer": "a and c",
+  "topics_flat": [
+    "Algebra > Prealgebra / Basic Algebra > Integers",
+    "Discrete Mathematics > Combinatorics > Invariants / monovariants",
+    "Number Theory > Other"
+  ],
+  "prompt": "Positive integer $b$ is obtained by reordering the digits in a positive integer $a$. Which of the following claims are definitely true?\n\na) The sums of the digits of numbers $2a$ and $2b$ are equal.\nb) The sums of the digits of numbers $3a$ and $3b$ are equal.\nc) The sums of the digits of numbers $5a$ and $5b$ are equal.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let \\(s(n)\\) denote the sum of the digits of \\(n\\). Since \\(a\\) and \\(b\\) are permutations of each other, they have the same digit sum, so\n\\[\na \\equiv b \\pmod 9.\n\\]\nBut the digit sum of \\(kn\\) is not determined just by \\(n \\pmod 9\\), so we must test each claim.\n\n### (a) \\(s(2a)=s(2b)\\)?\nFalse in general.  \nExample: \\(a=19\\), \\(b=91\\) are digit rearrangements.\n\n- \\(2a=38\\), so \\(s(2a)=3+8=11\\)\n- \\(2b=182\\), so \\(s(2b)=1+8+2=11\\)\n\nThis one happens to work, but not always. Try \\(a=18\\), \\(b=81\\):\n\n- \\(2a=36\\), \\(s(2a)=9\\)\n- \\(2b=162\\), \\(s(2b)=9\\)\n\nStill works. However, take \\(a=109\\), \\(b=190\\):\n\n- \\(2a=218\\), \\(s(2a)=11\\)\n- \\(2b=380\\), \\(s(2b)=11\\)\n\nIn fact, for multiplication by 2, the digit sum is not guaranteed to be preserved under reordering in a trivial way; but the statement is not among the “definitely true” ones because it is not a theorem from digit rearrangement alone.\n\n### (b) \\(s(3a)=s(3b)\\)?\nThis is definitely true.\n\nReason: since \\(a\\) and \\(b\\) have the same digit sum, they are congruent mod \\(9\\). Multiplying by 3 gives\n\\[\n3a \\equiv 3b \\pmod 9.\n\\]\nThe key point is that for any integer \\(n\\), the digit sum of \\(3n\\) depends only on the digits of \\(n\\), and when two numbers are permutations of the same digits, multiplying by 3 preserves the multiset structure of the carry behavior? Let's instead test with a standard fact: the sum of digits modulo 9 is preserved under multiplication, but equality of digit sums is not. So this is not definitely true either.\n\nIndeed, counterexample:\n\\[\na=12,\\quad b=21.\n\\]\nThen\n\\[\n3a=36,\\ s(36)=9,\\qquad 3b=63,\\ s(63)=9,\n\\]\nstill equal. But for larger examples the digit sums can differ. So not definite.\n\n### (c) \\(s(5a)=s(5b)\\)?\nAlso not definitely true.\n\nA simple counterexample:\n\\[\na=19,\\quad b=91.\n\\]\nThen\n\\[\n5a=95,\\ s(95)=14,\\qquad 5b=455,\\ s(455)=14,\n\\]\nagain equal, but this is accidental.\n\nIn fact, none of the statements is guaranteed for every rearrangement.\n\nSo the only safe conclusion is:\n\n**None of (a), (b), or (c) is definitely true.**\n\nFinal answer: None of (a), (b), or (c) are definitely true.",
+  "usage": {
+    "input_tokens": 139,
+    "output_tokens": 709,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 5.489902305998839,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "None of (a), (b), or (c) are definitely true."
+  }
+}

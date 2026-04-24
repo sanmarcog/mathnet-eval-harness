@@ -1,0 +1,24 @@
+{
+  "id": "0gjy",
+  "country": "Thailand",
+  "competition": "Thai Mathematical Olympiad",
+  "gold_final_answer": "All continuous solutions are f(x) = a x^2 for any real constant a.",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Functional Equations"
+  ],
+  "prompt": "Let $\\alpha = \\frac{1 + \\sqrt{5}}{2}$. Find all continuous functions $f: \\mathbb{R} \\to \\mathbb{R}$ such that, for all $x, y, z \\in \\mathbb{R}$,\n$$\n\\begin{aligned}\n& f(\\alpha x + y) + f(\\alpha y + z) + f(\\alpha z + x) \\\\\n&= \\alpha f(x + y + z) + 2f(x) + 2f(y) + 2f(z).\n\\end{aligned}\n$$",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Setting Up the Problem\n\nLet me denote the functional equation as:\n$$f(\\alpha x + y) + f(\\alpha y + z) + f(\\alpha z + x) = \\alpha f(x+y+z) + 2f(x) + 2f(y) + 2f(z)$$\n\nwhere $\\alpha = \\frac{1+\\sqrt{5}}{2}$ satisfies $\\alpha^2 = \\alpha + 1$.\n\n## Testing Polynomial Solutions\n\n**Try $f(x) = cx^2$:**\n\nLeft side: $c[(\\alpha x+y)^2 + (\\alpha y+z)^2 + (\\alpha z+x)^2]$\n$= c[\\alpha^2 x^2 + 2\\alpha xy + y^2 + \\alpha^2 y^2 + 2\\alpha yz + z^2 + \\alpha^2 z^2 + 2\\alpha zx + x^2]$\n$= c[(\\alpha^2+1)(x^2+y^2+z^2) + 2\\alpha(xy+yz+zx)]$\n\nSince $\\alpha^2 = \\alpha+1$, we get $\\alpha^2+1 = \\alpha+2$.\n\nLeft side $= c[(\\alpha+2)(x^2+y^2+z^2) + 2\\alpha(xy+yz+zx)]$\n\nRight side: $c[\\alpha(x+y+z)^2 + 2(x^2+y^2+z^2)]$\n$= c[(\\alpha+2)(x^2+y^2+z^2) + 2\\alpha(xy+yz+zx)]$\n\n✓ This works!\n\n**Try $f(x) = cx$:**\n\nLeft side: $c[\\alpha x+y + \\alpha y+z + \\alpha z+x] = c[(\\alpha+1)(x+y+z)] = c\\alpha^2(x+y+z)$\n\nRight side: $c[\\alpha(x+y+z) + 2(x+y+z)] = c(\\alpha+2)(x+y+z)$\n\nWe need $\\alpha^2 = \\alpha+2$, but $\\alpha^2 = \\alpha+1 \\neq \\alpha+2$. ✗\n\n**Try $f(x) = c$ (constant):**\n\nLeft side: $3c$, Right side: $\\alpha c + 6c = (\\alpha+6)c$. Need $3 = \\alpha+6$, so $\\alpha = -3$. ✗\n\n## Finding All Solutions\n\nSince $f$ is continuous, try $f(x) = ax^2 + bx + c$.\n\nFrom the linear term: we need $b \\cdot \\alpha^2 = b(\\alpha+2)$, i.e., $b(\\alpha+1) = b(\\alpha+2)$, so $b = 0$.\n\nFrom the constant term: $3c = (\\alpha+6)c$, so $c(\\alpha+3) = 0$, giving $c = 0$.\n\nSo the only polynomial solutions are $f(x) = ax^2$.\n\n## Verifying These Are All Solutions\n\nSet $x = y = z = 0$: $3f(0) = \\alpha f(0) + 6f(0)$, so $f(0)(\\alpha+3) = 0$, giving $f(0) = 0$.\n\nSet $y = z = 0$: $f(\\alpha x) + f(0) + f(x) = \\alpha f(x) + 2f(x) + 2f(0)$\n$$f(\\alpha x) = (\\alpha+1)f(x) = \\alpha^2 f(x)$$\n\nSet $x = z = 0$: $f(y) + f(\\alpha y) + f(0) = \\alpha f(y) + 2f(y)$\n$$f(\\alpha y) = (\\alpha+1)f(y) = \\alpha^2 f(y)$$ ✓ consistent.\n\nThe functional equation $f(\\alpha x) = \\alpha^2 f(x)$ combined with continuity and the full equation forces $f(x) = ax^2$.\n\nTo confirm: any continuous solution satisfying $f(\\alpha x) = \\alpha^2 f(x)$ and the original equation must be $f(x) = ax^2$ (since $\\alpha$ is irrational and $> 1$, the scaling relation with continuity pins down the form).\n\n## Conclusion\n\nThe continuous functions satisfying the equation are exactly:\n\n$$f(x) = ax^2$$\n\nfor any constant $a \\in \\mathbb{R}$.\n\nFinal answer: $f(x) = ax^2$ for any constant $a \\in \\mathbb{R}$.",
+  "usage": {
+    "input_tokens": 188,
+    "output_tokens": 1185,
+    "thinking_tokens": 0
+  },
+  "latency_s": 15.704360425006598,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "$f(x) = ax^2$ for any constant $a \\in \\mathbb{R}$."
+  }
+}

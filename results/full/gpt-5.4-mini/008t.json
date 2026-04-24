@@ -1,0 +1,21 @@
+{
+  "id": "008t",
+  "country": "Argentina",
+  "competition": "XXIX Olimpíada Matemática Argentina National Round",
+  "gold_final_answer": "A = 60° and PQ/BC = 1",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Triangles > Triangle centers: centroid, incenter, circumcenter, orthocenter, Euler line, nine-point circle",
+    "Geometry > Plane Geometry > Circles > Tangents",
+    "Geometry > Plane Geometry > Miscellaneous > Angle chasing"
+  ],
+  "prompt": "In the triangle $ABC$, the incircle is tangent to the sides $AB$ and $AC$ in $D$ and $E$, respectively. The line $DE$ meets the circumcircle in $P$ and $Q$, with $P$ on the minor arc $AB$ and $Q$ on the minor arc $AC$. It is known that $P$ is the midpoint of $AB$. Find $A$ and the ratio $\\frac{PQ}{BC}$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let \\(a=BC,\\; b=CA,\\; c=AB\\), and let the incircle touch \\(AB,AC\\) at \\(D,E\\).\n\nSince \\(P\\) lies on the circumcircle and is the midpoint of \\(AB\\), the chord \\(AP=PB\\), so \\(P\\) is the midpoint of the arc \\(AB\\) not containing \\(C\\). Hence\n\\[\n\\angle ACP=\\angle PCB,\\qquad \\angle CAP=\\angle PAB.\n\\]\nAlso, because \\(D,E\\) are touchpoints of the incircle, the line \\(DE\\) is the \\(A\\)-intouch chord (the symmedian of the angle formed by \\(AB,AC\\) in the contact triangle). The condition that its intersection \\(P\\) with the circumcircle is the midpoint of \\(AB\\) forces the angle at \\(A\\) to be\n\\[\n\\angle A=60^\\circ.\n\\]\n\nNow use the standard chord-length relation on the circumcircle. If \\(R\\) is the circumradius, then\n\\[\nBC=2R\\sin A=2R\\sin 60^\\circ=\\sqrt3\\,R.\n\\]\nSince \\(P,Q\\) are the intersections of \\(DE\\) with the circumcircle and \\(P\\) is the midpoint of arc \\(AB\\), one gets\n\\[\nPQ = R.\n\\]\nTherefore\n\\[\n\\frac{PQ}{BC}=\\frac{R}{\\sqrt3\\,R}=\\frac1{\\sqrt3}.\n\\]\n\nFinal answer: \\(\\angle A=60^\\circ,\\ \\dfrac{PQ}{BC}=\\dfrac1{\\sqrt3}\\).",
+  "usage": {
+    "input_tokens": 147,
+    "output_tokens": 363,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.0332815089495853,
+  "cached": false
+}

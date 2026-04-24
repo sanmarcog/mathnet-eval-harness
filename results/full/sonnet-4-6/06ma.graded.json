@@ -1,0 +1,24 @@
+{
+  "id": "06ma",
+  "country": "Hong Kong",
+  "competition": "HongKong 2022-23 IMO Selection Tests",
+  "gold_final_answer": "2358",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Inclusion-exclusion"
+  ],
+  "prompt": "A 'palindrome' is a positive integer which reads the same from left to right as from right to left, such as $12321$ and $259952$. Someone wrote down a five-digit palindrome $m$ and then removed a digit of $m$ to obtain a four-digit positive integer $n$ (that does not start with $0$). How many possible values of $n$ are there?",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Setting Up the Problem\n\nA five-digit palindrome has the form $\\overline{abcba}$ where $a \\in \\{1,...,9\\}$, $b \\in \\{0,...,9\\}$, $c \\in \\{0,...,9\\}$.\n\nWhen we remove one digit from position $i$ (positions 1-5), we get a 4-digit number $n$ (no leading zeros).\n\n## Analyzing Each Removal Position\n\n**Remove digit 1 (leftmost $a$):** Result is $\\overline{bcba}$. For no leading zero, need $b \\neq 0$.\n\n**Remove digit 2 ($b$):** Result is $\\overline{acba}$. Since $a \\geq 1$, always valid.\n\n**Remove digit 3 ($c$):** Result is $\\overline{abba}$. Since $a \\geq 1$, always valid.\n\n**Remove digit 4 ($b$):** Result is $\\overline{abca}$. Since $a \\geq 1$, always valid.\n\n**Remove digit 5 (rightmost $a$):** Result is $\\overline{abcb}$. Since $a \\geq 1$, always valid.\n\n## Finding All Possible Values of $n$\n\nI need to find all 4-digit numbers $n$ that can arise from at least one removal.\n\n**From position 3 removal:** $n = \\overline{abba}$ — these are 4-digit palindromes of form $abba$ where $a \\in \\{1,...,9\\}$, $b \\in \\{0,...,9\\}$. That's $9 \\times 10 = 90$ values.\n\n**From position 5 removal:** $n = \\overline{abcb}$ where $a \\in \\{1,...,9\\}$, $b,c \\in \\{0,...,9\\}$. That's $9 \\times 10 \\times 10 = 900$ values.\n\n**From position 1 removal:** $n = \\overline{bcba}$ where $b \\in \\{1,...,9\\}$, $c \\in \\{0,...,9\\}$, $a \\in \\{1,...,9\\}$. That's $9 \\times 10 \\times 9 = 810$ values.\n\n**From position 2 removal:** $n = \\overline{acba}$ where $a \\in \\{1,...,9\\}$, $c \\in \\{0,...,9\\}$, $b \\in \\{0,...,9\\}$. That's $9 \\times 10 \\times 10 = 900$ values.\n\n**From position 4 removal:** $n = \\overline{abca}$ where $a \\in \\{1,...,9\\}$, $b,c \\in \\{0,...,9\\}$. That's $9 \\times 10 \\times 10 = 900$ values.\n\nNow I need the size of the union. Note that every 4-digit number $\\overline{d_1d_2d_3d_4}$ with $d_1 \\geq 1$ can be obtained:\n- From position 5: $n = \\overline{abcb}$ requires $d_2 = d_4$\n- From position 4: $n = \\overline{abca}$ requires $d_1 = d_4$  \n- From position 2: $n = \\overline{acba}$ requires $d_1 = d_4$... wait, $n = \\overline{acba}$: digits are $a, c, b, a$, so $d_1 = d_4 = a$.\n\nSo positions 2 and 4 both give numbers where $d_1 = d_4$.\nPosition 5 gives numbers where $d_2 = d_4$.\nPosition 1 gives numbers where $d_2 = d_4$ (since $\\overline{bcba}$: $d_2 = c$, $d_4 = a$... no: $b,c,b,a$ so $d_1=d_3=b$).\nPosition 1: $d_1 = d_3$.\nPosition 3: $d_1 = d_4$ and $d_2 = d_3$ (form $abba$).\n\nThe union covers: all $n$ where $d_1=d_3$, OR $d_1=d_4$, OR $d_2=d_4$.\n\nNumbers NOT covered: $d_1 \\neq d_3$, $d_1 \\neq d_4$, $d_2 \\neq d_4$.\n\nTotal 4-digit numbers: $9000$.\nCount where $d_1 \\neq d_3$ AND $d_1 \\neq d_4$ AND $d_2 \\neq d_4$:\n- $d_1$: 9 choices, $d_2$: 10 choices, $d_3 \\neq d_1$: 9 choices, $d_4 \\neq d_1, d_4 \\neq d_2$: depends on whether $d_1 = d_2$.\n\nIf $d_1 \\neq d_2$: $d_4$ avoids 2 values: 8 choices. Count: $9 \\times 9 \\times 9 \\times 8 = 5832$.\nIf $d_1 = d_2$: $d_4$ avoids 1 value: 9 choices. Count: $9 \\times 1 \\times 9 \\times 9 = 729$.\n\nNot covered: $5832 + 729 = 6561$.\n\nCovered: $9000 - 6561 = \\boxed{2439}$.\n\nFinal answer: 2439",
+  "usage": {
+    "input_tokens": 135,
+    "output_tokens": 1452,
+    "thinking_tokens": 0
+  },
+  "latency_s": 21.85893144190777,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "2439"
+  }
+}

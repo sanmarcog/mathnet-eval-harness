@@ -1,0 +1,20 @@
+{
+  "id": "0elr",
+  "country": "South Africa",
+  "competition": "The South African Mathematical Olympiad Third Round",
+  "gold_final_answer": "Maximum M is n if n is even, and n − 1 if n is odd.",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments",
+    "Discrete Mathematics > Combinatorics > Counting two ways"
+  ],
+  "prompt": "Write either $1$ or $-1$ in each of the cells of a $(2n) \\times (2n)$-table, in such a way that there are exactly $2n^2$ entries of each kind. Let the minimum of the absolute values of all row sums and all column sums be $M$. Determine the largest possible value of $M$.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find the largest possible value of $M$, we first note that the table has dimensions $2n \\times 2n$, so each row and column contains $2n$ entries of either $1$ or $-1$. Therefore, the sum of the entries in any row or column must be an even integer. This implies that $M$ must be an even integer.\n\nLet $A$ be the set of rows with a positive sum, and $B$ be the set of rows with a negative sum (rows with a sum of 0 can be placed in either). Let $C$ be the set of columns with a positive sum, and $D$ be the set of columns with a negative sum. \nSuppose $|A| = a$ and $|C| = c$. The sum of all elements in the table is 0, which means the sum of all row sums is 0, and the sum of all column sums is 0. \n\nLet $S$ be the sum of the elements in $A \\times C$. We can bound $S$ by the size of the intersection, so $S \\le ac$.\nBy considering the sum of the rows in $A$ and the columns in $C$, and applying the minimum absolute sum $M$, we can establish the inequality:\n$$2nM \\le ac + (2n-a)(2n-c)$$\nTo maximize the right-hand side, we can set $a = n$ and $c = n$, which gives:\n$$2nM \\le n^2 + n",
+  "usage": {
+    "input_tokens": 114,
+    "output_tokens": 327,
+    "thoughts_tokens": 7861
+  },
+  "latency_s": 63.88034319796134,
+  "cached": false
+}

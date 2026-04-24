@@ -1,0 +1,21 @@
+{
+  "id": "09yp",
+  "country": "Netherlands",
+  "competition": "IMO Team Selection Test 3",
+  "gold_final_answer": "[(1,2,0,1),(2,1,1,0)]",
+  "topics_flat": [
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities",
+    "Geometry > Plane Geometry > Triangles > Triangle inequalities",
+    "Geometry > Plane Geometry > Geometric Inequalities > Triangle inequalities"
+  ],
+  "prompt": "Find all quadruples $(a, b, c, d)$ of non-negative integers such that $ab = 2(1 + cd)$ and there exists a non-degenerate triangle with sides of length $a - c$, $b - d$, and $c + d$.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find all quadruples $(a, b, c, d)$ of non-negative integers satisfying the given conditions, we analyze the side lengths of the triangle: $x = a - c$, $y = b - d$, and $z = c + d$. \nFor the triangle to be non-degenerate, all side lengths must be strictly positive, and they must satisfy the triangle inequality. \nThus, we have:\n1) $x > 0 \\implies a > c \\implies a \\ge c + 1$\n2) $y > 0 \\implies b > d \\implies b \\ge d + 1$\n3) $z > 0 \\implies c + d > 0$\n4) $x + y > z \\implies (a - c) + (b - d) > c + d \\implies a + b > 2(c + d)$\n\nWe are given the equation $ab = 2(1 + cd) = 2cd + 2$.\nLet $a = c + x$ and $b = d + y$ for some integers $x, y \\ge 1$. Substituting these into the given equation yields:\n$(c+x)(d+y) = 2cd + 2$\n\nWe want to find when $a + b > 2(c + d)$, which is equivalent to $(c+x) + (d+y) > 2(c+d)$.\nTo maximize the sum $(c+x) + (d+y",
+  "usage": {
+    "input_tokens": 97,
+    "output_tokens": 326,
+    "thoughts_tokens": 7862
+  },
+  "latency_s": 62.75312638597097,
+  "cached": false
+}

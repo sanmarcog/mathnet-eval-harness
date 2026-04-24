@@ -1,0 +1,24 @@
+{
+  "id": "0dh9",
+  "country": "Saudi Arabia",
+  "competition": "Saudi Arabian IMO Booklet",
+  "gold_final_answer": "All solutions are f(x) = x + c for c ≥ 0; under the inequality condition, the minimum value of f(2022) is 2023.",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Functional Equations > Injectivity / surjectivity"
+  ],
+  "prompt": "Consider the function $f: \\mathbb{R}^{+} \\to \\mathbb{R}^{+}$ and satisfying\n$$\nf(x + 2y + f(x + y)) = f(2x) + f(3y), \\forall x, y > 0.\n$$\n1. Find all functions $f(x)$ that satisfy the given condition.\n2. Suppose that $f(4\\sin^4x)f(4\\cos^4x) \\ge f^2(1)$ for all $x \\in (0; \\frac{\\pi}{2})$. Find the minimum value of $f(2022)$.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find the functions $f: \\mathbb{R}^{+} \\to \\mathbb{R}^{+}$ satisfying the given equation:\n$$ f(x + 2y + f(x + y)) = f(2x) + f(3y) $$\nWe can test linear functions of the form $f(x) = cx + d$. \nSubstituting this into the equation gives:\n$$ c(x + 2y + c(x + y) + d) + d = c(2x) + d + c(3y) + d $$\n$$ c(1+c)x + c(2+c)y + cd + d = 2cx + 3cy + 2d $$\nFor this to hold for all $x, y > 0$, the coefficients of $x$, $y$, and the constant terms must match:\n1. $c(1+c) = 2c \\implies c^2 - c = 0 \\implies c = 1$ (since $f(x) > 0$ for $x > 0$, $c$ cannot be 0).\n2. $c(2+c) = 3c \\implies 1(3) = 3$, which is consistent.\n3. $cd + d = 2d \\implies d + d = 2d$, which holds for any constant $d$.\n\nThus, $f(x) = x + c$ for some constant $c$. Since the codomain is $\\mathbb{R}^{+}$, we must have $x + c > 0$ for all $x > 0$, which requires $c \\ge 0$. Standard functional equation techniques (like Cauchy's) confirm these are the only solutions.\n\nFor the second part, we are given:\n$$ f(4\\sin^4x)f(4\\cos^4x) \\ge f^2(1) \\quad \\forall x \\in \\left(0, \\frac{\\pi}{2}\\right) $$\nSubstitute $f(x) = x + c$:\n$$ (4\\sin^4x + c)(4\\cos^4x + c) \\ge (1 + c)^2 $$\nLet $S = \\sin^2x$ and $C = \\cos^2x$. We know $S + C = 1$.\n$$ 16S^2C^2 + 4c(S^2 + C^2) + c^2 \\ge 1 + 2c + c^2 $$\n$$ 16(SC)^2 + 4c(1 - 2SC) \\ge 1 + 2c $$\nLet $P = SC = \\sin^2x \\cos^2x = \\frac{1}{4}\\sin^2(2x)$. Since $x \\in (0, \\frac{\\pi}{2})$, $P \\in (0, \\frac{1}{4}]$.\n$$ 16P^2 - 8cP + 2c - 1 \\ge 0 $$\nLet $g(P) = 16P^2 - 8cP + 2c - 1$. We need $g(P) \\ge 0$ for all $P \\in (0, \\frac{1}{4}]$.\nThe parabola opens upwards and its vertex is at $P = \\frac{8c}{32} = \\frac{c}{4}$.\n- If $0 \\le c < 1$, the vertex is in the interval $(0, \\frac{1}{4})$. The minimum value is $g(\\frac{c}{4}) = -c^2 + 2c - 1 = -(c-1)^2$. For $g(P) \\ge 0$, we need $-(c-1)^2 \\ge 0$, which is only possible if $c = 1$, contradicting $c < 1$.\n- If $c \\ge 1$, the vertex is at $P \\ge \\frac{1}{4}$. The minimum on the interval $(0, \\frac{1}{4}]$ occurs at $P = \\frac{1}{4}$. We check $g(\\frac{1}{4}) = 16(\\frac{1}{16}) - 8c(\\frac{1}{4}) + 2c - 1 = 1 - 2c + 2c - 1 = 0 \\ge 0$. This holds true.\n\nThus, the condition is satisfied if and only if $c \\ge 1$.\nWe want to find the minimum value of $f(2022) = 2022 + c$.\nSince $c \\ge 1$, the minimum value is $2022 + 1 = 2023$.\n\nFinal answer: 1. f(x) = x + c \\ (c \\ge 0); 2. 2023",
+  "usage": {
+    "input_tokens": 177,
+    "output_tokens": 1071,
+    "thoughts_tokens": 3519
+  },
+  "latency_s": 35.5413847269956,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "1. f(x) = x + c \\ (c \\ge 0); 2. 2023"
+  }
+}

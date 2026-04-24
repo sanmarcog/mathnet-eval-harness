@@ -1,0 +1,19 @@
+{
+  "id": "0ery",
+  "country": "South Africa",
+  "competition": "South African Mathematics Olympiad Second Round",
+  "gold_final_answer": "52",
+  "topics_flat": [
+    "Algebra > Prealgebra / Basic Algebra > Integers"
+  ],
+  "prompt": "Jess is standing in a queue of people. She is 18th from the front and 35th from the back.\nHow many people are in the queue?",
+  "model": "claude-sonnet-4-6",
+  "response_text": "18 + 35 - 1 = 52\n\nFinal answer: 52",
+  "usage": {
+    "input_tokens": 82,
+    "output_tokens": 23,
+    "thinking_tokens": 0
+  },
+  "latency_s": 1.634070444968529,
+  "cached": false
+}

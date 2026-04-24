@@ -1,0 +1,19 @@
+{
+  "id": "0gsc",
+  "country": "Turkey",
+  "competition": "26th Turkish Mathematical Olympiad",
+  "gold_final_answer": "Yes",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Games / greedy algorithms"
+  ],
+  "prompt": "There are $2018$ distinguishable boxes on the table. Starting Writer, Writer and Braker take turn writing a box pair to the table (each pair can be written at most once). They stop when there are $4032$ written pairs on the table. After that Braker numerates box pairs by numbers $1, 2, \\dots, 4032$ and for each $k = 1, 2, \\dots, 4032$ puts $k$ balls into each box belonging to pair numbered $k$. Can Braker guarantee that any two boxes will contain different number of balls?",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To determine if Braker can guarantee that any two boxes will contain a different number of balls, we can rephrase the problem in terms of graph theory. \n\nThere are $n = 2018$ vertices (boxes) and the two players take turns adding edges (pairs of boxes) until there are $m = 4032$ edges. Braker then assigns distinct weights from $\\{1, 2, \\dots, 4032\\}$ to the edges. The number of balls in a box is the sum of the weights of the edges incident to its corresponding vertex. Braker wants to ensure that the sum of the weights of the incident edges for every vertex is distinct.\n\nNotice that if the final graph contains an **isolated edge** (a connected component consisting of exactly 2 vertices and 1 edge), the two vertices connected by this edge will have a degree of 1, and their only incident edge will be the same. Consequently, their sums will both be exactly the weight of that single edge, making them equal. Similarly, if the graph contains **two isolated vertices** (degree 0), their sums will both be 0. In either case, Braker would fail.\n\nWriter can use a strategy to force Braker to lose by ensuring the final graph has at least two isolated vertices. \nWriter selects a subset $S$ of $k = 64$ vertices. Note that the maximum number of edges in $S$ is $\\binom{64}{2} = 2016$. \nWriter plays all of their 2",
+  "usage": {
+    "input_tokens": 172,
+    "output_tokens": 328,
+    "thoughts_tokens": 7860
+  },
+  "latency_s": 113.58821922796778,
+  "cached": false
+}

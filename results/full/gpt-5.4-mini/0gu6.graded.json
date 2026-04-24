@@ -1,0 +1,25 @@
+{
+  "id": "0gu6",
+  "country": "Turkey",
+  "competition": "Team Selection Test for JBMO 2023",
+  "gold_final_answer": "15",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Games / greedy algorithms",
+    "Discrete Mathematics > Combinatorics > Invariants / monovariants"
+  ],
+  "prompt": "At the beginning Alice distributes $1000$ balls into $30$ boxes. After that Alice and Bob alternatively make moves, Alice begins. A person making move chooses a box and takes one ball from the chosen box. A person taking the very last ball from a box takes on that empty box. Find the maximal integer $k$ such that regardless of the strategy of Bob Alice can take at least $k$ boxes.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let \\(x_i\\) be the number of balls in box \\(i\\), so \\(\\sum x_i=1000\\).\n\nA player gets a box exactly when he takes its last ball. So the total number of boxes taken by Alice plus Bob is always \\(30\\).\n\nWe want the largest \\(k\\) such that Alice can guarantee at least \\(k\\) boxes no matter how Bob plays.\n\n## Key idea\nAlice should try to make her boxes come from boxes with initially odd numbers of balls.\n\nIf a box starts with \\(m\\) balls, then during the game its last ball is taken on the \\(m\\)-th move involving that box. Since Alice moves first overall, the parity of the move when a box disappears depends on \\(m\\):\n\n- if \\(m\\) is odd, Alice takes the last ball,\n- if \\(m\\) is even, Bob takes the last ball,\n\nprovided both players keep choosing among the still nonempty boxes.\n\nThus Alice wants as many boxes as possible to have odd initial sizes.\n\n## How many odd boxes can there be?\nSince the total number of balls is \\(1000\\), the number of odd \\(x_i\\)'s must be even.  \nTo maximize the number of odd boxes among \\(30\\) boxes, take \\(28\\) odd boxes and \\(2\\) even boxes.\n\nThis is possible, for example:\n\\[\n1,1,\\dots,1 \\ (28\\text{ times}),\\ 2,\\ 970\n\\]\nwhich sums to \\(1000\\).\n\nThen Alice gets those \\(28\\) odd boxes, regardless of Bob's strategy.\n\n## Can Alice always guarantee \\(29\\)?\nNo. Bob can force her to lose at least one box in any configuration with an even number of odd boxes. In particular, the best possible universal guarantee is at most the maximum possible number of odd boxes, namely \\(28\\).\n\nSo the maximal guaranteed number is \\(28\\).\n\nFinal answer: \\(28\\)",
+  "usage": {
+    "input_tokens": 133,
+    "output_tokens": 419,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.26374288497027,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "\\(28\\)"
+  }
+}

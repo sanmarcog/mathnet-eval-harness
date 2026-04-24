@@ -1,0 +1,24 @@
+{
+  "id": "0bsf",
+  "country": "Romania",
+  "competition": "67th Romanian Mathematical Olympiad",
+  "gold_final_answer": "f(x) = x for all real x, and f(x) = -x for all real x",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Functional Equations"
+  ],
+  "prompt": "Find all functions $f : \\mathbb{R} \\to \\mathbb{R}$ such that\n$$\nf(a^2) - f(b^2) \\leq (f(a) + b)(a - f(b)), \\quad \\text{for all } a, b \\in \\mathbb{R}.\n$$",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find all functions $f : \\mathbb{R} \\to \\mathbb{R}$ satisfying the given inequality:\n$$ f(a^2) - f(b^2) \\leq (f(a) + b)(a - f(b)) $$\n\nFirst, let $a = b$. The inequality becomes:\n$$ 0 \\leq (f(a) + a)(a - f(a)) = a^2 - f(a)^2 $$\nThis implies that $f(a)^2 \\leq a^2$ for all $a \\in \\mathbb{R}$. In particular, $f(0) = 0$.\n\nNext, substitute $b = 0$ into the original inequality:\n$$ f(a^2) - f(0) \\leq (f(a) + 0)(a - f(0)) \\implies f(a^2) \\leq a f(a) $$\nNow, substitute $a = 0$ into the original inequality:\n$$ f(0) - f(b^2) \\leq (f(0) + b)(0 - f(b)) \\implies -f(b^2) \\leq -b f(b) \\implies f(b^2) \\geq b f(b) $$\nCombining these two results, we must have:\n$$ f(x^2) = x f(x) \\quad \\text{for all } x \\in \\mathbb{R} $$\n\nSince $x^2 = (-x)^2$, we also have $f(x^2) = -x f(-x)$. Therefore, $x f(x) = -x f(-x)$, which means that for $x \\neq 0$, $f(-x) = -f(x)$. Since $f(0) = 0$, $f$ is an odd function.\n\nNow, substitute $f(x^2) = x f(x)$ back into the original inequality:\n$$ a f(a) - b f(b) \\leq a f(a) - f(a)f(b) + ab - b f(b) $$\nSubtracting $a f(a) - b f(b)$ from both sides leaves:\n$$ 0 \\leq ab - f(a)f(b) \\implies f(a)f(b) \\leq ab $$\nLet $b = -a$. The inequality becomes:\n$$ f(a)f(-a) \\leq -a^2 $$\nSince $f$ is odd, $f(-a) = -f(a)$, so this gives:\n$$ -f(a)^2 \\leq -a^2 \\implies f(a)^2 \\geq a^2 $$\nWe already established that $f(a)^2 \\leq a^2$, so it must be that $f(a)^2 = a^2$ for all $a \\in \\mathbb{R}$. This means that for each $x$, $f(x) = x$ or $f(x) = -x$.\n\nSuppose there exist non-zero real numbers $x$ and $y$ such that $f(x) = x$ and $f(y) = -y$. \nSince $f$ is odd, we can replace $y$ with $-y$ if necessary to assume without loss of generality that $x$ and $y$ have the same sign, meaning $xy > 0$. \nUsing the inequality $f(x)f(y) \\leq xy$, we get:\n$$ (x)(-y) \\leq xy \\implies -xy \\leq xy \\implies 2xy \\leq 0 $$\nThis contradicts the fact that $xy > 0$. Thus, it is impossible for $f$ to take the value $x$ for some non-zero $x$ and $-y$ for some non-zero $y$. \n\nTherefore, either $f(x) = x$ for all $x \\in \\mathbb{R}$, or $f(x) = -x$ for all $x \\in \\mathbb{R}$. \n\nChecking both candidates in the original inequality:\n1. If $f(x) = x$: $a^2 - b^2 \\leq (a+b)(a-b) = a^2 - b^2$, which holds.\n2. If $f(x) = -x$: $-a^2 - (-b^2) \\leq (-a+b)(a - (-b)) \\implies b^2 - a^2 \\leq b^2 - a^2$, which also holds.\n\nFinal answer: f(x) = x, f(x) = -x",
+  "usage": {
+    "input_tokens": 111,
+    "output_tokens": 1014,
+    "thoughts_tokens": 2193
+  },
+  "latency_s": 24.57454144395888,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "f(x) = x, f(x) = -x"
+  }
+}

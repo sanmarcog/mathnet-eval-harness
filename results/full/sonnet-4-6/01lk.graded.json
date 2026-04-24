@@ -1,0 +1,24 @@
+{
+  "id": "01lk",
+  "country": "Belarus",
+  "competition": "61st Belarusian Mathematical Olympiad",
+  "gold_final_answer": "9",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Polynomial operations"
+  ],
+  "prompt": "Non-zero real numbers $a, b, c$ satisfy the equality\n$$\n\\frac{ab}{b-c} + \\frac{bc}{c-a} + \\frac{ca}{a-b} = \\frac{ab}{b+c} + \\frac{bc}{c+a} + \\frac{ca}{a+b} + 6abc.\n$$\nFind all possible values of the expression\n$$\n\\frac{1}{(a^2 - b^2)^2} + \\frac{1}{(b^2 - c^2)^2} + \\frac{1}{(c^2 - a^2)^2}\n$$",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Setting Up the Problem\n\nLet me denote the given equation and work with it systematically.\n\n**Given equation:**\n$$\\frac{ab}{b-c} + \\frac{bc}{c-a} + \\frac{ca}{a-b} = \\frac{ab}{b+c} + \\frac{bc}{c+a} + \\frac{ca}{a+b} + 6abc$$\n\n**Rearranging:**\n$$\\frac{ab}{b-c} - \\frac{ab}{b+c} + \\frac{bc}{c-a} - \\frac{bc}{c+a} + \\frac{ca}{a-b} - \\frac{ca}{a+b} = 6abc$$\n\n**Computing each difference:**\n$$\\frac{ab}{b-c} - \\frac{ab}{b+c} = ab \\cdot \\frac{(b+c)-(b-c)}{(b-c)(b+c)} = ab \\cdot \\frac{2c}{b^2-c^2} = \\frac{2abc}{b^2-c^2}$$\n\nSimilarly:\n$$\\frac{bc}{c-a} - \\frac{bc}{c+a} = \\frac{2abc}{c^2-a^2}$$\n$$\\frac{ca}{a-b} - \\frac{ca}{a+b} = \\frac{2abc}{a^2-b^2}$$\n\n**So the equation becomes:**\n$$\\frac{2abc}{b^2-c^2} + \\frac{2abc}{c^2-a^2} + \\frac{2abc}{a^2-b^2} = 6abc$$\n\nSince $abc \\neq 0$ (all are non-zero), divide by $2abc$:\n$$\\frac{1}{b^2-c^2} + \\frac{1}{c^2-a^2} + \\frac{1}{a^2-b^2} = 3$$\n\n## Finding the Target Expression\n\nLet $x = b^2 - c^2$, $y = c^2 - a^2$, $z = a^2 - b^2$.\n\nNote that $x + y + z = 0$.\n\n**We know:** $\\frac{1}{x} + \\frac{1}{y} + \\frac{1}{z} = 3$\n\n**We want:** $\\frac{1}{x^2} + \\frac{1}{y^2} + \\frac{1}{z^2}$\n\nSince $x + y + z = 0$, we have $z = -(x+y)$.\n\nAlso: $\\frac{1}{x} + \\frac{1}{y} + \\frac{1}{z} = \\frac{yz + xz + xy}{xyz} = 3$\n\nSo $xy + yz + zx = 3xyz$.\n\n**Now compute** $\\left(\\frac{1}{x} + \\frac{1}{y} + \\frac{1}{z}\\right)^2 = \\frac{1}{x^2} + \\frac{1}{y^2} + \\frac{1}{z^2} + 2\\left(\\frac{1}{xy} + \\frac{1}{yz} + \\frac{1}{zx}\\right)$\n\n$$\\frac{1}{xy} + \\frac{1}{yz} + \\frac{1}{zx} = \\frac{x+y+z}{xyz} = \\frac{0}{xyz} = 0$$\n\nTherefore:\n$$\\frac{1}{x^2} + \\frac{1}{y^2} + \\frac{1}{z^2} = \\left(\\frac{1}{x} + \\frac{1}{y} + \\frac{1}{z}\\right)^2 - 2 \\cdot 0 = 3^2 = 9$$\n\n## Answer\n\n$$\\frac{1}{(a^2-b^2)^2} + \\frac{1}{(b^2-c^2)^2} + \\frac{1}{(c^2-a^2)^2} = \\boxed{9}$$\n\nFinal answer: 9",
+  "usage": {
+    "input_tokens": 208,
+    "output_tokens": 1046,
+    "thinking_tokens": 0
+  },
+  "latency_s": 9.345325127942488,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "exact",
+    "predicted": "9"
+  }
+}

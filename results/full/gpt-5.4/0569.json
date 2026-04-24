@@ -1,0 +1,20 @@
+{
+  "id": "0569",
+  "country": "Estonia",
+  "competition": "Estonian Mathematical Olympiad",
+  "gold_final_answer": "No",
+  "topics_flat": [
+    "Number Theory > Modular Arithmetic",
+    "Discrete Mathematics > Combinatorics > Pigeonhole principle"
+  ],
+  "prompt": "Do there exist five distinct prime numbers for which the sum of any three of them is a prime number as well?",
+  "model": "gpt-5.4",
+  "response_text": "No.\n\nLet the five distinct primes be \\(p_1,p_2,p_3,p_4,p_5\\), and assume that the sum of any three of them is prime.\n\nWe split into cases.\n\n### Case 1: One of the primes is \\(2\\)\nSince all primes are distinct, the other four are odd.  \nBut the sum of any three odd primes is odd \\(+\\) odd \\(+\\) odd \\(=\\) odd, wait:\n\n\\[\n\\text{odd}+\\text{odd}+\\text{odd}=\\text{odd}.\n\\]\n\nSo parity alone does not rule it out. We need mod \\(3\\).\n\nAmong the four odd primes distinct from \\(2\\), at most one can be \\(3\\). So at least three of them are primes \\(>3\\), hence each is congruent to \\(1\\) or \\(2 \\pmod 3\\).\n\nTake any four primes. Consider their residues mod \\(3\\). If among three of them the residues sum to \\(0 \\pmod 3\\), then their sum is divisible by \\(3\\). Since the sum is larger than \\(3\\), it cannot be prime.\n\nNow among five distinct primes including \\(2\\), look at the residues mod \\(3\\).  \n- If one of them is \\(3\\), then among the other four, at least two have the same residue mod \\(3\\), and together with \\(3\\) they give a triple whose sum is \\(0 \\pmod 3\\).  \n- If \\(3\\) is not among them, then all four odd primes are \\(1\\) or \\(2 \\pmod 3\\). By pigeonhole, at least three of the five primes have the same residue mod \\(3\\) or there are two of one residue and one of the other making sum \\(0 \\pmod 3\\). In either case some triple sums to \\(0 \\pmod 3\\).\n\nSo this case is impossible.\n\n### Case 2: None of the primes is \\(2\\)\nThen all five primes are odd. The sum of any three odd numbers is odd, so it could still be prime. Again use residues mod \\(3\\).\n\nAmong five distinct primes, at most one equals \\(3\\). Hence at least four are not divisible by \\(3\\), so each is \\(1\\) or \\(2 \\pmod 3\\).\n\n- If at least three are congruent to \\(1 \\pmod 3\\), their sum is \\(0 \\pmod 3\\).\n- If at least three are congruent to \\(2 \\pmod 3\\), their sum is \\(0 \\pmod 3\\).\n- Otherwise there are two congruent to \\(1\\) and two congruent to \\(2\\); if \\(3\\) is among the five, then \\(3+1+2 \\equiv 0 \\pmod 3\\).\n\nIn every subcase, some triple has sum divisible by \\(3\\). Since any triple sum is greater than \\(3\\), that sum is composite, contradiction.\n\nTherefore such five distinct primes do not exist.\n\nFinal answer: No, such five distinct primes do not exist.",
+  "usage": {
+    "input_tokens": 71,
+    "output_tokens": 669,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 14.521047649905086,
+  "cached": false
+}

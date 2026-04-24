@@ -1,0 +1,25 @@
+{
+  "id": "04rk",
+  "country": "Czech Republic",
+  "competition": "62nd Czech and Slovak Mathematical Olympiad",
+  "gold_final_answer": "a=1, b=4, c=3",
+  "topics_flat": [
+    "Algebra > Intermediate Algebra > Quadratic functions",
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities"
+  ],
+  "prompt": "Find all real $a$, $b$, $c$, such that\n$$\na^2 + b^2 + c^2 = 26, \\quad a+b=5 \\quad \\text{and} \\quad b+c \\ge 7.\n$$",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let  \n\\[\na+b=5 \\implies a=5-b.\n\\]\nThen the condition\n\\[\na^2+b^2+c^2=26\n\\]\nbecomes\n\\[\n(5-b)^2+b^2+c^2=26.\n\\]\nSo\n\\[\n25-10b+2b^2+c^2=26\n\\]\nor\n\\[\n2b^2-10b+c^2-1=0.\n\\]\nComplete the square in \\(b\\):\n\\[\n2(b^2-5b)+c^2-1=0\n\\]\n\\[\n2\\left((b-\\tfrac52)^2-\\tfrac{25}{4}\\right)+c^2-1=0\n\\]\n\\[\n2(b-\\tfrac52)^2+c^2=\\frac{27}{2}.\n\\]\n\nNow use the inequality \\(b+c\\ge 7\\). Since \\(a=5-b\\), we have\n\\[\nc\\ge 7-b.\n\\]\nWe also know\n\\[\n2(b-\\tfrac52)^2+c^2=\\frac{27}{2}.\n\\]\nSubstitute \\(c\\ge 7-b\\). For fixed \\(b\\), the left-hand side is minimized by the smallest possible \\(c\\), so we need\n\\[\n2\\left(b-\\tfrac52\\right)^2+(7-b)^2\\le \\frac{27}{2}.\n\\]\nCompute:\n\\[\n2\\left(b^2-5b+\\frac{25}{4}\\right)+(b^2-14b+49)\n=3b^2-24b+\\frac{147}{2}.\n\\]\nThus\n\\[\n3b^2-24b+\\frac{147}{2}\\le \\frac{27}{2}\n\\]\n\\[\n3b^2-24b+60\\le 0\n\\]\n\\[\nb^2-8b+20\\le 0\n\\]\n\\[\n(b-4)^2+4\\le 0,\n\\]\nwhich is impossible.\n\nSo there are **no real triples** \\((a,b,c)\\) satisfying all the conditions.\n\nFinal answer: No real լուծutions.",
+  "usage": {
+    "input_tokens": 103,
+    "output_tokens": 478,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 2.93109267600812,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "No real լուծutions."
+  }
+}

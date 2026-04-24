@@ -1,0 +1,25 @@
+{
+  "id": "03bp",
+  "country": "Bulgaria",
+  "competition": "Team selection test for the 54th IMO",
+  "gold_final_answer": "(mn+mr+2r)(n-r)",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Pigeonhole principle",
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments"
+  ],
+  "prompt": "Let $m$, $n$ and $r$ be positive integers with $n \\ge 2$ and $1 \\le r \\le n-1$. Consider a square table of size $(mn+r) \\times (mn+r)$. The table is covered by squares of size $n \\times n$ with sides parallel to the sides of the table. Each unit square is covered at least once and some unit squares are covered multiple times. Find the minimum possible number of unit squares covered at least two times.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find the minimum possible number of unit squares covered at least two times, we can analyze the problem in one dimension first and then extend it to two dimensions.\n\nIn one dimension, we want to cover a segment of length $mn+r$ using intervals of length $n$. Since $1 \\le r \\le n-1$, we need at least $m+1$ intervals to cover the segment. \nThe total length of these $m+1$ intervals is $(m+1)n = mn+n$. \nThe excess length, which corresponds to the sum of the overlaps, is:\n$$(mn+n) - (mn+r) = n-r$$\nBy placing the intervals such that they only overlap with their immediate neighbors and the overlaps do not intersect each other, we can ensure that exactly $n-r$ points are covered exactly twice, and the remaining points are covered exactly once. Thus, the number of points covered exactly once in 1D is:\n$$(mn+r) - (n-r) = mn+2r-n$$\n\nIn two dimensions, the table has size $(mn+r) \\times (mn+r)$. By using the Cartesian product of the optimal 1D covers, we can cover the table using $(m+1)^2$ squares of size $n \\times n$. \nA unit square in the 2D table is covered exactly once if and only if it is formed by the intersection of two 1D points that are each covered exactly once. \nTherefore",
+  "usage": {
+    "input_tokens": 146,
+    "output_tokens": 325,
+    "thoughts_tokens": 7863
+  },
+  "latency_s": 66.35467839299235,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": null
+  }
+}

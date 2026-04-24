@@ -1,0 +1,25 @@
+{
+  "id": "00vn",
+  "country": "Balkan Mathematical Olympiad",
+  "competition": "Balkan Mathematical Olympiad Shortlisted Problems",
+  "gold_final_answer": "Yes",
+  "topics_flat": [
+    "Discrete Mathematics > Graph Theory > Matchings, Marriage Lemma, Tutte's theorem",
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments"
+  ],
+  "prompt": "A social network has $2025$ users. Two different users are either friends or not friends. A user is considered *lonely* if they have no friends. Initially, there are no lonely users, and two users Alice and Bob are not friends. A user may swap all their friends, meaning if they were friends with someone before the swap, they are no longer friends, and vice versa. Must there exist a way to arrange the $2025$ users in a sequence so that if, one-by-one in that sequence, each user swaps their friends, no user is ever lonely at any point during the process?",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To determine if there must exist a valid sequence of swaps for the 2025 users, we can rephrase the problem in terms of graph theory. Let $G = (V, E)$ be the initial graph of friendships, where $|V| = n = 2025$. We are given that $G$ has no isolated vertices (no lonely users) and $G$ is not the complete graph $K_n$ (Alice and Bob are not friends).\n\nWhen a user swaps their friends, their edges to their current friends are removed, and edges are added to all users who were previously not their friends. If we track the sequence of swaps, after a set of users $S$ has swapped, the edges between $S$ and $V \\setminus S$ are flipped, while edges within $S$ and within $V \\setminus S$ remain the same as in $G$. \n\nA user $u$ becomes lonely at the step when the set of swapped users is $S$ if and only if:\n1. $u \\in S$ and $S = V \\setminus N_G(u)$ (where $N_G(u)$ is the initial set of friends of $u$).\n2. $u \\notin S$ and $S = N_G(u)$.\n\nThus, a state $S$ contains a lonely user if and only if $S = A_u$ or $S = B_u$ for some user $u$, where $A_u = N_G(u)$ and $B",
+  "usage": {
+    "input_tokens": 171,
+    "output_tokens": 326,
+    "thoughts_tokens": 7862
+  },
+  "latency_s": 71.04707044397946,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": null
+  }
+}

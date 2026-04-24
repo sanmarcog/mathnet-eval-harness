@@ -1,0 +1,20 @@
+{
+  "id": "0e27",
+  "country": "Slovenia",
+  "competition": "National Math Olympiad",
+  "gold_final_answer": "All positive integers greater than 1",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Factorization techniques",
+    "Algebra > Prealgebra / Basic Algebra > Integers"
+  ],
+  "prompt": "For which positive integers $n$ does there exist a multiple of $7$, such that the sum of its digits is equal to $n$?",
+  "model": "claude-sonnet-4-6",
+  "response_text": "I need to find all positive integers $n$ for which there exists a multiple of 7 whose digit sum equals $n$.\n\n## Setting Up the Problem\n\nFirst, note that any positive integer with digit sum $n$ exists (e.g., write $n$ as a sum of digits). The question is which digit sums are achievable by multiples of 7.\n\n**Small cases:** Check multiples of 7:\n- 7: digit sum = 7\n- 14: digit sum = 5\n- 21: digit sum = 3\n- 28: digit sum = 10\n- 35: digit sum = 8\n- 42: digit sum = 6\n- 49: digit sum = 13\n- 56: digit sum = 11\n- 63: digit sum = 9\n- 70: digit sum = 7\n- 77: digit sum = 14\n- 84: digit sum = 12\n- 91: digit sum = 10\n- 98: digit sum = 17\n- 105: digit sum = 6\n- 112: digit sum = 4\n- 119: digit sum = 11\n- 126: digit sum = 9\n- 133: digit sum = 7\n- 7×16=112: digit sum 4\n- 7×4=28: digit sum 10\n- 7×3=21: digit sum 3\n- 7×2=14: digit sum 5\n\nSo far I have digit sums: 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 17...\n\n**Can we get 1 or 2?** Digit sum 1 means the number is a power of 10. Powers of 10: 1, 10, 100, ... None divisible by 7. Digit sum 2: numbers like 2, 11, 20, 101, 110, 200, 1001,... Check mod 7: 2(2), 11(4), 20(6), 101(3), 110(5), 200(4), 1001(1001=143×7=1001, yes! 1001÷7=143). So 1001 has digit sum 2 and is divisible by 7!\n\nSo digit sum 2 works. What about digit sum 1? No power of 10 is divisible by 7, and any number with digit sum 1 is a power of 10. So **n=1 is impossible**.\n\n**Verifying n=2:** 1001 = 7 × 143 ✓\n\n**For n ≥ 2:** I claim all work. \n\n**Key construction:** If $m$ is a multiple of 7 with digit sum $s$, then appending zeros doesn't change digit sum or divisibility. Also, $10^6 \\equiv 1 \\pmod{7}$, so we can use this periodicity.\n\nSince 1001 = 7 × 143 has digit sum 2, and we can concatenate: the number with $k$ copies of \"1001\" separated appropriately... Actually, consider that $\\underbrace{1001\\ 1001\\ \\cdots\\ 1001}_{k}$ — this equals $1001 \\times (1 + 10^4 + 10^8 + \\cdots)$, which is divisible by 7, and has digit sum $2k$.\n\nFor odd digit sums: 7 has digit sum 7. We can combine: a number with digit sum 7 and a number with digit sum $2k$ to get $7 + 2k$. More carefully, if we can get digit sums 2 and 3, we can get all integers ≥ 2 by combining (since gcd(2,3)=1, all sufficiently large integers work, and we can check small ones directly).\n\nWe have digit sum 3 (from 21) and digit sum 2 (from 1001). \n\nTo get digit sum $n$: write $n = 2a + 3b$. For $n \\geq 2$: \n- $n=2$: $a=1, b=0$ → 1001\n- $n=3$: $a=0, b=1$ → 21  \n- $n=4$: $a=2, b=0$ → use 1001 and 1001 concatenated properly\n- For larger $n$, concatenate copies of 1001 (digit sum 2 each) and 21 (digit sum 3 each), placing them so they don't interfere (e.g., 21 followed by enough zeros, then 1001).\n\nSince $21 \\times 10^k$ and $1001 \\times 10^j$ are both multiples of 7, their sum is too, and if we choose exponents so digits don't overlap, the digit sum adds.\n\nThus all $n \\geq 2$ are achievable, and $n = 1$ is not.\n\n## Conclusion\n\nThe answer is all positive integers $n$ except $n = 1$.\n\nFinal answer: All positive integers $n$ except $n=1$ (i.e., all integers $n \\geq 2$).",
+  "usage": {
+    "input_tokens": 77,
+    "output_tokens": 1256,
+    "thinking_tokens": 0
+  },
+  "latency_s": 20.198899548035115,
+  "cached": false
+}

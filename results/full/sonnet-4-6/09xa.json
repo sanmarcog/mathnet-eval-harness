@@ -1,0 +1,19 @@
+{
+  "id": "09xa",
+  "country": "Netherlands",
+  "competition": "Dutch Mathematical Olympiad",
+  "gold_final_answer": "{14, 19}, {15, 18}, {16, 17}",
+  "topics_flat": [
+    "Algebra > Prealgebra / Basic Algebra > Integers"
+  ],
+  "prompt": "We have two integers consisting of two digits, and both numbers do not start with a $0$. If you add these numbers, you get the number $S$. If you interchange the two digits of both numbers and add the new numbers, you get $4S$.\nDetermine all possible pairs of two-digit numbers satisfying these constraints. Make sure to clearly indicate in your answer which numbers form a pair.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "Let the two two-digit numbers be $\\overline{ab} = 10a + b$ and $\\overline{cd} = 10c + d$, where $a, c \\neq 0$.\n\nTheir sum: $S = (10a + b) + (10c + d)$\n\nAfter interchanging digits: $\\overline{ba} = 10b + a$ and $\\overline{dc} = 10d + c$\n\nNew sum: $(10b + a) + (10d + c) = 4S$\n\nSo: $(10b + a) + (10d + c) = 4[(10a + b) + (10c + d)]$\n\n$10b + a + 10d + c = 40a + 4b + 40c + 4d$\n\n$6b + 6d = 39a + 39c$\n\n$6(b + d) = 39(a + c)$\n\n$2(b + d) = 13(a + c)$\n\nSince $a, c \\geq 1$ and $a, c \\leq 9$, we have $a + c \\geq 2$.\n\nAlso $b, d \\in \\{0, 1, ..., 9\\}$, so $b + d \\leq 18$.\n\nFrom $2(b+d) = 13(a+c)$:\n- $b + d = \\frac{13(a+c)}{2}$\n\nFor this to be an integer, $a + c$ must be even.\n\nIf $a + c = 2$: $b + d = 13$ — possible (e.g., $b+d=13$)\nIf $a + c = 4$: $b + d = 26$ — impossible (max is 18)\n\nSo $a + c = 2$, meaning $a = c = 1$ (since both are at least 1).\n\nAnd $b + d = 13$.\n\nThe numbers are $\\overline{1b}$ and $\\overline{1d}$ where $b + d = 13$.\n\nPossible pairs $(b, d)$ with $b, d \\in \\{0,...,9\\}$ and $b + d = 13$:\n- $(4, 9)$: numbers 14 and 19\n- $(5, 8)$: numbers 15 and 18\n- $(6, 7)$: numbers 16 and 17\n- $(7, 6)$: numbers 17 and 16 (same pair)\n- $(8, 5)$: same as (5,8)\n- $(9, 4)$: same as (4,9)\n\nLet me verify with (14, 19): $S = 33$, reversed: $41 + 91 = 132 = 4 \\times 33$ ✓\n\nWith (15, 18): $S = 33$, reversed: $51 + 81 = 132 = 4 \\times 33$ ✓\n\nWith (16, 17): $S = 33$, reversed: $61 + 71 = 132 = 4 \\times 33$ ✓\n\nThe three pairs are:\n\n**{14, 19}, {15, 18}, {16, 17}**\n\nFinal answer: The pairs are (14, 19), (15, 18), and (16, 17).",
+  "usage": {
+    "input_tokens": 132,
+    "output_tokens": 822,
+    "thinking_tokens": 0
+  },
+  "latency_s": 9.003856118069962,
+  "cached": false
+}

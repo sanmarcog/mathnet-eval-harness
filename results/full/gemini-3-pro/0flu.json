@@ -1,0 +1,19 @@
+{
+  "id": "0flu",
+  "country": "Spain",
+  "competition": "Spanija 2012",
+  "gold_final_answer": "n^3 - n",
+  "topics_flat": [
+    "Geometry > Solid Geometry > Other 3D problems"
+  ],
+  "prompt": "With several identical spheres, we build up a tetrahedron using $n$ spheres for each side. Determine, in terms of $n$, the number of tangency points between the spheres in the construction.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find the number of tangency points between the spheres, we can represent the spheres as vertices of a graph, where an edge connects two vertices if the corresponding spheres are tangent. We want to find the total number of edges in this contact graph.\n\nThe tetrahedral arrangement consists of $n$ horizontal layers. The $k$-th layer from the top is a triangular arrangement of spheres with $k$ spheres along each side. \nThe number of spheres in the $k$-th layer is the $k$-th triangular number, $T_k = \\frac{k(k+1)}{2}$.\n\nThere are two types of tangency points (edges) to count:\n1. **Horizontal tangencies (within the same layer):**\nIn the $k$-th layer, the spheres form a triangular grid. The number of edges in a triangular grid of side $k$ is given by $3 T_{k-1} = \\frac{3k(k-1)}{2}$.\nSumming these over all $n$ layers, the total number of horizontal edges is:\n$$ \\sum_{k=1}^n \\frac{3k(k-1)}{2} = \\frac{3}{2} \\left( \\sum_{k=1}^n k^2 - \\sum_{k=1}^n k \\right) = \\frac{3}{2} \\left( \\frac{n(n+1)(2n+1)}{6} - \\frac{n(n+1)}{2} \\right) = \\frac{(n-1)n(n+1)}{2} $$\n\n2. **Slanted tangencies (between adjacent layers):**\nEach sphere in the $k$-th layer rests in the hollow formed by 3 mutually tangent spheres in the $(k+1)$-th layer directly below it. Thus, each sphere in layer $k$ is tangent to exactly 3 spheres in layer $k+1$.\nSince there are $T_k$ spheres in the $k$-th layer, there are $3 T_k = \\frac{3k(k+1)}{2}$ edges connecting the $k$-th layer to the $(k+1)$-th layer.\nSumming these downward edges for all layers from $1$ to $n-1$, we get:\n$$ \\sum_{k=1}^{n-1} \\frac{3k(k+1)}{2} = \\frac{3}{2} \\left( \\sum_{k=1}^{n-1} k^2 + \\sum_{k=1}^{n-1} k \\right) = \\frac{3}{2} \\left( \\frac{(n-1)n(2n-1)}{6} + \\frac{(n-1)n}{2} \\right) = \\frac{(n-1)n(n+1)}{2} $$\n\nAdding the horizontal and slanted tangency points together, the total number of tangency points in the tetrahedral construction is:\n$$ \\frac{(n-1)n(n+1)}{2} + \\frac{(n-1)n(n+1)}{2} = (n-1)n(n+1) = n^3 - n $$\n\nFinal answer: n^3-n",
+  "usage": {
+    "input_tokens": 79,
+    "output_tokens": 700,
+    "thoughts_tokens": 2855
+  },
+  "latency_s": 28.851934612961486,
+  "cached": false
+}

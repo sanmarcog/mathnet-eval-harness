@@ -1,0 +1,27 @@
+{
+  "id": "0464",
+  "country": "China",
+  "competition": "China-TST-2023B",
+  "gold_final_answer": "No; such an irrational number does not exist. For every irrational number, there are infinitely many positive integers n satisfying the condition.",
+  "topics_flat": [
+    "Number Theory > Other",
+    "Algebra > Algebraic Expressions > Sequences and Series > Floors and ceilings",
+    "Geometry > Plane Geometry > Combinatorial Geometry > Pick's theorem",
+    "Geometry > Plane Geometry > Analytic / Coordinate Methods > Cartesian coordinates"
+  ],
+  "prompt": "Does there exist an irrational number $x$ such that there are at most finitely many positive integers $n$ satisfying\n$$\n\\{kx\\} \\geq \\frac{1}{n+1}\n$$\nfor every $k \\in \\{1, \\dots, n\\}$?\n\nNote: Here, for a positive real number $y$, $\\{y\\}$ denotes the fractional part of $y$.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Solution\n\nWe need to determine if there exists an irrational $x$ such that for all but finitely many positive integers $n$, there exists some $k \\in \\{1, \\ldots, n\\}$ with $\\{kx\\} < \\frac{1}{n+1}$.\n\n**Reformulation:** We want: for all sufficiently large $n$, there exists $k \\in \\{1, \\ldots, n\\}$ such that $\\{kx\\} < \\frac{1}{n+1}$.\n\nThis means: for all sufficiently large $n$, some multiple $kx$ (with $1 \\leq k \\leq n$) lies within distance $\\frac{1}{n+1}$ of an integer (from above, i.e., fractional part $< \\frac{1}{n+1}$, or equivalently $kx$ is within $\\frac{1}{n+1}$ of the nearest integer from below).\n\n**Three-distance theorem perspective:** By the three-distance theorem, the points $\\{x\\}, \\{2x\\}, \\ldots, \\{nx\\}$ partition $[0,1)$ into $n+1$ gaps of at most 3 distinct lengths. The smallest gap has length at most $\\frac{1}{n+1}$.\n\nActually, the minimum of $\\{kx\\}$ over $k = 1, \\ldots, n$ equals the smallest positive value among $\\{kx\\}$. By the three-distance theorem, the $n$ points $\\{kx\\}$ divide $[0,1)$ into $n+1$ intervals, so the minimum gap from 0 (i.e., $\\min_{1\\leq k\\leq n}\\{kx\\}$) satisfies $\\min_{1\\leq k\\leq n}\\{kx\\} \\leq \\frac{1}{n+1}$.\n\nSo $\\min_{1\\leq k\\leq n}\\{kx\\} \\leq \\frac{1}{n+1}$ always holds. But we need **strict** inequality $< \\frac{1}{n+1}$.\n\nEquality $\\min_{1\\leq k\\leq n}\\{kx\\} = \\frac{1}{n+1}$ would require all $n+1$ gaps to be equal to $\\frac{1}{n+1}$, meaning $\\{kx\\} = \\frac{k}{n+1}$ for $k=1,\\ldots,n$, which forces $x = \\frac{1}{n+1}$ (rational). So for irrational $x$, we always have $\\min_{1\\leq k\\leq n}\\{kx\\} < \\frac{1}{n+1}$ for **every** $n$.\n\nWait, let me reconsider. The three-distance theorem says the gaps have at most 3 lengths. The minimum fractional part $\\min_{1\\leq k\\leq n}\\{kx\\}$ is the length of the gap $[0, \\min\\{kx\\})$... no, it's the smallest point.\n\nThe $n$ points $\\{x\\}, \\ldots, \\{nx\\}$ in $(0,1)$ create $n+1$ gaps. The gap containing 0 has length equal to $\\min_{1\\leq k\\leq n}\\{kx\\}$ (the smallest fractional part). The sum of all gaps is 1, so the average gap is $\\frac{1}{n+1}$, meaning the minimum gap is $\\leq \\frac{1}{n+1}$.\n\nFor irrational $x$, all $\\{kx\\}$ are distinct and irrational, so the gaps cannot all be equal (that would require rational values). Hence the minimum gap is **strictly less** than $\\frac{1}{n+1}$ for all $n$.\n\nTherefore, for **every** irrational $x$ and **every** positive integer $n$, there exists $k \\in \\{1, \\ldots, n\\}$ with $\\{kx\\} < \\frac{1}{n+1}$.\n\nThis means: for every irrational $x$, the condition $\\{kx\\} \\geq \\frac{1}{n+1}$ for all $k \\in \\{1,\\ldots,n\\}$ **fails** for every $n$ (not just finitely many). So the set of $n$ satisfying the condition is **empty** (which is finite — it has 0 elements).\n\nThus every irrational $x$ satisfies the requirement (with the finite set being the empty set).\n\n**Yes**, such an irrational number exists (in fact, every irrational number works).\n\nFinal answer: Yes",
+  "usage": {
+    "input_tokens": 147,
+    "output_tokens": 1156,
+    "thinking_tokens": 0
+  },
+  "latency_s": 15.650474768015556,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "Yes"
+  }
+}

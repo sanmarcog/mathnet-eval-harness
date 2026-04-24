@@ -1,0 +1,20 @@
+{
+  "id": "0cy4",
+  "country": "Saudi Arabia",
+  "competition": "SAMC",
+  "gold_final_answer": "x = (a^2 + b^2) / (a + b) (with no solution if ab = 0 due to domain restrictions)",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Polynomial operations",
+    "Algebra > Prealgebra / Basic Algebra > Simple Equations"
+  ],
+  "prompt": "Let $a$ and $b$ be real numbers such that $a+b \\neq 0$. Solve the equation\n$$\n\\frac{1}{(x+a)^2-b^2}+\\frac{1}{(x+b)^2-a^2}=\\frac{1}{x^2-(a+b)^2}+\\frac{1}{x^2-(a-b)^2}\n$$",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let  \n\\[\nF(x)=\\frac{1}{(x+a)^2-b^2}+\\frac{1}{(x+b)^2-a^2}-\\frac{1}{x^2-(a+b)^2}-\\frac{1}{x^2-(a-b)^2}.\n\\]\nWe simplify each denominator by factoring:\n\n\\[\n(x+a)^2-b^2=(x+a-b)(x+a+b),\n\\]\n\\[\n(x+b)^2-a^2=(x+b-a)(x+a+b),\n\\]\n\\[\nx^2-(a+b)^2=(x-a-b)(x+a+b),\n\\]\n\\[\nx^2-(a-b)^2=(x-a+b)(x+a-b).\n\\]\n\nNow use the identity\n\\[\n\\frac1{(u-v)(u+w)}=\\frac{1}{v+w}\\left(\\frac1{u-v}-\\frac1{u+w}\\right),\n\\]\nor directly combine the terms in pairs. A straightforward simplification gives\n\\[\nF(x)=\\frac{(a+b)\\bigl(x^2-(a-b)^2\\bigr)-(a+b)\\bigl(x^2-(a+b)^2\\bigr)}{((x+a)^2-b^2)((x+b)^2-a^2)}.\n\\]\nAfter cancellation, this becomes\n\\[\nF(x)=\\frac{2(a+b)(a-b)}{((x+a)^2-b^2)((x+b)^2-a^2)}-\\frac{2(a+b)(a-b)}{(x^2-(a+b)^2)(x^2-(a-b)^2)},\n\\]\nand the numerator simplifies to\n\\[\nF(x)=0\n\\]\nfor every \\(x\\) for which all denominators are defined.\n\nSo the equation is an identity on its domain.\n\nTherefore, the solutions are all real \\(x\\) such that no denominator is zero, i.e.\n\\[\n(x+a)^2\\ne b^2,\\quad (x+b)^2\\ne a^2,\\quad x^2\\ne (a+b)^2,\\quad x^2\\ne (a-b)^2.\n\\]\n\nEquivalently,\n\\[\nx\\neq -a\\pm b,\\quad x\\neq -b\\pm a,\\quad x\\neq \\pm(a+b),\\quad x\\neq \\pm(a-b).\n\\]\n\nSince \\(a+b\\neq 0\\), these exclusions are the only restrictions.\n\nFinal answer: All real numbers \\(x\\) except those making a denominator zero, i.e. \n\\[\nx\\notin \\{-a\\pm b,\\,-b\\pm a,\\,\\pm(a+b),\\,\\pm(a-b)\\}.\n\\]",
+  "usage": {
+    "input_tokens": 132,
+    "output_tokens": 583,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.668317996081896,
+  "cached": false
+}

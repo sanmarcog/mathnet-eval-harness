@@ -1,0 +1,20 @@
+{
+  "id": "0d6l",
+  "country": "Saudi Arabia",
+  "competition": "SAUDI ARABIAN MATHEMATICAL COMPETITIONS",
+  "gold_final_answer": "All triples that are permutations of (a, a, 0) with a ≥ 0 (including (0, 0, 0)).",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Sequences and Series > Recurrence relations",
+    "Discrete Mathematics > Combinatorics > Invariants / monovariants"
+  ],
+  "prompt": "Given three numbers $x$, $y$, $z$, and set $x_{1} = |x - y|$, $y_{1} = |y - z|$, $z_{1} = |z - x|$. From $x_{1}$, $y_{1}$, $z_{1}$, form in the same fashion the numbers $x_{2}$, $y_{2}$, $z_{2}$, and so on. It is known that $x_{n} = x$, $y_{n} = y$, $z_{n} = z$ for some $n$. Find all possible values of $(x, y, z)$.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find all possible values of $(x, y, z)$, let's analyze the sequence of triples. \n\nLet $T_k = (x_k, y_k, z_k)$. For $k \\ge 1$, the elements of $T_k$ are absolute values of differences, so $x_k, y_k, z_k \\ge 0$. Since we are given that $T_n = T_0 = (x, y, z)$ for some $n \\ge 1$, the initial numbers $x, y, z$ must also be non-negative.\n\nLet $M_k = \\max(x_k, y_k, z_k)$ be the maximum element of the triple at step $k$. Because all elements are non-negative, the absolute difference between any two elements cannot exceed the maximum of the two elements. Therefore:\n$$x_{k+1} = |x_k - y_k| \\le \\max(x_k, y_k) \\le M_k$$\n$$y_{k+1} = |y_k - z_k| \\le \\max(y_k, z_k) \\le M_k$$\n$$z_{k+1} = |z_k - x_k| \\le \\max(z_k, x_k) \\le M_k$$\nThis implies that $M_{k+1} \\le M_k$ for all $k \\ge 0$. The maximum element of the triples is non-increasing. \n\nSince the sequence is periodic ($T_n = T_0$), the maximum element must remain constant throughout the sequence: $M_0 = M_1 = \\dots = M_n$.\n\nFor any three non-negative numbers, let them be $0 \\le a \\le b \\le c$. The differences between them in absolute value are $b-a$, $c-b$, and $c-a$. Notice that $(b-a) + (c-b) = c-a$. Thus, in any triple $T_k$ for $k \\ge 1$, the largest element is exactly the sum of the other two. \nBecause $T_n = T_0$, this property must also hold for $T_0$, meaning $c = a + b$.\n\nWhen we apply the operation to the set $\\{a, b, a+b\\}$, the new elements are:\n$|a - b| = b - a$\n$|b - (a+b)| = a$\n$|(a+b) - a| = b$\nThe new set of elements is $\\{b-a, a, b\\}$. The maximum of this new set is $b$. \nFor the maximum to remain constant (i.e., $b = a+b$), we must have $a = 0$. \n\nThis means that at every step, the smallest element of the triple must be $0$. Substituting $a = 0$ into our set $\\{a, b, a+b\\}$, we find that the elements of the triple must be $\\{0, b, b\\}$ for some real number $b \\ge 0$.\n\nLet's test the permutations of $(0, b, b)$ where $b \\ge 0$:\n1. If $T_0 = (0, b, b)$, then $T_1 = (|0-b|, |b-b|, |b-0|) = (b, 0, b)$.\n2. If $T_1 = (b, 0, b)$, then $T_2 = (|b-0|, |0-b|, |b-b|) = (b, b, 0)$.\n3. If $T_2 = (b, b, 0)$, then $T_3 = (|b-b|, |b-0|, |0-b|) = (0, b, b) = T_0$.\n\nThe sequence repeats every 3 steps (or 1 step if $b=0$). Thus, any permutation of $(0, b, b)$ for $b \\ge 0$ satisfies the condition.\n\nFinal answer: (0, t, t), (t, 0, t), (t, t, 0) \\text{ for any } t \\ge 0",
+  "usage": {
+    "input_tokens": 173,
+    "output_tokens": 937,
+    "thoughts_tokens": 2659
+  },
+  "latency_s": 30.759148189914413,
+  "cached": false
+}

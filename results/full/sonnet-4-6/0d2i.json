@@ -1,0 +1,23 @@
+{
+  "id": "0d2i",
+  "country": "Saudi Arabia",
+  "competition": "Selection tests for the Gulf Mathematical Olympiad 2013",
+  "gold_final_answer": "61, 77, 93, 99, 122, 124, 154, 186, 198",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Circles",
+    "Geometry > Plane Geometry > Quadrilaterals > Cyclic quadrilaterals",
+    "Number Theory > Number-Theoretic Functions > φ (Euler's totient)",
+    "Number Theory > Divisibility / Factorization > Prime numbers",
+    "Number Theory > Divisibility / Factorization > Greatest common divisors (gcd)"
+  ],
+  "prompt": "Define a regular $n$-pointed star to be a union of $n$ line segments $P_{1}P_{2}$, $P_{2}P_{3}$, $\\ldots$, $P_{n}P_{1}$ such that\n- the points $P_{1}, P_{2}, \\ldots, P_{n}$ are coplanar and no three of them are collinear;\n- each of the $n$ line segments intersects at least one of the other line segments at a point other than an endpoint;\n- all of the angles at $P_{1}, P_{2}, \\ldots, P_{n}$ are congruent;\n- all of the $n$ line segments $P_{1}P_{2}, P_{2}P_{3}, \\ldots, P_{n}P_{1}$ are congruent; and\n- the path $P_{1}P_{2}\\ldots P_{n}P_{1}$ turns counterclockwise at an angle less than $180^{\\circ}$ at each vertex.\nThere are no regular 3-pointed, 4-pointed, or 6-pointed stars. All regular 5-pointed stars are similar, but there are two non-similar regular 7-pointed stars. Find all possible values of $n$ such that there are exactly 29 non-similar regular $n$-pointed stars.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Setting Up the Framework\n\nFor a regular $n$-pointed star, the path $P_1P_2\\ldots P_nP_1$ turns counterclockwise at each vertex. The total turning must be $360° \\cdot k$ for some positive integer $k$ (the winding number).\n\nAt each vertex, the exterior angle (turning angle) is $\\frac{360°k}{n}$ for some integer $k$. The interior angle at each vertex is $180° - \\frac{360°k}{n}$.\n\nFor the star to be valid:\n- The turning angle must be less than 180°, so $\\frac{360°k}{n} < 180°$, giving $k < n/2$\n- The path must actually create a star (each segment intersects another), so $k \\geq 2$ (k=1 gives a convex polygon, not a star)\n- We need $\\gcd(k,n) = 1$ for the path to visit all $n$ points before closing (otherwise it would close early)\n\nWait, let me reconsider. For a regular $n$-pointed star with step $k$, we connect every $k$-th point on a circle. This gives a valid star when $\\gcd(k,n) = 1$ and $2 \\leq k \\leq n/2 - 1$ (excluding $k=1$ which is convex polygon, and $k = n/2$ which is degenerate).\n\nActually, $k$ ranges from $2$ to $\\lfloor(n-1)/2\\rfloor$, with $\\gcd(k,n) = 1$.\n\nNote that $k$ and $n-k$ give similar stars (just mirror images traversed differently), but the problem says the path turns counterclockwise, so we consider $k$ and $n-k$ as the same star (they're similar/congruent).\n\nWait - actually $k$ and $n-k$ give the same geometric figure. So the number of non-similar regular $n$-pointed stars is the number of valid $k$ values with $2 \\leq k \\leq \\lfloor(n-1)/2\\rfloor$ and $\\gcd(k,n) = 1$.\n\n## Counting the Stars\n\nThe number of non-similar regular $n$-pointed stars equals the number of integers $k$ with $2 \\leq k \\leq \\lfloor(n-1)/2\\rfloor$ and $\\gcd(k,n) = 1$.\n\nThe total count of $k$ with $1 \\leq k \\leq \\lfloor(n-1)/2\\rfloor$ and $\\gcd(k,n) = 1$ is $\\frac{\\phi(n)}{2}$ (for $n > 2$, since $k$ and $n-k$ pair up, and $k=1$ pairs with $k=n-1$).\n\nSo the number of stars = $\\frac{\\phi(n)}{2} - 1$ (subtracting $k=1$ which gives a convex polygon).\n\nWe need $\\frac{\\phi(n)}{2} - 1 = 29$, so $\\phi(n) = 60$.\n\n## Finding n with φ(n) = 60\n\nWe need all $n$ with $\\phi(n) = 60$.\n\n$60 = 2^2 \\cdot 3 \\cdot 5$\n\nFinding all $n$ with $\\phi(n) = 60$:\n- $n = 61$: prime, $\\phi(61) = 60$ ✓\n- $n = 122 = 2 \\cdot 61$: $\\phi = 60$ ✓\n- $n = 183 = 3 \\cdot 61$: $\\phi = 2 \\cdot 60 = 120$ ✗\n- $n = 77 = 7 \\cdot 11$: $\\phi = 6 \\cdot 10 = 60$ ✓\n- $n = 154 = 2 \\cdot 7 \\cdot 11$: $\\phi = 60$ ✓\n- $n = 93 = 3 \\cdot 31$: $\\phi = 2 \\cdot 30 = 60$ ✓\n- $n = 186 = 2 \\cdot 3 \\cdot 31$: $\\phi = 60$ ✓\n- $n = 124 = 4 \\cdot 31$: $\\phi = 2 \\cdot 30 = 60$ ✓\n- $n = 62 = 2 \\cdot 31$: $\\phi = 30$ ✗. Wait: $\\phi(62) = \\phi(2)\\phi(31) = 1 \\cdot 30 = 30$ ✗\n- $n = 31$: $\\phi(31) = 30$ ✗\n- $n = 60$: $\\phi(60) = \\phi(4)\\phi(3)\\phi(5) = 2\\cdot2\\cdot4 = 16$ ✗\n\nAfter systematic enumeration, the values of $n$ with $\\phi(n) = 60$ are: **61, 77, 93, 122, 124, 154, 186**.\n\nFinal answer: $n \\in \\{61, 77, 93, 122, 124, 154, 186\\}$",
+  "usage": {
+    "input_tokens": 364,
+    "output_tokens": 1342,
+    "thinking_tokens": 0
+  },
+  "latency_s": 19.247410994954407,
+  "cached": false
+}

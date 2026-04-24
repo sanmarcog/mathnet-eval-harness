@@ -1,0 +1,24 @@
+{
+  "id": "0h4l",
+  "country": "Ukraine",
+  "competition": "Ukrainian National Mathematical Olympiad",
+  "gold_final_answer": "2013 or 2021",
+  "topics_flat": [
+    "Algebra > Intermediate Algebra > Quadratic functions"
+  ],
+  "prompt": "Find all values of the parameter $a$ such that the parabolas $y = x^2 + 2013x + a$ and $y = -x^2 + ax + 2013$ are tangent to each other.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Setting Up the System\n\nFor the parabolas to be tangent to each other, they must intersect at exactly one point where they also have equal slopes.\n\n**Equal y-values:** x² + 2013x + a = -x² + ax + 2013\n\n**Equal slopes (derivatives):** 2x + 2013 = -2x + a\n\nFrom the slope equation:\n4x = a - 2013\nx = (a - 2013)/4\n\n**Substituting into the intersection equation:**\n2x² + (2013 - a)x + (a - 2013) = 0\n2x² - (a - 2013)x + (a - 2013) = 0\n\nLet k = a - 2013, so x = k/4:\n\n2(k/4)² - k(k/4) + k = 0\n2k²/16 - k²/4 + k = 0\nk²/8 - k²/4 + k = 0\nk²/8 - 2k²/8 + k = 0\n-k²/8 + k = 0\nk(-k/8 + 1) = 0\n\nSo k = 0 or k = 8.\n\n**Case 1:** k = 0 → a = 2013\n\n**Case 2:** k = 8 → a = 2021\n\n**Verification:**\n\n*Case 1: a = 2013*\nBoth parabolas become y = x² + 2013x + 2013 and y = -x² + 2013x + 2013.\nAt x = 0: both give y = 2013. Slopes: 2013 and 2013. ✓\nThey intersect only at x = 0 (from 2x² = 0). ✓\n\n*Case 2: a = 2021*\nx = 8/4 = 2\nParabola 1: y = 4 + 4026 + 2021 = 6051\nParabola 2: y = -4 + 4042 + 2013 = 6051 ✓\nSlopes: 2(2) + 2013 = 2017; -2(2) + 2021 = 2017 ✓\n\nFinal answer: $a = 2013$ and $a = 2021$",
+  "usage": {
+    "input_tokens": 99,
+    "output_tokens": 577,
+    "thinking_tokens": 0
+  },
+  "latency_s": 8.402371108997613,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "$a = 2013$ and $a = 2021$"
+  }
+}

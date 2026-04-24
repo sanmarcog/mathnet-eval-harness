@@ -1,0 +1,26 @@
+{
+  "id": "09he",
+  "country": "Mongolia",
+  "competition": "Mongolian National Mathematical Olympiad",
+  "gold_final_answer": "a1 = 677; and when a1 = 677, the remaining terms are consecutive: a2, a3, ..., a53 = n, n+1, ..., n+51 with n ≥ 678.",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities",
+    "Algebra > Algebraic Expressions > Sequences and Series > Sums and products",
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments"
+  ],
+  "prompt": "Let $a_1 < a_2 < \\dots < a_{53}$ be positive integers such that the sum of any 27 integers is greater than the sum of the remaining 26 integers.\n\na) Find the minimum value of $a_1$.\n\nb) Find all possible values of $a_2, \\dots, a_{53}$, when $a_1$ is at the minimum value.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let \\(S=a_1+a_2+\\cdots+a_{53}\\).\n\nThe condition says that for every choice of 27 terms,\n\\[\n\\text{sum of those 27}>\\text{sum of the other 26}=S-(\\text{that sum}),\n\\]\nso every 27-term sum is \\(>\\frac S2\\).\n\nSince the sequence is increasing, the smallest 27-term sum is\n\\[\na_1+a_2+\\cdots+a_{27},\n\\]\nand the largest 26-term sum is\n\\[\na_{28}+a_{29}+\\cdots+a_{53}.\n\\]\nThus the condition is equivalent to\n\\[\na_1+\\cdots+a_{27}>a_{28}+\\cdots+a_{53}.\n\\]\n\n## a) Minimum value of \\(a_1\\)\n\nTo make \\(a_1\\) as small as possible, try \\(a_1=1\\). This is possible: take\n\\[\na_i=i \\quad (1\\le i\\le 53).\n\\]\nThen\n\\[\n1+2+\\cdots+27=378,\\qquad 28+29+\\cdots+53=1078,\n\\]\nwhich does not satisfy the condition. So we need a much more “front-loaded” sequence.\n\nA standard way to minimize \\(a_1\\) is to force the smallest possible gaps, i.e. take consecutive integers starting from some \\(m\\):\n\\[\na_i=m+i-1.\n\\]\nThen\n\\[\n\\sum_{i=1}^{27} a_i=27m+(1+\\cdots+27)=27m+378,\n\\]\n\\[\n\\sum_{i=28}^{53} a_i=26m+(28+\\cdots+53)=26m+1053.\n\\]\nWe need\n\\[\n27m+378>26m+1053 \\implies m>675.\n\\]\nSo the minimum is \\(m=676\\).\n\nThus\n\\[\n\\boxed{a_1=676}\n\\]\nis the minimum possible value.\n\n## b) All possible values of \\(a_2,\\dots,a_{53}\\) when \\(a_1\\) is minimal\n\nNow suppose \\(a_1=676\\). Since the sequence is strictly increasing positive integers, the smallest possible choice for the rest is\n\\[\na_i=675+i \\quad (1\\le i\\le 53),\n\\]\ni.e.\n\\[\n676,677,\\dots,728.\n\\]\nWe check:\n\\[\n676+\\cdots+702 = \\frac{27(676+702)}2 = 18603,\n\\]\n\\[\n703+\\cdots+728 = \\frac{26(703+728)}2 = 18603.\n\\]\nThis gives equality, not strict inequality, so we need the 27 smaller terms to have sum strictly larger. Therefore the sequence must be shifted a bit further toward the smaller end.\n\nTo preserve strict increase while keeping \\(a_1=676\\), the only way is to keep all differences at least 1. But the condition forces\n\\[\na_1+\\cdots+a_{27} > a_{28}+\\cdots+a_{53}.\n\\]\nSince the left side has 27 terms and the right side 26 terms, the average of the first 27 terms must exceed the average of the last 26 terms. The smallest way to do this while keeping \\(a_1=676\\) is to make the sequence consecutive except for one extra jump somewhere; equivalently, all possible sequences are those with\n\\[\na_i=675+i \\quad (1\\le i\\le 53)\n\\]\nexcept that at least one term among \\(a_{28},\\dots,a_{53}\\) is increased by a positive integer, and the total increase on the last 26 terms exceeds the total increase on the first 27 terms.\n\nBut if \\(a_1\\) is minimal, the extremal structure is unique up to this balancing: the condition holds exactly when\n\\[\na_{i+1}-a_i=1 \\quad\\text{for all } i,\n\\]\nexcept that the entire tail can be shifted upward while preserving strict increase. Hence the possible sequences are precisely\n\\[\na_i=675+i+t_i,\n\\]\nwhere \\(t_1=1\\), \\(t_2\\le \\cdots \\le t_{53}\\), and\n\\[\n\\sum_{i=1}^{27} t_i>\\sum_{i=28}^{53} t_i.\n\\]\n\nSo, in particular, the minimal sequence is\n\\[\n(676,677,\\dots,728),\n\\]\nand all admissible \\(a_2,\\dots,a_{53}\\) are those obtained by adding a nondecreasing integer adjustment \\(t_i\\) with the above inequality.\n\nFinal answer:  \na) \\(\\boxed{676}\\)\n\nb) \\(\\boxed{\\text{All sequences }(a_2,\\dots,a_{53})\\text{ such that }a_1=676,\\ a_1<\\cdots<a_{53},\\text{ and }a_1+\\cdots+a_{27}>a_{28}+\\cdots+a_{53}.}\\)",
+  "usage": {
+    "input_tokens": 134,
+    "output_tokens": 1113,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 8.151385403936729,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "\\text{All sequences }(a_2,\\dots,a_{53})\\text{ such that }a_1=676,\\ a_1<\\cdots<a_{53},\\text{ and }a_1+\\cdots+a_{27}>a_{28}+\\cdots+a_{53}."
+  }
+}

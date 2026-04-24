@@ -1,0 +1,25 @@
+{
+  "id": "0d9r",
+  "country": "Saudi Arabia",
+  "competition": "Team selection tests for JBMO 2018",
+  "gold_final_answer": "1980",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Prime numbers",
+    "Number Theory > Divisibility / Factorization > Factorization techniques"
+  ],
+  "prompt": "Distinct prime numbers $p$, $q$, $r$ satisfy the equation\n$$\n2 p q r + 50 p q = 7 p q r + 55 p r = 8 p q r + 12 q r = A\n$$\nfor some positive integer $A$. Find $A$.",
+  "model": "gpt-5.4",
+  "response_text": "Let\n\\[\nA=2pqr+50pq=7pqr+55pr=8pqr+12qr,\n\\]\nwhere \\(p,q,r\\) are distinct primes.\n\nWe compare the equal expressions pairwise.\n\n## 1) Compare the first two\n\\[\n2pqr+50pq=7pqr+55pr.\n\\]\nMove terms:\n\\[\n50pq=5pqr+55pr.\n\\]\nFactor \\(5p\\):\n\\[\n10q=qr+11r=r(q+11).\n\\]\nSo\n\\[\nr=\\frac{10q}{q+11}.\n\\]\nHence \\(q+11\\mid 10q\\). Since \\(q+11\\mid 10(q+11)-10q=110\\), we get\n\\[\nq+11\\mid 110.\n\\]\nBecause \\(q\\) is prime, test divisors of 110:\n\\[\nq+11\\in\\{22,55,110\\}\\quad\\Rightarrow\\quad q\\in\\{11,44,99\\}.\n\\]\nOnly prime choice is\n\\[\nq=11.\n\\]\nThen\n\\[\nr=\\frac{10\\cdot 11}{11+11}=5.\n\\]\n\n## 2) Compare the second and third\n\\[\n7pqr+55pr=8pqr+12qr.\n\\]\nRearrange:\n\\[\n55pr=pqr+12qr=qr(p+12).\n\\]\nSubstitute \\(q=11,\\ r=5\\):\n\\[\n55p=55(p+12).\n\\]\nWait, carefully:\n\\[\n55pr=qr(p+12)\n\\]\ngives\n\\[\n55p\\cdot 5 = 11\\cdot 5 (p+12).\n\\]\nSo\n\\[\n275p=55(p+12).\n\\]\nDivide by 55:\n\\[\n5p=p+12,\n\\]\nhence\n\\[\n4p=12,\\quad p=3.\n\\]\n\nThus the primes are\n\\[\n(p,q,r)=(3,11,5),\n\\]\nwhich are distinct.\n\n## 3) Compute \\(A\\)\nUse\n\\[\nA=2pqr+50pq.\n\\]\nThen\n\\[\nA=2\\cdot 3\\cdot 11\\cdot 5+50\\cdot 3\\cdot 11\n=330+1650=1980.\n\\]\n\nFinal answer: 1980",
+  "usage": {
+    "input_tokens": 113,
+    "output_tokens": 529,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 7.773279901011847,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "exact",
+    "predicted": "1980"
+  }
+}

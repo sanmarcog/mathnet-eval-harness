@@ -1,0 +1,20 @@
+{
+  "id": "0aj9",
+  "country": "North Macedonia",
+  "competition": "Junior Balkan Mathematical Olympiad",
+  "gold_final_answer": "4",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Games / greedy algorithms",
+    "Discrete Mathematics > Combinatorics > Invariants / monovariants"
+  ],
+  "prompt": "A $5 \\times 5$ board, consisting of 25 unit squares, a positive integer $k \\le 25$ and an unlimited supply of $L$-shapes are given. Two players, $A$ and $B$, play the following game: starting with $A$ they alternatively mark a previously unmarked unit square until they mark a total of $k$ unit squares.\n\nWe say that a placement of $L$-shapes on unmarked unit squares is called good if the $L$-shapes do not overlap and each of them covers exactly three unmarked unit squares of the board. $B$ wins if every good placement of $L$-shapes leaves uncovered at least three unmarked unit squares. Determine the minimum value of $k$ for which $B$ has a winning strategy.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let \\(U\\) be the set of unmarked squares after the \\(k\\) moves.  \nThe player \\(B\\) wins iff **every** disjoint collection of \\(L\\)-triominoes placed on \\(U\\) covers at most \\(22\\) squares, i.e. leaves at least \\(3\\) squares uncovered.\n\nSo we want the smallest \\(k\\) such that \\(A\\) can force the existence of a good placement covering at least \\(23\\) unmarked squares; equivalently, \\(B\\) can guarantee that the maximum number of unmarked squares covered by disjoint \\(L\\)-triominoes is at most \\(22\\).\n\n### Key observations\n\n- A \\(5\\times 5\\) board can be tiled by \\(8\\) \\(L\\)-triominoes plus one extra square, so \\(24\\) squares can be covered by good placement on a suitable set of unmarked squares.\n- Thus, if after the game there are \\(24\\) or more unmarked squares, \\(B\\) certainly does **not** win.\n- We need to see when \\(A\\) can force a set of unmarked squares that still admits a good placement covering at least \\(23\\) squares.\n\n### Lower bound: \\(k\\le 1\\) does not work, and \\(k=2\\) still does not work\nIf \\(k=1\\), then \\(24\\) squares remain unmarked, and \\(A\\) can clearly leave a board that admits a tiling by \\(8\\) \\(L\\)-triominoes, so \\(B\\) loses.\n\nFor \\(k=2\\), no matter what two squares are marked, there are still \\(23\\) unmarked squares. One can always place \\(7\\) disjoint \\(L\\)-triominoes on \\(21\\) of them, leaving only \\(2\\) unmarked squares uncovered, so \\(B\\) still loses.\n\nHence \\(k\\ge 3\\).\n\n### Upper bound: \\(k=3\\) is enough\nWith \\(3\\) marked squares, \\(22\\) squares remain unmarked. Now \\(B\\) can always respond by partitioning the board into regions so that any set of \\(22\\) unmarked squares contains at most \\(7\\) disjoint \\(L\\)-triominoes, covering at most \\(21\\) squares, hence at least \\(1\\) unmarked square remains outside. But we need at least \\(3\\) unmarked squares uncovered, so we need a slightly stronger argument:\n\nThe maximum number of squares covered by disjoint \\(L\\)-triominoes on a \\(5\\times 5\\) board with any \\(3\\) removed is at most \\(21\\), so at least \\(22-21=1\\) square remains uncovered. But since each \\(L\\)-triomino covers \\(3\\) squares, the uncovered count is congruent to \\(22 \\pmod 3\\), i.e. at least \\(4\\). Therefore every good placement leaves at least \\(3\\) squares uncovered, so \\(B\\) wins.\n\nThus the minimum \\(k\\) is\n\n**Final answer: 3**",
+  "usage": {
+    "input_tokens": 219,
+    "output_tokens": 687,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 4.88081117789261,
+  "cached": false
+}

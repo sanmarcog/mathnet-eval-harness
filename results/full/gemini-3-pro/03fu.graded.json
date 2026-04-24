@@ -1,0 +1,26 @@
+{
+  "id": "03fu",
+  "country": "Bulgaria",
+  "competition": "Bulgarian National Olympiad - Final Round",
+  "gold_final_answer": "90°",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Triangles > Triangle centers: centroid, incenter, circumcenter, orthocenter, Euler line, nine-point circle",
+    "Geometry > Plane Geometry > Quadrilaterals > Cyclic quadrilaterals",
+    "Geometry > Plane Geometry > Miscellaneous > Angle chasing"
+  ],
+  "prompt": "Given is a triangle $ABC$ and the points $M$, $P$ lie on the segments $AB$, $BC$, respectively, such that $AM = BC$ and $CP = BM$. If $AP$ and $CM$ meet at $O$ and $2\\angle AOM = \\angle ABC$, find the measure of $\\angle ABC$.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find the measure of $\\angle ABC$, let's set up a coordinate system with $B$ at the origin $(0,0)$. Let $\\angle ABC = \\beta$. \nLet $BC = a$ and $BM = x$. We are given that $AM = BC = a$ and $CP = BM = x$. \nSince $M$ is on $AB$ and $P$ is on $BC$, the length of $AB$ is $AM + BM = a + x$, and the length of $BP$ is $BC - CP = a - x$.\n\nWe can write the coordinates of the points as follows:\n$B = (0,0)$\n$C = (a, 0)$\n$P = (a-x, 0)$\n$M = (x\\cos\\beta, x\\sin\\beta)$\n$A = ((a+x)\\cos\\beta, (a+x)\\sin\\beta)$\n\nWe are interested in the angle between the lines $CM$ and $AP$, which intersect at $O$. Let's find the direction vectors for these lines:\n$\\vec{CM} = M - C = (x\\cos\\beta - a, x\\sin\\beta)$\n$\\vec{PA} = A - P = ((a+x)\\cos\\beta - a + x, (a+x)\\sin\\beta)$\n\nThe angle $\\theta = \\angle AOM$ between these two vectors can be found using the dot product and the cross product. \nThe magnitude of the cross product is:\n$|\\vec{CM} \\times \\vec{PA}| = |(x\\cos\\beta - a)(a+x)\\sin\\beta - x\\sin\\beta((a+x)\\cos\\beta - a + x)|$\nFactoring out $\\sin\\beta$, we get:\n$|\\vec{CM} \\times \\vec{PA}| = \\sin\\beta |x(a+x)\\cos\\beta - a(a+x) - x(a+x)\\cos\\beta + ax - x^2|$\n$|\\vec{CM} \\times \\vec{PA}| = \\sin\\beta |-a^2 - ax + ax - x^2| = (a^2 + x^2)\\sin\\beta$\n\nThe dot product is:\n$\\vec{CM} \\cdot \\vec{PA} = (x\\cos\\beta - a)((a+x)\\cos\\beta - a + x) + x(a+x)\\sin^2\\beta$\n$= x(a+x)\\cos^2\\beta - a(a+x)\\cos\\beta + x(x-a)\\cos\\beta - a(x-a) + x(a+x)\\sin^2\\beta$\nUsing $\\cos^2\\beta + \\sin^2\\beta = 1$, this simplifies to:\n$\\vec{CM} \\cdot \\vec{PA} = x(a+x) - a(x-a) + (x^2 - ax - a^2 - ax)\\cos\\beta$\n$= a^2 + x^2 + (x^2 - 2ax - a^2)\\cos\\beta$\n\nThe tangent of the angle $\\theta$ between the lines is the ratio of the magnitude of the cross product to the dot product:\n$\\tan\\theta = \\frac{(a^2 + x^2)\\sin\\beta}{a^2 + x^2 + (x^2 - 2ax - a^2)\\cos\\beta}$\n\nWe are given that $2\\angle AOM = \\angle ABC$, which means $\\theta = \\beta/2$. Using the half-angle tangent identity $\\tan(\\beta/2) = \\frac{\\sin\\beta}{1 + \\cos\\beta}$, we can equate the two expressions:\n$\\frac{\\sin\\beta}{1 + \\cos\\beta} = \\frac{(a^2 + x^2)\\sin\\beta}{a^2 + x^2 + (x^2 - 2ax - a^2)\\cos\\beta}$\n\nAssuming $\\sin\\beta \\neq 0$ (since it's an angle of a triangle), we can divide both sides by $\\sin\\beta$ and cross-multiply:\n$a^2 + x^2 + (x^2 - 2ax - a^2)\\cos\\beta = (a^2 + x^2)(1 + \\cos\\beta)$\n$a^2 + x^2 + (x^2 - 2ax - a^2)\\cos\\beta = a^2 + x^2 + (a^2 + x^2)\\cos\\beta$\n\nSubtracting $a^2 + x^2$ from both sides gives:\n$(x^2 - 2ax - a^2)\\cos\\beta = (a^2 + x^2)\\cos\\beta$\n$(x^2 - 2ax - a^2 - a^2 - x^2)\\cos\\beta = 0$\n$-2a(a + x)\\cos\\beta = 0$\n\nSince $a$ and $x$ are positive side lengths, $-2a(a+x) \\neq 0$. Therefore, we must have:\n$\\cos\\beta = 0$\n\nFor an angle in a triangle, $\\cos\\beta = 0$ implies that $\\beta = 90^\\circ$.\n\nFinal answer: 90^\\circ",
+  "usage": {
+    "input_tokens": 113,
+    "output_tokens": 1191,
+    "thoughts_tokens": 3137
+  },
+  "latency_s": 32.747781074023806,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "90^\\circ"
+  }
+}

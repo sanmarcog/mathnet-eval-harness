@@ -1,0 +1,19 @@
+{
+  "id": "0ep7",
+  "country": "South Africa",
+  "competition": "South African Mathematics Olympiad",
+  "gold_final_answer": "C",
+  "topics_flat": [
+    "Algebra > Prealgebra / Basic Algebra > Other"
+  ],
+  "prompt": "Human hair grows at a rate of about $1$ centimetre per month. This is equivalent to about how many millimetres every ten years?\n(A) $12$\n(B) $120$\n(C) $1\\,200$\n(D) $12\\,000$\n(E) $120\\,000$",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find the total growth of human hair in millimetres over ten years, we can follow these steps:\n\n1. **Calculate the number of months in ten years:**\n   There are $12$ months in a year, so in $10$ years there are:\n   $12 \\text{ months/year} \\times 10 \\text{ years} = 120 \\text{ months}$\n\n2. **Calculate the total growth in centimetres:**\n   Since the hair grows at a rate of $1$ centimetre per month, the total growth over $120$ months is:\n   $1 \\text{ cm/month} \\times 120 \\text{ months} = 120 \\text{ cm}$\n\n3. **Convert the growth from centimetres to millimetres:**\n   There are $10$ millimetres in $1$ centimetre, so we multiply the total centimetres by $10$:\n   $120 \\text{ cm} \\times 10 \\text{ mm/cm} = 1\\,200 \\text{ mm}$\n\nThis matches option (C).\n\nFinal answer: 1200",
+  "usage": {
+    "input_tokens": 122,
+    "output_tokens": 257,
+    "thoughts_tokens": 227
+  },
+  "latency_s": 5.342496253084391,
+  "cached": false
+}

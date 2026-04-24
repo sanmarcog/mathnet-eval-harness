@@ -1,0 +1,21 @@
+{
+  "id": "0gph",
+  "country": "Turkey",
+  "competition": "Team Selection Test for IMO 2011",
+  "gold_final_answer": "p^n",
+  "topics_flat": [
+    "Number Theory > Modular Arithmetic",
+    "Number Theory > Residues and Primitive Roots > Multiplicative order",
+    "Algebra > Algebraic Expressions > Functional Equations"
+  ],
+  "prompt": "Let $p$ be a prime, $n$ be a positive integer, and let $Z_{p^n}$ denote the set of congruence classes modulo $p^n$. Determine the number of functions $f : Z_{p^n} \\to Z_{p^n}$ satisfying the condition\n$$\nf(a) + f(b) \\equiv f(a + b + pab) \\pmod{p^n}\n$$\nfor all $a, b \\in Z_{p^n}$.",
+  "model": "gpt-5.4",
+  "response_text": "Let\n\\[\na*b:=a+b+ pab \\pmod{p^n}.\n\\]\nThen the condition is\n\\[\nf(a*b)\\equiv f(a)+f(b)\\pmod{p^n}\\qquad(\\forall a,b\\in \\mathbb Z_{p^n}),\n\\]\nso we are counting homomorphisms from the operation \\((\\mathbb Z_{p^n},*)\\) to the additive group \\((\\mathbb Z_{p^n},+)\\).\n\nThe key is to identify \\((\\mathbb Z_{p^n},*)\\).\n\n## 1. Rewrite the operation multiplicatively\nObserve:\n\\[\n1+p(a*b)=1+p(a+b+pab)=(1+pa)(1+pb)\\pmod{p^{n+1}}.\n\\]\nSo the map\n\\[\n\\phi:a\\mapsto 1+pa\n\\]\nidentifies \\((\\mathbb Z_{p^n},*)\\) with the multiplicative group\n\\[\nU_1:=\\{\\,1+pk \\pmod{p^{n+1}} : k\\in \\mathbb Z\\,\\}.\n\\]\nHence we need the number of group homomorphisms\n\\[\nU_1\\to \\mathbb Z_{p^n}.\n\\]\n\nSo it remains to determine the structure of \\(U_1\\).\n\n## 2. Structure of \\(U_1\\)\n\n### Case 1: \\(p\\) odd\nIt is standard that \\((\\mathbb Z/p^{n+1}\\mathbb Z)^\\times\\) is cyclic, hence its subgroup \\(U_1\\) of order \\(p^n\\) is cyclic:\n\\[\nU_1\\cong C_{p^n}.\n\\]\nTherefore the number of homomorphisms\n\\[\nC_{p^n}\\to C_{p^n}\n\\]\nis \\(p^n\\), since the image of a generator can be any element of \\(C_{p^n}\\).\n\n### Case 2: \\(p=2\\)\n\nThen \\(U_1=\\{1+2a \\pmod{2^{n+1}}\\}\\), of order \\(2^n\\).\n\n- If \\(n=1\\), then \\(U_1=\\{1,3\\}\\cong C_2\\), so the number of homomorphisms to \\(C_2\\) is \\(2\\).\n\n- If \\(n\\ge 2\\), one has the well-known structure\n  \\[\n  (\\mathbb Z/2^{n+1}\\mathbb Z)^\\times \\cong C_2\\times C_{2^{n-1}},\n  \\]\n  and its subgroup \\(U_1\\) (the classes \\( \\equiv 1 \\pmod 2\\)) is\n  \\[\n  U_1\\cong C_2\\times C_{2^{\\,n-1}}.\n  \\]\nThus\n\\[\n\\#\\operatorname{Hom}(U_1,C_{2^n})\n=\\#\\operatorname{Hom}(C_2,C_{2^n})\\cdot \\#\\operatorname{Hom}(C_{2^{n-1}},C_{2^n}).\n\\]\nNow\n\\[\n\\#\\operatorname{Hom}(C_m,C_N)=\\#\\{x\\in C_N: mx=0\\}=\\gcd(m,N)\n\\]\nfor cyclic groups, so\n\\[\n\\#\\operatorname{Hom}(C_2,C_{2^n})=2,\\qquad\n\\#\\operatorname{Hom}(C_{2^{n-1}},C_{2^n})=2^{n-1}.\n\\]\nHence total number is\n\\[\n2\\cdot 2^{n-1}=2^n.\n\\]\n\nSo in every case the number of such functions is \\(p^n\\).\n\n## 3. Conclusion\nThe number of functions \\(f:Z_{p^n}\\to Z_{p^n}\\) satisfying\n\\[\nf(a)+f(b)\\equiv f(a+b+pab)\\pmod{p^n}\n\\]\nfor all \\(a,b\\) is\n\n\\[\n\\boxed{p^n}.\n\\]\n\nFinal answer: \\(\\boxed{p^n}\\).",
+  "usage": {
+    "input_tokens": 157,
+    "output_tokens": 932,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 12.274153842008673,
+  "cached": false
+}

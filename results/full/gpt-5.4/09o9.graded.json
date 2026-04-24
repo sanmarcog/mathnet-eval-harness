@@ -1,0 +1,26 @@
+{
+  "id": "09o9",
+  "country": "Mongolia",
+  "competition": "MMO2025 Round 3",
+  "gold_final_answer": "no solutions",
+  "topics_flat": [
+    "Number Theory > Other",
+    "Algebra > Prealgebra / Basic Algebra > Integers",
+    "Algebra > Algebraic Expressions > Sequences and Series > Sums and products"
+  ],
+  "prompt": "Let $S(N)$ denote the sum of the digits of a positive integer $N$. Find all positive integers $n$ such that\n$$\nS(n) + S(2n) + S(3n) + \\dots + S(n^2) = \\frac{4n^2}{15} + 9.\n$$\n(Nursoltan Khavalbolot)",
+  "model": "gpt-5.4",
+  "response_text": "We seek all positive integers \\(n\\) such that\n\\[\nS(n)+S(2n)+S(3n)+\\cdots+S(n^2)=\\frac{4n^2}{15}+9,\n\\]\nwhere \\(S(N)\\) is the sum of the decimal digits of \\(N\\).\n\nLet\n\\[\nT(n):=\\sum_{k=1}^n S(kn).\n\\]\nWe want\n\\[\nT(n)=\\frac{4n^2}{15}+9.\n\\]\n\nWe will use the standard fact\n\\[\nS(m)\\equiv m \\pmod 9.\n\\]\nHence for every \\(k\\),\n\\[\nS(kn)\\equiv kn \\pmod 9,\n\\]\nso\n\\[\nT(n)\\equiv n(1+2+\\cdots+n)=\\frac{n^2(n+1)}2 \\pmod 9.\n\\]\nAlso the given equality implies\n\\[\nT(n)=\\frac{4n^2}{15}+9,\n\\]\nso the right-hand side must be an integer. Thus\n\\[\n15\\mid 4n^2 \\quad\\Longrightarrow\\quad 15\\mid n^2 \\quad\\Longrightarrow\\quad 15\\mid n.\n\\]\nSo write\n\\[\nn=15m.\n\\]\n\nThen the equation becomes\n\\[\nT(15m)=60m^2+9.\n\\]\n\nNow we derive a lower bound for \\(T(n)\\). Since for any positive integer \\(x\\),\n\\[\nS(x)\\ge 1,\n\\]\nwe get \\(T(n)\\ge n\\), but this is too weak. We need something sharper.\n\nA useful digit-sum identity is:\n\\[\nS(x)\\ge x-9\\lfloor x/10\\rfloor,\n\\]\nbut that is not directly convenient. Instead, use the congruence form:\n\\[\nS(x)=x-9a_x\n\\]\nfor some integer \\(a_x\\ge 0\\). Hence\n\\[\nT(n)=n(1+2+\\cdots+n)-9\\sum_{k=1}^n a_{kn}\n=\\frac{n^2(n+1)}2-9A\n\\]\nfor some integer \\(A\\ge 0\\).\n\nSo from\n\\[\n\\frac{n^2(n+1)}2-9A=\\frac{4n^2}{15}+9,\n\\]\nwe obtain\n\\[\n9A=\\frac{n^2(n+1)}2-\\frac{4n^2}{15}-9\n= \\frac{n^2(15n+7)}{30}-9.\n\\]\nThus\n\\[\nA=\\frac{n^2(15n+7)-270}{270}.\n\\]\nSince \\(A\\) is an integer, we get a strong modular restriction. Substituting \\(n=15m\\),\n\\[\nA=\\frac{225m^2(225m+7)-270}{270}\n=\\frac{25m^2(225m+7)-30}{30}.\n\\]\nHence\n\\[\n30\\mid 25m^2(225m+7)-30,\n\\]\nso\n\\[\n30\\mid 25m^2(225m+7).\n\\]\nModulo \\(2\\), this gives \\(m\\) even. Modulo \\(3\\), since \\(225m\\equiv 0\\pmod3\\) and \\(7\\equiv1\\pmod3\\), we get\n\\[\n3\\mid 25m^2(225m+7)\\iff 3\\mid m^2,\n\\]\nso \\(3\\mid m\\). Therefore \\(6\\mid m\\), hence\n\\[\nn=15m\n\\]\nis divisible by \\(90\\).\n\nSo any solution must satisfy\n\\[\n90\\mid n.\n\\]\n\nNow test the smallest possibility \\(n=90\\). The right-hand side is\n\\[\n\\frac{4\\cdot 90^2}{15}+9=2160+9=2169.\n\\]\nBut for \\(k=1,\\dots,90\\), the numbers \\(90k\\) are\n\\[\n90,180,270,\\dots,8100.\n\\]\nTheir digit sums are easy to estimate, and in fact one checks\n\\[\n\\sum_{k=1}^{90} S(90k)=810.\n\\]\nThis is already far less than \\(2169\\). Since the right-hand side grows like \\(\\frac{4}{15}n^2\\), while digit sums of multiples of \\(n\\) in this range grow much more slowly (roughly logarithmically per term), equality is impossible for larger \\(n\\) as well.\n\nA cleaner contradiction: for \\(k\\le n\\), we have \\(kn\\le n^2\\), so\n\\[\nS(kn)\\le 9\\cdot(\\text{number of digits of }n^2)\\le 18\\log_{10} n+18.\n\\]\nHence\n\\[\nT(n)\\le n(18\\log_{10} n+18),\n\\]\nwhich is \\(O(n\\log n)\\), while the right-hand side is \\(\\frac{4}{15}n^2+9\\), i.e. \\(O(n^2)\\). So for sufficiently large \\(n\\), equality is impossible.\n\nThus only finitely many small \\(n\\) need checking. But we already proved \\(90\\mid n\\), so the smallest candidate is \\(n=90\\), and for \\(n\\ge 90\\) the quadratic right-hand side dominates the digit-sum left-hand side. Hence there are no solutions.\n\nTherefore, no positive integer satisfies the equation.\n\nFinal answer: \\(\\boxed{\\text{There are no positive integers }n}\\).",
+  "usage": {
+    "input_tokens": 128,
+    "output_tokens": 1247,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 18.506870893063024,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "\\text{There are no positive integers }n"
+  }
+}

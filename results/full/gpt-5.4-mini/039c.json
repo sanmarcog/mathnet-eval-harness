@@ -1,0 +1,22 @@
+{
+  "id": "039c",
+  "country": "Bulgaria",
+  "competition": "Bulgarian National Olympiad",
+  "gold_final_answer": "7",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Analytic / Coordinate Methods > Trigonometry",
+    "Algebra > Algebraic Expressions > Polynomials > Irreducibility: Rational Root Theorem, Gauss's Lemma, Eisenstein",
+    "Algebra > Abstract Algebra > Field Theory",
+    "Algebra > Algebraic Expressions > Polynomials > Polynomial operations"
+  ],
+  "prompt": "Find the least natural number $n$ for which $\\cos \\frac{\\pi}{n}$ can not be expressed in the form $p + \\sqrt{q} + \\sqrt[3]{r}$, where $p, q$ and $r$ are rational numbers.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let  \n\\[\nx=\\cos\\frac{\\pi}{n}.\n\\]\nWe want the least \\(n\\) such that \\(x\\) cannot be written as\n\\[\np+\\sqrt q+\\sqrt[3]{r}, \\qquad p,q,r\\in\\mathbb Q.\n\\]\n\n### Key observation\nA number of the form \\(p+\\sqrt q+\\sqrt[3]{r}\\) lies in a field obtained from \\(\\mathbb Q\\) by adjoining:\n\n- a square root, which gives a degree at most \\(2\\) extension,\n- a cube root, which gives a degree at most \\(3\\) extension.\n\nSo such a number must have algebraic degree dividing \\(6\\) over \\(\\mathbb Q\\) (in particular, degree \\(\\le 6\\)).\n\nNow \\(\\cos(\\pi/n)\\) has algebraic degree\n\\[\n\\frac{\\varphi(2n)}{2}\n\\]\nfor \\(n\\ge 2\\), where \\(\\varphi\\) is Euler’s totient function.\n\nSo we need the least \\(n\\) such that\n\\[\n\\frac{\\varphi(2n)}{2}>6,\n\\]\ni.e.\n\\[\n\\varphi(2n)>12.\n\\]\n\nCheck small \\(n\\):\n\n- \\(n=1,2,3,4,5,6,7,8,9,10,12\\) all give degree \\(\\le 6\\).\n- For \\(n=11\\):  \n  \\[\n  \\deg\\left(\\cos\\frac{\\pi}{11}\\right)=\\frac{\\varphi(22)}{2}=\\frac{10}{2}=5.\n  \\]\n- For \\(n=13\\):\n  \\[\n  \\deg\\left(\\cos\\frac{\\pi}{13}\\right)=\\frac{\\varphi(26)}{2}=\\frac{12}{2}=6.\n  \\]\n- For \\(n=14\\):\n  \\[\n  \\deg\\left(\\cos\\frac{\\pi}{14}\\right)=\\frac{\\varphi(28)}{2}=\\frac{12}{2}=6.\n  \\]\n- For \\(n=15\\):\n  \\[\n  \\deg\\left(\\cos\\frac{\\pi}{15}\\right)=\\frac{\\varphi(30)}{2}=\\frac{8}{2}=4.\n  \\]\n- For \\(n=16\\):\n  \\[\n  \\deg\\left(\\cos\\frac{\\pi}{16}\\right)=\\frac{\\varphi(32)}{2}=\\frac{16}{2}=8.\n  \\]\n\nThus \\(n=16\\) is the first one for which the degree exceeds \\(6\\), so \\(\\cos(\\pi/n)\\) cannot be expressed in the given form.\n\nFinal answer: \\(16\\)",
+  "usage": {
+    "input_tokens": 105,
+    "output_tokens": 616,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 4.2954838200239465,
+  "cached": false
+}

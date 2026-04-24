@@ -1,0 +1,21 @@
+{
+  "id": "0699",
+  "country": "Greece",
+  "competition": "36th Hellenic Mathematical Olympiad",
+  "gold_final_answer": "α_v = (5^v − 3^v)/2 for v ≥ 1; and for k = 2^2019, the greatest power of 2 dividing a_k is 2^2021.",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Sequences and Series > Recurrence relations",
+    "Algebra > Algebraic Expressions > Sequences and Series > Sums and products",
+    "Number Theory > Divisibility / Factorization"
+  ],
+  "prompt": "The sequence $\\alpha_v$ satisfies the recurrence relation: $\\alpha_1 = 1$ and $\\alpha_v = 5\\alpha_{v-1} + 3^{v-1}$, $v \\ge 2$. Determine the general term $\\alpha_v$ and the greatest power of $2$ which divides the term $a_k$, where $k=2^{2019}$.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find the general term of the sequence, we solve the linear recurrence relation $\\alpha_v = 5\\alpha_{v-1} + 3^{v-1}$.\nThe general solution is the sum of the homogeneous solution and a particular solution. \nThe homogeneous equation $\\alpha_v^{(h)} = 5\\alpha_{v-1}^{(h)}$ has the solution $\\alpha_v^{(h)} = A \\cdot 5^v$.\nFor the particular solution, we guess $\\alpha_v^{(p)} = B \\cdot 3^v$. Substituting this into the recurrence gives:\n$B \\cdot 3^v = 5B \\cdot 3^{v-1} + 3^{v-1}$\nDividing by $3^{v-1}$, we get $3B = 5B + 1$, which yields $B = -\\frac{1}{2}$.\nThus, the general term is of the form $\\alpha_v = A \\cdot 5^v - \\frac{1}{2} \\cdot 3^v$.\nUsing the initial condition $\\alpha_1 = 1$:\n$1 = 5A - \\frac{3}{2} \\implies 5A = \\frac{5}{2} \\implies A = \\frac{1}{2}$\nSo, the general term is:\n$\\alpha_v = \\frac{5^v - 3^v}{2}$\n\nNext, we want to find the greatest power of $2$ that divides $\\alpha_k$ for $k = 2^{2019}$.\nWe need to find $v_2(\\alpha_k) = v_2(5^k - 3^k) - 1$.\nUsing the Lifting the Exponent Lemma (LTE) for $x^n - y^n$ where $x$ and $y$ are odd and $n$ is even:\n$v_2(x^n - y^n) = v_2(x - y) + v_2(x + y) + v_2(n) - 1$\nSubstitute $x = 5$, $y = 3$, and $n = 2^{2019}$:\n$v_2(5^{2^{2019}} - 3^{2^{2019}}) = v_2(5 - 3) + v_2(5 + 3) + v_2(2^{2019}) - 1$\n$v_2(5^{2^{2019}} - 3^{2^{2019}}) = v_2(2) + v_2(8) + 2019 - 1 = 1 + 3 + 2019 - 1 = 2022$\n\nTherefore, the exponent of the highest power of $2$ dividing $\\alpha_k$ is:\n$v_2(\\alpha_k) = 2022 - 1 = 2021$\nThe greatest power of $2$ dividing $\\alpha_k$ is $2^{2021}$.\n\nFinal answer: \\alpha_v = \\frac{5^v - 3^v}{2}, 2^{2021}",
+  "usage": {
+    "input_tokens": 126,
+    "output_tokens": 716,
+    "thoughts_tokens": 1701
+  },
+  "latency_s": 18.044999594101682,
+  "cached": false
+}

@@ -1,0 +1,19 @@
+{
+  "id": "0h3r",
+  "country": "Ukraine",
+  "competition": "Ukrainian Mathematical Olympiad",
+  "gold_final_answer": "2^n - n",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Recursion, bijection"
+  ],
+  "prompt": "Let $n \\geq 1$ be integer. Sequence $a_1, a_2, \\dots, a_{2n}$ is called lucky if\n\n1) $a_1, \\dots, a_n$ is a permutation of $\\{1, 2, \\dots, n\\}$;\n\n2) $a_k = a_{n+k}$ for all $k = 1, 2, \\dots, n$;\n\n3) there exist indices $1 \\le i_1 < i_2 < \\dots < i_n \\le 2n$ such that $a_{i_k} = k$ for all $k = 1, 2, \\dots, n$.\n\nFor each $n \\geq 1$ find the number of lucky sequences.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let \\(p\\) be the permutation of \\(\\{1,2,\\dots,n\\}\\) given by\n\\[\n(a_1,\\dots,a_n).\n\\]\nThen condition 2 says the full sequence is\n\\[\n(a_1,\\dots,a_n,a_1,\\dots,a_n).\n\\]\n\nSo the problem is: for which permutations \\(p\\) does the doubled sequence contain \\(1,2,\\dots,n\\) as a subsequence?\n\n---\n\n### Key observation\nFor a fixed value \\(k\\), it appears exactly twice: once in the first half and once in the second half.\n\nTo choose a subsequence \\(1,2,\\dots,n\\), we need indices\n\\[\ni_1<i_2<\\cdots<i_n\n\\]\nwith \\(a_{i_k}=k\\).\n\nIf \\(k<\\ell\\), then the chosen occurrence of \\(k\\) must occur before the chosen occurrence of \\(\\ell\\). Since each value has one copy in each half, this is possible for all \\(k=1,\\dots,n\\) **iff**\n\\[\np^{-1}(1)<p^{-1}(2)<\\cdots<p^{-1}(n),\n\\]\nbecause choosing any value from the second half forces all later chosen values to also come from the second half, and the only way to realize the increasing order is that the first half already lists \\(1,2,\\dots,n\\) in increasing order.\n\nThus the only possible permutation is\n\\[\n(a_1,\\dots,a_n)=(1,2,\\dots,n).\n\\]\n\nThen the full sequence is\n\\[\n(1,2,\\dots,n,1,2,\\dots,n),\n\\]\nand it certainly satisfies condition 3 by taking the first \\(n\\) positions.\n\nSo there is exactly one lucky sequence for every \\(n\\ge 1\\).\n\nFinal answer: \\(1\\)",
+  "usage": {
+    "input_tokens": 215,
+    "output_tokens": 404,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.4993338380008936,
+  "cached": false
+}

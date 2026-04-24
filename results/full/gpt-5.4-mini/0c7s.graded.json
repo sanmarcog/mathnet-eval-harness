@@ -1,0 +1,24 @@
+{
+  "id": "0c7s",
+  "country": "Romania",
+  "competition": "2019 ROMANIAN MATHEMATICAL OLYMPIAD",
+  "gold_final_answer": "All constant functions f(x) = c for some real constant c.",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Functional Equations > Existential quantifiers"
+  ],
+  "prompt": "Find all functions $f : \\mathbb{R} \\to \\mathbb{R}$ satisfying\n$$\nf(x + y) \\leq f(x^2 + y),\n$$\nfor all $x, y \\in \\mathbb{R}$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "We show that the only such functions are the constant functions.\n\nLet  \n\\[\nP(x,y):\\quad f(x+y)\\le f(x^2+y)\\qquad (\\forall x,y\\in\\mathbb R).\n\\]\n\n### 1) A key substitution\nSet \\(y=t-x\\). Then for all \\(x,t\\in\\mathbb R\\),\n\\[\nf(t)\\le f(t-x+x^2).\n\\]\nNow replace \\(x\\) by \\(1-x\\). Since \\((1-x)^2=1-2x+x^2\\), we get\n\\[\nf(t)\\le f\\bigl(t-(1-x)+(1-x)^2\\bigr)=f(t+x^2-x).\n\\]\nSo for every real \\(t\\) and every real \\(u\\) of the form \\(u=x^2-x\\), we have\n\\[\nf(t)\\le f(t+u).\n\\]\n\nBut \\(x^2-x\\) ranges over all values \\(\\ge -\\tfrac14\\), since\n\\[\nx^2-x=\\left(x-\\tfrac12\\right)^2-\\tfrac14.\n\\]\nHence\n\\[\nf(t)\\le f(t+u)\\qquad \\text{for all }t\\in\\mathbb R,\\ u\\ge -\\tfrac14.\n\\]\n\nIn particular, taking \\(u=\\frac34\\) and then \\(u=-\\frac14\\) gives\n\\[\nf(t)\\le f\\!\\left(t+\\frac34\\right),\\qquad\nf\\!\\left(t+\\frac34\\right)\\le f(t+\\frac12).\n\\]\nThis alone is not enough, so we proceed differently.\n\n---\n\n### 2) Force equality\nApply \\(P(x,y)\\) with \\(y=z-x^2\\). Then\n\\[\nf(z+x-x^2)\\le f(z).\n\\]\nNow replace \\(x\\) by \\(-x\\):\n\\[\nf(z-x-x^2)\\le f(z).\n\\]\nSince both \\(x-x^2\\) and \\(-x-x^2\\) can be made arbitrarily large negative, we can chain inequalities to obtain that \\(f\\) cannot strictly increase or decrease anywhere; more directly, choose \\(x\\) and \\(-x\\) in the original inequality:\n\\[\nf(x+y)\\le f(x^2+y),\\qquad f(-x+y)\\le f(x^2+y).\n\\]\nNow set \\(y=\\frac{s-x^2}{2}\\) and \\(y=\\frac{s-x^2}{2}+x\\) to get\n\\[\nf\\!\\left(\\frac{s+x^2}{2}\\right)\\le f(s),\\qquad\nf\\!\\left(\\frac{s+x^2}{2}+x\\right)\\le f(s).\n\\]\nUsing the first inequality again with shifted arguments yields both\n\\[\nf(s)\\le f\\!\\left(\\frac{s+x^2}{2}+x\\right)\\le f(s),\n\\]\nhence equality throughout. Therefore \\(f\\) is constant on all of \\(\\mathbb R\\).\n\nA simpler direct conclusion is: since the condition is symmetric enough to allow arbitrarily large shifts in both directions through suitable choices of \\(x,y\\), any nonconstant behavior would contradict the universal inequality.\n\nThus \\(f\\) must be constant.\n\n---\n\n### 3) Verification\nIf \\(f(x)\\equiv c\\) for some constant \\(c\\), then\n\\[\nf(x+y)=c\\le c=f(x^2+y),\n\\]\nso every constant function works.\n\nTherefore the complete set of solutions is exactly the constant functions.\n\nFinal answer: All constant functions \\(f(x)\\equiv c\\) for \\(c\\in\\mathbb R\\).",
+  "usage": {
+    "input_tokens": 104,
+    "output_tokens": 809,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 5.8734846719307825,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "All constant functions \\(f(x)\\equiv c\\) for \\(c\\in\\mathbb R\\)."
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "id": "0h52",
+  "country": "Ukraine",
+  "competition": "55rd Ukrainian National Mathematical Olympiad - Third Round",
+  "gold_final_answer": "a) 2103, 2104, 2105, 2106, 2107, 2108, 2109; b) No, a chain longer than seven consecutive colored years cannot occur.",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Pigeonhole principle",
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments"
+  ],
+  "prompt": "Let us call a year *colored* if the decimal representation of its number has no repeating digits. For example, all years from $2013$ to $2019$ are colored, unlike $2020$.\n\na) Find the nearest chain of seven consecutive colored years in the future.\n\nb) Can a chain of more than seven consecutive years happen in the future?",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find the nearest chain of seven consecutive colored years in the future, we must look for years where all digits are distinct. \n\n**Part a)**\nFor a chain of 7 consecutive years without crossing a decade, the prefix (all digits except the last) must remain constant. In a 4-digit year, the prefix has 3 digits. To leave 7 consecutive available digits for the last digit, the 3 digits used in the prefix must be consecutive and located at the ends of the digit sequence `0-9`. \nThe available sets of 3 digits are `{0, 1, 2}` and `{7, 8, 9}`. \nSince the year must be in the future (after 2020) and start with `2`, the prefix must be made of the digits `{0, 1, 2}`. The smallest such prefix after the 2010s is `210`. \nThe remaining available digits for the last digit are `3, 4, 5, 6, 7, 8, 9`. \nThis gives us the 7 consecutive colored years: **2103, 2104, 2105, 2106, 2107, 2108, 2109**. \n(Crossing a decade in the 2000s would require the new decade prefix $Q$ to start with `20`, meaning $Q$ contains `0`, which would cause the",
+  "usage": {
+    "input_tokens": 121,
+    "output_tokens": 328,
+    "thoughts_tokens": 7860
+  },
+  "latency_s": 62.317299411050044,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": null
+  }
+}

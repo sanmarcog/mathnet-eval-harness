@@ -1,0 +1,20 @@
+{
+  "id": "0gpi",
+  "country": "Turkey",
+  "competition": "20th Turkish Mathematical Olympiad",
+  "gold_final_answer": "P(x) = 1; P(x) = 2; P(x) = x",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Polynomial operations",
+    "Number Theory > Divisibility / Factorization > Factorization techniques"
+  ],
+  "prompt": "Find all polynomials $P(x)$ with integer coefficients satisfying $P(n!) = |P(n)|!$ for all positive integers $n$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let  \n\\[\nP(x)\\in \\mathbb Z[x],\\qquad P(n!)=|P(n)|!\\quad\\text{for all }n\\in\\mathbb Z_{>0}.\n\\]\n\nWe will show the only such polynomial is the zero polynomial.\n\n---\n\n### 1) First, \\(P(n)\\) must be nonnegative for all large \\(n\\)\n\nIf \\(P(n)<0\\), then \\(|P(n)|!=-P(n)|!\\) is defined only if \\(|P(n)|\\ge 0\\), but the value \\(P(n!)\\) is an integer. The key point is that for large \\(n\\), \\(P(n!)\\) is huge and nonnegative, so \\(|P(n)|!\\) must also be nonnegative; hence \\(P(n)\\) must be an integer whose factorial equals a polynomial value.\n\nMore importantly, for sufficiently large \\(n\\), \\(|P(n)|!\\) grows much faster than any polynomial unless \\(|P(n)|\\) stays very small. So \\(P\\) must be severely restricted.\n\n---\n\n### 2) Degree consideration forces \\(\\deg P=0\\)\n\nLet \\(\\deg P=d\\), and write the leading coefficient as \\(a\\neq 0\\).\n\nFor large \\(n\\),\n\\[\nP(n)\\sim a n^d,\\qquad P(n!)\\sim a (n!)^d.\n\\]\nBut the right-hand side is \\(|P(n)|!\\). If \\(|P(n)|\\to\\infty\\), then \\(|P(n)|!\\) grows faster than any polynomial in \\(n\\), while \\(P(n!)\\) is only polynomial in \\(n!\\), i.e. at most on the order of \\((n!)^d\\). These two growth rates are incompatible unless \\(|P(n)|\\) is bounded.\n\nThus \\(P(n)\\) must be bounded on positive integers, so \\(P\\) is constant.\n\nSo write \\(P(x)\\equiv c\\in\\mathbb Z\\).\n\n---\n\n### 3) Solve the constant case\n\nThe condition becomes\n\\[\nc = |c|!\\quad\\text{for all }n,\n\\]\nso \\(c\\) must satisfy\n\\[\nc=|c|!.\n\\]\n\nIf \\(c\\ge 0\\), then \\(c=c!\\). The only nonnegative integer satisfying this is \\(c=1\\) or \\(c=2\\)? Check:\n- \\(0!=1\\), so \\(c=0\\) impossible.\n- \\(1!=1\\), so \\(c=1\\) works.\n- \\(2!=2\\), so \\(c=2\\) works.\n- For \\(c\\ge 3\\), \\(c!>c\\).\n\nIf \\(c<0\\), impossible since \\(|c|!\\ge 0\\).\n\nNow test \\(c=1\\) and \\(c=2\\) in the original equation:\n- If \\(P(x)\\equiv 1\\), then \\(P(n!)=1\\) and \\(|P(n)|!=1!=1\\), works.\n- If \\(P(x)\\equiv 2\\), then \\(P(n!)=2\\) and \\(|P(n)|!=2!=2\\), works.\n\nBut we must also ensure this is consistent for all \\(n\\), which it is.\n\n---\n\nTherefore the solutions are the constant polynomials \\(P(x)\\equiv 1\\) and \\(P(x)\\equiv 2\\).\n\nFinal answer: \\(\\boxed{P(x)\\equiv 1 \\text{ or } P(x)\\equiv 2}\\)",
+  "usage": {
+    "input_tokens": 78,
+    "output_tokens": 778,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 4.993111429968849,
+  "cached": false
+}

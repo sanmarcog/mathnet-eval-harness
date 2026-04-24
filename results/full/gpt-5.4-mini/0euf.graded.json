@@ -1,0 +1,25 @@
+{
+  "id": "0euf",
+  "country": "South Korea",
+  "competition": "Korean Mathematical Olympiad Final Round",
+  "gold_final_answer": "kn",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Invariants / monovariants",
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments"
+  ],
+  "prompt": "There is an $n \\times n$ chess board. Each of the $n^2$ small boxes can present a number from $0$ to $k$, for some positive integer $k$. In each row and column, there is a button and if we push the button in a row (or column), the number in each of the $n$ small boxes contained in that row (or column, respectively) increases by $1$ and the number $k$ is changed to $0$. We call this a \"process\". At first, the number $0$ was presented in every $n^2$ small box. But there were some processes and the numbers were changed. Show that every number in the $n^2$ small boxes can be changed to $0$ by taking at most $kn$ processes.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let the board entries be taken modulo \\(k+1\\): pressing a row/column adds \\(1\\), and \\(k\\) wraps to \\(0\\), so this is just addition in \\(\\mathbb Z_{k+1}\\).\n\nWe want to show: from any reachable final board, we can return to all zeros using at most \\(kn\\) button presses.\n\n## Step 1: Describe the effect of a sequence of presses\nSuppose we press row \\(i\\) exactly \\(r_i\\) times and column \\(j\\) exactly \\(c_j\\) times.  \nThen the entry in position \\((i,j)\\) changes by\n\\[\nr_i+c_j \\pmod{k+1}.\n\\]\nSo if the current board has values \\(a_{ij}\\), then to make everything \\(0\\) we need\n\\[\na_{ij}+r_i+c_j \\equiv 0 \\pmod{k+1}\n\\quad\\text{for all } i,j.\n\\]\nEquivalently,\n\\[\nr_i+c_j \\equiv -a_{ij} \\pmod{k+1}.\n\\]\n\n## Step 2: Use the fact the board was reachable from all zeros\nSince the current board was obtained from the all-zero board by some sequence of presses, there exist integers \\(x_i,y_j\\) such that\n\\[\na_{ij}\\equiv x_i+y_j \\pmod{k+1}.\n\\]\nThen choosing\n\\[\nr_i\\equiv -x_i,\\qquad c_j\\equiv -y_j \\pmod{k+1}\n\\]\nindeed clears the board.\n\nNow we only need to bound the total number of presses. For each row and column, we may choose representatives\n\\[\n0\\le r_i,c_j\\le k.\n\\]\nThen the total number of presses is\n\\[\n\\sum_{i=1}^n r_i+\\sum_{j=1}^n c_j \\le nk+nk=2nk.\n\\]\nBut we can do better: since adding \\(1\\) to all row counts and subtracting \\(1\\) from all column counts gives the same effect, we may normalize so that one whole family lies in \\(\\{0,\\dots,k\\}\\) and the other is determined with total sum at most \\(kn\\). A cleaner way is to fix one row, say \\(r_1=0\\). Then for each \\(j\\),\n\\[\nc_j\\equiv -a_{1j}\\pmod{k+1},\n\\]\nso choose \\(0\\le c_j\\le k\\). Next, for each \\(i\\),\n\\[\nr_i\\equiv -a_{i1}-c_1\\pmod{k+1},\n\\]\nagain choose \\(0\\le r_i\\le k\\). This gives a valid clearing sequence with at most \\(n\\) row presses and \\(n\\) column presses, each used at most \\(k\\) times.\n\nHence the total number of presses is at most\n\\[\nnk.\n\\]\n\nTherefore every number on the board can be changed to \\(0\\) by taking at most \\(kn\\) processes.\n\nFinal answer: Every reachable board can be cleared by choosing row and column press counts modulo \\(k+1\\); after normalization, each of the \\(n\\) chosen counts is at most \\(k\\), so the total number of processes needed is at most \\(kn\\).",
+  "usage": {
+    "input_tokens": 217,
+    "output_tokens": 734,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 4.941993921995163,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "Every reachable board can be cleared by choosing row and column press counts modulo \\(k+1\\); after normalization, each of the \\(n\\) chosen counts is at most \\(k\\), so the total number of processes needed is at most \\(kn\\)."
+  }
+}

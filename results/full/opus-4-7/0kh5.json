@@ -1,0 +1,20 @@
+{
+  "id": "0kh5",
+  "country": "United States",
+  "competition": "Fall 2021 AMC 10 B",
+  "gold_final_answer": "D",
+  "topics_flat": [
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities",
+    "Algebra > Prealgebra / Basic Algebra > Simple Equations"
+  ],
+  "prompt": "Which of the following conditions is sufficient to guarantee that integers $x$, $y$, and $z$ satisfy the equation\n$$\nx(x - y) + y(y - z) + z(z - x) = 1?\n$$\n(A) $x > y$ and $y = z$\n(B) $x = y - 1$ and $y = z - 1$\n(C) $x = z + 1$ and $y = x + 1$\n(D) $x = z$ and $y - 1 = x$\n(E) $x + y + z = 1$",
+  "model": "claude-opus-4-7",
+  "response_text": "The expression equals ½((x-y)²+(y-z)²+(z-x)²).\n\nNeed sum of squares = 2. Need two differences ±1 and one ±... Let's test (D): x=z, y=x+1. Then x-y=-1, y-z=1, z-x=0. Sum=1+1+0=2. ✓\n\nFinal answer: D",
+  "usage": {
+    "input_tokens": 232,
+    "output_tokens": 118,
+    "thinking_tokens": 0
+  },
+  "latency_s": 3.356275305035524,
+  "cached": false
+}

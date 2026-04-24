@@ -1,0 +1,21 @@
+{
+  "id": "09zp",
+  "country": "Netherlands",
+  "competition": "Second Round",
+  "gold_final_answer": "39",
+  "topics_flat": [
+    "Algebra > Prealgebra / Basic Algebra > Integers",
+    "Number Theory > Divisibility / Factorization > Factorization techniques",
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities"
+  ],
+  "prompt": "For how many integers $n$ with $1 \\le n \\le 800$ is the number $8n + 1$ a square?",
+  "model": "claude-sonnet-4-6",
+  "response_text": "We need $8n + 1 = k^2$ for some positive integer $k$.\n\nSince $8n + 1$ is odd, $k$ must be odd. Let $k = 2m + 1$, then:\n$8n + 1 = (2m+1)^2 = 4m^2 + 4m + 1$\n$8n = 4m^2 + 4m = 4m(m+1)$\n$2n = m(m+1)$\n\nSince $m(m+1)$ is always even (consecutive integers), $n = \\frac{m(m+1)}{2}$.\n\nWe need $1 \\le n \\le 800$:\n$1 \\le \\frac{m(m+1)}{2} \\le 800$\n$2 \\le m(m+1) \\le 1600$\n\nFor $m \\ge 1$: $m(m+1) \\ge 2$ ✓\n\nFor upper bound: $m(m+1) \\le 1600$\n$m = 39$: $39 \\times 40 = 1560 \\le 1600$ ✓\n$m = 40$: $40 \\times 41 = 1640 > 1600$ ✗\n\nAlso $m$ must be a positive integer (since $n \\ge 1$ requires $m \\ge 1$).\n\nSo $m$ ranges from $1$ to $39$, giving **39** values.\n\nFinal answer: 89\n\nWait, let me recheck. $m$ can also be 0: $m=0$ gives $n=0$, which is excluded. So $m = 1, 2, \\ldots, 39$.\n\nThat's 39 integers.\n\nFinal answer: 39",
+  "usage": {
+    "input_tokens": 78,
+    "output_tokens": 439,
+    "thinking_tokens": 0
+  },
+  "latency_s": 6.281201414996758,
+  "cached": false
+}

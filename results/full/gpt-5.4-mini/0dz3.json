@@ -1,0 +1,20 @@
+{
+  "id": "0dz3",
+  "country": "Slovenia",
+  "competition": "Slovenija 2008",
+  "gold_final_answer": "4",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Symmetric functions",
+    "Algebra > Algebraic Expressions > Polynomials > Polynomial operations"
+  ],
+  "prompt": "Let the numbers $a$ and $b$ be such that $a^3 + b^3 = 13$ and $a^9 + b^9 = -299$. Find the value of $ab$, given that $ab$ is real.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let  \n\\[\nx=a^3,\\qquad y=b^3.\n\\]\nThen\n\\[\nx+y=13,\\qquad x^3+y^3=-299.\n\\]\nUse\n\\[\nx^3+y^3=(x+y)^3-3xy(x+y).\n\\]\nSo\n\\[\n-299=13^3-3xy\\cdot 13=2197-39xy.\n\\]\nHence\n\\[\n39xy=2197+299=2496,\\qquad xy=64.\n\\]\nBut\n\\[\nxy=a^3b^3=(ab)^3.\n\\]\nTherefore\n\\[\n(ab)^3=64 \\implies ab=4\n\\]\nsince \\(ab\\) is real.\n\nFinal answer: \\(4\\)",
+  "usage": {
+    "input_tokens": 101,
+    "output_tokens": 173,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 1.4736163850175217,
+  "cached": false
+}

@@ -1,0 +1,21 @@
+{
+  "id": "008t",
+  "country": "Argentina",
+  "competition": "XXIX Olimpíada Matemática Argentina National Round",
+  "gold_final_answer": "A = 60° and PQ/BC = 1",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Triangles > Triangle centers: centroid, incenter, circumcenter, orthocenter, Euler line, nine-point circle",
+    "Geometry > Plane Geometry > Circles > Tangents",
+    "Geometry > Plane Geometry > Miscellaneous > Angle chasing"
+  ],
+  "prompt": "In the triangle $ABC$, the incircle is tangent to the sides $AB$ and $AC$ in $D$ and $E$, respectively. The line $DE$ meets the circumcircle in $P$ and $Q$, with $P$ on the minor arc $AB$ and $Q$ on the minor arc $AC$. It is known that $P$ is the midpoint of $AB$. Find $A$ and the ratio $\\frac{PQ}{BC}$.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find the angle $A$ and the ratio $\\frac{PQ}{BC}$, we start by analyzing the given properties. \nLet $I$ be the incenter of $\\triangle ABC$. The line $DE$ connects the points of tangency of the incircle with sides $AB$ and $AC$, which means $DE \\perp AI$. \nThe distance from $A$ to $DE$ is given by $AK = AD \\cos(A/2)$. Since $AD = r \\cot(A/2)$, we have:\n$$AK = r \\frac{\\cos^2(A/2)}{\\sin(A/2)}$$\n\nWe are given that $P$ is the midpoint of the minor arc $AB$ of the circumcircle. The length of the chord $AP$ is $2R \\sin(C/2)$. The angle between $AP$ and $AB$ is $C/2$, and the angle between $AI$ and $AB$ is $A/2$. Thus, the angle between $AP$ and $AI$ is $A/2 + C/2$.\nSince $P$ lies on the line $DE$, the projection of $AP$ onto $AI$ must equal $AK$:\n$$AK = AP \\cos(A/2 + C/2) = 2R \\sin(C/2) \\sin(B/2)$$\nUsing the well-known identity for the inradius $r = 4R \\sin(A/2) \\sin(B/2) \\sin(C/2)$, we can rewrite the projection as:\n$$AK = \\frac{r}{2 \\sin(A/2)}$$\n\nEquating the two expressions for $AK$:\n$$r \\frac{\\cos^2(A/2)}{\\sin(A/2)} = \\frac{r}{2 \\sin(A/2)} \\implies \\cos^2(A/2) = \\frac{1}{2}$$\nSince $A/2$ must be acute, we get $\\cos(A/2) = \\frac{\\sqrt{2}}{2}$, which means $A/2 = 45^\\circ$ and therefore $A = 90^\\circ$.\n\nNow, knowing $A = 90^\\circ$, $\\triangle ABC$ is a right-angled triangle with hypotenuse $BC = a$. The circumcircle has diameter $BC = a$, so its radius is $R = a/2$.\nWe can set up a coordinate system with $A$ at the origin $(0,0)$, $AB$ along the x-axis, and $AC$ along the y-axis. \nThe points of tangency are $D(r, 0)$ and $E(0, r)$, so the line $DE$ has the equation $x + y = r$.\nThe circumcircle passes through $(0,0)$, $(c,0)$, and $(0,b)$, and its center is $(c/2, b/2)$.\nThe distance $d$ from the center of the circumcircle to the line $DE$ is:\n$$d = \\frac{|c/2 + b/2 - r|}{\\sqrt{2}}$$\nFor a right triangle, $r = \\frac{b+c-a}{2}$. Substituting this in gives:\n$$d = \\frac{\\frac{b+c}{2} - \\frac{b+c-a}{2}}{\\sqrt{2}} = \\frac{a}{2\\sqrt{2}}$$\nThe length of the chord $PQ$ formed by the intersection of $DE$ and the circumcircle is:\n$$PQ = 2\\sqrt{R^2 - d^2} = 2\\sqrt{\\left(\\frac{a}{2}\\right)^2 - \\left(\\frac{a}{2\\sqrt{2}}\\right)^2} = 2\\sqrt{\\frac{a^2}{4} - \\frac{a^2}{8}} = 2\\sqrt{\\frac{a^2}{8}} = \\frac{a}{\\sqrt{2}}$$\n\nFinally, the ratio of $PQ$ to $BC$ is:\n$$\\frac{PQ}{BC} = \\frac{\\frac{a}{\\sqrt{2}}}{a} = \\frac{1}{\\sqrt{2}} = \\frac{\\sqrt{2}}{2}$$\n\nFinal answer: 90^\\circ, \\frac{\\sqrt{2}}{2}",
+  "usage": {
+    "input_tokens": 137,
+    "output_tokens": 950,
+    "thoughts_tokens": 3655
+  },
+  "latency_s": 37.45314855698962,
+  "cached": false
+}

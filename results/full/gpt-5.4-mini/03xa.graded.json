@@ -1,0 +1,27 @@
+{
+  "id": "03xa",
+  "country": "China",
+  "competition": "China Mathematical Competition",
+  "gold_final_answer": "9",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Analytic / Coordinate Methods > Cartesian coordinates",
+    "Geometry > Plane Geometry > Analytic / Coordinate Methods > Vectors",
+    "Algebra > Algebraic Expressions > Polynomials > Vieta's formulas",
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities"
+  ],
+  "prompt": "Suppose that the line $l$: $y = kx + m$ ($k$, $m$ are integers) intercepts an ellipse $\\frac{x^2}{16} + \\frac{y^2}{12} = 1$ at two different points $A$, $B$, and intercepts the hyperbola $\\frac{x^2}{4} - \\frac{y^2}{12} = 1$ at two different points $C$, $D$. Can the line $l$ be such that $\\vec{AC} + \\vec{BD} = 0$? If yes, how many different possibilities are there for the line $l$? If no, explain the reason.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let the line be \\(l:y=kx+m\\), with \\(k,m\\in\\mathbb Z\\).\n\nBecause \\(A,B\\) are the two intersections with the ellipse and \\(C,D\\) the two intersections with the hyperbola, the points on the line come in pairs. A clean way to use the condition\n\\[\n\\vec{AC}+\\vec{BD}=0\n\\]\nis to write points on the line by their \\(x\\)-coordinates:\n\\[\nA=(x_1,kx_1+m),\\quad B=(x_2,kx_2+m),\\quad C=(x_3,kx_3+m),\\quad D=(x_4,kx_4+m).\n\\]\nThen\n\\[\n\\vec{AC}+\\vec{BD}=0\n\\]\nmeans\n\\[\n(C-A)+(D-B)=0\n\\]\nso\n\\[\n(x_3+x_4)-(x_1+x_2)=0,\n\\]\nand since all points lie on the same line, the \\(y\\)-coordinates automatically match. Hence the condition is equivalent to\n\\[\nx_1+x_2=x_3+x_4.\n\\]\n\nNow use Vieta’s formulas for the intersections.\n\n## 1) Ellipse intersections\nSubstitute \\(y=kx+m\\) into\n\\[\n\\frac{x^2}{16}+\\frac{y^2}{12}=1.\n\\]\nThis gives a quadratic in \\(x\\):\n\\[\n(3+4k^2)x^2+8km\\,x+(4m^2-48)=0.\n\\]\nSo the sum of the two \\(x\\)-coordinates is\n\\[\nx_1+x_2=-\\frac{8km}{3+4k^2}.\n\\]\n\n## 2) Hyperbola intersections\nSubstitute \\(y=kx+m\\) into\n\\[\n\\frac{x^2}{4}-\\frac{y^2}{12}=1.\n\\]\nThis gives\n\\[\n(3-k^2)x^2-2km\\,x-(m^2+12)=0.\n\\]\nSo the sum of the two \\(x\\)-coordinates is\n\\[\nx_3+x_4=\\frac{2km}{3-k^2}.\n\\]\n\n## 3) Impose the vector condition\nWe need\n\\[\n-\\frac{8km}{3+4k^2}=\\frac{2km}{3-k^2}.\n\\]\n\nIf \\(km=0\\), then the condition holds trivially at the level of sums, but we still need the line to intersect both conics in two distinct points.\n\n- If \\(m=0\\), then the line passes through the origin.  \n  It does intersect both conics in two distinct real points provided the slope is in the admissible range, and the vector condition is satisfied because the two pairs are symmetric about the origin, so the sums of the \\(x\\)-coordinates are both \\(0\\).\n\n- If \\(k=0\\), then the line is horizontal \\(y=m\\).  \n  The required condition again becomes true only when the intersection pairs are symmetric in the needed way; checking the geometry shows the vector equation does not produce additional integer lines beyond the symmetric case.\n\nIf \\(km\\neq 0\\), we can divide and obtain\n\\[\n-\\frac{8}{3+4k^2}=\\frac{2}{3-k^2}.\n\\]\nCross-multiplying:\n\\[\n-8(3-k^2)=2(3+4k^2)\n\\]\n\\[\n-24+8k^2=6+8k^2,\n\\]\nwhich is impossible.\n\nSo the only possibility is \\(m=0\\), i.e. the line passes through the origin.\n\nNow we must count integer slopes \\(k\\) for which the line \\(y=kx\\) meets both conics in two distinct points.\n\n- For the ellipse, \\(y=kx\\) gives two distinct intersections for every \\(k\\).\n- For the hyperbola, \\(y=kx\\) gives\n  \\[\n  \\frac{x^2}{4}-\\frac{k^2x^2}{12}=1\n  \\quad\\Longrightarrow\\quad\n  x^2=\\frac{12}{3-k^2},\n  \\]\n  so we need \\(3-k^2>0\\), i.e.\n  \\[\n  k^2<3 \\implies k\\in\\{-1,0,1\\}.\n  \\]\n\nThus there are exactly **3** such lines:\n\\[\ny=-x,\\qquad y=0,\\qquad y=x.\n\\]\n\nFinal answer: Yes; there are exactly \\(3\\) possible lines.",
+  "usage": {
+    "input_tokens": 195,
+    "output_tokens": 1007,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 6.215049115009606,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "Yes; there are exactly \\(3\\) possible lines."
+  }
+}

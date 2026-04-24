@@ -1,0 +1,20 @@
+{
+  "id": "07kn",
+  "country": "Ireland",
+  "competition": "Irish Mathematical Olympiad",
+  "gold_final_answer": "[-9, -8, -7, -4, -1, 0, 1]",
+  "topics_flat": [
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities",
+    "Algebra > Algebraic Expressions > Polynomials > Polynomial operations"
+  ],
+  "prompt": "Determine, with proof, all integers $x$ for which $x(x+1)(x+7)(x+8)$ is a perfect square.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "We need to find all integers $x$ such that $x(x+1)(x+7)(x+8)$ is a perfect square.\n\n## Setting Up the Expression\n\nRearrange the product by pairing:\n$$x(x+8) \\cdot (x+1)(x+7) = (x^2+8x)(x^2+8x+7)$$\n\nLet $y = x^2 + 8x$. Then we need $y(y+7) = y^2 + 7y$ to be a perfect square.\n\n## Analyzing $y^2 + 7y = k^2$\n\nSuppose $y^2 + 7y = k^2$ for some non-negative integer $k$ (since it must be a perfect square, $k \\geq 0$).\n\nMultiply by 4: $4y^2 + 28y = 4k^2$, so $(2y+7)^2 - 49 = (2k)^2$.\n\nLet $m = 2y+7$ and $n = 2k$. Then:\n$$m^2 - n^2 = 49 \\implies (m-n)(m+n) = 49$$\n\nSince $m^2 - n^2 = 49 > 0$, we have $m > n \\geq 0$ (taking $k \\geq 0$, so $n \\geq 0$), and $m > 0$.\n\nThe factorizations of 49 with $m-n \\leq m+n$ and both factors same parity (since $m-n$ and $m+n$ have the same parity):\n\n- $(m-n, m+n) = (1, 49)$: gives $m = 25, n = 24$\n- $(m-n, m+n) = (7, 7)$: gives $m = 7, n = 0$\n- $(m-n, m+n) = (-49, -1)$: gives $m = -25, n = 24$ (but $m > 0$ fails... wait, let me reconsider signs)\n\nActually $m = 2y+7$ can be any integer, and $n = 2k \\geq 0$. We need $(m-n)(m+n) = 49$.\n\nFactor pairs of 49 (integers): $(1,49), (7,7), (49,1), (-1,-49), (-7,-7), (-49,-1)$.\n\n- $(m-n, m+n) = (1,49)$: $m=25, n=24$ → $y = (m-7)/2 = 9$, $k=12$\n- $(m-n, m+n) = (7,7)$: $m=7, n=0$ → $y = 0$, $k=0$\n- $(m-n, m+n) = (49,1)$: $m=25, n=-24$ → $n<0$, invalid\n- $(m-n, m+n) = (-1,-49)$: $m=-25, n=24$ → $y=(-25-7)/2=-16$, $k=12$\n- $(m-n, m+n) = (-7,-7)$: $m=-7, n=0$ → $y=(-7-7)/2=-7$, $k=0$\n- $(m-n, m+n) = (-49,-1)$: $m=-25, n=-24$ → invalid ($n<0$)\n\nSo $y \\in \\{-16, -7, 0, 9\\}$.\n\n## Solving for $x$\n\nRecall $y = x^2 + 8x = (x+4)^2 - 16$.\n\n**$y = 0$:** $x^2+8x=0 \\Rightarrow x(x+8)=0 \\Rightarrow x=0$ or $x=-8$\n\n**$y = 9$:** $x^2+8x-9=0 \\Rightarrow (x+9)(x-1)=0 \\Rightarrow x=1$ or $x=-9$\n\n**$y = -7$:** $x^2+8x+7=0 \\Rightarrow (x+1)(x+7)=0 \\Rightarrow x=-1$ or $x=-7$\n\n**$y = -16$:** $x^2+8x+16=0 \\Rightarrow (x+4)^2=0 \\Rightarrow x=-4$\n\n## Verification\n\n- $x=0$: $0 \\cdot 1 \\cdot 7 \\cdot 8 = 0 = 0^2$ ✓\n- $x=-8$: $(-8)(-7)(-1)(0)=0$ ✓\n- $x=1$: $1\\cdot2\\cdot8\\cdot9=144=12^2$ ✓\n- $x=-9$: $(-9)(-8)(-2)(-1)=144$ ✓\n- $x=-1$: $(-1)(0)(6)(7)=0$ ✓\n- $x=-7$: $(-7)(-6)(0)(1)=0$ ✓\n- $x=-4$: $(-4)(-3)(3)(4)=144$ ✓\n\n## Conclusion\n\nThe integers $x$ for which $x(x+1)(x+7)(x+8)$ is a perfect square are:\n\n$$\\boxed{x \\in \\{-9,\\,-8,\\,-7,\\,-4,\\,-1,\\,0,\\,1\\}}$$\n\nFinal answer: $x\\in\\{-9,-8,-7,-4,-1,0,1\\}$",
+  "usage": {
+    "input_tokens": 80,
+    "output_tokens": 1419,
+    "thinking_tokens": 0
+  },
+  "latency_s": 19.651580940000713,
+  "cached": false
+}

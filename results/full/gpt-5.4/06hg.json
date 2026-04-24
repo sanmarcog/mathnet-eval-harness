@@ -1,0 +1,20 @@
+{
+  "id": "06hg",
+  "country": "Hong Kong",
+  "competition": "Hong Kong Preliminary Selection Contest",
+  "gold_final_answer": "15",
+  "topics_flat": [
+    "Number Theory > Modular Arithmetic > Fermat / Euler / Wilson theorems",
+    "Algebra > Algebraic Expressions > Sequences and Series > Sums and products"
+  ],
+  "prompt": "Let $\\lfloor x \\rfloor$ denote the greatest integer not exceeding $x$. Find the last two digits of\n$$\n\\left\\lfloor \\frac{1}{3} \\right\\rfloor + \\left\\lfloor \\frac{2}{3} \\right\\rfloor + \\left\\lfloor \\frac{2^2}{3} \\right\\rfloor + \\cdots + \\left\\lfloor \\frac{2^{2^{2^{14}}}}{3} \\right\\rfloor\n$$",
+  "model": "gpt-5.4",
+  "response_text": "Let\n\\[\nS=\\left\\lfloor \\frac13\\right\\rfloor+\\left\\lfloor \\frac23\\right\\rfloor+\\left\\lfloor \\frac{2^2}{3}\\right\\rfloor+\\cdots+\\left\\lfloor \\frac{2^{2^{2^{14}}}}{3}\\right\\rfloor.\n\\]\nThe exponents are\n\\[\n0,1,2,2^2,2^3,\\dots,2^{14},\n\\]\nso\n\\[\nS=\\sum_{e\\in\\{0,1,2,4,8,\\dots,2^{14}\\}} \\left\\lfloor \\frac{2^e}{3}\\right\\rfloor.\n\\]\n\nUse the fact that\n\\[\n2^n \\equiv \\begin{cases}\n1 \\pmod 3,& n \\text{ even},\\\\\n2 \\pmod 3,& n \\text{ odd}.\n\\end{cases}\n\\]\nHence\n\\[\n\\left\\lfloor \\frac{2^n}{3}\\right\\rfloor=\n\\begin{cases}\n\\dfrac{2^n-1}{3},& n \\text{ even},\\\\[4pt]\n\\dfrac{2^n-2}{3},& n \\text{ odd}.\n\\end{cases}\n\\]\n\nNow all exponents in our list are even except \\(1\\). Therefore\n\\[\nS=\\left\\lfloor \\frac13\\right\\rfloor+\\left\\lfloor \\frac23\\right\\rfloor+\\sum_{k=1}^{14}\\left\\lfloor \\frac{2^{2^k}}{3}\\right\\rfloor\n=0+0+\\sum_{k=1}^{14}\\frac{2^{2^k}-1}{3}.\n\\]\nSo\n\\[\nS=\\frac{1}{3}\\left(\\sum_{k=1}^{14}2^{2^k}-14\\right).\n\\]\nWe only need the last two digits, i.e. \\(S \\pmod{100}\\). Since division by \\(3\\) mod \\(100\\) means multiplying by \\(67\\) (because \\(3\\cdot 67=201\\equiv1\\pmod{100}\\)), compute\n\\[\n\\sum_{k=1}^{14}2^{2^k}\\pmod{300},\n\\]\nbecause the numerator is divisible by \\(3\\).\n\nFor \\(k\\ge 3\\), \\(2^k\\) is a multiple of \\(8\\), and powers of \\(2\\) mod \\(300\\) cycle with period \\(20\\) from that point:\n\\[\n2^8\\equiv 256 \\pmod{300},\n\\]\nand since \\(2^k\\equiv 0\\pmod{20}\\) for \\(k\\ge 5\\),\n\\[\n2^{2^k}\\equiv 2^{0}\\equiv 1 \\text{?}\n\\]\nThis is not valid because base and exponent modular reduction must be handled carefully.\n\nInstead compute modulo \\(100\\) directly using the floor pattern:\n\\[\n\\left\\lfloor \\frac{2^{2^k}}{3}\\right\\rfloor \\equiv \\frac{2^{2^k}-1}{3}\\pmod{100}.\n\\]\nSo we need \\(2^{2^k}\\pmod{300}\\).\n\nNow:\n- \\(2^{2}=4\\)\n- \\(2^{4}=16\\)\n- \\(2^{8}=256\\)\n\nFor \\(n\\ge 8\\), powers of \\(2\\) modulo \\(300\\) cycle with period \\(20\\), and for \\(k\\ge 3\\), \\(2^k\\equiv 8,16,12,4,8,\\dots \\pmod{20}\\):\n\\[\n2^3\\equiv 8,\\quad 2^4\\equiv 16,\\quad 2^5\\equiv 12,\\quad 2^6\\equiv 4 \\pmod{20},\n\\]\nthen repeating with period \\(4\\).\n\nThus\n\\[\n2^{2^k}\\pmod{300}\n\\]\nfor \\(k=3,4,5,6,\\dots\\) repeats as\n\\[\n2^8,2^{16},2^{12},2^4 \\pmod{300}.\n\\]\nCompute:\n\\[\n2^4=16,\\quad 2^8=256,\\quad 2^{12}=196,\\quad 2^{16}=136 \\pmod{300}.\n\\]\nSo for \\(k=1\\) to \\(14\\), the values are:\n\\[\n4,16,256,136,196,16,256,136,196,16,256,136,196,16.\n\\]\nTheir sum is\n\\[\n4+16+(256+136+196+16)\\cdot 3 + (256+136+196+16?) \n\\]\nBetter group correctly:\nfrom \\(k=3\\) to \\(14\\) there are 12 terms = 3 full cycles of \\(256,136,196,16\\), whose sum is\n\\[\n256+136+196+16=604.\n\\]\nThus\n\\[\n\\sum_{k=1}^{14}2^{2^k}\\equiv 4+16+3\\cdot 604=20+1812=1832\\equiv 32\\pmod{300}.\n\\]\nTherefore\n\\[\n\\sum_{k=1}^{14}(2^{2^k}-1)\\equiv 32-14=18\\pmod{300}.\n\\]\nHence\n\\[\nS=\\frac{18}{3}\\equiv 6\\pmod{100}.\n\\]\nSo the last two digits are \\(\\boxed{06}\\).\n\nFinal answer: 06",
+  "usage": {
+    "input_tokens": 162,
+    "output_tokens": 1254,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 16.98382571397815,
+  "cached": false
+}

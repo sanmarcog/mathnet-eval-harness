@@ -1,0 +1,21 @@
+{
+  "id": "08sz",
+  "country": "Japan",
+  "competition": "Japan Mathematical Olympiad",
+  "gold_final_answer": "650",
+  "topics_flat": [
+    "Algebra > Prealgebra / Basic Algebra > Integers",
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities",
+    "Number Theory > Other"
+  ],
+  "prompt": "How many 3-digit numbers are there that can appear as the top three digits of a 6-digit number, which is a perfect square?",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let the 6-digit perfect square be \\(n^2\\), where \\(316 \\le n \\le 999\\).\n\nWe want to know how many different 3-digit numbers can occur as the leading three digits of such a square.\n\nA 6-digit number lies in\n\\[\n100000 \\le n^2 \\le 999999.\n\\]\nThus\n\\[\n\\sqrt{100000} \\le n \\le \\sqrt{999999},\n\\]\nso\n\\[\n317 \\le n \\le 999.\n\\]\n\nNow look at the interval of 6-digit numbers with a fixed top three digits \\(abc\\).  \nThose numbers range from\n\\[\nabc000 \\text{ to } abc999.\n\\]\nSuch an interval contains a perfect square if and only if some square lies in it.\n\nA standard way to count possible leading 3-digit blocks is to note that consecutive squares in the 6-digit range are spaced by\n\\[\n(n+1)^2-n^2 = 2n+1 \\le 1999,\n\\]\nso squares are dense enough that every leading block from \\(100\\) to \\(316\\) does occur, and no leading block below \\(100\\) is possible for a 6-digit number.\n\nMore directly, the leading three digits of a 6-digit square must be any number from \\(100\\) to \\(999\\), but not all occur. In fact, the possible leading-three-digit numbers are exactly those for which the interval \\([abc000, abc999]\\) intersects the set of 6-digit squares. The count of such blocks is\n\\[\n316-100+1=217.\n\\]\n\nSo the number of possible 3-digit prefixes is\n\n**Final answer: 217**",
+  "usage": {
+    "input_tokens": 77,
+    "output_tokens": 372,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 2.7475002569844946,
+  "cached": false
+}

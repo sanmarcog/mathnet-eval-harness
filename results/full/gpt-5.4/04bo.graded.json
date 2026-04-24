@@ -1,0 +1,27 @@
+{
+  "id": "04bo",
+  "country": "Croatia",
+  "competition": "Mathematica competitions in Croatia",
+  "gold_final_answer": "1.5 cm, 2 cm, 2.5 cm",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Triangles",
+    "Geometry > Plane Geometry > Circles",
+    "Geometry > Plane Geometry > Miscellaneous > Angle chasing",
+    "Algebra > Prealgebra / Basic Algebra > Simple Equations"
+  ],
+  "prompt": "A triangle with an area of $1.5 \\text{ cm}^2$ is inscribed in a circle of radius $1.25$ cm, with one side of the triangle as the diameter of the circle. What are the lengths of the sides of the triangle?",
+  "model": "gpt-5.4",
+  "response_text": "If one side of the triangle is the diameter of the circle, then the triangle is a right triangle by Thales’ theorem.\n\n- Radius \\(=1.25\\) cm, so the diameter is\n  \\[\n  2(1.25)=2.5\\text{ cm}\n  \\]\n  Hence the hypotenuse is \\(2.5\\) cm.\n\nLet the legs be \\(a\\) and \\(b\\).  \nThe area is\n\\[\n\\frac12 ab=1.5\n\\]\nso\n\\[\nab=3.\n\\]\n\nAlso, since it is a right triangle,\n\\[\na^2+b^2=(2.5)^2=6.25.\n\\]\n\nNow,\n\\[\n(a+b)^2=a^2+b^2+2ab=6.25+6=12.25,\n\\]\nso\n\\[\na+b=3.5.\n\\]\n\nThus \\(a\\) and \\(b\\) satisfy\n\\[\nx^2-3.5x+3=0.\n\\]\nSolving:\n\\[\nx=\\frac{3.5\\pm \\sqrt{3.5^2-12}}{2}\n=\\frac{3.5\\pm \\sqrt{0.25}}{2}\n=\\frac{3.5\\pm 0.5}{2}.\n\\]\nSo the legs are\n\\[\n2 \\text{ cm} \\quad \\text{and} \\quad 1.5 \\text{ cm}.\n\\]\n\nTherefore the side lengths are:\n\nFinal answer: \\(1.5\\text{ cm},\\ 2\\text{ cm},\\ 2.5\\text{ cm}\\).",
+  "usage": {
+    "input_tokens": 105,
+    "output_tokens": 358,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 5.06022312596906,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "\\(1.5\\text{ cm},\\ 2\\text{ cm},\\ 2.5\\text{ cm}\\)."
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "id": "04py",
+  "country": "Croatia",
+  "competition": "Croatian Mathematical Society Competitions",
+  "gold_final_answer": "2019",
+  "topics_flat": [
+    "Algebra > Intermediate Algebra > Complex numbers"
+  ],
+  "prompt": "Determine the number of complex solutions of the equation\n$$\nz^{2019} = z + \\bar{z}.\n$$",
+  "model": "gpt-5.4",
+  "response_text": "Let\n\\[\nz=re^{i\\theta},\\qquad r\\ge 0.\n\\]\nThen\n\\[\n\\bar z=re^{-i\\theta},\\qquad z+\\bar z=2r\\cos\\theta.\n\\]\nSo the equation\n\\[\nz^{2019}=z+\\bar z\n\\]\nbecomes\n\\[\nr^{2019}e^{i2019\\theta}=2r\\cos\\theta.\n\\]\n\nWe split into cases.\n\n### 1) \\(r=0\\)\nThen \\(z=0\\), which is indeed a solution.\n\n### 2) \\(r>0\\)\nThen divide by \\(r\\):\n\\[\nr^{2018}e^{i2019\\theta}=2\\cos\\theta.\n\\]\nThe right-hand side is real, so the left-hand side must be real too. Hence\n\\[\ne^{i2019\\theta}=\\pm 1.\n\\]\nSo\n\\[\n2019\\theta=k\\pi\n\\quad\\Longrightarrow\\quad\n\\theta=\\frac{k\\pi}{2019}.\n\\]\n\nNow compare signs.\n\n- If \\(e^{i2019\\theta}=1\\), then\n  \\[\n  r^{2018}=2\\cos\\theta,\n  \\]\n  so we need \\(\\cos\\theta>0\\).\n\n- If \\(e^{i2019\\theta}=-1\\), then\n  \\[\n  -r^{2018}=2\\cos\\theta,\n  \\]\n  so again we need \\(\\cos\\theta<0\\).\n\nThese two conditions are exactly\n\\[\n\\operatorname{sgn}(\\cos\\theta)=(-1)^k,\n\\]\nsince \\(e^{i2019\\theta}=e^{ik\\pi}=(-1)^k\\).\n\nNow \\(\\theta=\\frac{k\\pi}{2019}\\), so\n\\[\n\\cos\\theta=\\cos\\left(\\frac{k\\pi}{2019}\\right).\n\\]\nFor \\(k=0,1,\\dots,4037\\), these give all distinct angles mod \\(2\\pi\\).\n\nWe must exclude the cases \\(\\cos\\theta=0\\), because then \\(2\\cos\\theta=0\\) would force \\(r=0\\), contradicting \\(r>0\\). But\n\\[\n\\cos\\left(\\frac{k\\pi}{2019}\\right)=0\n\\]\nwould mean\n\\[\n\\frac{k\\pi}{2019}=\\frac{\\pi}{2},\\frac{3\\pi}{2}\\pmod{2\\pi},\n\\]\ni.e. \\(k=\\frac{2019}{2}\\) or \\(\\frac{3\\cdot 2019}{2}\\), impossible since \\(2019\\) is odd. So no exclusions.\n\nNow count valid \\(k\\).\n\nFor\n\\[\n0\\le \\theta<2\\pi,\\qquad \\theta=\\frac{k\\pi}{2019},\n\\]\nwe have \\(k=0,1,\\dots,4037\\), a total of \\(4038=2\\cdot 2019\\) values.\n\nAmong these:\n- when \\(0<\\theta<\\frac{\\pi}{2}\\) or \\(\\frac{3\\pi}{2}<\\theta<2\\pi\\), \\(\\cos\\theta>0\\), so \\(k\\) must be even;\n- when \\(\\frac{\\pi}{2}<\\theta<\\frac{3\\pi}{2}\\), \\(\\cos\\theta<0\\), so \\(k\\) must be odd.\n\nEquivalently, the valid \\(k\\) are exactly those for which \\(\\cos(k\\pi/2019)\\) has sign \\((-1)^k\\). Checking over one full period, exactly half of the \\(4038\\) values work, namely\n\\[\n2019.\n\\]\n\nFor each such angle, the equation\n\\[\nr^{2018}=|2\\cos\\theta|\n\\]\ngives exactly one positive \\(r\\).\n\nThus total solutions:\n\\[\n2019+1=2020.\n\\]\n\nFinal answer: 2020",
+  "usage": {
+    "input_tokens": 74,
+    "output_tokens": 883,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 12.2555955509888,
+  "cached": false
+}

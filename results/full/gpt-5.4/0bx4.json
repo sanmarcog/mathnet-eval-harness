@@ -1,0 +1,21 @@
+{
+  "id": "0bx4",
+  "country": "Romania",
+  "competition": "THE 68th ROMANIAN MATHEMATICAL OLYMPIAD",
+  "gold_final_answer": "x = 13, y = 5",
+  "topics_flat": [
+    "Algebra > Prealgebra / Basic Algebra > Simple Equations",
+    "Number Theory > Divisibility / Factorization > Factorization techniques",
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities"
+  ],
+  "prompt": "Two children, Alex and Cristi, play several times a game, in which the winner receives $x$ points, and the loser $y$ points ($x$ and $y$ are nonnegative integers, with $x > y$, and in any game one of the children is the winner and the other is the loser). The final score is $147$ to $123$, in Alex's favour. Cristi has won $6$ games. Determine the numbers $x$ and $y$.\n\nBogdan Antohe",
+  "model": "gpt-5.4",
+  "response_text": "Let Alex win \\(a\\) games and Cristi win \\(6\\) games.\n\nThen the total scores are:\n- Alex: \\(ax + 6y = 147\\)\n- Cristi: \\(ay + 6x = 123\\)\n\nSo we have the system\n\\[\n\\begin{cases}\nax + 6y = 147\\\\\nay + 6x = 123\n\\end{cases}\n\\]\nwith integers \\(x>y\\ge 0\\), \\(a\\ge 0\\).\n\nWe subtract the equations:\n\\[\na(x-y)-6(x-y)=147-123=24\n\\]\nhence\n\\[\n(a-6)(x-y)=24.\n\\]\n\nSince \\(x-y\\) is a positive integer, it must divide \\(24\\).\n\nNow add the equations:\n\\[\na(x+y)+6(x+y)=270\n\\]\nso\n\\[\n(a+6)(x+y)=270.\n\\]\n\nLet\n\\[\nd=x-y,\\qquad s=x+y.\n\\]\nThen\n\\[\n(a-6)d=24,\\qquad (a+6)s=270.\n\\]\n\nThus\n\\[\na=6+\\frac{24}{d}= \\frac{270}{s}-6.\n\\]\nSo\n\\[\n12+\\frac{24}{d}=\\frac{270}{s}.\n\\]\n\nAlso \\(x=\\frac{s+d}{2}\\), \\(y=\\frac{s-d}{2}\\), so \\(s,d\\) must have the same parity.\n\nWe test divisors \\(d\\) of \\(24\\):\n\n\\[\na=6+\\frac{24}{d}.\n\\]\nThen \\(a+6=12+\\frac{24}{d}\\) must divide \\(270\\).\n\nChecking divisors \\(d\\in\\{1,2,3,4,6,8,12,24\\}\\):\n\n- \\(d=1\\): \\(a+6=36\\), not dividing \\(270\\)\n- \\(d=2\\): \\(a+6=24\\), not dividing \\(270\\)\n- \\(d=3\\): \\(a+6=20\\), not dividing \\(270\\)\n- \\(d=4\\): \\(a+6=18\\), divides \\(270\\), giving \\(s=15\\)\n\nThen\n\\[\nx=\\frac{15+4}{2}=9.5\n\\]\nnot integer.\n\n- \\(d=6\\): \\(a+6=16\\), not dividing \\(270\\)\n- \\(d=8\\): \\(a+6=15\\), divides \\(270\\), giving \\(s=18\\)\n\nThen\n\\[\nx=\\frac{18+8}{2}=13,\\qquad y=\\frac{18-8}{2}=5.\n\\]\n\nThis works. Indeed, then\n\\[\na=6+\\frac{24}{8}=9.\n\\]\nCheck:\n- Alex: \\(9\\cdot 13+6\\cdot 5=117+30=147\\)\n- Cristi: \\(9\\cdot 5+6\\cdot 13=45+78=123\\)\n\nSo the scoring system is\n\nFinal answer: \\(x=13,\\ y=5\\).",
+  "usage": {
+    "input_tokens": 156,
+    "output_tokens": 687,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 7.819636450964026,
+  "cached": false
+}

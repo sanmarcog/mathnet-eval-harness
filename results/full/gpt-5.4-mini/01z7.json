@@ -1,0 +1,22 @@
+{
+  "id": "01z7",
+  "country": "Belarus",
+  "competition": "Belarus2022",
+  "gold_final_answer": "1/3",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Circles > Tangents",
+    "Geometry > Plane Geometry > Triangles > Triangle trigonometry",
+    "Geometry > Plane Geometry > Geometric Inequalities > Optimization in geometry",
+    "Geometry > Plane Geometry > Miscellaneous > Constructions and loci"
+  ],
+  "prompt": "Three non-intersecting circles of radius $1$ are placed inside the triangle $ABC$. (Circles can touch each other and the sides of a triangle, but cannot share interior points.)\nFind the largest value of $r$ for which we can be sure that inside the triangle it is possible to draw a fourth circle of radius $r$ that doesn't intersect with three circles already drawn.",
+  "model": "gpt-5.4-mini",
+  "response_text": "To maximize the guaranteed radius, we should place the three unit circles as “tightly” as possible, because that leaves the least room for a fourth circle.\n\nThe worst case is when the three unit circles are mutually tangent and each is tangent to two sides of the triangle, so their centers form an equilateral triangle of side \\(2\\). Then the small circle that can fit into the remaining gap between them is the one tangent to all three.\n\nIf the three unit circles are expanded by radius \\(r\\), then the new circle of radius \\(r\\) must fit into the same gap, so its center must be at distance \\(1+r\\) from each of the three centers. Thus we need the circumradius of the equilateral triangle of side \\(2\\) to equal \\(1+r\\):\n\n\\[\n\\text{circumradius}=\\frac{2}{\\sqrt3}.\n\\]\n\nSo\n\n\\[\n1+r=\\frac{2}{\\sqrt3}\n\\quad\\Rightarrow\\quad\nr=\\frac{2}{\\sqrt3}-1.\n\\]\n\nThis is the largest radius that is always guaranteed.\n\nFinal answer: \\(\\displaystyle \\frac{2}{\\sqrt3}-1\\)",
+  "usage": {
+    "input_tokens": 127,
+    "output_tokens": 257,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 2.299576276098378,
+  "cached": false
+}

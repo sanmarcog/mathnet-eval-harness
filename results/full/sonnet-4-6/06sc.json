@@ -1,0 +1,22 @@
+{
+  "id": "06sc",
+  "country": "IMO",
+  "competition": "International Mathematical Olympiad Shortlisted Problems",
+  "gold_final_answer": "P(x) = t x for any real t",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Functional Equations",
+    "Algebra > Algebraic Expressions > Polynomials > Polynomial operations",
+    "Algebra > Algebraic Expressions > Polynomials > Irreducibility: Rational Root Theorem, Gauss's Lemma, Eisenstein",
+    "Algebra > Algebraic Expressions > Polynomials > Intermediate Value Theorem"
+  ],
+  "prompt": "Let $m \\neq 0$ be an integer. Find all polynomials $P(x)$ with real coefficients such that\n$$\n\\left(x^{3}-m x^{2}+1\\right) P(x+1)+\\left(x^{3}+m x^{2}+1\\right) P(x-1)=2\\left(x^{3}-m x+1\\right) P(x)\n$$\nfor all real numbers $x$.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Setting Up the Problem\n\nLet me denote the functional equation as:\n$$(x^3 - mx^2 + 1)P(x+1) + (x^3 + mx^2 + 1)P(x-1) = 2(x^3 - mx + 1)P(x)$$\n\n**Rearranging:**\n$$(x^3 - mx^2 + 1)P(x+1) - 2(x^3 - mx + 1)P(x) + (x^3 + mx^2 + 1)P(x-1) = 0$$\n\n## Trying P(x) = x\n\nLet me test $P(x) = x$:\n- LHS: $(x^3 - mx^2 + 1)(x+1) + (x^3 + mx^2 + 1)(x-1)$\n- $= x^4 + x^3 - mx^3 - mx^2 + x + 1 + x^4 - x^3 + mx^3 - mx^2 + x - 1$\n- $= 2x^4 + 2x^3(0) - 2mx^2 + 2x = 2x^4 - 2mx^2 + 2x$\n- RHS: $2(x^3 - mx + 1)(x) = 2x^4 - 2mx^2 + 2x$ ✓\n\nSo $P(x) = x$ works.\n\n## Trying P(x) = x³ - (m+3)x + ... \n\nLet me try to find other solutions. Notice the equation is linear in $P$, so solutions form a vector space.\n\n**Testing $P(x) = c$ (constant):**\n- LHS: $c(x^3 - mx^2 + 1) + c(x^3 + mx^2 + 1) = c(2x^3 + 2)$\n- RHS: $2c(x^3 - mx + 1) = 2c(x^3 - mx + 1)$\n- These are equal only if $m = 0$, but $m \\neq 0$. So constants don't work.\n\n**Testing $P(x) = x^3 - 3x$... Let me try $P(x) = x^3 + ax$:**\n\nAfter substitution and comparing coefficients, this becomes complex. Let me check if $P(x) = x$ is essentially the only solution by degree analysis.\n\n**Degree analysis:** If $\\deg P = n$, the leading terms give:\n- LHS leading: $x^3 \\cdot x^n + x^3 \\cdot x^n = 2x^{n+3}$\n- RHS leading: $2x^3 \\cdot x^n = 2x^{n+3}$ ✓ (consistent for all $n$)\n\nNext coefficient (degree $n+2$): From $P(x+1) \\approx x^n + nx^{n-1}+\\ldots$, the $x^{n+2}$ terms:\n- LHS: $x^3(nx^{n-1}) + (-mx^2)(x^n) + x^3(nx^{n-1}) + (mx^2)(x^n) = 2nx^{n+2}$\n- RHS: $2x^3(nx^{n-1}) = 2nx^{n+2}$ ✓\n\nThis doesn't restrict degree. Let me check if $P(x) = x$ generates all solutions via the structure.\n\n**Checking $P(x) = x^2$:**\n- LHS: $(x^3-mx^2+1)(x+1)^2 + (x^3+mx^2+1)(x-1)^2$\n- $= (x^3-mx^2+1)(x^2+2x+1) + (x^3+mx^2+1)(x^2-2x+1)$\n- $= 2x^5 - 2mx^4 + 2x^3 + 2x^2 + 2$ (after expansion)\n- RHS: $2(x^3-mx+1)x^2 = 2x^5 - 2mx^3 + 2x^2$\n\nComparing: $2x^3 + 2 \\neq -2mx^3$, so $P(x) = x^2$ doesn't work.\n\n## Conclusion\n\nThe solution space contains $P(x) = x$. Given the constraints and that other simple polynomials fail, the general solution is:\n\n$$P(x) = cx$$\n\nfor any real constant $c$.\n\n**Verification confirms** $P(x) = cx$ satisfies the equation for all real $c$.\n\nFinal answer: $P(x) = cx$ for any real constant $c$ (i.e., all polynomials of the form $P(x) = cx$).",
+  "usage": {
+    "input_tokens": 161,
+    "output_tokens": 1232,
+    "thinking_tokens": 0
+  },
+  "latency_s": 16.634861393948086,
+  "cached": false
+}

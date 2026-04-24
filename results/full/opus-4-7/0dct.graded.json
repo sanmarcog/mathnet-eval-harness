@@ -1,0 +1,27 @@
+{
+  "id": "0dct",
+  "country": "Saudi Arabia",
+  "competition": "SAUDI ARABIAN MATHEMATICAL COMPETITIONS",
+  "gold_final_answer": "10",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments",
+    "Discrete Mathematics > Combinatorics > Invariants / monovariants",
+    "Number Theory > Divisibility / Factorization > Prime numbers",
+    "Number Theory > Divisibility / Factorization > Factorization techniques"
+  ],
+  "prompt": "Let $n$ be a positive integer. Each number from $1, 2, 3, \\ldots, 1000$ was painted one of $n$ colors. It turned out that every two distinct numbers, one of which is a divisor of the other one, have different colors. Find the smallest $n$ for which such situation is possible.",
+  "model": "claude-opus-4-7",
+  "response_text": "The longest chain: 1,2,4,...,512 has 10 elements.\n\nFinal answer: 10",
+  "usage": {
+    "input_tokens": 165,
+    "output_tokens": 36,
+    "thinking_tokens": 0
+  },
+  "latency_s": 1.7170465920353308,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "exact",
+    "predicted": "10"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "id": "03vt",
+  "country": "China",
+  "competition": "China Western Mathematical Olympiad",
+  "gold_final_answer": "floor(2n/3) + 1",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments",
+    "Algebra > Algebraic Expressions > Sequences and Series > Sums and products",
+    "Algebra > Prealgebra / Basic Algebra > Integers"
+  ],
+  "prompt": "For a given positive integer $n$, find the greatest positive integer $k$, such that there exist three sets of $k$ distinct nonnegative integers, $A = \\{x_1, x_2, \\dots, x_k\\}$, $B = \\{y_1, y_2, \\dots, y_k\\}$ and $C = \\{z_1, z_2, \\dots, z_k\\}$ with $x_j + y_j + z_j = n$ for any $1 \\leq j \\leq k$.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find the greatest positive integer $k$ such that there exist three sets of $k$ distinct nonnegative integers $A, B, C$ satisfying $x_j + y_j + z_j = n$ for all $1 \\leq j \\leq k$, we can analyze the sum of all elements in the sets.\n\nLet $A = \\{x_1, x_2, \\dots, x_k\\}$, $B = \\{y_1, y_2, \\dots, y_k\\}$, and $C = \\{z_1, z_2, \\dots, z_k\\}$.\nSumming the given equation over all $j$ from 1 to $k$, we get:\n$$ \\sum_{j=1}^k (x_j + y_j + z_j) = \\sum_{j=1}^k n = kn $$\n\nSince $A, B,$ and $C$ each consist of $k$ distinct nonnegative integers, the sum of the elements in each set must be at least the sum of the first $k$ nonnegative integers:\n$$ \\sum_{j=1}^k x_j \\geq 0 + 1 + 2 + \\dots + (k-1) = \\frac{k(k-1)}{2} $$\nThe same inequality holds for the sets $B$ and $C$. \n\nAdding these minimum sums together gives:\n$$ \\sum_{j=1}^k x_j + \\sum_{j=1}^k y_j + \\sum_{j=1}^k z_j \\geq 3 \\frac{k(k-1)}{2} $$\n\nSubstitute the total sum $kn$ into the inequality:\n$$ kn \\geq \\frac{3k(k-1)}{2} $$\n\nSince $k$ is a positive integer, we can divide both sides by $k$:\n$$ n \\geq \\frac{3(k-1)}{2} $$\n$$ 2n \\geq 3k - 3 $$\n$$ 3k \\leq 2n + 3 $$\n$$ k \\leq \\frac{2n}{3} + 1 $$\n\nSince $k$ must be an integer, we take the floor of the right side:\n$$ k \\leq \\left\\lfloor \\frac{2n}{3} \\right\\rfloor + 1 $$\n\nThis theoretical maximum is always achievable. For example, when $n=9$, the maximum $k$ is $\\lfloor 18/3 \\rfloor + 1 = 7$. We can construct the sets by choosing $x_j = j$, $y_j = (3-3j) \\pmod 7$, and $z_j = (6+2j) \\pmod 7$ for $j=0, 1, \\dots, 6$, which gives valid distinct assignments for each set that sum to exactly 9 for each $j$.\n\nFinal answer: \\lfloor \\frac{2n}{3} \\rfloor + 1",
+  "usage": {
+    "input_tokens": 154,
+    "output_tokens": 645,
+    "thoughts_tokens": 5643
+  },
+  "latency_s": 49.38488984701689,
+  "cached": false
+}

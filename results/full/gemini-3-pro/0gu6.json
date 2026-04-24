@@ -1,0 +1,20 @@
+{
+  "id": "0gu6",
+  "country": "Turkey",
+  "competition": "Team Selection Test for JBMO 2023",
+  "gold_final_answer": "15",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Games / greedy algorithms",
+    "Discrete Mathematics > Combinatorics > Invariants / monovariants"
+  ],
+  "prompt": "At the beginning Alice distributes $1000$ balls into $30$ boxes. After that Alice and Bob alternatively make moves, Alice begins. A person making move chooses a box and takes one ball from the chosen box. A person taking the very last ball from a box takes on that empty box. Find the maximal integer $k$ such that regardless of the strategy of Bob Alice can take at least $k$ boxes.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find the maximal integer $k$ such that Alice can guarantee taking at least $k$ boxes, we can analyze the game by looking at the parity of the number of balls in each box. \n\nLet $O$ be the number of boxes with an odd number of balls, and $E$ be the number of boxes with an even number of balls. Initially, $O + E = 30$. Since the total number of balls is $1000$ (an even number), $O$ must be an even number.\n\nBob can employ a pairing strategy to guarantee a certain number of boxes:\n1. For each of the $E$ boxes with an even number of balls, Bob mentally pairs the balls within that box. Whenever Alice takes a ball from such a box, Bob takes a ball from the same box. This guarantees Bob will take the last ball from every even box, winning all $E$ boxes.\n2. For the $O$ boxes with an odd number of balls, Bob mentally sets aside 1 \"special\" ball from each box and pairs the remaining even number of balls within the same box. \n3. Bob then pairs the $O$ special balls with each other (e.g., the special ball of box 1 is paired with the special ball of box 2). \n4. If Alice takes a normal ball, Bob takes its pair from the same box. If Alice takes a special ball, Bob takes its paired special ball from the other box.\n\nUsing this strategy, for each pair of odd boxes, Bob is guaranteed",
+  "usage": {
+    "input_tokens": 127,
+    "output_tokens": 327,
+    "thoughts_tokens": 7861
+  },
+  "latency_s": 71.95742367499042,
+  "cached": false
+}

@@ -1,0 +1,25 @@
+{
+  "id": "01og",
+  "country": "Belarus",
+  "competition": "Belorusija 2012",
+  "gold_final_answer": "Any integer from 0 to N−2 with the same parity as N.",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Invariants / monovariants",
+    "Discrete Mathematics > Combinatorics > Counting two ways"
+  ],
+  "prompt": "$N$ boys ($N \\ge 3$), no two of them having the same height, are arranged along a circle. A boy in the given arrangement is said to be *middle* if he is taller than one of his neighbors and shorter than the other one.\nFind all possible numbers of middle boys in the arrangement.",
+  "model": "gpt-5.4",
+  "response_text": "Let the boys around the circle have heights \\(h_1,h_2,\\dots,h_N\\), all distinct, indexed cyclically.\n\nA boy \\(i\\) is **middle** iff his height is between those of his two neighbors, i.e.\n\\[\n(h_{i-1}<h_i<h_{i+1}) \\quad\\text{or}\\quad (h_{i-1}>h_i>h_{i+1}).\n\\]\nEquivalently, \\(i\\) is middle exactly when the two comparisons with neighbors have opposite signs.\n\nDefine\n\\[\ns_i=\\operatorname{sgn}(h_{i+1}-h_i)\\in\\{+,-\\}.\n\\]\nThen boy \\(i\\) is middle iff \\(s_{i-1}=s_i\\):\n- if both are \\(+\\), then \\(h_{i-1}<h_i<h_{i+1}\\),\n- if both are \\(-\\), then \\(h_{i-1}>h_i>h_{i+1}\\).\n\nSo the number of middle boys equals the number of indices \\(i\\) for which \\(s_{i-1}=s_i\\).\n\nNow look at the cyclic sign sequence\n\\[\ns_1,s_2,\\dots,s_N.\n\\]\nBecause we go around a circle and return to the start, the number of sign changes in this cyclic sequence must be even. Indeed, each maximal block of consecutive \\(+\\)'s is followed by a block of \\(-\\)'s and vice versa, so changes occur in pairs.\n\nIf \\(C\\) is the number of sign changes, then the number of equal adjacent pairs is\n\\[\nN-C.\n\\]\nHence the number of middle boys has the same parity as \\(N\\).\n\nAlso, not all \\(s_i\\) can be equal, since that would mean heights strictly increase all the way around the circle. Thus \\(C\\ge 2\\), so\n\\[\n\\#\\text{middle}=N-C\\le N-2.\n\\]\n\nSo any possible number \\(M\\) of middle boys must satisfy:\n- \\(0\\le M\\le N-2\\),\n- \\(M\\equiv N\\pmod 2\\).\n\nIt remains to show every such \\(M\\) is achievable.\n\nLet \\(C=N-M\\). Then \\(C\\) is even and \\(2\\le C\\le N\\). We construct a sign pattern with exactly \\(C\\) sign changes: take \\(C\\) nonempty consecutive blocks of alternating signs \\(+,-,+,-,\\dots\\) whose total length is \\(N\\). This is possible since \\(C\\le N\\). Such a cyclic sign sequence has exactly \\(C\\) sign changes, hence exactly \\(N-C=M\\) middle boys.\n\nAny such sign pattern can be realized by some circular arrangement of distinct heights: choose numbers \\(h_1,\\dots,h_N\\) so that \\(h_{i+1}>h_i\\) when \\(s_i=+\\) and \\(h_{i+1}<h_i\\) when \\(s_i=-\\). This is possible precisely because the pattern is not all \\(+\\) or all \\(-\\); for example, one may take any cyclic ordering of \\(1,2,\\dots,N\\) with the prescribed up/down pattern.\n\nTherefore the possible numbers of middle boys are exactly\n\\[\nN-2,\\ N-4,\\ \\dots\n\\]\ndown to \\(0\\) if \\(N\\) is even, and down to \\(1\\) if \\(N\\) is odd.\n\nFinal answer: All integers \\(M\\) such that \\(0\\le M\\le N-2\\) and \\(M\\equiv N\\pmod 2\\); equivalently, \\(M\\in\\{N-2,N-4,\\dots\\}\\), ending at \\(0\\) for even \\(N\\) and at \\(1\\) for odd \\(N\\).",
+  "usage": {
+    "input_tokens": 115,
+    "output_tokens": 832,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 14.223495109938085,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "All integers \\(M\\) such that \\(0\\le M\\le N-2\\) and \\(M\\equiv N\\pmod 2\\); equivalently, \\(M\\in\\{N-2,N-4,\\dots\\}\\), ending at \\(0\\) for even \\(N\\) and at \\(1\\) for odd \\(N\\)."
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "id": "04oi",
+  "country": "Croatia",
+  "competition": "Croatian Mathematical Olympiad",
+  "gold_final_answer": "All prime numbers",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Prime numbers",
+    "Number Theory > Divisibility / Factorization > Factorization techniques",
+    "Discrete Mathematics > Combinatorics > Counting two ways"
+  ],
+  "prompt": "Determine all positive integers $n \\ge 2$ which satisfy the following condition: For all integers $a_1, a_2, \\dots, a_n$ such that their sum is not divisible by $n$, there exists an integer $i \\in \\{1, 2, \\dots, n\\}$ such that none of the $n$ numbers\n\n$$\na_i,\\ a_i + a_{i+1},\\ \\dots,\\ a_i + a_{i+1} + \\dots + a_{i+n-1}\n$$\nis divisible by $n$, where we define $a_i = a_{i-n}$ for the case $i > n$.",
+  "model": "claude-opus-4-7",
+  "response_text": "Final answer: <primes>.\n\nWait, let me reconsider. The answer is all prime numbers.\n\nFinal answer: <n is prime>.",
+  "usage": {
+    "input_tokens": 261,
+    "output_tokens": 50,
+    "thinking_tokens": 0
+  },
+  "latency_s": 2.6406757530057803,
+  "cached": false
+}

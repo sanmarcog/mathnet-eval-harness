@@ -1,0 +1,24 @@
+{
+  "id": "09yl",
+  "country": "Netherlands",
+  "competition": "First Round",
+  "gold_final_answer": "17",
+  "topics_flat": [
+    "Discrete Mathematics > Other"
+  ],
+  "prompt": "Line up the numbers $1$ to $15$ such that if you add any two numbers that are next to each other, you get a square number.\nWhat do you get if you add the first and last number from the line?",
+  "model": "gpt-5.4",
+  "response_text": "We need an ordering of \\(1,2,\\dots,15\\) so that adjacent numbers always sum to a perfect square.\n\nSince the largest possible sum is \\(14+15=29\\), the only relevant squares are\n\n\\[\n4,9,16,25.\n\\]\n\nSo each number can be adjacent only to numbers that make one of these sums.\n\nLet's list possibilities:\n\n- \\(1\\): with \\(3,8,15\\)\n- \\(2\\): with \\(7,14\\)\n- \\(3\\): with \\(1,6,13\\)\n- \\(4\\): with \\(5,12\\)\n- \\(5\\): with \\(4,11\\)\n- \\(6\\): with \\(3,10\\)\n- \\(7\\): with \\(2,9\\)\n- \\(8\\): with \\(1\\)\n- \\(9\\): with \\(7,16,? \\Rightarrow 7\\) only among \\(1\\) to \\(15\\)\n- \\(10\\): with \\(6,15\\)\n- \\(11\\): with \\(5,14\\)\n- \\(12\\): with \\(4,13\\)\n- \\(13\\): with \\(3,12\\)\n- \\(14\\): with \\(2,11\\)\n- \\(15\\): with \\(1,10\\)\n\nNow notice:\n- \\(8\\) has only one possible neighbor: \\(1\\), so \\(8\\) must be an endpoint.\n- \\(9\\) has only one possible neighbor: \\(7\\), so \\(9\\) must be the other endpoint.\n\nSo the line must start/end with \\(8\\) and \\(9\\).\n\nBuild the chain:\n\n\\[\n8-1\n\\]\n\nSince \\(1\\) already used \\(8\\), it must continue with \\(15\\) or \\(3\\).  \nBut \\(15\\) connects to \\(10\\), so try:\n\n\\[\n8-1-15-10-6-3-13-12-4-5-11-14-2-7-9\n\\]\n\nCheck sums:\n\n\\[\n8+1=9,\\;\n1+15=16,\\;\n15+10=25,\\;\n10+6=16,\\;\n6+3=9,\n\\]\n\\[\n3+13=16,\\;\n13+12=25,\\;\n12+4=16,\\;\n4+5=9,\\;\n5+11=16,\n\\]\n\\[\n11+14=25,\\;\n14+2=16,\\;\n2+7=9,\\;\n7+9=16.\n\\]\n\nAll are perfect squares.\n\nSo the first and last numbers are \\(8\\) and \\(9\\), and their sum is\n\n\\[\n8+9=17.\n\\]\n\nFinal answer: 17",
+  "usage": {
+    "input_tokens": 96,
+    "output_tokens": 593,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 8.380671840975992,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "exact",
+    "predicted": "17"
+  }
+}

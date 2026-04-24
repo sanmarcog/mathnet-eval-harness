@@ -1,0 +1,20 @@
+{
+  "id": "0euf",
+  "country": "South Korea",
+  "competition": "Korean Mathematical Olympiad Final Round",
+  "gold_final_answer": "kn",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Invariants / monovariants",
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments"
+  ],
+  "prompt": "There is an $n \\times n$ chess board. Each of the $n^2$ small boxes can present a number from $0$ to $k$, for some positive integer $k$. In each row and column, there is a button and if we push the button in a row (or column), the number in each of the $n$ small boxes contained in that row (or column, respectively) increases by $1$ and the number $k$ is changed to $0$. We call this a \"process\". At first, the number $0$ was presented in every $n^2$ small box. But there were some processes and the numbers were changed. Show that every number in the $n^2$ small boxes can be changed to $0$ by taking at most $kn$ processes.",
+  "model": "gpt-5.4",
+  "response_text": "Let the current number in cell \\((i,j)\\) be \\(a_{ij}\\in\\{0,1,\\dots,k\\}\\), where arithmetic is modulo \\(k+1\\).  \nA row-process adds \\(1\\) to all entries in that row; a column-process adds \\(1\\) to all entries in that column.\n\nWe are told the board started from all \\(0\\)'s and reached the present state by some sequence of row/column processes. So there exist integers\n\\[\nr_1,\\dots,r_n,\\qquad c_1,\\dots,c_n\n\\]\nsuch that\n\\[\na_{ij}\\equiv r_i+c_j \\pmod{k+1}.\n\\]\nIndeed, \\(r_i\\) is the number of times row \\(i\\) was pressed, and \\(c_j\\) the number of times column \\(j\\) was pressed.\n\nTo return everything to \\(0\\), it is enough to apply some numbers \\(x_i\\) of row-processes and \\(y_j\\) of column-processes so that\n\\[\na_{ij}+x_i+y_j\\equiv 0\\pmod{k+1}\\qquad \\forall i,j.\n\\]\nSince \\(a_{ij}\\equiv r_i+c_j\\), one solution is\n\\[\nx_i\\equiv -r_i,\\qquad y_j\\equiv -c_j \\pmod{k+1}.\n\\]\nChoose representatives\n\\[\nx_i,\\ y_j \\in \\{0,1,\\dots,k\\}.\n\\]\nThen the total number of processes is\n\\[\n\\sum_{i=1}^n x_i+\\sum_{j=1}^n y_j.\n\\]\n\nNow note that if \\((x_i),(y_j)\\) is a solution, then for any \\(t\\in\\{0,1,\\dots,k\\}\\),\n\\[\nx_i' \\equiv x_i+t,\\qquad y_j' \\equiv y_j-t \\pmod{k+1}\n\\]\nis also a solution. Choosing representatives again in \\(\\{0,\\dots,k\\}\\), this shifts all row counts by \\(+t\\) and all column counts by \\(-t\\).\n\nSo we may normalize one side. In particular, choose \\(t\\) so that one of the \\(y_j'\\) becomes \\(0\\). Then all \\(y_j'\\in\\{0,\\dots,k\\}\\), hence\n\\[\n\\sum_{j=1}^n y_j' \\le (n-1)k.\n\\]\nAlso each \\(x_i'\\le k\\), so\n\\[\n\\sum_{i=1}^n x_i' \\le nk.\n\\]\nThis only gives \\(2nk-k\\), not enough; so instead we use symmetry:\n\n- either after such a shift, \\(\\sum y_j' \\le \\frac{nk}{2}\\),\n- or shifting the other way, \\(\\sum x_i' \\le \\frac{nk}{2}\\).\n\nMore cleanly, let\n\\[\nS(t)=\\sum_{i=1}^n \\overline{x_i+t}+\\sum_{j=1}^n \\overline{y_j-t},\n\\]\nwhere \\(\\overline{z}\\) is the residue in \\(\\{0,\\dots,k\\}\\). As \\(t\\) runs through \\(0,1,\\dots,k\\), each \\(\\overline{x_i+t}\\) takes every value \\(0,\\dots,k\\) exactly once, so\n\\[\n\\sum_{t=0}^k \\overline{x_i+t} = 0+1+\\cdots+k = \\frac{k(k+1)}2.\n\\]\nSimilarly,\n\\[\n\\sum_{t=0}^k \\overline{y_j-t} = \\frac{k(k+1)}2.\n\\]\nTherefore\n\\[\n\\sum_{t=0}^k S(t)\n= n\\frac{k(k+1)}2+n\\frac{k(k+1)}2\n= nk(k+1).\n\\]\nSo the average value of \\(S(t)\\) over the \\(k+1\\) choices of \\(t\\) is\n\\[\n\\frac{nk(k+1)}{k+1}=nk.\n\\]\nHence for some \\(t\\), we have \\(S(t)\\le nk\\).\n\nUsing that choice of \\(t\\), perform \\(\\overline{x_i+t}\\) row-processes on row \\(i\\) and \\(\\overline{y_j-t}\\) column-processes on column \\(j\\). This returns every cell to \\(0\\), using at most \\(nk\\) processes.\n\nFinal answer: It is always possible to reset the board to all \\(0\\)'s using at most \\(kn\\) row/column processes.",
+  "usage": {
+    "input_tokens": 217,
+    "output_tokens": 1024,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 14.619908386026509,
+  "cached": false
+}

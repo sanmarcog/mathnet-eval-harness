@@ -1,0 +1,25 @@
+{
+  "id": "09w5",
+  "country": "Netherlands",
+  "competition": "First Round",
+  "gold_final_answer": "5",
+  "topics_flat": [
+    "Algebra > Prealgebra / Basic Algebra > Integers",
+    "Algebra > Prealgebra / Basic Algebra > Simple Equations"
+  ],
+  "prompt": "Annemiek and Bart each have a note on which they have written three different positive integers. It appears that there is exactly one number that is on both their notes. Moreover, if you add any two different numbers from Annemiek's note, you get one of the numbers on Bart's note. One of the numbers on Annemiek's note is her favourite number, and if you multiply it by $3$, you get one of the numbers on Bart's note. Bart's note contains the number $25$, his favourite number.\nWhat is Annemiek's favourite number?",
+  "model": "gpt-5.4",
+  "response_text": "Let Annemiek’s numbers be \\(a,b,c\\), all distinct positive integers, and Bart’s numbers be the three pairwise sums\n\\[\na+b,\\quad a+c,\\quad b+c,\n\\]\nsince “if you add any two different numbers from Annemiek’s note, you get one of the numbers on Bart’s note,” and Bart has exactly three numbers.\n\nAlso, the two notes have exactly one number in common.\n\nBart’s note contains \\(25\\), so one of\n\\[\na+b,\\ a+c,\\ b+c\n\\]\nequals \\(25\\).\n\nAnnemiek has a favourite number, say \\(a\\), such that \\(3a\\) is on Bart’s note. Since Bart’s numbers are pairwise sums, we must have\n\\[\n3a=a+b \\quad\\text{or}\\quad 3a=a+c \\quad\\text{or}\\quad 3a=b+c.\n\\]\n\nIf \\(3a=a+b\\), then \\(b=2a\\), so Annemiek’s numbers are \\(a,2a,c\\). Then Bart’s numbers are\n\\[\n3a,\\ a+c,\\ 2a+c.\n\\]\nFor exactly one common number between the notes, one of \\(a,2a,c\\) must equal one of \\(3a,a+c,2a+c\\). The only feasible one is \\(c=3a\\) (since \\(a\\) or \\(2a\\) cannot equal any of the sums without forcing zero or repetition). Then Annemiek’s set is\n\\[\n\\{a,2a,3a\\},\n\\]\nand Bart’s set is\n\\[\n\\{3a,4a,5a\\}.\n\\]\nThese indeed have exactly one common number, namely \\(3a\\).\n\nNow Bart has \\(25\\), so one of \\(3a,4a,5a\\) equals \\(25\\). Since \\(a\\) is an integer, only \\(5a=25\\) works, giving\n\\[\na=5.\n\\]\n\nWe should also check the other possibilities:\n\n- If \\(3a=a+c\\), similarly we get \\(c=2a\\), which is symmetric to the previous case and again leads to Annemiek’s favourite number \\(a=5\\).\n- If \\(3a=b+c\\), then \\(a,b,c\\) would all be distinct positive integers with \\(b+c=3a\\). But then Bart’s numbers are \\(a+b,a+c,3a\\), and making exactly one common element is impossible without creating extra overlaps or contradictions. So no new solution arises.\n\nHence Annemiek’s favourite number is \\(5\\).\n\nFinal answer: 5",
+  "usage": {
+    "input_tokens": 166,
+    "output_tokens": 568,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 9.45159372605849,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "exact",
+    "predicted": "5"
+  }
+}

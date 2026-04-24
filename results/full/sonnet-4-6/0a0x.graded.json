@@ -1,0 +1,25 @@
+{
+  "id": "0a0x",
+  "country": "Netherlands",
+  "competition": "Dutch Mathematical Olympiad",
+  "gold_final_answer": "Each vase contains the note equal to its own label; that is, for every k from 1 to 2023, vase k contains k.",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Functional equations",
+    "Discrete Mathematics > Combinatorics > Induction / smoothing"
+  ],
+  "prompt": "In a room there are $2023$ vases numbered from $1$ to $2023$. In each vase we want to put a note with a positive integer from $1, 2, \\ldots, 2023$ on it. The numbers on the notes do *not* necessarily have to be distinct. The following should now apply to each vase. Look at the note inside the vase, find the (not necessarily different) vase with the number written on the note, and look at the note inside this vase. Then the average of the numbers on the two notes must be exactly equal to the number of the first selected vase. For example, if we put a note with the number $5$ in vase $13$, then vase $5$ should contain a note with the number $21$ on it: after all, the average of $5$ and $21$ is $13$.\n\nDetermine all possible ways to provide each vase with a note.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Setting Up the Problem\n\nLet $a_i$ denote the number on the note in vase $i$, where $a_i \\in \\{1, 2, \\ldots, 2023\\}$.\n\nThe condition states: for each vase $i$, if we look at $a_i$ (the note in vase $i$), then look at $a_{a_i}$ (the note in vase $a_i$), the average of $a_i$ and $a_{a_i}$ equals $i$.\n\nSo the condition is:\n$$\\frac{a_i + a_{a_i}}{2} = i \\quad \\text{for all } i \\in \\{1, 2, \\ldots, 2023\\}$$\n\nThis gives us:\n$$a_i + a_{a_i} = 2i \\quad \\text{for all } i$$\n\n## Analyzing the Functional Equation\n\nLet $f(i) = a_i$. The condition is:\n$$f(i) + f(f(i)) = 2i \\quad \\text{for all } i$$\n\n**Applying the condition to $f(i)$:** Replace $i$ with $f(i)$:\n$$f(f(i)) + f(f(f(i))) = 2f(i)$$\n\nFrom the original equation: $f(f(i)) = 2i - f(i)$. Substituting:\n$$(2i - f(i)) + f(2i - f(i)) = 2f(i)$$\n$$f(2i - f(i)) = 3f(i) - 2i$$\n\n**Applying the condition to $2i - f(i)$:** Let $j = 2i - f(i) = f(f(i))$. Apply the original condition to $j$:\n$$f(j) + f(f(j)) = 2j$$\n$$f(2i - f(i)) + f(f(2i - f(i))) = 2(2i - f(i))$$\n$$(3f(i) - 2i) + f(3f(i) - 2i) = 4i - 2f(i)$$\n$$f(3f(i) - 2i) = 6i - 5f(i)$$\n\n**Let $g(i) = f(i) - i$.** Then $f(i) = i + g(i)$.\n\nThe condition $f(i) + f(f(i)) = 2i$ becomes:\n$$(i + g(i)) + f(i + g(i)) = 2i$$\n$$f(i + g(i)) = i - g(i)$$\n$$(i + g(i)) + g(i + g(i)) = i - g(i)$$\n$$g(i + g(i)) = -2g(i)$$\n\n**Testing $f(i) = i$ (i.e., $g(i) = 0$):** Then $g(i + 0) = 0 = -2 \\cdot 0$. ✓ This gives $a_i = i$ for all $i$.\n\n**Testing $f(i) = 2c - i$ for constant $c$:** Then $f(i) + f(f(i)) = (2c-i) + (2c-(2c-i)) = (2c-i)+i = 2c$. We need $2c = 2i$ for all $i$, which is impossible unless it's not constant.\n\n**Testing linear $f(i) = \\alpha i + \\beta$:**\n$$(\\alpha i + \\beta) + \\alpha(\\alpha i + \\beta) + \\beta = 2i$$\n$$\\alpha(1+\\alpha)i + \\beta(1+\\alpha+1) = 2i$$\n\nSo $\\alpha(1+\\alpha) = 2$ giving $\\alpha = 1$ or $\\alpha = -2$, and $\\beta(2+\\alpha) = 0$.\n\n- $\\alpha = 1$: $\\beta \\cdot 3 = 0 \\Rightarrow \\beta = 0$, giving $f(i) = i$. ✓\n- $\\alpha = -2$: $\\beta \\cdot 0 = 0$, so $\\beta$ is free, giving $f(i) = -2i + \\beta$. But we need $f(i) \\in \\{1,\\ldots,2023\\}$ and $f(i) > 0$, so $-2i + \\beta > 0$ for all $i$ up to 2023, requiring $\\beta > 4046$, which is impossible.\n\n## Conclusion\n\nThe only solution is $a_i = i$ for all $i$: each vase $i$ contains a note with the number $i$.\n\n**Verification:** $\\frac{a_i + a_{a_i}}{2} = \\frac{i + i}{2} = i$. ✓\n\nFinal answer: The only valid assignment is $a_i = i$ for all $i$; that is, each vase $i$ contains a note with the number $i$.",
+  "usage": {
+    "input_tokens": 257,
+    "output_tokens": 1261,
+    "thinking_tokens": 0
+  },
+  "latency_s": 16.376272563938983,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "The only valid assignment is $a_i = i$ for all $i$; that is, each vase $i$ contains a note with the number $i$."
+  }
+}

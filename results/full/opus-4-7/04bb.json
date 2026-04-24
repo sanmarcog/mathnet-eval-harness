@@ -1,0 +1,20 @@
+{
+  "id": "04bb",
+  "country": "Croatia",
+  "competition": "Mathematica competitions in Croatia",
+  "gold_final_answer": "∠EBF = 108°, ∠BEF = 54°, ∠BFE = 18°",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Miscellaneous > Angle chasing",
+    "Geometry > Plane Geometry > Transformations > Rotation"
+  ],
+  "prompt": "Let $ABCDE$ be a regular pentagon. The lines $BC$ and $DE$ intersect at point $F$. Determine the angles of triangle $BEF$.",
+  "model": "claude-opus-4-7",
+  "response_text": "Interior angle 108°. \n\nAngles at B and E in triangle BEF: \nAngle EBF: BE is diagonal, BC is side. Angle EBC = 108° - angle EBA... let me think with coordinates or known angles.\n\nIn regular pentagon, angle ABE = 36° (since triangle ABE isoceles with AB=AE, angle A=108°). So angle EBC = 108-36 = 72°.\nSimilarly angle BED = 72°.\n\nF is intersection of BC extended and DE extended beyond... At vertex C, angle BCD=108°, so exterior angle FCD = 72°. At D, angle CDE=108°, exterior angle CDF=72°. Triangle CDF has angles 72,72,36.\n\nAngle FBE = angle CBE = 72°? F is on line BC beyond C. So angle EBF = angle EBC = 72°.\nAngle FEB = angle DEB = 72°. Then angle at F = 36°.\n\nFinal answer: <72°, 72°, 36°>",
+  "usage": {
+    "input_tokens": 124,
+    "output_tokens": 340,
+    "thinking_tokens": 0
+  },
+  "latency_s": 5.891554975998588,
+  "cached": false
+}

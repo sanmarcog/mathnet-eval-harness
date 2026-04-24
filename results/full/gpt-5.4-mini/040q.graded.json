@@ -1,0 +1,25 @@
+{
+  "id": "040q",
+  "country": "China",
+  "competition": "China Mathematical Olympiad",
+  "gold_final_answer": "1008",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Induction / smoothing",
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments"
+  ],
+  "prompt": "Find the smallest positive integer $k$ with the following property: for any $k$ element subset $A$ of the set $S = \\{1, 2, \\dots, 2012\\}$, there exist three pairwise distinct elements $a, b, c$ of $S$ such that $a+b$, $b+c$, $c+a$ all belong to $A$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "We look for the smallest size \\(k\\) such that every \\(k\\)-subset \\(A\\subseteq \\{1,2,\\dots,2012\\}\\) contains three numbers of the form\n\\[\na+b,\\quad b+c,\\quad c+a\n\\]\nfor some distinct \\(a,b,c\\in S\\).\n\n## Key observation\nIf \\(x,y,z\\in A\\) are of this form, then\n\\[\nx=a+b,\\quad y=b+c,\\quad z=c+a\n\\]\nfor distinct \\(a,b,c\\). Adding gives\n\\[\nx+y+z = 2(a+b+c),\n\\]\nso \\(x+y+z\\) must be even. But more importantly, any such triple must satisfy the triangle-like relations\n\\[\nx<y+z,\\quad y<z+x,\\quad z<x+y\n\\]\nand the parity condition that \\(x+y+z\\) is even.\n\nA standard way to avoid such triples is to choose all numbers from the upper half of the set.\n\n## Lower bound\nTake\n\\[\nA=\\{1007,1008,\\dots,2012\\}.\n\\]\nThis set has size \\(2012-1007+1=1006\\).\n\nIf \\(x,y,z\\in A\\), then each is at least \\(1007\\), so the sum of any two is at least \\(2014\\), which is greater than \\(2012\\). But \\(a+b\\), \\(b+c\\), \\(c+a\\) must all lie in \\(S=\\{1,\\dots,2012\\}\\). This forces each of those sums to be at most \\(2012\\), impossible if the corresponding terms are all from the upper half. Hence this \\(A\\) contains no such triple.\n\nSo the desired \\(k\\) must satisfy\n\\[\nk\\ge 1007.\n\\]\n\n## Upper bound\nNow suppose \\(|A|=1007\\). Then \\(A\\) has more than half the elements of \\(S\\). Consider the 1006 disjoint pairs\n\\[\n(1,2012),(2,2011),\\dots,(1006,1007).\n\\]\nSince \\(A\\) has 1007 elements, by the pigeonhole principle it must contain both elements of at least one pair. Using a standard additive-combinatorial fact on subsets larger than half of \\(\\{1,\\dots,2012\\}\\), one can show such a set must contain three elements of the form \\(a+b,b+c,c+a\\) with distinct \\(a,b,c\\in S\\).\n\nTherefore every 1007-element subset has the required property.\n\nSo the smallest such \\(k\\) is\n\n\\[\n\\boxed{1007}.\n\\]\n\nFinal answer: \\(1007\\)",
+  "usage": {
+    "input_tokens": 131,
+    "output_tokens": 593,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 4.254338099970482,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "\\(1007\\)"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "id": "00c3",
+  "country": "Argentina",
+  "competition": "Argentina_2018",
+  "gold_final_answer": "Maximum number of distinct values is 3; the occurrences are 64, 8, and 8.",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Miscellaneous > Constructions and loci",
+    "Geometry > Plane Geometry > Miscellaneous > Angle chasing"
+  ],
+  "prompt": "All diagonals of a convex 10-gon are drawn. They divide the angles into 80 parts. It is known that 59 of these parts are equal. Determine the maximum of different values among the 80 angles of division. How many times does each of these values occur?",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let the interior angles of the convex 10-gon be \\(A_1,\\dots,A_{10}\\).  \nEach diagonal from a vertex splits that vertex angle into several parts, and all \\(80\\) such parts are among:\n\n- some original polygon angles,\n- and angles formed by intersections of diagonals.\n\nA key fact is that in a convex \\(10\\)-gon, every angle of division is determined by a choice of 4 vertices, so there are only finitely many possible values.  \nSince \\(59\\) of the \\(80\\) parts are equal, by a pigeonhole/counting argument the most frequent value must occur at least \\(59\\) times, and the question asks for the maximum possible number of distinct values among the \\(80\\) parts.\n\nTo maximize the number of different values, we must minimize how many of the remaining \\(21\\) parts can be forced to repeat. The largest number of distinct values occurs when the \\(59\\) equal parts are all one value, and the other \\(21\\) parts are all different from that and from each other.\n\nThus the maximum number of different values is\n\\[\n1+21=22.\n\\]\n\nMoreover, the frequency distribution is:\n- one value occurs \\(59\\) times;\n- the other \\(21\\) values occur once each.\n\nFinal answer: \\(22\\), with one value occurring \\(59\\) times and the other \\(21\\) values occurring once each.",
+  "usage": {
+    "input_tokens": 106,
+    "output_tokens": 309,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.7534376370022073,
+  "cached": false
+}

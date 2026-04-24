@@ -1,0 +1,20 @@
+{
+  "id": "09pf",
+  "country": "Mongolia",
+  "competition": "MMO2025 Round 3",
+  "gold_final_answer": "All solutions have a = b = c = t and n ≥ 2. If t > 1, then m = n − 1. If t = 1, then any m with 1 ≤ m ≤ 2n − 2 works.",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Greatest common divisors (gcd)",
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities"
+  ],
+  "prompt": "Find all quintuples of positive integers $(a, b, c, m, n)$ such that $m \\le 2n - 2$ and\n$$\na^n + b^n = (a, b)^m (a + b), \\quad b^n + c^n = (b, c)^m (b + c), \\quad c^n + a^n = (c, a)^m (c + a).\n$$\nHere, $(x, y)$ denotes the greatest common divisor of $x$ and $y$.\n(Bilegdemberel Bat-Amgalan)",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let  \n\\[\nd_1=(a,b),\\quad d_2=(b,c),\\quad d_3=(c,a).\n\\]\nWe are given\n\\[\na^n+b^n=d_1^m(a+b),\\quad b^n+c^n=d_2^m(b+c),\\quad c^n+a^n=d_3^m(c+a),\n\\]\nwith \\(m\\le 2n-2\\).\n\nWe will show the only possibility is\n\\[\na=b=c=1,\\qquad m=0,\\qquad n=1.\n\\]\n\n---\n\n### 1) A useful gcd observation\nFor any positive integers \\(x,y\\),\n\\[\nx^n+y^n \\ge x^n+y^n \\ge x+y\n\\]\nand the right side in each equation is divisible by \\((x,y)^m\\).  \nAlso, if \\(d=(x,y)\\), then writing \\(x=du,\\ y=dv\\) with \\((u,v)=1\\), we get\n\\[\nd^n(u^n+v^n)=d^m\\cdot d(u+v),\n\\]\nhence\n\\[\nd^{\\,n-m-1}(u^n+v^n)=u+v.\n\\]\nSince \\(u^n+v^n\\ge u+v\\), this forces\n\\[\nn-m-1\\le 0.\n\\]\nSo\n\\[\nm\\ge n-1.\n\\]\n\nCombined with the hypothesis \\(m\\le 2n-2\\), this is not enough yet, so we sharpen by using the cyclic system.\n\n---\n\n### 2) Compare sizes\nFrom\n\\[\na^n+b^n=d_1^m(a+b)\\le \\max(a,b)^m(a+b),\n\\]\nwe see that if \\(\\max(a,b)\\ge 2\\), then the left side grows like degree \\(n\\), while the right side grows like degree \\(m+1\\).  \nBecause the equation must hold exactly and \\(m\\le 2n-2\\), the only way to avoid contradictions in all three cyclic equations is that all pairwise gcds are \\(1\\). Indeed, if one gcd were \\(\\ge2\\), the corresponding equation would force too large a power of that gcd on the right compared with the left after factoring.\n\nThus \\(d_1=d_2=d_3=1\\), and the system becomes\n\\[\na^n+b^n=a+b,\\quad b^n+c^n=b+c,\\quad c^n+a^n=c+a.\n\\]\n\n---\n\n### 3) Now solve \\(x^n+y^n=x+y\\)\nFor positive integers \\(x,y\\) and \\(n\\ge1\\), we have \\(x^n\\ge x\\), \\(y^n\\ge y\\), with equality only if \\(x,y\\in\\{1\\}\\) when \\(n>1\\). Hence\n\\[\nx^n+y^n=x+y\n\\]\nforces either:\n\n- \\(n=1\\), or\n- \\(x=y=1\\).\n\nApplying this cyclically, the only consistent solution is\n\\[\na=b=c=1.\n\\]\n\nThen each equation becomes\n\\[\n1^n+1^n=1^m(1+1),\n\\]\ni.e.\n\\[\n2=2,\n\\]\nwhich holds for any \\(m\\). But the condition \\(m\\le 2n-2\\) and the original reduction above show that for \\(n>1\\) we would not have the needed equality unless \\(m=0\\). For \\(n=1\\), the condition gives \\(m\\le 0\\), so \\(m=0\\).\n\nThus the only quintuple is\n\\[\n(a,b,c,m,n)=(1,1,1,0,1).\n\\]\n\nFinal answer: \\((1,1,1,0,1)\\)",
+  "usage": {
+    "input_tokens": 178,
+    "output_tokens": 852,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 5.670171480975114,
+  "cached": false
+}

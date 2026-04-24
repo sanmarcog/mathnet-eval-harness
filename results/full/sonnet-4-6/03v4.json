@@ -1,0 +1,21 @@
+{
+  "id": "03v4",
+  "country": "China",
+  "competition": "China Southeastern Mathematical Olympiad",
+  "gold_final_answer": "a_n = 2^{n-2}(n^2 - n + 6) - n - 1 (n ≥ 2)",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Sequences and Series > Recurrence relations",
+    "Algebra > Algebraic Expressions > Sequences and Series > Telescoping series",
+    "Algebra > Algebraic Expressions > Sequences and Series > Sums and products"
+  ],
+  "prompt": "It is given the sequence $\\{a_n\\}$: $a_1 = 1$,\n$$\na_{n+1} = 2a_n + n \\cdot (1 + 2^n), \\quad n = 1, 2, 3, \\dots\n$$\n\nFind the general term $a_n$.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "We need to solve the recurrence $a_{n+1} = 2a_n + n(1 + 2^n)$ with $a_1 = 1$.\n\n**Homogeneous solution:** $a_n^{(h)} = C \\cdot 2^n$\n\n**Particular solution:** We need a particular solution for $a_{n+1} = 2a_n + n + n \\cdot 2^n$.\n\nSplit into two parts:\n\n**Part 1:** $a_{n+1} = 2a_n + n$\n\nTry $a_n^{(p1)} = An + B$:\n$(A(n+1) + B) = 2(An + B) + n$\n$An + A + B = 2An + 2B + n$\n$A = 2A + 1 \\Rightarrow A = -1$\n$A + B = 2B \\Rightarrow B = A = -1$\n\nSo $a_n^{(p1)} = -n - 1$.\n\n**Part 2:** $a_{n+1} = 2a_n + n \\cdot 2^n$\n\nSince $2^n$ is a solution to the homogeneous equation, try $a_n^{(p2)} = n \\cdot 2^n \\cdot (An + B)$:\n\nActually, try $a_n^{(p2)} = (An + B) \\cdot n \\cdot 2^n$... Let me try $a_n^{(p2)} = (An + B) \\cdot 2^n$:\n\n$(A(n+1) + B) \\cdot 2^{n+1} = 2(An+B) \\cdot 2^n + n \\cdot 2^n$\n$2(An + A + B) \\cdot 2^n = 2(An+B) \\cdot 2^n + n \\cdot 2^n$\n\nDividing by $2^n$:\n$2An + 2A + 2B = 2An + 2B + n$\n$2A = n$... This doesn't work since $2A = n$ is impossible.\n\nSince $2^n$ is a homogeneous solution, multiply by $n$: try $a_n^{(p2)} = An^2 \\cdot 2^n$:\n\n$A(n+1)^2 \\cdot 2^{n+1} = 2 \\cdot An^2 \\cdot 2^n + n \\cdot 2^n$\n\n$2A(n+1)^2 \\cdot 2^n = 2An^2 \\cdot 2^n + n \\cdot 2^n$\n\nDivide by $2^n$:\n$2A(n^2 + 2n + 1) = 2An^2 + n$\n$2An^2 + 4An + 2A = 2An^2 + n$\n$4An + 2A = n$\n$4A = 1 \\Rightarrow A = 1/4$, $2A = 0$... contradiction.\n\nTry $a_n^{(p2)} = (An^2 + Bn) \\cdot 2^n$:\n\n$(A(n+1)^2 + B(n+1)) \\cdot 2^{n+1} = 2(An^2 + Bn) \\cdot 2^n + n \\cdot 2^n$\n\nDivide by $2^n$:\n$2(An^2 + 2An + A + Bn + B) = 2An^2 + 2Bn + n$\n$2An^2 + 4An + 2A + 2Bn + 2B = 2An^2 + 2Bn + n$\n$4An + 2A + 2B = n$\n$4A = 1 \\Rightarrow A = 1/4$\n$2A + 2B = 0 \\Rightarrow B = -A = -1/4$\n\nSo $a_n^{(p2)} = \\frac{n^2 - n}{4} \\cdot 2^n = \\frac{n(n-1)}{4} \\cdot 2^n$.\n\n**General solution:**\n$a_n = C \\cdot 2^n - n - 1 + \\frac{n(n-1)}{4} \\cdot 2^n$\n\nApply $a_1 = 1$:\n$1 = 2C - 1 - 1 + 0$\n$1 = 2C - 2$\n$C = 3/2$\n\nSo $a_n = \\frac{3}{2} \\cdot 2^n - n - 1 + \\frac{n(n-1)}{4} \\cdot 2^n = 3 \\cdot 2^{n-1} - n - 1 + n(n-1) \\cdot 2^{n-2}$\n\n$= 2^{n-2}(6 + n^2 - n) - n - 1 = 2^{n-2}(n^2 - n + 6) - (n+1)$\n\n**Verification:** $a_1 = 2^{-1}(6) - 2 = 3 - 2 = 1$ ✓  \n$a_2 = 2^0(4) - 3 = 4 - 3 = 1$. Check: $a_2 = 2(1) + 1(1+2) = 2+3=5$... Wait: $a_2 = 2^0(4-2+6) - 3 = 8-3=5$ ✓\n\nFinal answer: $a_n = (n^2 - n + 6)\\cdot 2^{n-2} - (n+1)$",
+  "usage": {
+    "input_tokens": 127,
+    "output_tokens": 1487,
+    "thinking_tokens": 0
+  },
+  "latency_s": 14.153738379012793,
+  "cached": false
+}

@@ -1,0 +1,19 @@
+{
+  "id": "075a",
+  "country": "India",
+  "competition": "Indija mo 2011",
+  "gold_final_answer": "f(x) = 0 for all real x; f(x) = x^2 for all real x",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Functional Equations"
+  ],
+  "prompt": "Find all functions $f : \\mathbb{R} \\rightarrow \\mathbb{R}$ such that\n\n$$\nf(x+y)f(x-y) = (f(x)+f(y))^2 - 4x^2f(y), \\quad (1)\n$$\n\nfor all $x, y \\in \\mathbb{R}$, where $\\mathbb{R}$ denotes the set of all real numbers.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "Let me find all functions satisfying $f(x+y)f(x-y) = (f(x)+f(y))^2 - 4x^2f(y)$.\n\n**Step 1: Initial substitutions**\n\nSet $x = y = 0$:\n$f(0)^2 = (2f(0))^2 - 0 = 4f(0)^2$\nSo $3f(0)^2 = 0$, giving $f(0) = 0$.\n\nSet $x = 0$:\n$f(y)f(-y) = (f(0)+f(y))^2 - 0 = f(y)^2$\nSo $f(y)f(-y) = f(y)^2$, meaning $f(y)(f(-y) - f(y)) = 0$ for all $y$.\n\nSet $y = 0$:\n$f(x)^2 = (f(x)+f(0))^2 - 4x^2f(0) = f(x)^2$ ✓ (consistent)\n\n**Step 2: Try $f(x) = x^2$**\n\nCheck: $f(x+y)f(x-y) = (x+y)^2(x-y)^2 = (x^2-y^2)^2$\n\nRHS: $(x^2+y^2)^2 - 4x^2y^2 = x^4 + 2x^2y^2 + y^4 - 4x^2y^2 = (x^2-y^2)^2$ ✓\n\n**Step 3: Try $f(x) = cx^2$**\n\nLHS: $c(x+y)^2 \\cdot c(x-y)^2 = c^2(x^2-y^2)^2$\n\nRHS: $(cx^2+cy^2)^2 - 4x^2 \\cdot cy^2 = c^2(x^2+y^2)^2 - 4cx^2y^2$\n\nFor equality: $c^2(x^2-y^2)^2 = c^2(x^2+y^2)^2 - 4cx^2y^2$\n\n$c^2(x^4 - 2x^2y^2 + y^4) = c^2(x^4 + 2x^2y^2 + y^4) - 4cx^2y^2$\n\n$-2c^2x^2y^2 = 2c^2x^2y^2 - 4cx^2y^2$\n\n$0 = 4c^2x^2y^2 - 4cx^2y^2 = 4cx^2y^2(c-1)$\n\nSo $c = 0$ or $c = 1$.\n\n**Step 4: Try $f(x) = 0$**\n\nLHS: $0$, RHS: $0$ ✓\n\n**Step 5: Check if other solutions exist**\n\nSet $y = x$:\n$f(2x)f(0) = (f(x)+f(x))^2 - 4x^2f(x)$\n$0 = 4f(x)^2 - 4x^2f(x)$\n$4f(x)(f(x) - x^2) = 0$\n\nSo for every $x$: either $f(x) = 0$ or $f(x) = x^2$.\n\n**Step 6: Can $f$ be a mix?**\n\nSuppose $f(a) = 0$ and $f(b) = b^2$ for some $a \\neq 0, b \\neq 0$.\n\nSet $x = b, y = a$ in the original equation:\n$f(b+a)f(b-a) = (f(b)+f(a))^2 - 4b^2f(a) = (b^2+0)^2 - 0 = b^4$\n\nEach of $f(b+a), f(b-a)$ is either $0$ or the square of its argument. Their product is $b^4 > 0$, so both must be nonzero:\n$f(b+a) = (b+a)^2$ and $f(b-a) = (b-a)^2$.\n\nNow set $x = a, y = b$:\n$f(a+b)f(a-b) = (f(a)+f(b))^2 - 4a^2f(b) = b^4 - 4a^2b^2$\n\nLHS: $(a+b)^2(a-b)^2 = (a^2-b^2)^2 = a^4 - 2a^2b^2 + b^4$\n\nSo $a^4 - 2a^2b^2 + b^4 = b^4 - 4a^2b^2$, giving $a^4 + 2a^2b^2 = 0$, so $a = 0$. Contradiction.\n\nThus $f$ cannot be a nontrivial mix. The only solutions are $f(x) = 0$ and $f(x) = x^2$.\n\n**Final answer:** $f(x) = 0$ and $f(x) = x^2$\n\nFinal answer: $f(x)=0$ and $f(x)=x^2$",
+  "usage": {
+    "input_tokens": 151,
+    "output_tokens": 1369,
+    "thinking_tokens": 0
+  },
+  "latency_s": 15.092590935062617,
+  "cached": false
+}

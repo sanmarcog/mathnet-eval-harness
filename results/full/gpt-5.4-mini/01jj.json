@@ -1,0 +1,20 @@
+{
+  "id": "01jj",
+  "country": "Baltic Way",
+  "competition": "Baltic Way 2023 Shortlist",
+  "gold_final_answer": "2137",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Greatest common divisors (gcd)",
+    "Number Theory > Other"
+  ],
+  "prompt": "For a positive integer $m$, let $S(m)$ denote the positive integer whose decimal representation is equal to the octal representation of $m$. For example, $S(64) = 100$, $S(100) = 144$, $S(2023) = 3747$. Two positive integers $x, y$ satisfy the relation\n$$\n\\frac{S(x) + S(1)}{S(x + 1)} = \\frac{S(y) + S(2023)}{S(y + 2023)} < \\frac{8}{10}.\n$$\nWhat is the smallest possible value of $y$ if $x < 100$?",
+  "model": "gpt-5.4-mini",
+  "response_text": "Interpret \\(S(m)\\) as the number obtained by writing \\(m\\) in base \\(8\\) and then reading that string as a base-\\(10\\) number.\n\nWe use:\n- \\(S(1)=1\\)\n- \\(2023_{10}=3747_8\\), so \\(S(2023)=3747\\)\n\nWe need\n\\[\n\\frac{S(x)+1}{S(x+1)}=\\frac{S(y)+3747}{S(y+2023)}<\\frac 8{10}.\n\\]\n\n### 1) Determine the common value\nFor \\(x<100\\), the ratio \\(\\frac{S(x)+1}{S(x+1)}\\) can only be one of the familiar “carry” cases in base \\(8\\).\n\nIf \\(x\\equiv 7 \\pmod 8\\), then in base \\(8\\),\n\\[\nx=\\cdots a7 \\quad\\Rightarrow\\quad x+1=\\cdots (a+1)0,\n\\]\nso\n\\[\n\\frac{S(x)+1}{S(x+1)}=\\frac{\\cdots a7 +1}{\\cdots (a+1)0}.\n\\]\nTo get a value \\(<0.8\\), the only possibility is \\(x=7\\), giving\n\\[\n\\frac{S(7)+1}{S(8)}=\\frac{7+1}{10}=\\frac 8{10}.\n\\]\nBut the problem says the common value is strictly less than \\(8/10\\), so \\(x\\neq 7\\).\n\nFor \\(x<100\\), the next possible values below \\(0.8\\) occur at \\(x=15,23,31,\\dots\\), and the ratio decreases. We now match the same value with the \\(y\\)-expression.\n\n### 2) Analyze the \\(y\\)-expression\nSince \\(2023_{10}=3747_8\\), adding \\(2023\\) means adding \\(3747_8\\). To make\n\\[\n\\frac{S(y)+3747}{S(y+2023)}\n\\]\nas a simple ratio, we want a carry-free situation in base \\(8\\), because carries only make the denominator smaller relative to the numerator, increasing the ratio.\n\nSo take \\(y\\) so that its last four octal digits are all at least \\(4,7,4,7\\) in the appropriate positions? The cleanest way is to test the smallest \\(y\\) making the same ratio as the \\(x\\)-side. The smallest such \\(y\\) is when\n\\[\ny=3747_8=2023_{10},\n\\]\nbecause then\n\\[\ny+2023 = 4046_{10} = 7746_8,\n\\]\nand\n\\[\n\\frac{S(y)+3747}{S(y+2023)}=\\frac{3747+3747}{7746}=\\frac{7494}{7746}<\\frac 8{10}.\n\\]\nThis ratio matches the only feasible common value from the \\(x\\)-side with \\(x<100\\).\n\nHence the smallest possible \\(y\\) is\n\n\\[\n\\boxed{2023}.\n\\]\n\nFinal answer: 2023",
+  "usage": {
+    "input_tokens": 191,
+    "output_tokens": 701,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 5.120736238081008,
+  "cached": false
+}

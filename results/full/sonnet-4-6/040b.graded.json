@@ -1,0 +1,26 @@
+{
+  "id": "040b",
+  "country": "China",
+  "competition": "China Mathematical Competition",
+  "gold_final_answer": "1",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Triangles > Triangle trigonometry",
+    "Geometry > Plane Geometry > Miscellaneous > Constructions and loci",
+    "Geometry > Plane Geometry > Geometric Inequalities > Optimization in geometry"
+  ],
+  "prompt": "Let the focus and directrix of parabola $y^2 = 2px$ ($p > 0$) be $F$ and $l$, respectively. $A$ and $B$ are moving points on the parabola satisfying $\\angle AFB = \\frac{\\pi}{3}$. Let the projection of $M$, the midpoint of segment $AB$, on $l$ be $N$. Then the maximum value of $\\frac{|MN|}{|AB|}$ is ______.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "Let me set up coordinates. The parabola is y² = 2px, with focus F = (p/2, 0) and directrix x = -p/2.\n\nFor points A and B on the parabola, let A = (at², at) using parametric form... Let me use the standard parametrization: A = (p t₁²/2, p t₁) and B = (p t₂²/2, p t₂).\n\nThe focal distances are |AF| = p t₁²/2 + p/2 = p(t₁² + 1)/2 and |BF| = p(t₂² + 1)/2.\n\nLet me denote |AF| = r₁, |BF| = r₂. The angle ∠AFB = π/3.\n\nBy the law of cosines: |AB|² = r₁² + r₂² - 2r₁r₂cos(π/3) = r₁² + r₂² - r₁r₂.\n\n**Finding |MN|:**\nM is the midpoint of AB. N is the projection of M onto the directrix x = -p/2.\n\nThe x-coordinate of M is (x_A + x_B)/2. The distance from M to the directrix is:\n|MN| = (x_A + x_B)/2 + p/2 = (r₁ + r₂)/2 (since x_A + p/2 = r₁, x_B + p/2 = r₂).\n\nSo |MN| = (r₁ + r₂)/2.\n\n**Ratio to maximize:**\n$$\\frac{|MN|}{|AB|} = \\frac{(r₁ + r₂)/2}{\\sqrt{r₁² + r₂² - r₁r₂}}$$\n\nLet s = r₁ + r₂ and q = r₁r₂. Then r₁² + r₂² = s² - 2q.\n\n$$\\frac{|MN|}{|AB|} = \\frac{s/2}{\\sqrt{s² - 2q - q}} = \\frac{s/2}{\\sqrt{s² - 3q}}$$\n\nTo maximize this, we want to maximize s²/(4(s² - 3q)), i.e., minimize s² - 3q relative to s², i.e., maximize q/s².\n\nBy AM-GM: q = r₁r₂ ≤ s²/4, with equality when r₁ = r₂.\n\nSo maximum of q/s² is 1/4, achieved when r₁ = r₂.\n\nWhen r₁ = r₂ = r:\n$$\\frac{|MN|}{|AB|} = \\frac{r}{\\sqrt{2r² - r²}} = \\frac{r}{r} = 1$$\n\nWait, let me recheck: |AB|² = r² + r² - r·r = 2r² - r² = r², so |AB| = r.\n|MN| = r. So ratio = 1.\n\nBut we need to check if r₁ = r₂ with ∠AFB = π/3 is achievable. When r₁ = r₂, the triangle AFB is isoceles with the angle at F being π/3, making it equilateral. This is certainly achievable on the parabola.\n\nBut wait - is ratio = 1 actually the maximum? Let me check another case. Let r₁ → ∞ and r₂ fixed.\n\nAs r₁ → ∞ with ∠AFB = π/3 fixed, by the sine rule: r₂/sin(angle at A) = r₁/sin(angle at B), and angle A + angle B = 2π/3.\n\nActually let me try r₁ → ∞. The ratio becomes:\n$$\\frac{(r₁+r₂)/2}{\\sqrt{r₁²+r₂²-r₁r₂}} \\approx \\frac{r₁/2}{\\sqrt{r₁²}} = \\frac{1}{2}$$\n\nSo as r₁ → ∞, ratio → 1/2. At r₁ = r₂, ratio = 1. So maximum is 1?\n\nLet me verify with r₁ = r₂ = r more carefully. The ratio is:\n$$\\frac{s/2}{\\sqrt{s^2 - 3q}} = \\frac{r}{\\sqrt{4r^2 - 3r^2}} = \\frac{r}{r} = 1$$\n\nNow check if ratio can exceed 1. We need s²/4 > s² - 3q, i.e., 3q > 3s²/4, i.e., q > s²/4. But by AM-GM, q ≤ s²/4. So ratio ≤ 1, with equality when r₁ = r₂.\n\nTherefore the maximum value is **1**.\n\nFinal answer: 1",
+  "usage": {
+    "input_tokens": 166,
+    "output_tokens": 1258,
+    "thinking_tokens": 0
+  },
+  "latency_s": 16.743563983938657,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "exact",
+    "predicted": "1"
+  }
+}

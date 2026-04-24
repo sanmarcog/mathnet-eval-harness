@@ -1,0 +1,25 @@
+{
+  "id": "03uh",
+  "country": "China",
+  "competition": "China Mathematical Competition",
+  "gold_final_answer": "2/3",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Analytic / Coordinate Methods > Vectors",
+    "Geometry > Plane Geometry > Triangles > Triangle trigonometry"
+  ],
+  "prompt": "Given $\\triangle ABC$ and $\\triangle AEF$ such that $B$ is the midpoint of $EF$. Also, $AB = EF = 1$, $BC = 6$, $CA = \\sqrt{33}$, and $\\overrightarrow{AB} \\cdot \\overrightarrow{AE} + \\overrightarrow{AC} \\cdot \\overrightarrow{AF} = 2$. The cosine of the angle between $\\overrightarrow{EF}$ and $\\overrightarrow{BC}$ is ______.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let \\( \\vec b=\\overrightarrow{AB}\\), \\( \\vec c=\\overrightarrow{AC}\\), \\( \\vec e=\\overrightarrow{AE}\\), \\( \\vec f=\\overrightarrow{AF}\\).\n\nSince \\(B\\) is the midpoint of \\(EF\\), we have\n\\[\n\\vec e+\\vec f=2\\vec b.\n\\]\nAlso,\n\\[\n|\\vec b|=AB=1,\\quad |\\vec c|=AC=\\sqrt{33},\\quad |\\vec c-\\vec b|=BC=6.\n\\]\nFrom\n\\[\n|\\vec c-\\vec b|^2=|\\vec c|^2+|\\vec b|^2-2\\vec b\\cdot \\vec c,\n\\]\nwe get\n\\[\n36=33+1-2\\vec b\\cdot\\vec c \\implies \\vec b\\cdot\\vec c=-1.\n\\]\n\nGiven\n\\[\n\\vec b\\cdot \\vec e+\\vec c\\cdot \\vec f=2.\n\\]\nUsing \\(\\vec f=2\\vec b-\\vec e\\),\n\\[\n\\vec b\\cdot \\vec e+\\vec c\\cdot(2\\vec b-\\vec e)=2\n\\]\n\\[\n\\Rightarrow (\\vec b-\\vec c)\\cdot \\vec e+2\\vec b\\cdot \\vec c=2.\n\\]\nSince \\(\\vec b\\cdot\\vec c=-1\\),\n\\[\n(\\vec b-\\vec c)\\cdot \\vec e=4.\n\\]\nNow \\(EF=1\\), and since \\(B\\) is the midpoint of \\(EF\\), we have\n\\[\n|\\vec e-\\vec f|=1.\n\\]\nBut \\(\\vec e-\\vec f=2(\\vec e-\\vec b)\\), so\n\\[\n|\\vec e-\\vec b|=\\tfrac12.\n\\]\nThus\n\\[\n|\\vec e-\\vec b|^2=|\\vec e|^2+1-2\\vec b\\cdot \\vec e=\\tfrac14.\n\\]\nSo\n\\[\n|\\vec e|^2-2\\vec b\\cdot \\vec e=-\\tfrac34.\n\\]\nSimilarly, from \\(\\vec f=2\\vec b-\\vec e\\),\n\\[\n|\\vec f|^2=|\\vec e|^2-4\\vec b\\cdot\\vec e+4.\n\\]\nBut \\(\\vec e+\\vec f=2\\vec b\\) implies \\(\\vec e,\\vec f\\) are symmetric about \\(B\\), and with \\(EF=1\\), the needed direction relation comes from\n\\[\n\\overrightarrow{EF}=\\vec f-\\vec e=2(\\vec b-\\vec e),\\qquad \\overrightarrow{BC}=\\vec c-\\vec b.\n\\]\nHence\n\\[\n\\overrightarrow{EF}\\cdot \\overrightarrow{BC}\n=2(\\vec b-\\vec e)\\cdot(\\vec c-\\vec b)\n=2\\bigl(\\vec b\\cdot\\vec c-1-\\vec e\\cdot\\vec c+\\vec e\\cdot\\vec b\\bigr).\n\\]\nUsing \\((\\vec b-\\vec c)\\cdot\\vec e=4\\), i.e. \\(\\vec e\\cdot\\vec b-\\vec e\\cdot\\vec c=4\\), and \\(\\vec b\\cdot\\vec c=-1\\),\n\\[\n\\overrightarrow{EF}\\cdot \\overrightarrow{BC}\n=2(-1-1+4)=4.\n\\]\nNow\n\\[\n|\\overrightarrow{EF}|=1,\\quad |\\overrightarrow{BC}|=6,\n\\]\nso\n\\[\n\\cos\\theta=\\frac{4}{1\\cdot 6}=\\frac23.\n\\]\n\nFinal answer: \\(\\boxed{\\tfrac23}\\)",
+  "usage": {
+    "input_tokens": 154,
+    "output_tokens": 851,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 4.928228389006108,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "\\tfrac23"
+  }
+}

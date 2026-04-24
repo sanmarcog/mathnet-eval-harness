@@ -1,0 +1,20 @@
+{
+  "id": "065y",
+  "country": "Greece",
+  "competition": "28th Hellenic Mathematical Olympiad",
+  "gold_final_answer": "[[3, 2], [2, 3], [-2, -3], [-3, -2], [3, 1], [1, 3], [-1, -3], [-3, -1], [-2, 1], [1, -2], [-1, 2], [2, -1]]",
+  "topics_flat": [
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities",
+    "Number Theory > Divisibility / Factorization > Factorization techniques"
+  ],
+  "prompt": "Solve in the set of integers the equation\n$$\nx^3 y^2 (2y - x) = x^2 y^4 - 36.\n$$",
+  "model": "gpt-5.4",
+  "response_text": "We solve\n\\[\nx^3y^2(2y-x)=x^2y^4-36\n\\]\nin integers.\n\n## 1) Rearrange\nMove everything to one side:\n\\[\nx^3y^2(2y-x)-x^2y^4=-36.\n\\]\nFactor:\n\\[\nx^2y^2\\bigl(x(2y-x)-y^2\\bigr)=-36.\n\\]\nNow simplify the bracket:\n\\[\nx(2y-x)-y^2=2xy-x^2-y^2=-(x-y)^2.\n\\]\nSo\n\\[\n-x^2y^2(x-y)^2=-36,\n\\]\nhence\n\\[\nx^2y^2(x-y)^2=36.\n\\]\n\nThus\n\\[\n\\bigl(xy(x-y)\\bigr)^2=36,\n\\]\nso\n\\[\nxy(x-y)=\\pm 6.\n\\]\n\n## 2) Solve \\(xy(x-y)=\\pm 6\\)\nSince the product is \\(\\pm 6\\), the integers \\(x,y,x-y\\) must all be divisors of \\(6\\). We can search systematically.\n\nLet \\(a=x\\), \\(b=y\\), \\(c=x-y\\). Then\n\\[\na-b=c,\\qquad abc=\\pm 6.\n\\]\nEquivalently, with \\(x=y+c\\),\n\\[\ny(y+c)c=\\pm 6.\n\\]\nSo \\(y,c\\) are divisors of \\(6\\), and we test small possibilities.\n\nA quicker way is to use \\(x=y+c\\):\n\\[\n(y+c)yc=\\pm 6.\n\\]\nBecause \\(|6|\\) is small, \\(|y|\\) and \\(|c|\\) are small. Testing divisor pairs gives the solutions:\n\\[\n(x,y)=(3,1),\\ (2,-1),\\ (-2,1),\\ (-3,-1),\n\\]\nfor which \\(xy(x-y)=6\\), and\n\\[\n(x,y)=(1,-2),\\ (1,3),\\ (-1,-3),\\ (-1,2),\n\\]\nfor which \\(xy(x-y)=-6\\).\n\n## 3) Check\nEach satisfies \\(x^2y^2(x-y)^2=36\\), hence the original equation.\n\nTherefore all integer solutions are\n\\[\n(3,1),\\ (2,-1),\\ (1,-2),\\ (1,3),\\ (-1,2),\\ (-1,-3),\\ (-2,1),\\ (-3,-1).\n\\]\n\nFinal answer: \\(\\{(3,1),(2,-1),(1,-2),(1,3),(-1,2),(-1,-3),(-2,1),(-3,-1)\\}\\).",
+  "usage": {
+    "input_tokens": 83,
+    "output_tokens": 607,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 9.47007142403163,
+  "cached": false
+}

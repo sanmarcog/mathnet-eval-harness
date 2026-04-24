@@ -1,0 +1,20 @@
+{
+  "id": "01rn",
+  "country": "Belarus",
+  "competition": "FINAL ROUND",
+  "gold_final_answer": "4",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Vieta's formulas",
+    "Algebra > Algebraic Expressions > Polynomials > Polynomial operations"
+  ],
+  "prompt": "Numbers $x_1$, $x_2$, $x_3$ ($x_1 < x_2 < x_3$) are the roots of the equation\n$$\nx^3 - 3x^2 + (a+2)x - a = 0,\n$$\nwhere $a$ is a real number.\nFind all possible values of the expression $4x_1 - x_1^2 + x_3^2$.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "We need to find the roots of $x^3 - 3x^2 + (a+2)x - a = 0$.\n\n**Factor the polynomial:**\n\nTry to factor out $(x - 1)$ or find a pattern. Notice:\n$$x^3 - 3x^2 + (a+2)x - a = x^3 - 3x^2 + 2x + ax - a$$\n$$= x(x^2 - 3x + 2) + a(x - 1)$$\n$$= x(x-1)(x-2) + a(x-1)$$\n$$= (x-1)[x(x-2) + a]$$\n$$= (x-1)(x^2 - 2x + a)$$\n\nSo one root is $x = 1$, and the other two roots come from $x^2 - 2x + a = 0$.\n\n**Roots of $x^2 - 2x + a = 0$:**\n$$x = \\frac{2 \\pm \\sqrt{4 - 4a}}{2} = 1 \\pm \\sqrt{1-a}$$\n\nFor three distinct real roots, we need $1 - a > 0$, so $a < 1$.\n\nThe three roots are:\n- $r_1 = 1 - \\sqrt{1-a}$\n- $r_2 = 1$  \n- $r_3 = 1 + \\sqrt{1-a}$\n\n**Ordering the roots:**\n\nSince $\\sqrt{1-a} > 0$:\n- $r_1 = 1 - \\sqrt{1-a} < 1 < 1 + \\sqrt{1-a} = r_3$\n\nWe need all three to be distinct, so $r_1 \\neq 1$ and $r_3 \\neq 1$, which is guaranteed since $\\sqrt{1-a} \\neq 0$.\n\nAlso need $r_1 \\neq r_3$, which is also guaranteed.\n\nSo $x_1 = 1 - \\sqrt{1-a}$, $x_2 = 1$, $x_3 = 1 + \\sqrt{1-a}$.\n\n**Compute the expression $4x_1 - x_1^2 + x_3^2$:**\n\nLet $t = \\sqrt{1-a}$ where $t > 0$.\n\n$$x_1 = 1 - t, \\quad x_3 = 1 + t$$\n\n$$4x_1 - x_1^2 + x_3^2 = 4(1-t) - (1-t)^2 + (1+t)^2$$\n\nCompute each term:\n- $4(1-t) = 4 - 4t$\n- $(1-t)^2 = 1 - 2t + t^2$\n- $(1+t)^2 = 1 + 2t + t^2$\n\nSo:\n$$= 4 - 4t - (1 - 2t + t^2) + (1 + 2t + t^2)$$\n$$= 4 - 4t - 1 + 2t - t^2 + 1 + 2t + t^2$$\n$$= 4 - 4t + 4t + (-t^2 + t^2) + (-1 + 1)$$\n$$= 4$$\n\nThe expression equals $4$ for all valid $a < 1$ (i.e., all $t > 0$).\n\nFinal answer: $4$",
+  "usage": {
+    "input_tokens": 153,
+    "output_tokens": 892,
+    "thinking_tokens": 0
+  },
+  "latency_s": 9.40791267505847,
+  "cached": false
+}

@@ -1,0 +1,25 @@
+{
+  "id": "07a0",
+  "country": "Iran",
+  "competition": "Iranian Mathematical Olympiad",
+  "gold_final_answer": "a_n = n for all n",
+  "topics_flat": [
+    "Number Theory > Number-Theoretic Functions > τ (number of divisors)",
+    "Number Theory > Divisibility / Factorization > Prime numbers"
+  ],
+  "prompt": "Determine all increasing sequence $a_1, a_2, a_3, \\ldots$ of positive integers such that for every $i, j \\in \\mathbb{N}$, the number of positive divisors of $i + j$ and $a_i + a_j$ are equal (A sequence $a_1, a_2, a_3, \\ldots$ is increasing if $i \\le j$ implies $a_i \\le a_j$).",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find all increasing sequences $a_1, a_2, a_3, \\ldots$ of positive integers satisfying $d(i+j) = d(a_i+a_j)$ for all $i, j \\in \\mathbb{N}$, we can evaluate the condition for specific choices of $i$ and $j$.\n\nFirst, let $i = j$. The condition becomes $d(2i) = d(2a_i)$.\nConsider the case where $2i = 2^{p-1}$ for some prime $p$. This means $i = 2^{p-2}$.\nThe number of divisors of $2i$ is $d(2^{p-1}) = p$.\nTherefore, we must have $d(2a_i) = p$. Since $p$ is a prime, the only way an integer can have exactly $p$ positive divisors is if it is of the form $q^{p-1}$ for some prime $q$. \nThus, $2a_i = q^{p-1}$. \nBecause $a_i$ is a positive integer, $2a_i$ is an even number, which implies that its prime factor $q$ must be $2$. \nThis gives $2a_i = 2^{p-1}$, which simplifies to $a_i = 2^{p-2} = i$.\nBy Euclid's theorem, there are infinitely many primes $p$. Thus, there are infinitely many indices $i$ of the form $2^{p-2}$ such that $a_i = i$. \n\nNext, we show that the sequence must be strictly increasing. Suppose for the sake of contradiction that $a_m = a_{m+1}$ for some $m$. \nThen for any $j \\in \\mathbb{N}$, we would have $a_m + a_j = a_{m+1} + a_j$. \nThis implies $d(m+j) = d(a_m+a_j) = d(a_{m+1}+a_j) = d(m+1+j)$. \nLetting $k = m+j$, this would mean $d(k) = d(k+1)$ for all $k > m$. However, the divisor function $d(k)$ cannot be eventually constant because it alternates between 2 (for prime numbers, which are infinitely many) and strictly greater than 2 (for composite numbers, which are also infinitely many). \nThus, $a_m < a_{m+1}$ for all $m$, meaning the sequence is strictly increasing.\n\nSince $a_n$ is a strictly increasing sequence of integers, we have $a_{m+1} - a_m \\ge 1$ for all $m$. \nWe already know that $a_1 = 1$ (using $p=3 \\implies i=2^{3-2}=2 \\implies a_2=2$, and $a_1 < a_2 \\implies a_1=1$) and that $a_{i_k} = i_k$ for an infinite sequence of indices $i_k$. \nThe only way a strictly increasing sequence of integers can satisfy $a_1 = 1$ and $a_{i_k} = i_k$ is if the difference between consecutive terms is exactly 1 everywhere. \n\nTherefore, $a_n = n$ for all $n \\in \\mathbb{N}$. This trivially satisfies the original condition since $a_i + a_j = i + j \\implies d(a_i+a_j) = d(i+j)$.\n\nFinal answer: a_n = n",
+  "usage": {
+    "input_tokens": 139,
+    "output_tokens": 806,
+    "thoughts_tokens": 5225
+  },
+  "latency_s": 49.17199221497867,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "a_n = n"
+  }
+}

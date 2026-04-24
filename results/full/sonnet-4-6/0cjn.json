@@ -1,0 +1,20 @@
+{
+  "id": "0cjn",
+  "country": "Romania",
+  "competition": "75th Romanian Mathematical Olympiad",
+  "gold_final_answer": "2",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Sequences and Series > Recurrence relations",
+    "Algebra > Algebraic Expressions > Sequences and Series > Sums and products"
+  ],
+  "prompt": "Let $(a_n)_{n \\ge 1}$ be the sequence defined by $a_1 = 1$ and $a_{n+1} = \\frac{a_n}{1+\\sqrt{1+a_n}}$, for any $n \\in \\mathbb{N}^*$. Show that $\\lim_{n \\to \\infty} \\frac{a_n}{a_{n+1}} = \\lim_{n \\to \\infty} \\sum_{k=1}^{n} \\log_2(1+a_k) = 2$. Traian Tămâian",
+  "model": "claude-sonnet-4-6",
+  "response_text": "We need to show that both limits equal 2.\n\n## Step 1: Substitution to simplify the recurrence\n\nLet $a_n = t_n^2 - 1$ (we'll find a better substitution). Actually, let's try $a_n = \\frac{4}{b_n^2} - $ something. \n\nLet me try $a_n = \\frac{4}{b_n} - 4$ or rationalize the recurrence.\n\n**Rationalize:** $a_{n+1} = \\frac{a_n}{1+\\sqrt{1+a_n}}$. Multiply numerator and denominator by $(1-\\sqrt{1+a_n})$... better: multiply by $(\\sqrt{1+a_n}-1)$:\n\n$$a_{n+1} = \\frac{a_n(\\sqrt{1+a_n}-1)}{(1+\\sqrt{1+a_n})(\\sqrt{1+a_n}-1)} = \\frac{a_n(\\sqrt{1+a_n}-1)}{a_n} = \\sqrt{1+a_n}-1$$\n\nSo $a_{n+1} = \\sqrt{1+a_n} - 1$, which means $1 + a_{n+1} = \\sqrt{1+a_n}$.\n\n## Step 2: Analyze the sequence with substitution\n\nLet $b_n = 1 + a_n$. Then $b_{n+1} = \\sqrt{b_n}$, i.e., $b_{n+1} = b_n^{1/2}$.\n\nWith $b_1 = 1 + a_1 = 2$, we get $b_n = 2^{1/2^{n-1}}$.\n\nTherefore: $a_n = b_n - 1 = 2^{1/2^{n-1}} - 1$.\n\n## Step 3: Compute $\\lim_{n\\to\\infty} \\frac{a_n}{a_{n+1}}$\n\n$$\\frac{a_n}{a_{n+1}} = \\frac{2^{1/2^{n-1}}-1}{2^{1/2^n}-1}$$\n\nLet $x = 2^{1/2^n} - 1$, so $2^{1/2^{n-1}} - 1 = (2^{1/2^n})^2 - 1 = (1+x)^2 - 1 = 2x + x^2$.\n\nThus: $\\frac{a_n}{a_{n+1}} = \\frac{2x+x^2}{x} = 2 + x = 2 + (2^{1/2^n}-1)$.\n\nAs $n \\to \\infty$, $2^{1/2^n} \\to 2^0 = 1$, so $2^{1/2^n} - 1 \\to 0$.\n\n$$\\boxed{\\lim_{n\\to\\infty} \\frac{a_n}{a_{n+1}} = 2}$$\n\n## Step 4: Compute $\\lim_{n\\to\\infty} \\sum_{k=1}^n \\log_2(1+a_k)$\n\nWe have $1 + a_k = 2^{1/2^{k-1}}$, so:\n$$\\log_2(1+a_k) = \\log_2\\left(2^{1/2^{k-1}}\\right) = \\frac{1}{2^{k-1}}$$\n\nTherefore:\n$$\\sum_{k=1}^n \\log_2(1+a_k) = \\sum_{k=1}^n \\frac{1}{2^{k-1}} = \\sum_{k=0}^{n-1} \\frac{1}{2^k} = \\frac{1 - (1/2)^n}{1 - 1/2} = 2\\left(1 - \\frac{1}{2^n}\\right)$$\n\nAs $n \\to \\infty$:\n$$\\lim_{n\\to\\infty} \\sum_{k=1}^n \\log_2(1+a_k) = \\lim_{n\\to\\infty} 2\\left(1-\\frac{1}{2^n}\\right) = 2$$\n\n## Conclusion\n\nBoth limits equal **2**:\n$$\\lim_{n \\to \\infty} \\frac{a_n}{a_{n+1}} = \\lim_{n \\to \\infty} \\sum_{k=1}^{n} \\log_2(1+a_k) = 2. \\qquad \\blacksquare$$\n\nFinal answer: 2",
+  "usage": {
+    "input_tokens": 195,
+    "output_tokens": 1180,
+    "thinking_tokens": 0
+  },
+  "latency_s": 13.399441679939628,
+  "cached": false
+}

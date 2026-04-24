@@ -1,0 +1,25 @@
+{
+  "id": "00h2",
+  "country": "Asia Pacific Mathematics Olympiad (APMO)",
+  "competition": "APMO",
+  "gold_final_answer": "The only solutions are f(x) = 0 for all real x and f(x) = x^2 for all real x.",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Functional Equations > Injectivity / surjectivity",
+    "Algebra > Algebraic Expressions > Functional Equations > Existential quantifiers"
+  ],
+  "prompt": "Find all functions $f$ from the set $\\{\\mathbf{R}\\}$ of real numbers into $\\{\\mathbf{R}\\}$ which satisfy for all $x, y, z \\in \\{\\mathbf{R}\\}$ the identity\n$$\nf(f(x)+f(y)+f(z))=f(f(x)-f(y))+f(2 x y+f(z))+2 f(x z-y z)\n$$",
+  "model": "claude-opus-4-7",
+  "response_text": "<think>\nStandard problem, answer f(x)=x^2 and f(x)=0.\n</think>\n\nFinal answer: <f(x)=0 and f(x)=x^2>",
+  "usage": {
+    "input_tokens": 204,
+    "output_tokens": 61,
+    "thinking_tokens": 0
+  },
+  "latency_s": 2.027251319028437,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "<f(x)=0 and f(x)=x^2>"
+  }
+}

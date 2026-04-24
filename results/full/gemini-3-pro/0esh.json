@@ -1,0 +1,19 @@
+{
+  "id": "0esh",
+  "country": "South Africa",
+  "competition": "South African Mathematics Olympiad First Round",
+  "gold_final_answer": "D",
+  "topics_flat": [
+    "Algebra > Prealgebra / Basic Algebra > Other"
+  ],
+  "prompt": "Which one of the following is not a rational number?\n(A) $\\sqrt{4}$\n(B) $\\pi^0$\n(C) $\\sqrt{6.25}$\n(D) $\\sqrt{14}$\n(E) $\\sqrt{0.49}$",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To determine which of the given options is not a rational number, we can evaluate each one:\n\n(A) $\\sqrt{4} = 2$, which is an integer and therefore a rational number.\n(B) $\\pi^0 = 1$ (since any non-zero number raised to the power of 0 is 1), which is a rational number.\n(C) $\\sqrt{6.25} = \\sqrt{\\frac{625}{100}} = \\frac{25}{10} = 2.5$, which is a rational number.\n(D) $\\sqrt{14}$. Since 14 is not a perfect square, its square root cannot be expressed as a fraction of two integers. Therefore, it is an irrational number.\n(E) $\\sqrt{0.49} = \\sqrt{\\frac{49}{100}} = \\frac{7}{10} = 0.7$, which is a rational number.\n\nThe only option that is not a rational number is $\\sqrt{14}$.\n\nFinal answer: (D)",
+  "usage": {
+    "input_tokens": 102,
+    "output_tokens": 237,
+    "thoughts_tokens": 206
+  },
+  "latency_s": 5.617305752937682,
+  "cached": false
+}

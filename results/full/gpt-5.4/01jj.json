@@ -1,0 +1,20 @@
+{
+  "id": "01jj",
+  "country": "Baltic Way",
+  "competition": "Baltic Way 2023 Shortlist",
+  "gold_final_answer": "2137",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Greatest common divisors (gcd)",
+    "Number Theory > Other"
+  ],
+  "prompt": "For a positive integer $m$, let $S(m)$ denote the positive integer whose decimal representation is equal to the octal representation of $m$. For example, $S(64) = 100$, $S(100) = 144$, $S(2023) = 3747$. Two positive integers $x, y$ satisfy the relation\n$$\n\\frac{S(x) + S(1)}{S(x + 1)} = \\frac{S(y) + S(2023)}{S(y + 2023)} < \\frac{8}{10}.\n$$\nWhat is the smallest possible value of $y$ if $x < 100$?",
+  "model": "gpt-5.4",
+  "response_text": "Write the octal expansion of a positive integer \\(n\\) as\n\\[\nn=(a_ka_{k-1}\\cdots a_1a_0)_8,\\qquad 0\\le a_i\\le 7.\n\\]\nThen by definition,\n\\[\nS(n)=a_k10^k+a_{k-1}10^{k-1}+\\cdots+a_1 10+a_0,\n\\]\ni.e. we read the octal digits as a decimal number.\n\nA very useful identity is this:\n\nIf \\(n=(a_k\\cdots a_0)_8\\), then\n\\[\nn+1\n\\]\nchanges the final string of \\(7\\)'s to \\(0\\)'s and increases the digit before them by \\(1\\).\n\nSuppose \\(n\\) has exactly \\(t\\ge 0\\) trailing \\(7\\)'s in base \\(8\\). Then\n\\[\nS(n+1)-S(n)=10^t-7(1+10+\\cdots+10^{t-1}).\n\\]\nHence\n\\[\nS(n)+1=S(n+1)-\\Bigl(10^t-1-7\\frac{10^t-1}{9}\\Bigr).\n\\]\nChecking small \\(t\\):\n\n- \\(t=0\\): no carry, so \\(S(n+1)=S(n)+1\\), hence\n  \\[\n  \\frac{S(n)+1}{S(n+1)}=1.\n  \\]\n- \\(t=1\\): \\(S(n+1)=S(n)-6\\), so\n  \\[\n  S(n)+1=S(n+1)+7,\n  \\]\n  ratio \\(>1\\).\n- \\(t\\ge 2\\): the ratio is even larger.\n\nSo for every positive integer \\(n\\),\n\\[\n\\frac{S(n)+S(1)}{S(n+1)}=\\frac{S(n)+1}{S(n+1)}\\ge 1.\n\\]\nTherefore the condition\n\\[\n\\frac{S(x)+S(1)}{S(x+1)}<\\frac{8}{10}\n\\]\nis impossible for any positive integer \\(x\\), in particular for \\(x<100\\).\n\nThus there are **no** integers \\(x,y\\) satisfying the given relation, so no such \\(y\\) exists.\n\nFinal answer: No such \\(y\\) exists.",
+  "usage": {
+    "input_tokens": 191,
+    "output_tokens": 528,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 8.205330644967034,
+  "cached": false
+}

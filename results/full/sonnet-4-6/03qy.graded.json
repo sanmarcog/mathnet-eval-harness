@@ -1,0 +1,25 @@
+{
+  "id": "03qy",
+  "country": "China",
+  "competition": "China Girls' Mathematical Olympiad",
+  "gold_final_answer": "sqrt(3)",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities > QM-AM-GM-HM / Power Mean",
+    "Algebra > Equations and Inequalities > Cauchy-Schwarz"
+  ],
+  "prompt": "Determine the maximum value of constant $\\lambda$ such that\n$$\nu + v + w \\ge \\lambda,$$\nwhere $u, v$ and $w$ are positive real numbers with $u\\sqrt{vw} + v\\sqrt{wu} + w\\sqrt{uv} \\ge 1$.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Setting Up the Problem\n\nWe need to find the maximum $\\lambda$ such that $u + v + w \\geq \\lambda$ whenever $u, v, w > 0$ satisfy $u\\sqrt{vw} + v\\sqrt{wu} + w\\sqrt{uv} \\geq 1$.\n\nEquivalently, we want to minimize $u + v + w$ subject to $u\\sqrt{vw} + v\\sqrt{wu} + w\\sqrt{uv} = 1$.\n\n## Simplifying the Constraint\n\nLet me factor the constraint:\n$$u\\sqrt{vw} + v\\sqrt{wu} + w\\sqrt{uv} = \\sqrt{uv}\\cdot\\sqrt{uw} + \\sqrt{vw}\\cdot\\sqrt{vu} + \\sqrt{wu}\\cdot\\sqrt{wv}$$\n\nActually, let $a = \\sqrt{u}$, $b = \\sqrt{v}$, $c = \\sqrt{w}$, so $u = a^2$, $v = b^2$, $w = c^2$.\n\nThe constraint becomes:\n$$a^2 \\cdot bc + b^2 \\cdot ac + c^2 \\cdot ab = abc(a + b + c) = 1$$\n\nWe want to minimize $a^2 + b^2 + c^2$ subject to $abc(a+b+c) = 1$.\n\n## Finding the Minimum\n\nBy symmetry, check $a = b = c$: then $a^3 \\cdot 3a = 3a^4 = 1$, so $a^4 = 1/3$, giving $a = 3^{-1/4}$.\n\nThen $u + v + w = 3a^2 = 3 \\cdot 3^{-1/2} = 3^{1/2} = \\sqrt{3}$.\n\n## Checking if This is the Minimum\n\nWe need to verify this is indeed the minimum. Using AM-GM on $a^2 + b^2 + c^2$ with constraint $abc(a+b+c) = 1$.\n\nBy AM-GM: $a^2 + b^2 + c^2 \\geq \\frac{(a+b+c)^2}{3}$.\n\nLet $s = a + b + c$ and $p = abc$. Then $ps = 1$.\n\nAlso by AM-GM: $abc \\leq \\left(\\frac{a+b+c}{3}\\right)^3 = \\frac{s^3}{27}$.\n\nSo $1 = ps \\leq \\frac{s^4}{27}$, giving $s^4 \\geq 27$, so $s \\geq 3^{3/4}$.\n\nAnd $a^2 + b^2 + c^2 \\geq \\frac{s^2}{3} \\geq \\frac{3^{3/2}}{3} = 3^{1/2} = \\sqrt{3}$.\n\nEquality holds when $a = b = c$ and $s = 3^{3/4}$, confirming the minimum is $\\sqrt{3}$.\n\n## Conclusion\n\nThe minimum value of $u + v + w$ is $\\sqrt{3}$, achieved when $u = v = w = 3^{-1/2}$.\n\nFinal answer: $\\lambda = \\sqrt{3}$",
+  "usage": {
+    "input_tokens": 117,
+    "output_tokens": 834,
+    "thinking_tokens": 0
+  },
+  "latency_s": 9.7552684469847,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "$\\lambda = \\sqrt{3}$"
+  }
+}

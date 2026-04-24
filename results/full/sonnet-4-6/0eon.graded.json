@@ -1,0 +1,26 @@
+{
+  "id": "0eon",
+  "country": "South Africa",
+  "competition": "South African Mathematics Olympiad",
+  "gold_final_answer": "2, 3, 31",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Factorization techniques",
+    "Number Theory > Modular Arithmetic",
+    "Algebra > Prealgebra / Basic Algebra > Integers"
+  ],
+  "prompt": "Find three prime factors of: $5^{2015} + 5^{2016} + 5^{2017} + 31^{2016}$\nNB: Show all your working!",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Solution\n\nFirst, let me factor the expression.\n\n$$5^{2015} + 5^{2016} + 5^{2017} + 31^{2016}$$\n\n**Factor out from the first three terms:**\n\n$$= 5^{2015}(1 + 5 + 25) + 31^{2016}$$\n\n$$= 5^{2015} \\cdot 31 + 31^{2016}$$\n\n$$= 31(5^{2015} + 31^{2015})$$\n\nSo **31 is a prime factor**.\n\n**Now analyze** $5^{2015} + 31^{2015}$:\n\nSince 2015 is odd, we can use the factorization $a^n + b^n = (a+b)(a^{n-1} - a^{n-2}b + \\cdots + b^{n-1})$ for odd $n$.\n\nWith $a = 5$, $b = 31$:\n\n$$5^{2015} + 31^{2015} = (5 + 31)(\\cdots) = 36 \\cdot (\\cdots)$$\n\nSo **36 divides** $5^{2015} + 31^{2015}$, giving us factors of 2 and 3.\n\nLet me verify: $5 + 31 = 36 = 4 \\times 9$, so both **2** and **3** are prime factors.\n\n**Verification that 2 divides the original expression:**\n\n$5^{2015}$ is odd, $5^{2016}$ is odd, $5^{2017}$ is odd, $31^{2016}$ is odd.\n\nOdd + Odd + Odd + Odd = Even ✓ (so 2 divides the expression)\n\n**Verification that 3 divides the original expression:**\n\n- $5 \\equiv 2 \\pmod{3}$, so $5^{2015} \\equiv 2^{2015} \\pmod{3}$. Since $2^2 \\equiv 1$, $2^{2015} = 2^{2014} \\cdot 2 \\equiv 1 \\cdot 2 = 2 \\pmod{3}$\n- $5^{2016} \\equiv 2^{2016} \\equiv 1 \\pmod{3}$\n- $5^{2017} \\equiv 2^{2017} \\equiv 2 \\pmod{3}$\n- $31 \\equiv 1 \\pmod{3}$, so $31^{2016} \\equiv 1 \\pmod{3}$\n\nSum: $2 + 1 + 2 + 1 = 6 \\equiv 0 \\pmod{3}$ ✓\n\n**Summary of factorization:**\n\n$$5^{2015} + 5^{2016} + 5^{2017} + 31^{2016} = 31 \\cdot (5^{2015} + 31^{2015}) = 31 \\cdot 36 \\cdot Q$$\n\nwhere $Q$ is an integer, giving prime factors **2, 3, and 31**.\n\nFinal answer: **2, 3, and 31**",
+  "usage": {
+    "input_tokens": 93,
+    "output_tokens": 808,
+    "thinking_tokens": 0
+  },
+  "latency_s": 10.378730639931746,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "**2, 3, and 31**"
+  }
+}

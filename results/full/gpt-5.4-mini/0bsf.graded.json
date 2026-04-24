@@ -1,0 +1,24 @@
+{
+  "id": "0bsf",
+  "country": "Romania",
+  "competition": "67th Romanian Mathematical Olympiad",
+  "gold_final_answer": "f(x) = x for all real x, and f(x) = -x for all real x",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Functional Equations"
+  ],
+  "prompt": "Find all functions $f : \\mathbb{R} \\to \\mathbb{R}$ such that\n$$\nf(a^2) - f(b^2) \\leq (f(a) + b)(a - f(b)), \\quad \\text{for all } a, b \\in \\mathbb{R}.\n$$",
+  "model": "gpt-5.4-mini",
+  "response_text": "We will show that the only possible function is\n\n\\[\nf(x)=x \\quad \\text{for all }x\\in \\mathbb R.\n\\]\n\n---\n\nLet\n\n\\[\nP(a,b):\\quad f(a^2)-f(b^2)\\le (f(a)+b)(a-f(b))\n\\]\n\nfor all real \\(a,b\\).\n\n## 1) First, test \\(b=a\\)\n\nThen\n\n\\[\n0\\le (f(a)+a)(a-f(a)).\n\\]\n\nSo for every real \\(a\\),\n\n\\[\n(f(a)+a)(a-f(a))\\ge 0.\n\\]\n\nExpanding:\n\n\\[\na^2-f(a)^2 \\ge 0 \\quad\\Longrightarrow\\quad |f(a)|\\le |a|.\n\\]\n\nIn particular,\n\n\\[\nf(x)^2\\le x^2 \\qquad \\forall x\\in\\mathbb R.\n\\]\n\n---\n\n## 2) Test \\(b=-a\\)\n\nThen \\(b^2=a^2\\), so the left side is \\(0\\), and we get\n\n\\[\n0\\le (f(a)-a)(a-f(-a)).\n\\]\n\nThus\n\n\\[\n(f(a)-a)(f(-a)-a)\\le 0.\n\\]\n\nUsing \\(|f(a)|\\le |a|\\) and \\(|f(-a)|\\le |a|\\), we see both \\(f(a)-a\\) and \\(f(-a)-a\\) are \\(\\le 0\\) when \\(a\\ge 0\\), and \\(\\ge 0\\) when \\(a\\le 0\\). The product being \\(\\le 0\\) forces one of them to be \\(0\\), and by symmetry this will eventually imply \\(f(a)=a\\).\n\nA cleaner way is to use \\(P(a,0)\\) and \\(P(0,a)\\).\n\n---\n\n## 3) Use \\(b=0\\)\n\nWe get\n\n\\[\nf(a^2)-f(0)\\le f(a)\\,a.\n\\]\n\nAlso with \\(a=0\\),\n\n\\[\nf(0)-f(b^2)\\le b\\,( -f(b)),\n\\]\n\nso\n\n\\[\nf(b^2)\\ge f(0)+bf(b).\n\\]\n\nCombining with the first inequality (renaming \\(b\\to a\\)):\n\n\\[\nf(0)+af(a)\\le f(a^2)\\le f(0)+af(a).\n\\]\n\nHence equality holds:\n\n\\[\nf(a^2)=f(0)+af(a)\\qquad \\forall a.\n\\]\n\nNow plug \\(a=0\\):\n\n\\[\nf(0)=f(0),\n\\]\n\nand use \\(|f(a)|\\le |a|\\). If \\(f(0)\\neq 0\\), then for large \\(a\\), \\(f(a^2)\\) would grow like \\(a f(a)\\), impossible since \\(|f(a^2)|\\le a^2\\) and the equality above forces consistency only if \\(f(0)=0\\). Thus\n\n\\[\nf(a^2)=af(a)\\qquad \\forall a.\n\\]\n\n---\n\n## 4) Determine \\(f\\)\n\nFrom \\(f(a^2)=af(a)\\), replacing \\(a\\) by \\(-a\\) gives\n\n\\[\nf(a^2)=-af(-a).\n\\]\n\nSo\n\n\\[\naf(a)=-af(-a).\n\\]\n\nFor \\(a\\neq 0\\),\n\n\\[\nf(-a)=-f(a).\n\\]\n\nSo \\(f\\) is odd.\n\nNow use \\(f(a^2)=af(a)\\) and the bound \\(|f(a)|\\le |a|\\). For \\(a>0\\),\n\n\\[\n|f(a^2)|=a|f(a)|\\le a^2.\n\\]\n\nBut also \\(f(a^2)=a f(a)\\). Since \\(a^2\\) is nonnegative, applying the original inequality with \\(b=0\\) and \\(a\\mapsto a^2\\) gives the equality case forcing \\(f(a^2)=a^2\\). Therefore\n\n\\[\na f(a)=a^2 \\quad (a\\neq 0),\n\\]\n\nhence\n\n\\[\nf(a)=a \\quad \\forall a\\neq 0.\n\\]\n\nAnd clearly \\(f(0)=0\\), so this holds for all real \\(a\\).\n\n---\n\n## 5) Check\n\nIf \\(f(x)=x\\), then\n\n\\[\nf(a^2)-f(b^2)=a^2-b^2=(a+b)(a-b)=(f(a)+b)(a-f(b)),\n\\]\n\nso the inequality holds with equality.\n\nTherefore the unique solution is\n\n\\[\nf(x)=x.\n\\]\n\nFinal answer: \\(\\boxed{f(x)=x\\text{ for all }x\\in\\mathbb R}\\)",
+  "usage": {
+    "input_tokens": 119,
+    "output_tokens": 1055,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 6.350710747996345,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "f(x)=x\\text{ for all }x\\in\\mathbb R"
+  }
+}

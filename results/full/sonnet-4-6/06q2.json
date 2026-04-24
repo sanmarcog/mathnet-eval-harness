@@ -1,0 +1,22 @@
+{
+  "id": "06q2",
+  "country": "IMO",
+  "competition": "49th International Mathematical Olympiad Spain",
+  "gold_final_answer": "180180",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Greatest common divisors (gcd)",
+    "Number Theory > Divisibility / Factorization > Least common multiples (lcm)",
+    "Discrete Mathematics > Combinatorics > Pigeonhole principle",
+    "Geometry > Plane Geometry > Analytic / Coordinate Methods > Cartesian coordinates"
+  ],
+  "prompt": "In the coordinate plane consider the set $S$ of all points with integer coordinates. For a positive integer $k$, two distinct points $A, B \\in S$ will be called $k$-friends if there is a point $C \\in S$ such that the area of the triangle $A B C$ is equal to $k$. A set $T \\subset S$ will be called a $k$-clique if every two points in $T$ are $k$-friends. Find the least positive integer $k$ for which there exists a $k$-clique with more than 200 elements.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "180180\n\nFinal answer: 180180",
+  "usage": {
+    "input_tokens": 180,
+    "output_tokens": 13,
+    "thinking_tokens": 0
+  },
+  "latency_s": 1.3422249630093575,
+  "cached": false
+}

@@ -1,0 +1,21 @@
+{
+  "id": "0699",
+  "country": "Greece",
+  "competition": "36th Hellenic Mathematical Olympiad",
+  "gold_final_answer": "α_v = (5^v − 3^v)/2 for v ≥ 1; and for k = 2^2019, the greatest power of 2 dividing a_k is 2^2021.",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Sequences and Series > Recurrence relations",
+    "Algebra > Algebraic Expressions > Sequences and Series > Sums and products",
+    "Number Theory > Divisibility / Factorization"
+  ],
+  "prompt": "The sequence $\\alpha_v$ satisfies the recurrence relation: $\\alpha_1 = 1$ and $\\alpha_v = 5\\alpha_{v-1} + 3^{v-1}$, $v \\ge 2$. Determine the general term $\\alpha_v$ and the greatest power of $2$ which divides the term $a_k$, where $k=2^{2019}$.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Setting up the recurrence\n\nWe have $\\alpha_1 = 1$ and $\\alpha_v = 5\\alpha_{v-1} + 3^{v-1}$ for $v \\geq 2$.\n\n## Solving the recurrence\n\nThis is a first-order linear recurrence. The homogeneous solution is $C \\cdot 5^v$.\n\nFor a particular solution, try $\\alpha_v^{(p)} = A \\cdot 3^v$:\n$$A \\cdot 3^v = 5A \\cdot 3^{v-1} + 3^{v-1}$$\n$$3A \\cdot 3^{v-1} = 5A \\cdot 3^{v-1} + 3^{v-1}$$\n$$3A = 5A + 1 \\implies A = -\\frac{1}{2}$$\n\nSo the general solution is:\n$$\\alpha_v = C \\cdot 5^v - \\frac{3^v}{2}$$\n\nUsing $\\alpha_1 = 1$:\n$$1 = 5C - \\frac{3}{2} \\implies 5C = \\frac{5}{2} \\implies C = \\frac{1}{2}$$\n\nTherefore:\n$$\\boxed{\\alpha_v = \\frac{5^v - 3^v}{2}}$$\n\n**Verification:** $\\alpha_1 = \\frac{5-3}{2} = 1$ ✓, $\\alpha_2 = 5(1) + 3 = 8 = \\frac{25-9}{2} = 8$ ✓\n\n## Finding the 2-adic valuation of $\\alpha_k$ where $k = 2^{2019}$\n\nWe need $v_2(\\alpha_k) = v_2\\left(\\frac{5^k - 3^k}{2}\\right) = v_2(5^k - 3^k) - 1$.\n\n**Using Lifting the Exponent Lemma (LTE):** For odd prime $p$ or $p=2$:\n\nFor $p = 2$: Since $5 \\equiv 1 \\pmod{4}$ and $3 \\equiv 3 \\pmod{4}$, both are odd. We use LTE for $p=2$:\n\n$$v_2(5^k - 3^k) = v_2(5-3) + v_2(5+3) + v_2(k) - 1$$\n\nWait, LTE for $p=2$ with $a^n - b^n$ where $2 \\mid a-b$: Since $5-3=2$, we have $2 \\mid (5-3)$.\n\nLTE for $p=2$: If $2 \\mid a-b$, then $v_2(a^n - b^n) = v_2(a-b) + v_2(a+b) + v_2(n) - 1$.\n\nHere $a=5$, $b=3$, $n=k=2^{2019}$:\n- $v_2(5-3) = v_2(2) = 1$\n- $v_2(5+3) = v_2(8) = 3$\n- $v_2(n) = v_2(2^{2019}) = 2019$\n\nSo:\n$$v_2(5^k - 3^k) = 1 + 3 + 2019 - 1 = 2022$$\n\nTherefore:\n$$v_2(\\alpha_k) = v_2(5^k - 3^k) - 1 = 2022 - 1 = 2021$$\n\n## Summary\n\nThe general term is:\n$$\\alpha_v = \\frac{5^v - 3^v}{2}$$\n\nFor $k = 2^{2019}$, the greatest power of 2 dividing $\\alpha_k$ is $2^{2021}$.\n\nFinal answer: $\\alpha_v = \\dfrac{5^v - 3^v}{2}$, and the greatest power of $2$ dividing $\\alpha_{2^{2019}}$ is $2^{2021}$.",
+  "usage": {
+    "input_tokens": 147,
+    "output_tokens": 1048,
+    "thinking_tokens": 0
+  },
+  "latency_s": 13.526511213043705,
+  "cached": false
+}

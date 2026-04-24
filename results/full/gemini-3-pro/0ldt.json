@@ -1,0 +1,23 @@
+{
+  "id": "0ldt",
+  "country": "Vietnam",
+  "competition": "VMO",
+  "gold_final_answer": "a: 3; b: the sum is less than -15/4",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Vieta's formulas",
+    "Algebra > Algebraic Expressions > Polynomials > Symmetric functions",
+    "Algebra > Equations and Inequalities > QM-AM-GM-HM / Power Mean",
+    "Geometry > Plane Geometry > Analytic / Coordinate Methods > Cartesian coordinates",
+    "Discrete Mathematics > Combinatorics > Pigeonhole principle"
+  ],
+  "prompt": "On the Cartesian plane, let $C$ be the graph of the function $y = \\sqrt[3]{x^2}$. A line $d$ varies on the plane such that $d$ always cuts $C$ at three distinct points with $x$-coordinates $x_1, x_2$ and $x_3$.\n\na. Prove that the following value is a constant:\n$$\n\\sqrt[3]{\\frac{x_1 x_2}{x_3^2}} + \\sqrt[3]{\\frac{x_2 x_3}{x_1^2}} + \\sqrt[3]{\\frac{x_3 x_1}{x_2^2}}\n$$\n\nb. Show that:\n$$\n\\sqrt[3]{\\frac{x_1^2}{x_2 x_3}} + \\sqrt[3]{\\frac{x_2^2}{x_3 x_1}} + \\sqrt[3]{\\frac{x_3^2}{x_1 x_2}} < -\\frac{15}{4}\n$$",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find the constant in part a, let the equation of the line $d$ be $y = ax + b$. \nThe intersection points of the line $d$ and the curve $C$ given by $y = \\sqrt[3]{x^2}$ satisfy the equation:\n$$ \\sqrt[3]{x^2} = ax + b $$\nLet $t = \\sqrt[3]{x}$. The equation becomes:\n$$ t^2 = at^3 + b \\implies at^3 - t^2 + b = 0 $$\nSince the line cuts the curve at three distinct points, this cubic equation has three distinct real roots $t_1, t_2, t_3$, which correspond to $\\sqrt[3]{x_1}, \\sqrt[3]{x_2}, \\sqrt[3]{x_3}$.\nBy Vieta's formulas, we have:\n1) $t_1 + t_2 + t_3 = \\frac{1}{a}$\n2) $t_1 t_2 + t_2 t_3 + t_3 t_1 = 0$\n3) $t_1 t_2 t_3 = -\\frac{b}{a}$\n\n**Part a:**\nWe want to evaluate the expression:\n$$ E = \\sqrt[3]{\\frac{x_1 x_2}{x_3^2}} + \\sqrt[3]{\\frac{x_2 x_3}{x_1^2}} + \\sqrt[3]{\\frac{x_3 x_1}{x_2^2}} $$\nSubstituting $t_i = \\sqrt[3]{x_i}$, we get:\n$$ E = \\frac{t_1 t_2}{t_3^2} + \\frac{t_2 t_3}{t_1^2} + \\frac{t_3 t_1}{t_2^2} = \\frac{(t_1 t_2)^3 + (t_2 t_3)^3 + (t_3 t_1)^3}{(t_1 t_2 t_3)^2} $$\nRecall the algebraic identity: if $u + v + w = 0$, then $u^3 + v^3 + w^3 = 3uvw$.\nLet $u = t_1 t_2$, $v = t_2 t_3$, and $w = t_3 t_1$. From Vieta's second formula, $u + v + w = 0$.\nTherefore, the numerator is:\n$$ (t_1 t_2)^3 + (t_2 t_3)^3 + (t_3 t_1)^3 = 3(t_1 t_2)(t_2 t_3)(t_3 t_1) = 3(t_1 t_2 t_3)^2 $$\nSubstituting this back into our expression for $E$:\n$$ E = \\frac{3(t_1 t_2 t_3)^2}{(t_1 t_2 t_3)^2} = 3 $$\nThus, the value is a constant, 3.\n\n**Part b:**\nWe want to show that:\n$$ F = \\sqrt[3]{\\frac{x_1^2}{x_2 x_3}} + \\sqrt[3]{\\frac{x_2^2}{x_3 x_1}} + \\sqrt[3]{\\frac{x_3^2}{x_1 x_2}} < -\\frac{15}{4} $$\nSubstitute $t_i$:\n$$ F = \\frac{t_1^2}{t_2 t_3} + \\frac{t_2^2}{t_3 t_1} + \\frac{t_3^2}{t_1 t_2} = \\frac{t_1^3 + t_2^3 + t_3^3}{t_1 t_2 t_3} $$\nUsing the identity $t_1^3 + t_2^3 + t_3^3 - 3t_1 t_2 t_3 = (t_1 + t_2 + t_3)(t_1^2 + t_2^2 + t_3^2 - (t_1 t_2 + t_2 t_3 + t_3 t_1))$:\nSince $t_1 t_2 + t_2 t_3 + t_3 t_1 = 0$, we have $t_1^2 + t_2^2 + t_3^2 = (t_1 + t_2 + t_3)^2 = \\frac{1}{a^2}$.\nSo, $t_1^3 + t_2^3 + t_3^3 = \\left(\\frac{1}{a}\\right)\\left(\\frac{1}{a^2}\\right) + 3\\left(-\\frac{b}{a}\\right) = \\frac{1}{a^3} - \\frac{3b}{a}$.\nThen,\n$$ F = \\frac{\\frac{1}{a^3} - \\frac{3b}{a}}{-\\frac{b}{a}} = -\\frac{1}{a^2 b} + 3 $$\nFor the cubic $f(t) = at^3 - t^2 + b = 0$ to have three distinct real roots, its local maximum and minimum must have opposite signs.\n$f'(t) = 3at^2 - 2t = 0 \\implies t = 0$ or $t = \\frac{2}{3a}$.\nThe values at the extrema are $f(0) = b$ and $f\\left(\\frac{2}{3a}\\right) = b - \\frac{4}{27a^2}$.\nFor them to have opposite signs:\n$$ b \\left(b - \\frac{4}{27a^2}\\right) < 0 \\implies 0 < b < \\frac{4}{27a^2} $$\nSince $a^2 > 0$, this means $0 < a^2 b < \\frac{4}{27}$, which implies $\\frac{1}{a^2 b} > \\frac{27}{4}$.\nTherefore:\n$$ F = -\\frac{1}{a^2 b} + 3 < -\\frac{27}{4} + 3 = -\\frac{15}{4} $$\nThis completes the proof.\n\nFinal answer: 3",
+  "usage": {
+    "input_tokens": 270,
+    "output_tokens": 1435,
+    "thoughts_tokens": 2784
+  },
+  "latency_s": 30.35329312097747,
+  "cached": false
+}

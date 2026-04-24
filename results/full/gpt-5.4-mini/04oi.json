@@ -1,0 +1,21 @@
+{
+  "id": "04oi",
+  "country": "Croatia",
+  "competition": "Croatian Mathematical Olympiad",
+  "gold_final_answer": "All prime numbers",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Prime numbers",
+    "Number Theory > Divisibility / Factorization > Factorization techniques",
+    "Discrete Mathematics > Combinatorics > Counting two ways"
+  ],
+  "prompt": "Determine all positive integers $n \\ge 2$ which satisfy the following condition: For all integers $a_1, a_2, \\dots, a_n$ such that their sum is not divisible by $n$, there exists an integer $i \\in \\{1, 2, \\dots, n\\}$ such that none of the $n$ numbers\n\n$$\na_i,\\ a_i + a_{i+1},\\ \\dots,\\ a_i + a_{i+1} + \\dots + a_{i+n-1}\n$$\nis divisible by $n$, where we define $a_i = a_{i-n}$ for the case $i > n$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let  \n\\[\nS_k=a_k+a_{k+1}+\\cdots +a_{k+n-1}\\qquad (k=1,\\dots,n),\n\\]\nwith indices taken mod \\(n\\). The condition asks that for some \\(i\\), none of\n\\[\na_i,\\ a_i+a_{i+1},\\ \\dots,\\ a_i+\\cdots+a_{i+n-1}\n\\]\nis divisible by \\(n\\). Equivalently, for some \\(i\\), none of the \\(n\\) partial sums\n\\[\na_i,\\ a_i+a_{i+1},\\dots, a_i+\\cdots+a_{i+n-1}\n\\]\nis congruent to \\(0 \\pmod n\\).\n\nWe will show the answer is:\n\n\\[\n\\boxed{\\text{all }n\\ge 2.}\n\\]\n\n## Step 1: Reformulate cyclically\nLet\n\\[\nb_0=0,\\qquad b_k=a_1+\\cdots+a_k\\quad (1\\le k\\le n).\n\\]\nThen \\(b_n\\not\\equiv 0\\pmod n\\) by hypothesis.\n\nFor a starting index \\(i\\), the \\(n\\) sums in the statement are exactly\n\\[\nb_i-b_{i-1},\\ b_{i+1}-b_{i-1},\\ \\dots,\\ b_{i+n-1}-b_{i-1},\n\\]\ntaken modulo \\(n\\). So the condition for index \\(i\\) is that among the \\(n\\) residues\n\\[\nb_{i-1}, b_i,\\dots,b_{i+n-1}\n\\]\n(no two of which are distinct mod \\(n\\) as indices are cyclic), none is congruent to \\(b_{i-1}\\) modulo \\(n\\), i.e. the differences never hit \\(0\\).\n\nA cleaner equivalent formulation is this:\n\n> We have \\(n\\) cyclic partial sums \\(b_0,b_1,\\dots,b_{n-1}\\) modulo \\(n\\).  \n> We need some shift \\(i\\) such that the translated set\n> \\[\n> b_i-b_{i-1},\\ b_{i+1}-b_{i-1},\\dots,b_{i+n-1}-b_{i-1}\n> \\]\n> avoids \\(0\\).\n\nThis is a standard “cyclic shift avoids zero” situation.\n\n## Step 2: Use the classical cyclic lemma\nConsider the \\(n\\) residues\n\\[\nb_0,b_1,\\dots,b_{n-1}\\pmod n.\n\\]\nSince \\(b_n\\not\\equiv 0\\pmod n\\), the total sum is nonzero mod \\(n\\). The cyclic lemma (equivalently, the Erdős–Ginzburg–Ziv style rotation argument) guarantees that among the \\(n\\) cyclic shifts, there is one for which the partial sums avoid a prescribed residue class—in this case \\(0\\).\n\nConcretely, choose \\(i\\) so that \\(b_{i-1}\\) is a maximal element among the residues \\(b_0,\\dots,b_{n-1}\\) when viewed in \\(\\mathbb{Z}/n\\mathbb{Z}\\) arranged cyclically from \\(0\\) to \\(n-1\\). Then walking from \\(b_{i-1}\\) around the cycle, the successive differences cannot return to \\(0\\) before completing the full cycle, because otherwise we would get a nontrivial prefix sum divisible by \\(n\\), contradicting maximality of the chosen shift. Hence all \\(n\\) numbers are nonzero mod \\(n\\).\n\nThus such an \\(i\\) always exists for every \\(n\\ge 2\\).\n\n## Conclusion\nEvery positive integer \\(n\\ge 2\\) satisfies the given property.\n\nFinal answer: all positive integers \\(n\\ge 2\\).",
+  "usage": {
+    "input_tokens": 191,
+    "output_tokens": 844,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 5.488873536000028,
+  "cached": false
+}

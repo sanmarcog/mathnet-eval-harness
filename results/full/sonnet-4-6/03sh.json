@@ -1,0 +1,21 @@
+{
+  "id": "03sh",
+  "country": "China",
+  "competition": "China Mathematical Competition",
+  "gold_final_answer": "1",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities > QM-AM-GM-HM / Power Mean",
+    "Algebra > Algebraic Expressions > Polynomials > Polynomial operations",
+    "Algebra > Algebraic Expressions > Sequences and Series > Sums and products"
+  ],
+  "prompt": "The number of real solutions for equation\n$$\n(x^{2006} + 1)(1 + x^2 + x^4 + \\cdots + x^{2004}) = 2006x^{2005}\n$$\nis \\underline{\\quad}.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "We need to find the number of real solutions to $(x^{2006} + 1)(1 + x^2 + x^4 + \\cdots + x^{2004}) = 2006x^{2005}$.\n\n**Check x = 0:** Left side = 1·1 = 1 ≠ 0. Not a solution.\n\n**Check x < 0:** Left side: $x^{2006} + 1 > 0$ (even power), and $1 + x^2 + x^4 + \\cdots + x^{2004} > 0$. So left side > 0. Right side: $2006x^{2005} < 0$ (odd power, x < 0). No solutions for x < 0.\n\n**Check x > 0:** Divide both sides by $x^{2005}$ (positive):\n\n$$\\left(\\frac{x^{2006}+1}{x^{2005/2} \\cdot x^{2005/2}}\\right)(1 + x^2 + \\cdots + x^{2004}) = 2006$$\n\nActually, let me divide both sides by $x^{2005}$:\n\n$$\\left(x + \\frac{1}{x^{2005}}\\right)\\cdot\\frac{1 + x^2 + \\cdots + x^{2004}}{x^{2004}} \\cdot x^{2004} \\cdot \\frac{1}{x^{2004}}$$\n\nLet me be more careful. Divide by $x^{2005}$:\n\n$$\\left(x + x^{-2005}\\right)(x^{-2005} + x^{-2003} + \\cdots + x^{-1} + x + x^3 + \\cdots)$$\n\nHmm, let me try differently. Divide both sides by $x^{2005}$:\n\n$$\\frac{x^{2006}+1}{x^{2005}} \\cdot (1 + x^2 + \\cdots + x^{2004}) = 2006$$\n\n$$\\left(x + x^{-2005}\\right)(1 + x^2 + \\cdots + x^{2004}) = 2006$$\n\nExpand: $x + x^3 + x^5 + \\cdots + x^{2005} + x^{-2005} + x^{-2003} + \\cdots + x^{-1} = 2006$\n\nThis equals: $\\sum_{k=0}^{1002} (x^{2k+1} + x^{-(2k+1)}) = 2006$\n\nEach term $x^{2k+1} + x^{-(2k+1)} \\geq 2$ by AM-GM (for x > 0).\n\nThere are 1003 terms (k = 0, 1, ..., 1002), so the sum $\\geq 2 \\times 1003 = 2006$.\n\nEquality holds when each term equals 2, i.e., $x^{2k+1} = 1$ for all k, which means $x = 1$.\n\n**Verify x = 1:** Left side = $(1+1)(1+1+\\cdots+1) = 2 \\times 1003 = 2006$. Right side = $2006 \\times 1 = 2006$. ✓\n\nSince the sum equals exactly 2006 only when x = 1, there is exactly **one** real solution.\n\nFinal answer: 1",
+  "usage": {
+    "input_tokens": 110,
+    "output_tokens": 876,
+    "thinking_tokens": 0
+  },
+  "latency_s": 11.63881080003921,
+  "cached": false
+}

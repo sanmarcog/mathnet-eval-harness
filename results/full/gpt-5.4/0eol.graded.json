@@ -1,0 +1,25 @@
+{
+  "id": "0eol",
+  "country": "South Africa",
+  "competition": "South African Mathematics Olympiad",
+  "gold_final_answer": "C",
+  "topics_flat": [
+    "Algebra > Prealgebra / Basic Algebra > Fractions",
+    "Algebra > Prealgebra / Basic Algebra > Simple Equations"
+  ],
+  "prompt": "When $a$ is increased by $20\\%$ and $b$ is decreased by $20\\%$ the resulting values are equal. The ratio of $a$ to $b$ is\n\n(A) $\\frac{1}{2}$ (B) $1$ (C) $\\frac{2}{3}$ (D) $\\frac{3}{4}$ (E) $\\frac{4}{3}$",
+  "model": "gpt-5.4",
+  "response_text": "Let the new values be equal:\n\n\\[\n1.2a = 0.8b\n\\]\n\nSo\n\n\\[\n\\frac{a}{b}=\\frac{0.8}{1.2}=\\frac{8}{12}=\\frac{2}{3}\n\\]\n\nThus the ratio of \\(a\\) to \\(b\\) is \\(\\frac{2}{3}\\).\n\nFinal answer: \\(\\frac{2}{3}\\)",
+  "usage": {
+    "input_tokens": 135,
+    "output_tokens": 98,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 1.9532555879559368,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "\\(\\frac{2}{3}\\)"
+  }
+}

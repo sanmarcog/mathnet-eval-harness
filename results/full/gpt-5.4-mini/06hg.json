@@ -1,0 +1,20 @@
+{
+  "id": "06hg",
+  "country": "Hong Kong",
+  "competition": "Hong Kong Preliminary Selection Contest",
+  "gold_final_answer": "15",
+  "topics_flat": [
+    "Number Theory > Modular Arithmetic > Fermat / Euler / Wilson theorems",
+    "Algebra > Algebraic Expressions > Sequences and Series > Sums and products"
+  ],
+  "prompt": "Let $\\lfloor x \\rfloor$ denote the greatest integer not exceeding $x$. Find the last two digits of\n$$\n\\left\\lfloor \\frac{1}{3} \\right\\rfloor + \\left\\lfloor \\frac{2}{3} \\right\\rfloor + \\left\\lfloor \\frac{2^2}{3} \\right\\rfloor + \\cdots + \\left\\lfloor \\frac{2^{2^{2^{14}}}}{3} \\right\\rfloor\n$$",
+  "model": "gpt-5.4-mini",
+  "response_text": "We use the fact that for any integer \\(n\\),\n\n\\[\n\\left\\lfloor \\frac{n}{3}\\right\\rfloor=\n\\begin{cases}\n\\frac n3 & \\text{if }3\\mid n,\\\\[4pt]\n\\frac{n-1}{3} & \\text{if }n\\equiv 1\\pmod 3,\\\\[4pt]\n\\frac{n-2}{3} & \\text{if }n\\equiv 2\\pmod 3.\n\\end{cases}\n\\]\n\nNow the terms are \\(\\left\\lfloor \\frac{2^k}{3}\\right\\rfloor\\) for \\(k=0,1,2,\\dots,2^{2^{14}}\\).\n\nSince \\(2^k \\pmod 3\\) alternates:\n- \\(2^k\\equiv 1 \\pmod 3\\) when \\(k\\) is even,\n- \\(2^k\\equiv 2 \\pmod 3\\) when \\(k\\) is odd,\n\nwe get\n\\[\n\\left\\lfloor \\frac{2^k}{3}\\right\\rfloor =\n\\begin{cases}\n\\frac{2^k-1}{3}, & k \\text{ even},\\\\[4pt]\n\\frac{2^k-2}{3}, & k \\text{ odd}.\n\\end{cases}\n\\]\n\nSo each pair contributes\n\\[\n\\left\\lfloor \\frac{2^{2m}}{3}\\right\\rfloor+\\left\\lfloor \\frac{2^{2m+1}}{3}\\right\\rfloor\n=\\frac{2^{2m}-1}{3}+\\frac{2^{2m+1}-2}{3}\n=2^{2m}-1.\n\\]\n\nLet \\(N=2^{2^{14}}\\). Then the sum is\n\\[\n\\sum_{k=0}^{N}\\left\\lfloor \\frac{2^k}{3}\\right\\rfloor.\n\\]\nSince \\(N\\) is even, there are \\(\\frac N2\\) such pairs, plus the last term \\(k=N\\) (which is even):\n\\[\nS=\\sum_{m=0}^{N/2-1}(2^{2m}-1)+\\frac{2^N-1}{3}.\n\\]\n\nNow we only need the last two digits, i.e. modulo \\(100\\).\n\nThe powers of \\(2^{2m}=4^m\\) modulo \\(100\\) have period \\(10\\):\n\\[\n1,4,16,64,56,24,96,84,36,44,\\dots\n\\]\nTheir sum over one full period is\n\\[\n1+4+16+64+56+24+96+84+36+44 = 425 \\equiv 25 \\pmod{100}.\n\\]\n\nSince \\(N/2 = 2^{2^{14}-1}\\) is a multiple of \\(10\\), the sum of \\(2^{2m}\\) over \\(m=0\\) to \\(N/2-1\\) is divisible by \\(25\\) modulo \\(100\\), and in fact the total contribution from the paired part gives \\(25\\) modulo \\(100\\) times an integer. More cleanly, we can use the geometric sum:\n\\[\n\\sum_{m=0}^{N/2-1}4^m=\\frac{4^{N/2}-1}{3}=\\frac{2^N-1}{3}.\n\\]\nHence\n\\[\nS=\\left(\\frac{2^N-1}{3}\\right)-\\frac N2+\\left(\\frac{2^N-1}{3}\\right)\n=2\\cdot \\frac{2^N-1}{3}-\\frac N2.\n\\]\nSo\n\\[\nS=\\frac{2^{N+1}-2}{3}-\\frac N2.\n\\]\n\nNow \\(N=2^{2^{14}}\\) is divisible by \\(100\\), and \\(2^{N+1}\\) modulo \\(300\\) can be handled by the cycle of powers of \\(2\\) modulo \\(300\\); since \\(N\\) is enormous and divisible by \\(100\\), one gets\n\\[\n2^{N+1}\\equiv 2 \\pmod{300}.\n\\]\nThus\n\\[\n\\frac{2^{N+1}-2}{3}\\equiv 0 \\pmod{100}.\n\\]\nAlso \\(\\frac N2\\) is divisible by \\(50\\), and in fact by \\(100\\) because \\(N\\) is divisible by \\(200\\). Therefore \\(\\frac N2\\equiv 0\\pmod{100}\\).\n\nHence\n\\[\nS\\equiv 0 \\pmod{100}.\n\\]\n\nSo the last two digits are \\(00\\).\n\nFinal answer: 00",
+  "usage": {
+    "input_tokens": 162,
+    "output_tokens": 1063,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 7.601375346072018,
+  "cached": false
+}

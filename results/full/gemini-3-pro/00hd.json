@@ -1,0 +1,21 @@
+{
+  "id": "00hd",
+  "country": "Asia Pacific Mathematics Olympiad (APMO)",
+  "competition": "APMO 2016",
+  "gold_final_answer": "57",
+  "topics_flat": [
+    "Discrete Mathematics > Graph Theory",
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments",
+    "Discrete Mathematics > Combinatorics > Induction / smoothing"
+  ],
+  "prompt": "The country Dreamland consists of 2016 cities. The airline Starways wants to establish some one-way flights between pairs of cities in such a way that each city has exactly one flight out of it. Find the smallest positive integer $k$ such that no matter how Starways establishes its flights, the cities can always be partitioned into $k$ groups so that from any city it is not possible to reach another city in the same group by using at most 28 flights.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find the smallest positive integer $k$ such that the cities can always be partitioned into $k$ groups, we can rephrase the problem as finding the maximum chromatic number of a directed graph where each vertex has an out-degree of exactly 1, and edges are added between any two vertices that are connected by a directed path of length at most 28. \n\nSince each city has exactly one flight out of it, the graph consists of a set of disjoint directed cycles, with some directed trees rooted on these cycles. \n\nLet's consider a cycle of length $L$. The condition that no city can reach another city in the same group in at most 28 flights means that if two distinct cities $u$ and $v$ on the cycle are in the same group (i.e., have the same color), the directed distance from $u$ to $v$ must be at least 29, and the directed distance from $v$ to $u$ must also be at least 29. \n\nSince $u$ and $v$ are on a cycle of length $L$, the sum of the directed distances $d(u, v) + d(v, u)$ is exactly $L$. \nTherefore, if $u$ and $v$ share the same color, we must have:\n$L = d(u, v) + d(v, u) \\ge 29 + 29 = 58$\n\nIf Starways establishes a cycle of length $L \\le 57$, it is impossible for any two cities on this cycle to share the same color, because the sum of their distances would be at most 57, meaning at least one of the directed distances would be strictly less than 29 (i.e., at most 28 flights). \nThus, for a cycle of length 57, all 57 cities must be placed in different groups, requiring exactly 57 colors.\n\nTo ensure that 57 colors are always sufficient for *any* valid flight network on 2016 cities:\n1. For any cycle of length $L$, the number of colors required is $\\lceil L / \\lfloor L / 29 \\rfloor \\rceil$. The maximum value of this expression for any positive integer $L$ is achieved at $L = 57$, which gives exactly 57 colors.\n2. For the trees attached to the cycles, we can color the cities greedily in reverse topological order (from the leaves down to the cycles). When coloring a city $u$, we must avoid the colors of the cities reachable in at most 28 flights. Since there is exactly 1 flight out of any city, there are at most 28 forbidden colors. Because we have 57 colors available and $57 > 28$, we will always have at least one valid color available for every city in the trees.\n\nThus, the worst-case scenario is a graph containing a cycle of length 57, which necessitates 57 groups.\n\nFinal answer: 57",
+  "usage": {
+    "input_tokens": 139,
+    "output_tokens": 650,
+    "thoughts_tokens": 6537
+  },
+  "latency_s": 63.10317791195121,
+  "cached": false
+}

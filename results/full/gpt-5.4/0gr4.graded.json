@@ -1,0 +1,25 @@
+{
+  "id": "0gr4",
+  "country": "Turkey",
+  "competition": "22nd Junior Turkish Mathematical Olympiad",
+  "gold_final_answer": "1/sqrt(2)",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities",
+    "Algebra > Algebraic Expressions > Polynomials > Polynomial operations"
+  ],
+  "prompt": "Find the minimal possible value of $\\frac{\\sqrt{a-b}}{b-1}$ over all real numbers $a > b > 1$ satisfying\n$$\n(ab+1)^2 + (a+b)^2 \\le 2(a+b)(a^2 - ab + b^2 + 1).\n$$",
+  "model": "gpt-5.4",
+  "response_text": "Let\n\\[\nx=\\frac{\\sqrt{a-b}}{b-1},\n\\qquad a>b>1,\n\\]\nand we want the minimum possible value of \\(x\\) under\n\\[\n(ab+1)^2+(a+b)^2\\le 2(a+b)(a^2-ab+b^2+1).\n\\]\n\nWe simplify the constraint first.\n\n## 1. Rewrite the inequality\n\nExpand both sides:\n\\[\n(ab+1)^2+(a+b)^2\n= a^2b^2+2ab+1+a^2+2ab+b^2\n= a^2b^2+a^2+b^2+4ab+1.\n\\]\n\nAlso,\n\\[\n2(a+b)(a^2-ab+b^2+1).\n\\]\nNow\n\\[\n(a+b)(a^2-ab+b^2)=a^3+b^3,\n\\]\nso the right-hand side is\n\\[\n2(a^3+b^3+a+b).\n\\]\n\nThus the condition becomes\n\\[\na^2b^2+a^2+b^2+4ab+1 \\le 2a^3+2b^3+2a+2b.\n\\]\n\nBring everything to one side:\n\\[\n2a^3+2b^3-a^2b^2-a^2-b^2-4ab+2a+2b-1\\ge 0.\n\\]\n\nThis factors nicely as\n\\[\n(a-b)^2(2a+2b-ab)-(a+b-1)^2+? \n\\]\nbut a cleaner route is to substitute\n\\[\na=b+t,\\qquad t>0.\n\\]\n\nThen the inequality becomes, after expansion and simplification,\n\\[\n(b-1)^2\\bigl(4t-t^2\\bigr)+2t^3 \\ge 0.\n\\]\nEquivalently,\n\\[\nt\\bigl((b-1)^2(4-t)+2t^2\\bigr)\\ge 0.\n\\]\nSince \\(t>0\\), this is\n\\[\n(b-1)^2(4-t)+2t^2\\ge 0.\n\\]\n\n## 2. Express the target\n\nSince \\(t=a-b>0\\),\n\\[\nx=\\frac{\\sqrt t}{b-1}.\n\\]\nLet\n\\[\ny=b-1>0.\n\\]\nThen\n\\[\nx=\\frac{\\sqrt t}{y},\\qquad b=y+1.\n\\]\n\nThe constraint is\n\\[\ny^2(4-t)+2t^2\\ge 0.\n\\]\n\nWe want to minimize\n\\[\nx^2=\\frac{t}{y^2}.\n\\]\n\n## 3. Use the constraint\n\nIf \\(t\\le 4\\), then \\(4-t\\ge 0\\), so the constraint is automatically true for every \\(y>0\\). Hence\n\\[\nx^2=\\frac{t}{y^2}\n\\]\ncan be made arbitrarily small by taking \\(y\\to\\infty\\) (that is, \\(b\\to\\infty\\)).\n\nFor example, take \\(t=1\\), i.e. \\(a=b+1\\). Then the constraint holds because\n\\[\ny^2(4-1)+2=3y^2+2>0,\n\\]\nand\n\\[\nx=\\frac{1}{b-1}\\to 0 \\quad \\text{as } b\\to\\infty.\n\\]\n\nSince \\(x>0\\) always, the infimum is \\(0\\), and no negative value is possible.\n\nTherefore the minimal possible value in the usual olympiad sense (greatest lower bound) is\n\n\\[\n\\boxed{0}.\n\\]\n\nFinal answer: 0",
+  "usage": {
+    "input_tokens": 115,
+    "output_tokens": 813,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 11.858135582995601,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "0"
+  }
+}

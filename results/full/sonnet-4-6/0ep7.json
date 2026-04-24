@@ -1,0 +1,19 @@
+{
+  "id": "0ep7",
+  "country": "South Africa",
+  "competition": "South African Mathematics Olympiad",
+  "gold_final_answer": "C",
+  "topics_flat": [
+    "Algebra > Prealgebra / Basic Algebra > Other"
+  ],
+  "prompt": "Human hair grows at a rate of about $1$ centimetre per month. This is equivalent to about how many millimetres every ten years?\n(A) $12$\n(B) $120$\n(C) $1\\,200$\n(D) $12\\,000$\n(E) $120\\,000$",
+  "model": "claude-sonnet-4-6",
+  "response_text": "1 cm/month × 12 months/year × 10 years = 120 cm = 1200 mm\n\nFinal answer: (C) $1\\,200$",
+  "usage": {
+    "input_tokens": 121,
+    "output_tokens": 45,
+    "thinking_tokens": 0
+  },
+  "latency_s": 1.6060245730914176,
+  "cached": false
+}

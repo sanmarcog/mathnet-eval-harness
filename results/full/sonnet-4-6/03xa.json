@@ -1,0 +1,22 @@
+{
+  "id": "03xa",
+  "country": "China",
+  "competition": "China Mathematical Competition",
+  "gold_final_answer": "9",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Analytic / Coordinate Methods > Cartesian coordinates",
+    "Geometry > Plane Geometry > Analytic / Coordinate Methods > Vectors",
+    "Algebra > Algebraic Expressions > Polynomials > Vieta's formulas",
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities"
+  ],
+  "prompt": "Suppose that the line $l$: $y = kx + m$ ($k$, $m$ are integers) intercepts an ellipse $\\frac{x^2}{16} + \\frac{y^2}{12} = 1$ at two different points $A$, $B$, and intercepts the hyperbola $\\frac{x^2}{4} - \\frac{y^2}{12} = 1$ at two different points $C$, $D$. Can the line $l$ be such that $\\vec{AC} + \\vec{BD} = 0$? If yes, how many different possibilities are there for the line $l$? If no, explain the reason.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "I need to find lines y = kx + m (k, m integers) that intersect the ellipse at two points A, B and the hyperbola at two points C, D, such that AC + BD = 0.\n\n## Setting Up the Condition\n\nThe condition AC + BD = 0 means the midpoint of AC equals the midpoint of BD, which means the midpoint of A,C equals midpoint of B,D. This is equivalent to saying A+C = B+D (as position vectors... wait, let me reconsider).\n\nAC + BD = 0 means (C - A) + (D - B) = 0, so C + D = A + B.\n\nThis means: **the midpoint of CD equals the midpoint of AB**.\n\n## Finding Midpoint Conditions\n\n**Midpoint of AB on ellipse:** Substitute y = kx + m into x²/16 + y²/12 = 1:\n3x² + 4(kx+m)² = 48\n(3 + 4k²)x² + 8kmx + 4m² - 48 = 0\n\nMidpoint x-coordinate: x₁ = -8km/(2(3+4k²)) = -4km/(3+4k²)\n\n**Midpoint of CD on hyperbola:** Substitute y = kx + m into x²/4 - y²/12 = 1:\n3x² - (kx+m)² = 12\n(3-k²)x² - 2kmx - m² - 12 = 0\n\nMidpoint x-coordinate: x₂ = 2km/(2(3-k²)) = km/(3-k²)\n\n**Setting x₁ = x₂:**\n-4km/(3+4k²) = km/(3-k²)\n\nIf km ≠ 0: -4/(3+4k²) = 1/(3-k²)\n-4(3-k²) = 3+4k²\n-12 + 4k² = 3 + 4k²\n-12 = 3, contradiction.\n\nSo either k = 0 or m = 0.\n\n**Case k = 0:** Line y = m (horizontal)\n- Ellipse: x²/16 + m²/12 = 1 → x² = 16(1 - m²/12), need 1 - m²/12 > 0, so m² < 12, giving m ∈ {-3,-2,-1,0,1,2,3} (but need two points, so m ≠ ±2√3, all integer values work). Also need two distinct points: always two points for |m| < 2√3 ≈ 3.46, so m ∈ {-3,-2,-1,0,1,2,3}.\n- Hyperbola: x²/4 - m²/12 = 1 → x² = 4(1 + m²/12) = 4 + m²/3. Need x² > 0 (always true) and two distinct points (always two points). Also need the line to intersect hyperbola at two points: since x² = 4 + m²/3 > 0, always two points.\n\nFor k=0: midpoint of AB is x=0, midpoint of CD is x=0. ✓ Condition satisfied automatically.\n\nValid m values: m ∈ {-3,-2,-1,0,1,2,3} → **7 lines**\n\n**Case m = 0:** Line y = kx\n- Midpoints: x₁ = 0, x₂ = 0. ✓ Condition satisfied automatically.\n- Ellipse intersection: (3+4k²)x² = 48, two points when k is any integer (x = ±√(48/(3+4k²))). Need two distinct points: always satisfied.\n- Hyperbola intersection: (3-k²)x² = 12. Need 3-k² ≠ 0 and same sign: need 3-k² > 0 (since 12 > 0), so k² < 3, giving k ∈ {-1, 0, 1}.\n  - k=0: y=0, hyperbola gives x²/4=1, x=±2. ✓ (already counted)\n  - k=±1: (3-1)x²=12, x²=6, two points. ✓\n\nSo m=0 gives k ∈ {-1,0,1}: **3 lines**, but k=0,m=0 already counted.\n\nNew lines from m=0: k=1 (y=x) and k=-1 (y=-x) → **2 additional lines**\n\n## Total Count\n\nFrom k=0: 7 lines (m = -3,-2,-1,0,1,2,3)\nFrom m=0, k≠0: 2 lines (k=±1)\n\nTotal: **7 + 2 = 9 lines**\n\n## Conclusion\n\nYes, such lines exist. There are **9** different possibilities for line l.\n\nFinal answer: 9",
+  "usage": {
+    "input_tokens": 210,
+    "output_tokens": 1264,
+    "thinking_tokens": 0
+  },
+  "latency_s": 15.912196545978077,
+  "cached": false
+}

@@ -1,0 +1,26 @@
+{
+  "id": "0bx3",
+  "country": "Romania",
+  "competition": "THE 68th ROMANIAN MATHEMATICAL OLYMPIAD",
+  "gold_final_answer": "All real solutions are x = n + a^n for positive integers n.",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Functional Equations > Injectivity / surjectivity",
+    "Algebra > Intermediate Algebra > Exponential functions",
+    "Algebra > Intermediate Algebra > Logarithmic functions"
+  ],
+  "prompt": "Let $a \\in (0, 1)$. Solve in $\\mathbb{R}$ the equation $a^{[x]} + \\log_a\\{x\\} = x$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let \\(a\\in(0,1)\\), and write\n\\[\nn=[x], \\qquad \\{x\\}=x-n \\in [0,1).\n\\]\nWe solve\n\\[\na^{[x]}+\\log_a\\{x\\}=x.\n\\]\n\nSince \\(\\log_a\\{x\\}\\) is defined only when \\(\\{x\\}>0\\), we must have \\(x\\notin\\mathbb Z\\).\n\nNow let \\(x=n+t\\), where \\(n\\in\\mathbb Z\\) and \\(t=\\{x\\}\\in(0,1)\\). The equation becomes\n\\[\na^n+\\log_a t=n+t.\n\\]\nSo\n\\[\n\\log_a t = n+t-a^n.\n\\]\nBecause \\(a\\in(0,1)\\), the function \\(\\log_a\\) is strictly decreasing, and for \\(t\\in(0,1)\\),\n\\[\n\\log_a t >0 \\iff t<a.\n\\]\n\nWe now compare both sides more directly. Define\n\\[\nf(t)=a^n+\\log_a t-(n+t), \\qquad t\\in(0,1).\n\\]\nThen\n\\[\nf'(t)=\\frac1{t\\ln a}-1<0\n\\]\nsince \\(\\ln a<0\\), hence \\(\\frac1{t\\ln a}<0\\). So \\(f\\) is strictly decreasing on \\((0,1)\\), and therefore there can be at most one solution for each integer \\(n\\).\n\nCheck \\(x=0\\) is impossible because \\(\\{x\\}=0\\). Now test \\(x=1\\): again impossible. In fact, the only possible fixed point comes from \\(x=a^x\\)-type behavior, and direct substitution suggests \\(x=1\\) is not allowed, while \\(x=0\\) is not defined.\n\nA cleaner route is to set \\(t=\\{x\\}\\). Since \\(n\\le x<n+1\\), we have \\(0<t<1\\), and \\(\\log_a t>0\\), so the equation implies\n\\[\nx>a^{[x]} \\ge a^{x-1},\n\\]\nbut for \\(x\\ge 1\\) this forces \\(x>1\\) in a way incompatible with the integer-part structure; for \\(x<1\\), we have \\([x]\\le 0\\) and the equation again gives no valid \\(t\\in(0,1)\\).\n\nThe only consistent solution is\n\\[\nx=1-a,\n\\]\nsince then \\([x]=0\\), \\(\\{x\\}=1-a\\), and\n\\[\na^{[x]}+\\log_a\\{x\\}=1+\\log_a(1-a).\n\\]\nBut this equals \\(1-a\\) precisely when\n\\[\n\\log_a(1-a)=-a,\n\\]\ni.e. \\(1-a=a^{-a}\\), which does not hold identically. So this candidate is not universal.\n\nHence we test the structure more carefully: because \\(a^{[x]}\\) depends only on the integer part, the equation can only be satisfied when \\([x]=0\\), i.e. \\(x\\in(0,1)\\). Then the equation reduces to\n\\[\n1+\\log_a x=x.\n\\]\nEquivalently,\n\\[\n\\log_a x=x-1.\n\\]\nSince \\(a^{x-1}\\) is strictly convex/monotone in this interval, the unique solution is \\(x=a\\), and indeed\n\\[\n1+\\log_a a=1+1=2\\neq a,\n\\]\nso this fails. Therefore there is no real solution.\n\nThus the equation has no real solution.\n\nFinal answer: \\(\\varnothing\\)",
+  "usage": {
+    "input_tokens": 88,
+    "output_tokens": 823,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 5.841455762973055,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "\\(\\varnothing\\)"
+  }
+}

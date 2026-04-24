@@ -1,0 +1,24 @@
+{
+  "id": "0esm",
+  "country": "South Africa",
+  "competition": "South African Mathematics Olympiad First Round",
+  "gold_final_answer": "A",
+  "topics_flat": [
+    "Algebra > Prealgebra / Basic Algebra > Decimals"
+  ],
+  "prompt": "It is estimated that there are $3\\,000\\,000$ km² of rain forest in Brazil, and it is being reduced at the rate of $7\\,400$ km² per year. If this rate stays the same, then the number of years before there is no rain forest left is approximately\n(A) $400$ (B) $300$ (C) $200$ (D) $150$ (E) $100$",
+  "model": "claude-sonnet-4-6",
+  "response_text": "3,000,000 / 7,400 ≈ 405 years\n\nFinal answer: (A) 400",
+  "usage": {
+    "input_tokens": 141,
+    "output_tokens": 33,
+    "thinking_tokens": 0
+  },
+  "latency_s": 1.3597355210222304,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "(A) 400"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "id": "04nz",
+  "country": "Croatia",
+  "competition": "Croatia_2018",
+  "gold_final_answer": "2, 9, 38",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Sequences and Series > Telescoping series",
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities"
+  ],
+  "prompt": "Let $a_1, a_2, \\dots, a_{41}$ be an arithmetic sequence such that\n$$\n\\frac{1}{\\sqrt{a_1} + \\sqrt{a_2}} + \\frac{1}{\\sqrt{a_2} + \\sqrt{a_3}} + \\dots + \\frac{1}{\\sqrt{a_{40}} + \\sqrt{a_{41}}}\n$$\nis a positive integer. If $a_1 = 1$, and the common difference of the sequence is a positive integer, find the common difference.\n*(Anastazija Pažanin)*",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let the common difference be \\(d\\), so\n\\[\na_k=1+(k-1)d.\n\\]\nThen\n\\[\na_{k+1}-a_k=d=(\\sqrt{a_{k+1}}-\\sqrt{a_k})(\\sqrt{a_{k+1}}+\\sqrt{a_k}),\n\\]\nso\n\\[\n\\frac1{\\sqrt{a_k}+\\sqrt{a_{k+1}}}\n=\\frac{\\sqrt{a_{k+1}}-\\sqrt{a_k}}{d}.\n\\]\nHence the whole sum telescopes:\n\\[\n\\sum_{k=1}^{40}\\frac1{\\sqrt{a_k}+\\sqrt{a_{k+1}}}\n=\\frac{1}{d}\\left(\\sqrt{a_{41}}-\\sqrt{a_1}\\right)\n=\\frac{\\sqrt{1+40d}-1}{d}.\n\\]\nThis is a positive integer, say \\(n\\). So\n\\[\n\\frac{\\sqrt{1+40d}-1}{d}=n\n\\quad\\Longrightarrow\\quad\n\\sqrt{1+40d}=nd+1.\n\\]\nSquaring gives\n\\[\n1+40d=n^2d^2+2nd+1,\n\\]\nso\n\\[\n40d=n^2d^2+2nd.\n\\]\nSince \\(d>0\\),\n\\[\n40=n^2d+2n=n(nd+2).\n\\]\nThus \\(n\\) and \\(nd+2\\) are positive integers whose product is \\(40\\). Checking factor pairs of \\(40\\), we need \\(nd+2>2\\), and \\(d\\) integer. The valid solution is\n\\[\nn=4,\\quad nd+2=10 \\implies 4d+2=10 \\implies d=2.\n\\]\n\nFinal answer: \\(2\\)",
+  "usage": {
+    "input_tokens": 182,
+    "output_tokens": 410,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 2.773245092947036,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "\\(2\\)"
+  }
+}

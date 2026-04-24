@@ -1,0 +1,24 @@
+{
+  "id": "04or",
+  "country": "Croatia",
+  "competition": "Croatian Mathematical Society Competitions",
+  "gold_final_answer": "128",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Enumeration with symmetry"
+  ],
+  "prompt": "A square board whose squares are coloured in either black or white is called *beautiful* if a rotation by $90^\\circ$ does not change its appearance.\nHow many different $5 \\times 5$ beautiful boards are there? (Azra Tafro)",
+  "model": "gpt-5.4-mini",
+  "response_text": "A \\(5\\times 5\\) board is unchanged by a \\(90^\\circ\\) rotation if and only if each orbit of squares under that rotation has a constant color.\n\nLet’s count the orbits:\n\n- The center square is fixed by the rotation, so it gives **1 free choice**.\n- The other 24 squares are grouped into cycles of 4 under rotation, so they form **6 orbits of size 4**.\n\nEach orbit can be colored either black or white independently, so the total number of beautiful boards is\n\n\\[\n2^{1+6} = 2^7 = 128.\n\\]\n\nFinal answer: 128",
+  "usage": {
+    "input_tokens": 101,
+    "output_tokens": 145,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 1.5085680870106444,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "exact",
+    "predicted": "128"
+  }
+}

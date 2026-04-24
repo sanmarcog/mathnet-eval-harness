@@ -1,0 +1,20 @@
+{
+  "id": "04b3",
+  "country": "Croatia",
+  "competition": "Mathematica competitions in Croatia",
+  "gold_final_answer": "(0, 0) and (-2, -4)",
+  "topics_flat": [
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities",
+    "Number Theory > Divisibility / Factorization > Greatest common divisors (gcd)"
+  ],
+  "prompt": "Determine all pairs of integers $(a, b)$ such that $a (a - b) = b$.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "We need $a(a-b) = b$, so $a^2 - ab = b$, giving $a^2 = ab + b = b(a+1)$.\n\nThus $b = \\frac{a^2}{a+1}$.\n\nFor $b$ to be an integer, $(a+1) \\mid a^2$.\n\nSince $a^2 = (a+1)(a-1) + 1$, we have $a^2 \\equiv 1 \\pmod{a+1}$.\n\nSo $(a+1) \\mid 1$, meaning $a+1 \\in \\{1, -1\\}$, so $a \\in \\{0, -2\\}$.\n\n- $a = 0$: $b = 0/1 = 0$. Check: $0(0-0) = 0$ ✓\n- $a = -2$: $b = 4/(-1) = -4$. Check: $(-2)(-2-(-4)) = (-2)(2) = -4 = b$ ✓\n\nFinal answer: $(a,b) = (0,0)$ and $(a,b) = (-2,-4)$.",
+  "usage": {
+    "input_tokens": 70,
+    "output_tokens": 291,
+    "thinking_tokens": 0
+  },
+  "latency_s": 3.875785352080129,
+  "cached": false
+}

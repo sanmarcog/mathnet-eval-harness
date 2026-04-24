@@ -1,0 +1,26 @@
+{
+  "id": "09he",
+  "country": "Mongolia",
+  "competition": "Mongolian National Mathematical Olympiad",
+  "gold_final_answer": "a1 = 677; and when a1 = 677, the remaining terms are consecutive: a2, a3, ..., a53 = n, n+1, ..., n+51 with n ≥ 678.",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities",
+    "Algebra > Algebraic Expressions > Sequences and Series > Sums and products",
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments"
+  ],
+  "prompt": "Let $a_1 < a_2 < \\dots < a_{53}$ be positive integers such that the sum of any 27 integers is greater than the sum of the remaining 26 integers.\n\na) Find the minimum value of $a_1$.\n\nb) Find all possible values of $a_2, \\dots, a_{53}$, when $a_1$ is at the minimum value.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find the minimum value of $a_1$, we use the given condition that the sum of any 27 integers is greater than the sum of the remaining 26 integers. To guarantee this, it is necessary and sufficient that the sum of the 27 smallest integers is strictly greater than the sum of the 26 largest integers:\n$$a_1 + a_2 + \\dots + a_{27} > a_{28} + a_{29} + \\dots + a_{53}$$\n\nWe can rearrange this inequality to isolate $a_1$:\n$$a_1 > (a_{28} - a_2) + (a_{29} - a_3) + \\dots + (a_{53} - a_{27})$$\n\nSince $a_1 < a_2 < \\dots < a_{53}$ are strictly increasing integers, the difference between any two elements $a_{i+26}$ and $a_i$ must be at least 26 (because there are 25 integers strictly between them). \nThus, $a_{i+26} - a_i \\ge 26$ for each $i = 2, 3, \\dots, 27$.\n\nThere are exactly 26 such pairs in the sum, so:\n$$a_1 > 26 \\times 26 = 676$$\nSince $a_1$ must be an integer, the minimum possible value for $a_1$ is $677$.\n\nFor part b), we substitute $a_1 = 677$ into the inequality:\n$$677 > (a_{28} - a_2) + (a_{29} - a_3) + \\dots + (a_{53} - a_{27})$$\nSince each of the 26 terms on the right side is at least 26, their sum is at least 676. For the sum to be strictly less than 677, it must be exactly 676. \nThis means that every term must be exactly its minimum possible value:\n$$a_{i+26} - a_i = 26 \\quad \\text{for all } i = 2, 3, \\dots, 27$$\n\nFor the difference between elements separated by 25 intermediate integers to be exactly 26, all adjacent elements in the sequence from $a_2$ to $a_{53}$ must have a difference of exactly 1. Therefore, $a_2, a_3, \\dots, a_{53}$ must be consecutive integers. \n\nLet $a_2 = c$. Since $a_1 < a_2$ and $a_1 = 677$, we must have $c \\ge 678$. The rest of the sequence is given by $a_k = c + k - 2$ for $k = 2, \\dots, 53$.\n\nFinal answer: a) 677 b) a_2, ..., a_{53} are consecutive integers with a_2 \\ge 678",
+  "usage": {
+    "input_tokens": 129,
+    "output_tokens": 693,
+    "thoughts_tokens": 2642
+  },
+  "latency_s": 25.506954698008485,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "a) 677 b) a_2, ..., a_{53} are consecutive integers with a_2 \\ge 678"
+  }
+}

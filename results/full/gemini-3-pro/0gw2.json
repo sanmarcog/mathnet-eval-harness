@@ -1,0 +1,19 @@
+{
+  "id": "0gw2",
+  "country": "Ukraine",
+  "competition": "Ukrainian Mathematical Olympiad",
+  "gold_final_answer": "x = y = z = √2",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities > Cauchy-Schwarz"
+  ],
+  "prompt": "Find all triplets of real positive numbers $x$, $y$ and $z$ such that\n$$\n\\begin{cases}\n\\sqrt{2x - \\frac{2}{y}} + \\sqrt{2y - \\frac{2}{z}} + \\sqrt{2z - \\frac{2}{x}} = \\sqrt{3(x + y + z)}, \\\\\nx^2 + y^2 + z^2 = 6.\n\\end{cases}\n$$",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find all triplets of real positive numbers $x$, $y$, and $z$, we can use the Cauchy-Schwarz inequality. \n\nLet $A = \\sqrt{2x - \\frac{2}{y}}$, $B = \\sqrt{2y - \\frac{2}{z}}$, and $C = \\sqrt{2z - \\frac{2}{x}}$. \nBy the Cauchy-Schwarz inequality, we have:\n$$ (A + B + C)^2 \\le 3(A^2 + B^2 + C^2) $$\n\nSubstitute the expressions for $A, B,$ and $C$ into the inequality:\n$$ \\left(\\sqrt{2x - \\frac{2}{y}} + \\sqrt{2y - \\frac{2}{z}} + \\sqrt{2z - \\frac{2}{x}}\\right)^2 \\le 3\\left(2x - \\frac{2}{y} + 2y - \\frac{2}{z} + 2z - \\frac{2}{x}\\right) $$\n\nFrom the first given equation, the left side is exactly $3(x + y + z)$. Thus, we have:\n$$ 3(x + y + z) \\le 6(x + y + z) - 6\\left(\\frac{1}{x} + \\frac{1}{y} + \\frac{1}{z}\\right) $$\n$$ 3(x + y + z) \\ge 6\\left(\\frac{1}{x} + \\frac{1}{y} + \\frac{1}{z}\\right) $$\n$$ x + y + z \\ge 2\\left(\\frac{1}{x} + \\frac{1}{y} + \\frac{1}{z}\\right) $$\n\nBy the AM-HM inequality (or Cauchy-Schwarz), we know that for positive $x, y, z$:\n$$ (x + y + z)\\left(\\frac{1}{x} + \\frac{1}{y} + \\frac{1}{z}\\right) \\ge 9 \\implies \\frac{1}{x} + \\frac{1}{y} + \\frac{1}{z} \\ge \\frac{9}{x + y + z} $$\n\nSubstitute this back into our previous inequality:\n$$ x + y + z \\ge 2\\left(\\frac{9}{x + y + z}\\right) $$\n$$ (x + y + z)^2 \\ge 18 $$\n\nNow, we use the Cauchy-Schwarz inequality again on $x, y, z$:\n$$ (x + y + z)^2 \\le 3(x^2 + y^2 + z^2) $$\n\nWe are given that $x^2 + y^2 + z^2 = 6$, so:\n$$ (x + y + z)^2 \\le 3(6) = 18 $$\n\nFor both $(x + y + z)^2 \\ge 18$ and $(x + y + z)^2 \\le 18$ to hold true, we must have:\n$$ (x + y + z)^2 = 18 $$\n\nThe equality condition for $(x + y + z)^2 = 3(x^2 + y^2 + z^2)$ requires that $x = y = z$. \nUsing the second equation $x^2 + y^2 + z^2 = 6$:\n$$ 3x^2 = 6 \\implies x^2 = 2 $$\n\nSince $x, y, z$ are positive real numbers, we take the positive root:\n$$ x = y = z = \\sqrt{2} $$\n\nChecking the domain, $2x - \\frac{2}{y} = 2\\sqrt{2} - \\sqrt{2} = \\sqrt{2} > 0$, so the square roots are well-defined.\n\nFinal answer: (\\sqrt{2}, \\sqrt{2}, \\sqrt{2})",
+  "usage": {
+    "input_tokens": 145,
+    "output_tokens": 873,
+    "thoughts_tokens": 1713
+  },
+  "latency_s": 20.210604934953153,
+  "cached": false
+}

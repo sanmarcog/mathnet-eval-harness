@@ -1,0 +1,26 @@
+{
+  "id": "00s0",
+  "country": "Balkan Mathematical Olympiad",
+  "competition": "BMO 2017",
+  "gold_final_answer": "If n is odd: C(2n−1, n). If n is even: C(2n−1, n) − 2·C(3n−1, n).",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Invariants / monovariants",
+    "Discrete Mathematics > Combinatorics > Inclusion-exclusion",
+    "Discrete Mathematics > Combinatorics > Counting two ways"
+  ],
+  "prompt": "We have $n$ students sitting at a round table. Initially each student is given one candy. At each step each student having candies either picks one of its candies and gives it to one of its neighbouring students, or distributes all of its candies to its neighbouring students in any way he wishes. A distribution of candies is called legal if it can be reached from the initial distribution via a sequence of steps.\nDetermine the number of legal distributions. (All the candies are identical.)",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Setting Up the Problem\n\nLet me label students $0, 1, \\ldots, n-1$ around the round table. Initially each student has 1 candy. Total candies = $n$ (conserved).\n\nA distribution $(a_0, a_1, \\ldots, a_{n-1})$ with $\\sum a_i = n$, $a_i \\geq 0$ is **legal** if it's reachable.\n\n## Understanding the Operations\n\nAt each step, a student with candies either:\n1. Gives 1 candy to a neighbor, OR\n2. Distributes ALL their candies to neighbors (in any way)\n\nKey insight: A student can only give candies to neighbors (left or right). Candies can only move to adjacent positions.\n\n## Analyzing Reachability\n\nLet me think about what distributions are reachable. Since candies can only move to adjacent students, let's think about the \"flow\" of candies.\n\n**Key observation:** Consider the candies as distinguishable initially (student $i$ has candy $i$). Each candy can only move left or right along the circle. Candy $i$ can reach position $j$ only if it travels some path. But since the table is circular, any candy can potentially reach any position.\n\nHowever, the constraint is more subtle. Let me think about invariants.\n\n**Attempt with small cases:**\n\nFor $n = 2$: Students 0 and 1, each with 1 candy. Possible distributions with sum 2: $(0,2), (1,1), (2,0)$. \n- $(1,1)$: initial ✓\n- $(0,2)$: Student 0 gives candy to student 1 ✓\n- $(2,0)$: Student 1 gives candy to student 0 ✓\nAll 3 are legal. $\\binom{2+2-1}{2-1}$... wait, that's 3. But $n+1 = 3$. Hmm, $2n-1 = 3$ also works for $n=2$.\n\nFor $n = 3$: Total candies = 3. Distributions $(a,b,c)$ with $a+b+c=3$, $a,b,c \\geq 0$: there are $\\binom{5}{2} = 10$ total.\n\nCan we reach $(3,0,0)$? Student 1 gives to student 0, student 2 gives to student 0: we get $(3,0,0)$. Yes ✓\n\nCan we reach $(0,3,0)$? Similarly yes.\n\nWhat about $(2,1,0)$? Start $(1,1,1)$: student 2 gives to student 0 → $(2,1,0)$ ✓\n\nIt seems all distributions might be reachable for small $n$.\n\nFor $n=3$: all 10 distributions? Let me check $(0,0,3)$: student 0 gives to student 2, student 1 gives to student 2 → $(0,0,3)$ ✓.\n\nSo for $n=3$, all $\\binom{n+n-1}{n-1} = \\binom{5}{2}=10$... but wait, is every non-negative integer solution reachable?\n\n**Claim:** Every distribution $(a_0, \\ldots, a_{n-1})$ with $\\sum a_i = n$ and $a_i \\geq 0$ is reachable.\n\n**Proof sketch:** We can concentrate all candies at one student (by having all others pass toward that student sequentially). From a concentrated state $(n, 0, \\ldots, 0)$, student 0 can distribute all $n$ candies to neighbors in any way, and then those students can redistribute further. By induction/careful argument, any target distribution is reachable.\n\nMore carefully: from $(n, 0, \\ldots, 0)$, student 0 distributes candies to neighbors, giving $k$ to student 1 and $n-k$ to student $n-1$. Then student 1 can pass candies rightward, student $n-1$ leftward. This allows building any distribution.\n\nThe number of non-negative integer solutions to $a_0 + a_1 + \\cdots + a_{n-1} = n$ is $\\binom{2n-1}{n-1}$.\n\n**Verification:** $n=2$: $\\binom{3}{1} = 3$ ✓. $n=3$: $\\binom{5}{2} = 10$ ✓.\n\n## Answer\n\nThe number of legal distributions is $\\dbinom{2n-1}{n-1}$.\n\nFinal answer: $\\dbinom{2n-1}{n-1}$",
+  "usage": {
+    "input_tokens": 149,
+    "output_tokens": 1156,
+    "thinking_tokens": 0
+  },
+  "latency_s": 19.17391468398273,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "$\\dbinom{2n-1}{n-1}$"
+  }
+}

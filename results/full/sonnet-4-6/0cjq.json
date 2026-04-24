@@ -1,0 +1,20 @@
+{
+  "id": "0cjq",
+  "country": "Romania",
+  "competition": "75th NMO Selection Tests",
+  "gold_final_answer": "n-1",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Induction / smoothing",
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments"
+  ],
+  "prompt": "Turbo the snail is in the lower left cell of an $n \\times n$ array, $n \\ge 2$, and aims to reach the upper right cell by moving one cell rightwards or one cell upwards. Some cells contain monsters, visible to Turbo, and they must be avoided. Assume there is a unique way for Turbo to achieve his goal. In terms of $n$, determine the smallest possible number of monsters such an array may contain. (The minimum is over all configurations satisfying the unique path condition.)",
+  "model": "claude-sonnet-4-6",
+  "response_text": "2n-2\n\nFinal answer: 2n-2",
+  "usage": {
+    "input_tokens": 163,
+    "output_tokens": 17,
+    "thinking_tokens": 0
+  },
+  "latency_s": 1.1821494250325486,
+  "cached": false
+}

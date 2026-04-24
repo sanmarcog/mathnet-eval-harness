@@ -1,0 +1,25 @@
+{
+  "id": "01qf",
+  "country": "Belarus",
+  "competition": "Selection and Training Session",
+  "gold_final_answer": "A circle centered at N, the midpoint of BM (where M is the midpoint of AC), with radius equal to one quarter of AC (equivalently, R/4 where R is the radius of S).",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Analytic / Coordinate Methods > Complex numbers in geometry",
+    "Geometry > Plane Geometry > Miscellaneous > Constructions and loci"
+  ],
+  "prompt": "Given a triangle $ABC$. Let $S$ be the circle passing through $C$ centered at $A$. Let $X$ be a variable point on $S$, and let $K$ be the midpoint of the segment $CX$.\nFind the locus of the midpoints of $BK$, when $X$ moves along $S$.",
+  "model": "gpt-5.4",
+  "response_text": "Let \\(M\\) be the midpoint of \\(BK\\). We want the locus of \\(M\\) as \\(X\\) varies on the circle \\(S\\).\n\nWe use vectors (or midpoint/affine geometry).\n\n- Since \\(S\\) is the circle centered at \\(A\\) through \\(C\\), we have\n\\[\nAX=AC,\n\\]\nso \\(X\\) moves on the circle with center \\(A\\) and radius \\(AC\\).\n\n- \\(K\\) is the midpoint of \\(CX\\), hence\n\\[\nK=\\frac{C+X}{2}.\n\\]\n\n- \\(M\\) is the midpoint of \\(BK\\), so\n\\[\nM=\\frac{B+K}{2}\n=\\frac{B}{2}+\\frac{C+X}{4}.\n\\]\n\nThus\n\\[\nM=\\left(\\frac B2+\\frac C4\\right)+\\frac X4.\n\\]\n\nThis is an affine image of \\(X\\): as \\(X\\) runs over a circle, \\(M\\) runs over a circle of radius \\(\\frac14 AC\\).\n\nTo find its center, write \\(X=A+(X-A)\\). Then\n\\[\nM=\\frac B2+\\frac C4+\\frac A4+\\frac{X-A}{4}.\n\\]\nSo the center is\n\\[\nO=\\frac{A+2B+C}{4}.\n\\]\n\nEquivalently, if \\(N\\) is the midpoint of \\(BC\\), then\n\\[\nO=\\frac{A+N}{2},\n\\]\nsince\n\\[\n\\frac{A+N}{2}=\\frac{A+\\frac{B+C}{2}}{2}=\\frac{A+2B+C}{4}.\n\\]\n\nHence the locus is the circle centered at the midpoint of \\(AN\\) (where \\(N\\) is the midpoint of \\(BC\\)) with radius \\(\\frac14 AC\\).\n\nFinal answer: The locus is the circle with center \\(\\displaystyle \\frac{A+2B+C}{4}\\) (equivalently, the midpoint of \\(A\\) and the midpoint of \\(BC\\)) and radius \\(\\displaystyle \\frac{AC}{4}\\).",
+  "usage": {
+    "input_tokens": 118,
+    "output_tokens": 469,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 7.601840692921542,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "The locus is the circle with center \\(\\displaystyle \\frac{A+2B+C}{4}\\) (equivalently, the midpoint of \\(A\\) and the midpoint of \\(BC\\)) and radius \\(\\displaystyle \\frac{AC}{4}\\)."
+  }
+}

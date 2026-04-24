@@ -1,0 +1,25 @@
+{
+  "id": "04bb",
+  "country": "Croatia",
+  "competition": "Mathematica competitions in Croatia",
+  "gold_final_answer": "∠EBF = 108°, ∠BEF = 54°, ∠BFE = 18°",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Miscellaneous > Angle chasing",
+    "Geometry > Plane Geometry > Transformations > Rotation"
+  ],
+  "prompt": "Let $ABCDE$ be a regular pentagon. The lines $BC$ and $DE$ intersect at point $F$. Determine the angles of triangle $BEF$.",
+  "model": "gpt-5.4",
+  "response_text": "In a regular pentagon, each interior angle is\n\n\\[\n\\frac{(5-2)180^\\circ}{5}=108^\\circ.\n\\]\n\nWe need the angles of \\(\\triangle BEF\\), where \\(F=BC\\cap DE\\).\n\nA clean way is to use directions of the sides in a regular pentagon.\n\nBecause the exterior angle of a regular pentagon is\n\n\\[\n72^\\circ,\n\\]\n\nsuccessive sides differ in direction by \\(72^\\circ\\).\n\nSo:\n- side \\(BC\\) has some direction,\n- side \\(DE\\) differs from it by \\(144^\\circ\\) (two side-turns).\n\nHence the acute angle between the lines \\(BC\\) and \\(DE\\) is\n\n\\[\n180^\\circ-144^\\circ=36^\\circ.\n\\]\n\nTherefore,\n\n\\[\n\\angle BFE=36^\\circ.\n\\]\n\nNow look at \\(\\angle EBF\\). Since \\(F\\) lies on line \\(BC\\), ray \\(BF\\) is along ray \\(BC\\). Thus\n\n\\[\n\\angle EBF = \\angle EBC.\n\\]\n\nIn a regular pentagon, all vertices lie on a circle, and arc \\(EC\\) not containing \\(B\\) is arc \\(EDC\\), which has measure\n\n\\[\n2\\cdot 72^\\circ=144^\\circ.\n\\]\n\nSo the inscribed angle\n\n\\[\n\\angle EBC=\\frac{144^\\circ}{2}=72^\\circ.\n\\]\n\nHence\n\n\\[\n\\angle EBF=72^\\circ.\n\\]\n\nFinally,\n\n\\[\n\\angle BEF = 180^\\circ-36^\\circ-72^\\circ=72^\\circ.\n\\]\n\nSo \\(\\triangle BEF\\) has angles\n\n\\[\n36^\\circ,\\ 72^\\circ,\\ 72^\\circ.\n\\]\n\nFinal answer: \\(\\angle BFE=36^\\circ,\\ \\angle EBF=72^\\circ,\\ \\angle BEF=72^\\circ\\).",
+  "usage": {
+    "input_tokens": 82,
+    "output_tokens": 423,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 7.262119333026931,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "\\(\\angle BFE=36^\\circ,\\ \\angle EBF=72^\\circ,\\ \\angle BEF=72^\\circ\\)."
+  }
+}

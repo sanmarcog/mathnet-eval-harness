@@ -1,0 +1,24 @@
+{
+  "id": "0h3r",
+  "country": "Ukraine",
+  "competition": "Ukrainian Mathematical Olympiad",
+  "gold_final_answer": "2^n - n",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Recursion, bijection"
+  ],
+  "prompt": "Let $n \\geq 1$ be integer. Sequence $a_1, a_2, \\dots, a_{2n}$ is called lucky if\n\n1) $a_1, \\dots, a_n$ is a permutation of $\\{1, 2, \\dots, n\\}$;\n\n2) $a_k = a_{n+k}$ for all $k = 1, 2, \\dots, n$;\n\n3) there exist indices $1 \\le i_1 < i_2 < \\dots < i_n \\le 2n$ such that $a_{i_k} = k$ for all $k = 1, 2, \\dots, n$.\n\nFor each $n \\geq 1$ find the number of lucky sequences.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Setting Up the Problem\n\nA lucky sequence has:\n- $(a_1, \\ldots, a_n)$ is a permutation of $\\{1, 2, \\ldots, n\\}$\n- $(a_{n+1}, \\ldots, a_{2n}) = (a_1, \\ldots, a_n)$ (the sequence repeats)\n- There exist indices $1 \\leq i_1 < i_2 < \\cdots < i_n \\leq 2n$ such that $a_{i_k} = k$\n\nSo the full sequence is $(a_1, \\ldots, a_n, a_1, \\ldots, a_n)$.\n\n## Analyzing Condition 3\n\nFor each value $k \\in \\{1, \\ldots, n\\}$, value $k$ appears at positions $p_k$ and $p_k + n$, where $p_k$ is the position of $k$ in the first half.\n\nWe need to choose exactly one occurrence of each value $k$ (either from position $p_k$ or $p_k + n$) such that the chosen positions are strictly increasing in the order $i_1 < i_2 < \\cdots < i_n$ where $a_{i_k} = k$.\n\nSo we need to pick, for each $k$, either position $p_k$ or $p_k + n$, such that the position chosen for value $k$ is less than the position chosen for value $k+1$, for all $k$.\n\nLet $\\sigma$ be the permutation where $\\sigma(k) = p_k$ (position of value $k$ in the first half). We need to choose $\\epsilon_k \\in \\{0, 1\\}$ for each $k$ such that:\n$$\\sigma(1) + \\epsilon_1 n < \\sigma(2) + \\epsilon_2 n < \\cdots < \\sigma(n) + \\epsilon_n n$$\n\n## Counting Valid Choices\n\nGiven permutation $\\sigma$, we need $\\epsilon_k \\in \\{0,1\\}$ with $\\sigma(k) + \\epsilon_k n < \\sigma(k+1) + \\epsilon_{k+1} n$ for all $k$.\n\nSince positions are in $\\{1,\\ldots,n\\}$ and $\\{n+1,\\ldots,2n\\}$:\n- If $\\epsilon_k < \\epsilon_{k+1}$: automatically satisfied (first half < second half)\n- If $\\epsilon_k = \\epsilon_{k+1}$: need $\\sigma(k) < \\sigma(k+1)$\n- If $\\epsilon_k > \\epsilon_{k+1}$: impossible (second half > first half)\n\nSo $\\epsilon_1 \\leq \\epsilon_2 \\leq \\cdots \\leq \\epsilon_n$, meaning there exists some $j \\in \\{0, 1, \\ldots, n\\}$ such that $\\epsilon_1 = \\cdots = \\epsilon_j = 0$ and $\\epsilon_{j+1} = \\cdots = \\epsilon_n = 1$.\n\nFor a given $j$: we need $\\sigma(1) < \\sigma(2) < \\cdots < \\sigma(j)$ AND $\\sigma(j+1) < \\sigma(j+2) < \\cdots < \\sigma(n)$.\n\n## Counting Permutations\n\nFor each permutation $\\sigma$ of $\\{1,\\ldots,n\\}$, the number of valid $j$ values equals the number of $j \\in \\{0,\\ldots,n\\}$ such that $\\sigma(1) < \\cdots < \\sigma(j)$ and $\\sigma(j+1) < \\cdots < \\sigma(n)$.\n\nThis means $j$ is a valid split point if both the first $j$ elements and last $n-j$ elements are increasing. The number of such $j$ for a given permutation equals the number of ways to split it into two increasing runs starting from the beginning and end.\n\nThe total count is:\n$$\\sum_{\\sigma \\in S_n} |\\{j : \\sigma(1)<\\cdots<\\sigma(j) \\text{ and } \\sigma(j+1)<\\cdots<\\sigma(n)\\}|$$\n\nFor each pair $(A, B)$ with $A \\cup B = \\{1,\\ldots,n\\}$, $A \\cap B = \\emptyset$, $|A| = j$, $|B| = n-j$: there is exactly one permutation where the first $j$ elements are $A$ in increasing order and last $n-j$ are $B$ in increasing order. Each such pair contributes 1.\n\nThe total number of such pairs over all $j$ is $\\sum_{j=0}^{n} \\binom{n}{j} = 2^n$.\n\n## Answer\n\nThe number of lucky sequences is $\\boxed{2^n}$.",
+  "usage": {
+    "input_tokens": 229,
+    "output_tokens": 1207,
+    "thinking_tokens": 0
+  },
+  "latency_s": 17.928970579989254,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "2^n"
+  }
+}

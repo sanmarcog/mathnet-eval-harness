@@ -1,0 +1,20 @@
+{
+  "id": "0d08",
+  "country": "Saudi Arabia",
+  "competition": "Saudi Arabia Mathematical Competitions 2012",
+  "gold_final_answer": "{1, 2, 4, 5, 10}",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Sequences and Series > Sums and products",
+    "Number Theory > Divisibility / Factorization > Factorization techniques"
+  ],
+  "prompt": "Let $M = \\{1, 2, 4, 5, 7, 8, \\dots\\}$ be the set of all positive integers not divisible by $3$. The sum of $2n$ consecutive elements of $M$ is $300$. Determine the possible values of $n$.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find the possible values of $n$, we first observe the structure of the set $M$. The elements of $M$ are the positive integers that leave a remainder of 1 or 2 when divided by 3. We can group the elements of $M$ into pairs of consecutive integers: $(1, 2), (4, 5), (7, 8), \\dots, (3k-2, 3k-1), \\dots$\nThe sum of the elements in the $k$-th pair is $(3k-2) + (3k-1) = 6k-3$.\n\nWhen we take $2n$ consecutive elements of $M$, there are two possible cases for how these elements align with our pairs:\n\n**Case 1: The $2n$ elements form $n$ complete pairs.**\nSuppose the pairs are the $m$-th through the $(m+n-1)$-th pairs. The sum of these $n$ pairs is:\n$$ \\sum_{k=m}^{m+n-1} (6k-3) = 6 \\frac{n(2m+n-1)}{2} - 3n = 3n(2m+n-1) - 3n = 3n(2m+n-2) $$\nWe are given that this sum is 300, so:\n$$ 3n(2m+n-2) = 300 \\implies n(2m+n-2) = 100 $$\nNotice that $n$ and $2m+n-2$ must have the same parity (since their difference is $2m-2$, which is even). The pairs of factors of 100 with the same parity are $(2, 50)$ and $(10, 10)$.\n- If $n = 2$, then $2m+0 = 50 \\implies m = 25$.\n- If $n = 10$, then $2m+8 = 10 \\implies m = 1$.\nThus, $n=2$ and $n=10$ are possible.\n\n**Case 2: The $2n$ elements consist of $n-1$ complete pairs, plus one element before and one element after.**\nSuppose the complete pairs are the $(m+1)$-th through the $(m+n-1)$-th pairs. The element before is the second element of the $m$-th pair, which is $3m-1$. The element after is the first element of the $(m+n)$-th pair, which is $3(m+n)-2$.\nThe sum of these $2n$ elements is:\n$$ (3m-1) + 3(n-1)(2(m+1)+(n-1)-2) + (3m+3n-2) $$\n$$ = 6m+3n-3 + 3(n-1)(2m+n-1) = 3(2m+n-1) + 3(n-1)(2m+n-1) = 3n(2m+n-1) $$\nSetting this equal to 300 gives:\n$$ 3n(2m+n-1) = 300 \\implies n(2m+n-1) = 100 $$\nHere, $n$ and $2m+n-1$ must have different parities (their difference is $2m-1$, which is odd). The pairs of factors of 100 with different parities are $(1, 100)$, $(4, 25)$, $(5, 20)$, and $(25, 4)$.\n- If $n = 1$, then $2m = 100 \\implies m = 50$.\n- If $n = 4$, then $2m+3 = 25 \\implies m = 11$.\n- If $n = 5$, then $2m+4 = 20 \\implies m = 8$.\n- If $n = 25$, then $2m+24 = 4 \\implies m = -10$ (not possible since $m \\ge 1$).\nThus, $n=1$, $n=4$, and $n=5$ are possible.\n\nCombining both cases, the possible values for $n$ are 1, 2, 4, 5, and 10.\n\nFinal answer: 1, 2, 4, 5, 10",
+  "usage": {
+    "input_tokens": 104,
+    "output_tokens": 1003,
+    "thoughts_tokens": 2588
+  },
+  "latency_s": 26.916409372002818,
+  "cached": false
+}

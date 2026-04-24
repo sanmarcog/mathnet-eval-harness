@@ -1,0 +1,20 @@
+{
+  "id": "03e0",
+  "country": "Bulgaria",
+  "competition": "1 Autumn tournament",
+  "gold_final_answer": "k = 1 or k = 2",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Prime numbers",
+    "Algebra > Algebraic Expressions > Polynomials > Polynomial operations"
+  ],
+  "prompt": "Find all positive integers $k$, so that there exists a polynomial $f(x)$ with rational coefficients, such that for all sufficiently large $n$,\n$$\nf(n) = \\operatorname{lcm}(n + 1, n + 2, \\dots, n + k).\n$$",
+  "model": "gpt-5.4-mini",
+  "response_text": "We claim that such a polynomial exists **only for \\(k=1\\)**.\n\n### 1) The case \\(k=1\\)\nThen\n\\[\n\\operatorname{lcm}(n+1)=n+1,\n\\]\nwhich is itself a polynomial with rational coefficients. So \\(k=1\\) works.\n\n---\n\n### 2) No \\(k\\ge 2\\) can work\n\nAssume, for contradiction, that for some \\(k\\ge 2\\) there is a polynomial \\(f(x)\\in \\mathbb{Q}[x]\\) such that for all sufficiently large \\(n\\),\n\\[\nf(n)=\\operatorname{lcm}(n+1,n+2,\\dots,n+k).\n\\]\n\nLet\n\\[\nL_n=\\operatorname{lcm}(n+1,\\dots,n+k).\n\\]\nA standard fact is that \\(L_n\\) grows at least like \\(n^k\\) up to constant factors, but more importantly, the exact value depends on the prime divisibility pattern of the block \\(n+1,\\dots,n+k\\), which fluctuates irregularly with \\(n\\).\n\nNow take primes \\(p>k\\). By choosing \\(n\\equiv -1 \\pmod p\\), one of the numbers \\(n+1,\\dots,n+k\\) is divisible by \\(p\\). By choosing \\(n\\) in another residue class mod \\(p\\), we can make none of them divisible by \\(p\\). So the \\(p\\)-adic valuation of \\(L_n\\) changes infinitely often as \\(n\\) varies. But a polynomial \\(f(n)\\) can only match such a function on all sufficiently large integers if the function eventually agrees with a polynomial sequence, which has rigid finite-difference behavior.\n\nA cleaner contradiction is obtained by comparing values on two infinite arithmetic progressions:\n\n- For infinitely many \\(n\\), one of \\(n+1,\\dots,n+k\\) is divisible by a prime \\(p>k\\), forcing \\(p\\mid L_n\\).\n- For infinitely many other \\(n\\), no term is divisible by that \\(p\\), so \\(p\\nmid L_n\\).\n\nThus the sequence \\((L_n)\\) has infinitely many jumps in divisibility by arbitrarily large primes. A nonconstant polynomial sequence \\(f(n)\\) cannot exhibit such behavior on all sufficiently large integers, because \\(f(n)\\) modulo a fixed prime is eventually periodic, while the lcm function is not eventually polynomial-like.\n\nHence no \\(k\\ge 2\\) works.\n\nTherefore the only possible value is \\(k=1\\).\n\nFinal answer: \\(\\boxed{1}\\)",
+  "usage": {
+    "input_tokens": 110,
+    "output_tokens": 566,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 4.020356046035886,
+  "cached": false
+}

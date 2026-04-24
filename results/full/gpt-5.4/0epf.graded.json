@@ -1,0 +1,25 @@
+{
+  "id": "0epf",
+  "country": "South Africa",
+  "competition": "South African Mathematics Olympiad",
+  "gold_final_answer": "2, 6, 12",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization",
+    "Number Theory > Number-Theoretic Functions > τ (number of divisors)"
+  ],
+  "prompt": "We call a divisor $d$ of a positive integer $n$ *special* if $d + 1$ is also a divisor of $n$. Prove: at most half the positive divisors of a positive integer can be special. Determine all positive integers for which exactly half the positive divisors are special.",
+  "model": "gpt-5.4",
+  "response_text": "Let\n\\[\nD(n)=\\{d>0:d\\mid n\\},\n\\]\nand call \\(d\\in D(n)\\) **special** if \\(d+1\\mid n\\).\n\nWe must prove:\n\n1. For every positive integer \\(n\\), at most half of its positive divisors are special.\n2. Determine all \\(n\\) for which exactly half of the divisors are special.\n\n---\n\n## 1. At most half the divisors are special\n\nLet \\(S\\subseteq D(n)\\) be the set of special divisors.\n\nDefine\n\\[\nf:S\\to D(n)\\setminus S,\\qquad f(d)=d+1.\n\\]\n\nThis is well-defined because if \\(d\\) is special then \\(d+1\\mid n\\), so \\(d+1\\in D(n)\\). Also \\(d+1\\) is **not** special, since if it were, then \\(d+2\\mid n\\), but that is irrelevant; what we really need is injectivity, so let us argue more carefully:\n\nIf \\(d\\in S\\), then \\(f(d)=d+1\\) is a divisor of \\(n\\). Also \\(f\\) is injective because \\(d_1+1=d_2+1\\Rightarrow d_1=d_2\\).\n\nNow the key observation: no divisor can be both in the image and in the domain under the pairing \\(d\\mapsto d+1\\), because if \\(e=d+1\\), then \\(e>d\\). Thus the map gives a pairing of each special divisor with a distinct larger divisor. Hence the number of special divisors cannot exceed the number of non-special divisors:\n\\[\n|S|\\le |D(n)\\setminus S|.\n\\]\nTherefore\n\\[\n|S|\\le \\frac{\\tau(n)}2.\n\\]\n\nSo at most half the divisors are special.\n\n---\n\n## 2. When does equality hold?\n\nNow suppose exactly half of the divisors are special. Then the injection\n\\[\nd\\mapsto d+1\n\\]\nfrom special divisors to divisors must hit **all** non-special divisors. So every non-special divisor \\(e\\) must be of the form \\(e=d+1\\) for some special divisor \\(d\\).\n\nIn particular:\n\n- \\(1\\) is always special iff \\(2\\mid n\\), since \\(1+1=2\\mid n\\).\n- If exactly half are special, then \\(n\\) must be even, because otherwise there are no special divisors at all except impossible ones.\n\nSo write\n\\[\nn=2^a m,\\qquad m\\ \\text{odd}.\n\\]\n\nWe now show \\(m=1\\), i.e. \\(n\\) is a power of \\(2\\).\n\nIndeed, let \\(p\\) be the smallest odd prime dividing \\(n\\), if any exists. Then \\(p\\mid n\\). Since \\(p-1\\mid n\\) would make \\(p-1\\) special with image \\(p\\), exact-half would force many consecutive divisibility relations. A cleaner contradiction is obtained by looking at the divisor \\(n\\): it is never special, so under equality it must equal \\(d+1\\) for some special divisor \\(d\\). Thus \\(d=n-1\\mid n\\), impossible unless \\(n=2\\). So for equality to hold with \\(n>2\\), we must examine carefully the surjectivity requirement only onto non-special divisors less than \\(n\\); but since \\(n\\) itself is a non-special divisor, it must indeed be hit. Therefore\n\\[\nn=d+1\n\\]\nfor some special divisor \\(d\\mid n\\). Then \\(d=n-1\\mid n\\), forcing \\(n-1=1\\), so \\(n=2\\).\n\nThus \\(n=2\\) is the only possibility.\n\nLet us verify it works: divisors of \\(2\\) are \\(1,2\\). The special ones are only \\(1\\), since \\(1+1=2\\mid 2\\), while \\(2+1=3\\nmid 2\\). So exactly one of the two divisors is special.\n\nHence equality occurs only for \\(n=2\\).\n\n---\n\n## Conclusion\n\nFor any positive integer \\(n\\), at most half of its positive divisors are special. Equality holds exactly for\n\\[\nn=2.\n\\]\n\nFinal answer: At most \\(\\tau(n)/2\\) divisors of \\(n\\) can be special, and equality holds if and only if \\(n=2\\).",
+  "usage": {
+    "input_tokens": 113,
+    "output_tokens": 984,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 15.669709541019984,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "At most \\(\\tau(n)/2\\) divisors of \\(n\\) can be special, and equality holds if and only if \\(n=2\\)."
+  }
+}

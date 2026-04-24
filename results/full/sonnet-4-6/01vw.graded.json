@@ -1,0 +1,25 @@
+{
+  "id": "01vw",
+  "country": "Belarus",
+  "competition": "69th Belarusian Mathematical Olympiad",
+  "gold_final_answer": "(-11/8, 2)",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Analytic / Coordinate Methods > Cartesian coordinates",
+    "Geometry > Plane Geometry > Triangles > Triangle centers: centroid, incenter, circumcenter, orthocenter, Euler line, nine-point circle"
+  ],
+  "prompt": "The point $C$ with an abscissa $-2$ lie on the hyperbola $y = 1/x$. Two lines with slopes $2$ and $1/2$ passes through $C$ and intersect the hyperbola for the second time at the points $A$ and $B$.\nFind the coordinates of the circumcenter of the triangle $ABC$.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "C is on y = 1/x with x = -2, so C = (-2, -1/2).\n\n**Finding point A** (line through C with slope 2):\ny - (-1/2) = 2(x - (-2))\ny = 2x + 4 - 1/2 = 2x + 7/2\n\nIntersect with y = 1/x:\n1/x = 2x + 7/2\n2 = 4x² + 7x\n4x² + 7x - 2 = 0\n(4x - 1)(x + 2) = 0\nx = 1/4 or x = -2\n\nSo A = (1/4, 4).\n\n**Finding point B** (line through C with slope 1/2):\ny + 1/2 = (1/2)(x + 2)\ny = x/2 + 1 - 1/2 = x/2 + 1/2\n\nIntersect with y = 1/x:\n1/x = x/2 + 1/2\n2 = x² + x\nx² + x - 2 = 0\n(x+2)(x-1) = 0\nx = 1 or x = -2\n\nSo B = (1, 1).\n\n**Circumcenter of triangle ABC** with A = (1/4, 4), B = (1, 1), C = (-2, -1/2).\n\nThe circumcenter (h, k) is equidistant from all three vertices.\n\nFrom |OA|² = |OB|²:\n(h - 1/4)² + (k - 4)² = (h - 1)² + (k - 1)²\n\nh² - h/2 + 1/16 + k² - 8k + 16 = h² - 2h + 1 + k² - 2k + 1\n\n-h/2 + 1/16 - 8k + 16 = -2h + 2 - 2k\n\n(3/2)h - 6k + 16 + 1/16 - 2 = 0\n\n(3/2)h - 6k + 14 + 1/16 = 0\n\n(3/2)h - 6k = -14 - 1/16 = -225/16\n\nMultiply by 16: 24h - 96k = -225 ... (1)\n\nFrom |OB|² = |OC|²:\n(h-1)² + (k-1)² = (h+2)² + (k+1/2)²\n\nh² - 2h + 1 + k² - 2k + 1 = h² + 4h + 4 + k² + k + 1/4\n\n-2h + 2 - 2k = 4h + 4 + k + 1/4\n\n-6h - 3k = 4 + 1/4 - 2 = 2 + 1/4 = 9/4\n\nMultiply by 4: -24h - 12k = 9 ... (2)\n\nAdd (1) and (2):\n24h - 96k - 24h - 12k = -225 + 9\n-108k = -216\nk = 2\n\nFrom (2): -24h - 24 = 9 → -24h = 33 → h = -33/24 = -11/8\n\n**Verification:**\n- Distance² to C = (-11/8 + 2)² + (2 + 1/2)² = (5/8)² + (5/2)² = 25/64 + 25/4 = 25/64 + 400/64 = 425/64\n- Distance² to B = (-11/8 - 1)² + (2-1)² = (-19/8)² + 1 = 361/64 + 64/64 = 425/64 ✓\n- Distance² to A = (-11/8 - 1/4)² + (2-4)² = (-13/8)² + 4 = 169/64 + 256/64 = 425/64 ✓\n\nFinal answer: $\\left(-\\dfrac{11}{8},\\ 2\\right)$",
+  "usage": {
+    "input_tokens": 129,
+    "output_tokens": 1073,
+    "thinking_tokens": 0
+  },
+  "latency_s": 12.544661332969554,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "$\\left(-\\dfrac{11}{8},\\ 2\\right)$"
+  }
+}

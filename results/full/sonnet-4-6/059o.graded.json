@@ -1,0 +1,25 @@
+{
+  "id": "059o",
+  "country": "Estonia",
+  "competition": "Estonian Math Competitions",
+  "gold_final_answer": "10^{2^{2020}} + 33",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Sequences and Series > Recurrence relations",
+    "Algebra > Intermediate Algebra > Quadratic functions"
+  ],
+  "prompt": "On the first line of a notebook Juku writes the number $43$. On every following line he writes the number $x^2 - 66x + 1122$, where $x$ is the number on the previous line. Find the number that Juku will write on the $2021$st line.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "Let me find the pattern by computing the first few iterations.\n\nLet f(x) = x² - 66x + 1122.\n\n**Line 1:** x₁ = 43\n\n**Line 2:** f(43) = 43² - 66·43 + 1122 = 1849 - 2838 + 1122 = 133\n\n**Line 3:** f(133) = 133² - 66·133 + 1122 = 17689 - 8778 + 1122 = 10033\n\nThis is growing fast. Let me look for fixed points or cycles.\n\n**Fixed points:** x² - 66x + 1122 = x → x² - 67x + 1122 = 0\nDiscriminant: 4489 - 4488 = 1, so x = (67 ± 1)/2 = 34 or 33.\n\n**Check for cycles of period 2:** f(f(x)) = x but f(x) ≠ x.\n\nLet me substitute y = f(x), so f(y) = x.\n- f(x) = y and f(y) = x\n- x² - 66x + 1122 = y and y² - 66y + 1122 = x\n\nSubtracting: x² - y² - 66x + 66y = y - x\n(x-y)(x+y) - 66(x-y) = -(x-y)\n(x-y)(x+y-66+1) = 0\n(x-y)(x+y-65) = 0\n\nSince x ≠ y (not a fixed point), we need x + y = 65.\n\nSo if x + f(x) = 65:\nx + x² - 66x + 1122 = 65\nx² - 65x + 1057 = 0\nDiscriminant: 4225 - 4228 = -3 < 0\n\nNo real 2-cycles exist. So the sequence doesn't cycle with period 2.\n\nWait, let me recheck line 2: f(43) = 1849 - 2838 + 1122 = 133. ✓\n\nLet me try completing the square: f(x) = (x-33)² + 33.\n\nCheck: (x-33)² + 33 = x² - 66x + 1089 + 33 = x² - 66x + 1122. ✓\n\nSo let aₙ = xₙ - 33. Then:\nxₙ₊₁ = (xₙ - 33)² + 33\naₙ₊₁ + 33 = aₙ² + 33\naₙ₊₁ = aₙ²\n\nSo the sequence aₙ satisfies aₙ₊₁ = aₙ².\n\n**a₁ = x₁ - 33 = 43 - 33 = 10**\n\nThen:\n- a₁ = 10\n- a₂ = 10² = 100\n- a₃ = 100² = 10⁴\n- a₄ = (10⁴)² = 10⁸\n- aₙ = 10^(2^(n-1))\n\nSo xₙ = 10^(2^(n-1)) + 33.\n\n**Line 2021:** x₂₀₂₁ = 10^(2^2020) + 33\n\nFinal answer: $10^{2^{2020}}+33$",
+  "usage": {
+    "input_tokens": 116,
+    "output_tokens": 885,
+    "thinking_tokens": 0
+  },
+  "latency_s": 10.290051063988358,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "$10^{2^{2020}}+33$"
+  }
+}

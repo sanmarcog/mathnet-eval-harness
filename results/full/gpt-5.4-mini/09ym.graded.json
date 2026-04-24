@@ -1,0 +1,26 @@
+{
+  "id": "09ym",
+  "country": "Netherlands",
+  "competition": "Junior Mathematical Olympiad",
+  "gold_final_answer": "1/4",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Geometric Inequalities > Optimization in geometry",
+    "Geometry > Plane Geometry > Miscellaneous > Constructions and loci",
+    "Discrete Mathematics > Combinatorics > Counting two ways"
+  ],
+  "prompt": "Eleonora has a piece of paper in the shape of an equilateral triangle with an area of $1$. She folds the piece several times and puts it flat on the table. It turns out that the figure on the table is not more than four layers thick anywhere.\nWhat is the minimum area of the figure lying on the table?",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let the original equilateral triangle have side length \\(s\\) and area \\(1\\).\n\n### Key idea\nWhen a paper figure is folded flat, the image on the table is a planar region covered by several layers.  \nIf the stack is **at most 4 layers thick everywhere**, then at every point the original paper contributes to at most 4 layers. So the area of the final laid-flat figure must be at least \\(\\frac14\\) of the original area.\n\nSo we have the lower bound\n\\[\n\\text{area on table} \\ge \\frac{1}{4}.\n\\]\n\n### Why this is achievable\nWe can actually fold the equilateral triangle into 4 equal-area layers, for example by folding along three suitable lines so that the triangle is partitioned into 4 congruent smaller triangles, then stacking them. The resulting planar figure has area exactly \\(\\frac14\\) of the original, and nowhere exceeds 4 layers.\n\nThus the minimum possible area is\n\n\\[\n\\boxed{\\frac14}.\n\\]\n\nFinal answer: \\(\\frac14\\)",
+  "usage": {
+    "input_tokens": 116,
+    "output_tokens": 232,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 2.607377262087539,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "\\(\\frac14\\)"
+  }
+}

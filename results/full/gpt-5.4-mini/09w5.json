@@ -1,0 +1,20 @@
+{
+  "id": "09w5",
+  "country": "Netherlands",
+  "competition": "First Round",
+  "gold_final_answer": "5",
+  "topics_flat": [
+    "Algebra > Prealgebra / Basic Algebra > Integers",
+    "Algebra > Prealgebra / Basic Algebra > Simple Equations"
+  ],
+  "prompt": "Annemiek and Bart each have a note on which they have written three different positive integers. It appears that there is exactly one number that is on both their notes. Moreover, if you add any two different numbers from Annemiek's note, you get one of the numbers on Bart's note. One of the numbers on Annemiek's note is her favourite number, and if you multiply it by $3$, you get one of the numbers on Bart's note. Bart's note contains the number $25$, his favourite number.\nWhat is Annemiek's favourite number?",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let Annemiek’s numbers be \\(a,b,c\\), with \\(a\\) her favourite number.  \nLet Bart’s numbers be \\(x,y,z\\), and one of them is \\(25\\).\n\nSince every sum of two different numbers from Annemiek’s note appears on Bart’s note, the three sums\n\\[\na+b,\\quad a+c,\\quad b+c\n\\]\nmust be exactly the three numbers on Bart’s note.\n\nAlso, \\(3a\\) is one of Bart’s numbers, so \\(3a\\) must be one of these three sums.\n\nThere is exactly one common number on both notes. Since Bart has \\(25\\), the shared number must be one of the sums above and equal to \\(25\\).\n\nSo one of\n\\[\na+b,\\ a+c,\\ b+c\n\\]\nis \\(25\\), and one of them is \\(3a\\).\n\nNow try to fit this consistently. Suppose \\(a+b=25\\) and \\(a+c=3a\\), so \\(c=2a\\) and \\(b=25-a\\). Then\n\\[\nb+c = (25-a)+2a = 25+a.\n\\]\nThis must also be Bart’s remaining number, and it must be different from \\(25\\) and \\(3a\\). Since the only shared number is \\(25\\), we need \\(3a\\neq 25\\) and \\(25+a\\neq 25\\), which is fine.\n\nBut Bart’s note contains exactly the three sums, so the set is\n\\[\n\\{25,\\ 3a,\\ 25+a\\}.\n\\]\nSince \\(25\\) is the only common number, neither \\(3a\\) nor \\(25+a\\) can equal any of Annemiek’s numbers \\(a,2a,25-a\\). Testing the possibilities gives a clean solution when \\(a=10\\):\n\\[\na+b=25,\\quad a+c=30,\\quad b+c=35,\n\\]\nwhich corresponds to\n\\[\n\\{a,b,c\\}=\\{10,15,20\\},\\qquad \\{x,y,z\\}=\\{25,30,35\\}.\n\\]\nAll conditions are satisfied: the sums are \\(25,30,35\\), \\(3a=30\\), and the only common number is \\(25\\).\n\nSo Annemiek’s favourite number is \\(10\\).\n\nFinal answer: 10",
+  "usage": {
+    "input_tokens": 166,
+    "output_tokens": 517,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 4.416847429936752,
+  "cached": false
+}

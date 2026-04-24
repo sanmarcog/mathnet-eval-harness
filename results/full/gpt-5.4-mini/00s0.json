@@ -1,0 +1,21 @@
+{
+  "id": "00s0",
+  "country": "Balkan Mathematical Olympiad",
+  "competition": "BMO 2017",
+  "gold_final_answer": "If n is odd: C(2n−1, n). If n is even: C(2n−1, n) − 2·C(3n−1, n).",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Invariants / monovariants",
+    "Discrete Mathematics > Combinatorics > Inclusion-exclusion",
+    "Discrete Mathematics > Combinatorics > Counting two ways"
+  ],
+  "prompt": "We have $n$ students sitting at a round table. Initially each student is given one candy. At each step each student having candies either picks one of its candies and gives it to one of its neighbouring students, or distributes all of its candies to its neighbouring students in any way he wishes. A distribution of candies is called legal if it can be reached from the initial distribution via a sequence of steps.\nDetermine the number of legal distributions. (All the candies are identical.)",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let the students be the vertices of a cycle \\(C_n\\), and let \\(a_i\\) be the number of candies held by student \\(i\\).\n\nWe claim that the legal distributions are exactly the following:\n\n- either every student has exactly \\(1\\) candy;\n- or there is some consecutive block of students who have \\(0\\) candies, and the students adjacent to this block may have arbitrary positive numbers, while every other student has exactly \\(1\\) candy.\n\nIn fact, this simplifies further: the only legal distributions are those in which the set of empty students is a contiguous block (possibly empty, possibly all students), and every nonempty student has at least one candy, with the total number of candies arbitrary subject to the process.\n\nA cleaner way to count them is to observe a key invariant:\n\n- A student can never end up with candies unless some candy has crossed each edge separating that student from an initially occupied region.\n- Because candies are identical and each student starts with one, the only obstruction is the pattern of zeroes: the set of zero-candy students can never consist of two separated blocks, since creating two separated zero regions would require “splitting” the circle of occupied vertices in a way impossible under the allowed moves.\n\nConversely, any configuration with a single contiguous block of zeroes is achievable: repeatedly move candies along the cycle to create the desired block, and distribute the remaining candies arbitrarily among the boundary neighbors.\n\nSo the legal distributions are in bijection with the choice of a contiguous block of empty students, together with a composition of the remaining candies among the nonempty students. But since candies are identical and each move preserves total candy number \\(n\\), the only possible counts are those obtained from the initial \\(n\\) candies by merging them through the process; this yields exactly one legal distribution for each choice of empty block.\n\nNow count the possible empty blocks on a cycle of \\(n\\) vertices:\n\n- empty block of length \\(0\\): 1 choice;\n- empty block of length \\(1,2,\\dots,n-1\\): for each length \\(k\\), there are \\(n\\) choices of starting vertex;\n- empty block of length \\(n\\): 1 choice.\n\nHence the total number is\n\\[\n1+n(n-1)+1 = n(n-1)+2.\n\\]\n\nTherefore the number of legal distributions is\n\n\\[\n\\boxed{n(n-1)+2}.\n\\]\n\nFinal answer: \\(\\boxed{n(n-1)+2}\\)",
+  "usage": {
+    "input_tokens": 143,
+    "output_tokens": 525,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 4.424327810993418,
+  "cached": false
+}

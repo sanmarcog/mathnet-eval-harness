@@ -1,0 +1,26 @@
+{
+  "id": "06yj",
+  "country": "IMO",
+  "competition": "IMO2024 Shortlisted Problems",
+  "gold_final_answer": "1, 2, 4, 12",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Prime numbers",
+    "Number Theory > Modular Arithmetic > Fermat / Euler / Wilson theorems",
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities"
+  ],
+  "prompt": "Find all positive integers $n$ with the following property: for all positive divisors $d$ of $n$, we have that $d+1 \\mid n$ or $d+1$ is prime.",
+  "model": "gpt-5.4-mini",
+  "response_text": "We seek all positive integers \\(n\\) such that for every positive divisor \\(d\\mid n\\), either \\(d+1\\mid n\\) or \\(d+1\\) is prime.\n\n### Step 1: Test small values\n\n- \\(n=1\\): divisor \\(d=1\\), so \\(d+1=2\\) is prime. Works.\n- \\(n=2\\): divisors \\(1,2\\). Then \\(2\\) and \\(3\\) are prime or divide \\(2\\) appropriately. Works.\n- \\(n=3\\): divisors \\(1,3\\). Then \\(2\\) is prime, \\(4\\) does not divide \\(3\\) but \\(4\\) is not prime, so fails.\n- \\(n=4\\): divisors \\(1,2,4\\). Then \\(5\\) is prime, \\(3\\) is prime, \\(5\\) is prime. Works.\n\nSo \\(1,2,4\\) are candidates.\n\n### Step 2: Show no larger \\(n\\) work\n\nAssume \\(n>4\\) satisfies the property.\n\n- If \\(n\\) is odd and \\(n>1\\), then \\(d=n\\) gives \\(n+1\\) must be prime. But also \\(d=1\\) gives \\(2\\) prime, okay.  \n  However, if \\(n\\) is an odd composite, it has a proper divisor \\(d\\ge 3\\). Then \\(d+1\\) is even and greater than \\(2\\), hence not prime, so it must divide \\(n\\). But an even number dividing an odd number is impossible. Contradiction.\n\nSo \\(n\\) cannot be odd and \\(>1\\).\n\n- Hence \\(n\\) is even. Write \\(n=2^a m\\) with \\(m\\) odd.  \n  If \\(m>1\\), let \\(d=m\\), a divisor of \\(n\\). Then \\(d+1\\) is even and \\(>2\\), so not prime; thus \\(m+1\\mid n\\). But \\(m+1\\) is even, and since \\(m\\) is odd, \\(m+1\\ge 4\\). In particular, repeated use on divisors leads to an infinite descent contradiction unless \\(m=1\\). A simpler direct argument: for odd divisor \\(d>1\\), \\(d+1\\) is even and not prime, so it must divide \\(n\\). Since \\(n\\) has only one factor \\(2\\) if \\(a=1\\), and in any case this forces many even divisors; the only possibilities that survive are powers of \\(2\\). So \\(n=2^a\\).\n\nNow let \\(n=2^a\\) with \\(a\\ge 1\\). Consider divisor \\(d=2^{a-1}\\) (if \\(a\\ge 2\\)). Then\n\\[\nd+1=2^{a-1}+1.\n\\]\nIf \\(a\\ge 3\\), this number is odd and greater than \\(3\\); it may or may not be prime, but we can use \\(d=2\\), giving \\(3\\) prime, and \\(d=2^{a-1}\\) to force constraints. The key check is \\(d=2^{a-1}\\) when \\(a\\ge 3\\): if \\(2^{a-1}+1\\) is composite, it must divide \\(2^a\\), impossible since it is odd. Thus \\(2^{a-1}+1\\) must be prime. But for \\(a\\ge 4\\), \\(2^{a-1}+1\\) is composite in many cases? More directly, test \\(d=2^{a-2}\\): then \\(2^{a-2}+1\\) must be prime for all \\(a\\), which fails at \\(a=3\\) gives \\(3\\), okay; \\(a=4\\) gives \\(5\\), okay; \\(a=5\\) gives \\(9\\), not prime and not dividing \\(32\\). So \\(a\\le 4\\).\n\nCheck:\n- \\(a=1\\): \\(n=2\\) works.\n- \\(a=2\\): \\(n=4\\) works.\n- \\(a=3\\): \\(n=8\\), divisor \\(d=4\\) gives \\(5\\) prime, \\(d=2\\) gives \\(3\\) prime, \\(d=8\\) gives \\(9\\) not prime and not dividing \\(8\\), so fails.\n- Larger \\(a\\) also fail.\n\nThus only \\(n=1,2,4\\).\n\n### Final answer\n\\[\n\\boxed{1,\\,2,\\,4}\n\\]\n\nFinal answer: \\(1,2,4\\)",
+  "usage": {
+    "input_tokens": 92,
+    "output_tokens": 1046,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 7.498853093013167,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "\\(1,2,4\\)"
+  }
+}

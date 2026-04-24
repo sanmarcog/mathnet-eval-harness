@@ -1,0 +1,21 @@
+{
+  "id": "0ai2",
+  "country": "North Macedonia",
+  "competition": "Macedonian Mathematical Olympiad",
+  "gold_final_answer": "302561952",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Combinatorial Geometry",
+    "Algebra > Equations and Inequalities > Jensen / smoothing",
+    "Discrete Mathematics > Combinatorics > Induction / smoothing"
+  ],
+  "prompt": "2014 lines are given in a plane, arranged in three groups of pairwise parallel lines. What is the greatest possible number of triangles formed by the lines (each side from such a triangle lies on one of the lines)?\n\nВо рамнина, 2014 прави се распоредени во три групи заемно паралелни прави. Кој е најголемиот можен број на триаголници кои ги образуваат правите (секоја страна од таков триаголник лежи на некоја од правите).",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Setting Up the Problem\n\nLet the three groups have $a$, $b$, and $c$ parallel lines where $a + b + c = 2014$.\n\n## Counting Triangles\n\nA triangle is formed by choosing one line from each group (since lines within the same group are parallel and don't intersect). Each selection of one line from group 1, one from group 2, and one from group 3 forms exactly one triangle (assuming no three lines are concurrent, which we can arrange to maximize triangles).\n\nThe number of triangles is:\n$$N = a \\cdot b \\cdot c$$\n\n## Maximizing $abc$ with $a + b + c = 2014$\n\nBy AM-GM inequality, $abc$ is maximized when $a$, $b$, $c$ are as equal as possible.\n\nSince $2014 = 3 \\times 671 + 1$, we can't divide equally. The best distributions are:\n- $(671, 671, 672)$: gives $671 \\times 671 \\times 672$\n\nLet me compute:\n$$671 \\times 671 = 450241$$\n$$450241 \\times 672 = 450241 \\times 672$$\n\nComputing: $450241 \\times 600 = 270,144,600$\n$450241 \\times 72 = 32,417,352$\nTotal: $302,561,952$\n\n## Verification that this is optimal\n\nCompare with $(670, 672, 672)$:\n$$670 \\times 672 \\times 672 = 670 \\times 451584 = 302,561,280$$\n\nSince $302,561,952 > 302,561,280$, the distribution $(671, 671, 672)$ is better.\n\n## Final Answer\n\nThe maximum number of triangles is $671 \\times 671 \\times 672 = \\boxed{302561952}$.\n\nFinal answer: 302561952",
+  "usage": {
+    "input_tokens": 179,
+    "output_tokens": 466,
+    "thinking_tokens": 0
+  },
+  "latency_s": 6.465996816055849,
+  "cached": false
+}

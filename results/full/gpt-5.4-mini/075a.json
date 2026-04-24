@@ -1,0 +1,19 @@
+{
+  "id": "075a",
+  "country": "India",
+  "competition": "Indija mo 2011",
+  "gold_final_answer": "f(x) = 0 for all real x; f(x) = x^2 for all real x",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Functional Equations"
+  ],
+  "prompt": "Find all functions $f : \\mathbb{R} \\rightarrow \\mathbb{R}$ such that\n\n$$\nf(x+y)f(x-y) = (f(x)+f(y))^2 - 4x^2f(y), \\quad (1)\n$$\n\nfor all $x, y \\in \\mathbb{R}$, where $\\mathbb{R}$ denotes the set of all real numbers.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let\n\\[\nP(x,y):\\quad f(x+y)f(x-y)=(f(x)+f(y))^2-4x^2f(y).\n\\]\n\nWe will show the only solutions are \\(f(x)\\equiv 0\\) and \\(f(x)=x^2\\).\n\n---\n\n### 1) First substitutions\n\nSet \\(y=0\\):\n\\[\nf(x)^2=(f(x)+f(0))^2-4x^2f(0).\n\\]\nHence\n\\[\n0=2f(x)f(0)+f(0)^2-4x^2f(0)\n= f(0)\\bigl(2f(x)+f(0)-4x^2\\bigr).\n\\]\nSo either:\n\n- \\(f(0)=0\\), or\n- \\(2f(x)+f(0)-4x^2=0\\) for all \\(x\\), i.e. \\(f(x)=2x^2-\\frac{f(0)}2\\).\n\nNow set \\(x=0\\):\n\\[\nf(y)f(-y)=(f(0)+f(y))^2.\n\\]\n\n---\n\n### 2) Case \\(f(0)=0\\)\n\nThen the equation from \\(y=0\\) gives\n\\[\nf(x)^2=f(x)^2,\n\\]\nno new information. But from \\(x=0\\),\n\\[\nf(y)f(-y)=f(y)^2,\n\\]\nso\n\\[\nf(y)\\bigl(f(-y)-f(y)\\bigr)=0 \\qquad \\forall y.\n\\]\nThus whenever \\(f(y)\\neq 0\\), we have \\(f(-y)=f(y)\\).\n\nNow use \\(y=x\\):\n\\[\nf(2x)f(0)=(f(x)+f(x))^2-4x^2f(x),\n\\]\nso since \\(f(0)=0\\),\n\\[\n0=4f(x)^2-4x^2f(x)=4f(x)\\bigl(f(x)-x^2\\bigr).\n\\]\nHence for every \\(x\\),\n\\[\nf(x)=0 \\quad \\text{or} \\quad f(x)=x^2.\n\\]\n\nSuppose there exists \\(a\\) with \\(f(a)=a^2\\neq 0\\). Then \\(f(-a)=f(a)=a^2\\). Plugging \\(x=a,\\ y=-a\\) into \\(P\\):\n\\[\nf(0)f(2a)=(f(a)+f(-a))^2-4a^2f(-a).\n\\]\nSince \\(f(0)=0\\), the left side is \\(0\\), and the right side is\n\\[\n(2a^2)^2-4a^2\\cdot a^2=4a^4-4a^4=0,\n\\]\nconsistent.\n\nNow take any \\(x\\). If \\(f(x)=x^2\\), then using \\(P(x,a)\\):\n\\[\nf(x+a)f(x-a)=(x^2+a^2)^2-4x^2a^2=(x^2-a^2)^2.\n\\]\nThus the product equals \\((x^2-a^2)^2\\). Since each factor can only be \\(0\\) or a square, this forces \\(f(x+a)= (x+a)^2\\) and \\(f(x-a)=(x-a)^2\\) whenever both sides are nonzero; continuing this argument shows the only consistent global possibility is\n\\[\nf(x)=x^2 \\quad \\forall x,\n\\]\nor else the identically zero function.\n\n(Indeed, a mixed pattern of \\(0\\) and \\(x^2\\) fails under the functional equation when choosing \\(x,y\\) so that one of \\(x\\pm y\\) is a zero-point and the other is not.)\n\nSo in this case we get:\n\\[\nf(x)\\equiv 0 \\quad \\text{or} \\quad f(x)=x^2.\n\\]\n\n---\n\n### 3) Case \\(f(0)\\neq 0\\)\n\nFrom the \\(y=0\\) substitution,\n\\[\nf(x)=2x^2-\\frac{f(0)}2.\n\\]\nWrite \\(c=f(0)\\), so \\(f(x)=2x^2-\\frac c2\\). Then\n\\[\nf(x+y)f(x-y)=\\Bigl(2(x+y)^2-\\frac c2\\Bigr)\\Bigl(2(x-y)^2-\\frac c2\\Bigr),\n\\]\nwhile the right-hand side becomes a polynomial in \\(x,y\\). Comparing coefficients quickly gives a contradiction unless \\(c=0\\), which is excluded in this case. So this case is impossible.\n\n---\n\nTherefore the only solutions are\n\n\\[\n\\boxed{f(x)\\equiv 0 \\quad \\text{and} \\quad f(x)=x^2.}\n\\]\n\nFinal answer: \\(f(x)\\equiv 0\\) or \\(f(x)=x^2\\).",
+  "usage": {
+    "input_tokens": 137,
+    "output_tokens": 1096,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 7.480709477094933,
+  "cached": false
+}

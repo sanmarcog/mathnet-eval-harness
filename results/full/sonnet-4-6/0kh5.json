@@ -1,0 +1,20 @@
+{
+  "id": "0kh5",
+  "country": "United States",
+  "competition": "Fall 2021 AMC 10 B",
+  "gold_final_answer": "D",
+  "topics_flat": [
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities",
+    "Algebra > Prealgebra / Basic Algebra > Simple Equations"
+  ],
+  "prompt": "Which of the following conditions is sufficient to guarantee that integers $x$, $y$, and $z$ satisfy the equation\n$$\nx(x - y) + y(y - z) + z(z - x) = 1?\n$$\n(A) $x > y$ and $y = z$\n(B) $x = y - 1$ and $y = z - 1$\n(C) $x = z + 1$ and $y = x + 1$\n(D) $x = z$ and $y - 1 = x$\n(E) $x + y + z = 1$",
+  "model": "claude-sonnet-4-6",
+  "response_text": "Let me expand the left side:\nx(x-y) + y(y-z) + z(z-x) = x² - xy + y² - yz + z² - zx\n\nLet me test each condition:\n\n**(A) x > y and y = z**\nWith y = z: x² - xy + y² - y² + y² - yx = x² - 2xy + y² = (x-y)²\nThis equals 1 when x-y = ±1, but x > y only tells us x-y ≥ 1, not necessarily 1. Not sufficient.\n\n**(B) x = y-1 and y = z-1**\nSo x = y-1, z = y+1. Substitute:\nx² - xy + y² - yz + z² - zx\n= (y-1)² - (y-1)y + y² - y(y+1) + (y+1)² - (y+1)(y-1)\n= (y²-2y+1) - (y²-y) + y² - (y²+y) + (y²+2y+1) - (y²-1)\n= y²-2y+1 - y²+y + y² - y²-y + y²+2y+1 - y²+1\n= (y²-y²+y²-y²+y²-y²) + (-2y+y-y+2y) + (1+1+1)\n= 0 + 0 + 3 = 3 ≠ 1. Not sufficient.\n\n**(C) x = z+1 and y = x+1**\nSo z = x-1, y = x+1. Substitute:\nx² - x(x+1) + (x+1)² - (x+1)(x-1) + (x-1)² - (x-1)x\n= x² - x²-x + x²+2x+1 - (x²-1) + x²-2x+1 - x²+x\n= x² - x²-x + x²+2x+1 - x²+1 + x²-2x+1 - x²+x\n= (1-1+1-1+1-1)x² + (-1+2-2+1)x + (1+1+1)\n= 0·x² + 0·x + 3 = 3 ≠ 1. Not sufficient.\n\n**(D) x = z and y-1 = x**\nSo z = x, y = x+1. Substitute:\nx² - x(x+1) + (x+1)² - (x+1)x + x² - x·x\n= x² - x²-x + x²+2x+1 - x²-x + x² - x²\n= (1-1+1-1+1-1)x² + (-1+2-1)x + 1\n= 0·x² + 0·x + 1 = 1 ✓\n\nThis always equals 1!\n\n**(E) x+y+z = 1** - This is one equation in three unknowns, clearly not sufficient (e.g., x=y=z=1/3 doesn't work for integers, but x=1,y=0,z=0: 1(1)+0+0=1 ✓, while x=2,y=0,z=-1: 4-0+1-(-2)=4+0+1+2=... let me check: 2(2)+0(-1)+(-1)(-3)=4+0+3=7≠1). Not sufficient.\n\nThe answer is **(D)**.\n\nFinal answer: D",
+  "usage": {
+    "input_tokens": 191,
+    "output_tokens": 918,
+    "thinking_tokens": 0
+  },
+  "latency_s": 12.190489445929416,
+  "cached": false
+}

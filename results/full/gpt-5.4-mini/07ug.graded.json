@@ -1,0 +1,26 @@
+{
+  "id": "07ug",
+  "country": "Ireland",
+  "competition": "IRL_ABooklet",
+  "gold_final_answer": "10, 21, 32, 43, 54, 65, 76, 87, 98",
+  "topics_flat": [
+    "Number Theory > Other",
+    "Algebra > Prealgebra / Basic Algebra > Integers",
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities"
+  ],
+  "prompt": "For any positive integer $N$ we denote by $\\overline\\{N\\}$ the number obtained by writing the digits of $N$ from right to left. For instance, if $N = 2395$ then $\\overline\\{N\\} = 5932$ and if $N = 3780$ then $\\overline\\{N\\} = 873$.\nFind all positive integers $N$ such that $N - \\overline\\{N\\} = 9$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let \\(N\\) have decimal digits \\(a_k a_{k-1}\\dots a_1\\) (so \\(a_k\\neq 0\\)), and let \\(m\\) be the number of digits. Then  \n\\[\nN-\\overline N=9.\n\\]\n\nWe use the fact that reversing changes the place values. A very useful observation is that\n\\[\nN \\equiv \\overline N \\pmod 9,\n\\]\nso \\(N-\\overline N\\) is always divisible by \\(9\\). Since the difference is exactly \\(9\\), we need the smallest possible nonzero difference.\n\nNow consider the digit structure. If \\(N\\) has more than one digit, then the first and last digits swap place, and the difference between \\(N\\) and \\(\\overline N\\) is determined by the outer digits, with contributions from inner pairs. In particular, for a number with digits \\(a_k\\dots a_1\\),\n\\[\nN-\\overline N=\\sum_{i=1}^k a_i(10^{i-1}-10^{k-i}).\n\\]\nFor this to equal \\(9\\), all contributions except a single \\(9\\) must cancel, which is only possible for a two-digit number:\n\\[\nN=10a+b,\\qquad \\overline N=10b+a.\n\\]\nThen\n\\[\nN-\\overline N=(10a+b)-(10b+a)=9(a-b).\n\\]\nSo we need\n\\[\n9(a-b)=9 \\quad\\Longrightarrow\\quad a-b=1.\n\\]\nThus \\(a\\) and \\(b\\) are digits with \\(a=b+1\\), and \\(a\\in\\{1,\\dots,9\\}\\), \\(b\\in\\{0,\\dots,8\\}\\).\n\nTherefore all solutions are the two-digit numbers\n\\[\n10a+(a-1)\\quad (a=1,2,\\dots,9),\n\\]\ni.e.\n\\[\n10,21,32,43,54,65,76,87,98.\n\\]\n\nFinal answer: \\(10,21,32,43,54,65,76,87,98\\)",
+  "usage": {
+    "input_tokens": 154,
+    "output_tokens": 475,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.955117080011405,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "\\(10,21,32,43,54,65,76,87,98\\)"
+  }
+}

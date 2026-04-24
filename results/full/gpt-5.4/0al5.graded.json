@@ -1,0 +1,26 @@
+{
+  "id": "0al5",
+  "country": "North Macedonia",
+  "competition": "Macedonian Mathematical Olympiad",
+  "gold_final_answer": "ceil(n/2)",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments",
+    "Discrete Mathematics > Combinatorics > Invariants / monovariants",
+    "Discrete Mathematics > Graph Theory > Matchings, Marriage Lemma, Tutte's theorem"
+  ],
+  "prompt": "At a round table are seated $n$ boys and $n$ girls, where $n > 3$. In every move, it is allowed to swap the sitting places of two adjacent children. The entropy of a sitting arrangement is the minimum number of moves resulting with each child having at least one neighbor of the same gender. Find the maximum possible entropy of a sitting arrangement.",
+  "model": "gpt-5.4",
+  "response_text": "Let us encode boys by \\(B\\) and girls by \\(G\\). We have a cyclic word of length \\(2n\\) with \\(n\\) \\(B\\)'s and \\(n\\) \\(G\\)'s.\n\nWe want the minimum number of adjacent swaps needed to reach a configuration in which **every child has at least one neighbor of the same gender**. Then we seek the maximum possible value of this minimum over all initial seatings.\n\n## 1. What do the “good” final arrangements look like?\n\nIf every child has at least one neighbor of the same gender, then there can be no isolated \\(B\\) or isolated \\(G\\). So, around the circle, each maximal block of equal letters has length at least \\(2\\).\n\nThus a good arrangement is a cyclic concatenation of blocks\n\\[\nB^{a_1}G^{b_1}B^{a_2}G^{b_2}\\cdots\n\\]\nwith all \\(a_i,b_i\\ge 2\\).\n\nIn particular, the alternating arrangement\n\\[\nBGBG\\cdots BG\n\\]\nis the “worst-shaped” one, since every child has two neighbors of the opposite gender.\n\nWe will show that this alternating arrangement has entropy \\(\\left\\lceil \\frac n2\\right\\rceil\\), and no arrangement can have larger entropy.\n\n---\n\n## 2. Upper bound for every arrangement\n\nConsider any arrangement. Let \\(t\\) be the number of gender changes as we go around the circle, i.e. the number of adjacent pairs \\(BG\\) or \\(GB\\). Since the circle is balanced, \\(t\\) is even, and \\(2\\le t\\le 2n\\).\n\nA good arrangement has every monochromatic block of length at least \\(2\\), so if there are \\(t\\) changes, then there are \\(t\\) blocks, each of size at least \\(2\\). Hence in a good arrangement,\n\\[\n2t\\le 2n \\quad\\Rightarrow\\quad t\\le n.\n\\]\nSo we need to reduce the number of changes to at most \\(n\\).\n\nNow one adjacent swap changes the number \\(t\\) by at most \\(2\\). Therefore, if initially \\(t=t_0\\), then at most\n\\[\n\\frac{t_0-n}{2}\n\\]\nswaps are needed in the best case to bring \\(t\\) down to \\(n\\). Since \\(t_0\\le 2n\\), this gives\n\\[\n\\text{entropy} \\le \\frac{2n-n}{2}=\\frac n2.\n\\]\nThus for every arrangement,\n\\[\n\\text{entropy}\\le \\left\\lceil \\frac n2\\right\\rceil.\n\\]\n\nSo the maximum possible entropy is at most \\(\\left\\lceil \\frac n2\\right\\rceil\\).\n\n---\n\n## 3. Alternating arrangement needs \\(\\left\\lceil \\frac n2\\right\\rceil\\) moves\n\nNow start from the alternating circle\n\\[\nBGBG\\cdots BG.\n\\]\n\nIn any good final arrangement, every block has length at least \\(2\\). Since there are \\(n\\) boys and \\(n\\) girls, there are at most \\(\\lfloor n/2\\rfloor\\) boy-blocks and at most \\(\\lfloor n/2\\rfloor\\) girl-blocks.\n\nEquivalently, compared to the alternating arrangement (which has \\(n\\) boy-blocks and \\(n\\) girl-blocks, all of length \\(1\\)), we must merge many singleton blocks. Each adjacent swap can decrease the number of monochromatic blocks of one gender by at most \\(1\\), hence can decrease the total number of blocks by at most \\(2\\). Starting from \\(2n\\) blocks and ending with at most \\(n\\) blocks, we need at least\n\\[\n\\left\\lceil \\frac{2n-n}{2}\\right\\rceil=\\left\\lceil \\frac n2\\right\\rceil\n\\]\nswaps.\n\nIt remains to show this many swaps suffice.\n\n### Construction\n- If \\(n=2m\\) is even, from\n  \\[\n  BGBG\\cdots BG\n  \\]\n  swap positions \\((2,3), (6,7), (10,11),\\dots,(4m-2,4m-1)\\), i.e. every other \\(GB\\).  \n  After \\(m\\) swaps the arrangement becomes\n  \\[\n  BBGGBBGG\\cdots BBGG,\n  \\]\n  which is good. So entropy \\(\\le m=\\frac n2\\).\n\n- If \\(n=2m+1\\) is odd, do the same for \\(m\\) disjoint places, yielding\n  \\[\n  BBGGBB\\cdots G B G\n  \\]\n  with one alternating \\(B,G,B,G\\)-segment of length \\(2\\) left around the wrap; one extra adjacent swap fixes this, for a total of \\(m+1=\\frac{n+1}{2}\\) swaps.\n\nSo the alternating arrangement has entropy exactly\n\\[\n\\left\\lceil \\frac n2\\right\\rceil.\n\\]\n\nSince no arrangement can have larger entropy, this is the maximum possible entropy.\n\nFinal answer: \\(\\left\\lceil \\frac n2 \\right\\rceil\\)",
+  "usage": {
+    "input_tokens": 124,
+    "output_tokens": 1155,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 19.01315534999594,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "\\(\\left\\lceil \\frac n2 \\right\\rceil\\)"
+  }
+}

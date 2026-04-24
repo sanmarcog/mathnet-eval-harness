@@ -1,0 +1,25 @@
+{
+  "id": "09nz",
+  "country": "Mongolia",
+  "competition": "MMO2025 Round 4",
+  "gold_final_answer": "Player 1",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Games / greedy algorithms",
+    "Discrete Mathematics > Combinatorics > Invariants / monovariants"
+  ],
+  "prompt": "Let $a_0 = 2^{2025}$. Two players take turns extending a sequence $a_0, a_1, a_2, \\dots$ by the following rules:\nOn the $n$-th move, the player chooses $a_n = a_{n-1} + 1$ or $a_n = S(a_{n-1})$, where $S(x)$ denotes the sum of the digits of $x$.\nThe game ends when either three identical numbers appear in the sequence, or four consecutive terms form an arithmetic progression. The player who makes the final move (i.e., causes the game to end) wins.\nAssuming both players play optimally, determine which player has a winning strategy.\n(Batbayasgalan Balkhuu)",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To determine the winning player, we can analyze the game by working backward from small numbers. \n\nA position in the game can be defined by the current number $x$ and the number of consecutive $+1$ moves that have just been played, which we denote as $c$. \nThe game ends when $c=3$ (four consecutive terms form an arithmetic progression of common difference 1) or when a number appears for the third time.\n\nLet's evaluate the positions $(x, c)$ for small values of $x$:\n1. **If $c=2$**: The current player can simply play $+1$, making $c=3$, and immediately win the game. Thus, any state with $c=2$ is a **Winning (W)** position.\n2. **If $c=1$**: The current player cannot play $+1$, because that would pass a $c=2$ state to the opponent, allowing the opponent to win. Therefore, the player is forced to play $S$. \n   - If $x < 10$, playing $S$ results in $S(x) = x$. This makes $x$ appear for the second time. The opponent can then play $S$ to make $x$ appear for the third time and win. \n   - Thus, $(x, c=1)$ is a **Losing (L)** position for all $x < 10$.\n3. **If $c=0$ and $x < 10$**: The current player can play",
+  "usage": {
+    "input_tokens": 207,
+    "output_tokens": 326,
+    "thoughts_tokens": 7862
+  },
+  "latency_s": 68.34963607997634,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": null
+  }
+}

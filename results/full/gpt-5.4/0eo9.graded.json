@@ -1,0 +1,24 @@
+{
+  "id": "0eo9",
+  "country": "South Africa",
+  "competition": "South African Mathematics Olympiad",
+  "gold_final_answer": "10",
+  "topics_flat": [
+    "Algebra > Prealgebra / Basic Algebra > Decimals"
+  ],
+  "prompt": "I have R4. How many sweets can I buy if one sweet costs 40c?",
+  "model": "gpt-5.4",
+  "response_text": "R4 = 400c.  \nEach sweet costs 40c, so\n\n\\[\n400 \\div 40 = 10\n\\]\n\nFinal answer: 10",
+  "usage": {
+    "input_tokens": 67,
+    "output_tokens": 38,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 1.4597139270044863,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "exact",
+    "predicted": "10"
+  }
+}

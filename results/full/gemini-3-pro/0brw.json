@@ -1,0 +1,19 @@
+{
+  "id": "0brw",
+  "country": "Romania",
+  "competition": "67th NMO Selection Tests for BMO and IMO",
+  "gold_final_answer": "1",
+  "topics_flat": [
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities"
+  ],
+  "prompt": "Determine the positive integers expressible in the form $\\dfrac{x^2 + y}{xy + 1}$, for at least two pairs $(x, y)$ of positive integers.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find the positive integers $k$ expressible in the form $k = \\frac{x^2 + y}{xy + 1}$ for at least two pairs of positive integers $(x, y)$, we can rewrite the equation as:\n$x^2 - kxy + y - k = 0$\n$y(kx - 1) = x^2 - k$\n\nFor $y$ to be a positive integer, $kx - 1$ must divide $x^2 - k$. \nMultiply by $k^2$:\n$k^2 y = \\frac{k^2 x^2 - k^3}{kx - 1} = \\frac{(kx - 1)(kx + 1) + 1 - k^3}{kx - 1} = kx + 1 - \\frac{k^3 - 1}{kx - 1}$\n\nThus, $kx - 1$ must be a divisor of $k^3 - 1$. Let $d = kx - 1$, so $d \\equiv -1 \\pmod k$. \nThe complementary divisor is $d' = \\frac{k^3 - 1}{d}$, which must satisfy $d' \\equiv 1 \\pmod k$.\nFor $y$ to be positive, we need $x^2 > k$, which implies $(d+1)^2 > k^3$, so $d > k^{3/2} - 1$. Since $d d' = k^3 -",
+  "usage": {
+    "input_tokens": 76,
+    "output_tokens": 326,
+    "thoughts_tokens": 7862
+  },
+  "latency_s": 59.70840418199077,
+  "cached": false
+}

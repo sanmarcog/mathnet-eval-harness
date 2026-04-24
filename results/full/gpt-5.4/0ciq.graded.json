@@ -1,0 +1,26 @@
+{
+  "id": "0ciq",
+  "country": "Romania",
+  "competition": "75th NMO",
+  "gold_final_answer": "All integers n ≥ 2 except n = 3",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Roots of unity",
+    "Algebra > Intermediate Algebra > Complex numbers",
+    "Geometry > Plane Geometry > Analytic / Coordinate Methods > Trigonometry"
+  ],
+  "prompt": "For each integer $n \\ge 2$, we consider the set of all $n$-th roots of unity $U_n = \\{z \\in \\mathbb{C} \\mid z^n = 1\\}$. Determine the integers $n \\ge 2$ for which there exist $x, y \\in U_n$, $x \\ne y$ such that $x + y \\notin U_k$ for any integer $k \\ge 2$.",
+  "model": "gpt-5.4",
+  "response_text": "Let  \n\\[\nU_n=\\{z\\in \\mathbb C:\\ z^n=1\\}\n\\]\nbe the set of \\(n\\)-th roots of unity. We seek all \\(n\\ge 2\\) such that there exist distinct \\(x,y\\in U_n\\) with \\(x+y\\) **not** a root of unity.\n\nWe will determine exactly when this is possible.\n\n## Step 1: Reduce the form of \\(x+y\\)\n\nLet\n\\[\nx=e^{2\\pi ia/n},\\qquad y=e^{2\\pi ib/n}\n\\]\nwith \\(a\\not\\equiv b\\pmod n\\). Then\n\\[\nx+y=e^{\\pi i(a+b)/n}\\left(e^{\\pi i(a-b)/n}+e^{-\\pi i(a-b)/n}\\right)\n=2\\cos\\!\\left(\\frac{\\pi(a-b)}n\\right)e^{\\pi i(a+b)/n}.\n\\]\nHence\n\\[\n|x+y|=2\\left|\\cos\\!\\left(\\frac{\\pi(a-b)}n\\right)\\right|.\n\\]\n\nNow, if \\(x+y\\) is a root of unity, then it must have modulus \\(1\\). Therefore we need\n\\[\n2\\left|\\cos\\!\\left(\\frac{\\pi(a-b)}n\\right)\\right|=1,\n\\]\nso\n\\[\n\\left|\\cos\\!\\left(\\frac{\\pi(a-b)}n\\right)\\right|=\\frac12.\n\\]\nThis happens exactly when\n\\[\n\\frac{\\pi(a-b)}n\\equiv \\pm \\frac\\pi3,\\ \\pm \\frac{2\\pi}3 \\pmod{2\\pi},\n\\]\ni.e.\n\\[\n\\frac{a-b}{n}\\equiv \\pm \\frac13,\\ \\pm\\frac23 \\pmod{2}.\n\\]\nSo this is possible iff \\(3\\mid n\\).\n\nThus:\n\n- If \\(3\\nmid n\\), then for any distinct \\(x,y\\in U_n\\), the sum \\(x+y\\) cannot be a root of unity whenever \\(|x+y|\\ne 1\\). In particular we can find such a pair easily.\n- If \\(3\\mid n\\), we must check whether perhaps every distinct pair has sum either \\(0\\) or a root of unity.\n\n## Step 2: Small exceptional cases\n\n### \\(n=2\\)\n\\(U_2=\\{1,-1\\}\\). The only distinct pair is \\(1,-1\\), and\n\\[\n1+(-1)=0,\n\\]\nwhich is not in any \\(U_k\\). So \\(n=2\\) works.\n\n### \\(n=3\\)\nThe roots are \\(1,\\omega,\\omega^2\\), where \\(\\omega^2+\\omega+1=0\\). For any distinct pair:\n\\[\n1+\\omega=-\\omega^2,\\quad 1+\\omega^2=-\\omega,\\quad \\omega+\\omega^2=-1.\n\\]\nEach sum is a root of unity. So \\(n=3\\) does **not** work.\n\n### \\(n=4\\)\nTake \\(x=1,\\ y=i\\). Then\n\\[\nx+y=1+i,\n\\]\nwhose modulus is \\(\\sqrt2\\ne 1\\), so it is not a root of unity. Thus \\(n=4\\) works.\n\n## Step 3: All \\(n\\ge 4\\) except \\(3\\)\n\nIf \\(n\\ge 4\\), choose\n\\[\nx=1,\\qquad y=e^{2\\pi i/n}.\n\\]\nThen\n\\[\n|x+y|=2\\cos\\left(\\frac{\\pi}{n}\\right).\n\\]\nFor \\(n\\ge 4\\),\n\\[\n0<\\frac{\\pi}{n}\\le \\frac\\pi4,\n\\]\nso\n\\[\n2\\cos\\left(\\frac{\\pi}{n}\\right)\\ge 2\\cos\\left(\\frac\\pi4\\right)=\\sqrt2>1.\n\\]\nHence \\(x+y\\) does not have modulus \\(1\\), so it cannot be a root of unity.\n\nTherefore every \\(n\\ge 4\\) works.\n\nCombining with the small cases:\n\n- \\(n=2\\): works,\n- \\(n=3\\): does not work,\n- \\(n\\ge 4\\): works.\n\nSo the only exception is \\(n=3\\).\n\nFinal answer: all integers \\(n\\ge 2\\) except \\(n=3\\).",
+  "usage": {
+    "input_tokens": 149,
+    "output_tokens": 983,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 13.25375844608061,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "all integers \\(n\\ge 2\\) except \\(n=3\\)."
+  }
+}

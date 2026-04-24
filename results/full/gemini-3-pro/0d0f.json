@@ -1,0 +1,23 @@
+{
+  "id": "0d0f",
+  "country": "Saudi Arabia",
+  "competition": "Saudi Arabia Mathematical Competitions 2012",
+  "gold_final_answer": "n = 1, n = 4, or n is prime",
+  "topics_flat": [
+    "Number Theory > Number-Theoretic Functions > φ (Euler's totient)",
+    "Number Theory > Number-Theoretic Functions > τ (number of divisors)",
+    "Number Theory > Divisibility / Factorization > Greatest common divisors (gcd)",
+    "Discrete Mathematics > Combinatorics > Inclusion-exclusion",
+    "Number Theory > Divisibility / Factorization > Prime numbers"
+  ],
+  "prompt": "For a positive integer $n$, let $\\phi(n)$ be the number of positive integers less than $n$ and relatively prime to $n$ (by convention $\\phi(1) = 1$). Let $\\tau(n)$ be the number of positive integers that are divisors of $n$. Find all positive integers $n$ such that\n$$\n\\phi(n) + \\tau(n) > n.\n$$",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find all positive integers $n$ such that $\\phi(n) + \\tau(n) > n$, we can analyze the properties of the functions $\\phi(n)$ and $\\tau(n)$.\n\nLet $S$ be the set of positive integers less than or equal to $n$ that are **not** relatively prime to $n$. The total number of such integers is:\n$$|S| = n - \\phi(n)$$\n\nLet $D$ be the set of positive divisors of $n$ excluding $1$. The number of such divisors is:\n$$|D| = \\tau(n) - 1$$\n\nNotice that for any $d \\in D$, since $d > 1$ and $d$ divides $n$, we have $\\gcd(d, n) = d > 1$. Therefore, every divisor of $n$ greater than $1$ is an element of $S$, which means $D \\subseteq S$. \nThis subset relation gives us the inequality:\n$$|D| \\le |S| \\implies \\tau(n) - 1 \\le n - \\phi(n)$$\nRearranging this, we get:\n$$\\phi(n) + \\tau(n) \\le n + 1$$\n\nThe problem asks for $\\phi(n) + \\tau(n) > n$. Since $\\phi(n)$ and $\\tau(n)$ are integers, this strict inequality is equivalent to:\n$$\\phi(n) + \\tau(n) = n + 1$$\nThis equality holds if and only if $|D| = |S|$, which means $D = S$. In other words, every positive integer up to $n$ that shares a prime factor with $n$ must be a divisor of $n$.\n\nNow we can find which $n$ satisfy $D = S$:\n1. **If $n = 1$**: By convention, $\\phi(1) = 1$ and $\\tau(1) = 1$. We have $1 + 1 = 2 > 1$, so $n = 1$ is a solution.\n2. **If $n$ is prime**: The only positive integer up to $n$ not relatively prime to $n$ is $n$ itself, so $S = \\{n\\}$. The divisors of $n$ greater than $1$ is just $n$, so $D = \\{n\\}$. Since $D = S$, all primes are solutions. (Indeed, $\\phi(p) + \\tau(p) = (p - 1) + 2 = p + 1 > p$).\n3. **If $n$ is composite**: Let $p$ be the smallest prime factor of $n$. Because $n$ is composite, $n \\ge p^2 > p$, meaning $n - p$ is a positive integer. \n   Furthermore, $\\gcd(n - p, n) = p > 1$, so $n - p \\in S$. \n   For $D = S$ to hold, $n - p$ must be a divisor of $n$. If $n - p$ divides $n$, it must also divide $n - (n - p) = p$. \n   Therefore, we must have $n - p \\le p$, which simplifies to $n \\le 2p$. \n   Since $p$ is the smallest prime factor of $n$, we also have $n \\ge p^2$. Combining these gives $p^2 \\le 2p$, which implies $p \\le 2$. \n   Thus, $p = 2$. The inequality $4 = 2^2 \\le n \\le 2(2) = 4$ forces $n = 4$. \n   Checking $n = 4$: $\\phi(4) + \\tau(4) = 2 + 3 = 5 > 4$, so $n = 4$ is indeed a solution.\n\nFinal answer: 1, 4, and all primes",
+  "usage": {
+    "input_tokens": 129,
+    "output_tokens": 867,
+    "thoughts_tokens": 4724
+  },
+  "latency_s": 43.352794433012605,
+  "cached": false
+}

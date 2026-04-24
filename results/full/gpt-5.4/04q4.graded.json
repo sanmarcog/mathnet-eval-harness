@@ -1,0 +1,25 @@
+{
+  "id": "04q4",
+  "country": "Croatia",
+  "competition": "Croatian Junior Mathematical Olympiad",
+  "gold_final_answer": "(-4, 3) and (3, -4)",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities",
+    "Algebra > Intermediate Algebra > Quadratic functions"
+  ],
+  "prompt": "Find all pairs $(a, b)$ of real (not necessarily positive) numbers such that $a^2 + b^2 = 25$, for which $ab + a + b$ attains the smallest possible value.",
+  "model": "gpt-5.4",
+  "response_text": "Let\n\\[\nf(a,b)=ab+a+b\n\\]\nsubject to\n\\[\na^2+b^2=25.\n\\]\nWe seek all real pairs \\((a,b)\\) on the circle of radius \\(5\\) minimizing \\(f\\).\n\n## Method 1: rewrite in terms of \\(a+b\\)\n\nSet\n\\[\ns=a+b,\\qquad p=ab.\n\\]\nThen\n\\[\na^2+b^2=s^2-2p=25 \\quad\\Rightarrow\\quad p=\\frac{s^2-25}{2}.\n\\]\nHence\n\\[\nf=ab+a+b=p+s=\\frac{s^2-25}{2}+s\n= \\frac{s^2+2s-25}{2}\n= \\frac{(s+1)^2-26}{2}.\n\\]\nSo \\(f\\) is minimized when \\(s=a+b=-1\\), provided this is possible.\n\nNow check feasibility:\n\\[\n(a+b)^2\\le 2(a^2+b^2)=50,\n\\]\nso \\(s=-1\\) is certainly possible.\n\nWith \\(a+b=-1\\) and \\(a^2+b^2=25\\),\n\\[\n25=(a+b)^2-2ab=1-2ab \\quad\\Rightarrow\\quad ab=-12.\n\\]\nThus \\(a,b\\) are the roots of\n\\[\nx^2-(a+b)x+ab=0\n\\;=\\;\nx^2+x-12=0,\n\\]\nso\n\\[\nx=3 \\quad\\text{or}\\quad x=-4.\n\\]\nTherefore the pairs are\n\\[\n(a,b)=(3,-4)\\quad\\text{or}\\quad(-4,3).\n\\]\n\nThe minimum value is\n\\[\nab+a+b=-12-1=-13.\n\\]\n\nFinal answer: \\((a,b)=(3,-4)\\) or \\((a,b)=(-4,3)\\).",
+  "usage": {
+    "input_tokens": 94,
+    "output_tokens": 421,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 6.633414997020736,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "\\((a,b)=(3,-4)\\) or \\((a,b)=(-4,3)\\)."
+  }
+}

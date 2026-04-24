@@ -1,0 +1,26 @@
+{
+  "id": "03wv",
+  "country": "China",
+  "competition": "Chinese Mathematical Olympiad",
+  "gold_final_answer": "All odd integers greater than 1",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Counting two ways",
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments",
+    "Discrete Mathematics > Graph Theory > Matchings, Marriage Lemma, Tutte's theorem"
+  ],
+  "prompt": "Find all integers $n$ such that we can color all the edges and the diagonals of a convex $n$-polygon by $n$ given colors satisfying the following conditions;\n(1) Each of the edges or the diagonals is colored by only one color;\n(2) For any three distinct colors, there exists a triangle whose vertices are vertices of the $n$-polygon and three edges are colored by these three colors.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Setting Up the Problem\n\nWe need to find all integers $n$ such that we can color all edges and diagonals of a convex $n$-gon with $n$ colors satisfying:\n1. Each edge/diagonal gets exactly one color\n2. For any 3 distinct colors, there exists a triangle with one edge of each color\n\n## Counting Analysis\n\nThe total number of edges and diagonals is $\\binom{n}{2}$.\n\nThe number of triples of colors from $n$ colors is $\\binom{n}{3}$.\n\nEach triangle uses 3 edges, each colored differently (for condition 2). Each triangle can \"cover\" at most one triple of colors. So we need at least $\\binom{n}{3}$ triangles, but we only have $\\binom{n}{3}$ triangles total in the $n$-gon.\n\nThis means **every triangle must cover exactly one triple of colors**, and every triple must be covered. This requires that every triangle has all three edges in different colors.\n\n## Key Constraint\n\nEvery triangle must be **rainbow** (all 3 edges have distinct colors). This means: for any 3 vertices, the 3 edges connecting them all have different colors.\n\nThis is equivalent to saying the coloring forms a **proper edge-coloring** where every triangle is rainbow. Such a coloring is called a **Gallai coloring** in reverse — actually, a coloring where NO two edges of the same color share a triangle... wait, let me reconsider.\n\nIf every triangle is rainbow, then no two edges of the same color can share a vertex (otherwise, take those two edges and the edge connecting their endpoints — two edges would have the same color). \n\n**So same-colored edges form a matching!**\n\nEach color class is a matching. With $n$ colors and $\\binom{n}{2}$ total edges, each color gets exactly $\\binom{n}{2}/n = (n-1)/2$ edges.\n\nFor $(n-1)/2$ to be an integer, **$n$ must be odd**.\n\n## Verification that odd $n$ works\n\nFor odd $n$, we need $n$ matchings each of size $(n-1)/2$ that partition $K_n$, and every triangle is rainbow.\n\nA **1-factorization** of $K_n$ for odd $n$: $K_n$ has a proper edge-coloring with $n$ colors (since $n$ is odd, $K_n$ has chromatic index $n$), where each color class is a perfect... wait, $n$ odd means $(n-1)/2$ edges per color, which is a near-perfect matching.\n\nFor odd $n$, $K_n$ can be decomposed into $n$ matchings of size $(n-1)/2$ (this is the standard round-robin tournament schedule). \n\n**Does this make every triangle rainbow?** In a proper edge-coloring of $K_n$, no two edges of the same color share a vertex. For any triangle $\\{u,v,w\\}$: edges $uv$, $vw$, $uw$ — since no two share a color (as each vertex has exactly one edge of each color, and each edge of the triangle uses a different vertex-pair), all three edges get distinct colors. ✓\n\nSo for any proper edge-coloring of $K_n$ (odd $n$), every triangle is rainbow, and since every triple of colors appears (we can verify this by the structure), condition 2 is satisfied.\n\nActually, we need to verify every triple of colors appears. With $n$ colors and every triangle rainbow, we need all $\\binom{n}{3}$ triples covered by $\\binom{n}{3}$ triangles — so each triangle covers a unique triple. This works precisely when the coloring is a proper edge-coloring.\n\n## Checking small cases\n\n- $n = 3$: $\\binom{3}{2} = 3$ edges, 3 colors, each edge one color. One triangle covers the one triple. ✓\n- $n = 5$: Works with proper edge-coloring of $K_5$. ✓  \n- $n = 4$: $(n-1)/2 = 3/2$ not integer. Cannot partition edges into equal matchings. Indeed $\\binom{4}{2}=6$ edges, 4 colors, but $\\binom{4}{3}=4$ triples and 4 triangles — tight, but $K_4$ has chromatic index 3, not 4. Cannot properly 4-color edges of $K_4$. ✗\n\n## Conclusion\n\nThe condition is satisfied if and only if $n$ is odd and $n \\geq 3$.\n\nFinal answer: All odd integers $n \\geq 3$.",
+  "usage": {
+    "input_tokens": 141,
+    "output_tokens": 1122,
+    "thinking_tokens": 0
+  },
+  "latency_s": 23.154025136027485,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "All odd integers $n \\geq 3$."
+  }
+}

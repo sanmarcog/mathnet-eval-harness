@@ -1,0 +1,20 @@
+{
+  "id": "04rk",
+  "country": "Czech Republic",
+  "competition": "62nd Czech and Slovak Mathematical Olympiad",
+  "gold_final_answer": "a=1, b=4, c=3",
+  "topics_flat": [
+    "Algebra > Intermediate Algebra > Quadratic functions",
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities"
+  ],
+  "prompt": "Find all real $a$, $b$, $c$, such that\n$$\na^2 + b^2 + c^2 = 26, \\quad a+b=5 \\quad \\text{and} \\quad b+c \\ge 7.\n$$",
+  "model": "claude-sonnet-4-6",
+  "response_text": "From a + b = 5, we get a = 5 - b.\n\nSubstituting into a² + b² + c² = 26:\n(5-b)² + b² + c² = 26\n25 - 10b + b² + b² + c² = 26\n2b² - 10b + c² = 1\n\nAlso, b + c ≥ 7, so c ≥ 7 - b.\n\nFrom 2b² - 10b + c² = 1, we get c² = 1 - 2b² + 10b.\n\nFor real solutions, we need c² ≥ 0:\n1 - 2b² + 10b ≥ 0\n2b² - 10b - 1 ≤ 0\n\nAlso, c = ±√(1 - 2b² + 10b), and we need c ≥ 7 - b.\n\nSince c ≥ 7 - b, let's check: if b is small, 7 - b is large, requiring c to be large.\n\nWe need c ≥ 7 - b and c² = 1 - 2b² + 10b.\n\nSo c ≥ 7 - b means c² ≥ (7-b)² when 7 - b ≥ 0 (i.e., b ≤ 7), or c ≥ 7 - b is automatically satisfied if c ≥ 0 and b > 7.\n\nCase: b ≤ 7. Then we need c ≥ 7 - b > 0 (assuming b < 7), so:\nc² ≥ (7-b)²\n1 - 2b² + 10b ≥ 49 - 14b + b²\n1 - 2b² + 10b - 49 + 14b - b² ≥ 0\n-3b² + 24b - 48 ≥ 0\n3b² - 24b + 48 ≤ 0\nb² - 8b + 16 ≤ 0\n(b - 4)² ≤ 0\n\nSince (b-4)² ≥ 0 always, we need (b-4)² = 0, so b = 4.\n\nThen: a = 5 - 4 = 1, c² = 1 - 2(16) + 10(4) = 1 - 32 + 40 = 9, so c = ±3.\n\nCheck b + c ≥ 7: 4 + 3 = 7 ≥ 7 ✓, and 4 + (-3) = 1 < 7 ✗.\n\nSo c = 3.\n\nCheck b > 7 case: If b > 7, then 7 - b < 0, and c ≥ 7 - b is satisfied for any c ≥ 0, or even some negative c. But we also need c² = 1 - 2b² + 10b ≥ 0, which requires 2b² - 10b - 1 ≤ 0. The roots are b = (10 ± √108)/4 = (5 ± 3√3)/2. Since 3√3 ≈ 5.196, the upper root is about (5 + 5.196)/2 ≈ 5.098. So for b > 7, c² < 0, no real solutions.\n\nTherefore the unique solution is **(a, b, c) = (1, 4, 3)**.\n\nFinal answer: $a = 1,\\ b = 4,\\ c = 3$",
+  "usage": {
+    "input_tokens": 111,
+    "output_tokens": 939,
+    "thinking_tokens": 0
+  },
+  "latency_s": 11.915913094067946,
+  "cached": false
+}

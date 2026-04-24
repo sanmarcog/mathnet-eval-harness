@@ -1,0 +1,20 @@
+{
+  "id": "01xa",
+  "country": "Belarus",
+  "competition": "69th Belarusian Mathematical Olympiad",
+  "gold_final_answer": "S ≤ 152",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Pigeonhole principle",
+    "Discrete Mathematics > Combinatorics > Games / greedy algorithms"
+  ],
+  "prompt": "The sum of several (not necessarily different) positive integers not exceeding $10$ is equal to $S$.\nFind all possible values of $S$ such that these numbers can always be partitioned into two groups with the sums of the numbers in each group not exceeding $80$.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find all possible values of $S$ such that any collection of positive integers not exceeding 10 summing to $S$ can be partitioned into two groups with sums not exceeding 80, we can translate the condition into finding a subset of these integers whose sum lies in the interval $[S - 80, 80]$. \n\nFor this interval to be valid and non-empty, we must have $S - 80 \\le 80$, which implies $S \\le 160$.\nIf we greedily add numbers to our subset one by one, the sum increases by at most 10 at each step. To guarantee that the sum lands inside the interval $[S - 80, 80]$ without stepping over it, the number of integers in the interval must be at least the maximum possible step size. \nThe number of integers in the interval is $80 - (S - 80) + 1 = 161 - S$.\nIf $161 - S \\ge 10 \\implies S \\le 151$, any sequence of additions of numbers $\\le 10$ will inevitably land in the interval. Thus, all $S \\le 151$ are valid.\n\nLet's check $S = 152$. The target interval is $[72, 80]$, which contains 9 integers. The only way to step over this interval with numbers $\\le 10$ is to jump from exactly 71 to 81",
+  "usage": {
+    "input_tokens": 97,
+    "output_tokens": 325,
+    "thoughts_tokens": 7863
+  },
+  "latency_s": 69.34854028897826,
+  "cached": false
+}

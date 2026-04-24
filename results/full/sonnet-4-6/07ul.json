@@ -1,0 +1,19 @@
+{
+  "id": "07ul",
+  "country": "Ireland",
+  "competition": "IRL_ABooklet",
+  "gold_final_answer": "Equality holds if and only if x = y = √3 or x = y = −√3.",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities > QM-AM-GM-HM / Power Mean"
+  ],
+  "prompt": "Show that for all $x, y \\in \\mathbb{R}$:\n$$\nx^4 + y^4 + 18 \\ge 12xy.\n$$\nWhen do we get equality?",
+  "model": "claude-sonnet-4-6",
+  "response_text": "We want to show that $x^4 + y^4 + 18 \\ge 12xy$ for all $x, y \\in \\mathbb{R}$.\n\n**Strategy:** Apply AM-GM inequality cleverly by splitting the terms.\n\nWe split the left side as follows:\n$$x^4 + y^4 + 18 = x^4 + y^4 + 9 + 9.$$\n\n**Step 1:** Apply AM-GM to $x^4 + 9$:\n$$x^4 + 9 = x^4 + \\frac{9}{2} + \\frac{9}{2} \\ge 3\\sqrt[3]{x^4 \\cdot \\frac{9}{2} \\cdot \\frac{9}{2}} = 3\\sqrt[3]{\\frac{81x^4}{4}}.$$\n\nThis doesn't simplify as nicely. Let's try a different split.\n\n**Better approach:** Write $18 = 9 + 9$ and apply AM-GM to three terms at a time.\n\nApply AM-GM to $x^4, 9, 9$ (three terms... but we want to relate to $xy$). Let's try:\n\nApply AM-GM to $\\{x^4, y^4, 9, 9\\}$ in a way that produces $xy$.\n\n**Apply AM-GM to $x^4 + 1 + 1 + 1 \\ge 4x$** (since $\\frac{x^4+1+1+1}{4} \\ge \\sqrt[4]{x^4} = |x|$... only when $x\\ge 0$). Let's be more careful.\n\n**Clean approach using AM-GM on four terms:**\n\nBy AM-GM:\n$$x^4 + 1 + 1 + 1 \\ge 4x \\quad \\text{when } x \\ge 0,$$\nsince $\\frac{x^4+1+1+1}{4} \\ge (x^4 \\cdot 1 \\cdot 1 \\cdot 1)^{1/4} = |x|$.\n\nActually, AM-GM gives $x^4 + 1 + 1 + 1 \\ge 4|x|$, so $x^4 + 3 \\ge 4|x|$ for all $x$.\n\nSimilarly $y^4 + 3 \\ge 4|y|$.\n\nBut we need to handle $xy$, not $|x||y|$.\n\n**Direct approach:** We use AM-GM on the four quantities $x^4, y^4, 9, 9$:\n\n$$\\frac{x^4 + y^4 + 9 + 9}{4} \\ge \\sqrt[4]{x^4 \\cdot y^4 \\cdot 9 \\cdot 9} = \\sqrt[4]{81 x^4 y^4} = \\sqrt[4]{81}\\, |xy| = 3|xy|.$$\n\nTherefore:\n$$x^4 + y^4 + 18 \\ge 4 \\cdot 3|xy| = 12|xy| \\ge 12xy.$$\n\nThis completes the proof. $\\blacksquare$\n\n**Equality conditions:**\n\nEquality in AM-GM holds when all four terms are equal:\n$$x^4 = y^4 = 9.$$\n\nThis gives $|x| = |y| = \\sqrt{3}$.\n\nEquality in $12|xy| \\ge 12xy$ holds when $xy \\ge 0$.\n\nFrom $x^4 = y^4 = 9$: $x = \\pm\\sqrt{3}$, $y = \\pm\\sqrt{3}$.\n\nWe need $xy \\ge 0$, so $x$ and $y$ have the same sign.\n\n**Equality holds if and only if $(x, y) = (\\sqrt{3}, \\sqrt{3})$ or $(x, y) = (-\\sqrt{3}, -\\sqrt{3})$.**\n\nFinal answer: Equality holds if and only if $(x,y)=(\\sqrt{3},\\,\\sqrt{3})$ or $(x,y)=(-\\sqrt{3},\\,-\\sqrt{3})$.",
+  "usage": {
+    "input_tokens": 95,
+    "output_tokens": 1033,
+    "thinking_tokens": 0
+  },
+  "latency_s": 15.98738271696493,
+  "cached": false
+}

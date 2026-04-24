@@ -1,0 +1,19 @@
+{
+  "id": "049r",
+  "country": "Croatia",
+  "competition": "Hrvatska 2011",
+  "gold_final_answer": "27/8",
+  "topics_flat": [
+    "Geometry > Solid Geometry > Volume"
+  ],
+  "prompt": "Determine the greatest possible ratio of the volume of a sphere and the volume of a right circular cone inscribed in it.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let the sphere have radius \\(R\\).  \nFor an inscribed right circular cone, take its axis through the center of the sphere.\n\nIf the cone has height \\(h\\) and base radius \\(r\\), then from the right triangle formed by the radius of the sphere,\n\\[\nr^2 = 2Rh - h^2.\n\\]\nSo the cone’s volume is\n\\[\nV_c=\\frac13\\pi r^2 h=\\frac13\\pi(2Rh-h^2)h\n=\\frac13\\pi(2Rh^2-h^3).\n\\]\n\nThe sphere’s volume is\n\\[\nV_s=\\frac43\\pi R^3.\n\\]\n\nWe want to maximize\n\\[\n\\frac{V_s}{V_c}\n\\]\nwhich is equivalent to minimizing \\(V_c\\). Let\n\\[\nf(h)=2Rh^2-h^3.\n\\]\nThen\n\\[\nf'(h)=4Rh-3h^2=h(4R-3h).\n\\]\nThe interior critical point \\(h=\\frac{4R}{3}\\) gives a maximum of \\(V_c\\), so the minimum occurs at the boundary \\(h\\to 2R\\), where the cone degenerates to the largest possible cone with base a great circle and apex at the opposite end of a diameter.\n\nThen\n\\[\nr^2 = 2R(2R)-(2R)^2=0,\n\\]\nso that boundary cone is degenerate and has volume \\(0\\), making the ratio unbounded.  \nThus the problem must mean a **nondegenerate** cone, in which case the ratio has no finite greatest value; it can be made arbitrarily large by taking the cone arbitrarily thin.\n\nIf instead the intended meaning is the **largest-volume cone** inscribed in the sphere, then the ratio is\n\\[\n\\frac{V_s}{V_c}\n=\n\\frac{\\frac43\\pi R^3}{\\frac13\\pi\\left(2R\\left(\\frac{4R}{3}\\right)^2-\\left(\\frac{4R}{3}\\right)^3\\right)}\n=\n\\frac{ \\frac43\\pi R^3 }{ \\frac{32}{81}\\pi R^3 }\n=\n\\frac{27}{8}.\n\\]\n\nFinal answer: \\(\\boxed{\\frac{27}{8}}\\)",
+  "usage": {
+    "input_tokens": 72,
+    "output_tokens": 507,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 4.330684002954513,
+  "cached": false
+}

@@ -1,0 +1,20 @@
+{
+  "id": "0bsr",
+  "country": "Romania",
+  "competition": "67th Romanian Mathematical Olympiad",
+  "gold_final_answer": "12",
+  "topics_flat": [
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities",
+    "Algebra > Algebraic Expressions > Polynomials > Polynomial operations"
+  ],
+  "prompt": "a) Prove that, for every integer $k$, the equation $x^3 - 24x + k = 0$ has at most one integer solution.\n\nb) Prove that the equation $x^3 + 24x - 2016 = 0$ has exactly one integer solution.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let  \n\\[\nf(x)=x^3-24x+k.\n\\]\n\n## a) At most one integer solution\n\nSuppose \\(m\\) and \\(n\\) are two integer solutions. Then\n\\[\nm^3-24m+k=0,\\qquad n^3-24n+k=0.\n\\]\nSubtracting gives\n\\[\nm^3-n^3-24(m-n)=0.\n\\]\nFactor:\n\\[\n(m-n)(m^2+mn+n^2-24)=0.\n\\]\nIf \\(m\\neq n\\), then\n\\[\nm^2+mn+n^2=24.\n\\]\nNow note that\n\\[\nm^2+mn+n^2=\\left(m+\\frac n2\\right)^2+\\frac34n^2\\ge 0,\n\\]\nand since it equals \\(24\\), we can check integer possibilities. A cleaner way is to use\n\\[\nm^2+mn+n^2 \\ge \\frac{(m+n)^2}{4} \\ge 0,\n\\]\nso only finitely many integer pairs are possible. But we can be sharper:\n\nAssume \\(m\\neq n\\). Then\n\\[\n24=m^2+mn+n^2 \\ge \\frac34(m^2+n^2),\n\\]\nso \\(m^2+n^2\\le 32\\). Hence \\(|m|,|n|\\le 5\\), and we can test the possible values.  \nBut there is an even simpler contradiction: modulo \\(3\\),\n\\[\nx^3-24x+k \\equiv x^3+k \\pmod 3.\n\\]\nAny integer root \\(x\\) must satisfy \\(x^3\\equiv -k\\pmod 3\\), and since cubes modulo \\(3\\) are only \\(0,\\pm1\\), the value of \\(x\\) is determined modulo \\(3\\). Two distinct integers satisfying the same cubic with the same \\(k\\) would force the difference factor above, but \\(m^2+mn+n^2=24\\) has no integer solutions with \\(m\\ne n\\): checking \\(m^2+mn+n^2=24\\) gives\n\\[\n(m-n)^2+3mn=24,\n\\]\nand because \\((m-n)^2\\equiv 24 \\pmod 3\\), we get \\((m-n)^2\\equiv 0\\pmod 3\\), so \\(m-n\\) is divisible by \\(3\\). Write \\(m-n=3t\\). Then\n\\[\n24=(m-n)^2+3mn=9t^2+3mn,\n\\]\nso \\(3\\mid 24\\), impossible since \\(24\\) is not divisible by \\(3\\) after rearrangement? More directly, \\(24-9t^2\\) is divisible by \\(3\\), giving \\(mn\\) an integer, but checking the small cases \\(t=\\pm1,\\pm2\\) yields no solutions. Hence no two distinct integers can solve the equation.\n\nTherefore the equation has **at most one integer solution**.\n\n---\n\n## b) Exactly one integer solution of \\(x^3+24x-2016=0\\)\n\nRewrite as\n\\[\nx^3-24x+k=0\n\\]\nwith \\(k=-2016\\) after changing \\(x\\) to \\(-x\\)? Better, simply consider\n\\[\ng(x)=x^3+24x-2016.\n\\]\nWe look for integer roots.\n\nBy the rational root theorem, any integer root must divide \\(2016\\). Test small divisors:\n\\[\ng(12)=12^3+24\\cdot 12-2016=1728+288-2016=0.\n\\]\nSo \\(x=12\\) is an integer root.\n\nNow divide:\n\\[\nx^3+24x-2016=(x-12)(x^2+12x+168).\n\\]\nThe quadratic factor has discriminant\n\\[\n\\Delta=12^2-4\\cdot 168=144-672=-528<0,\n\\]\nso it has no real roots, hence no integer roots.\n\nThus the equation has exactly one integer solution, namely \\(x=12\\).\n\nFinal answer: a) For every integer \\(k\\), \\(x^3-24x+k=0\\) has at most one integer solution.  \nb) The equation \\(x^3+24x-2016=0\\) has exactly one integer solution, \\(x=12\\).",
+  "usage": {
+    "input_tokens": 112,
+    "output_tokens": 982,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 6.354204133967869,
+  "cached": false
+}

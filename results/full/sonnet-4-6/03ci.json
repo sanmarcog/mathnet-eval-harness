@@ -1,0 +1,20 @@
+{
+  "id": "03ci",
+  "country": "Bulgaria",
+  "competition": "Bulgarian National Mathematical Olympiad",
+  "gold_final_answer": "2^{n-1}",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Enumeration with symmetry",
+    "Number Theory > Divisibility / Factorization > Prime numbers"
+  ],
+  "prompt": "For a set $M$ of positive integers with $n$ elements, where $n$ is odd, a nonempty subset $T$ of $M$ is called good, if the product of the elements of $T$ is divisible by the sum of the elements of $M$, but not divisible by its square. If $M$ is good, find the maximum possible number of the good subsets of $M$?",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Setting Up the Problem\n\nLet $M$ be a set of $n$ positive integers (n odd), and let $S = \\sum_{m \\in M} m$. A nonempty subset $T \\subseteq M$ is **good** if $S \\mid \\prod_{t \\in T} t$ but $S^2 \\nmid \\prod_{t \\in T} t$.\n\nWe need $M$ itself to be good (so $S \\mid \\prod_{m \\in M} m$ but $S^2 \\nmid \\prod_{m \\in M} m$), and we want to maximize the number of good subsets.\n\n## Key Observation\n\nFor $T$ to be good, we need $v_p(\\prod T) = v_p(S)$ for some prime $p$ with $v_p(S) \\geq 1$, and $v_p(\\prod T) \\geq v_p(S)$ for all primes $p$.\n\nThe cleanest case: **$S$ is prime**. Then $S \\mid \\prod T$ iff $S \\mid t$ for some $t \\in T$ (since $S$ is prime). And $S^2 \\nmid \\prod T$ iff exactly one element of $T$ is divisible by $S$ (and that element is divisible by $S$ but not $S^2$), OR the element divisible by $S^2$ doesn't appear... \n\nActually if $S$ is prime: $S \\mid \\prod T$ iff some $t \\in T$ is divisible by $S$. Then $S^2 \\nmid \\prod T$ iff the total $v_S$ of elements in $T$ equals exactly 1.\n\n## Optimal Construction\n\nLet $S$ be prime. Put exactly one element of $M$ divisible by $S$ (say element $a$ with $S \\mid a$ but $S^2 \\nmid a$), and the remaining $n-1$ elements not divisible by $S$.\n\nThen $T$ is good iff $a \\in T$ (so $S \\mid \\prod T$) and $v_S(\\prod T) = 1$ (automatic since only $a$ contributes and $v_S(a) = 1$).\n\nNumber of good subsets = number of subsets containing $a$ = $2^{n-1}$.\n\n**Check $M$ is good:** $\\prod M$ contains $a$ (with $v_S = 1$), so $S \\mid \\prod M$ but $S^2 \\nmid \\prod M$. ✓\n\n## Can We Do Better?\n\nWhat if two elements $a, b$ are divisible by $S$? Then subsets containing $a$ but not $b$, or $b$ but not $a$, give $v_S = 1$ each. Subsets with both give $v_S \\geq 2$, so not good. Good subsets: $2^{n-2} + 2^{n-2} = 2^{n-1}$. Same count.\n\nWhat if we try $S = p^2$? Then we need $v_p(\\prod T) = 2$ exactly. This is more restrictive and gives fewer good subsets.\n\nWhat if no element is divisible by $S$ (prime)? Then no subset is good, so $M$ itself isn't good.\n\n## Verification with Small Case\n\n$n = 1$: $M = \\{a\\}$, $S = a$. Good subsets: $T = \\{a\\}$, need $a \\mid a$ (yes) and $a^2 \\nmid a$ (yes if $a > 1$). So 1 good subset = $2^0 = 2^{n-1}$. ✓\n\n$n = 3$: Take $S$ prime, $M = \\{a, b, c\\}$ with $S \\mid a$, $S \\nmid b$, $S \\nmid c$. Good subsets are all subsets containing $a$: $\\{a\\}, \\{a,b\\}, \\{a,c\\}, \\{a,b,c\\}$ — that's $4 = 2^2 = 2^{n-1}$. ✓\n\n## Conclusion\n\nThe maximum number of good subsets is $\\boxed{2^{n-1}}$.\n\nFinal answer: $2^{n-1}$",
+  "usage": {
+    "input_tokens": 138,
+    "output_tokens": 1065,
+    "thinking_tokens": 0
+  },
+  "latency_s": 16.63596064702142,
+  "cached": false
+}

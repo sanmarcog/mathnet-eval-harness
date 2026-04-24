@@ -1,0 +1,20 @@
+{
+  "id": "0es5",
+  "country": "South Africa",
+  "competition": "The South African Mathematical Olympiad Third Round",
+  "gold_final_answer": "2017",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Games / greedy algorithms",
+    "Discrete Mathematics > Combinatorics > Induction / smoothing"
+  ],
+  "prompt": "Andile and Zandre play a game on a $2017 \\times 2017$ board. At the beginning, Andile declares some of the squares *forbidden*, meaning that nothing may be placed on such a square. After that, they take turns to place coins on the board, with Zandre placing the first coin. It is not allowed to place a coin on a forbidden square or in the same row or column where another coin has already been placed. The player who places the last coin wins the game.\nWhat is the least number of squares Andile needs to declare as forbidden at the beginning to ensure a win? (Assume that both players use an optimal strategy.)",
+  "model": "gpt-5.4-mini",
+  "response_text": "Think of each move as choosing a new row and a new column. So a move corresponds to selecting a square, and no two chosen squares may share a row or column.\n\nThus, the game is really played on a bipartite graph with 2017 rows and 2017 columns; a legal move is choosing an unused edge, and then deleting its row and column. The game ends when no legal move remains.\n\nAndile wants the total number of legal moves to be **even**, because Zandre moves first, so if there are an even number of moves in total, Andile makes the last move and wins.\n\nNow observe:\n\n- If Andile forbids all squares in some set of \\(k\\) rows, then only \\(2017-k\\) rows remain usable.\n- Since each move uses one new row and one new column, the maximum number of moves is at most the number of usable rows and columns.\n- To force the game to have at most \\(2016\\) moves (an even number), it is enough to make the board effectively \\(2016\\times 2016\\).\n\nThis can be done by forbidding **one entire row**, i.e. \\(2017\\) squares. Then there are only \\(2016\\) usable rows left, so at most \\(2016\\) coins can ever be placed, and since Zandre starts, Andile gets the last move.\n\nWhy is this minimal?  \nWith fewer than \\(2017\\) forbidden squares, every row and every column still contains at least one allowed square, so the game can still last \\(2017\\) moves: the first player can always keep choosing a fresh row and column until all 2017 rows (and columns) are used. Thus Andile cannot force a win with fewer than \\(2017\\) forbidden squares.\n\nSo the least number is \\(2017\\).\n\nFinal answer: \\(\\boxed{2017}\\)",
+  "usage": {
+    "input_tokens": 187,
+    "output_tokens": 404,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.473267821012996,
+  "cached": false
+}

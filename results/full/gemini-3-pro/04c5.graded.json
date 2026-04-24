@@ -1,0 +1,26 @@
+{
+  "id": "04c5",
+  "country": "Croatia",
+  "competition": "Mathematica competitions in Croatia",
+  "gold_final_answer": "For any prime p, the solutions are n = 0 and n = -p. If p is odd (p > 2), there are two additional solutions: n = ((p−1)/2)^2 and n = −((p+1)/2)^2.",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Prime numbers",
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities",
+    "Algebra > Intermediate Algebra > Quadratic functions"
+  ],
+  "prompt": "For a given prime number $p$ determine all integers $n$ such that $\\sqrt{n^2 + pn}$ is an integer.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find all integers $n$ such that $\\sqrt{n^2 + pn}$ is an integer, let $\\sqrt{n^2 + pn} = m$ for some non-negative integer $m$. Squaring both sides, we get:\n$$n^2 + pn = m^2$$\n\nMultiply the entire equation by 4 and add $p^2$ to complete the square on the left side:\n$$4n^2 + 4pn + p^2 = 4m^2 + p^2$$\n$$(2n + p)^2 - 4m^2 = p^2$$\n$$(2n + p - 2m)(2n + p + 2m) = p^2$$\n\nLet $A = 2n + p - 2m$ and $B = 2n + p + 2m$. We have $AB = p^2$. Since $m \\ge 0$, it must be that $A \\le B$. \nAdding the two equations gives $A + B = 4n + 2p$, which simplifies to:\n$$n = \\frac{A + B - 2p}{4}$$\n\nSince $p$ is a prime number, the only possible integer factor pairs $(A, B)$ of $p^2$ with $A \\le B$ are $(1, p^2)$, $(p, p)$, $(-p^2, -1)$, and $(-p, -p)$. We evaluate $n$ for each pair:\n\n1. For $(A, B) = (1, p^2)$:\n$$n = \\frac{1 + p^2 - 2p}{4} = \\frac{(p-1)^2}{4}$$\n\n2. For $(A, B) = (-p^2, -1)$:\n$$n = \\frac{-p^2 - 1 - 2p}{4} = -\\frac{(p+1)^2}{4}$$\n\n3. For $(A, B) = (p, p)$:\n$$n = \\frac{p + p - 2p}{4} = 0$$\n\n4. For $(A, B) = (-p, -p)$:\n$$n = \\frac{-p - p - 2p}{4} = -p$$\n\nNow we check for which primes $p$ these values of $n$ are integers:\n- If $p = 2$, the formulas yield $n = \\frac{1}{4}$, $n = -\\frac{9}{4}$, $n = 0$, and $n = -2$. Only $0$ and $-2$ are integers.\n- If $p > 2$, $p$ is an odd prime. Therefore, $p-1$ and $p+1$ are both even integers, which means $(p-1)^2$ and $(p+1)^2$ are multiples of 4. Thus, all four expressions yield integers.\n\nFinal answer: For p=2: n \\in \\{0, -2\\}; for p>2: n \\in \\left\\{0, -p, \\frac{(p-1)^2}{4}, -\\frac{(p+1)^2}{4}\\right\\}",
+  "usage": {
+    "input_tokens": 68,
+    "output_tokens": 698,
+    "thoughts_tokens": 2807
+  },
+  "latency_s": 26.232059467001818,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "For p=2: n \\in \\{0, -2\\}; for p>2: n \\in \\left\\{0, -p, \\frac{(p-1)^2}{4}, -\\frac{(p+1)^2}{4}\\right\\}"
+  }
+}

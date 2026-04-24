@@ -1,0 +1,25 @@
+{
+  "id": "03pa",
+  "country": "China",
+  "competition": "China Mathematical Competition (Shaanxi)",
+  "gold_final_answer": "C",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Sequences and Series > Floors and ceilings",
+    "Algebra > Prealgebra / Basic Algebra > Integers"
+  ],
+  "prompt": "A new sequence is obtained from the sequence of the positive integers $\\{1, 2, 3, \\ldots\\}$ by deleting all the perfect squares. Then the $2\\ 003$rd term of the new sequence is ( ).\n\n(A) $2\\ 046$\n(B) $2\\ 047$\n(C) $2\\ 048$\n(D) $2\\ 049$",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let the \\(n\\)-th term of the new sequence be \\(a_n\\).  \nAmong the first \\(m\\) positive integers, exactly \\(\\lfloor \\sqrt m \\rfloor\\) are perfect squares, so the number of non-squares is\n\n\\[\nm-\\lfloor \\sqrt m \\rfloor.\n\\]\n\nWe want the \\(2003\\)rd non-square, so find \\(m\\) such that\n\n\\[\nm-\\lfloor \\sqrt m \\rfloor = 2003.\n\\]\n\nTry \\(m=2047\\). Then \\(\\lfloor \\sqrt{2047}\\rfloor = 45\\), since \\(45^2=2025\\) and \\(46^2=2116\\). Thus\n\n\\[\n2047-45=2002.\n\\]\n\nSo \\(2047\\) is the \\(2002\\)nd term of the new sequence. The next integer, \\(2048\\), is not a square, so it is the \\(2003\\)rd term.\n\nFinal answer: \\(\\boxed{2048}\\)",
+  "usage": {
+    "input_tokens": 131,
+    "output_tokens": 236,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 2.601934231002815,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "2048"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "id": "04gk",
+  "country": "Croatia",
+  "competition": "Mathematica competitions in Croatia",
+  "gold_final_answer": "a^3/8",
+  "topics_flat": [
+    "Geometry > Solid Geometry > Volume",
+    "Geometry > Solid Geometry > Other 3D problems"
+  ],
+  "prompt": "Let $ABCD A_1 B_1 C_1 D_1$ be a rectangular cuboid with edge-lengths $|AB| = |AD| = a$ and $|AA_1| = 2a$. Let $A', B', C'$ and $D'$ be the midpoints of $AA_1, BB_1, CC_1$ and $DD_1$ respectively.\nFind the volume of the intersection of the cube $ABCD A'B'C'D'$ and the pyramid $A_1A'B'B_1D$.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Setting up coordinates\n\nLet me place the cuboid with:\n- A = (0, 0, 0)\n- B = (a, 0, 0)\n- D = (0, a, 0)\n- C = (a, a, 0)\n- A₁ = (0, 0, 2a), B₁ = (a, 0, 2a), C₁ = (a, a, 2a), D₁ = (0, a, 2a)\n\nMidpoints:\n- A' = (0, 0, a), B' = (a, 0, a), C' = (a, a, a), D' = (0, a, a)\n\n**Cube ABCDA'B'C'D'**: the region 0 ≤ x ≤ a, 0 ≤ y ≤ a, 0 ≤ z ≤ a.\n\n**Pyramid A₁A'B'B₁D**: vertices are:\n- A₁ = (0, 0, 2a)\n- A' = (0, 0, a)\n- B' = (a, 0, a)\n- B₁ = (a, 0, 2a)\n- D = (0, a, 0)\n\n## Analyzing the pyramid\n\nThe base A₁A'B'B₁ is a square in the plane y = 0, with z from a to 2a, x from 0 to a. The apex is D = (0, a, 0).\n\nThe pyramid has 5 faces. Points in the pyramid can be parameterized: any point is a convex combination of D and the base square.\n\nA point on the base: (x, 0, z) with 0 ≤ x ≤ a, a ≤ z ≤ 2a.\n\nPoint in pyramid: P = (1-t)·D + t·(x₀, 0, z₀) = (t·x₀, a(1-t), t·z₀) for t ∈ [0,1].\n\nSo: x = t·x₀, y = a(1-t), z = t·z₀, where 0 ≤ x₀ ≤ a, a ≤ z₀ ≤ 2a.\n\nFrom y: t = 1 - y/a, so x₀ = x/t = ax/(a-y), z₀ = z/t = az/(a-y).\n\nConstraints: 0 ≤ x₀ ≤ a → 0 ≤ x ≤ a-y; a ≤ z₀ ≤ 2a → a-y ≤ z ≤ 2(a-y).\n\n## Intersection with the cube\n\nThe cube requires: 0 ≤ x ≤ a, 0 ≤ y ≤ a, 0 ≤ z ≤ a.\n\nCombined constraints:\n- 0 ≤ y ≤ a\n- 0 ≤ x ≤ a - y (since x ≤ a-y ≤ a)\n- a - y ≤ z ≤ min(a, 2(a-y))\n\nFor z upper bound: 2(a-y) ≤ a when y ≥ a/2; a ≤ 2(a-y) when y ≤ a/2.\n\n**Case 1: 0 ≤ y ≤ a/2**\nz ranges from (a-y) to a. Length = a-(a-y) = y.\n\n**Case 2: a/2 ≤ y ≤ a**\nz ranges from (a-y) to 2(a-y). Length = a-y.\n\n## Computing the volume\n\n$$V = \\int_0^{a/2}\\int_0^{a-y} y\\, dx\\, dy + \\int_{a/2}^{a}\\int_0^{a-y}(a-y)\\,dx\\,dy$$\n\n**Case 1:**\n$$\\int_0^{a/2} y(a-y)\\,dy = \\left[\\frac{ay^2}{2} - \\frac{y^3}{3}\\right]_0^{a/2} = \\frac{a^3}{8} - \\frac{a^3}{24} = \\frac{a^3}{12}$$\n\n**Case 2:** Let u = a-y, du = -dy; when y=a/2, u=a/2; when y=a, u=0:\n$$\\int_0^{a/2} u \\cdot u\\, du = \\int_0^{a/2} u^2\\,du = \\frac{(a/2)^3}{3} = \\frac{a^3}{24}$$\n\n**Total:**\n$$V = \\frac{a^3}{12} + \\frac{a^3}{24} = \\frac{2a^3}{24} + \\frac{a^3}{24} = \\frac{3a^3}{24} = \\frac{a^3}{8}$$\n\nFinal answer: $\\dfrac{a^3}{8}$",
+  "usage": {
+    "input_tokens": 179,
+    "output_tokens": 1331,
+    "thinking_tokens": 0
+  },
+  "latency_s": 16.903385185985826,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "symbolic",
+    "predicted": "$\\dfrac{a^3}{8}$"
+  }
+}

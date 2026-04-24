@@ -1,0 +1,25 @@
+{
+  "id": "03uh",
+  "country": "China",
+  "competition": "China Mathematical Competition",
+  "gold_final_answer": "2/3",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Analytic / Coordinate Methods > Vectors",
+    "Geometry > Plane Geometry > Triangles > Triangle trigonometry"
+  ],
+  "prompt": "Given $\\triangle ABC$ and $\\triangle AEF$ such that $B$ is the midpoint of $EF$. Also, $AB = EF = 1$, $BC = 6$, $CA = \\sqrt{33}$, and $\\overrightarrow{AB} \\cdot \\overrightarrow{AE} + \\overrightarrow{AC} \\cdot \\overrightarrow{AF} = 2$. The cosine of the angle between $\\overrightarrow{EF}$ and $\\overrightarrow{BC}$ is ______.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "Let me set up coordinates. We have AB = EF = 1, BC = 6, CA = √33.\n\nFirst, let me find angle A in triangle ABC using the law of cosines.\nBC² = AB² + AC² - 2·AB·AC·cos A\n36 = 1 + 33 - 2·1·√33·cos A\n36 = 34 - 2√33·cos A\n2 = -2√33·cos A\ncos A = -1/√33\n\nNow let me work with the dot product condition.\n\nLet me place A at origin. Let **b** = AB vector, **c** = AC vector.\n\nSo |**b**| = 1, |**c**| = √33, **b**·**c** = |**b**||**c**|cos A = 1·√33·(-1/√33) = -1.\n\nB is the midpoint of EF, with EF = 1. Let E and F be points such that B is midpoint of EF.\n\nLet **e** = AE vector, **f** = AF vector.\n\nSince B is midpoint of EF: (**e** + **f**)/2 = **b**, so **e** + **f** = 2**b**.\n\nAlso EF = 1, so |**f** - **e**| = 1.\n\nThe condition: **AB**·**AE** + **AC**·**AF** = 2\n= **b**·**e** + **c**·**f** = 2\n\nLet **e** = **b** + **d** and **f** = **b** - **d** where **d** = (EF direction)/2, |**d**| = 1/2.\n\nThen:\n**b**·**e** + **c**·**f** = **b**·(**b** + **d**) + **c**·(**b** - **d**)\n= **b**·**b** + **b**·**d** + **c**·**b** - **c**·**d**\n= |**b**|² + **b**·**d** + **b**·**c** - **c**·**d**\n= 1 + **b**·**d** + (-1) - **c**·**d**\n= **b**·**d** - **c**·**d**\n= (**b** - **c**)·**d** = 2\n\nSo (**b** - **c**)·**d** = 2.\n\nNow **d** is the vector from B to F (half of EF vector), so **d** = (1/2)·(unit vector in direction of EF).\n\nLet **u** be the unit vector in direction of EF (same as direction of **d** scaled). Then **d** = (1/2)**u**.\n\nSo (**b** - **c**)·(1/2)**u** = 2\n(**b** - **c**)·**u** = 4\n\nNow I need |**b** - **c**|. \n**b** - **c** = AB - AC vector = CB vector (from C to B... actually **b** - **c** = AB⃗ - AC⃗).\n\n|**b** - **c**|² = |**b**|² - 2**b**·**c** + |**c**|² = 1 - 2(-1) + 33 = 1 + 2 + 33 = 36\n|**b** - **c**| = 6\n\nNote that **b** - **c** = AB⃗ - AC⃗ = CB⃗ (vector from C to B), which has magnitude BC = 6. ✓\n\nThe cosine of the angle between **EF** and **BC**:\n\n**EF** direction is **u** (unit vector).\n**BC** direction: BC⃗ = **b** - **c** (from B... wait, BC⃗ = AC⃗ - AB⃗ = **c** - **b**, or from B to C = **c** - **b**).\n\nActually **BC**⃗ = C - B = **c** - **b**, so its direction is **c** - **b** = -(**b** - **c**).\n\nThe angle between **EF** and **BC** (as lines, we take the cosine of the angle between their direction vectors):\n\ncos θ = |(**b** - **c**)·**u**| / (|**b** - **c**|·|**u**|) = |4| / (6·1) = 4/6 = 2/3\n\n(Taking absolute value since we want the angle between lines, but the problem asks for cosine of angle between vectors **EF** and **BC**.)\n\nThe problem says \"cosine of the angle between **EF** and **BC**\", which typically means between the lines (taking the acute angle), so:\n\n(**b** - **c**)·**u** = 4, and (**c** - **b**)·**u** = -4.\n\nThe cosine could be ±2/3. Since the problem likely expects a positive value for the angle between lines:\n\nFinal answer: 2/3",
+  "usage": {
+    "input_tokens": 190,
+    "output_tokens": 1257,
+    "thinking_tokens": 0
+  },
+  "latency_s": 16.156864869059063,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "exact",
+    "predicted": "2/3"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "id": "00b9",
+  "country": "Argentina",
+  "competition": "XXVII Olimpiada Matemática Rioplatense",
+  "gold_final_answer": "All positive integers divisible by 3.",
+  "topics_flat": [
+    "Number Theory > Other",
+    "Discrete Mathematics > Combinatorics > Induction / smoothing",
+    "Algebra > Algebraic Expressions > Functional Equations > Existential quantifiers"
+  ],
+  "prompt": "For every positive integer $m$, we write $S(m)$ for the sum of its digits. For example, $S(2018) = 2+0+1+8=11$.\nWe say a positive integer $n$ is *rioplatense* if there is a positive integer $m$ such that $m + 2S(m) = n$.\nFind all positive integers that are *rioplatenses*.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find all positive integers that are *rioplatenses*, we are looking for the range of the function $f(m) = m + 2S(m)$ for positive integers $m$.\n\nFirst, we check the values of $f(m)$ modulo 3. It is a well-known fact that any positive integer is congruent to the sum of its digits modulo 3. That is, $m \\equiv S(m) \\pmod 3$. \nSubstituting this into our function, we get:\n$$f(m) = m + 2S(m) \\equiv S(m) + 2S(m) = 3S(m) \\equiv 0 \\pmod 3$$\nThis shows that $f(m)$ is always a multiple of 3. Thus, any *rioplatense* number must be a multiple of 3.\n\nNext, we will show that *every* positive multiple of 3 is a *rioplatense* number. \nLet's analyze the difference between consecutive values of the function, $f(m+1) - f(m)$:\n$$f(m+1) - f(m) = (m+1 + 2S(m+1)) - (m + 2S(m)) = 1 + 2(S(m+1) - S(m))$$\nWhen we add 1 to $m$, the sum of the digits changes depending on the number of trailing nines in $m$. Let $k$ be the number of trailing nines in $m$ (where $k \\ge 0$). \nWhen adding 1, the $k$ nines become zeros, and the next digit to the left increases by 1. Therefore, the sum of the digits changes by:\n$$S(m+1) - S(m) = 1 - 9k$$\nSubstituting this back into our difference equation gives:\n$$f(m+1) - f(m) = 1 + 2(1 - 9k) = 3 - 18k$$\nNotice that because $k \\ge 0$, we always have $f(m+1) - f(m) \\le 3$. \n\nNow, consider the sequence $a_m = \\frac{f(m)}{3}$. Since $f(m)$ is always a multiple of 3, $a_m$ is always an integer. \nThe difference between consecutive terms in this sequence is:\n$$a_{m+1} - a_m = \\frac{3 - 18k}{3} = 1 - 6k \\le 1$$\nThis means that the sequence $a_m$ can either increase by exactly 1, or it can decrease. It can never jump up by more than 1. \nWe also know that:\n1. $a_1 = \\frac{1 + 2(1)}{3} = 1$\n2. As $m \\to \\infty$, $a_m > \\frac{m}{3} \\to \\infty$.\n\nBecause the sequence of integers $a_m$ starts at 1, goes to infinity, and never increases by more than 1 from one term to the next, it must hit every single positive integer exactly. \nConsequently, $f(m) = 3a_m$ must hit every single positive multiple of 3.\n\nFinal answer: All positive multiples of 3",
+  "usage": {
+    "input_tokens": 136,
+    "output_tokens": 751,
+    "thoughts_tokens": 3209
+  },
+  "latency_s": 31.76030254003126,
+  "cached": false
+}

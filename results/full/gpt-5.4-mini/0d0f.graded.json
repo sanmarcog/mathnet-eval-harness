@@ -1,0 +1,28 @@
+{
+  "id": "0d0f",
+  "country": "Saudi Arabia",
+  "competition": "Saudi Arabia Mathematical Competitions 2012",
+  "gold_final_answer": "n = 1, n = 4, or n is prime",
+  "topics_flat": [
+    "Number Theory > Number-Theoretic Functions > φ (Euler's totient)",
+    "Number Theory > Number-Theoretic Functions > τ (number of divisors)",
+    "Number Theory > Divisibility / Factorization > Greatest common divisors (gcd)",
+    "Discrete Mathematics > Combinatorics > Inclusion-exclusion",
+    "Number Theory > Divisibility / Factorization > Prime numbers"
+  ],
+  "prompt": "For a positive integer $n$, let $\\phi(n)$ be the number of positive integers less than $n$ and relatively prime to $n$ (by convention $\\phi(1) = 1$). Let $\\tau(n)$ be the number of positive integers that are divisors of $n$. Find all positive integers $n$ such that\n$$\n\\phi(n) + \\tau(n) > n.\n$$",
+  "model": "gpt-5.4-mini",
+  "response_text": "We want\n\\[\n\\phi(n)+\\tau(n)>n.\n\\]\n\nWe check small values and then prove no larger ones work.\n\n### Step 1: Small cases\n- \\(n=1\\): \\(\\phi(1)=1,\\ \\tau(1)=1\\), so \\(1+1>1\\).\n- \\(n=2\\): \\(\\phi(2)=1,\\ \\tau(2)=2\\), so \\(1+2>2\\).\n- \\(n=3\\): \\(\\phi(3)=2,\\ \\tau(3)=2\\), so \\(2+2>3\\).\n- \\(n=4\\): \\(\\phi(4)=2,\\ \\tau(4)=3\\), so \\(2+3>4\\).\n\nSo \\(n=1,2,3,4\\) work.\n\n### Step 2: Show no \\(n\\ge 5\\) works\nFor \\(n\\ge 3\\), we have the standard bound\n\\[\n\\phi(n)\\le n-1,\n\\]\nbut that is not enough. We need a stronger estimate with \\(\\tau(n)\\).\n\nWe use the fact that for \\(n\\ge 5\\),\n\\[\n\\tau(n)\\le n-1-\\phi(n)\n\\]\nis equivalent to failure of the inequality, so we aim to show\n\\[\n\\phi(n)+\\tau(n)\\le n.\n\\]\n\nNow:\n- If \\(n\\) is prime, then \\(\\phi(n)=n-1\\) and \\(\\tau(n)=2\\), hence\n  \\[\n  \\phi(n)+\\tau(n)=n+1,\n  \\]\n  but this only happens for primes. Wait: for \\(n\\ge 5\\), primes do satisfy the inequality, so primes are included.\n\nSo we must separate prime and composite \\(n\\).\n\n### Step 3: Prime \\(n\\)\nIf \\(n=p\\) is prime, then\n\\[\n\\phi(p)=p-1,\\qquad \\tau(p)=2,\n\\]\nhence\n\\[\n\\phi(p)+\\tau(p)=p+1>p.\n\\]\nSo every prime works.\n\n### Step 4: Composite \\(n\\ge 4\\)\nNow assume \\(n\\) is composite.\n\n- If \\(n\\) is not a prime power, then \\(n\\) has at least two distinct prime factors, and one has the classical bound\n  \\[\n  \\phi(n)\\le n\\left(1-\\frac12\\right)\\left(1-\\frac13\\right)=\\frac n3\n  \\]\n  whenever \\(n\\) is divisible by \\(2\\) and \\(3\\), while in general \\(\\phi(n)\\le \\frac n2\\). More simply, for composite \\(n\\), \\(\\phi(n)\\le \\frac n2\\), with equality only for \\(n=2\\), and \\(\\tau(n)\\) grows much more slowly than \\(n\\). In fact for \\(n\\ge 6\\),\n  \\[\n  \\tau(n)\\le n/2\n  \\]\n  and usually much smaller, so \\(\\phi(n)+\\tau(n)\\le n\\).\n\nA clean direct check is enough:\n- For composite \\(n\\ge 6\\), \\(\\phi(n)\\le n/2\\).\n- Also \\(\\tau(n)\\le n/2\\), with equality only for \\(n=6\\) when \\(\\tau(6)=4\\) still gives \\(\\phi(6)+\\tau(6)=2+4=6\\), not strict.\nHence \\(\\phi(n)+\\tau(n)\\le n\\) for all composite \\(n\\ge 6\\).\n\nCheck \\(n=4\\) already works; \\(n=6\\) gives equality, not strict.\n\nThus the only composite solution is \\(n=4\\).\n\n### Conclusion\nThe positive integers satisfying\n\\[\n\\phi(n)+\\tau(n)>n\n\\]\nare exactly\n\\[\n\\boxed{1,2,3,4 \\text{ and all primes}}.\n\\]\n\nFinal answer: \\(n=1,2,3,4\\) and all prime numbers.",
+  "usage": {
+    "input_tokens": 135,
+    "output_tokens": 901,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 6.462468960089609,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "\\(n=1,2,3,4\\) and all prime numbers."
+  }
+}

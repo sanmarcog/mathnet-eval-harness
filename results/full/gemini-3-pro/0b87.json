@@ -1,0 +1,20 @@
+{
+  "id": "0b87",
+  "country": "Romania",
+  "competition": "NMO Selection Tests for the Junior Balkan Mathematical Olympiad",
+  "gold_final_answer": "36",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments",
+    "Discrete Mathematics > Combinatorics > Pigeonhole principle"
+  ],
+  "prompt": "An $8 \\times 8$ array is divided into 64 unit squares. In some of the unit squares a diagonal is drawn, such that no two diagonals share a common point – not even an endpoint. Find the maximum number of diagonals that can be drawn under these circumstances.",
+  "model": "gemini-3-pro-preview",
+  "response_text": ")$ for $i, j \\in \\{0, 1, 2\\}$.\nWait, there are many ways.\nLet's just use the bound 36. Is it achievable? Yes, the bipartite matching condition is the only obstruction, and the graph is bipartite with max degree 4, so a matching of size 36 should exist.\nLet's verify for $n=2$. Max diagonals = 3.\nFormula gives 3.\nFor $n=3$. Max diagonals = 8.\nFormula gives $2(1) + 1 = 3$? No, for $n=3$, $m$ is not integer.\nWait, $n=8$ is even, $n=2m \\implies m=4$.\nMax diagonals = $2m^2 + m(m+1) = 2(16) + 20 = 52$?\nWait!\nMy formula for $n=2m$:\nEE: $(m+1)^2$. OO: $m^2$.\n$k_e \\le m^2$.\nEO: $m(m+1)$. OE: $m(m+1)$.\n$k_o \\le m(m+1)$.\nTotal $k \\le m^2 + m(m+1) = 2m^2 + m$.\nFor $n=8$, $m=4$.\n$k \\le 4^2 + 4(5) = 16 + 20 =",
+  "usage": {
+    "input_tokens": 97,
+    "output_tokens": 328,
+    "thoughts_tokens": 7860
+  },
+  "latency_s": 65.39788731001318,
+  "cached": false
+}

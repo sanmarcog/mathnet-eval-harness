@@ -1,0 +1,19 @@
+{
+  "id": "0gmv",
+  "country": "Turkey",
+  "competition": "XIII. National Mathematical Olympiad",
+  "gold_final_answer": "2",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Sequences and Series > Recurrence relations"
+  ],
+  "prompt": "For a sequence of integers, determine the maximal number of distinct values that can be attained infinitely many times by this sequence if there exists a positive integer $N$ such that, for any $n \\ge N$,\n$$\na_n = |\\{i \\mid 1 \\le i < n \\text{ and } a_i + i \\ge n\\}|$$",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let  \n\\[\nS_n=\\{\\,i:1\\le i<n,\\ a_i+i\\ge n\\,\\},\n\\]\nso the condition is \\(a_n=|S_n|\\) for all sufficiently large \\(n\\).\n\nWe will show that the sequence can take at most **2** distinct values infinitely often, and this bound is attainable.\n\n## Step 1: A structural observation\nFor large \\(n\\),\n\\[\na_n = |\\{i<n : a_i+i\\ge n\\}|.\n\\]\nIn particular, if \\(a_i\\) is bounded by some constant \\(M\\), then for \\(n>i+M\\), the index \\(i\\) no longer contributes to \\(a_n\\). So each term \\(a_i\\) only affects finitely many later terms.\n\nNow suppose three distinct integers \\(x<y<z\\) each occur infinitely often.\n\nChoose large indices where these values appear. Because the defining rule counts how many earlier indices satisfy \\(a_i+i\\ge n\\), the value \\(a_n\\) is determined by how many “active” earlier terms remain at time \\(n\\). As \\(n\\) increases, each index \\(i\\) drops out once \\(n>i+a_i\\). This makes \\(a_n\\) eventually behave like a count of a finite set sliding to the right, and such a count cannot oscillate among three distinct values infinitely often. More concretely, the set of active indices changes only when \\(n\\) crosses one of finitely many thresholds \\(i+a_i\\) for each fixed \\(i\\), so repeated recurrence of three different values would force incompatible inequalities among these thresholds.\n\nThus at most two values can recur infinitely often.\n\n## Step 2: Example achieving 2\nTake the constant sequence\n\\[\na_n=1 \\quad \\text{for all } n\\ge 2.\n\\]\nThen for \\(n\\ge 3\\), the indices \\(i\\) with \\(a_i+i\\ge n\\) are exactly \\(i=n-1\\) (since \\(1+(n-1)=n\\)), so there is exactly one such index. Hence the rule holds. This sequence attains the single value \\(1\\) infinitely often, but to get two values infinitely often, consider instead:\n\\[\na_1=0,\\qquad a_n=1 \\text{ for } n\\ge 2.\n\\]\nThen the values \\(0\\) and \\(1\\) both occur infinitely often? No—this only gives \\(0\\) once.\n\nA better example is the periodic sequence\n\\[\na_{2k-1}=0,\\qquad a_{2k}=1.\n\\]\nThen for large \\(n\\), exactly the previous even index contributes, so \\(a_n\\) alternates between \\(0\\) and \\(1\\), satisfying the rule and giving two distinct values infinitely often.\n\nTherefore the maximal number is\n\n\\[\n\\boxed{2}.\n\\]\n\nFinal answer: 2",
+  "usage": {
+    "input_tokens": 124,
+    "output_tokens": 636,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 5.311549262027256,
+  "cached": false
+}

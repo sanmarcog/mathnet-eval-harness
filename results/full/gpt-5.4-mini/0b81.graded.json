@@ -1,0 +1,25 @@
+{
+  "id": "0b81",
+  "country": "Romania",
+  "competition": "Local Mathematical Competitions",
+  "gold_final_answer": "(n-1)/(2n)",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities > QM-AM-GM-HM / Power Mean",
+    "Algebra > Equations and Inequalities > Jensen / smoothing"
+  ],
+  "prompt": "For each positive integer $n$, find the largest real number $C_n$ with the following property. Given any $n$ real-valued functions $f_1(x), f_2(x), \\dots, f_n(x)$ defined on the closed interval $0 \\le x \\le 1$, one can find numbers $x_1, x_2, \\dots, x_n$, such that $0 \\le x_i \\le 1$, satisfying\n$$\n|f_1(x_1) + f_2(x_2) + \\dots + f_n(x_n) - x_1x_2\\dots x_n| \\ge C_n.\n$$",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let  \n\\[\nS(x_1,\\dots,x_n)=f_1(x_1)+\\cdots+f_n(x_n)-x_1x_2\\cdots x_n.\n\\]\nWe want the largest \\(C_n\\) such that for every choice of \\(f_1,\\dots,f_n\\), there exist \\(x_i\\in[0,1]\\) with\n\\[\n|S(x_1,\\dots,x_n)|\\ge C_n.\n\\]\n\n## Step 1: A universal upper bound for how small the maximum can be\nLet\n\\[\nM=\\max_{0\\le x_i\\le 1} S(x_1,\\dots,x_n),\\qquad\nm=\\min_{0\\le x_i\\le 1} S(x_1,\\dots,x_n).\n\\]\nThen for any functions \\(f_i\\), the quantity we seek is at least\n\\[\n\\max(M,-m)\\ge \\frac{M-m}{2}.\n\\]\n\nSo it suffices to find a lower bound for \\(M-m\\).\n\nNow, since each \\(f_i(x_i)\\) can be varied independently by choosing \\(x_i\\), the only term coupling the variables is \\(-x_1\\cdots x_n\\). If we fix all variables except one, say \\(x_k\\), then the expression changes by at most \\(1\\) because \\(x_1\\cdots x_n\\in[0,1]\\). More importantly, evaluating at the two extreme points\n\\[\n(0,0,\\dots,0)\\quad\\text{and}\\quad (1,1,\\dots,1)\n\\]\ngives\n\\[\nS(0,\\dots,0)=\\sum_{i=1}^n f_i(0),\n\\]\n\\[\nS(1,\\dots,1)=\\sum_{i=1}^n f_i(1)-1.\n\\]\nTherefore\n\\[\nM-m \\ge \\left|S(1,\\dots,1)-S(0,\\dots,0)\\right|\n= \\left|\\sum_{i=1}^n (f_i(1)-f_i(0)) -1\\right|.\n\\]\nThis alone is not enough, so we use the standard minimax idea: choose \\(x_i\\) so that each \\(f_i(x_i)\\) lies between its values at \\(0\\) and \\(1\\). The best possible universal obstruction comes from the product term, whose range on \\([0,1]^n\\) is exactly \\([0,1]\\). Hence, regardless of the \\(f_i\\), one can force the value of \\(S\\) to differ from some number in \\([0,1]\\) by at least \\(1/2\\).\n\nIndeed, take \\(x_i\\in[0,1]\\) such that all \\(f_i(x_i)\\) are simultaneously as close as possible to a common target; then the product term can only shift the total by at most \\(1\\), so the best guaranteed deviation is at least \\(1/2\\). Thus\n\\[\nC_n\\ge \\frac12.\n\\]\n\n## Step 2: Sharpness\nTake all \\(f_i\\equiv 0\\). Then\n\\[\nS(x_1,\\dots,x_n)=-x_1x_2\\cdots x_n,\n\\]\nso\n\\[\n|S|=x_1x_2\\cdots x_n\\le 1.\n\\]\nBut by choosing \\(x_1=\\cdots=x_n=1\\), we get \\(|S|=1\\), and by choosing all \\(x_i=0\\), we get \\(|S|=0\\). Hence the smallest possible “forced” deviation cannot exceed \\(1/2\\) by symmetry about the interval \\([0,1]\\). So the universal best constant is exactly\n\\[\nC_n=\\frac12.\n\\]\n\nThus the answer is independent of \\(n\\).\n\nFinal answer: \\(\\boxed{\\tfrac12}\\)",
+  "usage": {
+    "input_tokens": 190,
+    "output_tokens": 861,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 5.6257409459212795,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "\\tfrac12"
+  }
+}

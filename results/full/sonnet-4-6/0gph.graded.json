@@ -1,0 +1,26 @@
+{
+  "id": "0gph",
+  "country": "Turkey",
+  "competition": "Team Selection Test for IMO 2011",
+  "gold_final_answer": "p^n",
+  "topics_flat": [
+    "Number Theory > Modular Arithmetic",
+    "Number Theory > Residues and Primitive Roots > Multiplicative order",
+    "Algebra > Algebraic Expressions > Functional Equations"
+  ],
+  "prompt": "Let $p$ be a prime, $n$ be a positive integer, and let $Z_{p^n}$ denote the set of congruence classes modulo $p^n$. Determine the number of functions $f : Z_{p^n} \\to Z_{p^n}$ satisfying the condition\n$$\nf(a) + f(b) \\equiv f(a + b + pab) \\pmod{p^n}\n$$\nfor all $a, b \\in Z_{p^n}$.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Setting Up the Problem\n\nWe need to find functions $f: \\mathbb{Z}_{p^n} \\to \\mathbb{Z}_{p^n}$ satisfying $f(a) + f(b) \\equiv f(a + b + pab) \\pmod{p^n}$.\n\n## Analyzing the Structure\n\nNotice that $a + b + pab = (1+pa)(1+pb) - 1$ divided by... let me check: $(1+pa)(1+pb) = 1 + pa + pb + p^2ab$. That's not quite right.\n\nActually, $a + b + pab$: let's try the substitution $\\phi(a) = 1 + pa \\pmod{p^n}$. Then:\n$$\\phi(a) \\cdot \\phi(b) = (1+pa)(1+pb) = 1 + pa + pb + p^2ab = 1 + p(a+b+pab)$$\n\nSo $\\phi(a+b+pab) = \\phi(a)\\phi(b)$! This means the operation $a \\star b = a + b + pab$ makes $\\mathbb{Z}_{p^n}$ into a group isomorphic to the multiplicative group via $\\phi(a) = 1+pa$.\n\nThe group $(\\mathbb{Z}_{p^n}, \\star)$ is isomorphic to the group $G = \\{1+pa : a \\in \\mathbb{Z}_{p^n}\\} = \\{x \\in \\mathbb{Z}_{p^{n+1}} : x \\equiv 1 \\pmod{p}\\}$ under multiplication mod $p^{n+1}$... but let's work directly.\n\nThe condition $f(a) + f(b) = f(a \\star b)$ means $f$ is a **group homomorphism** from $(\\mathbb{Z}_{p^n}, \\star)$ to $(\\mathbb{Z}_{p^n}, +)$.\n\n## Identifying the Groups\n\nThe group $(\\mathbb{Z}_{p^n}, \\star)$ via $\\phi: a \\mapsto 1+pa$ is isomorphic to the subgroup $\\{1+pa \\pmod{p^{n+1}}\\}$ of $(\\mathbb{Z}_{p^{n+1}})^\\times$. But as an abstract group, $(\\mathbb{Z}_{p^n}, \\star)$ has order $p^n$.\n\nThe identity element: $a \\star 0 = a + 0 + 0 = a$, so $0$ is the identity.\n\nThe inverse of $a$: need $a + b + pab = 0$, so $b(1+pa) = -a$, giving $b = -a(1+pa)^{-1} \\pmod{p^n}$.\n\nThe group $(\\mathbb{Z}_{p^n}, \\star)$ is isomorphic to $(\\mathbb{Z}_{p^n}, +)$ when $p$ is odd (since $1+pa$ generates a cyclic group of order $p^n$ in $(\\mathbb{Z}_{p^{n+1}})^\\times$). For $p=2$, similar analysis holds.\n\nActually, $(\\mathbb{Z}_{p^n}, \\star) \\cong \\mathbb{Z}_{p^n}$ as an abelian group (it's cyclic of order $p^n$).\n\n## Counting Homomorphisms\n\nWe need homomorphisms from $(\\mathbb{Z}_{p^n}, \\star) \\cong \\mathbb{Z}_{p^n}$ to $(\\mathbb{Z}_{p^n}, +) \\cong \\mathbb{Z}_{p^n}$.\n\nThe number of group homomorphisms from $\\mathbb{Z}_{p^n}$ to $\\mathbb{Z}_{p^n}$ equals the number of elements $g \\in \\mathbb{Z}_{p^n}$ such that $p^n \\cdot g = 0$ in $\\mathbb{Z}_{p^n}$, which is all elements. So there are $p^n$ homomorphisms (each determined by the image of a generator, which can be any element).\n\nWait - homomorphisms from $\\mathbb{Z}_{p^n}$ to $\\mathbb{Z}_{p^n}$: a generator maps to any element $g$, and the map $k \\mapsto kg$ is well-defined since $p^n \\cdot g = 0$. So there are exactly $p^n$ homomorphisms.\n\n## Verification\n\nSetting $a = b = 0$: $2f(0) = f(0)$, so $f(0) = 0$. ✓ (consistent with homomorphisms)\n\nThe number of such functions is $p^n$.\n\nFinal answer: $p^n$",
+  "usage": {
+    "input_tokens": 166,
+    "output_tokens": 1195,
+    "thinking_tokens": 0
+  },
+  "latency_s": 17.370227551087737,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "normalized",
+    "predicted": "$p^n$"
+  }
+}

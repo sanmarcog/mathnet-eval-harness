@@ -1,0 +1,20 @@
+{
+  "id": "04st",
+  "country": "Czech Republic",
+  "competition": "Czech and Slovak Mathematical Olympiad",
+  "gold_final_answer": "x + y + z = 4; the smallest interval is [2/3, 2].",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Vieta's formulas",
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities"
+  ],
+  "prompt": "Suppose that the real numbers $x, y, z$ satisfy equalities\n$$\n15(x + y + z) = 12(xy + yz + zx) = 10(x^2 + y^2 + z^2)\n$$\nand that at least one of them is different from zero.\na) Prove that $x + y + z = 4$.\nb) Find the smallest interval $(a, b)$, which contains all three numbers from any triplet $(x, y, z)$ satisfying the given conditions.",
+  "model": "gpt-5.4",
+  "response_text": "Let\n\\[\n15(x+y+z)=12(xy+yz+zx)=10(x^2+y^2+z^2),\n\\]\nand assume not all of \\(x,y,z\\) are zero.\n\nSet\n\\[\ns=x+y+z,\\qquad p=xy+yz+zx,\\qquad q=x^2+y^2+z^2.\n\\]\nThen the condition becomes\n\\[\n15s=12p=10q.\n\\]\nSo there is some real \\(t\\) such that\n\\[\ns=\\frac t{15},\\quad p=\\frac t{12},\\quad q=\\frac t{10}.\n\\]\nBut it is simpler to compare directly:\n\\[\n15s=10q \\implies 3s=2q,\n\\]\n\\[\n15s=12p \\implies 5s=4p.\n\\]\n\nAlso,\n\\[\nq=s^2-2p.\n\\]\nSubstitute \\(q=\\frac32 s\\) and \\(p=\\frac54 s\\):\n\\[\n\\frac32 s=s^2-2\\cdot \\frac54 s=s^2-\\frac52 s.\n\\]\nHence\n\\[\ns^2-4s=0,\n\\]\nso\n\\[\ns(s-4)=0.\n\\]\nIf \\(s=0\\), then \\(q=\\frac32 s=0\\), so \\(x^2+y^2+z^2=0\\), thus \\(x=y=z=0\\), impossible.\n\nTherefore\n\\[\nx+y+z=s=4.\n\\]\n\nThis proves part (a).\n\n---\n\nFor part (b), from \\(s=4\\) we get\n\\[\np=\\frac54 s=5,\\qquad q=\\frac32 s=6.\n\\]\nSo \\(x,y,z\\) are roots of the cubic\n\\[\nt^3-st^2+pt-r=t^3-4t^2+5t-r,\n\\]\nfor some \\(r=xyz\\). We need all possible values of roots under the condition\n\\[\nx+y+z=4,\\qquad xy+yz+zx=5.\n\\]\n\nFix one variable, say \\(x\\). Then\n\\[\ny+z=4-x,\n\\]\nand\n\\[\nyz=5-x(y+z)=5-x(4-x)=x^2-4x+5.\n\\]\nFor real \\(y,z\\), the quadratic with roots \\(y,z\\),\n\\[\nu^2-(4-x)u+(x^2-4x+5)=0,\n\\]\nmust have discriminant \\(\\ge 0\\):\n\\[\n(4-x)^2-4(x^2-4x+5)\\ge 0.\n\\]\nCompute:\n\\[\n16-8x+x^2-4x^2+16x-20\\ge 0\n\\]\n\\[\n-3x^2+8x-4\\ge 0\n\\]\n\\[\n3x^2-8x+4\\le 0.\n\\]\nThe roots are\n\\[\nx=\\frac{8\\pm\\sqrt{64-48}}6=\\frac{8\\pm4}{6},\n\\]\nso\n\\[\nx\\in\\left[\\frac23,\\,2\\right].\n\\]\nBy symmetry the same holds for \\(y\\) and \\(z\\). Hence every coordinate of every valid triple lies in\n\\[\n\\left[\\frac23,\\,2\\right].\n\\]\n\nThese endpoints are attained:\n- \\(x=2\\) gives \\(y+z=2,\\ yz=1\\), hence \\(y=z=1\\), so \\((2,1,1)\\) works.\n- \\(x=\\frac23\\) gives \\(y+z=\\frac{10}{3},\\ yz=\\frac{29}{9}\\), and discriminant \\(0\\), so \\(y=z=\\frac53\\); thus \\(\\left(\\frac23,\\frac53,\\frac53\\right)\\) works.\n\nTherefore the smallest interval containing all three numbers from any such triplet is\n\\[\n\\left[\\frac23,\\,2\\right].\n\\]\nIf the problem insists on open interval notation \\((a,b)\\), then the minimal one is\n\\[\n\\left(\\frac23,\\,2\\right)\n\\]\nin the sense of endpoints.\n\nFinal answer: a) \\(x+y+z=4\\). b) The sharp bounds are \\(\\displaystyle \\frac23\\le x,y,z\\le 2\\), so the smallest interval is \\(\\displaystyle \\left[\\frac23,2\\right]\\) (equivalently, endpoints \\(a=\\frac23,\\ b=2\\)).",
+  "usage": {
+    "input_tokens": 162,
+    "output_tokens": 999,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 13.460879254969768,
+  "cached": false
+}

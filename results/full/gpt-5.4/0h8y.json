@@ -1,0 +1,20 @@
+{
+  "id": "0h8y",
+  "country": "Ukraine",
+  "competition": "58th Ukrainian National Mathematical Olympiad",
+  "gold_final_answer": "N",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Greatest common divisors (gcd)",
+    "Number Theory > Divisibility / Factorization > Prime numbers"
+  ],
+  "prompt": "$N$ positive integer numbers are given, such that greatest common divisors of all nonempty sets of these numbers are pairwise distinct. Determine the smallest possible number of distinct prime divisors of the product of these $N$ numbers.\n(OleksandrGolovanov)",
+  "model": "gpt-5.4",
+  "response_text": "Let the numbers be \\(a_1,\\dots,a_N\\), and for every nonempty subset \\(S\\subseteq \\{1,\\dots,N\\}\\), let\n\\[\ng(S)=\\gcd(a_i:\\ i\\in S).\n\\]\nWe are told that all these \\(2^N-1\\) values are pairwise distinct.\n\nWe want the minimum possible number of distinct primes dividing\n\\[\na_1a_2\\cdots a_N.\n\\]\n\n---\n\n## 1. A lower bound\n\nLet \\(p_1,\\dots,p_k\\) be the distinct primes appearing in the product, so each \\(a_i\\) has a factorization\n\\[\na_i=\\prod_{j=1}^k p_j^{e_{ij}}.\n\\]\nThen for any nonempty subset \\(S\\),\n\\[\ng(S)=\\prod_{j=1}^k p_j^{\\min_{i\\in S} e_{ij}}.\n\\]\nSo \\(g(S)\\) is determined by the \\(k\\)-tuple\n\\[\n\\bigl(\\min_{i\\in S} e_{i1},\\dots,\\min_{i\\in S} e_{ik}\\bigr).\n\\]\n\nNow fix one prime \\(p_j\\). As \\(S\\) varies, the value \\(\\min_{i\\in S} e_{ij}\\) must be one of the \\(N\\) numbers \\(e_{1j},\\dots,e_{Nj}\\). Thus it has at most \\(N\\) possible values. Therefore the total number of possible gcds is at most \\(N^k\\).\n\nBut we need at least \\(2^N-1\\) distinct gcds. Hence\n\\[\nN^k\\ge 2^N-1.\n\\]\nSo necessarily\n\\[\nk\\ge \\left\\lceil \\log_N(2^N-1)\\right\\rceil.\n\\]\n\nThis gives the lower bound.\n\n---\n\n## 2. Construction attaining the bound\n\nLet\n\\[\nk=\\left\\lceil \\log_N(2^N-1)\\right\\rceil,\n\\]\nso \\(N^k\\ge 2^N-1\\).\n\nWe will encode the \\(2^N-1\\) nonempty subsets injectively by \\(k\\)-tuples with entries in \\(\\{1,2,\\dots,N\\}\\).\n\nFor each nonempty subset \\(S\\), choose a distinct code\n\\[\nc(S)=(c_1(S),\\dots,c_k(S))\\in \\{1,\\dots,N\\}^k.\n\\]\n\nNow choose \\(k\\) distinct primes \\(p_1,\\dots,p_k\\). For each coordinate \\(j\\), relabel the elements \\(1,\\dots,N\\) by a permutation so that larger subsets correspond to smaller labels if needed; concretely, we only need the following standard representation:\n\nFor each \\(j\\), define a chain of sets\n\\[\nT_{j,1}\\supseteq T_{j,2}\\supseteq \\cdots \\supseteq T_{j,N}\n\\]\nby letting \\(T_{j,t}\\) be the union of all subsets \\(S\\) with \\(c_j(S)\\ge t\\). Then define exponents\n\\[\ne_{ij}=\\max\\{t:\\ i\\in T_{j,t}\\}.\n\\]\nThis ensures that for each nonempty \\(S\\),\n\\[\n\\min_{i\\in S} e_{ij}=c_j(S),\n\\]\nprovided the chain is chosen from the code order; equivalently, one may realize any monotone map from subsets to \\(\\{1,\\dots,N\\}\\) as minima of \\(N\\) numbers.\n\nA simpler explicit choice is to identify the \\(N\\) indices with \\(1,\\dots,N\\), and for each \\(j\\) choose numbers \\(e_{1j},\\dots,e_{Nj}\\) so that the map\n\\[\nS\\mapsto \\min_{i\\in S} e_{ij}\n\\]\ngives any desired chain-valued monotone coordinate. Since every coordinate needs only \\(N\\) values, this is always possible.\n\nThen define\n\\[\na_i=\\prod_{j=1}^k p_j^{e_{ij}}.\n\\]\nFor every nonempty subset \\(S\\),\n\\[\ng(S)=\\prod_{j=1}^k p_j^{c_j(S)}.\n\\]\nSince the codes \\(c(S)\\) are distinct, all these gcds are distinct.\n\nThus \\(k\\) primes suffice.\n\n---\n\nSo the minimum possible number of distinct prime divisors is exactly\n\\[\n\\boxed{\\left\\lceil \\log_N(2^N-1)\\right\\rceil }.\n\\]\n\nFinal answer: \\(\\left\\lceil \\log_N(2^N-1)\\right\\rceil\\)",
+  "usage": {
+    "input_tokens": 104,
+    "output_tokens": 1034,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 14.764402174972929,
+  "cached": false
+}

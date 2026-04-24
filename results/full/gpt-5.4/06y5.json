@@ -1,0 +1,21 @@
+{
+  "id": "06y5",
+  "country": "IMO",
+  "competition": "IMO2024 Shortlisted Problems",
+  "gold_final_answer": "a_n = n + C for some nonnegative integer C",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Sequences and Series > Recurrence relations",
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities",
+    "Number Theory > Divisibility / Factorization > Greatest common divisors (gcd)"
+  ],
+  "prompt": "Let $p \\neq q$ be coprime positive integers. Determine all infinite sequences $a_{1}, a_{2}, \\ldots$ of positive integers such that the following conditions hold for all $n \\geqslant 1$:\n$$\n\\begin{aligned}\n& \\max \\left(a_{n}, a_{n+1}, \\ldots, a_{n+p}\\right)-\\min \\left(a_{n}, a_{n+1}, \\ldots, a_{n+p}\\right)=p \\quad \\text{ and } \\\\\n& \\max \\left(a_{n}, a_{n+1}, \\ldots, a_{n+q}\\right)-\\min \\left(a_{n}, a_{n+1}, \\ldots, a_{n+q}\\right)=q .\n\\end{aligned}\n$$",
+  "model": "gpt-5.4",
+  "response_text": "We will show that the only such sequences are arithmetic progressions with common difference \\(1\\) or \\(-1\\); since the terms are positive integers for all \\(n\\ge1\\), only the constant-\\(+1\\) case survives.\n\n## Step 1: Reformulate with successive differences\nLet\n\\[\nd_n=a_{n+1}-a_n \\qquad (n\\ge1).\n\\]\nFor any block \\(a_n,a_{n+1},\\dots,a_{n+r}\\), all terms are integers, so if\n\\[\n\\max(a_n,\\dots,a_{n+r})-\\min(a_n,\\dots,a_{n+r})=r,\n\\]\nthen necessarily all \\(r+1\\) terms are distinct and fill exactly the \\(r+1\\) consecutive integers between the minimum and maximum.\n\nHence, for every \\(n\\),\n\n- the \\(p+1\\) numbers \\(a_n,\\dots,a_{n+p}\\) are exactly \\(p+1\\) consecutive integers;\n- the \\(q+1\\) numbers \\(a_n,\\dots,a_{n+q}\\) are exactly \\(q+1\\) consecutive integers.\n\nIn particular, in each such block, consecutive terms differ by \\(\\pm1\\). So for all \\(n\\),\n\\[\nd_n\\in\\{1,-1\\}.\n\\]\n\n## Step 2: A local characterization\nFix \\(r\\in\\{p,q\\}\\). Since \\(a_n,\\dots,a_{n+r}\\) are \\(r+1\\) consecutive integers, the walk\n\\[\n0,\\ d_n,\\ d_n+d_{n+1},\\ \\dots,\\ d_n+\\cdots+d_{n+r-1}\n\\]\nmust visit \\(r+1\\) distinct integers lying in an interval of length \\(r\\). Therefore it must be exactly a monotone walk through consecutive integers. Hence all the involved signs are equal:\n\\[\nd_n=d_{n+1}=\\cdots=d_{n+r-1}.\n\\]\nSo for every \\(n\\),\n\\[\nd_n=\\cdots=d_{n+p-1} \\qquad\\text{and}\\qquad d_n=\\cdots=d_{n+q-1}.\n\\]\n\nThus each \\(d_n\\) equals all the next \\(p-1\\) and all the next \\(q-1\\) differences.\n\n## Step 3: Use coprimality\nFrom the above,\n\\[\nd_n=d_{n+p}\\quad\\text{and}\\quad d_n=d_{n+q}\n\\]\nfor all \\(n\\), because the blocks of equal signs overlap:\n\\[\nd_n=\\cdots=d_{n+p-1},\\qquad d_{n+1}=\\cdots=d_{n+p},\n\\]\nso \\(d_n=d_{n+p}\\), and similarly \\(d_n=d_{n+q}\\).\n\nHence \\((d_n)\\) has period \\(p\\) and period \\(q\\). Since \\(\\gcd(p,q)=1\\), it has period \\(1\\). Therefore \\(d_n\\) is constant:\n\\[\nd_n\\equiv \\varepsilon\\in\\{1,-1\\}.\n\\]\n\nSo\n\\[\na_n=a_1+(n-1)\\varepsilon.\n\\]\n\n## Step 4: Check positivity\nIf \\(\\varepsilon=-1\\), then \\(a_n=a_1-(n-1)\\) is eventually nonpositive, impossible for an infinite sequence of positive integers.\n\nThus \\(\\varepsilon=1\\), and\n\\[\na_n=a_1+n-1\n\\]\nfor some positive integer \\(a_1\\).\n\n## Step 5: Verify\nFor such a sequence,\n\\[\na_n,a_{n+1},\\dots,a_{n+r}=a_n,a_n+1,\\dots,a_n+r,\n\\]\nso the maximum minus minimum is exactly \\(r\\), for both \\(r=p\\) and \\(r=q\\).\n\nTherefore all solutions are exactly the sequences\n\\[\na_n=n+c\\qquad(n\\ge1),\n\\]\nwhere \\(c\\ge0\\) is an integer.\n\nFinal answer: \\(\\boxed{a_n=a_1+n-1\\text{ for all }n\\ge1,\\ \\text{with }a_1\\in\\mathbb Z_{>0}}\\).",
+  "usage": {
+    "input_tokens": 230,
+    "output_tokens": 927,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 14.355106808943674,
+  "cached": false
+}

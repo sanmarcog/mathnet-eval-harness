@@ -1,0 +1,30 @@
+{
+  "id": "07e5",
+  "country": "Iran",
+  "competition": "Iranian Mathematical Olympiad",
+  "gold_final_answer": "All square-free positive integers.",
+  "topics_flat": [
+    "Number Theory > Residues and Primitive Roots > Quadratic residues",
+    "Number Theory > Residues and Primitive Roots > Quadratic reciprocity",
+    "Number Theory > Residues and Primitive Roots > Multiplicative order",
+    "Number Theory > Modular Arithmetic > Chinese remainder theorem",
+    "Number Theory > Modular Arithmetic > Fermat / Euler / Wilson theorems",
+    "Number Theory > Divisibility / Factorization > Prime numbers",
+    "Number Theory > Algebraic Number Theory > Quadratic forms"
+  ],
+  "prompt": "$$\nS_n = \\{x^2 + n y^2 : x, y \\in \\mathbb{Z}\\}.\n$$\nFind all positive integers $n$ such that there exists an element of $S_n$ which doesn't belong to any of the sets $S_1, S_2, \\dots, S_{n-1}$.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find all positive integers $n$ such that there exists an element of $S_n$ which doesn't belong to any of the sets $S_1, S_2, \\dots, S_{n-1}$, we analyze the condition $S_n \\setminus \\bigcup_{k=1}^{n-1} S_k \\neq \\emptyset$.\n\nFirst, suppose $n$ is not square-free. Then $n$ can be written as $n = k^2 m$ for some integers $k > 1$ and $m \\ge 1$. \nAny element in $S_n$ is of the form $x^2 + n y^2$. We can rewrite this as:\n$$x^2 + n y^2 = x^2 + (k^2 m) y^2 = x^2 + m (ky)^2$$\nSince $x$ and $ky$ are integers, this expression is an element of $S_m$. Thus, $S_n \\subseteq S_m$. \nBecause $k > 1$, we have $m < n$, which means $S_m$ is one of the sets $S_1, S_2, \\dots, S_{n-1}$. Therefore, all elements of $S_n$ already belong to $S_m$, and $S_n$ contains no new elements. So no non-square-free integer can be a solution.\n\nNow, suppose $n$ is square-free. We",
+  "usage": {
+    "input_tokens": 116,
+    "output_tokens": 324,
+    "thoughts_tokens": 7864
+  },
+  "latency_s": 52.042338556959294,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": null
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "id": "03ej",
+  "country": "Bulgaria",
+  "competition": "2 Bulgarian Winter Tournament",
+  "gold_final_answer": "13",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Enumeration with symmetry",
+    "Number Theory > Divisibility / Factorization > Factorization techniques",
+    "Number Theory > Modular Arithmetic"
+  ],
+  "prompt": "Given a natural number $n$. We have $n + 1$ balls numbered $1$, $1$, $2$, $3$, ..., $n$ (only the first two are the same). We need to color these balls in $n$ given colors so that every ball is a single color and every color is used at least once. We denote by $a_n$ the number of possible colorings. Find the smallest $n$ for which $a_n$ is divisible by $2024$.\n(Ivaylo Kortezov)",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let the colors be labeled. Since there are \\(n+1\\) balls and \\(n\\) colors, and every color must be used at least once, exactly one color is used twice and all others once.\n\nSo we count colorings by choosing:\n\n- which color is used twice: \\(n\\) ways,\n- which two balls get that color: the balls are distinct except the two “1” balls are identical, so we must count carefully.\n\nA simpler way is to use inclusion-exclusion on surjections from the multiset \\(\\{1,1,2,\\dots,n\\}\\) to \\(n\\) colors, but here there is a direct formula:\n\\[\na_n = n\\cdot \\binom{n+1}{2} - n\\cdot \\binom{2}{2}\n\\]\ndoes not work because of the repeated ball labels. Instead, treat the two 1-balls as distinct temporarily; then the number of onto colorings of \\(n+1\\) distinct balls onto \\(n\\) colors is\n\\[\nn!\\,S(n+1,n)=n!\\binom{n+1}{2}.\n\\]\nBut this counts colorings where swapping the two 1-balls may or may not change the coloring. Since the two 1-balls are identical, we divide by \\(2\\) only for colorings where they get different colors, and keep them unchanged when they get the same color. A cleaner direct count gives:\n- choose the repeated color: \\(n\\),\n- choose the unique ball not using that repeated color pattern: among \\(n+1\\) balls, the repeated color must appear on exactly two balls, and because the only indistinguishable pair is the two 1-balls, the number of valid choices of the doubled pair is \\(\\binom{n+1}{2}\\).\n\nThus\n\\[\na_n = n\\binom{n+1}{2} = \\frac{n^2(n+1)}{2}.\n\\]\n\nWe need the smallest \\(n\\) such that\n\\[\n2024 \\mid \\frac{n^2(n+1)}{2}.\n\\]\nSince \\(2024=2^3\\cdot 11\\cdot 23\\), this is equivalent to\n\\[\n2^4\\cdot 11\\cdot 23 \\mid n^2(n+1).\n\\]\nWe need:\n- \\(16\\mid n^2(n+1)\\),\n- \\(11\\mid n^2(n+1)\\),\n- \\(23\\mid n^2(n+1)\\).\n\nBecause \\(\\gcd(n,n+1)=1\\), each prime power must come from either \\(n\\) or \\(n+1\\).\n\nThe smallest way to satisfy \\(11\\) and \\(23\\) is to take \\(n\\equiv -1 \\pmod{11}\\) and \\(n\\equiv -1 \\pmod{23}\\), i.e.\n\\[\nn\\equiv -1 \\pmod{253},\n\\]\nso the smallest positive such \\(n\\) is \\(252\\). Check the power of 2:\n\\[\n252 = 2^2\\cdot 3^2\\cdot 7,\\qquad 253 \\text{ is odd},\n\\]\nso\n\\[\n\\frac{252^2\\cdot 253}{2}\n\\]\nhas 2-adic valuation \\(2\\cdot 2 - 1 = 3\\), enough for divisibility by \\(2^3\\). Hence \\(n=252\\) works.\n\nNow we show no smaller \\(n\\) can work: to get both \\(11\\) and \\(23\\), one of \\(n,n+1\\) must be divisible by \\(11\\), and one of \\(n,n+1\\) must be divisible by \\(23\\). Since consecutive integers differ by 1, the smallest positive integer congruent to \\(-1\\) mod both \\(11\\) and \\(23\\) is \\(252\\), and any other option forces \\(n\\ge 252\\).\n\nSo the smallest \\(n\\) is \\(252\\).\n\nFinal answer: \\(252\\)",
+  "usage": {
+    "input_tokens": 162,
+    "output_tokens": 893,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 6.427635606029071,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "\\(252\\)"
+  }
+}

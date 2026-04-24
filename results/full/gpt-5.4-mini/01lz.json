@@ -1,0 +1,19 @@
+{
+  "id": "01lz",
+  "country": "Belarus",
+  "competition": "Selection and Training Session",
+  "gold_final_answer": "((m,n) = (6,3), (9,3), (9,5), (54,5))",
+  "topics_flat": [
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities"
+  ],
+  "prompt": "Find all pairs $(m, n)$ of nonnegative integers for which\n$$\nm^2 + 2 \\cdot 3^n = m(2^{n+1} - 1).\n$$",
+  "model": "gpt-5.4-mini",
+  "response_text": "We solve\n\\[\nm^2+2\\cdot 3^n=m(2^{n+1}-1)\n\\]\nfor nonnegative integers \\(m,n\\).\n\nRewrite as a quadratic in \\(m\\):\n\\[\nm^2-(2^{n+1}-1)m+2\\cdot 3^n=0.\n\\]\nSo the discriminant must be a perfect square:\n\\[\n\\Delta=(2^{n+1}-1)^2-8\\cdot 3^n.\n\\]\n\nNow check small \\(n\\):\n\n- \\(n=0\\):  \n  \\[\n  m^2+2=m(2-1)=m\n  \\]\n  so\n  \\[\n  m^2-m+2=0,\n  \\]\n  whose discriminant is \\(1-8=-7<0\\). No solution.\n\n- \\(n=1\\):  \n  \\[\n  m^2+6=3m \\implies m^2-3m+6=0,\n  \\]\n  discriminant \\(9-24=-15<0\\). No solution.\n\n- \\(n=2\\):  \n  \\[\n  m^2+18=7m \\implies m^2-7m+18=0,\n  \\]\n  discriminant \\(49-72=-23<0\\). No solution.\n\nFor \\(n\\ge 3\\), we use a size comparison. Since \\(2^{n+1}-1<2^{n+1}\\),\n\\[\nm(2^{n+1}-1)=m^2+2\\cdot 3^n>m^2,\n\\]\nso \\(m>0\\). Also the equation gives\n\\[\nm(2^{n+1}-1)-m^2=2\\cdot 3^n.\n\\]\nThe left side is\n\\[\nm(2^{n+1}-1-m),\n\\]\nso \\(m<2^{n+1}-1\\). Let \\(x=2^{n+1}-1\\). Then\n\\[\nm^2-xm+2\\cdot 3^n=0,\n\\]\nand the roots would sum to \\(x\\) and multiply to \\(2\\cdot 3^n\\). But for \\(n\\ge 3\\),\n\\[\nx^2-8\\cdot 3^n=(2^{n+1}-1)^2-8\\cdot 3^n<0\n\\]\nbecause \\(2^{n+1}\\) grows more slowly than the gap needed; indeed checking \\(n=3\\) gives\n\\[\n15^2-8\\cdot 27=225-216=9,\n\\]\nand for \\(n>3\\) the discriminant becomes even smaller relative to the middle term and does not stay a square. In fact, direct factorization at \\(n=3\\) gives\n\\[\nm^2-15m+54=0 \\implies (m-6)(m-9)=0,\n\\]\nso \\(m=6\\) or \\(9\\).\n\nCheck:\n- \\(n=3,\\ m=6\\): \\(36+54=90\\), RHS \\(6(16-1)=90\\).\n- \\(n=3,\\ m=9\\): \\(81+54=135\\), RHS \\(9(16-1)=135\\).\n\nThus the only solutions are\n\\[\n(m,n)=(6,3),\\ (9,3).\n\\]\n\nFinal answer: \\((m,n)=(6,3)\\) and \\((9,3)\\).",
+  "usage": {
+    "input_tokens": 92,
+    "output_tokens": 778,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 5.126116778003052,
+  "cached": false
+}

@@ -1,0 +1,20 @@
+{
+  "id": "067y",
+  "country": "Greece",
+  "competition": "33rd Hellenic Mathematical Olympiad",
+  "gold_final_answer": "[(4, 8, 0), (35, 70, 1), (14, 77, 1)]",
+  "topics_flat": [
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities",
+    "Number Theory > Divisibility / Factorization > Factorization techniques"
+  ],
+  "prompt": "Find all possible triads of non negative integers $(x, y, z)$ with $x \\le y$, which satisfy the equation: $x^2 + y^2 = 3 \\cdot 2016^z + 77$",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find all possible triads of non-negative integers $(x, y, z)$ with $x \\le y$ satisfying the equation $x^2 + y^2 = 3 \\cdot 2016^z + 77$, we can analyze the equation modulo 7.\n\nFirst, note that $2016 = 7 \\times 288$, so $2016 \\equiv 0 \\pmod 7$.\nIf $z \\ge 1$, then $2016^z \\equiv 0 \\pmod 7$, which means:\n$x^2 + y^2 \\equiv 3(0) + 77 \\equiv 0 \\pmod 7$\n\nThe quadratic residues modulo 7 are 0, 1, 2, and 4. The only way for the sum of two quadratic residues to be congruent to 0 modulo 7 is if both are 0. Therefore, $x \\equiv 0 \\pmod 7$ and $y \\equiv 0 \\pmod 7$.\nThis implies that $x^2$ and $y^2$ are both multiples of $7^2 = 49$, so $x^2 + y^2 \\equiv 0 \\pmod{49}$.\n\nNow let's check the right side of the equation modulo 49 for $z \\ge 1$:\nIf $z \\ge 2$, $2016^z = (7 \\times 288)^z = 7^z \\times 288^z \\equiv 0 \\pmod{49}$.\nThen $3 \\cdot 2016^z + 77 \\equiv 0 + 77 \\equiv 28 \\pmod{49}$.\nThis contradicts $x^2 + y^2 \\equiv 0 \\pmod{49}$. Thus, there are no solutions for $z \\ge 2$.\n\nWe are left to check $z = 0$ and $z = 1$.\n\n**Case 1: $z = 0$**\nThe equation becomes:\n$x^2 + y^2 = 3 \\cdot 2016^0 + 77 = 3(1) + 77 = 80$\nWe look for non-negative integers $x \\le y$ such that their squares sum to 80. The only perfect squares that sum to 80 are $16$ and $64$.\nThus, $x^2 = 16$ and $y^2 = 64$, giving the solution $(x, y, z) = (4, 8, 0)$.\n\n**Case 2: $z = 1$**\nThe equation becomes:\n$x^2 + y^2 = 3 \\cdot 2016^1 + 77 = 6048 + 77 = 6125$\nSince we established that for $z \\ge 1$, $x$ and $y$ must be multiples of 7, we can substitute $x = 7a$ and $y = 7b$ (with $a \\le b$):\n$(7a)^2 + (7b)^2 = 6125$\n$49(a^2 + b^2) = 6125$\n$a^2 + b^2 = 125$\nWe look for non-negative integers $a \\le b$ such that their squares sum to 125. The perfect squares that sum to 125 are $4 + 121$ and $25 + 100$.\nThis gives two pairs for $(a, b)$:\n1) $a^2 = 4 \\implies a = 2$, and $b^2 = 121 \\implies b = 11$. This yields $x = 14, y = 77$.\n2) $a^2 = 25 \\implies a = 5$, and $b^2 = 100 \\implies b = 10$. This yields $x = 35, y = 70$.\n\nThis gives the solutions $(14, 77, 1)$ and $(35, 70, 1)$.\n\nFinal answer: (4, 8, 0), (14, 77, 1), (35, 70, 1)",
+  "usage": {
+    "input_tokens": 91,
+    "output_tokens": 978,
+    "thoughts_tokens": 2914
+  },
+  "latency_s": 29.25221766496543,
+  "cached": true
+}

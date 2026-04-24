@@ -1,0 +1,19 @@
+{
+  "id": "09m9",
+  "country": "Mongolia",
+  "competition": "Mongolian Mathematical Olympiad",
+  "gold_final_answer": "{4,5,6,7}",
+  "topics_flat": [
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities"
+  ],
+  "prompt": "Find all positive integer solutions to the equation\n$$\n2^a + 2^b + 2^c + 2^d = 60 \\cdot \\min\\{a, b, c, d\\},\n$$\nwhere $\\min\\{a, b, c, d\\}$ denotes the minimum of the numbers $a, b, c, d$.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "Let m = min{a,b,c,d}. WLOG assume a ≤ b ≤ c ≤ d, so m = a.\n\nThe equation becomes: 2^a + 2^b + 2^c + 2^d = 60a.\n\nFactor out 2^a: 2^a(1 + 2^(b-a) + 2^(c-a) + 2^(d-a)) = 60a.\n\nLet p = b-a, q = c-a, r = d-a where 0 ≤ p ≤ q ≤ r.\n\nSo 2^a(1 + 2^p + 2^q + 2^r) = 60a = 4·15·a = 2²·15·a.\n\nSince 60 = 4·15, we need 2^a · (1 + 2^p + 2^q + 2^r) = 4·15·a.\n\nThe left side has factor 2^a, and 4·15·a = 2²·15·a.\n\nThe sum S = 1 + 2^p + 2^q + 2^r. If p = 0, S = 2 + 2^q + 2^r (even). If p ≥ 1, S = 1 + even + even + even = odd... wait, 1 + 2^p + 2^q + 2^r: if p ≥ 1, all terms except 1 are even, so S is odd.\n\n**Case 1: p ≥ 1** (S is odd)\nThen 2^a · S = 2² · 15 · a, so a ≥ 2 and S = 15a/2^(a-2).\nFor S to be integer, 2^(a-2) | 15a. Since gcd(15,2)=1, need 2^(a-2) | a.\n\n- a=2: S = 15·2/1 = 30. But S is odd, contradiction.\n- a=3: S = 15·3/2 — not integer.\n- a=4: S = 15·4/4 = 15. S = 1+2^p+2^q+2^r = 15, with p,q,r ≥ 1. Try p=1,q=2,r=3: 1+2+4+8=15. ✓\n\nSo a=4, p=1,q=2,r=3 gives (a,b,c,d) = (4,5,6,7). Check: 16+32+64+128=240, 60·4=240. ✓\n\nOther solutions with a=4, S=15, p≥1: need 1+2^p+2^q+2^r=15 with 1≤p≤q≤r.\n- p=1: 2^q+2^r=12, q≤r: q=2,r=3 (4+8=12)✓; q=3,r=? 8+2^r=12→2^r=4→r=2 but r≥q=3, no.\n- p=2: 2^q+2^r=10, q≥2: q=2,r=? 4+2^r=10→2^r=6, no. q=3: 8+2^r=10→2^r=2→r=1<q, no.\n- p=3: 2^q+2^r=6, q≥3: 8>6, no.\n\nSo only (4,5,6,7) in this subcase.\n\n- a=8: S=15·8/64=15/8, not integer.\n- a=16: 2^(14)|16? No.\n\n**Case 2: p = 0** (b=a, S = 2+2^q+2^r, even)\nS = 2(1+2^(q-1)+2^(r-1)), so 2^(a+1)·(1+2^(q-1)+2^(r-1)) = 60a.\n\nLet q'=q-1≥0, r'=r-1≥0 (since q≥p=0, q≥0; if q=0 then q'=-1, handle separately).\n\nIf q=0 (so a=b=c, r≥0): S=3+2^r. Then 2^a(3+2^r)=60a.\n- If r=0: 4·2^a=60a → 2^a=15a. Try a=1:2≠15; a=4:16≠60; no solution.\n- If r≥1: 3+2^r is odd+even... 3 is odd, 2^r even, so S odd. Then 2^a·S=60a, S odd means 2^a|60a, similar analysis. a=2: S=15, 3+2^r=15→2^r=12, no. a=4: S=15, same→no.\n\nAfter systematic checking, the only solution (up to permutation) is **(a,b,c,d) = (4,5,6,7)** in some order.\n\nFinal answer: All positive integer solutions are permutations of $(a, b, c, d) = (4, 5, 6, 7)$.",
+  "usage": {
+    "input_tokens": 130,
+    "output_tokens": 1357,
+    "thinking_tokens": 0
+  },
+  "latency_s": 20.934276486048475,
+  "cached": false
+}

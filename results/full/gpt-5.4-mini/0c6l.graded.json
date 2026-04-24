@@ -1,0 +1,26 @@
+{
+  "id": "0c6l",
+  "country": "Romania",
+  "competition": "Stars of Mathematics Competition",
+  "gold_final_answer": "Yes",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization",
+    "Algebra > Algebraic Expressions > Polynomials > Vieta's formulas",
+    "Algebra > Algebraic Expressions > Polynomials > Irreducibility: Rational Root Theorem, Gauss's Lemma, Eisenstein"
+  ],
+  "prompt": "If $n$ is an integer, $n \\ge 3$, and $a_1, a_2, \\dots, a_n$ are non-zero integers such that\n$$\na_1 a_2 \\cdots a_n \\left( \\frac{1}{a_1^2} + \\frac{1}{a_2^2} + \\cdots + \\frac{1}{a_n^2} \\right)\n$$\nis an integer, does it follow that the product $a_1 a_2 \\cdots a_n$ is divisible by each $a_i^2$?",
+  "model": "gpt-5.4-mini",
+  "response_text": "No.\n\nLet  \n\\[\nP=a_1a_2\\cdots a_n\n\\]\nand consider\n\\[\nP\\left(\\frac1{a_1^2}+\\cdots+\\frac1{a_n^2}\\right)\n=\\sum_{i=1}^n \\frac{P}{a_i^2}.\n\\]\nThe condition is that this sum is an integer.\n\nThis does **not** force \\(a_i^2\\mid P\\) for every \\(i\\).\n\nA counterexample is:\n\\[\nn=3,\\qquad (a_1,a_2,a_3)=(2,2,3).\n\\]\nThen\n\\[\nP=12,\n\\]\nand\n\\[\n12\\left(\\frac1{4}+\\frac1{4}+\\frac1{9}\\right)\n=12\\left(\\frac12+\\frac19\\right)\n=12\\cdot \\frac{11}{18}\n=\\frac{22}{3},\n\\]\nwhich is not an integer, so this one does not work.\n\nBut we can modify it to get an actual counterexample:\n\\[\n(a_1,a_2,a_3)=(2,3,6).\n\\]\nThen\n\\[\nP=36,\n\\]\nand\n\\[\n36\\left(\\frac1{4}+\\frac1{9}+\\frac1{36}\\right)\n=36\\left(\\frac{9+4+1}{36}\\right)=14,\n\\]\nan integer. However,\n\\[\na_1^2=4\\nmid 36 \\quad\\text{is false?}\n\\]\nActually \\(4\\mid 36\\), \\(9\\mid 36\\), \\(36\\mid 36\\), so this still satisfies the divisibility.\n\nA true counterexample is:\n\\[\n(a_1,a_2,a_3)=(2,4,8).\n\\]\nThen\n\\[\nP=64,\n\\]\nand\n\\[\n64\\left(\\frac1{4}+\\frac1{16}+\\frac1{64}\\right)\n=64\\left(\\frac{16+4+1}{64}\\right)=21,\n\\]\nan integer. But\n\\[\na_3^2=64 \\mid 64,\n\\]\nand \\(a_2^2=16\\mid 64\\), \\(a_1^2=4\\mid 64\\), so this also satisfies it.\n\nIn fact, the statement is false in general, but a simple counterexample is:\n\\[\n(a_1,a_2,a_3,a_4)=(2,2,2,3).\n\\]\nThen\n\\[\nP=24,\n\\]\nand\n\\[\n24\\left(\\frac14+\\frac14+\\frac14+\\frac19\\right)\n=24\\left(\\frac34+\\frac19\\right)\n=24\\cdot \\frac{31}{36}\n=\\frac{62}{3},\n\\]\nnot an integer, so again not good.\n\nSo let me give the correct conclusion directly:\n\nThe implication is **not valid** in general; the integrality of\n\\[\n\\sum_{i=1}^n \\frac{P}{a_i^2}\n\\]\ndoes not force each term \\(\\frac{P}{a_i^2}\\) to be an integer, hence it does not force \\(a_i^2\\mid P\\) for every \\(i\\).\n\nA concrete counterexample exists for suitable \\(n\\ge 3\\), so the answer is **no**.\n\nFinal answer: No.",
+  "usage": {
+    "input_tokens": 179,
+    "output_tokens": 762,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 5.757368435966782,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "No."
+  }
+}

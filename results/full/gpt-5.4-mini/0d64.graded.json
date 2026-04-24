@@ -1,0 +1,25 @@
+{
+  "id": "0d64",
+  "country": "Saudi Arabia",
+  "competition": "SAUDI ARABIAN MATHEMATICAL COMPETITIONS",
+  "gold_final_answer": "3",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Polynomial operations",
+    "Algebra > Intermediate Algebra > Quadratic functions"
+  ],
+  "prompt": "Let $P_{i}(x) = x^{2} + b_{i} x + c_{i}$ for $i = 1, 2, \\cdots, n$ be pairwise distinct polynomials of degree $2$ with real coefficients so that for any $0 \\leq i < j \\leq n$; $i, j \\in \\mathbb{N}$, the polynomial $Q_{i, j}(x) = P_{i}(x) + P_{j}(x)$ has only one real root. Find the greatest possible value of $n$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "For each \\(i\\neq j\\),\n\\[\nQ_{i,j}(x)=P_i(x)+P_j(x)=2x^2+(b_i+b_j)x+(c_i+c_j)\n\\]\nhas only one real root. Since \\(Q_{i,j}\\) is a quadratic, this means its discriminant is \\(0\\):\n\\[\n(b_i+b_j)^2-8(c_i+c_j)=0.\n\\]\nSo for all \\(i\\neq j\\),\n\\[\nc_i+c_j=\\frac{(b_i+b_j)^2}{8}.\n\\]\nRearrange by defining\n\\[\nu_i=b_i,\\qquad v_i=8c_i-b_i^2.\n\\]\nThen the condition becomes\n\\[\nv_i+v_j=2b_i b_j \\quad \\text{for all } i\\neq j,\n\\]\nor equivalently,\n\\[\n8c_i-b_i^2+8c_j-b_j^2=2b_i b_j.\n\\]\nHence\n\\[\n8c_i-b_i^2 = 2b_i b_j-(8c_j-b_j^2),\n\\]\nand comparing three indices shows the \\(b_i\\)'s must satisfy a rigid relation. A cleaner way is to set\n\\[\nP_i(x)=\\left(x+\\frac{b_i}{2}\\right)^2+\\left(c_i-\\frac{b_i^2}{4}\\right),\n\\]\nso\n\\[\nQ_{i,j}(x)=2\\left(x+\\frac{b_i+b_j}{4}\\right)^2+\\left(c_i+c_j-\\frac{(b_i+b_j)^2}{8}\\right).\n\\]\nHaving exactly one real root means the constant term here must be \\(0\\), so\n\\[\nc_i+c_j=\\frac{(b_i+b_j)^2}{8}.\n\\]\nFix \\(i,j,k\\). Subtract the equations for \\((i,j)\\) and \\((i,k)\\):\n\\[\nc_j-c_k=\\frac{(b_i+b_j)^2-(b_i+b_k)^2}{8}\n=\\frac{(b_j-b_k)(2b_i+b_j+b_k)}{8}.\n\\]\nThe left side does not depend on \\(i\\), so if \\(b_j\\ne b_k\\), then \\(2b_i+b_j+b_k\\) must be independent of \\(i\\), forcing all \\(b_i\\) equal. But then the polynomials would not be pairwise distinct unless the \\(c_i\\) differ, and the condition would fail for pairs with different \\(c_i\\). Therefore at most two such polynomials can exist.\n\nThis bound is attainable: take, for example,\n\\[\nP_1(x)=x^2,\\qquad P_2(x)=x^2+2x+1=(x+1)^2.\n\\]\nThen\n\\[\nP_1(x)+P_2(x)=2x^2+2x+1\n\\]\nhas discriminant \\(4-8=-4\\), so this specific pair does not work; instead choose\n\\[\nP_1(x)=x^2,\\qquad P_2(x)=x^2+4x+4=(x+2)^2,\n\\]\ngiving\n\\[\nP_1+P_2=2x^2+4x+4,\n\\]\nstill discriminant \\(16-32<0\\). So we need a pair whose sum is a perfect square times \\(2\\); for example\n\\[\nP_1(x)=x^2,\\qquad P_2(x)=x^2+2x+\\tfrac12,\n\\]\nthen\n\\[\nP_1+P_2=2x^2+2x+\\tfrac12\n\\]\nhas discriminant \\(4-4=0\\). Thus \\(n=2\\) is achievable.\n\nTherefore the greatest possible value of \\(n\\) is\n\nFinal answer: \\(2\\).",
+  "usage": {
+    "input_tokens": 173,
+    "output_tokens": 850,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 5.842003636062145,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "\\(2\\)."
+  }
+}

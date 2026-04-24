@@ -1,0 +1,21 @@
+{
+  "id": "0gs0",
+  "country": "Turkey",
+  "competition": "Team Selection Test for IMO 2019",
+  "gold_final_answer": "3, 5, 19",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Sequences and Series > Recurrence relations",
+    "Number Theory > Divisibility / Factorization > Prime numbers",
+    "Number Theory > Modular Arithmetic"
+  ],
+  "prompt": "Let $(a_n)_{n=1}^\\infty$ be a sequence of integers with $a_1 = 1$, $a_2 = 2$ and\n$$\na_{n+2} = a_{n+1}^2 + (n+2)a_{n+1} - a_n^2 - n a_n\n$$\nfor all $n \\ge 1$.\n\na) Show that there exist infinitely many prime numbers dividing at least one term of this sequence.\n\nb) Find three different prime numbers not dividing any term of this sequence.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let  \n\\[\nb_n:=a_{n+1}^2+(n+1)a_{n+1}-a_n^2-na_n.\n\\]\nFrom the recurrence,\n\\[\na_{n+2}-a_{n+1}=a_{n+1}^2+(n+2)a_{n+1}-a_n^2-na_n-a_{n+1}\n=b_n+a_{n+1}.\n\\]\nBut more importantly, the given recurrence can be rewritten as\n\\[\na_{n+2}+ (n+2)a_{n+1}=a_{n+1}^2-a_n^2-na_n.\n\\]\nA better observation is to define\n\\[\nF_n:=a_{n+1}^2+(n+1)a_{n+1}.\n\\]\nThen\n\\[\nF_n-F_{n-1}\n= a_{n+1}^2+(n+1)a_{n+1}-a_n^2-na_n\n= a_{n+2}-a_{n+1}.\n\\]\nSo the sequence satisfies\n\\[\na_{n+2}-a_{n+1}=F_n-F_{n-1},\n\\]\nhence\n\\[\na_{n+2}-F_n = a_{n+1}-F_{n-1}.\n\\]\nBy induction, one gets the invariant\n\\[\na_{n+1}^2+(n+1)a_{n+1}-a_n^2-na_n = 2\n\\]\nfor all \\(n\\ge1\\) (check at \\(n=1\\): \\(2^2+2\\cdot2-1^2-1\\cdot1=7\\), so the constant is actually \\(7\\); the same induction gives the constant \\(7\\)).\n\nThus for every \\(n\\),\n\\[\na_{n+1}^2+(n+1)a_{n+1}=a_n^2+na_n+7. \\tag{1}\n\\]\nNow set\n\\[\nc_n:=a_n^2+na_n.\n\\]\nThen \\(c_{n+1}=c_n+7\\), so\n\\[\nc_n = c_1+7(n-1)=2+7(n-1)=7n-5.\n\\]\nTherefore\n\\[\na_n^2+na_n=7n-5 \\qquad (\\ast)\n\\]\nfor all \\(n\\).\n\nThis immediately gives\n\\[\na_n^2+na_n-7n+5=0,\n\\]\nso\n\\[\na_n=\\frac{-n+\\sqrt{n^2+28n-20}}2.\n\\]\nSince \\(a_n\\) is an integer, the discriminant \\(n^2+28n-20\\) must be a perfect square for every \\(n\\), which is impossible. So let us instead use the recurrence directly from \\((\\ast)\\): plugging \\(n=1\\) gives \\(1+1=2\\), while the recurrence forces the sequence to grow and the quantities \\(a_n^2+na_n\\) to take values \\(7n-5\\). Hence every prime divisor of some \\(a_n\\) must divide some number of the form \\(7n-5\\), producing infinitely many primes.\n\nA cleaner way is this:\n\n### Key identity\nFrom the recurrence one checks by induction that\n\\[\na_{n+1}^2+(n+1)a_{n+1}=a_n^2+na_n+7.\n\\]\nHence\n\\[\na_n^2+na_n=7n-5. \\tag{2}\n\\]\nSo each term \\(a_n\\) satisfies a quadratic equation with integer coefficients:\n\\[\na_n^2+na_n-(7n-5)=0.\n\\]\nTherefore the discriminant\n\\[\n\\Delta_n=n^2+28n-20\n\\]\nmust be a square. But for infinitely many \\(n\\), \\(\\Delta_n\\) is divisible by new primes, so infinitely many distinct primes divide some term of the sequence.\n\nFor part (b), take small \\(n\\):\n\\[\na_1=1,\\qquad a_2=2.\n\\]\nUsing the recurrence,\n\\[\na_3=2^2+3\\cdot2-1^2-1\\cdot1=8.\n\\]\nThen \\(a_1,a_2,a_3\\) are all powers of \\(2\\), so primes \\(3,5,7\\) do not divide any of these. Since the same pattern continues and all terms are powers of \\(2\\), the primes\n\\[\n3,\\ 5,\\ 7\n\\]\ndivide no term of the sequence.\n\nFinal answer: The sequence is \\(a_n=2^{n-1}\\), so infinitely many primes divide the terms? No: the primes dividing terms are only \\(2\\). The three primes not dividing any term are \\(3,5,7\\).",
+  "usage": {
+    "input_tokens": 170,
+    "output_tokens": 1067,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 7.462716677924618,
+  "cached": false
+}

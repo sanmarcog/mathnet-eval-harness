@@ -1,0 +1,21 @@
+{
+  "id": "0l8y",
+  "country": "Vietnam",
+  "competition": "CONTEST FOR THE SELECTION OF VIETNAMESE INTERNATIONAL MATHEMATICAL OLYMPIAD TEAM",
+  "gold_final_answer": "m + p",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Prime numbers",
+    "Number Theory > Divisibility / Factorization > Factorization techniques",
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities"
+  ],
+  "prompt": "The positive integer $m$ has a prime divisor greater than $\\sqrt{2m} + 1$. Find the least positive integer $M$ such that there exists a set $T$ consisting of a finite number of distinct positive integers satisfying simultaneously the following conditions:\n\ni) $m$ and $M$ are respectively the least and the greatest number in $T$;\n\nii) the product of all numbers belonging to $T$ is a perfect square.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let \\(T=\\{a_1,a_2,\\dots,a_k\\}\\) with\n\\[\nm=a_1<a_2<\\cdots<a_k=M.\n\\]\nThe product of all elements of \\(T\\) is a perfect square, so in the prime factorization, every prime appears to an even exponent.\n\nWe are told that \\(m\\) has a prime divisor \\(p>\\sqrt{2m}+1\\). In particular,\n\\[\np^2>2m+1>2m.\n\\]\nSo the multiple \\(2m\\) is not divisible by \\(p^2\\), and since \\(p\\mid m\\), the only way to make the total exponent of \\(p\\) even is to include at least one more number in \\(T\\) divisible by \\(p\\).\n\nNow any other distinct positive multiple of \\(p\\) is at least \\(2p\\). Since \\(p>\\sqrt{2m}+1\\), we have \\(p>\\sqrt{2m}\\), hence \\(p^2>2m\\), and in particular\n\\[\n2p>2\\sqrt{2m}.\n\\]\nThe key point is that the smallest possible distinct multiple of \\(p\\) larger than \\(m\\) is \\(2p\\), so the greatest element \\(M\\) must be at least \\(2p\\). To minimize \\(M\\), we want the smallest possible such \\(p\\), but \\(p>\\sqrt{2m}+1\\) forces \\(p\\ge 3\\), and the smallest \\(m\\) for which this can happen is \\(m=2\\), with prime divisor \\(p=2\\) not allowed, so next try \\(m=6\\) gives \\(\\sqrt{12}+1<5\\) and prime divisor \\(5\\) impossible. The least workable \\(m\\) is \\(m=8\\), where \\(\\sqrt{16}+1=5\\) and prime divisor \\(p=2\\) is not greater. Checking values, the first valid case occurs at \\(m=9\\), where \\(\\sqrt{18}+1<5\\) and prime divisor \\(3\\) is not greater. The least \\(m\\) satisfying the condition is \\(m=10\\), with prime divisor \\(5>\\sqrt{20}+1\\) false. Continuing, the first actual example is \\(m=12\\), with prime divisor \\(7>\\sqrt{24}+1\\) false.\n\nSo instead of hunting \\(m\\), observe the smallest possible square-product completion occurs with just two numbers:\n\\[\nT=\\{m,2m\\},\n\\]\nwhose product is \\(2m^2\\), not necessarily a square. To make it a square, \\(2\\) must appear to even exponent, so we need another factor \\(2\\), giving \\(T=\\{m,2m,2\\}\\), but then \\(m\\) must be the least element, so \\(m=2\\), impossible under the prime condition.\n\nThe minimal construction satisfying the condition is obtained by taking the least \\(m\\) with a prime divisor \\(p>\\sqrt{2m}+1\\) and then choosing \\(T=\\{m, p, mp\\}\\), whose product is \\((mp)^2\\), a perfect square. To minimize \\(M\\), we want the smallest such \\(mp\\). The smallest valid choice is \\(m=3\\), \\(p=3\\), but \\(3\\not>\\sqrt6+1\\). The first valid choice is \\(m=10\\), \\(p=11\\), giving \\(M=110\\).\n\nThus the least possible greatest element is\n\\[\nM=110.\n\\]\n\nFinal answer: \\(110\\)",
+  "usage": {
+    "input_tokens": 141,
+    "output_tokens": 792,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 6.179215983953327,
+  "cached": false
+}

@@ -1,0 +1,25 @@
+{
+  "id": "0d6l",
+  "country": "Saudi Arabia",
+  "competition": "SAUDI ARABIAN MATHEMATICAL COMPETITIONS",
+  "gold_final_answer": "All triples that are permutations of (a, a, 0) with a ≥ 0 (including (0, 0, 0)).",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Sequences and Series > Recurrence relations",
+    "Discrete Mathematics > Combinatorics > Invariants / monovariants"
+  ],
+  "prompt": "Given three numbers $x$, $y$, $z$, and set $x_{1} = |x - y|$, $y_{1} = |y - z|$, $z_{1} = |z - x|$. From $x_{1}$, $y_{1}$, $z_{1}$, form in the same fashion the numbers $x_{2}$, $y_{2}$, $z_{2}$, and so on. It is known that $x_{n} = x$, $y_{n} = y$, $z_{n} = z$ for some $n$. Find all possible values of $(x, y, z)$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let  \n\\[\nT(x,y,z)=(|x-y|,\\ |y-z|,\\ |z-x|).\n\\]\nWe are told that for some \\(n\\), \\(T^n(x,y,z)=(x,y,z)\\). So \\((x,y,z)\\) is periodic under \\(T\\).\n\nWe now determine all periodic points.\n\n## 1) First reduction\nSince \\(T\\) only uses absolute differences, all values are nonnegative after one step, so we may assume \\(x,y,z\\ge 0\\).\n\nAlso, if we sort the numbers so that \\(a\\ge b\\ge c\\), then\n\\[\nT(a,b,c)=(a-b,\\ b-c,\\ a-c).\n\\]\nIndeed, all differences are nonnegative.\n\nBut then\n\\[\na-c=(a-b)+(b-c).\n\\]\nSo after one step, the largest entry is the sum of the other two. This special form is very useful.\n\n## 2) Any periodic orbit must eventually be fixed\nLet the sorted triple be \\((a,b,c)\\) with \\(a\\ge b\\ge c\\). Then\n\\[\nT(a,b,c)=(a-b,\\ b-c,\\ a-c).\n\\]\nThe largest term of the new triple is \\(a-c\\), and the sum of the other two is\n\\[\n(a-b)+(b-c)=a-c.\n\\]\nSo every image has the property “largest = sum of the other two.”\n\nNow apply \\(T\\) again to a triple \\((u,v,u-v)\\) with \\(u\\ge v\\ge 0\\). Then\n\\[\nT(u,v,u-v)=(u-v,\\ |2v-u|,\\ u-v).\n\\]\nHence after at most two steps, two coordinates become equal.\n\nIf a triple is periodic, then in its orbit some iterate has two equal coordinates. But if two coordinates are equal, say \\((p,p,q)\\), then\n\\[\nT(p,p,q)=(0,|p-q|,|q-p|),\n\\]\nwhich has a zero coordinate. Repeating this forces the orbit into a very small set.\n\nChecking possibilities, the only periodic triples are the ones that are fixed by \\(T\\):\n\n- \\((0,0,0)\\), since \\(T(0,0,0)=(0,0,0)\\);\n- and triples with two equal numbers and the third twice them apart in the right way:\n  \\[\n  (a,0,a),\\ (0,a,a),\\ (a,a,0),\n  \\]\n  but these are not fixed unless \\(a=0\\). So they are not periodic unless trivial.\n\nLet us verify directly that if\n\\[\nT(x,y,z)=(x,y,z),\n\\]\nthen\n\\[\nx=|x-y|,\\quad y=|y-z|,\\quad z=|z-x|.\n\\]\nThis forces \\(x=y=z=0\\): if one of them were positive, one of the absolute value equations would imply a strict inequality contradiction.\n\nThus the only fixed point is \\((0,0,0)\\), and there are no nontrivial cycles.\n\nTherefore the only possible triple is\n\\[\n(x,y,z)=(0,0,0).\n\\]\n\nFinal answer: \\((0,0,0)\\)",
+  "usage": {
+    "input_tokens": 192,
+    "output_tokens": 704,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 5.167533871950582,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "\\((0,0,0)\\)"
+  }
+}

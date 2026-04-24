@@ -1,0 +1,26 @@
+{
+  "id": "0d8l",
+  "country": "Saudi Arabia",
+  "competition": "SAUDI ARABIAN MATHEMATICAL COMPETITIONS",
+  "gold_final_answer": "(4, 4), (5, 6), (6, 5)",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Vieta's formulas",
+    "Algebra > Intermediate Algebra > Quadratic functions",
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities"
+  ],
+  "prompt": "Find all pairs of positive integers ($p$, $q$) such that both equations $x^{2} - p x + q = 0$ and $x^{2} - q x + p = 0$ have integral solutions.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let the integer roots of  \n\\[\nx^2-px+q=0\n\\]\nbe \\(a,b\\). Then by Vieta,\n\\[\na+b=p,\\qquad ab=q.\n\\]\nSince \\(p,q\\) are positive integers, \\(a,b\\) are positive integers.\n\nNow the second equation\n\\[\nx^2-qx+p=0\n\\]\nhas integer roots \\(c,d\\), so\n\\[\nc+d=q,\\qquad cd=p.\n\\]\nUsing \\(p=a+b\\) and \\(q=ab\\), the second pair satisfies\n\\[\nc+d=ab,\\qquad cd=a+b.\n\\]\n\nSo we need positive integers \\(a,b\\) such that the numbers \\(a+b\\) and \\(ab\\) are themselves the sum and product of two integers.\n\nA useful way is to observe that \\(a,b\\) must be roots of\n\\[\nt^2-pt+q=t^2-(a+b)t+ab=(t-a)(t-b).\n\\]\nSimilarly, \\(c,d\\) are roots of\n\\[\nt^2-qt+p=t^2-ab\\,t+(a+b).\n\\]\nFor this quadratic to have integer roots, its discriminant must be a perfect square:\n\\[\n\\Delta=(ab)^2-4(a+b).\n\\]\n\nWe now search for positive integer \\(a,b\\) making this a square. Since \\(ab\\) is at least \\(a+b\\) for \\(a,b\\ge2\\), and the discriminant is small unless \\(a,b\\) are small, check small cases systematically:\n\n- If \\(a=1\\), then \\(q=b\\) and \\(p=b+1\\). The second equation becomes\n  \\[\n  x^2-bx+(b+1)=0,\n  \\]\n  whose discriminant is\n  \\[\n  b^2-4b-4=(b-2)^2-8,\n  \\]\n  not a square for any positive integer \\(b\\).\n- So \\(a,b\\ge2\\). Then \\(ab\\ge a+b\\), with equality only at \\(a=b=2\\).\n\nTry \\(a=b=2\\): then\n\\[\np=a+b=4,\\qquad q=ab=4.\n\\]\nBoth equations become\n\\[\nx^2-4x+4=0,\n\\]\nwhich has the integer root \\(x=2\\).\n\nNow show this is the only possibility. If \\(a,b\\ge2\\) and \\((a,b)\\neq(2,2)\\), then \\(ab\\ge a+b+1\\), so\n\\[\n\\Delta=(ab)^2-4(a+b) < (ab)^2,\n\\]\nand to be a square it would have to be at most \\((ab-1)^2=(ab)^2-2ab+1\\). Thus we need\n\\[\n4(a+b)\\ge 2ab-1.\n\\]\nBut for \\(a,b\\ge2\\), this forces very small values, and checking the remaining small pairs \\((2,3)\\), \\((2,4)\\), \\((3,3)\\) etc. gives non-square discriminants:\n- \\((2,3)\\): \\(\\Delta=36-20=16\\) actually is a square, giving roots \\(1,5\\) for the second equation and hence \\(p=5,q=6\\). Indeed:\n  \\[\n  x^2-5x+6=0,\\qquad x^2-6x+5=0\n  \\]\n  both have integer roots.\n- \\((3,3)\\): \\(\\Delta=81-24=57\\), not square.\n- larger pairs grow further from being squares.\n\nThus the valid pairs are:\n\\[\n(p,q)=(4,4)\\quad\\text{and}\\quad (5,6).\n\\]\n\nIndeed:\n- \\((4,4)\\): both equations are \\(x^2-4x+4=0\\),\n- \\((5,6)\\): the equations are \\(x^2-5x+6=0\\) and \\(x^2-6x+5=0\\), with integer roots \\(\\{2,3\\}\\) and \\(\\{1,5\\}\\).\n\nFinal answer: \\((p,q)=(4,4)\\) or \\((5,6)\\).",
+  "usage": {
+    "input_tokens": 98,
+    "output_tokens": 941,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 5.940851113991812,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "\\((p,q)=(4,4)\\) or \\((5,6)\\)."
+  }
+}

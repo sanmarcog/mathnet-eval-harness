@@ -1,0 +1,25 @@
+{
+  "id": "04cg",
+  "country": "Croatia",
+  "competition": "Mathematica competitions in Croatia",
+  "gold_final_answer": "1456",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Inclusion-exclusion",
+    "Discrete Mathematics > Other"
+  ],
+  "prompt": "Determine the smallest integer $N$ larger than $1000$ such that exactly half of the numbers from $1$ to $N$ have at least one digit $1$ in their decimal notation.",
+  "model": "gpt-5.4",
+  "response_text": "Let \\(f(N)\\) be the number of integers in \\(\\{1,2,\\dots,N\\}\\) whose decimal representation contains at least one digit \\(1\\).\n\nWe want\n\\[\nf(N)=\\frac N2,\n\\]\nwith \\(N>1000\\), and we seek the smallest such \\(N\\).\n\nIt is easier to count the complement: numbers with no digit \\(1\\).\n\n## 1) A useful benchmark at powers of 10\nFrom \\(0\\) to \\(999\\), each digit has \\(9\\) choices if it must avoid \\(1\\). So there are\n\\[\n9^3=729\n\\]\nnumbers from \\(0\\) to \\(999\\) with no digit \\(1\\). Hence from \\(1\\) to \\(999\\), the number with at least one \\(1\\) is\n\\[\n999-(729-1)=271.\n\\]\n(We add back \\(0\\), which was included among the \\(729\\) but not in \\(1\\) to \\(999\\).)\n\nThus\n\\[\nf(999)=271.\n\\]\n\nAlso \\(1000\\) contains a \\(1\\), so\n\\[\nf(1000)=272.\n\\]\n\nBut \\(1000/2=500\\), so we still need many more such numbers after \\(1000\\).\n\n## 2) Look in the block \\(1000\\) to \\(1999\\)\nEvery number from \\(1000\\) to \\(1999\\) has a digit \\(1\\) (in the thousands place), so all of these count.\n\nTherefore for \\(1000\\le N\\le 1999\\),\n\\[\nf(N)=272+(N-1000)=N-728.\n\\]\n\nWe want\n\\[\nN-728=\\frac N2.\n\\]\nSo\n\\[\n\\frac N2=728 \\quad\\Rightarrow\\quad N=1456.\n\\]\n\nCheck:\n- Since \\(1456\\in[1000,1999]\\), the formula applies.\n- Then\n\\[\nf(1456)=1456-728=728=\\frac{1456}{2}.\n\\]\n\nSince for \\(N=1000\\) we had \\(f(N)<N/2\\), and in this interval each increment of \\(N\\) increases \\(f(N)\\) by \\(1\\) but \\(N/2\\) by only \\(1/2\\), equality can occur at most once here, so this is the first such \\(N>1000\\).\n\nFinal answer: 1456",
+  "usage": {
+    "input_tokens": 89,
+    "output_tokens": 540,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 8.905012305011041,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "exact",
+    "predicted": "1456"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "id": "05ar",
+  "country": "Estonia",
+  "competition": "Estonian Mathematical Olympiad",
+  "gold_final_answer": "a) Yes; for example n = 100010001. b) No; such an integer does not exist.",
+  "topics_flat": [
+    "Number Theory > Modular Arithmetic",
+    "Number Theory > Divisibility / Factorization"
+  ],
+  "prompt": "a. Does there exist a positive integer $n$ such that the eight last digits of the number $n^2 + 1$ are the same as in the number $2n$, but the ninth digit from the end of these two numbers are different?\n\nb. Does there exist a positive integer $n$ such that the nine last digits of the number $n^2 + 1$ are the same as in the number $2n$, but the tenth digit from the end of these two numbers are different?",
+  "model": "gpt-5.4",
+  "response_text": "We want to understand when the last digits of \\(n^2+1\\) and \\(2n\\) coincide.\n\nIf the last \\(k\\) digits are the same, that means\n\\[\nn^2+1\\equiv 2n \\pmod{10^k}.\n\\]\nRearrange:\n\\[\nn^2-2n+1\\equiv 0 \\pmod{10^k}\n\\]\nso\n\\[\n(n-1)^2\\equiv 0 \\pmod{10^k}.\n\\]\n\nThus the condition “the last \\(k\\) digits are the same” is equivalent to\n\\[\n10^k \\mid (n-1)^2.\n\\]\n\nSince \\(10^k=2^k5^k\\), this means\n\\[\nv_2((n-1)^2)\\ge k,\\qquad v_5((n-1)^2)\\ge k.\n\\]\nHence\n\\[\nv_2(n-1)\\ge \\left\\lceil \\frac k2\\right\\rceil,\\qquad\nv_5(n-1)\\ge \\left\\lceil \\frac k2\\right\\rceil,\n\\]\nso\n\\[\n10^{\\lceil k/2\\rceil}\\mid (n-1).\n\\]\n\nAlso, the next digit being different means the congruence holds mod \\(10^k\\) but not mod \\(10^{k+1}\\), i.e.\n\\[\n10^k\\mid (n-1)^2,\\qquad 10^{k+1}\\nmid (n-1)^2.\n\\]\n\nSo we just need \\((n-1)^2\\) to be divisible by \\(10^k\\) but not by \\(10^{k+1}\\).\n\n## a) Eight last digits same, ninth different\nWe need\n\\[\n10^8\\mid (n-1)^2,\\qquad 10^9\\nmid (n-1)^2.\n\\]\nTake\n\\[\nn-1=10^4.\n\\]\nThen\n\\[\n(n-1)^2=10^8,\n\\]\nwhich is divisible by \\(10^8\\) but not by \\(10^9\\). So \\(n=10001\\) works.\n\nIndeed,\n\\[\nn^2+1-2n=(n-1)^2=10^8,\n\\]\nso \\(n^2+1\\) and \\(2n\\) differ by exactly \\(100{,}000{,}000\\): same last \\(8\\) digits, different \\(9\\)th digit.\n\nSo the answer to (a) is **yes**.\n\n## b) Nine last digits same, tenth different\nWe need\n\\[\n10^9\\mid (n-1)^2.\n\\]\nBut if a square is divisible by \\(10^9=2^95^9\\), then\n\\[\nv_2(n-1)\\ge 5,\\qquad v_5(n-1)\\ge 5,\n\\]\nbecause valuations of a square are even. Hence\n\\[\n10^5\\mid (n-1),\n\\]\nso\n\\[\n(n-1)^2\n\\]\nis actually divisible by\n\\[\n10^{10}.\n\\]\nTherefore\n\\[\n10^9\\mid (n-1)^2 \\implies 10^{10}\\mid (n-1)^2.\n\\]\nSo it is impossible for \\((n-1)^2\\) to be divisible by \\(10^9\\) but not by \\(10^{10}\\).\n\nHence the answer to (b) is **no**.\n\nFinal answer: a) Yes, for example \\(n=10001\\).  b) No.",
+  "usage": {
+    "input_tokens": 154,
+    "output_tokens": 795,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 10.445179051952437,
+  "cached": false
+}

@@ -1,0 +1,20 @@
+{
+  "id": "040q",
+  "country": "China",
+  "competition": "China Mathematical Olympiad",
+  "gold_final_answer": "1008",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Induction / smoothing",
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments"
+  ],
+  "prompt": "Find the smallest positive integer $k$ with the following property: for any $k$ element subset $A$ of the set $S = \\{1, 2, \\dots, 2012\\}$, there exist three pairwise distinct elements $a, b, c$ of $S$ such that $a+b$, $b+c$, $c+a$ all belong to $A$.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Setting Up the Problem\n\nI need to find the smallest $k$ such that every $k$-element subset $A$ of $\\{1, 2, \\ldots, 2012\\}$ contains three distinct elements $a, b, c$ (from $S$, not necessarily from $A$) where $a+b$, $b+c$, $c+a$ all belong to $A$.\n\nNote: $a, b, c \\in S$ (pairwise distinct), and $a+b, b+c, c+a \\in A$.\n\n## Finding the Maximum Size of a \"Bad\" Set\n\nI need to find the largest subset $A$ that does **not** contain three such elements $a, b, c$.\n\n**Key observation:** If $a+b, b+c, c+a \\in A$, note that $(a+b) + (b+c) + (c+a) = 2(a+b+c)$, so the three sums have even total. Also, the three values $a+b, b+c, c+a$ are distinct (since $a,b,c$ are distinct).\n\n**Strategy:** Consider $A$ consisting of only odd numbers or structured to avoid such triples.\n\nIf all elements of $A$ are odd: For $a+b, b+c, c+a$ to all be odd, we need each pair sum odd, meaning one of each pair has different parity. But $a+b$ odd, $b+c$ odd implies $a$ and $c$ have the same parity, then $c+a$ is even — contradiction. So if $A$ contains only odd numbers, no such triple exists!\n\nThe odd numbers in $\\{1, \\ldots, 2012\\}$ are $1, 3, 5, \\ldots, 2011$, giving **1006 odd numbers**.\n\n**Can we do better?** Can we find a larger \"bad\" set?\n\nConsider adding even numbers to the odd set. If $A$ contains an even number $e$ and two odd numbers $p, q$ with $p + q = e$... but we need $a+b, b+c, c+a \\in A$.\n\nSuppose $A$ has all odds plus some evens. Take $a+b = $ even (both same parity), $b+c = $ odd, $c+a = $ odd. For $b+c$ odd and $c+a$ odd: $b,c$ different parity and $c,a$ different parity, so $a,b$ same parity. Then $a+b$ is even. We need $a+b \\in A$ (possible if we added evens), $b+c \\in A$ (odd, yes), $c+a \\in A$ (odd, yes).\n\nSo if we add even number $e$ to $A$, we need to ensure no $a,b,c$ with $a+b = e$, $b+c \\in A$ (odd), $c+a \\in A$ (odd). This means: for each way to write $e = a+b$, we need either $b+c \\notin A$ or $c+a \\notin A$ for all valid $c$.\n\nThis seems restrictive. Let me check: can we have $|A| = 1007$ and still be \"bad\"?\n\nTake $A = \\{1, 3, 5, \\ldots, 2011\\} \\cup \\{2012\\}$ (1007 elements). Does $2012 \\in A$ cause problems? We need $a+b = 2012$, $b+c$ odd $\\in A$, $c+a$ odd $\\in A$. With $a+b=2012$: $a,b$ same parity. If both odd: $a+b$ even ✓. Then $c$ must differ parity from $b$ (for $b+c$ odd) and from $a$ (for $c+a$ odd), so $c$ is even. But then $b+c$ and $c+a$ are odd and must be in $A$. Since $c$ is even and $a,b$ are odd with $a+b=2012$, we need odd values $b+c$ and $a+c$ in $A$. These are odd numbers in $\\{1,\\ldots,2012\\}$, so they're in $A$! We need $c \\in S$, $c$ even, $c \\neq a, b$. Take $a=1, b=2011, c=2$ (even). Then $b+c=2013 \\notin S$. Try $c=4$: $b+c=2015\\notin S$. We need $b+c \\leq 2012$, so $c \\leq 1$. No valid even $c$. Try $a=1005, b=1007, c=2$: $b+c=1009\\in A$, $c+a=1007\\in A$. Yes! This works!\n\nSo $A$ with 1007 elements can be \"bad\" only if carefully constructed. The all-odds set of size 1006 is bad. The answer is $k = \\boxed{1008}$.\n\nFinal answer: 1008",
+  "usage": {
+    "input_tokens": 136,
+    "output_tokens": 1250,
+    "thinking_tokens": 0
+  },
+  "latency_s": 21.216661702957936,
+  "cached": false
+}

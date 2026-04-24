@@ -1,0 +1,25 @@
+{
+  "id": "05cy",
+  "country": "Estonia",
+  "competition": "Estonian Mathematical Olympiad",
+  "gold_final_answer": "(184, 88)",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Least common multiples (lcm)",
+    "Number Theory > Divisibility / Factorization > Factorization techniques"
+  ],
+  "prompt": "Determine all pairs $(m, n)$ of natural numbers that satisfy $m - n = 96$ and $\\text{lcm}(m, n) = 2024$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let  \n\\[\nm=n+96,\\qquad \\operatorname{lcm}(m,n)=2024.\n\\]\n\nSince \\(\\operatorname{lcm}(m,n)\\) is a multiple of both \\(m\\) and \\(n\\), we must have\n\\[\nm \\mid 2024,\\qquad n \\mid 2024.\n\\]\nAlso,\n\\[\n\\gcd(m,n)\\mid (m-n)=96.\n\\]\n\nUsing\n\\[\nmn=\\gcd(m,n)\\cdot \\operatorname{lcm}(m,n),\n\\]\nwe get\n\\[\nmn=2024\\,\\gcd(m,n).\n\\]\nBut \\(m=n+96\\), so\n\\[\nn(n+96)=2024\\,\\gcd(m,n).\n\\]\n\nNow factor \\(2024\\):\n\\[\n2024=2^3\\cdot 11\\cdot 23.\n\\]\nSince \\(\\gcd(m,n)\\mid 96\\), the possible gcds must divide both \\(96\\) and \\(2024\\), so\n\\[\n\\gcd(m,n)\\mid \\gcd(96,2024)=8.\n\\]\nHence \\(\\gcd(m,n)\\in\\{1,2,4,8\\}\\).\n\nThen\n\\[\nmn=2024d \\le 2024\\cdot 8=16192.\n\\]\nBut \\(m=n+96\\), so\n\\[\nn(n+96)\\le 16192.\n\\]\nChecking integers \\(n\\), we need \\(n\\) around at most \\(87\\). But also \\(n\\mid 2024\\), so \\(n\\) must be a divisor of \\(2024\\) less than \\(88\\):\n\\[\n1,2,4,7,8,11,14,22,23,28,31,44,46,56,62,88\\ \\text{(and higher)}.\n\\]\nNow test \\(m=n+96\\) and require \\(m\\mid 2024\\). The only candidates with \\(m\\le 2024\\) are:\n\n- \\(n=1\\), \\(m=97\\) not a divisor of \\(2024\\)\n- \\(n=2\\), \\(m=98\\) not a divisor\n- \\(n=4\\), \\(m=100\\) not a divisor\n- \\(n=7\\), \\(m=103\\) not a divisor\n- \\(n=8\\), \\(m=104\\) not a divisor\n- \\(n=11\\), \\(m=107\\) not a divisor\n- \\(n=14\\), \\(m=110\\) not a divisor\n- \\(n=22\\), \\(m=118\\) not a divisor\n- \\(n=23\\), \\(m=119\\) not a divisor\n- \\(n=28\\), \\(m=124\\) not a divisor\n- \\(n=31\\), \\(m=127\\) not a divisor\n- \\(n=44\\), \\(m=140\\) not a divisor\n- \\(n=46\\), \\(m=142\\) not a divisor\n- \\(n=56\\), \\(m=152\\) not a divisor\n- \\(n=62\\), \\(m=158\\) not a divisor\n\nNo pair works.\n\nFinal answer: There are no pairs \\((m,n)\\) of natural numbers satisfying the conditions.",
+  "usage": {
+    "input_tokens": 85,
+    "output_tokens": 742,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 4.484697089996189,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "There are no pairs \\((m,n)\\) of natural numbers satisfying the conditions."
+  }
+}

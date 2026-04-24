@@ -1,0 +1,19 @@
+{
+  "id": "0br5",
+  "country": "Romania",
+  "competition": "67th Romanian Mathematical Olympiad",
+  "gold_final_answer": "3",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Prime numbers"
+  ],
+  "prompt": "How many three-digit primes can be turned into perfect cubes with a permutation of their digits?",
+  "model": "claude-sonnet-4-6",
+  "response_text": "I need to find three-digit primes that can be rearranged to form a perfect cube.\n\n## Setting Up the Problem\n\nFirst, find all three-digit perfect cubes:\n- 5³ = 125\n- 6³ = 216\n- 7³ = 343\n- 8³ = 512\n- 9³ = 729\n\n## Checking Each Cube\n\nFor each cube, find all permutations of its digits and check which are three-digit primes.\n\n**Cube: 125** (digits: 1, 2, 5)\nPermutations: 125, 152, 215, 251, 512, 521\nPrimes: 251 ✓, 521 ✓\nCount: 2 primes\n\n**Cube: 216** (digits: 2, 1, 6)\nPermutations: 126, 162, 216, 261, 612, 621\nCheck for primes:\n- 126 = 2×63, no\n- 162 = 2×81, no\n- 216 = 6³, no\n- 261 = 3×87, no\n- 612 = 4×153, no\n- 621 = 3×207, no\nCount: 0 primes\n\n**Cube: 343** (digits: 3, 4, 3)\nPermutations: 334, 343, 433\n- 334 = 2×167, no\n- 343 = 7³, no\n- 433: check if prime. 433/7≈61.8, /11≈39.4, /13≈33.3, /17≈25.5, /19≈22.8, √433≈20.8. Not divisible by 2,3,5,7,11,13,17,19. Yes, 433 is prime ✓\nCount: 1 prime\n\n**Cube: 512** (digits: 5, 1, 2)\nSame digits as 125! Already found: 251, 521\nCount: 2 primes (same as above, already counted)\n\nWait - I should count primes, not cubes. The question asks how many three-digit primes can be turned into perfect cubes. So 251 and 521 both work (they permute to 125 or 512). I shouldn't double-count the primes themselves.\n\nLet me recount: the set of primes from digits {1,2,5} is {251, 521} - these are 2 distinct primes.\n\n**Cube: 729** (digits: 7, 2, 9)\nPermutations: 279, 297, 729, 792, 927, 972\n- 279 = 9×31, no\n- 297 = 3×99, no\n- 729 = 9³, no\n- 792 = 8×99, no\n- 927 = 3×309, no\n- 972 = 4×243, no\nCount: 0 primes\n\n## Summary\n\nCollecting all three-digit primes that are permutations of a three-digit perfect cube:\n- From {1,2,5}: **251, 521** (2 primes)\n- From {1,2,6}: none\n- From {3,3,4}: **433** (1 prime)\n- From {7,2,9}: none\n\nTotal: **3** three-digit primes\n\nFinal answer: 3",
+  "usage": {
+    "input_tokens": 68,
+    "output_tokens": 847,
+    "thinking_tokens": 0
+  },
+  "latency_s": 12.07755291403737,
+  "cached": false
+}

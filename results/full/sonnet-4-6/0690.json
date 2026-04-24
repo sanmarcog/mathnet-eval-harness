@@ -1,0 +1,21 @@
+{
+  "id": "0690",
+  "country": "Greece",
+  "competition": "20th Mediterranean Mathematical Competition",
+  "gold_final_answer": "4",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Sequences and Series > Abel summation",
+    "Algebra > Algebraic Expressions > Sequences and Series > Telescoping series",
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities"
+  ],
+  "prompt": "Determine the smallest integer $n$, for which there exists integers $x_1, x_2, \\dots, x_n$ and positive integers $a_1, a_2, \\dots, a_n$ so that:\n$$\nx_1 + x_2 + \\dots + x_n = 0, \\quad a_1x_1 + a_2x_2 + \\dots + a_nx_n > 0, \\quad a_1^2x_1 + a_2^2x_2 + \\dots + a_n^2x_n < 0.\n$$",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Setting Up the Problem\n\nWe need to find the smallest $n$ such that there exist integers $x_1, \\ldots, x_n$ and positive integers $a_1, \\ldots, a_n$ satisfying:\n- $S_0 = \\sum x_i = 0$\n- $S_1 = \\sum a_i x_i > 0$  \n- $S_2 = \\sum a_i^2 x_i < 0$\n\n## Checking Small Cases\n\n**$n = 1$:** $x_1 = 0$, so $S_1 = 0$. Impossible.\n\n**$n = 2$:** We need $x_1 + x_2 = 0$, so $x_2 = -x_1$. Then:\n- $S_1 = x_1(a_1 - a_2) > 0$\n- $S_2 = x_1(a_1^2 - a_2^2) < 0$\n\nSo $x_1(a_1 - a_2) > 0$ and $x_1(a_1^2 - a_2^2) = x_1(a_1-a_2)(a_1+a_2) < 0$.\n\nThis requires $(a_1+a_2) < 0$, impossible since $a_i$ are positive integers.\n\n**$n = 3$:** We need $x_1 + x_2 + x_3 = 0$. Consider the polynomial $f(t) = \\sum x_i t^{a_i}$. We need $f(0) = 0$ (trivially), $f'(1)$-type conditions... Let me try directly.\n\nTry $a_1 = 1, a_2 = 2, a_3 = 3$ with $x_1 + x_2 + x_3 = 0$.\n\nLet $x_3 = -x_1 - x_2$. Then:\n- $S_1 = x_1 + 2x_2 + 3(-x_1-x_2) = -2x_1 - x_2 > 0$\n- $S_2 = x_1 + 4x_2 + 9(-x_1-x_2) = -8x_1 - 5x_2 < 0$\n\nFrom $S_1 > 0$: $2x_1 + x_2 < 0$.\nFrom $S_2 < 0$: $8x_1 + 5x_2 > 0$.\n\nFrom first: $x_2 < -2x_1$. Substituting: $8x_1 + 5x_2 > 0 \\Rightarrow x_2 > -\\frac{8}{5}x_1$.\n\nSo $-\\frac{8}{5}x_1 < x_2 < -2x_1$.\n\nFor this interval to be nonempty, we need $-\\frac{8}{5}x_1 < -2x_1$, i.e., $-\\frac{8}{5}x_1 + 2x_1 < 0$, i.e., $\\frac{2}{5}x_1 < 0$, so $x_1 < 0$.\n\nLet $x_1 = -5$: then $8 < x_2 < 10$, so $x_2 = 9$.\nThen $x_3 = -(-5) - 9 = 5 - 9 = -4$.\n\n**Verification:**\n- $x_1 + x_2 + x_3 = -5 + 9 - 4 = 0$ ✓\n- $S_1 = 1(-5) + 2(9) + 3(-4) = -5 + 18 - 12 = 1 > 0$ ✓\n- $S_2 = 1(-5) + 4(9) + 9(-4) = -5 + 36 - 36 = -5 < 0$ ✓\n\n## Conclusion\n\nThe smallest value is $n = 3$.\n\nFinal answer: 3",
+  "usage": {
+    "input_tokens": 190,
+    "output_tokens": 1054,
+    "thinking_tokens": 0
+  },
+  "latency_s": 11.279741761973128,
+  "cached": false
+}

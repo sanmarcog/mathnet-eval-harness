@@ -1,0 +1,25 @@
+{
+  "id": "03f5",
+  "country": "Bulgaria",
+  "competition": "3 Bulgarian Spring Tournament",
+  "gold_final_answer": "Part (a): a ∈ (-∞, -2√2) ∪ (-√2/2, 0) ∪ (0, √2/2) ∪ (2√2, ∞). Part (b): 1/2.",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities",
+    "Algebra > Intermediate Algebra > Logarithmic functions"
+  ],
+  "prompt": "a) Find all values of $a$ for which the inequality\n$$\nx \\log_{\\frac{1}{2}} a^4 - x^2 > 3 + 2 \\log_2 a^2\n$$\nhas a solution.\n\nb) Calculate the limit\n$$\n\\lim_{a \\to -\\infty} \\left( \\sqrt{a^2 - a + 1} + a \\right).\n$$",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Part a)\n\nLet me substitute $t = \\log_2 a^2$ (note: $a \\neq 0$, so $a^2 > 0$).\n\nSince $\\log_{1/2} a^4 = -\\log_2 a^4 = -2\\log_2 a^2 = -2t$, the inequality becomes:\n$$x(-2t) - x^2 > 3 + 2t$$\n$$-x^2 - 2tx - 3 - 2t > 0$$\n$$x^2 + 2tx + 3 + 2t < 0$$\n\nFor this quadratic in $x$ to have solutions, the discriminant must be positive:\n$$D = 4t^2 - 4(3 + 2t) > 0$$\n$$t^2 - 2t - 3 > 0$$\n$$(t-3)(t+1) > 0$$\n\nSo $t > 3$ or $t < -1$.\n\n**Case 1:** $t > 3$, i.e., $\\log_2 a^2 > 3$, so $a^2 > 8$, meaning $|a| > 2\\sqrt{2}$.\nThus $a > 2\\sqrt{2}$ or $a < -2\\sqrt{2}$.\n\n**Case 2:** $t < -1$, i.e., $\\log_2 a^2 < -1$, so $a^2 < \\frac{1}{2}$, meaning $|a| < \\frac{1}{\\sqrt{2}}$.\nThus $-\\frac{1}{\\sqrt{2}} < a < \\frac{1}{\\sqrt{2}}$, with $a \\neq 0$.\n\n**Answer:** $a \\in \\left(-\\frac{\\sqrt{2}}{2}, 0\\right) \\cup \\left(0, \\frac{\\sqrt{2}}{2}\\right) \\cup \\left(-\\infty, -2\\sqrt{2}\\right) \\cup \\left(2\\sqrt{2}, +\\infty\\right)$\n\n## Part b)\n\nCalculate $\\lim_{a \\to -\\infty} \\left(\\sqrt{a^2 - a + 1} + a\\right)$.\n\nRationalize by multiplying by the conjugate:\n$$\\sqrt{a^2 - a + 1} + a = \\frac{(a^2 - a + 1) - a^2}{\\sqrt{a^2 - a + 1} - a} = \\frac{-a + 1}{\\sqrt{a^2 - a + 1} - a}$$\n\nAs $a \\to -\\infty$, let $a = -|a|$. Factor out $|a| = -a$ from the square root (since $a < 0$, $\\sqrt{a^2} = -a$):\n\n$$\\sqrt{a^2 - a + 1} = |a|\\sqrt{1 - \\frac{1}{a} + \\frac{1}{a^2}} = -a\\sqrt{1 - \\frac{1}{a} + \\frac{1}{a^2}}$$\n\nSo the denominator:\n$$\\sqrt{a^2 - a + 1} - a = -a\\sqrt{1 - \\frac{1}{a} + \\frac{1}{a^2}} - a = -a\\left(\\sqrt{1 - \\frac{1}{a} + \\frac{1}{a^2}} + 1\\right)$$\n\nThe numerator: $-a + 1 = -a\\left(1 - \\frac{1}{a}\\right)$\n\nTherefore:\n$$\\frac{-a + 1}{\\sqrt{a^2 - a + 1} - a} = \\frac{-a\\left(1 - \\frac{1}{a}\\right)}{-a\\left(\\sqrt{1 - \\frac{1}{a} + \\frac{1}{a^2}} + 1\\right)} = \\frac{1 - \\frac{1}{a}}{\\sqrt{1 - \\frac{1}{a} + \\frac{1}{a^2}} + 1}$$\n\nAs $a \\to -\\infty$: $\\frac{1}{a} \\to 0$, so this approaches:\n$$\\frac{1}{\\sqrt{1} + 1} = \\frac{1}{2}$$\n\nFinal answer: $\\dfrac{1}{2}$",
+  "usage": {
+    "input_tokens": 150,
+    "output_tokens": 1120,
+    "thinking_tokens": 0
+  },
+  "latency_s": 13.230529139982536,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "$\\dfrac{1}{2}$"
+  }
+}

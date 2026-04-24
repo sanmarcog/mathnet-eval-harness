@@ -1,0 +1,19 @@
+{
+  "id": "02gp",
+  "country": "Brazil",
+  "competition": "XXV OBM",
+  "gold_final_answer": "the smallest k such that 2^k > n (equivalently, floor(log2 n) + 1)",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Pigeonhole principle"
+  ],
+  "prompt": "Let $S$ be a set with $n$ elements. Take a positive integer $k$. Let $A_1, A_2, \\dots, A_k$ be any distinct subsets of $S$. For each $i$ take $B_i = A_i$ or $B_i = S - A_i$. Find the smallest $k$ such that we can always choose $B_i$ so that $\\bigcup_{1 \\le i \\le k} B_i = S$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "For each element \\(x\\in S\\), look at which of the sets \\(A_i\\) contain it.  \nThis gives a membership pattern in \\(\\{0,1\\}^k\\).  \n\nChoosing \\(B_i=A_i\\) or \\(S\\setminus A_i\\) means that for each \\(i\\), we may decide whether the \\(i\\)-th coordinate of the pattern should be interpreted as “covered” or “not covered.”  \nWe want, for every \\(x\\in S\\), at least one chosen \\(B_i\\) to contain \\(x\\).\n\nEquivalently, we need a choice of signs \\(\\varepsilon_i\\in\\{+1,-1\\}\\) such that for every \\(x\\in S\\), not all signed incidences are negative; in terms of complements, the only obstruction is when the family of \\(A_i\\)'s is too small to distinguish all \\(n\\) elements.\n\nA clean way to see the threshold is this:\n\n- For each element \\(x\\in S\\), define  \n  \\[\n  v(x)=(\\mathbf{1}_{x\\in A_1},\\dots,\\mathbf{1}_{x\\in A_k})\\in\\{0,1\\}^k.\n  \\]\n- Since the \\(A_i\\) are distinct, the family of possible membership vectors has size at most \\(2^k\\).\n- To guarantee that some choice of complements covers all of \\(S\\) for **every** distinct family \\(A_1,\\dots,A_k\\), we need enough subsets so that the “bad” configuration cannot occur. The sharp threshold comes from the fact that with \\(k<n\\), we can choose \\(A_i\\) so that each element of \\(S\\) is missed by at least one of the \\(B_i\\), while with \\(k=n\\) this is always avoidable.\n\nIn fact, the smallest such \\(k\\) is\n\n\\[\n\\boxed{n}.\n\\]\n\nIndeed:\n\n- If \\(k<n\\), take \\(A_i=\\{i\\}\\) for \\(1\\le i\\le k\\). Then for the remaining elements of \\(S\\), no choice of complements can make the union equal to \\(S\\).\n- If \\(k=n\\), one can always choose the \\(B_i\\) so that every element of \\(S\\) is covered; this is the minimal universal guarantee.\n\nFinal answer: \\(\\boxed{n}\\).",
+  "usage": {
+    "input_tokens": 150,
+    "output_tokens": 530,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 5.218669003923424,
+  "cached": false
+}

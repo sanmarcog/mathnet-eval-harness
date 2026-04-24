@@ -1,0 +1,24 @@
+{
+  "id": "0gyz",
+  "country": "Ukraine",
+  "competition": "50th Mathematical Olympiad in Ukraine, Third Round (January 23, 2010)",
+  "gold_final_answer": "4035077",
+  "topics_flat": [
+    "Algebra > Prealgebra / Basic Algebra > Integers"
+  ],
+  "prompt": "Consider an arbitrary arrangement of the brackets. Numbers $2010$ and $2009$ always have signs '+' and '-', respectively, that's why the sum reaches the maximum value when the other terms will have '+' sign.\n\nIn the expression\n$$\n\\frac{2010 - 2009 - 2010 - 2009 - 2010 - 2009 - \\dots - 2010 - 2009}{2010 \\text{ numbers}}\n$$\nthere are somehow placed brackets and the value is calculated. Find the maximum value that can be reached. Justify your answer.\n\n*Notice.* Left bracket can be placed only before a number and right - only after. For example, expressions $-2010(-2009 - 2010)$ and $-(2010 - 2009-)2010$ are incorrect.",
+  "model": "gpt-5.4",
+  "response_text": "Let\n\\[\na_1-a_2-a_3-a_4-\\cdots-a_{2010},\n\\]\nwhere\n\\[\na_1=2010,\\ a_2=2009,\\ a_3=2010,\\ a_4=2009,\\ \\dots\n\\]\nso the odd-indexed terms are \\(2010\\) and the even-indexed terms are \\(2009\\).\n\nWe may place brackets arbitrarily (legally), and want the maximum possible value.\n\n## Key idea\nNo matter how the brackets are placed, after expanding everything, each number gets coefficient either \\(+1\\) or \\(-1\\).\n\nAlso:\n\n- the first term \\(2010\\) always has sign \\(+\\);\n- the second term \\(2009\\) always has sign \\(-\\).\n\nSo the value can never exceed\n\\[\n2010-2009+\\underbrace{2010+2009+2010+2009+\\cdots+2010+2009}_{2008\\text{ remaining numbers}},\n\\]\nbecause this is what we get if all other terms had sign \\(+\\).\n\nThere are \\(1005\\) copies of \\(2010\\) and \\(1005\\) copies of \\(2009\\). Thus this upper bound equals\n\\[\n1005\\cdot 2010 + (1004)\\cdot 2009.\n\\]\nIndeed, the \\(2009\\) in second position must stay negative, while the other \\(1004\\) copies of \\(2009\\) are positive.\n\nCompute:\n\\[\n1005\\cdot 2010=2\\,020\\,050,\n\\]\n\\[\n1004\\cdot 2009=2\\,017\\,036.\n\\]\nHence the maximum possible value is at most\n\\[\n2\\,020\\,050+2\\,017\\,036=4\\,037\\,086.\n\\]\n\n## Can this bound be attained?\nYes. Consider the bracketing\n\\[\n2010-\\bigl(2009-(2010-2009)-(2010-2009)-\\cdots-(2010-2009)\\bigr),\n\\]\nwhere inside the large parentheses there are \\(1004\\) copies of \\((2010-2009)\\).\n\nThen\n\\[\n\\begin{aligned}\n&2010-\\bigl(2009-(2010-2009)-\\cdots-(2010-2009)\\bigr)\\\\\n&=2010-2009+(2010-2009)+\\cdots+(2010-2009),\n\\end{aligned}\n\\]\nso every term except the second has positive sign.\n\nTherefore the upper bound is achievable, so it is the maximum.\n\n\\[\n\\boxed{4\\,037\\,086}\n\\]\n\nFinal answer: 4037086",
+  "usage": {
+    "input_tokens": 218,
+    "output_tokens": 592,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 9.700625772937201,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "4037086"
+  }
+}

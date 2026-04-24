@@ -1,0 +1,20 @@
+{
+  "id": "04cw",
+  "country": "Croatia",
+  "competition": "Mathematica competitions in Croatia",
+  "gold_final_answer": "Exactly the prime powers, i.e., all integers of the form p^k with p prime and k a positive integer.",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Prime numbers",
+    "Number Theory > Divisibility / Factorization > Factorization techniques"
+  ],
+  "prompt": "Find all integers greater than $1$ whose all divisors written in an increasing sequence make a geometric sequence.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "Let n be an integer greater than 1 whose divisors in increasing order form a geometric sequence.\n\nLet the divisors be $1 = d_1 < d_2 < \\cdots < d_k = n$ forming a geometric sequence with ratio $r$.\n\nSince $d_1 = 1$ and the ratio is $r$, we have $d_i = r^{i-1}$.\n\n**Case 1: k = 2 (two divisors)**\nDivisors are $1, n$. This is a geometric sequence with ratio $n$ for any prime $n$. So all primes work.\n\n**Case 2: k = 3 (three divisors)**\nDivisors are $1, r, r^2$. For $n = r^2$ to have exactly these three divisors, $r$ must be prime (so $n = p^2$). Check: divisors of $p^2$ are $1, p, p^2$ ✓. This is geometric with ratio $p$.\n\n**Case 3: k = 4 (four divisors)**\nDivisors are $1, r, r^2, r^3$. Then $n = r^3$. The divisors of $r^3$ (where $r$ is prime) are $1, r, r^2, r^3$ ✓. This works for any prime $r$.\n\n**Case 4: k ≥ 4 with non-prime ratio**\nIf $r$ is not an integer, that's impossible since divisors are integers. If $r$ is a rational number $p/q$ in lowest terms, since $d_1 = 1$ and $d_2 = r$ must be an integer, $r$ must be an integer ≥ 2.\n\nFor general $k$: divisors are $1, r, r^2, \\ldots, r^{k-1}$, so $n = r^{k-1}$.\n\nThe divisors of $r^{k-1}$ depend on the factorization of $r$. If $r = p$ is prime, then divisors of $p^{k-1}$ are exactly $1, p, p^2, \\ldots, p^{k-1}$, which is a geometric sequence. ✓\n\nIf $r$ is composite, say $r = ab$ with $1 < a < r$, then $a$ divides $r^{k-1}$ but $a$ is not a power of $r$, so $a$ would appear in the divisor list but not in the geometric sequence $\\{1, r, r^2, \\ldots\\}$. This is a contradiction.\n\n**Conclusion:** The integers greater than 1 whose divisors form a geometric sequence are exactly the **prime powers** $p^k$ where $p$ is prime and $k \\geq 1$.\n\nWait, let me verify: for $p^k$, the divisors are $1, p, p^2, \\ldots, p^k$, which is a geometric sequence with ratio $p$. ✓\n\nFor any composite number that is not a prime power, say $n = p \\cdot q$ with distinct primes $p < q$, the divisors include $1, p, q, pq$. For geometric sequence: $p/1 = q/p$ requires $p^2 = q$, but $q$ is prime and $p^2$ is not prime. So this fails.\n\nFinal answer: All prime powers $p^k$ where $p$ is prime and $k \\geq 1$ (i.e., all integers of the form $p^k$ for prime $p$ and positive integer $k$).\n\nFinal answer: All prime powers $p^k$ (where $p$ is prime and $k \\geq 1$).",
+  "usage": {
+    "input_tokens": 68,
+    "output_tokens": 909,
+    "thinking_tokens": 0
+  },
+  "latency_s": 12.283818952040747,
+  "cached": false
+}

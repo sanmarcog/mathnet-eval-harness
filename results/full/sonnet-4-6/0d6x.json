@@ -1,0 +1,20 @@
+{
+  "id": "0d6x",
+  "country": "Saudi Arabia",
+  "competition": "SAUDI ARABIAN MATHEMATICAL COMPETITIONS",
+  "gold_final_answer": "All real-coefficient polynomials P are:\n- If b = 0: P(x) = c for any real constant c.\n- If k = b/a is a natural number: P(x) = c · x(x − a)(x − 2a) ··· (x − (k − 1)a) for any real constant c.\n- If k = b/a is not a natural number: P(x) ≡ 0.",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Polynomial operations",
+    "Algebra > Algebraic Expressions > Functional Equations"
+  ],
+  "prompt": "Let $a, b$ be given two real numbers with $a \\neq 0$. Find all polynomials $P$ with real coefficients such that\n$$\nx P(x-a) = (x-b) P(x) \\text{ for all } x \\in \\mathbb{R}.\n$$",
+  "model": "claude-sonnet-4-6",
+  "response_text": "We need to find all polynomials P with real coefficients such that x·P(x-a) = (x-b)·P(x) for all x ∈ ℝ.\n\n**Step 1: Find degree and leading coefficient.**\n\nIf P has degree n with leading coefficient c, then both sides have degree n+1 with leading coefficient c, so that's consistent.\n\n**Step 2: Find roots.**\n\nSetting x = 0: 0·P(-a) = (0-b)·P(0), so -b·P(0) = 0.\n\n**Case 1: b = 0.**\n\nThe equation becomes x·P(x-a) = x·P(x), so P(x-a) = P(x) for all x ≠ 0, hence for all x. A polynomial satisfying P(x-a) = P(x) for all x must be constant (since a ≠ 0). So P(x) = c for any constant c.\n\n**Case 2: b ≠ 0.**\n\nThen P(0) = 0, so x = 0 is a root of P.\n\nSetting x = b: b·P(b-a) = 0, so P(b-a) = 0 (since b ≠ 0).\n\nMore generally, if P(x₀) = 0, set x = x₀: x₀·P(x₀-a) = (x₀-b)·P(x₀) = 0, so either x₀ = 0 or P(x₀-a) = 0.\n\nStarting from x₀ = 0: P(0) = 0, P(-a) = 0, P(-2a) = 0, ... giving infinitely many roots unless P = 0.\n\nWait, let me reconsider. If x₀ = 0, then 0·P(-a) = (0-b)·0 = 0, which is satisfied but doesn't force P(-a) = 0.\n\nLet me try P(x) = x^n · Q(x) where Q(0) ≠ 0.\n\n**Step 3: Try P(x) = x^n.**\n\nThen x·(x-a)^n = (x-b)·x^n, so (x-a)^n = (x-b)·x^{n-1}.\n\nFor n=1: x-a = x-b, so a = b. This works only if a = b.\n\n**Step 4: Try P(x) = x(x-a)(x-2a)···(x-(n-1)a) (falling factorial style).**\n\nLet me try P(x) = x(x+a)(x+2a)···(x+(n-1)a) — products of terms in arithmetic progression.\n\nActually, let's try P(x) = ∏_{k=0}^{n-1}(x - ka) · c.\n\nCheck: x·P(x-a) = x·c·∏_{k=0}^{n-1}(x-a-ka) = cx·∏_{k=1}^{n}(x-ka).\n\n(x-b)·P(x) = c(x-b)·∏_{k=0}^{n-1}(x-ka) = c(x-b)·x·∏_{k=1}^{n-1}(x-ka).\n\nFor these to be equal: ∏_{k=1}^{n}(x-ka) = (x-b)·∏_{k=1}^{n-1}(x-ka), which gives x - na = x - b, so **b = na**.\n\nSo for b = na (n a positive integer), P(x) = c·x(x-a)(x-2a)···(x-(n-1)a) works.\n\n**Step 5: Verify these are all solutions.**\n\nFor b = na with n a positive integer, suppose P is a solution. Since P(0) = 0, write P(x) = x·R(x). Then x·(x-a)·R(x-a) = (x-b)·x·R(x), so (x-a)·R(x-a) = (x-na)·R(x). Now R(0) = 0 (set x=a: 0 = (a-na)R(a), so if n≠1, R(a)=0... continuing this argument shows R(x) = c·x(x-a)···(x-(n-2)a)).\n\nBy induction, the only solutions are scalar multiples of x(x-a)···(x-(n-1)a).\n\n**Conclusion:**\n\n- If b = 0: P(x) = c (any constant).\n- If b = na for some positive integer n: P(x) = c·x(x-a)(x-2a)···(x-(n-1)a).\n- Otherwise: P(x) = 0.\n\nThese can be unified: **P(x) = c·x(x-a)(x-2a)···(x-(n-1)a)** where b = na for non-negative integer n (n=0 gives P = c constant with b=0).\n\nFinal answer: $P(x) = c\\, x(x-a)(x-2a)\\cdots(x-(n-1)a)$ for any constant $c$, where $n$ is a non-negative integer with $b = na$ (and $P\\equiv 0$ if $b/a$ is not a non-negative integer).",
+  "usage": {
+    "input_tokens": 118,
+    "output_tokens": 1362,
+    "thinking_tokens": 0
+  },
+  "latency_s": 20.405314550036564,
+  "cached": false
+}

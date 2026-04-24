@@ -1,0 +1,27 @@
+{
+  "id": "03fi",
+  "country": "Bulgaria",
+  "competition": "Bulgarian Spring Tournament",
+  "gold_final_answer": "m = 1, M = 9/8; No, the minimum cannot be attained by any triple of nonnegative rational numbers.",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities > QM-AM-GM-HM / Power Mean",
+    "Algebra > Algebraic Expressions > Polynomials > Symmetric functions",
+    "Number Theory > Diophantine Equations > Infinite descent / root flipping",
+    "Number Theory > Algebraic Number Theory > Unique factorization"
+  ],
+  "prompt": "The nonnegative real numbers $x, y, z$ are such that $(x + y)(y+z)(z+x) = 1$. We denote by $m$ and $M$ respectively the smallest and largest possible values of the expression $A = (xy + yz + zx)(x + y + z)$.\n\na) Find $m$ and $M$.\n\nb) Is there a triple of nonnegative rational numbers $(x, y, z)$ satisfying the given equality for which $A = m$?",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find the minimum and maximum values of $A = (xy + yz + zx)(x + y + z)$, we can use the algebraic identity:\n$$(x+y+z)(xy+yz+zx) = (x+y)(y+z)(z+x) + xyz$$\nGiven that $(x+y)(y+z)(z+x) = 1$, we can substitute this into the identity to get:\n$$A = 1 + xyz$$\n\n**Part a)**\nSince $x, y, z$ are nonnegative real numbers, $xyz \\ge 0$. Therefore, the minimum value of $A$ is achieved when $xyz = 0$. \nFor example, if $z = 0$, we need $xy(x+y) = 1$, which is satisfied by $x = y = 2^{-1/3}$. Thus, the minimum value is $m = 1$.\n\nTo find the maximum value, we can apply the AM-GM inequality to the factors of the given equation:\n$$(x+y)(y+z)(z+x) \\ge 2\\sqrt{xy} \\cdot 2\\sqrt{yz} \\cdot 2\\sqrt{zx} = 8xyz$$\nSince $(x+y)(y+z)(z+x) = 1$, we have $1 \\ge 8xyz$, which implies $xyz \\le \\frac{1}{8}$.\nEquality holds when $x = y = z = \\frac{1}{2}$.\nThus, the maximum value is $M = 1 + \\frac{1}{8} = \\frac{9}{8}$.\n\n**Part b)**\nFor $A = m = 1$, we must have $xyz = 0$. Without loss of generality, let $z = 0$. \nThe given condition then becomes $xy(x+y) = 1$. \nWe want to know if there are positive rational numbers $x$ and $y$ satisfying this equation (if either is $0$, the product is $0 \\neq 1$).\nAssume there are such rational numbers, and let them be written with a common denominator: $x = \\frac{a}{c}$ and $y = \\frac{b}{c}$ for some positive integers $a, b, c$.\nSubstituting these into the equation gives:\n$$\\frac{a}{c} \\cdot \\frac{b}{c} \\left(\\frac{a+b}{c}\\right) = 1 \\implies ab(a+b) = c^3$$\nLet $d = \\gcd(a, b)$, so $a = dA$ and $b = dB$ with $\\gcd(A, B) = 1$. The equation becomes:\n$$d^3AB(A+B) = c^3 \\implies AB(A+B) = \\left(\\frac{c}{d}\\right)^3$$\nSince $A$ and $B$ are coprime, $A$, $B$, and $A+B$ are pairwise coprime. For their product to be a perfect cube, each of them must individually be a perfect cube. \nLet $A = X^3$, $B = Y^3$, and $A+B = Z^3$ for some positive integers $X, Y, Z$. \nThis implies:\n$$X^3 + Y^3 = Z^3$$\nBy Fermat's Last Theorem for $n=3$, there are no positive integer solutions to this equation. Therefore, there are no such rational numbers $x$ and $y$.\n\nFinal answer: a) m=1, M=9/8, b) No",
+  "usage": {
+    "input_tokens": 148,
+    "output_tokens": 794,
+    "thoughts_tokens": 1637
+  },
+  "latency_s": 18.903519156039692,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "a) m=1, M=9/8, b) No"
+  }
+}

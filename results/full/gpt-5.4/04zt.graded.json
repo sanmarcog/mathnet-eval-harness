@@ -1,0 +1,25 @@
+{
+  "id": "04zt",
+  "country": "Estonia",
+  "competition": "Selected Problems from the Final Round of National Olympiad",
+  "gold_final_answer": "(w, x, y, z) = (2, n, n, n+1) for any positive integer n",
+  "topics_flat": [
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities",
+    "Algebra > Intermediate Algebra > Exponential functions"
+  ],
+  "prompt": "Find all quadruples $(w, x, y, z)$ of positive integers such that $w^x + w^y = w^z$.",
+  "model": "gpt-5.4",
+  "response_text": "We seek positive integers \\(w,x,y,z\\) such that\n\\[\nw^x+w^y=w^z.\n\\]\n\nWe will find all possibilities.\n\nWithout loss of generality, assume\n\\[\nx\\le y.\n\\]\nThen factor:\n\\[\nw^x(1+w^{\\,y-x})=w^z.\n\\]\nSo\n\\[\n1+w^{\\,y-x}=w^{\\,z-x}.\n\\]\nThus we need\n\\[\nw^{\\,z-x}-w^{\\,y-x}=1.\n\\]\n\nNow consider cases.\n\n### Case 1: \\(y=x\\)\nThen\n\\[\n1+w^{0}=2=w^{z-x}.\n\\]\nSo\n\\[\nw^{z-x}=2.\n\\]\nSince \\(w\\) and \\(z-x\\) are positive integers, this forces\n\\[\nw=2,\\qquad z-x=1.\n\\]\nAlso \\(y=x\\). Hence\n\\[\n(w,x,y,z)=(2,n,n,n+1)\n\\]\nfor any positive integer \\(n\\).\n\n### Case 2: \\(y>x\\)\nThen \\(y-x\\ge1\\), so \\(w^{y-x}\\ge1\\). Hence\n\\[\n1+w^{y-x}>1.\n\\]\nBut from\n\\[\n1+w^{y-x}=w^{z-x},\n\\]\nthe left side is one more than a positive power of \\(w\\). We claim this is impossible for \\(w\\ge2\\):\n\n- If \\(w\\ge2\\), then \\(w^{z-x}\\) is divisible by \\(w\\).\n- But \\(1+w^{y-x}\\equiv 1 \\pmod w\\), since \\(w^{y-x}\\equiv 0\\pmod w\\).\n\nSo \\(1+w^{y-x}\\) is **not** divisible by \\(w\\), contradiction.\n\nWhat if \\(w=1\\)? Then the original equation becomes\n\\[\n1+1=1,\n\\]\nimpossible.\n\nSo Case 2 has no solutions.\n\nTherefore the only solutions are exactly those from Case 1.\n\nFinal answer: \\((w,x,y,z)=(2,n,n,n+1)\\) for any positive integer \\(n\\).",
+  "usage": {
+    "input_tokens": 79,
+    "output_tokens": 473,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 7.036569004994817,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "\\((w,x,y,z)=(2,n,n,n+1)\\) for any positive integer \\(n\\)."
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "id": "040b",
+  "country": "China",
+  "competition": "China Mathematical Competition",
+  "gold_final_answer": "1",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Triangles > Triangle trigonometry",
+    "Geometry > Plane Geometry > Miscellaneous > Constructions and loci",
+    "Geometry > Plane Geometry > Geometric Inequalities > Optimization in geometry"
+  ],
+  "prompt": "Let the focus and directrix of parabola $y^2 = 2px$ ($p > 0$) be $F$ and $l$, respectively. $A$ and $B$ are moving points on the parabola satisfying $\\angle AFB = \\frac{\\pi}{3}$. Let the projection of $M$, the midpoint of segment $AB$, on $l$ be $N$. Then the maximum value of $\\frac{|MN|}{|AB|}$ is ______.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let the parabola be \\(y^2=2px\\). Its focus is \\(F\\left(\\frac p2,0\\right)\\) and its directrix is \\(l:\\ x=-\\frac p2\\).\n\nParametrize points on the parabola as\n\\[\nA\\left(\\frac p2 t^2, pt\\right),\\qquad B\\left(\\frac p2 s^2, ps\\right).\n\\]\nThen\n\\[\nFA=\\frac p2(t^2+1),\\qquad FB=\\frac p2(s^2+1).\n\\]\n\nSince \\(\\angle AFB=\\pi/3\\), by the cosine law in \\(\\triangle AFB\\),\n\\[\nAB^2=FA^2+FB^2-2(FA)(FB)\\cos\\frac{\\pi}{3}\n=FA^2+FB^2-(FA)(FB).\n\\]\nAlso, for parabola parameters,\n\\[\nAB^2=\\frac{p^2}{4}(t-s)^2\\bigl((t+s)^2+4\\bigr).\n\\]\nEquating these and simplifying gives\n\\[\nts= -1.\n\\]\nSo write \\(s=-\\frac1t\\).\n\nNow midpoint \\(M\\) of \\(AB\\) has\n\\[\nx_M=\\frac{p}{4}\\left(t^2+\\frac1{t^2}\\right),\\qquad\ny_M=\\frac p2\\left(t-\\frac1t\\right).\n\\]\nProjection of \\(M\\) onto the directrix \\(x=-\\frac p2\\) is \\(N\\), so\n\\[\n|MN|=x_M+\\frac p2=\\frac p4\\left(t^2+\\frac1{t^2}+2\\right)\n=\\frac p4\\left(t+\\frac1t\\right)^2.\n\\]\nAlso\n\\[\n|AB|=\\frac p2\\sqrt{\\left(t+\\frac1t\\right)^2+3}\\,\\left|t-\\frac1t\\right|\n\\]\nand using \\((t-\\frac1t)^2=(t+\\frac1t)^2-4\\), one obtains\n\\[\n\\frac{|MN|}{|AB|}=\\frac12\\cdot \\frac{u^2}{\\sqrt{(u^2+3)(u^2-4)}}\\quad (u=\\left|t+\\frac1t\\right|>2).\n\\]\nMaximizing this expression gives the maximum at \\(u^2=6\\), yielding\n\\[\n\\max \\frac{|MN|}{|AB|}=\\frac1{\\sqrt3}.\n\\]\n\nFinal answer: \\(\\boxed{\\frac1{\\sqrt3}}\\)",
+  "usage": {
+    "input_tokens": 151,
+    "output_tokens": 587,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 4.00699327304028,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "\\frac1{\\sqrt3}"
+  }
+}

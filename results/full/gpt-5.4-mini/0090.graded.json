@@ -1,0 +1,25 @@
+{
+  "id": "0090",
+  "country": "Argentina",
+  "competition": "XXI Olimpiada Matemática Rioplatense",
+  "gold_final_answer": "a) x in [1/671, 3/2012). b) No real solutions.",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Sequences and Series > Floors and ceilings",
+    "Discrete Mathematics > Combinatorics > Counting two ways"
+  ],
+  "prompt": "Determine, in each case, all real numbers $x$ such that:\n$$\na) \\lfloor x \\rfloor + \\lfloor 2x \\rfloor + \\dots + \\lfloor 2012x \\rfloor = 2013;\n$$\n$$\nb) \\lfloor x \\rfloor + \\lfloor 2x \\rfloor + \\dots + \\lfloor 2013x \\rfloor = 2014.\n$$",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let  \n\\[\nS_n(x)=\\sum_{k=1}^n \\lfloor kx\\rfloor .\n\\]\nWe use the basic estimate\n\\[\n\\lfloor kx\\rfloor \\le kx < \\lfloor kx\\rfloor+1,\n\\]\nso\n\\[\n\\sum_{k=1}^n kx - n < S_n(x) \\le \\sum_{k=1}^n kx.\n\\]\nSince \\(\\sum_{k=1}^n k=\\frac{n(n+1)}2\\), this gives\n\\[\n\\frac{n(n+1)}2x-n < S_n(x)\\le \\frac{n(n+1)}2x.\n\\]\n\n---\n\n## a) \\(\\lfloor x\\rfloor+\\lfloor 2x\\rfloor+\\cdots+\\lfloor 2012x\\rfloor=2013\\)\n\nHere \\(n=2012\\), so\n\\[\n\\frac{2012\\cdot 2013}{2}x-2012<2013\\le \\frac{2012\\cdot 2013}{2}x.\n\\]\nThus\n\\[\nx\\ge \\frac{2\\cdot 2013}{2012\\cdot 2013}=\\frac1{1006},\n\\]\nand\n\\[\nx<\\frac{2013+2012}{\\frac{2012\\cdot 2013}{2}}\n=\\frac{2\\cdot 4025}{2012\\cdot 2013}.\n\\]\nBut to identify the exact solutions, we test \\(x=\\frac1{1006}\\):\n\\[\n\\lfloor k/1006\\rfloor=\n\\begin{cases}\n0,&1\\le k\\le 1005,\\\\\n1,&1006\\le k\\le 2011,\\\\\n2,&k=2012.\n\\end{cases}\n\\]\nHence\n\\[\nS_{2012}\\!\\left(\\frac1{1006}\\right)=1006\\cdot 1+2=1008,\n\\]\nnot \\(2013\\). So \\(x\\) must be larger. More generally, for \\(x\\in\\left[\\frac m{2012},\\frac{m+1}{2012}\\right)\\), the sum changes by at most 2012 steps, and checking the integer target forces\n\\[\nx=\\frac{1}{2}.\n\\]\nIndeed,\n\\[\nS_{2012}\\!\\left(\\frac12\\right)=\\sum_{k=1}^{2012}\\left\\lfloor \\frac k2\\right\\rfloor\n= \\sum_{j=1}^{1006}(j-1)+\\sum_{j=1}^{1006}j\n=1006^2=1{,}012{,}036,\n\\]\nso that is far too large. Therefore no \\(x\\) with integer part \\(0\\) works.\n\nNow let \\(x\\ge 1\\). Then \\(\\lfloor kx\\rfloor\\ge k\\), so\n\\[\nS_{2012}(x)\\ge \\sum_{k=1}^{2012}k=\\frac{2012\\cdot 2013}{2},\n\\]\nwhich is much larger than \\(2013\\). Hence impossible.\n\nSo there are **no real solutions**.\n\n---\n\n## b) \\(\\lfloor x\\rfloor+\\lfloor 2x\\rfloor+\\cdots+\\lfloor 2013x\\rfloor=2014\\)\n\nSimilarly, for \\(n=2013\\),\n\\[\n\\frac{2013\\cdot 2014}{2}x-2013<S_{2013}(x)\\le \\frac{2013\\cdot 2014}{2}x.\n\\]\nIf \\(x\\ge 1\\), then\n\\[\nS_{2013}(x)\\ge \\sum_{k=1}^{2013}k=\\frac{2013\\cdot 2014}{2}\\gg 2014,\n\\]\nimpossible. So \\(x<1\\).\n\nIf \\(0\\le x<1\\), then \\(\\lfloor x\\rfloor=0\\) and \\(\\lfloor kx\\rfloor\\le k-1\\), so\n\\[\nS_{2013}(x)\\le \\sum_{k=1}^{2013}(k-1)=\\frac{2012\\cdot 2013}{2},\n\\]\nstill far larger than \\(2014\\), so this does not help directly. Instead, note that to get a sum as small as \\(2014\\), \\(x\\) must be tiny. If \\(x<\\frac1{2013}\\), then all terms are \\(0\\), impossible. Thus \\(x\\ge \\frac1{2013}\\).\n\nBut if \\(x\\in\\left[\\frac1{2013},\\frac2{2013}\\right)\\), then \\(\\lfloor 2013x\\rfloor\\ge 1\\), and the sum of the first several terms already grows too fast; in fact the only possible way to get such a small total is when exactly the last few terms contribute. A direct check shows that\n\\[\nx=\\frac1{1006}\n\\]\ngives\n\\[\nS_{2013}\\!\\left(\\frac1{1006}\\right)=1008,\n\\]\nand any larger \\(x\\) makes the sum much larger. Hence no solution here either.\n\nSo there are **no real solutions** in part (b) as well.\n\n---\n\nFinal answer:  \na) No real solution.  \nb) No real solution.",
+  "usage": {
+    "input_tokens": 146,
+    "output_tokens": 1219,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 7.746560571948066,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "a) No real solution."
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "id": "0h8o",
+  "country": "Ukraine",
+  "competition": "58th Ukrainian National Mathematical Olympiad",
+  "gold_final_answer": "No such function exists.",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Functional Equations > Injectivity / surjectivity",
+    "Algebra > Algebraic Expressions > Functional Equations > Existential quantifiers"
+  ],
+  "prompt": "Determine if there exist a function $f : (0; 1) \\rightarrow (2018; +\\infty)$, so that the following conditions hold:\n* $f(x \\cdot y) = f(x) \\cdot f(y)$ for any $x, y \\in (0; 1)$;\n* for any $y \\in (2018; +\\infty)$ there exists $x \\in (0; 1)$ such that $f(x) = y$?",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To determine if such a function exists, let's analyze the given conditions. \n\nWe are given a function $f : (0, 1) \\rightarrow (2018, +\\infty)$ such that:\n1. $f(x \\cdot y) = f(x) \\cdot f(y)$ for all $x, y \\in (0, 1)$.\n2. $f$ is surjective onto $(2018, +\\infty)$, meaning for any $y \\in (2018, +\\infty)$, there is an $x \\in (0, 1)$ such that $f(x) = y$.\n\nLet's assume such a function $f$ exists. By the second condition, since $2019 \\in (2018, +\\infty)$, there must exist some $z \\in (0, 1)$ such that $f(z) = 2019$.\n\nSince $z \\in (0, 1)$, its square root $\\sqrt{z}$ is also in the interval $(0, 1)$. We can use the first condition by setting $x = y = \\sqrt{z}$:\n$$f(z) = f(\\sqrt{z} \\cdot \\sqrt{z}) = f(\\sqrt{z}) \\cdot f(\\sqrt{z}) = (f(\\sqrt{z}))^2$$\n\nBecause the codomain of $f$ is $(2018, +\\infty)$, it must be true that $f(\\sqrt{z}) > 2018$. \nTherefore, we have:\n$$f(z) = (f(\\sqrt{z}))^2 > 2018^2 = 4072324$$\n\nHowever, we initially established that $f(z) = 2019$. This leads to the inequality:\n$$2019 > 4072324$$\nwhich is clearly a contradiction. \n\nThus, our assumption that such a function exists must be false.\n\nFinal answer: No",
+  "usage": {
+    "input_tokens": 146,
+    "output_tokens": 443,
+    "thoughts_tokens": 1079
+  },
+  "latency_s": 12.185516455909237,
+  "cached": false
+}

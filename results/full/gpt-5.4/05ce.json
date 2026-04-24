@@ -1,0 +1,20 @@
+{
+  "id": "05ce",
+  "country": "Estonia",
+  "competition": "Estonian Mathematical Olympiad",
+  "gold_final_answer": "625, 3125, 9375",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Factorization techniques",
+    "Algebra > Prealgebra / Basic Algebra > Integers"
+  ],
+  "prompt": "Find all natural numbers whose last digit is not zero and deleting the first digit of which gives a number exactly 25 times smaller.",
+  "model": "gpt-5.4",
+  "response_text": "Let the number be \\(N\\), and suppose its first digit is \\(a\\) and the rest of the digits form the number \\(x\\).\n\nSo\n\\[\nN = a\\cdot 10^k + x\n\\]\nfor some \\(k\\ge 1\\), where \\(x\\) has exactly \\(k\\) digits except possibly leading zeros in the written tail.  \nDeleting the first digit leaves \\(x\\), and we are told this is 25 times smaller than \\(N\\), i.e.\n\\[\nx=\\frac{N}{25}.\n\\]\nThus\n\\[\na\\cdot 10^k + x = 25x,\n\\]\nso\n\\[\na\\cdot 10^k = 24x,\n\\qquad\nx=\\frac{a\\cdot 10^k}{24}=\\frac{a\\cdot 5^k\\cdot 2^k}{24}\n= a\\cdot 5^k\\cdot 2^{k-3}\\cdot \\frac1{3}.\n\\]\nHence \\(24\\mid a\\cdot 10^k\\). Since \\(10^k=2^k5^k\\), divisibility by 3 requires \\(3\\mid a\\). As \\(a\\) is a digit, this gives\n\\[\na\\in\\{3,6,9\\}.\n\\]\n\nAlso, deleting the first digit gives a number with \\(k\\) digits, so \\(x<10^k\\). From\n\\[\nx=\\frac{a\\cdot 10^k}{24},\n\\]\nwe need\n\\[\n\\frac{a}{24}<1,\n\\]\nwhich is true for \\(a=3,6,9\\). Now check integrality:\n\n- If \\(a=3\\), then\n  \\[\n  x=\\frac{3\\cdot 10^k}{24}=\\frac{10^k}{8}.\n  \\]\n  This is an integer iff \\(k\\ge 3\\). Then\n  \\[\n  N=25x=25\\cdot \\frac{10^k}{8}.\n  \\]\n  For \\(k=3\\), \\(x=125\\), \\(N=3125\\).  \n  For larger \\(k\\), \\(N\\) would begin with 3 and then continue as \\(1250\\ldots\\), but then deleting the first digit indeed gives \\(1250\\ldots\\). So these are candidates.\n\n- If \\(a=6\\), then\n  \\[\n  x=\\frac{6\\cdot 10^k}{24}=\\frac{10^k}{4},\n  \\]\n  integer for \\(k\\ge 2\\). This gives \\(N=625, 6250,\\dots\\), but these do **not** begin with 6 except for \\(625\\). So only \\(625\\) works.\n\n- If \\(a=9\\), then\n  \\[\n  x=\\frac{9\\cdot 10^k}{24}=\\frac{3\\cdot 10^k}{8},\n  \\]\n  integer for \\(k\\ge 3\\). This gives \\(N=9375, 93750,\\dots\\), and only those not ending in 0 are allowed, so only \\(9375\\).\n\nNow impose the condition that the last digit is not zero.  \nAmong the families above, any \\(k>3\\) (or \\(k>2\\) in the \\(a=6\\) case) makes \\(x\\) end in 0, hence \\(N=25x\\) also ends in 0, forbidden.\n\nThus the only possibilities are:\n\\[\n3125,\\quad 625,\\quad 9375.\n\\]\n\nCheck:\n\\[\n3125/25=125,\\qquad 625/25=25,\\qquad 9375/25=375,\n\\]\nwhich are exactly obtained by deleting the first digit.\n\nFinal answer: \\(625,\\ 3125,\\ 9375\\).",
+  "usage": {
+    "input_tokens": 74,
+    "output_tokens": 863,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 12.728514215094037,
+  "cached": false
+}

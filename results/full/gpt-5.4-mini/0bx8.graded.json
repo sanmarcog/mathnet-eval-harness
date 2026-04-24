@@ -1,0 +1,28 @@
+{
+  "id": "0bx8",
+  "country": "Romania",
+  "competition": "THE 68th NMO SELECTION TESTS FOR THE BALKAN AND INTERNATIONAL MATHEMATICAL OLYMPIADS",
+  "gold_final_answer": "n = 2",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Irreducibility: Rational Root Theorem, Gauss's Lemma, Eisenstein",
+    "Algebra > Algebraic Expressions > Polynomials > Polynomial operations",
+    "Number Theory > Divisibility / Factorization > Greatest common divisors (gcd)",
+    "Number Theory > Divisibility / Factorization > Factorization techniques",
+    "Discrete Mathematics > Combinatorics > Algebraic properties of binomial coefficients"
+  ],
+  "prompt": "Determine all integers $n \\ge 2$ such that $a + \\sqrt{2}$ and $a^n + \\sqrt{2}$ are both rational for some real number $a$ depending on $n$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let  \n\\[\na+\\sqrt2 \\in \\mathbb{Q}, \\qquad a^n+\\sqrt2\\in \\mathbb{Q}\n\\]\nfor some real \\(a\\).\n\nSince \\(\\sqrt2\\) is irrational, the first condition implies\n\\[\na = q-\\sqrt2\n\\]\nfor some rational number \\(q\\).\n\nNow use the second condition:\n\\[\na^n+\\sqrt2 = (q-\\sqrt2)^n+\\sqrt2 \\in \\mathbb{Q}.\n\\]\nSo the irrational part of \\((q-\\sqrt2)^n\\) must be exactly \\(-\\sqrt2\\).\n\nExpand:\n\\[\n(q-\\sqrt2)^n = \\sum_{k=0}^n \\binom{n}{k} q^{n-k}(-\\sqrt2)^k.\n\\]\nThe irrational terms involve odd powers of \\(\\sqrt2\\), and for the result to simplify to a rational number after adding \\(\\sqrt2\\), all irrational contributions except possibly a single \\(\\sqrt2\\)-term must vanish.\n\nA cleaner way is to use conjugation. Let\n\\[\nx=a+\\sqrt2 \\in \\mathbb{Q}.\n\\]\nThen \\(a=x-\\sqrt2\\), so\n\\[\na-\\sqrt2 = x-2\\sqrt2.\n\\]\nIf \\(a^n+\\sqrt2\\) is rational, then replacing \\(\\sqrt2\\) by \\(-\\sqrt2\\) in the expression shows the irrational part must cancel, forcing\n\\[\n(a+\\sqrt2)^n-(a-\\sqrt2)^n \\in \\mathbb{Q}.\n\\]\nBut since \\(a+\\sqrt2\\in\\mathbb{Q}\\), this becomes a condition that only works for \\(n=2\\). Indeed, for \\(n=2\\),\n\\[\na^2+\\sqrt2 = (q-\\sqrt2)^2+\\sqrt2 = q^2-2q\\sqrt2+2+\\sqrt2\n\\]\nis rational exactly when \\(2q=1\\), i.e. \\(q=\\tfrac12\\). Then\n\\[\na=\\frac12-\\sqrt2\n\\]\nworks:\n\\[\na+\\sqrt2=\\frac12 \\in \\mathbb{Q},\n\\]\n\\[\na^2+\\sqrt2=\\left(\\frac12-\\sqrt2\\right)^2+\\sqrt2=\\frac94\\in\\mathbb{Q}.\n\\]\n\nFor \\(n\\ge 3\\), the irrational part of \\((q-\\sqrt2)^n\\) contains unavoidable contributions from powers \\((\\sqrt2)^k\\) with \\(k\\ge 3\\), and there is no choice of rational \\(q\\) making the whole expression rational after adding only one \\(\\sqrt2\\). Hence no larger \\(n\\) work.\n\nTherefore the only possible exponent is\n\n\\[\nn=2.\n\\]\n\nFinal answer: \\(n=2\\)",
+  "usage": {
+    "input_tokens": 94,
+    "output_tokens": 630,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 4.933215109980665,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "normalized",
+    "predicted": "\\(n=2\\)"
+  }
+}

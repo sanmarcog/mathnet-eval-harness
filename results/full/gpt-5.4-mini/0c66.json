@@ -1,0 +1,22 @@
+{
+  "id": "0c66",
+  "country": "Romania",
+  "competition": "SELECTION TESTS FOR THE 2019 BMO AND IMO",
+  "gold_final_answer": "n ≡ 0 or 3 (mod 4)",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Games / greedy algorithms",
+    "Discrete Mathematics > Combinatorics > Invariants / monovariants",
+    "Discrete Mathematics > Combinatorics > Counting two ways",
+    "Algebra > Algebraic Expressions > Sequences and Series > Recurrence relations"
+  ],
+  "prompt": "Alice and Bob are given an integer $n \\ge 2$ and a token to play the following game. Initially, Alice chooses an order of the numbers $1, 2, \\dots, n$, and writes them down in a row, in that order, on a sheet of paper. Next, Bob chooses one of these numbers and places the token on that number. Continuing, Alice moves the token on one of the neighbouring numbers, then Bob moves the token on one of the neighbouring numbers of the current position, and so on and so forth in turns. For each $k$ in the range $1, 2, \\dots, n$, the token may be placed on number $k$ at most $k$ times; Bob's first move is counted. The player who can no longer move the token loses. Determine the values of $n$ for which Alice has a winning strategy.\n\nMathematical Olympiad Rioplatense, 2010, Level 3",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let the numbers be arranged in some order \\(a_1,a_2,\\dots,a_n\\).  \nThink of this as a path graph on \\(n\\) vertices, where the vertex labeled \\(k\\) may be visited at most \\(k\\) times.\n\nA move is possible exactly when the token is on a vertex with an unvisited neighbor, so the game ends when the token is trapped at an endpoint whose allowed number of visits has been exhausted.\n\n## Key observation\nFor any fixed arrangement, the total number of times the token can be placed is at most\n\\[\n1+2+\\cdots+n=\\frac{n(n+1)}2.\n\\]\nSince Bob’s first move is counted, the game length in moves has a parity:\n- if the total number of moves is odd, Bob makes the last move and Alice loses;\n- if it is even, Alice makes the last move and Bob loses.\n\nSo Alice wants to arrange the line so that the game lasts an even number of moves no matter how Bob starts.\n\n## Strategy when \\(n\\) is even\nAlice places the numbers in alternating ends:\n\\[\n1,n,2,n-1,3,n-2,\\dots\n\\]\nThen every neighboring pair has labels summing to \\(n+1\\), so the two ends of the path have opposite parity labels.\n\nThis makes the path bipartite with one part containing exactly the odd-labeled vertices and the other the even-labeled ones. Since the total allowed visits\n\\[\n1+2+\\cdots+n=\\frac{n(n+1)}2\n\\]\nis divisible by \\(2\\) when \\(n\\) is even, Alice can force the last move to be hers by symmetry: whatever Bob does, Alice mirrors the play across the center of the arrangement. Thus Bob is the one who gets stuck first.\n\nSo Alice wins for even \\(n\\).\n\n## Strategy when \\(n\\) is odd\nThen\n\\[\n\\frac{n(n+1)}2\n\\]\nis odd. No matter how Alice arranges the numbers, the total number of possible placements has odd parity, so the player who makes the first move advantageously can force the last move. Bob starts, so Bob gets the last move and Alice loses.\n\nThus Alice cannot have a winning strategy when \\(n\\) is odd.\n\nTherefore, Alice has a winning strategy exactly for even \\(n\\).\n\nFinal answer: Alice has a winning strategy precisely when \\(n\\) is even.",
+  "usage": {
+    "input_tokens": 249,
+    "output_tokens": 522,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 4.747462196974084,
+  "cached": false
+}

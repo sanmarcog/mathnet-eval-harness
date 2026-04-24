@@ -1,0 +1,24 @@
+{
+  "id": "07fz",
+  "country": "Iran",
+  "competition": "37th Iranian Mathematical Olympiad",
+  "gold_final_answer": "Bob; maximum guaranteed point difference 2020^2/2",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Games / greedy algorithms"
+  ],
+  "prompt": "Alice and Bob take turns alternatively on a $2020 \\times 2020$ board with Alice starting the game. In each move every person colors a cell that has not been colored yet and will be rewarded with as many points as the colored cells in the same row and column. When the table is colored completely, the points determine the winner. Who has a winning strategy and what is the maximum difference he/she can guarantee?",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let a move be made in an uncolored cell \\((r,c)\\).  \nIf at that moment there are \\(x\\) colored cells in row \\(r\\) and \\(y\\) colored cells in column \\(c\\), then the mover earns\n\\[\nx+y+1\n\\]\npoints (the new cell itself plus the already colored cells in its row and column).\n\nSo the total score of a player is the sum, over all his/her moves, of the number of previously colored cells in the chosen row and column, plus one for each move.\n\n## Key observation\nFor each row, the number of points contributed by that row depends only on how many times Alice and Bob played in that row; similarly for columns. A standard pairing argument shows that Bob can mirror Alice’s strategy on the \\(2020\\times 2020\\) board so that after every pair of moves, the multiset of partially filled rows and columns is as balanced as possible. Since the board size is even in both dimensions, Bob can ensure the two players end with equal total scores.\n\nMore concretely: pair the cells into symmetric pairs under the central \\(180^\\circ\\) rotation. Bob replies to Alice’s move in the rotated cell. This preserves equality of the row/column occupancy pattern after each full round, so neither player can gain an advantage overall.\n\nHence the game is a draw: both players can force equal scores.\n\nSo the maximum guaranteed difference is \\(0\\).\n\nFinal answer: Bob has a winning strategy only to force a draw; the maximum difference either player can guarantee is \\(0\\).",
+  "usage": {
+    "input_tokens": 134,
+    "output_tokens": 335,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.3351614710409194,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "Bob has a winning strategy only to force a draw; the maximum difference either player can guarantee is \\(0\\)."
+  }
+}

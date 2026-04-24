@@ -1,0 +1,21 @@
+{
+  "id": "04v6",
+  "country": "Czech Republic",
+  "competition": "72nd Czech and Slovak Mathematical Olympiad",
+  "gold_final_answer": "36",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Invariants / monovariants",
+    "Discrete Mathematics > Combinatorics > Games / greedy algorithms",
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments"
+  ],
+  "prompt": "Alice and Ben play the game on a board with $72$ cells around a circle. First, Ben chooses some cells and places one chip on each of them. Each round, Alice first chooses one empty cell and then Ben moves a chip from one of the adjacent cells onto the chosen one. If Ben fails to do so, the game ends; otherwise, another round follows. Determine the smallest number of chips for which Ben can guarantee that the game will last for at least $2023$ rounds.\n(Václav Blažej)",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let the occupied cells be thought of as “sources” that can move one step to an adjacent empty cell when Alice selects it.\n\n### Key observation\nIf a chip is moved from a cell to an adjacent chosen empty cell, then after the move the two cells involved are still occupied/empty in such a way that the **number of connected occupied blocks on the circle can only decrease or stay the same**.  \nSo Ben’s best strategy is to keep the chips as evenly spread out as possible, because clustered chips are easier to exhaust.\n\nThe crucial quantity is the maximum number of rounds Ben can force from a given set of chips.  \nIf two chips are separated by \\(k\\) empty cells, then they can “cover” at most \\(k\\!+\\!1\\) rounds in that gap before one side gets stuck. Summed around the circle, the total number of rounds Ben can guarantee is at most the total number of empty cells plus the number of chips:\n\\[\n72.\n\\]\nBut this upper bound is not yet enough; Alice can always choose cells to eliminate options faster unless every empty cell is adjacent to at least one chip. So Ben needs a dominating set on the cycle \\(C_{72}\\).\n\n### Domination condition\nFor Ben to guarantee at least one legal move no matter what Alice chooses, every empty cell must be adjacent to some chip.  \nThus the chips must form a dominating set of the 72-cycle.\n\nThe minimum size of a dominating set in a cycle \\(C_n\\) is\n\\[\n\\left\\lceil \\frac{n}{3} \\right\\rceil.\n\\]\nHere,\n\\[\n\\left\\lceil \\frac{72}{3} \\right\\rceil = 24.\n\\]\n\n### Why 24 is enough\nPlace chips every third cell. Then every chosen empty cell is adjacent to a chip, so Ben can always respond. After Ben moves, the board remains in a similarly periodic configuration, and this can continue for at least \\(2023\\) rounds (indeed, far longer than needed).\n\n### Why fewer than 24 are not enough\nIf Ben uses at most 23 chips, then by the pigeonhole principle there is a block of at least 4 consecutive empty cells somewhere on the circle. Alice can repeatedly choose the middle cells of such blocks to force Ben to consume nearby chips and eventually get stuck before 2023 rounds.\n\nSo the minimum number of chips is \\(24\\).\n\nFinal answer: \\(\\boxed{24}\\)",
+  "usage": {
+    "input_tokens": 157,
+    "output_tokens": 521,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 4.854076319024898,
+  "cached": false
+}

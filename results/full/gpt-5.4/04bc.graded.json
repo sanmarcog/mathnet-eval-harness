@@ -1,0 +1,26 @@
+{
+  "id": "04bc",
+  "country": "Croatia",
+  "competition": "Mathematica competitions in Croatia",
+  "gold_final_answer": "30",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Factorization techniques",
+    "Number Theory > Number-Theoretic Functions > τ (number of divisors)",
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities"
+  ],
+  "prompt": "Determine the number of pairs of integers $(x, y)$ that satisfy the equality:\n$$\n(x + y + 2012)^2 = x^2 + y^2 + 2012^2 .\n$$",
+  "model": "gpt-5.4",
+  "response_text": "Expand and simplify:\n\\[\n(x+y+2012)^2=x^2+y^2+2012^2.\n\\]\nThe left side is\n\\[\nx^2+y^2+2012^2+2xy+2\\cdot 2012x+2\\cdot 2012y.\n\\]\nSo the equation becomes\n\\[\nx^2+y^2+2012^2+2xy+4024x+4024y=x^2+y^2+2012^2.\n\\]\nThus\n\\[\n2xy+4024x+4024y=0.\n\\]\nDivide by 2:\n\\[\nxy+2012x+2012y=0.\n\\]\nAdd \\(2012^2\\) to both sides:\n\\[\nxy+2012x+2012y+2012^2=2012^2,\n\\]\nso\n\\[\n(x+2012)(y+2012)=2012^2.\n\\]\n\nNow \\(2012=2^2\\cdot 503\\), hence\n\\[\n2012^2=2^4\\cdot 503^2.\n\\]\nThe number of positive divisors of \\(2012^2\\) is\n\\[\n(4+1)(2+1)=15.\n\\]\nSince \\((x+2012)(y+2012)=2012^2>0\\), both factors must be positive or both negative. Therefore the number of integer factor pairs is\n\\[\n15+15=30.\n\\]\n\nSo there are \\(30\\) integer pairs \\((x,y)\\).\n\nFinal answer: 30",
+  "usage": {
+    "input_tokens": 92,
+    "output_tokens": 349,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 5.486363863921724,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "exact",
+    "predicted": "30"
+  }
+}

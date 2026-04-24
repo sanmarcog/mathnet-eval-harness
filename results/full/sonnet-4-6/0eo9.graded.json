@@ -1,0 +1,24 @@
+{
+  "id": "0eo9",
+  "country": "South Africa",
+  "competition": "South African Mathematics Olympiad",
+  "gold_final_answer": "10",
+  "topics_flat": [
+    "Algebra > Prealgebra / Basic Algebra > Decimals"
+  ],
+  "prompt": "I have R4. How many sweets can I buy if one sweet costs 40c?",
+  "model": "claude-sonnet-4-6",
+  "response_text": "To find how many sweets I can buy:\n\nR4 = 400c\n\n400c ÷ 40c = **10**\n\nFinal answer: 10",
+  "usage": {
+    "input_tokens": 66,
+    "output_tokens": 41,
+    "thinking_tokens": 0
+  },
+  "latency_s": 1.7210912209702656,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "exact",
+    "predicted": "10"
+  }
+}

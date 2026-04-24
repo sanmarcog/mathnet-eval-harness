@@ -1,0 +1,22 @@
+{
+  "id": "04bo",
+  "country": "Croatia",
+  "competition": "Mathematica competitions in Croatia",
+  "gold_final_answer": "1.5 cm, 2 cm, 2.5 cm",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Triangles",
+    "Geometry > Plane Geometry > Circles",
+    "Geometry > Plane Geometry > Miscellaneous > Angle chasing",
+    "Algebra > Prealgebra / Basic Algebra > Simple Equations"
+  ],
+  "prompt": "A triangle with an area of $1.5 \\text{ cm}^2$ is inscribed in a circle of radius $1.25$ cm, with one side of the triangle as the diameter of the circle. What are the lengths of the sides of the triangle?",
+  "model": "claude-sonnet-4-6",
+  "response_text": "Let the diameter be the side along the diameter of the circle. Since one side is the diameter, the diameter = 2 × 1.25 = 2.5 cm.\n\nThe triangle is inscribed in the circle with one side as the diameter, so the angle opposite to the diameter is 90° (angle in a semicircle). Thus it's a right triangle with hypotenuse 2.5 cm.\n\nLet the legs be a and b. Then:\n- a² + b² = 2.5² = 6.25\n- Area = (1/2)ab = 1.5, so ab = 3\n\nFrom these:\n(a + b)² = a² + b² + 2ab = 6.25 + 6 = 12.25\na + b = 3.5\n\n(a - b)² = a² + b² - 2ab = 6.25 - 6 = 0.25\na - b = 0.5\n\nSo a = 2, b = 1.5.\n\nThe sides are 1.5 cm, 2 cm, and 2.5 cm.\n\nFinal answer: The sides of the triangle are **1.5 cm, 2 cm, and 2.5 cm**.",
+  "usage": {
+    "input_tokens": 104,
+    "output_tokens": 300,
+    "thinking_tokens": 0
+  },
+  "latency_s": 4.847123533021659,
+  "cached": false
+}

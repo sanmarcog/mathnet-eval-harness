@@ -1,0 +1,25 @@
+{
+  "id": "04w9",
+  "country": "Czech Republic",
+  "competition": "National Round",
+  "gold_final_answer": "3",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Vieta's formulas",
+    "Algebra > Algebraic Expressions > Polynomials > Symmetric functions"
+  ],
+  "prompt": "Real numbers $a, b, c, d$ are such that\n$$\na + b + c + d = 0 \\quad \\text{and} \\quad \\frac{1}{a} + \\frac{1}{b} + \\frac{1}{c} + \\frac{1}{d} = 0.\n$$\nHow many of the equalities\n$$ab = cd, \\quad ac = bd, \\quad ad = bc$$\ncan hold simultaneously?",
+  "model": "claude-sonnet-4-6",
+  "response_text": "Let me denote the three equalities and analyze which can hold simultaneously.\n\nGiven: a + b + c + d = 0 and 1/a + 1/b + 1/c + 1/d = 0.\n\nThe second condition means (bcd + acd + abd + abc)/(abcd) = 0, so:\nbcd + acd + abd + abc = 0, i.e., the sum of products taken 3 at a time equals 0.\n\nBy Vieta's formulas, if a, b, c, d are roots of a polynomial:\n- e1 = a+b+c+d = 0\n- e3 = abc+abd+acd+bcd = 0\n\nSo e1 = 0 and e3 = 0, while e2 = ab+ac+ad+bc+bd+cd and e4 = abcd are free.\n\nThe polynomial is x⁴ + e2·x² - e4 = 0 (since e1=0, e3=0).\n\nThis means the roots come in pairs: if r is a root, so is -r. So {a,b,c,d} = {r, -r, s, -s} for some r, s.\n\nNow check the three equalities with a=r, b=-r, c=s, d=-s:\n- ab = r·(-r) = -r²\n- cd = s·(-s) = -s²\n- ac = r·s = rs\n- bd = (-r)·(-s) = rs\n- ad = r·(-s) = -rs\n- bc = (-r)·s = -rs\n\nSo: **ac = bd** (both equal rs) and **ad = bc** (both equal -rs) always hold!\n\nAnd ab = cd iff -r² = -s² iff r² = s², which means r = ±s. But if r = s or r = -s, then two of the values coincide (e.g., a = c or a = d), which is allowed unless it causes division by zero. As long as r ≠ 0 and s ≠ 0 and r ≠ ±s, we have ab ≠ cd.\n\nSo generically, exactly 2 of the equalities hold (ac = bd and ad = bc).\n\nCan all 3 hold? That requires additionally r² = s², so r = ±s. If r = s, then a = r, b = -r, c = r, d = -r — valid as long as r ≠ 0. Then ab = -r², cd = -r², so ab = cd holds too. All three hold simultaneously.\n\nBut wait — can we have all three hold? Let me verify: with a = r, b = -r, c = r, d = -r:\n- a + b + c + d = 0 ✓\n- 1/a + 1/b + 1/c + 1/d = 1/r - 1/r + 1/r - 1/r = 0 ✓\n- ab = -r², cd = -r², so ab = cd ✓\n- ac = r², bd = r², so ac = bd ✓  \n- ad = -r², bc = -r², so ad = bc ✓\n\nAll three hold! So all 3 can hold simultaneously.\n\nCan exactly 1 hold? The equalities ac = bd and ad = bc always hold (for any valid configuration with the polynomial structure). So we can never have fewer than 2 holding.\n\nWait, let me reconsider whether the pairing must be r, -r, s, -s with that specific assignment. The set {a,b,c,d} = {r,-r,s,-s}, but the labeling matters.\n\nWith a=r, b=s, c=-r, d=-s:\n- ab = rs, cd = (-r)(-s) = rs → ab = cd ✓\n- ac = r(-r) = -r², bd = s(-s) = -s² → ac = bd iff r²=s²\n- ad = r(-s) = -rs, bc = s(-r) = -rs → ad = bc ✓\n\nSo with this labeling, ab = cd and ad = bc always hold, and ac = bd holds iff r = ±s.\n\nWith a=r, b=s, c=-s, d=-r:\n- ab = rs, cd = (-s)(-r) = rs → ab = cd ✓\n- ac = r(-s) = -rs, bd = s(-r) = -rs → ac = bd ✓\n- ad = r(-r) = -r², bc = s(-s) = -s² → ad = bc iff r²=s²\n\nSo in every labeling, exactly 2 of the 3 equalities always hold, and the third holds iff r² = s².\n\nTherefore: **exactly 2** always hold, and all 3 can hold simultaneously (when r² = s²), but we cannot have fewer than 2.\n\nThe answer is that **all three** can hold simultaneously, and at minimum 2 hold. The question asks how many can hold simultaneously — the answer is all 3 can hold simultaneously.\n\nFinal answer: All three equalities can hold simultaneously (and in fact, at least two always hold).\n\nFinal answer: All 3",
+  "usage": {
+    "input_tokens": 154,
+    "output_tokens": 1273,
+    "thinking_tokens": 0
+  },
+  "latency_s": 17.837095948983915,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "All 3"
+  }
+}

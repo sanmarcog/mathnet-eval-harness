@@ -1,0 +1,20 @@
+{
+  "id": "03pa",
+  "country": "China",
+  "competition": "China Mathematical Competition (Shaanxi)",
+  "gold_final_answer": "C",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Sequences and Series > Floors and ceilings",
+    "Algebra > Prealgebra / Basic Algebra > Integers"
+  ],
+  "prompt": "A new sequence is obtained from the sequence of the positive integers $\\{1, 2, 3, \\ldots\\}$ by deleting all the perfect squares. Then the $2\\ 003$rd term of the new sequence is ( ).\n\n(A) $2\\ 046$\n(B) $2\\ 047$\n(C) $2\\ 048$\n(D) $2\\ 049$",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find the $2\\ 003$rd term of the sequence of positive integers after all perfect squares have been deleted, we need to find an integer $N$ such that the number of non-perfect squares less than or equal to $N$ is exactly $2\\ 003$.\n\nThe number of perfect squares less than or equal to $N$ is given by $\\lfloor \\sqrt{N} \\rfloor$. Therefore, the number of non-perfect squares less than or equal to $N$ is:\n$N - \\lfloor \\sqrt{N} \\rfloor = 2\\ 003$\n\nSince $N$ is close to $2\\ 003$, we can estimate $\\lfloor \\sqrt{N} \\rfloor \\approx \\lfloor \\sqrt{2003} \\rfloor$. \nWe know that $44^2 = 1\\ 936$ and $45^2 = 2\\ 025$. Thus, $\\sqrt{2003}$ is slightly less than $45$. \nLet's guess that $\\lfloor \\sqrt{N} \\rfloor = 45$. \nSubstituting this into our equation gives:\n$N - 45 = 2\\ 003 \\implies N = 2\\ 048$\n\nNow we check if our assumption $\\lfloor \\sqrt{2048} \\rfloor = 45$ is correct. \nSince $45^2 = 2\\ 025$ and $46^2 = 2\\ 116$, we have $2\\ 025 \\le 2\\ 048 < 2\\ 116$, which means $\\lfloor \\sqrt{2048} \\rfloor = 45$ is indeed correct. \n\nThus, there are exactly $45$ perfect squares less than or equal to $2\\ 048$. Removing these $45$ perfect squares from the first $2\\ 048$ positive integers leaves exactly $2\\ 048 - 45 = 2\\ 003$ integers. Since $2\\ 048$ is not a perfect square itself, it is the $2\\ 003$rd term of the new sequence.\n\nFinal answer: 2048",
+  "usage": {
+    "input_tokens": 137,
+    "output_tokens": 506,
+    "thoughts_tokens": 733
+  },
+  "latency_s": 12.14077980897855,
+  "cached": false
+}

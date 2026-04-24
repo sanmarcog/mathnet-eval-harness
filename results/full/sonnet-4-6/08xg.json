@@ -1,0 +1,20 @@
+{
+  "id": "08xg",
+  "country": "Japan",
+  "competition": "Japan Mathematical Olympiad Initial Round",
+  "gold_final_answer": "3",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Circles > Tangents",
+    "Geometry > Plane Geometry > Circles > Radical axis theorem"
+  ],
+  "prompt": "Circle $C_1$ is internally tangent to circle $C_2$ at point $A$. Let $O$ be the center of circle $C_2$. A tangent line to circle $C_1$ at point $P$ on $C_1$ goes through point $O$. Let $Q$ be the point of intersection of half-line $OP$ and circle $C_2$, and let $R$ be the point of intersection of the line tangent to circle $C_1$ at point $A$ and the line $OP$. Suppose that the radius of circle $C_2$ is $9$ and that $PQ = QR$ is satisfied. Here we denote the length of the line segment $XY$ also by $XY$. Determine the value of $OP$.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "Let me set up coordinates. Let the center of $C_2$ be $O$ at the origin, with radius 9. Let $C_1$ have center $I$ and radius $r$. Since $C_1$ is internally tangent to $C_2$ at point $A$, the center $I$ lies on the line $OA$, and $OI = 9 - r$.\n\nPlace $I$ on the x-axis, so $I = (9-r, 0)$ and $A = (9, 0)$.\n\nThe tangent to $C_1$ at $A$ is the vertical line $x = 9$.\n\nLet $OP$ be a tangent from $O$ to $C_1$. Since $OI = 9-r$ and the tangent length from $O$ to $C_1$ is $\\sqrt{(9-r)^2 - r^2} = \\sqrt{81 - 18r}$.\n\nSo $OP = \\sqrt{81 - 18r}$.\n\nPoint $P$ is on $C_1$, and $OP$ is tangent to $C_1$ at $P$. The line $OP$ extended meets $C_2$ at $Q$ (on the far side from $O$, since $Q$ is on half-line $OP$).\n\n$OQ = 9$ (radius of $C_2$).\n\nSo $PQ = OQ - OP = 9 - \\sqrt{81-18r}$.\n\nNow find $R$: intersection of line $OP$ with the tangent to $C_1$ at $A$ (which is $x = 9$).\n\nThe direction of line $OP$: $P$ is on $C_1$, tangent from $O$. The angle $\\theta$ that $OP$ makes with the x-axis satisfies $\\sin\\theta = r/(9-r)$ (since $IP \\perp OP$ and $IP = r$, $OI = 9-r$).\n\nThe line $OP$ has direction $(\\cos\\theta, \\sin\\theta)$. Point $R$ is where this line meets $x = 9$.\n\nParametrize: $(t\\cos\\theta, t\\sin\\theta)$. Set $t\\cos\\theta = 9$, so $t = 9/\\cos\\theta$.\n\nThus $OR = 9/\\cos\\theta$.\n\nWe have $\\cos\\theta = \\sqrt{1 - r^2/(9-r)^2} = \\sqrt{(9-r)^2 - r^2}/(9-r) = \\sqrt{81-18r}/(9-r)$.\n\nSo $OR = 9(9-r)/\\sqrt{81-18r}$.\n\nNow $QR = OR - OQ = 9(9-r)/\\sqrt{81-18r} - 9$.\n\nThe condition $PQ = QR$:\n$$9 - \\sqrt{81-18r} = \\frac{9(9-r)}{\\sqrt{81-18r}} - 9$$\n\nLet $s = \\sqrt{81-18r}$, so $s^2 = 81-18r$, meaning $r = (81-s^2)/18$.\n\nThen $9-r = 9 - (81-s^2)/18 = (162 - 81 + s^2)/18 = (81+s^2)/18$.\n\nThe equation becomes:\n$$9 - s = \\frac{9(81+s^2)/18}{s} - 9$$\n$$9 - s = \\frac{(81+s^2)}{2s} - 9$$\n$$18 - s = \\frac{81+s^2}{2s}$$\n$$s(18-s) = \\frac{81+s^2}{2}$$\n$$2s(18-s) = 81+s^2$$\n$$36s - 2s^2 = 81 + s^2$$\n$$36s - 3s^2 = 81$$\n$$3s^2 - 36s + 81 = 0$$\n$$s^2 - 12s + 27 = 0$$\n$$(s-3)(s-9) = 0$$\n\nSo $s = 3$ or $s = 9$.\n\nIf $s = 9$: $\\sqrt{81-18r} = 9 \\Rightarrow r = 0$, degenerate.\n\nIf $s = 3$: $\\sqrt{81-18r} = 3 \\Rightarrow 81-18r = 9 \\Rightarrow r = 4$.\n\nSo $OP = s = 3$.\n\nLet me verify: $r=4$, $OI = 5$, $OP = 3$ ✓ (3-4-5 right triangle).\n$OQ = 9$, $PQ = 6$.\n$OR = 9 \\cdot 5/3 = 15$, $QR = 15-9 = 6$. ✓\n\nFinal answer: $\\boxed{3}$",
+  "usage": {
+    "input_tokens": 231,
+    "output_tokens": 1249,
+    "thinking_tokens": 0
+  },
+  "latency_s": 13.938504299032502,
+  "cached": false
+}

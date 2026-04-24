@@ -1,0 +1,25 @@
+{
+  "id": "04bb",
+  "country": "Croatia",
+  "competition": "Mathematica competitions in Croatia",
+  "gold_final_answer": "∠EBF = 108°, ∠BEF = 54°, ∠BFE = 18°",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Miscellaneous > Angle chasing",
+    "Geometry > Plane Geometry > Transformations > Rotation"
+  ],
+  "prompt": "Let $ABCDE$ be a regular pentagon. The lines $BC$ and $DE$ intersect at point $F$. Determine the angles of triangle $BEF$.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find the angles of triangle $BEF$, we first determine the interior angles of the regular pentagon $ABCDE$. \nThe sum of the interior angles of a pentagon is $(5-2) \\times 180^\\circ = 540^\\circ$. Since it is a regular pentagon, each interior angle is:\n$540^\\circ / 5 = 108^\\circ$\n\nThe lines $BC$ and $DE$ intersect at point $F$. Because the interior angles at $C$ and $D$ are $108^\\circ$, the exterior angles are $180^\\circ - 108^\\circ = 72^\\circ$. \nIn $\\triangle CDF$, the angles are $\\angle FCD = 72^\\circ$ and $\\angle FDC = 72^\\circ$. \nThus, the angle at $F$ is:\n$\\angle BFE = 180^\\circ - 72^\\circ - 72^\\circ = 36^\\circ$\n\nNext, we find the angles $\\angle FBE$ and $\\angle FEB$. \nNotice that $\\triangle ABE$ is an isosceles triangle with $AB = AE$ and $\\angle BAE = 108^\\circ$. The base angles are:\n$\\angle ABE = \\angle AEB = \\frac{180^\\circ - 108^\\circ}{2} = 36^\\circ$\n\nSince $F$, $C$, and $B$ are collinear (with $C$ between $B$ and $F$), the angle $\\angle FBE$ is the same as $\\angle CBE$. We can find $\\angle CBE$ by subtracting $\\angle ABE$ from the interior angle $\\angle ABC$:\n$\\angle FBE = \\angle ABC - \\angle ABE = 108^\\circ - 36^\\circ = 72^\\circ$\n\nBy symmetry, $F$, $D$, and $E$ are collinear (with $D$ between $E$ and $F$), so $\\angle FEB$ is the same as $\\angle DEB$. We find $\\angle DEB$ by subtracting $\\angle AEB$ from the interior angle $\\angle AED$:\n$\\angle FEB = \\angle AED - \\angle AEB = 108^\\circ - 36^\\circ = 72^\\circ$\n\nChecking our work, the sum of the angles in $\\triangle BEF$ is $36^\\circ + 72^\\circ + 72^\\circ = 180^\\circ$, which is correct.\n\nFinal answer: 36^\\circ, 72^\\circ, 72^\\circ",
+  "usage": {
+    "input_tokens": 74,
+    "output_tokens": 583,
+    "thoughts_tokens": 2032
+  },
+  "latency_s": 22.28984280198347,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "36^\\circ, 72^\\circ, 72^\\circ"
+  }
+}

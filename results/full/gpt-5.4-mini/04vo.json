@@ -1,0 +1,19 @@
+{
+  "id": "04vo",
+  "country": "Czech Republic",
+  "competition": "First Round (take-home)",
+  "gold_final_answer": "-1/4",
+  "topics_flat": [
+    "Algebra > Intermediate Algebra > Quadratic functions"
+  ],
+  "prompt": "Suppose that $a, b$ are real numbers such that the expressions $a^2 + b$ and $a + b^2$ share the same value. What is the smallest possible shared value?",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let the common value be \\(x\\). Then\n\\[\na^2+b=x,\\qquad a+b^2=x.\n\\]\nSubtracting gives\n\\[\na^2-a=b^2-b.\n\\]\nSo\n\\[\na^2-a-b^2+b=0\n\\]\n\\[\n(a-b)(a+b-1)=0.\n\\]\nHence either \\(a=b\\) or \\(a+b=1\\).\n\n### Case 1: \\(a=b\\)\nThen\n\\[\nx=a^2+a.\n\\]\nThis quadratic has minimum at \\(a=-\\tfrac12\\), giving\n\\[\nx_{\\min}=\\left(-\\tfrac12\\right)^2-\\tfrac12=-\\tfrac14.\n\\]\n\n### Case 2: \\(a+b=1\\)\nThen \\(b=1-a\\), so\n\\[\nx=a^2+b=a^2+1-a.\n\\]\nThis quadratic has minimum at \\(a=\\tfrac12\\), giving\n\\[\nx_{\\min}=\\tfrac14+\\tfrac12-\\tfrac12=\\tfrac34.\n\\]\n\nComparing the two cases, the smallest possible shared value is \\(-\\tfrac14\\).\n\nFinal answer: \\(-\\frac14\\)",
+  "usage": {
+    "input_tokens": 91,
+    "output_tokens": 276,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.3897461690939963,
+  "cached": true
+}

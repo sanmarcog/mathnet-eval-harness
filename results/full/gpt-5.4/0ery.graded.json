@@ -1,0 +1,24 @@
+{
+  "id": "0ery",
+  "country": "South Africa",
+  "competition": "South African Mathematics Olympiad Second Round",
+  "gold_final_answer": "52",
+  "topics_flat": [
+    "Algebra > Prealgebra / Basic Algebra > Integers"
+  ],
+  "prompt": "Jess is standing in a queue of people. She is 18th from the front and 35th from the back.\nHow many people are in the queue?",
+  "model": "gpt-5.4",
+  "response_text": "If Jess is 18th from the front, then there are 17 people in front of her.\n\nIf she is 35th from the back, then there are 34 people behind her.\n\nSo the total number of people is:\n\\[\n17 + 1 + 34 = 52\n\\]\n(or equivalently \\(18 + 35 - 1 = 52\\), since Jess is counted twice).\n\nFinal answer: 52",
+  "usage": {
+    "input_tokens": 81,
+    "output_tokens": 93,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 1.723527985974215,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "exact",
+    "predicted": "52"
+  }
+}

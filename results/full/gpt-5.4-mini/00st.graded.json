@@ -1,0 +1,24 @@
+{
+  "id": "00st",
+  "country": "Balkan Mathematical Olympiad",
+  "competition": "BMO 2019 Shortlist",
+  "gold_final_answer": "1 + floor(n/d)",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Greatest common divisors (gcd)"
+  ],
+  "prompt": "Let $S \\subset \\{1, \\dots, n\\}$ be a nonempty set, where $n$ is a positive integer. We denote by $s$ the greatest common divisor of the elements of the set $S$. We assume that $s \\neq 1$ and let $d$ be its smallest divisor greater than $1$. Let $T \\subset \\{1, \\dots, n\\}$ be a set such that $S \\subset T$ and $|T| \\geq 1 + \\lfloor \\frac{n}{d} \\rfloor$. Prove that the greatest common divisor of the elements in $T$ is $1$.\n\nLet $n$ ($n \\geq 1$) be a positive integer and $U = \\{1, \\dots, n\\}$. Let $S$ be a nonempty subset of $U$ and let $d$ ($d \\neq 1$) be the smallest common divisor of all elements of the set $S$. Find the smallest positive integer $k$ such that for any subset $T$ of $U$, consisting of $k$ elements, with $S \\subset T$, the greatest common divisor of all elements of $T$ is equal to $1$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let \\(g=\\gcd(S)\\). Since \\(g\\neq 1\\), let \\(d>1\\) be the smallest divisor of \\(g\\). Then every element of \\(S\\) is divisible by \\(d\\).\n\nNow consider any \\(T\\subset \\{1,\\dots,n\\}\\) with \\(S\\subset T\\) and\n\\[\n|T|\\ge 1+\\left\\lfloor \\frac nd\\right\\rfloor.\n\\]\nIf \\(\\gcd(T)>1\\), then some prime \\(p\\) divides every element of \\(T\\). In particular, \\(p\\) divides every element of \\(S\\), so \\(p\\) is a divisor of \\(g\\). By minimality of \\(d\\), this forces \\(p\\ge d\\); but since \\(d\\mid g\\), actually \\(d\\) is the smallest possible common divisor \\(>1\\), so any common divisor of \\(T\\) must be a multiple of \\(d\\). Hence every element of \\(T\\) is divisible by \\(d\\), i.e. \\(T\\subseteq \\{d,2d,3d,\\dots\\}\\cap \\{1,\\dots,n\\}\\).\n\nBut the number of integers in \\(\\{1,\\dots,n\\}\\) divisible by \\(d\\) is exactly \\(\\left\\lfloor \\frac nd\\right\\rfloor\\). Therefore \\(T\\) can contain at most \\(\\left\\lfloor \\frac nd\\right\\rfloor\\) elements all divisible by \\(d\\), contradicting\n\\[\n|T|\\ge 1+\\left\\lfloor \\frac nd\\right\\rfloor.\n\\]\nSo no integer \\(>1\\) can divide all elements of \\(T\\), and thus\n\\[\n\\gcd(T)=1.\n\\]\n\nFor the second part, we want the smallest \\(k\\) such that **every** superset \\(T\\supset S\\) of size \\(k\\) has gcd \\(1\\).\n\n- If \\(k=\\left\\lfloor \\frac nd\\right\\rfloor\\), then we can choose \\(T\\) to be exactly the set of all multiples of \\(d\\) in \\(\\{1,\\dots,n\\}\\), together with \\(S\\) (which is already contained among them). This \\(T\\) has gcd at least \\(d>1\\), so \\(k\\) is not enough.\n- If \\(k=1+\\left\\lfloor \\frac nd\\right\\rfloor\\), the first part shows every such \\(T\\) must have gcd \\(1\\).\n\nSo the minimal such integer is\n\\[\n\\boxed{1+\\left\\lfloor \\frac nd\\right\\rfloor }.\n\\]\n\nFinal answer: \\(\\boxed{1+\\left\\lfloor \\frac nd\\right\\rfloor}\\)",
+  "usage": {
+    "input_tokens": 314,
+    "output_tokens": 618,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.7246004530461505,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "1+\\left\\lfloor \\frac nd\\right\\rfloor"
+  }
+}

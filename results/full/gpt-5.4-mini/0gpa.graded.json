@@ -1,0 +1,24 @@
+{
+  "id": "0gpa",
+  "country": "Turkey",
+  "competition": "Team Selection Test",
+  "gold_final_answer": "All triples are: (a, b, c) = (3, 1, 2) and the family with c = 1 and a = b any positive rational.",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Sequences and Series > Sums and products"
+  ],
+  "prompt": "Let $S_r(n) = 1^r + 2^r + \\dots + n^r$ where $r$ is a rational number and $n$ is a positive integer. Find all triples $(a, b, c)$ where $a$ and $b$ are positive rational numbers and $c$ is a positive integer for which there exist infinitely many positive integers $n$ satisfying $S_a(n) = (S_b(n))^c$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "We seek triples \\((a,b,c)\\) such that\n\\[\nS_a(n)=\\bigl(S_b(n)\\bigr)^c\n\\]\nfor infinitely many positive integers \\(n\\), where\n\\[\nS_r(n)=1^r+2^r+\\cdots+n^r.\n\\]\n\n## Step 1: Use asymptotics\n\nFor any fixed rational \\(r>0\\),\n\\[\nS_r(n)=\\frac{n^{r+1}}{r+1}+O(n^r)\n\\qquad (n\\to\\infty).\n\\]\nSo if the identity holds for infinitely many \\(n\\), then comparing growth rates gives\n\\[\nn^{a+1} \\asymp \\left(n^{b+1}\\right)^c,\n\\]\nhence\n\\[\na+1=c(b+1). \\tag{1}\n\\]\n\nAlso, the leading constants must match:\n\\[\n\\frac1{a+1}=\\left(\\frac1{b+1}\\right)^c.\n\\]\nUsing \\((1)\\), let \\(x=b+1>1\\), so \\(a+1=cx\\). Then\n\\[\n\\frac1{cx}=x^{-c}\n\\]\nwhich gives\n\\[\nx^{c-1}=c. \\tag{2}\n\\]\n\nSo we need positive rational \\(x=b+1\\) satisfying \\(x^{c-1}=c\\).\n\n## Step 2: Solve the rationality constraint\n\nSince \\(c\\) is a positive integer and \\(x\\) is rational, equation \\((2)\\) forces \\(x\\) to be rational and \\(x^{c-1}\\) an integer.\n\n- If \\(c=1\\), then \\((2)\\) becomes \\(1=1\\), so no restriction from constants. Then \\((1)\\) gives \\(a=b\\).\n  In this case the identity is\n  \\[\n  S_a(n)=S_b(n),\n  \\]\n  which is true for all \\(n\\).\n\n- If \\(c\\ge 2\\), then \\(x^{c-1}=c\\). Since \\(x\\in \\mathbb{Q}\\), write \\(x=\\frac pq\\) in lowest terms. Then\n  \\[\n  \\left(\\frac pq\\right)^{c-1}=c\n  \\]\n  implies \\(q=1\\) because the right-hand side is an integer, so \\(x\\) must be an integer. Thus \\(x^{c-1}=c\\) with \\(x\\in \\mathbb{Z}_{>1}\\).\n\n  Now the only possibility is \\(c=2\\) and \\(x=2\\), because if \\(c\\ge 3\\) then \\(x^{c-1}\\ge 2^{c-1}>c\\). Hence \\(c=2\\), \\(x=2\\), so \\(b=1\\), and from \\((1)\\),\n  \\[\n  a+1=2(b+1)=4 \\implies a=3.\n  \\]\n  Check:\n  \\[\n  S_3(n)=\\left(S_1(n)\\right)^2\n  \\]\n  is false for all large \\(n\\) by exact formulas, since\n  \\[\n  S_3(n)=\\left(\\frac{n(n+1)}2\\right)^2\n  \\]\n  and\n  \\[\n  S_1(n)=\\frac{n(n+1)}2,\n  \\]\n  so actually\n  \\[\n  S_3(n)=\\bigl(S_1(n)\\bigr)^2\n  \\]\n  holds for all \\(n\\). Thus \\((3,1,2)\\) works.\n\nTherefore the only possibilities are:\n\n1. \\(c=1\\) and \\(a=b\\);\n2. \\((a,b,c)=(3,1,2)\\).\n\n## Final answer\n\\[\n\\boxed{(a,b,c)=(t,t,1)\\ \\text{for any positive rational }t,\\ \\text{and }(a,b,c)=(3,1,2).}\n\\]",
+  "usage": {
+    "input_tokens": 145,
+    "output_tokens": 892,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 5.495321064023301,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "(a,b,c)=(t,t,1)\\ \\text{for any positive rational }t,\\ \\text{and }(a,b,c)=(3,1,2)."
+  }
+}

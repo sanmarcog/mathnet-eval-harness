@@ -1,0 +1,20 @@
+{
+  "id": "07kn",
+  "country": "Ireland",
+  "competition": "Irish Mathematical Olympiad",
+  "gold_final_answer": "[-9, -8, -7, -4, -1, 0, 1]",
+  "topics_flat": [
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities",
+    "Algebra > Algebraic Expressions > Polynomials > Polynomial operations"
+  ],
+  "prompt": "Determine, with proof, all integers $x$ for which $x(x+1)(x+7)(x+8)$ is a perfect square.",
+  "model": "gpt-5.4",
+  "response_text": "Let\n\\[\nN=x(x+1)(x+7)(x+8).\n\\]\nWe want all integers \\(x\\) for which \\(N\\) is a perfect square.\n\n## Step 1: Group the factors\nNotice\n\\[\nx(x+8)=x^2+8x,\\qquad (x+1)(x+7)=x^2+8x+7.\n\\]\nSo if we let\n\\[\ny=x^2+8x,\n\\]\nthen\n\\[\nN=y(y+7).\n\\]\nThus we seek integers \\(y\\) of the form \\(x^2+8x\\) such that \\(y(y+7)\\) is a square.\n\n## Step 2: Use coprimality\nSuppose\n\\[\ny(y+7)=m^2.\n\\]\nLet \\(d=\\gcd(y,y+7)\\). Then \\(d\\mid 7\\), so \\(d=1\\) or \\(7\\).\n\nWe consider the two cases.\n\n### Case 1: \\(\\gcd(y,y+7)=1\\)\nThen \\(y\\) and \\(y+7\\) are coprime, and their product is a square. Therefore each must itself be a square:\n\\[\ny=a^2,\\qquad y+7=b^2.\n\\]\nSo\n\\[\nb^2-a^2=7 \\implies (b-a)(b+a)=7.\n\\]\nSince \\(7\\) is prime, the only possibility in integers is\n\\[\nb-a=1,\\quad b+a=7,\n\\]\ngiving \\(a=3,\\ b=4\\). Hence\n\\[\ny=9.\n\\]\n\n### Case 2: \\(\\gcd(y,y+7)=7\\)\nThen \\(7\\mid y\\), so write\n\\[\ny=7a,\\qquad y+7=7(a+1).\n\\]\nThen\n\\[\ny(y+7)=49a(a+1)=m^2,\n\\]\nso \\(a(a+1)\\) is a square.\n\nBut \\(\\gcd(a,a+1)=1\\), so two consecutive coprime integers whose product is a square must each be squares:\n\\[\na=u^2,\\qquad a+1=v^2.\n\\]\nThus\n\\[\nv^2-u^2=1 \\implies (v-u)(v+u)=1.\n\\]\nHence \\(u=0,\\ v=1\\), so \\(a=0\\), giving\n\\[\ny=0.\n\\]\n\nTherefore the only possible values are\n\\[\ny=0\\quad\\text{or}\\quad y=9.\n\\]\n\n## Step 3: Solve for \\(x\\)\nRecall\n\\[\ny=x^2+8x.\n\\]\n\n### If \\(y=0\\):\n\\[\nx^2+8x=0 \\implies x(x+8)=0 \\implies x=0\\ \\text{or}\\ x=-8.\n\\]\n\n### If \\(y=9\\):\n\\[\nx^2+8x=9 \\implies x^2+8x-9=0.\n\\]\nIts discriminant is\n\\[\n64+36=100,\n\\]\nso\n\\[\nx=\\frac{-8\\pm 10}{2}=1\\ \\text{or}\\ -9.\n\\]\n\nThese four values indeed work:\n\\[\n0\\cdot1\\cdot7\\cdot8=0,\\quad\n(-8)(-7)(-1)0=0,\n\\]\n\\[\n1\\cdot2\\cdot8\\cdot9=144=12^2,\\quad\n(-9)(-8)(-2)(-1)=144=12^2.\n\\]\n\nSo all such integers are\n\\[\nx\\in\\{-9,-8,0,1\\}.\n\\]\n\nFinal answer: \\(\\{-9,-8,0,1\\}\\)",
+  "usage": {
+    "input_tokens": 79,
+    "output_tokens": 843,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 10.71630625706166,
+  "cached": false
+}

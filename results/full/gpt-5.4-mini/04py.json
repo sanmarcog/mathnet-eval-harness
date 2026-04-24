@@ -1,0 +1,19 @@
+{
+  "id": "04py",
+  "country": "Croatia",
+  "competition": "Croatian Mathematical Society Competitions",
+  "gold_final_answer": "2019",
+  "topics_flat": [
+    "Algebra > Intermediate Algebra > Complex numbers"
+  ],
+  "prompt": "Determine the number of complex solutions of the equation\n$$\nz^{2019} = z + \\bar{z}.\n$$",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let \\(z=x+iy\\), with \\(x,y\\in\\mathbb R\\). Then\n\n\\[\nz+\\bar z = (x+iy)+(x-iy)=2x,\n\\]\n\nwhich is real. So the equation\n\n\\[\nz^{2019}=z+\\bar z\n\\]\n\nimplies that \\(z^{2019}\\) is real.\n\nNow write \\(z=re^{i\\theta}\\) with \\(r\\ge 0\\). Then\n\n\\[\nz^{2019}=r^{2019}e^{i2019\\theta}\n\\]\n\nmust be real, so \\(2019\\theta \\equiv 0 \\pmod{\\pi}\\). Also, the right-hand side is\n\n\\[\n2x=2r\\cos\\theta.\n\\]\n\nThus the equation becomes\n\n\\[\nr^{2019}e^{i2019\\theta}=2r\\cos\\theta.\n\\]\n\nIf \\(r=0\\), then \\(z=0\\) is a solution.\n\nAssume \\(r>0\\). Since the left side is real, we need\n\n\\[\ne^{i2019\\theta}=\\pm 1.\n\\]\n\nSo \\(2019\\theta=k\\pi\\) for some integer \\(k\\). Then\n\n\\[\n\\theta=\\frac{k\\pi}{2019}.\n\\]\n\nNow the equation becomes\n\n\\[\nr^{2019}(-1)^k = 2r\\cos\\left(\\frac{k\\pi}{2019}\\right).\n\\]\n\nSince \\(r>0\\),\n\n\\[\nr^{2018} = 2(-1)^k \\cos\\left(\\frac{k\\pi}{2019}\\right).\n\\]\n\nThe right-hand side must be positive. But\n\n\\[\n(-1)^k \\cos\\left(\\frac{k\\pi}{2019}\\right)=\\cos\\left(\\frac{k\\pi}{2019}\\right)(-1)^k\n\\]\n\nis positive exactly when \\(k\\) is even and \\(\\cos\\left(\\frac{k\\pi}{2019}\\right)>0\\), or \\(k\\) is odd and \\(\\cos\\left(\\frac{k\\pi}{2019}\\right)<0\\). In fact, this condition is equivalent to\n\n\\[\n\\cos\\left(\\frac{k\\pi}{2019}\\right)\\neq 0.\n\\]\n\nFor each \\(k\\in\\{0,1,\\dots,4037\\}\\), we get one distinct solution, except when \\(\\cos(\\theta)=0\\), which would force \\(z+\\bar z=0\\) and hence \\(z^{2019}=0\\), impossible for \\(r>0\\). Since \\(2019\\) is odd, the angles\n\\[\n\\theta=\\frac{k\\pi}{2019},\\qquad k=0,1,\\dots,4037\n\\]\ngive \\(4038\\) possible directions, but the ones with \\(\\cos\\theta=0\\) occur at\n\\[\n\\theta=\\frac{\\pi}{2},\\frac{3\\pi}{2},\n\\]\ni.e. \\(k=\\frac{2019}{2}\\), not an integer, so none are excluded.\n\nThus there are \\(4038\\) nonzero solutions, plus \\(z=0\\).\n\n\\[\n4038+1=4039.\n\\]\n\nFinal answer: \\(4039\\).",
+  "usage": {
+    "input_tokens": 74,
+    "output_tokens": 726,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 5.553168865037151,
+  "cached": false
+}

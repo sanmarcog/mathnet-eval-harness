@@ -1,0 +1,20 @@
+{
+  "id": "0h8o",
+  "country": "Ukraine",
+  "competition": "58th Ukrainian National Mathematical Olympiad",
+  "gold_final_answer": "No such function exists.",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Functional Equations > Injectivity / surjectivity",
+    "Algebra > Algebraic Expressions > Functional Equations > Existential quantifiers"
+  ],
+  "prompt": "Determine if there exist a function $f : (0; 1) \\rightarrow (2018; +\\infty)$, so that the following conditions hold:\n* $f(x \\cdot y) = f(x) \\cdot f(y)$ for any $x, y \\in (0; 1)$;\n* for any $y \\in (2018; +\\infty)$ there exists $x \\in (0; 1)$ such that $f(x) = y$?",
+  "model": "gpt-5.4",
+  "response_text": "No such function exists.\n\nLet\n\\[\nf:(0,1)\\to(2018,\\infty)\n\\]\nsatisfy\n\\[\nf(xy)=f(x)f(y)\\qquad (\\forall x,y\\in(0,1)),\n\\]\nand suppose also that \\(f\\) is surjective onto \\((2018,\\infty)\\).\n\nWe derive a contradiction.\n\nSince the codomain is \\((2018,\\infty)\\), we have\n\\[\nf(x)>2018>1\\qquad \\forall x\\in(0,1).\n\\]\n\nNow take any \\(x\\in(0,1)\\). Because \\(x^2\\in(0,1)\\), the functional equation gives\n\\[\nf(x^2)=f(x)^2.\n\\]\nBut \\(f(x)>2018\\), so\n\\[\nf(x)^2>2018^2>2018.\n\\]\nHence every value of the form \\(f(x^2)\\) is actually \\(>2018^2\\).\n\nNow use surjectivity: choose any number\n\\[\ny\\in(2018,\\,2018^2].\n\\]\nThen there should exist some \\(t\\in(0,1)\\) such that \\(f(t)=y\\).\n\nBut \\(t\\in(0,1)\\), so \\(t=\\sqrt{t}\\cdot\\sqrt{t}\\) with \\(\\sqrt{t}\\in(0,1)\\). Therefore\n\\[\nf(t)=f(\\sqrt{t})^2.\n\\]\nSince \\(f(\\sqrt{t})>2018\\), we get\n\\[\nf(t)>2018^2,\n\\]\ncontradicting \\(f(t)=y\\le 2018^2\\).\n\nSo no value in \\((2018,2018^2]\\) can be attained, which contradicts surjectivity onto \\((2018,\\infty)\\).\n\nTherefore such a function does not exist.\n\nFinal answer: No, such a function does not exist.",
+  "usage": {
+    "input_tokens": 154,
+    "output_tokens": 433,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 10.678834859048948,
+  "cached": false
+}

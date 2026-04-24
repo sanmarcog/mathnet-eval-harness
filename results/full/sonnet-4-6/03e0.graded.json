@@ -1,0 +1,25 @@
+{
+  "id": "03e0",
+  "country": "Bulgaria",
+  "competition": "1 Autumn tournament",
+  "gold_final_answer": "k = 1 or k = 2",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Prime numbers",
+    "Algebra > Algebraic Expressions > Polynomials > Polynomial operations"
+  ],
+  "prompt": "Find all positive integers $k$, so that there exists a polynomial $f(x)$ with rational coefficients, such that for all sufficiently large $n$,\n$$\nf(n) = \\operatorname{lcm}(n + 1, n + 2, \\dots, n + k).\n$$",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Solution\n\nWe need to find all positive integers $k$ such that there exists a polynomial $f(x)$ with rational coefficients where $f(n) = \\text{lcm}(n+1, n+2, \\ldots, n+k)$ for all sufficiently large $n$.\n\n**Key Formula for LCM**\n\nUsing the identity involving binomial coefficients:\n$$\\text{lcm}(n+1, n+2, \\ldots, n+k) = \\frac{(n+k)!}{n! \\cdot \\text{lcm}(1,2,\\ldots,k)} \\cdot \\text{lcm}(1,2,\\ldots,k) \\cdot \\frac{1}{\\binom{n+k}{k}}$$\n\nWait, let me use a cleaner approach. We know:\n$$\\text{lcm}(n+1, \\ldots, n+k) = \\frac{(n+k)!}{n!} \\cdot \\frac{1}{\\text{lcm}(1,2,\\ldots,k)} \\cdot \\text{lcm}(1,2,\\ldots,k)$$\n\nActually, the correct relation is:\n$$\\text{lcm}(n+1, n+2, \\ldots, n+k) = \\frac{(n+k)!}{n! \\cdot \\gcd\\text{-stuff}}$$\n\n**Better approach:** For $\\text{lcm}(n+1,\\ldots,n+k)$ to be a polynomial in $n$, we analyze when this expression is polynomial.\n\n**Small cases:**\n\n- $k=1$: $\\text{lcm}(n+1) = n+1$. This is a polynomial. ✓\n\n- $k=2$: $\\text{lcm}(n+1, n+2) = (n+1)(n+2)/\\gcd(n+1,n+2)$. Since $\\gcd(n+1,n+2)=1$, this equals $(n+1)(n+2)$, a polynomial. ✓\n\n- $k=3$: $\\text{lcm}(n+1,n+2,n+3)$. When $n$ is even, $\\gcd(n+1,n+3)=2$, so $\\text{lcm} = (n+1)(n+2)(n+3)/2$. When $n$ is odd, $\\gcd(n+1,n+3)=1$, so $\\text{lcm} = (n+1)(n+2)(n+3)$. These alternate, so no single polynomial works. ✗\n\n- $k=4$: $\\text{lcm}(n+1,n+2,n+3,n+4)$. Among any 4 consecutive integers, there's always exactly one multiple of 4, two multiples of 2, etc. We can check: $\\text{lcm}(n+1,\\ldots,n+4) = \\frac{(n+1)(n+2)(n+3)(n+4)}{12}$ for large $n$? Testing $n=1$: $\\text{lcm}(2,3,4,5)=60$, and $2\\cdot3\\cdot4\\cdot5/12=10$. No. The value varies with $n \\pmod{12}$, so it's not a polynomial. ✗\n\n**General analysis:** For $k \\geq 3$, the LCM depends on $n \\pmod{p}$ for primes $p \\leq k$. Specifically for $k=3$, the prime $p=3$ causes issues since among $n+1, n+2, n+3$, exactly one is divisible by 3, but the power of 2 dividing the LCM depends on $n \\pmod 4$.\n\nFor $k=2$: consecutive integers are always coprime, so $\\text{lcm}(n+1,n+2) = (n+1)(n+2)$, always a polynomial.\n\nFor $k=1$: trivially a polynomial.\n\nFor $k \\geq 3$: The LCM takes different values depending on $n \\pmod{p}$ for some prime $p \\leq k$. Since a polynomial that agrees with a periodic (non-constant) function on infinitely many integers must itself be periodic, but non-constant polynomials aren't periodic, we get a contradiction unless the LCM is actually polynomial — which fails for $k \\geq 3$ since the LCM is not eventually polynomial (it oscillates).\n\n**Conclusion:** The only values are $k = 1$ and $k = 2$.\n\nFinal answer: $k \\in \\{1, 2\\}$",
+  "usage": {
+    "input_tokens": 118,
+    "output_tokens": 1164,
+    "thinking_tokens": 0
+  },
+  "latency_s": 16.783474486903287,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "$k \\in \\{1, 2\\}$"
+  }
+}

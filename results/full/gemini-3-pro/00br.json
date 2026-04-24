@@ -1,0 +1,20 @@
+{
+  "id": "00br",
+  "country": "Argentina",
+  "competition": "Argentina_2018",
+  "gold_final_answer": "21, 25, 29, 41",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Sequences and Series > Sums and products",
+    "Number Theory > Divisibility / Factorization > Factorization techniques"
+  ],
+  "prompt": "A natural number is written on each face of a cube. To each vertex of the cube assign the product of the numbers of the three faces that have this vertex in common. Let the sum of these 8 products be 315. Determine the sum of the numbers on the faces (find all possibilities).",
+  "model": "gemini-3-pro-preview",
+  "response_text": "Let the numbers written on the faces of the cube be $a, b, c, d, e, f$, where $(a, d)$, $(b, e)$, and $(c, f)$ are pairs of numbers on opposite faces. \nEach vertex of the cube is formed by the intersection of three mutually adjacent faces (one from each opposite pair). Therefore, the 8 products assigned to the vertices are all the possible combinations of choosing one number from each pair:\n$abc, abe, afc, afe, dbc, dbe, dfc, dfe$\n\nThe sum of these 8 products is given by the factorization:\n$abc + abe + afc + afe + dbc + dbe + dfc + dfe = (a+d)(b+e)(c+f)$\n\nWe are given that this sum is 315. Thus, we have:\n$(a+d)(b+e)(c+f) = 315$\n\nWe want to find the sum of the numbers on all the faces, which is:\n$S = a+b+c+d+e+f = (a+d) + (b+e) + (c+f)$\n\nSince $a, b, c, d, e, f$ are natural numbers (positive integers, so $\\ge 1$), each of the factors $(a+d)$, $(b+e)$, and $(c+f)$ must be an integer greater than or equal to 2.\nThe prime factorization of 315 is:\n$315 = 3^2 \\times 5 \\times 7 = 3 \\times 3 \\times 5 \\times 7$\n\nWe need to express 315 as the product of three integers, each $\\ge 2$. This corresponds to grouping the prime factors into three sets. The possible triplets of factors and their corresponding sums $S$ are:\n1. $9 \\times 5 \\times 7 \\implies S = 9 + 5 + 7 = 21$\n2. $15 \\times 3 \\times 7 \\implies S = 15 + 3 + 7 = 25$\n3. $21 \\times 3 \\times 5 \\implies S = 21 + 3 + 5 = 29$\n4. $35 \\times 3 \\times 3 \\implies S = 35 + 3 + 3 = 41$\n\nThese are all the possible ways to factor 315 into three integers $\\ge 2$.\n\nFinal answer: 21, 25, 29, 41",
+  "usage": {
+    "input_tokens": 102,
+    "output_tokens": 574,
+    "thoughts_tokens": 2436
+  },
+  "latency_s": 23.762348585994914,
+  "cached": false
+}

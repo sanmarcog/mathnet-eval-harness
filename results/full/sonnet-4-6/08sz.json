@@ -1,0 +1,21 @@
+{
+  "id": "08sz",
+  "country": "Japan",
+  "competition": "Japan Mathematical Olympiad",
+  "gold_final_answer": "650",
+  "topics_flat": [
+    "Algebra > Prealgebra / Basic Algebra > Integers",
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities",
+    "Number Theory > Other"
+  ],
+  "prompt": "How many 3-digit numbers are there that can appear as the top three digits of a 6-digit number, which is a perfect square?",
+  "model": "claude-sonnet-4-6",
+  "response_text": "I need to find how many 3-digit numbers (from 100 to 999) can appear as the first three digits of a perfect square with exactly 6 digits.\n\n## Setting Up the Problem\n\nA 6-digit perfect square has the form n² where 317 ≤ n ≤ 999 (since 317² = 100489 and 999² = 998001).\n\nThe \"top three digits\" of a 6-digit number N means ⌊N/1000⌋, which gives a number from 100 to 999.\n\nSo I need to find how many distinct values of ⌊n²/1000⌋ exist for n from 317 to 999.\n\n## Analysis\n\nFor a given 3-digit prefix k (where 100 ≤ k ≤ 999), it appears as the top three digits of some perfect square if there exists an integer n such that:\n$$k \\cdot 1000 \\leq n^2 < (k+1) \\cdot 1000$$\n\nThis means: $\\sqrt{1000k} \\leq n < \\sqrt{1000(k+1)}$\n\nThe prefix k is achievable if there's an integer in the interval $[\\sqrt{1000k}, \\sqrt{1000(k+1)})$.\n\n## Counting Missing Prefixes\n\nThe interval $[\\sqrt{1000k}, \\sqrt{1000(k+1)})$ has length:\n$$\\sqrt{1000(k+1)} - \\sqrt{1000k} = \\sqrt{1000}\\cdot(\\sqrt{k+1} - \\sqrt{k}) = \\frac{\\sqrt{1000}}{\\sqrt{k+1}+\\sqrt{k}} \\approx \\frac{\\sqrt{1000}}{2\\sqrt{k}}$$\n\nA prefix k is **missed** when this interval contains no integer, which happens when the interval length is small (less than 1) AND the interval falls between consecutive integers.\n\nThe length $\\frac{\\sqrt{1000}}{2\\sqrt{k}} < 1$ when $k > 250$. So for k > 250, some prefixes might be skipped.\n\n**Total possible prefixes:** 900 (from 100 to 999)\n\n**Counting achieved prefixes:** I need to count distinct values of ⌊n²/1000⌋ for n = 317 to 999.\n\nThat's 999 - 317 + 1 = 683 values of n, giving at most 683 distinct prefixes, but some n values might share the same prefix.\n\n**When do consecutive n values share a prefix?**\n⌊n²/1000⌋ = ⌊(n+1)²/1000⌋ when n² and (n+1)² = n² + 2n + 1 differ by less than 1000 in their leading parts, specifically when they're in the same block of 1000.\n\nThis happens when ⌊n²/1000⌋ = ⌊(n²+2n+1)/1000⌋, i.e., 2n+1 < 1000 - (n² mod 1000) ... more precisely when n² and n²+2n+1 have the same ⌊·/1000⌋.\n\nThis occurs when 2n + 1 ≤ 999 - (n² mod 1000) + (n² mod 1000)... Let me think differently.\n\nTwo consecutive squares share a prefix when (n+1)² - n² = 2n+1 < 1000 AND they don't cross a multiple of 1000. When 2n+1 < 1000, i.e., n < 500, it's *possible* to share. When n ≥ 500, 2n+1 ≥ 1001, so consecutive squares always have different prefixes (and may skip one).\n\n**For n = 317 to 499** (183 values): 2n+1 ranges from 635 to 999, so consecutive squares differ by less than 1000. Some pairs share a prefix.\n\n**For n = 500 to 999** (500 values): 2n+1 ≥ 1001, so each n gives a distinct prefix, and some prefixes are skipped.\n\nFor n = 500 to 999: these 500 values of n give 500 distinct prefixes (no two share a prefix since differences > 1000).\n\nFor n = 317 to 499: Let me count distinct prefixes. The number of distinct prefixes = 183 - (number of collisions). Collisions occur when ⌊n²/1000⌋ = ⌊(n+1)²/1000⌋.\n\nAfter careful analysis, the number of distinct prefixes for n = 317 to 499 equals the number of integers in the range [⌊317²/1000⌋, ⌊499²/1000⌋] that are hit = from 100 to 249, that's 150 values (since the squares cover this range and the interval lengths are close to 1, nearly all are hit).\n\nChecking: 317²=100489→100, 499²=249001→249. Range 100-249 = 150 prefixes.\nFor n=500 to 999: 500²=250000→250, 999²=998001→998. That's 749 prefixes, but only 500 n-values, so 500 distinct prefixes.\n\nTotal distinct prefixes = 150 + 500 = **650**.\n\nFinal answer: 650",
+  "usage": {
+    "input_tokens": 77,
+    "output_tokens": 1356,
+    "thinking_tokens": 0
+  },
+  "latency_s": 21.39956748194527,
+  "cached": false
+}

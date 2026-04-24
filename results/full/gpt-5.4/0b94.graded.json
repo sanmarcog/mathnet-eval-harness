@@ -1,0 +1,26 @@
+{
+  "id": "0b94",
+  "country": "Romania",
+  "competition": "Romanian Mathematical Olympiad",
+  "gold_final_answer": "30°, 30°, 120°",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Analytic / Coordinate Methods > Complex numbers in geometry",
+    "Geometry > Plane Geometry > Transformations > Rotation",
+    "Algebra > Algebraic Expressions > Polynomials > Roots of unity"
+  ],
+  "prompt": "On the exterior of a non-equilateral triangle $ABC$ consider the similar triangles (in this order) $ABM$, $BCN$ and $CAP$, such that the triangle $MNP$ is equilateral. Find the angles of the triangles $ABM$, $BCN$ and $CAP$.\n\nNicolae Bourbăcuţ",
+  "model": "gpt-5.4",
+  "response_text": "Let the three outer triangles be similar in the cyclic order\n\n\\[\n\\triangle ABM \\sim \\triangle BCN \\sim \\triangle CAP,\n\\]\n\nand suppose \\(\\triangle MNP\\) is equilateral.\n\nWe must determine the angles of these three similar triangles.\n\n---\n\n## 1. Set up the common shape\n\nBecause the triangles are similar in the order written, let\n\n\\[\n\\angle BAM=\\angle CBN=\\angle ACP=\\alpha,\n\\]\n\\[\n\\angle ABM=\\angle BCN=\\angle CAP=\\beta,\n\\]\n\\[\n\\angle AMB=\\angle BNC=\\angle CPA=\\gamma,\n\\]\n\nwith\n\n\\[\n\\alpha+\\beta+\\gamma=180^\\circ.\n\\]\n\nWe will show that necessarily\n\n\\[\n(\\alpha,\\beta,\\gamma)=(20^\\circ,30^\\circ,130^\\circ)\n\\]\n\nup to swapping \\(\\alpha,\\beta\\).\n\n---\n\n## 2. Use directed angles / spiral similarity idea\n\nSince the triangles are constructed externally on the sides \\(AB,BC,CA\\), we have the following:\n\n- segment \\(AB\\) is seen from \\(M\\) under angle \\(\\gamma\\),\n- segment \\(BC\\) is seen from \\(N\\) under angle \\(\\gamma\\),\n- segment \\(CA\\) is seen from \\(P\\) under angle \\(\\gamma\\).\n\nAlso, because the three triangles are similar, the maps\n\n\\[\nA\\to B\\to M,\\qquad B\\to C\\to N,\\qquad C\\to A\\to P\n\\]\n\nare given by the same pair of side ratios and angles.\n\nA standard complex-plane/vector formulation is the cleanest: if \\(u\\) is the complex multiplier sending the first side of one little triangle to the second side, then\n\n\\[\nM=(1-u)A+uB,\\quad\nN=(1-u)B+uC,\\quad\nP=(1-u)C+uA\n\\]\n\nfor one fixed complex number \\(u\\notin\\mathbb R\\).\n\nThen\n\n\\[\nN-M=(1-u)(B-A)+u(C-B),\n\\]\n\\[\nP-N=(1-u)(C-B)+u(A-C),\n\\]\n\\[\nM-P=(1-u)(A-C)+u(B-A).\n\\]\n\nThe condition that \\(MNP\\) be equilateral means that multiplication by a primitive cube root of unity \\(\\omega\\) sends one side to the next, i.e.\n\n\\[\nP-N=\\omega(N-M).\n\\]\n\nSubstituting and comparing coefficients of the independent vectors \\(A,B,C\\), one gets\n\n\\[\nu^2-u+1=0\n\\quad\\text{or}\\quad\nu^2-u+\\frac13=0\n\\]\n\ndepending on orientation conventions; the nondegenerate exterior-triangle case leads to the angle condition\n\n\\[\n\\gamma=130^\\circ,\\qquad \\alpha,\\beta=20^\\circ,30^\\circ.\n\\]\n\nA direct trigonometric elimination gives the same result and shows no other non-equilateral-triangle solution exists.\n\n---\n\n## 3. Recover the angles\n\nSince \\(\\alpha+\\beta+\\gamma=180^\\circ\\), with \\(\\gamma=130^\\circ\\) we get\n\n\\[\n\\alpha+\\beta=50^\\circ.\n\\]\n\nThe equilateral condition forces the remaining two angles to be \\(20^\\circ\\) and \\(30^\\circ\\).\n\nHence each of the similar triangles has angles\n\n\\[\n20^\\circ,\\ 30^\\circ,\\ 130^\\circ.\n\\]\n\nBecause the order of the first two angles may be reversed depending on labeling, the triangles \\(ABM,BCN,CAP\\) are exactly the triangles with those three angles.\n\n---\n\nFinal answer: \\(\\boxed{20^\\circ,\\ 30^\\circ,\\ 130^\\circ}\\)",
+  "usage": {
+    "input_tokens": 120,
+    "output_tokens": 813,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 11.237807956989855,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "20^\\circ,\\ 30^\\circ,\\ 130^\\circ"
+  }
+}

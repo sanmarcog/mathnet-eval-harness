@@ -1,0 +1,25 @@
+{
+  "id": "07vu",
+  "country": "Ireland",
+  "competition": "IRL_ABooklet_2023",
+  "gold_final_answer": "One example: f(1) = 1 and for all integers n ≥ 1,\n- f(2n) = 2n + 1,\n- f(2n + 1) = 1/(2n),\n- f(1/(2n)) = 1/(2n + 1),\n- f(1/(2n + 1)) = 2n.\nFor any semi-reciprocal function, the unique fixed point is 1.",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Functional Equations",
+    "Algebra > Algebraic Expressions > Functional Equations > Existential quantifiers"
+  ],
+  "prompt": "Let $S = \\mathbb{N} \\cup \\{1/n \\mid n \\in \\mathbb{N}\\}$ be the set of all positive integers and their reciprocals. A function $f : S \\to S$, defined on $S$ and with values in $S$, is called *semi-reciprocal* if $f(f(x)) = 1/x$ for all $x \\in S$.\n\na. Find a semi-reciprocal function.\n\nb. Show that for every semi-reciprocal function $f$ there is exactly one number $p \\in S$ such that $f(p) = p$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let  \n\\[\nS=\\mathbb N\\cup \\left\\{\\frac1n:n\\in\\mathbb N\\right\\}.\n\\]\nA semi-reciprocal function satisfies\n\\[\nf(f(x))=\\frac1x \\qquad (\\forall x\\in S).\n\\]\n\n## a) Find a semi-reciprocal function\n\nDefine\n\\[\nf(n)=\\frac1n,\\qquad f\\!\\left(\\frac1n\\right)=n \\qquad (n\\in\\mathbb N).\n\\]\nThen for any \\(x\\in S\\), applying \\(f\\) twice returns the reciprocal:\n- if \\(x=n\\), then \\(f(f(n))=f(1/n)=n=1/(1/n)\\);\n- if \\(x=1/n\\), then \\(f(f(1/n))=f(n)=1/n=1/(1/n)\\).\n\nSo this is semi-reciprocal.\n\n---\n\n## b) Show every semi-reciprocal \\(f\\) has exactly one fixed point\n\nLet \\(f\\) be semi-reciprocal, and suppose \\(f(p)=p\\) for some \\(p\\in S\\). Then\n\\[\nf(f(p))=f(p)=p,\n\\]\nbut also by definition,\n\\[\nf(f(p))=\\frac1p.\n\\]\nHence\n\\[\np=\\frac1p \\implies p^2=1.\n\\]\nSince \\(p\\in S\\subset \\mathbb R_{>0}\\), we get\n\\[\np=1.\n\\]\nSo any fixed point must be \\(1\\). Thus there is **at most one** fixed point.\n\nNow we show \\(1\\) is indeed fixed. Since \\(f(f(1))=1\\), let \\(q=f(1)\\). Then\n\\[\nf(q)=1.\n\\]\nApply \\(f\\) again:\n\\[\nf(f(q))=f(1)=q.\n\\]\nBut semi-reciprocality gives\n\\[\nf(f(q))=\\frac1q.\n\\]\nSo\n\\[\nq=\\frac1q \\implies q=1.\n\\]\nTherefore\n\\[\nf(1)=1.\n\\]\nSo \\(1\\) is a fixed point, and it is the only one.\n\n---\n\nFinal answer: The function \\(f(n)=1/n\\) and \\(f(1/n)=n\\) is semi-reciprocal, and every semi-reciprocal function has exactly one fixed point, namely \\(p=1\\).",
+  "usage": {
+    "input_tokens": 185,
+    "output_tokens": 547,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.3371667040046304,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "The function \\(f(n)=1/n\\) and \\(f(1/n)=n\\) is semi-reciprocal, and every semi-reciprocal function has exactly one fixed point, namely \\(p=1\\)."
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "id": "048x",
+  "country": "Croatia",
+  "competition": "Hrvatska 2011",
+  "gold_final_answer": "3 - 2√2",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Circles > Tangents",
+    "Geometry > Plane Geometry > Analytic / Coordinate Methods > Cartesian coordinates",
+    "Geometry > Plane Geometry > Miscellaneous > Distance chasing"
+  ],
+  "prompt": "Let $ABCD$ be a unit square. The unit circle $k$ has center $C$. Determine the radius of the circle $k_1$ which touches the circle $k$ and line segments $\\overline{AB}$ and $\\overline{AD}$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Place the square with coordinates\n\\[\nA=(0,0),\\quad B=(1,0),\\quad D=(0,1),\\quad C=(1,1).\n\\]\nThen the unit circle \\(k\\) has center \\(C=(1,1)\\) and radius \\(1\\).\n\nLet the desired circle \\(k_1\\) have radius \\(r\\). Since it touches both segments \\(\\overline{AB}\\) and \\(\\overline{AD}\\), its center must be at distance \\(r\\) from both the \\(x\\)-axis and \\(y\\)-axis, so its center is\n\\[\n(r,r).\n\\]\n\nBecause \\(k_1\\) touches the unit circle \\(k\\) externally, the distance between their centers equals \\(1+r\\):\n\\[\n\\sqrt{(1-r)^2+(1-r)^2}=1+r.\n\\]\nSo\n\\[\n\\sqrt{2}\\,(1-r)=1+r.\n\\]\nSolve for \\(r\\):\n\\[\n\\sqrt2-\\sqrt2\\,r=1+r\n\\]\n\\[\nr(\\sqrt2+1)=\\sqrt2-1\n\\]\n\\[\nr=\\frac{\\sqrt2-1}{\\sqrt2+1}=(\\sqrt2-1)^2=3-2\\sqrt2.\n\\]\n\nFinal answer: \\(\\boxed{3-2\\sqrt2}\\)",
+  "usage": {
+    "input_tokens": 104,
+    "output_tokens": 304,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 2.1041170029202476,
+  "cached": false
+}

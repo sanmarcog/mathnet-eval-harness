@@ -1,0 +1,21 @@
+{
+  "id": "08rz",
+  "country": "Japan",
+  "competition": "Japan 2007",
+  "gold_final_answer": "21",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Triangles > Triangle trigonometry",
+    "Geometry > Plane Geometry > Geometric Inequalities > Optimization in geometry",
+    "Geometry > Plane Geometry > Miscellaneous > Constructions and loci"
+  ],
+  "prompt": "$AB$ is a segment on a plane with length $7$, and $P$ is a point such that the distance between $P$ and line $AB$ is $3$. Find the smallest possible value of $AP \\times BP$.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "Let me set up coordinates. Place A at (-7/2, 0) and B at (7/2, 0), so AB has length 7. Let P = (x, 3) (distance 3 from line AB).\n\nThen:\n- AP² = (x + 7/2)² + 9\n- BP² = (x - 7/2)² + 9\n\nLet me compute AP · BP = √(AP² · BP²).\n\nAP² · BP² = [(x + 7/2)² + 9][(x - 7/2)² + 9]\n\nLet u = x², and note (x + 7/2)² = x² + 7x + 49/4, (x - 7/2)² = x² - 7x + 49/4.\n\nLet a = x² + 49/4 + 9 = x² + 49/4 + 9, and b = 7x.\n\nAP² · BP² = (a + b)(a - b) = a² - b²\n\n= (x² + 49/4 + 9)² - 49x²\n\nLet t = x². Then:\n\nf(t) = (t + 49/4 + 9)² - 49t = (t + 85/4)² - 49t\n\n= t² + (85/2)t + (85/4)² - 49t\n\n= t² + (85/2 - 49)t + (85/4)²\n\n= t² + (85/2 - 98/2)t + (85/4)²\n\n= t² - (13/2)t + (85/4)²\n\nTo minimize over t ≥ 0:\n\nf'(t) = 2t - 13/2 = 0 → t = 13/4\n\nSince t = 13/4 > 0, this is valid.\n\nf(13/4) = (13/4)² - (13/2)(13/4) + (85/4)²\n\n= 169/16 - 169/8 + 7225/16\n\n= 169/16 - 338/16 + 7225/16\n\n= (169 - 338 + 7225)/16\n\n= 7056/16\n\n= 441\n\nSo AP · BP = √441 = 21.\n\nFinal answer: 21",
+  "usage": {
+    "input_tokens": 98,
+    "output_tokens": 574,
+    "thinking_tokens": 0
+  },
+  "latency_s": 6.838738563004881,
+  "cached": false
+}

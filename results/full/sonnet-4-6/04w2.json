@@ -1,0 +1,19 @@
+{
+  "id": "04w2",
+  "country": "Czech Republic",
+  "competition": "First Round of the 73rd Czech and Slovak Mathematical Olympiad (take-home part)",
+  "gold_final_answer": "No",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Prime numbers"
+  ],
+  "prompt": "We shall say that an odd prime $p$ is *kooky* if the sum of all primes smaller than $p$ is a multiple of $p$. Can two consecutive primes be kooky?",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Solution\n\nLet me denote the sum of all primes less than prime $p$ as $S(p)$.\n\n**Definition:** An odd prime $p$ is kooky if $p \\mid S(p)$.\n\n**Question:** Can two consecutive primes both be kooky?\n\nSuppose $p$ and $q$ are consecutive primes with $p < q$, and both are kooky.\n\nThen:\n- $p \\mid S(p)$ where $S(p) = 2 + 3 + 5 + \\cdots + p'$ (sum of all primes less than $p$)\n- $q \\mid S(q)$ where $S(q) = S(p) + p$ (since $p$ is the prime just before $q$)\n\nSince $q \\mid S(q) = S(p) + p$, we have:\n$$q \\mid S(p) + p$$\n\nSince $p \\mid S(p)$, we can write $S(p) = kp$ for some positive integer $k$.\n\nSo $q \\mid kp + p = p(k+1)$.\n\nSince $p$ and $q$ are distinct primes, $\\gcd(p, q) = 1$, so:\n$$q \\mid (k+1)$$\n\nThis means $k + 1 \\geq q$ (since $k+1$ is a positive integer and $q$ is prime, so $k+1 \\geq q > p$).\n\nTherefore $k \\geq q - 1 \\geq q - 1$.\n\nSince $k = S(p)/p$, we need $S(p) \\geq p(q-1)$.\n\nBut $S(p)$ is the sum of all primes **less than** $p$. The largest prime less than $p$ is the prime before $p$; call it $p'$. All primes less than $p$ are at most $p' < p$.\n\nThe number of primes less than $p$ is $\\pi(p) - 1$ (excluding $p$ itself). By the prime number theorem, $\\pi(p) \\approx p/\\ln p$, and $S(p) < p \\cdot \\pi(p)$.\n\nMore precisely, $S(p) < p \\cdot \\pi(p-1)$.\n\nWe need $S(p) \\geq p(q-1)$, so $\\pi(p-1) > q - 1$, meaning $\\pi(p-1) \\geq q$.\n\nBut $\\pi(p-1)$ counts primes up to $p-1$, and $q > p$, so $\\pi(p-1) < p < q$.\n\nThis gives $\\pi(p-1) \\geq q > p > \\pi(p-1)$, a **contradiction**.\n\nWait, let me be more careful: $\\pi(p-1) \\geq q$ but $\\pi(p-1)$ is the number of primes less than $p$, which is at most $p-1$ (trivially), but more relevantly, $\\pi(p-1) < p$ always. And $q > p$, so $q \\geq p+2$ (since they're both odd primes, consecutive). Thus $q \\geq p+2 > p > \\pi(p-1)$.\n\nActually we need $\\pi(p-1) \\geq q \\geq p+2$, but $\\pi(p-1) \\leq p/2$ roughly (since at most half the numbers up to $p$ are even, and primes are mostly odd). More simply: the number of primes less than $p$ is certainly less than $p$ itself, and $q > p$, so $\\pi(p-1) < p < q$, giving the contradiction.\n\nTherefore, two consecutive primes **cannot** both be kooky.\n\nFinal answer: No",
+  "usage": {
+    "input_tokens": 92,
+    "output_tokens": 938,
+    "thinking_tokens": 0
+  },
+  "latency_s": 13.723382845986634,
+  "cached": false
+}

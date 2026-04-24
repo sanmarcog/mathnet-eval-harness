@@ -1,0 +1,24 @@
+{
+  "id": "0gw2",
+  "country": "Ukraine",
+  "competition": "Ukrainian Mathematical Olympiad",
+  "gold_final_answer": "x = y = z = √2",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities > Cauchy-Schwarz"
+  ],
+  "prompt": "Find all triplets of real positive numbers $x$, $y$ and $z$ such that\n$$\n\\begin{cases}\n\\sqrt{2x - \\frac{2}{y}} + \\sqrt{2y - \\frac{2}{z}} + \\sqrt{2z - \\frac{2}{x}} = \\sqrt{3(x + y + z)}, \\\\\nx^2 + y^2 + z^2 = 6.\n\\end{cases}\n$$",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let  \n\\[\na=\\sqrt{2x-\\frac2y},\\qquad b=\\sqrt{2y-\\frac2z},\\qquad c=\\sqrt{2z-\\frac2x}.\n\\]\nThen the first equation is\n\\[\na+b+c=\\sqrt{3(x+y+z)}.\n\\]\n\nBy AM-QM (or Cauchy),\n\\[\n(a+b+c)^2\\le 3(a^2+b^2+c^2).\n\\]\nSo\n\\[\n3(x+y+z)\\le 3\\left(2x-\\frac2y+2y-\\frac2z+2z-\\frac2x\\right),\n\\]\nhence\n\\[\nx+y+z\\le 2(x+y+z)-2\\left(\\frac1x+\\frac1y+\\frac1z\\right),\n\\]\nso\n\\[\nx+y+z\\ge 2\\left(\\frac1x+\\frac1y+\\frac1z\\right).\n\\]\nNow by AM-QM,\n\\[\nx+y+z\\le \\sqrt{3(x^2+y^2+z^2)}=\\sqrt{18}=3\\sqrt2.\n\\]\nAlso by AM-HM,\n\\[\nx+y+z\\ge \\sqrt[3]{\\frac{27}{xyz}} \\quad \\text{and} \\quad\n\\frac1x+\\frac1y+\\frac1z\\ge \\frac{9}{x+y+z}.\n\\]\nCombining with the earlier inequality forces equality throughout, so\n\\[\nx=y=z.\n\\]\nLet \\(x=y=z=t\\). Then the first equation becomes\n\\[\n3\\sqrt{2t-\\frac2t}=\\sqrt{9t},\n\\]\nso\n\\[\n2t-\\frac2t=t \\quad\\Longrightarrow\\quad t-\\frac2t=0\n\\quad\\Longrightarrow\\quad t^2=2.\n\\]\nSince \\(t>0\\), \\(t=\\sqrt2\\).\n\nCheck the second condition:\n\\[\nx^2+y^2+z^2=3t^2=6,\n\\]\nwhich is satisfied.\n\nTherefore the unique solution is\n\\[\n(x,y,z)=(\\sqrt2,\\sqrt2,\\sqrt2).\n\\]\n\nFinal answer: \\((\\sqrt2,\\sqrt2,\\sqrt2)\\)",
+  "usage": {
+    "input_tokens": 151,
+    "output_tokens": 505,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 4.189128485973924,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "\\((\\sqrt2,\\sqrt2,\\sqrt2)\\)"
+  }
+}

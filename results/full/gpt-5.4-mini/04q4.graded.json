@@ -1,0 +1,25 @@
+{
+  "id": "04q4",
+  "country": "Croatia",
+  "competition": "Croatian Junior Mathematical Olympiad",
+  "gold_final_answer": "(-4, 3) and (3, -4)",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities",
+    "Algebra > Intermediate Algebra > Quadratic functions"
+  ],
+  "prompt": "Find all pairs $(a, b)$ of real (not necessarily positive) numbers such that $a^2 + b^2 = 25$, for which $ab + a + b$ attains the smallest possible value.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let  \n\\[\nS=ab+a+b.\n\\]\nWe want the minimum of \\(S\\) subject to\n\\[\na^2+b^2=25.\n\\]\n\nUse\n\\[\n(a+1)(b+1)=ab+a+b+1=S+1.\n\\]\nSo minimizing \\(S\\) is equivalent to minimizing \\((a+1)(b+1)\\).\n\nNow write\n\\[\n(a-b)^2\\ge 0 \\quad\\Rightarrow\\quad a^2+b^2\\ge 2ab,\n\\]\nhence\n\\[\n25\\ge 2ab \\quad\\Rightarrow\\quad ab\\le \\frac{25}{2}.\n\\]\nBut to get the exact minimum of \\(ab+a+b\\), consider\n\\[\n(a+b)^2=a^2+b^2+2ab=25+2ab,\n\\]\nso\n\\[\nab=\\frac{(a+b)^2-25}{2}.\n\\]\nThen\n\\[\nS=ab+(a+b)=\\frac{(a+b)^2-25}{2}+(a+b).\n\\]\nLet \\(x=a+b\\). Since\n\\[\n(a-b)^2=25-2ab=25-\\bigl(x^2-25\\bigr)=50-x^2\\ge 0,\n\\]\nwe get\n\\[\nx^2\\le 50 \\quad\\Rightarrow\\quad -5\\sqrt2\\le x\\le 5\\sqrt2.\n\\]\nThus\n\\[\nS=\\frac{x^2}{2}+x-\\frac{25}{2},\n\\]\na quadratic in \\(x\\) whose minimum on all real \\(x\\) occurs at \\(x=-1\\). Since \\(-1\\in[-5\\sqrt2,5\\sqrt2]\\), this is valid.\n\nSo the minimum value occurs when\n\\[\na+b=-1.\n\\]\nTogether with \\(a^2+b^2=25\\), we have\n\\[\n(a+b)^2=a^2+b^2+2ab\n\\]\n\\[\n1=25+2ab \\quad\\Rightarrow\\quad ab=-12.\n\\]\nHence \\(a,b\\) are roots of\n\\[\nt^2-(a+b)t+ab=0 \\quad\\Rightarrow\\quad t^2+t-12=0,\n\\]\nso\n\\[\nt=3 \\text{ or } t=-4.\n\\]\n\nTherefore the pairs are\n\\[\n\\boxed{(a,b)=(3,-4)\\ \\text{or}\\ (-4,3)}.\n\\]\n\nFinal answer: \\((3,-4)\\) and \\((-4,3)\\)",
+  "usage": {
+    "input_tokens": 94,
+    "output_tokens": 572,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 4.137705451925285,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "\\((3,-4)\\) and \\((-4,3)\\)"
+  }
+}

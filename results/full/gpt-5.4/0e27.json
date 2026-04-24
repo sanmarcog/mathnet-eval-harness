@@ -1,0 +1,20 @@
+{
+  "id": "0e27",
+  "country": "Slovenia",
+  "competition": "National Math Olympiad",
+  "gold_final_answer": "All positive integers greater than 1",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Factorization techniques",
+    "Algebra > Prealgebra / Basic Algebra > Integers"
+  ],
+  "prompt": "For which positive integers $n$ does there exist a multiple of $7$, such that the sum of its digits is equal to $n$?",
+  "model": "gpt-5.4",
+  "response_text": "Let \\(s(m)\\) denote the sum of the digits of a positive integer \\(m\\). We want to determine for which positive integers \\(n\\) there exists some multiple of \\(7\\) with digit sum \\(n\\).\n\nWe will show that this is possible for **every** positive integer \\(n\\).\n\n## Step 1: Small examples\nA few multiples of \\(7\\) and their digit sums:\n\n- \\(7\\) has digit sum \\(7\\)\n- \\(14\\) has digit sum \\(5\\)\n- \\(21\\) has digit sum \\(3\\)\n- \\(28\\) has digit sum \\(10\\)\n- \\(35\\) has digit sum \\(8\\)\n- \\(42\\) has digit sum \\(6\\)\n- \\(49\\) has digit sum \\(13\\)\n- \\(56\\) has digit sum \\(11\\)\n- \\(63\\) has digit sum \\(9\\)\n- \\(70\\) has digit sum \\(7\\)\n\nSo we already realize the sums\n\\[\n3,5,6,7,8,9,10,11,13.\n\\]\nAlso:\n- \\(84\\) has digit sum \\(12\\)\n- \\(91\\) has digit sum \\(10\\)\n- \\(112\\) has digit sum \\(4\\)\n- \\(1001=7\\cdot 143\\) has digit sum \\(2\\)\n- \\(1000001=7\\cdot 142857\\) has digit sum \\(2\\) as well.\n\nAnd of course \\(1001+7=1008\\) has digit sum \\(9\\), etc.\n\nWe still need a systematic construction.\n\n## Step 2: Key observation\nSince\n\\[\n1001 = 7\\cdot 143,\n\\]\nthe number \\(1001\\) is divisible by \\(7\\).\n\nTherefore, if \\(M\\) is a multiple of \\(7\\), then so is\n\\[\nM\\cdot 1000 + M = M\\cdot 1001.\n\\]\nBut in decimal form, multiplying by \\(1001\\) places two copies of \\(M\\) separated by two zeros, so the digit sum doubles:\n\\[\ns(1001M)=2s(M).\n\\]\nMore generally, if we place several copies of a multiple of \\(7\\) far enough apart, the total is still divisible by \\(7\\), and the digit sums add.\n\nSo if we know one multiple of \\(7\\) with digit sum \\(a\\), and another with digit sum \\(b\\), then we can create a multiple of \\(7\\) with digit sum \\(a+b\\).\n\nIndeed, if \\(A,B\\) are multiples of \\(7\\), choose \\(k\\) large so that \\(10^kA\\) and \\(B\\) do not overlap in digits. Then\n\\[\n10^kA+B\n\\]\nis also divisible by \\(7\\) if \\(10^k\\equiv 1\\pmod 7\\). Since \\(10^6\\equiv 1\\pmod 7\\), taking \\(k\\) a multiple of \\(6\\) works. Then\n\\[\ns(10^kA+B)=s(A)+s(B).\n\\]\n\nThus the set of attainable digit sums is closed under addition.\n\n## Step 3: Obtain generators\nWe only need attainable sums whose gcd is \\(1\\), and enough small values.\n\nWe have:\n- \\(2\\) is attainable, since \\(1001\\) is divisible by \\(7\\) and \\(s(1001)=2\\).\n- \\(3\\) is attainable, since \\(21\\) is divisible by \\(7\\) and \\(s(21)=3\\).\n\nBecause attainable sums are closed under addition, every integer of the form\n\\[\n2a+3b \\qquad (a,b\\ge 0)\n\\]\nis attainable.\n\nBut every positive integer except \\(1\\) can be written as \\(2a+3b\\). Indeed:\n- even numbers are sums of \\(2\\)'s,\n- odd numbers \\(\\ge 3\\) are \\(3\\) plus an even number.\n\nSo every \\(n\\ge 2\\) is attainable.\n\nIt remains to check \\(n=1\\).\n\n## Step 4: Can \\(n=1\\) occur?\nIf a positive integer has digit sum \\(1\\), then it must be a power of \\(10\\):\n\\[\n1,10,100,1000,\\dots\n\\]\nBut no power of \\(10\\) is divisible by \\(7\\), because \\(\\gcd(10,7)=1\\).\n\nSo \\(n=1\\) is impossible.\n\nTherefore the possible values are exactly all positive integers except \\(1\\).\n\nFinal answer: \\(\\boxed{\\text{all positive integers } n\\ge 2}\\).",
+  "usage": {
+    "input_tokens": 78,
+    "output_tokens": 1024,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 17.217706784955226,
+  "cached": false
+}

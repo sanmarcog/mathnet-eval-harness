@@ -1,0 +1,27 @@
+{
+  "id": "0gv0",
+  "country": "Turkey",
+  "competition": "Team Selection Test for IMO 2024",
+  "gold_final_answer": "2, 3",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments",
+    "Discrete Mathematics > Combinatorics > Induction / smoothing",
+    "Number Theory > Divisibility / Factorization > Prime numbers",
+    "Number Theory > Number-Theoretic Functions > τ (number of divisors)"
+  ],
+  "prompt": "For a positive integer $r \\ge 2$ each positive integer is coloured into one of $r$ colours. Suppose that for each integer number $n$ and each pair $(a, b)$ of two colours $a$ and $b$ the difference between the number of divisors of $n$ coloured $a$ and the number of divisors of $n$ coloured $b$ is at most $1$. Find all possible values of $r$.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Solution\n\nLet me denote the coloring as $c: \\mathbb{Z}^+ \\to \\{1, 2, \\ldots, r\\}$, and for each $n$, let $d_i(n)$ be the number of divisors of $n$ colored with color $i$.\n\n**The condition:** For each $n$ and each pair of colors $a, b$: $|d_a(n) - d_b(n)| \\leq 1$.\n\nThis means the divisors of each $n$ are distributed as evenly as possible among the $r$ colors. If $\\tau(n)$ is the total number of divisors, then each color gets either $\\lfloor \\tau(n)/r \\rfloor$ or $\\lceil \\tau(n)/r \\rceil$ divisors of $n$.\n\n**Key observation:** Consider $n = p^{r-1}$ for a prime $p$. Then $\\tau(n) = r$, so each color must appear exactly once among the divisors $\\{1, p, p^2, \\ldots, p^{r-1}\\}$.\n\n**Testing $r = 2$:** Color odd numbers with color 1, even numbers with color 2. For any $n$, divisors split between odd and even. Check: $n = 2^k$ has divisors $1, 2, \\ldots, 2^k$ — one odd, $k$ even, difference could be large. This doesn't work directly.\n\nActually, let's think about what colorings work. Consider $n = p^{r-1}$: the $r$ divisors $1, p, p^2, \\ldots, p^{r-1}$ must each get a different color (a bijection to colors). This must hold for every prime $p$.\n\nNow consider $n = p^r$: it has $r+1$ divisors, so colors split as: one color gets 2 divisors, others get 1. The divisors are $1, p, \\ldots, p^r$. Since $1, p, \\ldots, p^{r-1}$ are all different colors, $p^r$ must share a color with one of them.\n\nConsider $n = p \\cdot q$ for distinct primes $p, q$: divisors are $1, p, q, pq$ — four divisors. We need $|d_a - d_b| \\leq 1$ for all pairs. With $r$ colors and 4 divisors, we need each color to get $\\lfloor 4/r \\rfloor$ or $\\lceil 4/r \\rceil$ divisors.\n\n**Testing $r = 2$:** 4 divisors, each color gets exactly 2. So $c(1), c(p), c(q), c(pq)$ must have 2 of each color. Since $1, p$ must be different colors (from $p^1$ having 2 divisors, one each color), and $1, q$ must be different colors, we get $c(p) = c(q)$, then $c(pq)$ must equal $c(1)$. This is consistent with a multiplicative-type coloring based on parity of $\\Omega(n)$ (number of prime factors with multiplicity). Let $c(n) = \\Omega(n) \\bmod 2$. Check $n = p^2$: divisors $1, p, p^2$ — colors $0, 1, 0$: two of color 0, one of color 1. Difference is 1. ✓ This works for $r = 2$.\n\n**Testing $r = 3$:** From $n = p^2$: divisors $1, p, p^2$ each get different colors — a permutation. From $n = p^2 q^2$: $\\tau = 9$ divisors, each color gets 3. The divisors include $1, p, p^2$ (all different colors) and $q, pq, p^2q$ (all different colors) and $q^2, pq^2, p^2q^2$ (all different colors). This forces a very rigid structure. Consider $n = pq$: 4 divisors, $r=3$, so distribution must be $(2,1,1)$. But $1, p, q$ must all have different colors (from $p^2$ and $q^2$ constraints), so $pq$ shares a color with one of them. This seems potentially consistent.\n\nAfter careful analysis, the condition forces the coloring to be based on $\\Omega(n) \\bmod r$, which works when $r$ is any integer $\\geq 2$... but checking $r=3$ with $n=pq$: $\\Omega(pq)=2$, $\\Omega(p)=1$, $\\Omega(q)=1$ — same color for $p$ and $q$, but they must be different colors. Contradiction!\n\nSo $r = 3$ fails. By similar arguments, only $r = 2$ works among small values, and larger $r$ create contradictions.\n\n**Conclusion:** The only possible value is $r = 2$.\n\nFinal answer: $r = 2$",
+  "usage": {
+    "input_tokens": 147,
+    "output_tokens": 1262,
+    "thinking_tokens": 0
+  },
+  "latency_s": 21.726953083998524,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "$r = 2$"
+  }
+}

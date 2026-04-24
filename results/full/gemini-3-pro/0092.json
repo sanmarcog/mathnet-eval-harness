@@ -1,0 +1,20 @@
+{
+  "id": "0092",
+  "country": "Argentina",
+  "competition": "XXI Olimpiada Matemática Rioplatense",
+  "gold_final_answer": "1:2",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Quadrilaterals",
+    "Geometry > Plane Geometry > Analytic / Coordinate Methods > Vectors"
+  ],
+  "prompt": "Let $ABCD$ be a convex quadrilateral. Let $P$ and $Q$ be points on the sides $AB$ and $AD$, respectively, such that $area(ABQ) = area(ADP) = \\frac{1}{3} area(ABCD)$.  \n$PQ$ and the diagonal $AC$ meet at the point $R$.\nCalculate the ratio $\\frac{AR}{RC}$.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find the ratio $\\frac{AR}{RC}$, we can use the properties of areas and similar triangles. \n\nLet $S$ be the area of the quadrilateral $ABCD$, and let $S_1$ be the area of $\\triangle ABD$. \nThe area of $\\triangle ABQ$ can be expressed in terms of the area of $\\triangle ABD$ since they share the same height from $B$ to the line $AD$:\n$$ \\frac{\\text{area}(ABQ)}{\\text{area}(ABD)} = \\frac{AQ}{AD} $$\nGiven that $\\text{area}(ABQ) = \\frac{1}{3}S$, we have:\n$$ \\frac{AQ}{AD} = \\frac{S}{3S_1} $$\n\nSimilarly, $\\triangle ADP$ and $\\triangle ABD$ share the same height from $D$ to the line $AB$, so:\n$$ \\frac{\\text{area}(ADP)}{\\text{area}(ABD)} = \\frac{AP}{AB} $$\nGiven that $\\text{area}(ADP) = \\frac{1}{3}S$, we have:\n$$ \\frac{AP}{AB} = \\frac{S}{3S_1} $$\n\nLet $k = \\frac{S}{3S_1}$. Since $\\frac{AQ}{AD} = \\frac{AP}{AB} = k$, the line segment $PQ$ is parallel to the diagonal $BD$. \n\nLet $O$ be the intersection of the diagonals $AC$ and $BD$. Because $PQ \\parallel BD$, the intersection $R$ of $PQ$ and $AC$ divides $AO$ in the same ratio $k$:\n$$ \\frac{AR}{AO} = k \\implies AR = k \\cdot AO $$\n\nThe ratio in which the diagonal $AC$ is divided by $BD$ at $O$ is equal to the ratio of the areas of $\\triangle ABD$ and $\\triangle CBD$:\n$$ \\frac{AO}{OC} = \\frac{\\text{area}(ABD)}{\\text{area}(CBD)} = \\frac{S_1}{S - S_1} $$\nFrom this, we can express $OC$ in terms of $AO$:\n$$ OC = AO \\frac{S - S_1}{S_1} = AO \\left( \\frac{S}{S_1} - 1 \\right) $$\nSince $k = \\frac{S}{3S_1}$, we have $\\frac{S}{S_1} = 3k$. Thus:\n$$ OC = AO (3k - 1) $$\n\nNow we want to find the ratio $\\frac{AR}{RC}$. We know that $RC = AC - AR = AO + OC - AR$. Substituting our expressions for $AR$ and $OC$ in terms of $AO$:\n$$ RC = AO + AO(3k - 1) - k \\cdot AO = AO(1 + 3k - 1 - k) = 2k \\cdot AO $$\n\nFinally, we compute the ratio:\n$$ \\frac{AR}{RC} = \\frac{k \\cdot AO}{2k \\cdot AO} = \\frac{1}{2} $$\n\nFinal answer: 1/2",
+  "usage": {
+    "input_tokens": 124,
+    "output_tokens": 696,
+    "thoughts_tokens": 2293
+  },
+  "latency_s": 23.762876421911642,
+  "cached": false
+}

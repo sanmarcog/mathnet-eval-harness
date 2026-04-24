@@ -1,0 +1,20 @@
+{
+  "id": "0cjx",
+  "country": "Romania",
+  "competition": "75th Romanian Mathematical Olympiad",
+  "gold_final_answer": "a) A must equal its transpose. b) Example: the matrix whose only nonzero entries are ones in the first row at the first and second columns (all other entries zero) satisfies the property but is not symmetric.",
+  "topics_flat": [
+    "Algebra > Linear Algebra > Determinants",
+    "Algebra > Linear Algebra > Matrices"
+  ],
+  "prompt": "Let $n \\ge 3$ be an integer number. We say that a matrix $A \\in \\mathcal{M}_n(\\mathbb{C})$ has the property $(\\mathcal{P})$ if $\\det(A + X_{ij}) = \\det(A + X_{ji})$, for any $i, j \\in \\{1, 2, \\dots, n\\}$, where $X_{ij} \\in \\mathcal{M}_n(\\mathbb{C})$ is the matrix with $1$ at the position $(i, j)$ and $0$ elsewhere.\n\na) Assume a matrix $A \\in \\mathcal{M}_n(\\mathbb{C})$ with the property $(\\mathcal{P})$, such that $\\det(A) \\neq 0$. Prove that $A = A^T$.\n\nb) Give an example of a matrix $A \\in \\mathcal{M}_n(\\mathbb{C})$ with the property $(\\mathcal{P})$, but $A \\neq A^T$.",
+  "model": "gpt-5.4",
+  "response_text": "Let \\(E_{ij}=X_{ij}\\) denote the matrix with a single \\(1\\) in position \\((i,j)\\).\n\nWe use the standard fact:\n\n\\[\n\\det(A+tE_{ij})=\\det(A)+t\\,C_{ij}(A),\n\\]\n\nwhere \\(C_{ij}(A)\\) is the cofactor of the entry \\((i,j)\\) of \\(A\\).  \nIndeed, the determinant is linear in each entry, and only the \\((i,j)\\)-entry is changed.\n\nSo, for \\(t=1\\),\n\n\\[\n\\det(A+E_{ij})=\\det(A)+C_{ij}(A).\n\\]\n\nHence property \\((\\mathcal P)\\) means\n\n\\[\n\\det(A)+C_{ij}(A)=\\det(A)+C_{ji}(A)\\qquad \\forall i,j,\n\\]\n\nthus\n\n\\[\nC_{ij}(A)=C_{ji}(A)\\qquad \\forall i,j.\n\\]\n\nTherefore the cofactor matrix \\(C(A)\\) is symmetric.\n\nNow recall that\n\n\\[\n\\operatorname{adj}(A)=C(A)^T.\n\\]\n\nSo if \\(C(A)\\) is symmetric, then \\(\\operatorname{adj}(A)\\) is symmetric as well.\n\nAlso, when \\(\\det(A)\\neq 0\\),\n\n\\[\nA^{-1}=\\frac{1}{\\det(A)}\\operatorname{adj}(A).\n\\]\n\nThus \\(A^{-1}\\) is symmetric. Taking transpose,\n\n\\[\n(A^{-1})^T=A^{-1}.\n\\]\n\nBut \\((A^T)^{-1}=(A^{-1})^T=A^{-1}\\), hence \\(A^T=A\\). This proves part (a).\n\n---\n\n### b) Example with \\((\\mathcal P)\\) but not symmetric\n\nTake any singular matrix of rank \\(\\le n-2\\). Then all \\((n-1)\\times(n-1)\\) minors vanish, so every cofactor is \\(0\\). Hence for all \\(i,j\\),\n\n\\[\n\\det(A+E_{ij})=\\det(A)+C_{ij}(A)=\\det(A).\n\\]\n\nTherefore \\((\\mathcal P)\\) holds automatically.\n\nSo it suffices to choose a non-symmetric matrix of rank \\(\\le n-2\\). For example, for any \\(n\\ge 3\\),\n\n\\[\nA=E_{12}\n=\n\\begin{pmatrix}\n0&1&0&\\cdots&0\\\\\n0&0&0&\\cdots&0\\\\\n0&0&0&\\cdots&0\\\\\n\\vdots&\\vdots&\\vdots&&\\vdots\\\\\n0&0&0&\\cdots&0\n\\end{pmatrix}.\n\\]\n\nThis matrix is not symmetric, and its rank is \\(1\\le n-2\\). Hence all cofactors vanish, so \\(A\\) has property \\((\\mathcal P)\\), but \\(A\\ne A^T\\).\n\nFinal answer:  \na) From \\(\\det(A+E_{ij})=\\det(A)+C_{ij}(A)\\), property \\((\\mathcal P)\\) gives \\(C_{ij}(A)=C_{ji}(A)\\) for all \\(i,j\\), so the cofactor matrix is symmetric. Hence \\(\\operatorname{adj}(A)\\) is symmetric, and if \\(\\det(A)\\neq0\\), then \\(A^{-1}=\\frac1{\\det(A)}\\operatorname{adj}(A)\\) is symmetric. Therefore \\(A=(A^T)\\), i.e. \\(A=A^T\\).  \nb) A valid example is \\(A=E_{12}\\). It is not symmetric, and since \\(\\operatorname{rank}(A)=1\\le n-2\\), all cofactors vanish, so \\(\\det(A+E_{ij})=\\det(A+E_{ji})\\) for all \\(i,j\\).",
+  "usage": {
+    "input_tokens": 281,
+    "output_tokens": 858,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 10.68484200106468,
+  "cached": false
+}

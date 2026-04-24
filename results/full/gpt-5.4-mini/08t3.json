@@ -1,0 +1,22 @@
+{
+  "id": "08t3",
+  "country": "Japan",
+  "competition": "Japan Mathematical Olympiad",
+  "gold_final_answer": "-500004",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Sequences and Series > Recurrence relations",
+    "Algebra > Algebraic Expressions > Sequences and Series > Telescoping series",
+    "Algebra > Prealgebra / Basic Algebra > Integers",
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities"
+  ],
+  "prompt": "Suppose $2008$ real numbers $x_1, x_2, \\dots, x_{2008}$ are given and suppose that $|x_1| = 999$ and $|x_n| = |x_{n-1} + 1|$ for all $n$ with $2 \\le n \\le 2008$ are satisfied. Determine the smallest possible value that $x_1 + x_2 + \\dots + x_{2008}$ can have under these conditions.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let  \n\\[\na_n=x_n+1.\n\\]\nThen the condition \\(|x_n|=|x_{n-1}+1|\\) becomes\n\\[\n|x_n|=|a_{n-1}|.\n\\]\nSince \\(x_n\\) is a real number with this absolute value, we have\n\\[\nx_n=\\pm a_{n-1}.\n\\]\nSo for each \\(n\\ge2\\),\n\\[\nx_n = x_{n-1}+1 \\quad \\text{or} \\quad x_n = -(x_{n-1}+1).\n\\]\n\nNow we want to minimize\n\\[\nS=x_1+x_2+\\cdots+x_{2008},\n\\]\ngiven \\(|x_1|=999\\).\n\nWe choose \\(x_1=-999\\), since starting as negatively as possible is best for minimizing the total.\n\nLet us see what choice of signs keeps the numbers as small as possible. If \\(x_{n-1}=-1\\), then\n\\[\nx_n = -(x_{n-1}+1)=0,\n\\]\nand then\n\\[\nx_{n+1} = -(0+1)=-1.\n\\]\nSo the sequence\n\\[\n-999,\\ 998,\\ -999,\\ 998,\\ \\dots\n\\]\nis possible, but this is not minimal in sum.\n\nInstead, observe that from any \\(x_{n-1}\\), the two possible values of \\(x_n\\) are \\(x_{n-1}+1\\) and \\(-x_{n-1}-1\\). Their sum is \\(-1\\), so the smaller one is always at most \\(-\\frac12\\), but we want the long-term minimum total. The best strategy is to keep alternating between \\(-1\\) and \\(0\\), because:\n- if \\(x_{n-1}=-1\\), then \\(x_n\\in\\{0,0\\}\\), so \\(x_n=0\\),\n- if \\(x_{n-1}=0\\), then \\(x_n\\in\\{1,-1\\}\\), so choose \\(-1\\).\n\nThus after reaching \\(-1\\), we can alternate\n\\[\n-1,0,-1,0,\\dots\n\\]\nwhich has average \\(-\\tfrac12\\), the smallest possible long-term average.\n\nStarting with \\(x_1=-999\\), we can choose:\n\\[\nx_2=998,\\ x_3=-999,\\ x_4=998,\\dots\n\\]\nThis is huge and not minimal, so instead use the fact that from \\(-999\\),\n\\[\nx_2=998 \\quad \\text{or} \\quad x_2=-998,\n\\]\nand choosing \\(-998\\) gives\n\\[\nx_3=997 \\text{ or } -997.\n\\]\nContinuing to always choose the negative option gives\n\\[\nx_n = -(x_{n-1}+1),\n\\]\nwhich yields the sequence\n\\[\n-999,\\ 998,\\ -999,\\ 998,\\dots\n\\]\nnot good.\n\nSo we should first drive the value toward \\(-1\\). If \\(x_{n-1}\\le -1\\), then choosing \\(x_n=x_{n-1}+1\\) increases it by 1 but keeps it negative until reaching \\(-1\\). This is better than bouncing between large magnitudes. Starting from \\(-999\\), choose\n\\[\nx_2=-998,\\ x_3=-997,\\dots,\\ x_{999}=-1,\\ x_{1000}=0,\\ x_{1001}=-1,\\dots\n\\]\nThis is valid because when \\(x_{n-1}\\le -1\\),\n\\[\n|x_{n-1}+1|=-(x_{n-1}+1),\n\\]\nand we may take \\(x_n=x_{n-1}+1\\) or its negative; choosing the positive one keeps the sequence increasing by 1.\n\nHence the minimal sum is achieved by\n\\[\n-999,-998,-997,\\dots,-1,0,-1,0,\\dots\n\\]\nfor the remaining terms.\n\nThe first 999 terms form the arithmetic progression\n\\[\n-999,-998,\\dots,-1,\n\\]\nwhose sum is\n\\[\n-\\frac{999\\cdot 1000}{2}=-499500.\n\\]\nThere are \\(2008-999=1009\\) remaining terms, alternating \\(-1,0\\), starting with \\(-1\\). Since 1009 is odd, there are\n\\[\n505 \\text{ copies of } -1 \\quad \\text{and} \\quad 504 \\text{ copies of } 0,\n\\]\nso their sum is \\(-505\\).\n\nTherefore the minimum possible total is\n\\[\n-499500-505=-500005.\n\\]\n\nFinal answer: \\(-500005\\)",
+  "usage": {
+    "input_tokens": 156,
+    "output_tokens": 1054,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 6.630144677939825,
+  "cached": false
+}

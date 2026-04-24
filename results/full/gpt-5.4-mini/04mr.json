@@ -1,0 +1,20 @@
+{
+  "id": "04mr",
+  "country": "Croatia",
+  "competition": "Croatia_2018",
+  "gold_final_answer": "All positive integers divisible by 9",
+  "topics_flat": [
+    "Number Theory > Modular Arithmetic",
+    "Number Theory > Divisibility / Factorization"
+  ],
+  "prompt": "Determine all positive integers $n$ such that there exist positive integers $a$ and $b$ which satisfy\n$$\nS(a) = S(b) = S(a + b) = n.\n$$\nHere $S(a)$ denotes the sum of digits of $a$. (Romania 1999)",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let us write \\(a+b\\) in base 10 and use the digit-sum identity\n\n\\[\nS(x)+S(y)=S(x+y)+9\\cdot(\\text{number of carries in }x+y).\n\\]\n\nSo from\n\\[\nS(a)=S(b)=S(a+b)=n\n\\]\nwe get\n\\[\nS(a)+S(b)-S(a+b)=n,\n\\]\nhence the number of carries in the addition \\(a+b\\) is exactly \\(n/9\\). In particular, \\(n\\) must be divisible by \\(9\\).\n\nSo a necessary condition is:\n\\[\n9\\mid n.\n\\]\n\nNow we show this is sufficient. Let \\(n=9k\\). Take\n\\[\na=\\underbrace{99\\cdots 9}_{k\\text{ digits}}, \\qquad b=\\underbrace{99\\cdots 9}_{k\\text{ digits}}.\n\\]\nThen\n\\[\nS(a)=S(b)=9k=n.\n\\]\nAlso,\n\\[\na+b = 11\\underbrace{99\\cdots 9}_{k-1\\text{ digits}}8,\n\\]\nmore simply, each digit addition \\(9+9\\) produces a carry, and the sum has digit sum\n\\[\nS(a+b)=9k=n.\n\\]\nThus such \\(a,b\\) exist for every multiple of \\(9\\).\n\nTherefore the complete set of admissible \\(n\\) is exactly the positive multiples of \\(9\\).\n\nFinal answer: \\(n\\) is any positive multiple of \\(9\\).",
+  "usage": {
+    "input_tokens": 112,
+    "output_tokens": 345,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.325330816092901,
+  "cached": false
+}

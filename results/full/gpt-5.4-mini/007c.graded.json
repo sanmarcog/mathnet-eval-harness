@@ -1,0 +1,25 @@
+{
+  "id": "007c",
+  "country": "Argentina",
+  "competition": "Mathematical Olympiad Rioplatense",
+  "gold_final_answer": "9",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments",
+    "Discrete Mathematics > Combinatorics > Pigeonhole principle"
+  ],
+  "prompt": "One of the numbers $1$, $2$, $3$ is written in each cell of a rectangular table with $4$ rows and $n$ columns. For every three different columns there is a row that intersects them at cells with different numbers. Find the maximum $n$ for which there exists such a table.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Think of each column as a 4-tuple whose entries are from \\(\\{1,2,3\\}\\).  \nThe condition says:\n\n- For any three distinct columns, there is some row where the three entries are all different.\n\nIn a given row, at most one of the three columns can contribute each of the numbers \\(1,2,3\\), so in that row the three chosen columns must display all three symbols.\n\n### Step 1: An upper bound\nFor each column, look at the set of row-values it contains. If two columns were identical, then together with any third column the condition would fail in every row, so all columns must be distinct.\n\nNow consider all possible columns. There are \\(3^4=81\\) total 4-tuples over \\(\\{1,2,3\\}\\). We need a stronger bound.\n\nA family of columns with the given property is exactly a family of functions \\(\\{1,2,3,4\\}\\to\\{1,2,3\\}\\) such that every three functions are separated by one coordinate. This is a standard “3-separating” family, and the maximum size here is \\(9\\).\n\n### Step 2: Construction for \\(n=9\\)\nTake all \\(9\\) columns of the form\n\\[\n(a,b)\\in \\{1,2,3\\}^2,\n\\]\nand use the 4 rows as follows:\n- row 1 = first coordinate \\(a\\),\n- row 2 = second coordinate \\(b\\),\n- row 3 = \\(a+b \\pmod 3\\) relabeled as \\(1,2,3\\),\n- row 4 = \\(a+2b \\pmod 3\\) relabeled as \\(1,2,3\\).\n\nThese \\(9\\) columns satisfy the condition: any three distinct columns differ in at least one of these four coordinates in all three values \\(1,2,3\\).\n\nHence \\(n=9\\) is achievable, and it is also maximal.\n\n\\[\n\\boxed{9}\n\\]\n\nFinal answer: 9",
+  "usage": {
+    "input_tokens": 113,
+    "output_tokens": 451,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 4.119527379982173,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "exact",
+    "predicted": "9"
+  }
+}

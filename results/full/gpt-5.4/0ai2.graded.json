@@ -1,0 +1,26 @@
+{
+  "id": "0ai2",
+  "country": "North Macedonia",
+  "competition": "Macedonian Mathematical Olympiad",
+  "gold_final_answer": "302561952",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Combinatorial Geometry",
+    "Algebra > Equations and Inequalities > Jensen / smoothing",
+    "Discrete Mathematics > Combinatorics > Induction / smoothing"
+  ],
+  "prompt": "2014 lines are given in a plane, arranged in three groups of pairwise parallel lines. What is the greatest possible number of triangles formed by the lines (each side from such a triangle lies on one of the lines)?\n\nВо рамнина, 2014 прави се распоредени во три групи заемно паралелни прави. Кој е најголемиот можен број на триаголници кои ги образуваат правите (секоја страна од таков триаголник лежи на некоја од правите).",
+  "model": "gpt-5.4",
+  "response_text": "Let the three parallel classes contain \\(a,b,c\\) lines, with\n\n\\[\na+b+c=2014.\n\\]\n\nA triangle formed by the lines must use exactly one line from each of the three directions:\n\n- If two sides came from the same parallel class, they would be parallel and could not meet.\n- If we choose one line from each of the three classes, and the three directions are distinct, the three pairwise intersections form exactly one triangle.\n\nSo the total number of triangles is\n\n\\[\nabc.\n\\]\n\nThus we must maximize \\(abc\\) subject to \\(a+b+c=2014\\), where \\(a,b,c\\) are positive integers.\n\nFor a fixed sum, the product is maximized when the numbers are as equal as possible. Since\n\n\\[\n2014 = 671+671+672,\n\\]\n\nthe maximum is\n\n\\[\n671\\cdot 671\\cdot 672.\n\\]\n\nCompute:\n\n\\[\n671^2=450241,\n\\]\n\nso\n\n\\[\n450241\\cdot 672\n=450241(600+70+2)\n=270144600+31516870+900482\n=302561952.\n\\]\n\nTherefore the greatest possible number of triangles is\n\n\\[\n302561952.\n\\]\n\nFinal answer: 302561952",
+  "usage": {
+    "input_tokens": 163,
+    "output_tokens": 275,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 4.2001021050382406,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "exact",
+    "predicted": "302561952"
+  }
+}

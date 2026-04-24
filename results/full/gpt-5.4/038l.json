@@ -1,0 +1,20 @@
+{
+  "id": "038l",
+  "country": "Bulgaria",
+  "competition": "Spring Mathematical Tournament",
+  "gold_final_answer": "x = (37 + sqrt(13)) / 2, y = (5 + sqrt(13)) / 2",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Irreducibility: Rational Root Theorem, Gauss's Lemma, Eisenstein",
+    "Algebra > Intermediate Algebra > Quadratic functions"
+  ],
+  "prompt": "Solve the system\n$$\n\\left|\n\\begin{array}{l}\n\\sqrt{x^2 + y^2 - 16(x + y) - 9y + 7} = y - 2 \\\\\nx + 13\\sqrt[4]{x - y} = y + 42\n\\end{array}\n\\right.\n$$",
+  "model": "gpt-5.4",
+  "response_text": "We solve\n\\[\n\\begin{cases}\n\\sqrt{x^2+y^2-16(x+y)-9y+7}=y-2,\\\\[2mm]\nx+13\\sqrt[4]{x-y}=y+42.\n\\end{cases}\n\\]\n\nFirst simplify the first equation:\n\\[\nx^2+y^2-16(x+y)-9y+7=x^2+y^2-16x-25y+7.\n\\]\nSo\n\\[\n\\sqrt{x^2+y^2-16x-25y+7}=y-2.\n\\]\nSince the left side is nonnegative, we must have\n\\[\ny\\ge 2.\n\\]\nSquaring:\n\\[\nx^2+y^2-16x-25y+7=(y-2)^2=y^2-4y+4.\n\\]\nHence\n\\[\nx^2-16x-21y+3=0,\n\\]\nso\n\\[\n21y=x^2-16x+3.\n\\]\n\nNow use the second equation:\n\\[\nx+13\\sqrt[4]{x-y}=y+42\n\\]\nor\n\\[\n13\\sqrt[4]{x-y}=y-x+42.\n\\]\nLet\n\\[\nt=\\sqrt[4]{x-y}\\ge 0.\n\\]\nThen\n\\[\nx-y=t^4,\\qquad y=x-t^4.\n\\]\nSubstitute into the second equation:\n\\[\nx+13t=(x-t^4)+42,\n\\]\nso\n\\[\nt^4+13t-42=0.\n\\]\nTry integer values: \\(t=2\\) gives\n\\[\n16+26-42=0,\n\\]\nso \\(t=2\\). Since\n\\[\nt^4+13t-42=(t-2)(t^3+2t^2+4t+21),\n\\]\nand the cubic factor is positive for \\(t\\ge 0\\), the only nonnegative root is\n\\[\nt=2.\n\\]\nTherefore\n\\[\nx-y=t^4=16,\n\\]\nso\n\\[\ny=x-16.\n\\]\n\nSubstitute into\n\\[\n21y=x^2-16x+3:\n\\]\n\\[\n21(x-16)=x^2-16x+3.\n\\]\nThus\n\\[\nx^2-37x+339=0.\n\\]\nDiscriminant:\n\\[\n\\Delta=37^2-4\\cdot339=1369-1356=13.\n\\]\nSo\n\\[\nx=\\frac{37\\pm\\sqrt{13}}2.\n\\]\nThen\n\\[\ny=x-16=\\frac{5\\pm\\sqrt{13}}2.\n\\]\n\nNow check \\(y\\ge 2\\).  \nFor \\(y=\\frac{5-\\sqrt{13}}2<2\\), invalid.  \nSo only\n\\[\ny=\\frac{5+\\sqrt{13}}2,\\qquad x=\\frac{37+\\sqrt{13}}2.\n\\]\n\nFinal answer: \\(\\displaystyle \\left(\\frac{37+\\sqrt{13}}2,\\ \\frac{5+\\sqrt{13}}2\\right)\\).",
+  "usage": {
+    "input_tokens": 123,
+    "output_tokens": 690,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 9.20383298699744,
+  "cached": false
+}

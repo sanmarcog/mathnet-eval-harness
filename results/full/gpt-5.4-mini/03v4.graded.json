@@ -1,0 +1,26 @@
+{
+  "id": "03v4",
+  "country": "China",
+  "competition": "China Southeastern Mathematical Olympiad",
+  "gold_final_answer": "a_n = 2^{n-2}(n^2 - n + 6) - n - 1 (n ≥ 2)",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Sequences and Series > Recurrence relations",
+    "Algebra > Algebraic Expressions > Sequences and Series > Telescoping series",
+    "Algebra > Algebraic Expressions > Sequences and Series > Sums and products"
+  ],
+  "prompt": "It is given the sequence $\\{a_n\\}$: $a_1 = 1$,\n$$\na_{n+1} = 2a_n + n \\cdot (1 + 2^n), \\quad n = 1, 2, 3, \\dots\n$$\n\nFind the general term $a_n$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "We solve the recurrence by finding a closed form.\n\nGiven\n\\[\na_{n+1}=2a_n+n(1+2^n),\\qquad a_1=1.\n\\]\n\nWe try to remove the \\(2a_n\\) term by dividing by \\(2^n\\). Define\n\\[\nb_n=\\frac{a_n}{2^{n-1}}.\n\\]\nThen\n\\[\na_{n+1}=2a_n+n+n2^n\n\\]\ngives\n\\[\n\\frac{a_{n+1}}{2^n}=\\frac{a_n}{2^{n-1}}+\\frac{n}{2^n}+n.\n\\]\nSo\n\\[\nb_{n+1}=b_n+n+\\frac{n}{2^n}.\n\\]\nWith \\(b_1=a_1=1\\), summing:\n\\[\nb_n=1+\\sum_{k=1}^{n-1}\\left(k+\\frac{k}{2^k}\\right).\n\\]\nHence\n\\[\na_n=2^{n-1}\\left(1+\\sum_{k=1}^{n-1}k+\\sum_{k=1}^{n-1}\\frac{k}{2^k}\\right).\n\\]\n\nNow use\n\\[\n\\sum_{k=1}^{n-1}k=\\frac{n(n-1)}2\n\\]\nand the standard finite sum\n\\[\n\\sum_{k=1}^{m}\\frac{k}{2^k}=2-\\frac{m+2}{2^m}\\qquad (m=n-1).\n\\]\nThus\n\\[\n\\sum_{k=1}^{n-1}\\frac{k}{2^k}=2-\\frac{n+1}{2^{n-1}}.\n\\]\nTherefore\n\\[\na_n=2^{n-1}\\left(1+\\frac{n(n-1)}2+2-\\frac{n+1}{2^{n-1}}\\right).\n\\]\nSimplifying,\n\\[\na_n=2^{n-1}\\left(\\frac{n(n-1)}2+3\\right)-(n+1).\n\\]\nEquivalently,\n\\[\n\\boxed{a_n=2^{n-2}\\bigl(n^2-n+6\\bigr)-(n+1)}.\n\\]\n\nFinal answer: \\(\\boxed{a_n=2^{n-2}(n^2-n+6)-(n+1)}\\)",
+  "usage": {
+    "input_tokens": 121,
+    "output_tokens": 536,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.0218557830667123,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "a_n=2^{n-2}(n^2-n+6)-(n+1)"
+  }
+}

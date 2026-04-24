@@ -1,0 +1,26 @@
+{
+  "id": "02ex",
+  "country": "Brazil",
+  "competition": "XIV OBM",
+  "gold_final_answer": "The unique maximizer is the convex polygon whose vertices lie on a semicircle with endpoints at the first and last vertices, so that each interior vertex subtends a right angle with these endpoints (that is, it is inscribed in a semicircle with diameter A0An).",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Geometric Inequalities > Optimization in geometry",
+    "Geometry > Plane Geometry > Triangles > Triangle trigonometry",
+    "Geometry > Plane Geometry > Miscellaneous > Angle chasing"
+  ],
+  "prompt": "Given positive real numbers $x_1, x_2, \\dots, x_n$ find the polygon $A_0A_1 \\dots A_n$ with $A_0A_1 = x_1$, $A_1A_2 = x_2$, $\\dots$, $A_{n-1}A_n = x_n$ which has the greatest area.",
+  "model": "gpt-5.4-mini",
+  "response_text": "The polygon with fixed consecutive side lengths \\(x_1,x_2,\\dots,x_n\\) that has **maximum area** is the **cyclic polygon**: all vertices \\(A_0,A_1,\\dots,A_n\\) lie on a common circle.\n\nMore precisely, the maximizing polygon is the one for which each side \\(A_{i-1}A_i\\) is a chord of the same circle. Equivalently, its exterior angles are such that the polygon is inscribed in a circle.\n\nWhy this is the maximizer:\n- For a given set of side lengths, the area is maximized when the polygon is as “spread out” as possible.\n- A standard result (often proved by repeatedly replacing adjacent edges by a chord with the same endpoints) shows that among all polygons with prescribed side lengths, the cyclic one has greatest area.\n- In the cyclic case, if the circumradius is \\(R\\), then each side satisfies\n  \\[\n  x_i = 2R\\sin\\frac{\\theta_i}{2},\n  \\]\n  where \\(\\theta_i\\) is the corresponding central angle, and the total area is the sum of the triangle areas from the center:\n  \\[\n  [A_0A_1\\cdots A_n]=\\frac12 R^2\\sum_{i=1}^n \\sin\\theta_i.\n  \\]\n\nSo the answer is: **the maximal-area polygon is the cyclic polygon with side lengths \\(x_1,\\dots,x_n\\)**.\n\nFinal answer: The polygon of greatest area is the cyclic polygon with side lengths \\(x_1,x_2,\\dots,x_n\\) (all vertices on one circle).",
+  "usage": {
+    "input_tokens": 129,
+    "output_tokens": 361,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.720776197966188,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "The polygon of greatest area is the cyclic polygon with side lengths \\(x_1,x_2,\\dots,x_n\\) (all vertices on one circle)."
+  }
+}

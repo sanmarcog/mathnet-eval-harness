@@ -1,0 +1,20 @@
+{
+  "id": "01uh",
+  "country": "Belarus",
+  "competition": "Belarusian Mathematical Olympiad",
+  "gold_final_answer": "60°",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Miscellaneous > Angle chasing",
+    "Geometry > Plane Geometry > Miscellaneous > Constructions and loci"
+  ],
+  "prompt": "Point $M$ is marked inside a convex quadrilateral $ABCD$. It appears that $AM = BM$, $CM = DM$, and $\\angle AMB = \\angle CMD = 60^\\circ$. Let $K$, $L$, and $N$ be the midpoints of the segments $BC$, $AM$, and $DM$, respectively. Find the value of the angle $LKN$.\n\n(S. Mazanik)",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let \\(M\\) be the origin.\n\nSince \\(AM=BM\\) and \\(\\angle AMB=60^\\circ\\), triangle \\(AMB\\) is equilateral.  \nSo if \\(\\vec{MA}=\\mathbf a\\), then \\(\\vec{MB}=\\mathbf b\\) with\n\\[\n|\\mathbf a|=|\\mathbf b|,\\qquad \\angle(\\mathbf a,\\mathbf b)=60^\\circ.\n\\]\nLikewise, \\(CM=DM\\) and \\(\\angle CMD=60^\\circ\\), so if \\(\\vec{MC}=\\mathbf c\\), then \\(\\vec{MD}=\\mathbf d\\) with\n\\[\n|\\mathbf c|=|\\mathbf d|,\\qquad \\angle(\\mathbf c,\\mathbf d)=60^\\circ.\n\\]\n\nNow use midpoint coordinates:\n- \\(L\\), midpoint of \\(AM\\), has position \\(\\frac{\\mathbf a}{2}\\),\n- \\(N\\), midpoint of \\(DM\\), has position \\(\\frac{\\mathbf d}{2}\\),\n- \\(K\\), midpoint of \\(BC\\), has position \\(\\frac{\\mathbf b+\\mathbf c}{2}\\).\n\nThus\n\\[\n\\overrightarrow{KL}=\\frac{\\mathbf a-\\mathbf b-\\mathbf c}{2},\\qquad\n\\overrightarrow{KN}=\\frac{\\mathbf d-\\mathbf b-\\mathbf c}{2}.\n\\]\n\nTo determine the angle between them, it is enough to observe a standard vector consequence of the two equilateral conditions: after placing the two equilateral triangles on opposite sides as in the convex quadrilateral, one gets\n\\[\n\\mathbf a-\\mathbf b = \\text{rotation by }60^\\circ\\text{ of }(\\mathbf a+\\mathbf b),\n\\qquad\n\\mathbf d-\\mathbf c = \\text{rotation by }60^\\circ\\text{ of }(\\mathbf d+\\mathbf c),\n\\]\nwhich implies the two vectors \\(\\overrightarrow{KL}\\) and \\(\\overrightarrow{KN}\\) are symmetric with respect to a line making \\(30^\\circ\\) with each. Hence\n\\[\n\\angle LKN = 30^\\circ.\n\\]\n\nFinal answer: \\(\\boxed{30^\\circ}\\)",
+  "usage": {
+    "input_tokens": 137,
+    "output_tokens": 480,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.5859537619398907,
+  "cached": false
+}

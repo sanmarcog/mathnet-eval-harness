@@ -1,0 +1,26 @@
+{
+  "id": "0a22",
+  "country": "Netherlands",
+  "competition": "BxMO/EGMO Team Selection Test",
+  "gold_final_answer": "[(3,5), (5,3)]",
+  "topics_flat": [
+    "Number Theory > Divisibility / Factorization > Greatest common divisors (gcd)",
+    "Number Theory > Divisibility / Factorization > Prime numbers",
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities"
+  ],
+  "prompt": "Find all pairs of prime numbers $(p, q)$ for which there exist positive integers $(m, n)$ such that\n$$\n(p+q)^m = (p-q)^n.\n$$",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find all pairs of prime numbers $(p, q)$ satisfying the given equation, we start by analyzing the equation:\n$$ (p+q)^m = (p-q)^n $$\nSince $p$ and $q$ are primes, $p+q > 0$. For the equation to hold with positive integers $m$ and $n$, we must have $p-q > 0$, which implies $p > q$. Furthermore, since $p+q > p-q > 0$, it must be that $n > m \\ge 1$.\n\nWe can rewrite the equation as:\n$$ p+q = (p-q)^{\\frac{n}{m}} $$\nLet the fraction $\\frac{n}{m}$ be written in simplest form as $\\frac{k}{l}$, where $k > l \\ge 1$ and $\\gcd(k, l) = 1$. \nSince $p+q$ is an integer, $(p-q)^{\\frac{k}{l}}$ must also be an integer. This implies that $p-q$ must be a perfect $l$-th power of some positive integer $b$. Thus, we can write:\n$$ p-q = b^l $$\nSubstituting this back into the equation gives:\n$$ p+q = (b^l)^{\\frac{k}{l}} = b^k $$\nNow we have a system of two equations:\n1) $p+q = b^k$\n2) $p-q = b^l$\n\nAdding and subtracting these two equations yields:\n$$ 2p = b^k + b^l = b^l(b^{k-l} + 1) $$\n$$ 2q = b^k - b^l = b^l(b^{k-l} - 1) $$\n\nSince $q$ is a prime, the only positive divisors of $2q$ are $1, 2, q,$ and $2q$. This means $b^l$ must be one of these four values.\n- If $b^l = 1$, then $b=1$. This gives $2q = 1(1 - 1) = 0$, which is impossible.\n- If $b^l = q$, then $b^{k-l} - 1 = 2 \\implies b^{k-l} = 3$. This means $b=3$ and $k-l=1$. Since $b^l = q$, we have $3^l = q$. For $q$ to be prime, $l=1$, making $q=3$ and $k=2$. Then $2p = 3^2 + 3^1 = 12 \\implies p=6$, which is not prime.\n- If $b^l = 2q$, then $b^{k-l} - 1 = 1 \\implies b^{k-l} = 2$. This means $b=2$ and $k-l=1$. Since $b^l = 2q$, we have $2^l = 2q \\implies 2^{l-1} = q$. For $q$ to be prime, $q=2$, which means $l=2$ and $k=3$. Then $2p = 2^3 + 2^2 = 12 \\implies p=6$, which is not prime.\n- If $b^l = 2$, then $b=2$ and $l=1$. This gives:\n$$ 2q = 2(2^{k-1} - 1) \\implies q = 2^{k-1} - 1 $$\n$$ 2p = 2(2^{k-1} + 1) \\implies p = 2^{k-1} + 1 $$\n\nWe are looking for a value of $k$ such that both $q = 2^{k-1} - 1$ and $p = 2^{k-1} + 1$ are prime. \nNotice that $q$, $q+1$, and $q+2$ are three consecutive integers, so exactly one of them must be divisible by 3. \nHere, $q+1 = 2^{k-1}$, which is never divisible by 3. Therefore, either $q$ or $q+2$ (which is $p$) must be divisible by 3. \nSince $p$ and $q$ are both primes, one of them must exactly equal 3.\n- If $p = 3$, then $q = 1$, which is not prime.\n- If $q = 3$, then $p = 5$, which is prime. \n\nThis occurs when $k-1 = 2 \\implies k = 3$. \nChecking our answer: for $(p, q) = (5, 3)$, we have $p+q = 8$ and $p-q = 2$. The equation becomes $8^m = 2^n \\implies 2^{3m} = 2^n$, which is satisfied for any positive integers where $n = 3m$ (e.g., $m=1, n=3$).\n\nFinal answer: (5, 3)",
+  "usage": {
+    "input_tokens": 82,
+    "output_tokens": 1152,
+    "thoughts_tokens": 3269
+  },
+  "latency_s": 35.43169354402926,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "(5, 3)"
+  }
+}

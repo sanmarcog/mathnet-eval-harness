@@ -1,0 +1,20 @@
+{
+  "id": "0l9b",
+  "country": "Vietnam",
+  "competition": "2003 Vietnamese Mathematical Olympiad",
+  "gold_final_answer": "P(x) = c(x - 1)x(x + 1)(x + 2)(x^2 + x + 1), where c is any real constant",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Polynomial operations",
+    "Algebra > Algebraic Expressions > Functional Equations"
+  ],
+  "prompt": "Find all polynomials $P(x)$ with real coefficients, satisfying the relation\n$$\n(x^3 + 3x^2 + 3x + 2)P(x - 1) = (x^3 - 3x^2 + 3x - 2)P(x)\n$$\nfor every real number $x$.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "Note that $x^3 + 3x^2 + 3x + 2 = (x+1)^3 + 1 = (x+2)(x^2+1)$ and $x^3 - 3x^2 + 3x - 2 = (x-1)^3 + 1$... let me factor more carefully.\n\n$x^3 - 3x^2 + 3x - 2$: try $x=2$: $8-12+6-2=0$. So $(x-2)(x^2-x+1)$.\n\n$x^3 + 3x^2 + 3x + 2$: try $x=-2$: $-8+12-6+2=0$. So $(x+2)(x^2+x+1)$.\n\nThe equation becomes:\n$$(x+2)(x^2+x+1)P(x-1) = (x-2)(x^2-x+1)P(x)$$\n\n**Finding roots of P:**\n\nSetting $x = 2$: $(4)(7)P(1) = 0$, so $P(1) = 0$.\nSetting $x = -2$: $0 = (-4)(7)P(-2)$, so $P(-2) = 0$.\n\nIf $P(1) = 0$, write $P(x) = (x-1)Q(x)$. Then substituting:\n$(x+2)(x^2+x+1)(x-2)Q(x-1) = (x-2)(x^2-x+1)(x-1)Q(x)$\n\nCancel $(x-2)$:\n$(x+2)(x^2+x+1)Q(x-1) = (x^2-x+1)(x-1)Q(x)$\n\nSetting $x=1$: $(3)(3)Q(0) = 0$, so $Q(0) = 0$.\nSetting $x=-2$: $0 = (7)(-3)Q(-2)$, so $Q(-2) = 0$.\n\nWrite $Q(x) = x(x+2)R(x)$:\n$(x+2)(x^2+x+1)(x-1)(x+1)R(x-1) = (x^2-x+1)(x-1)x(x+2)R(x)$\n\nCancel $(x+2)(x-1)$:\n$(x^2+x+1)(x+1)R(x-1) = (x^2-x+1)x \\cdot R(x)$\n\nSetting $x=0$: $(1)(1)R(-1) = 0$, so $R(-1) = 0$.\nSetting $x=-1$: $(1)(0)R(-2) = (3)(-1)R(-1)$... gives $0=0$.\n\nActually let me try $R(x) = (x+1)S(x)$:\n$(x^2+x+1)(x+1)(x)S(x-1) = (x^2-x+1)x(x+1)S(x)$\n\nCancel $x(x+1)$:\n$(x^2+x+1)S(x-1) = (x^2-x+1)S(x)$\n\nTry $S(x) = x^2+x+1$: then $S(x-1) = x^2-x+1$.\nCheck: $(x^2+x+1)(x^2-x+1) = (x^2-x+1)(x^2+x+1)$. ✓\n\nSo $S(x) = x^2+x+1$ works, giving:\n$R(x) = (x+1)(x^2+x+1)$\n$Q(x) = x(x+2)(x+1)(x^2+x+1)$\n$P(x) = (x-1)x(x+2)(x+1)(x^2+x+1)$\n\nMore generally, $S(x) = c(x^2+x+1)^n$ works since $(x^2+x+1)^n$ evaluated at $x-1$ gives $(x^2-x+1)^n$... wait: $S(x-1) = ((x-1)^2+(x-1)+1)^n = (x^2-x+1)^n$. Check: $(x^2+x+1)(x^2-x+1)^n = (x^2-x+1)(x^2+x+1)^n$? Only if $n=1$.\n\nFor general polynomial solutions, $S(x) = c(x^2+x+1)^n$ requires $n=1$ for polynomial balance. The general solution is:\n\n$$P(x) = c \\cdot x(x-1)(x+1)(x+2)(x^2+x+1)$$\n\nfor any real constant $c$, and also $P(x) = 0$.\n\nFinal answer: $P(x) = cx(x-1)(x+1)(x+2)(x^2+x+1)$ for any real constant $c$.",
+  "usage": {
+    "input_tokens": 131,
+    "output_tokens": 1276,
+    "thinking_tokens": 0
+  },
+  "latency_s": 14.18714378704317,
+  "cached": false
+}

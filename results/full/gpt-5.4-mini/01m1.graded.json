@@ -1,0 +1,24 @@
+{
+  "id": "01m1",
+  "country": "Belarus",
+  "competition": "61st Belarusian Mathematical Olympiad",
+  "gold_final_answer": "-1",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Symmetric functions"
+  ],
+  "prompt": "Three distinct real numbers satisfy the following condition: the square of any of them is $1$ greater than the product of the remaining two.\n\nFind all possible values of the sum of pairwise products of these numbers.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let the numbers be \\(a,b,c\\), all distinct and real.\n\nThe condition says that for each variable, its square is 1 more than the product of the other two:\n\\[\na^2=bc+1,\\qquad b^2=ca+1,\\qquad c^2=ab+1.\n\\]\nWe want all possible values of\n\\[\nS=ab+bc+ca.\n\\]\n\nSubtract the first two equations:\n\\[\na^2-b^2=bc-ca=c(b-a).\n\\]\nSo\n\\[\n(a-b)(a+b)=(b-a)c=-(a-b)c.\n\\]\nSince the numbers are distinct, \\(a\\ne b\\), hence\n\\[\na+b=-c.\n\\]\nSimilarly, comparing the first and third gives\n\\[\na+c=-b,\n\\]\nand comparing the second and third gives\n\\[\nb+c=-a.\n\\]\n\nAdding the three equations yields\n\\[\n2(a+b+c)=-(a+b+c),\n\\]\nso\n\\[\na+b+c=0.\n\\]\n\nNow use\n\\[\n(a+b+c)^2=a^2+b^2+c^2+2(ab+bc+ca)=0.\n\\]\nThus\n\\[\na^2+b^2+c^2=-2S.\n\\]\n\nAlso, from \\(a^2=bc+1\\), \\(b^2=ca+1\\), \\(c^2=ab+1\\), summing gives\n\\[\na^2+b^2+c^2 = S+3.\n\\]\nTherefore\n\\[\nS+3=-2S \\quad\\Longrightarrow\\quad 3S=-3 \\quad\\Longrightarrow\\quad S=-1.\n\\]\n\nSo the sum of pairwise products has only one possible value.\n\nFinal answer: \\(-1\\)",
+  "usage": {
+    "input_tokens": 91,
+    "output_tokens": 394,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 2.974083462031558,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "normalized",
+    "predicted": "\\(-1\\)"
+  }
+}

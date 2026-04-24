@@ -1,0 +1,25 @@
+{
+  "id": "04sk",
+  "country": "Czech Republic",
+  "competition": "15th Czech-Polish-Slovak Mathematics Competition",
+  "gold_final_answer": "sqrt(3)",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities > Linear and quadratic inequalities",
+    "Algebra > Intermediate Algebra > Quadratic functions"
+  ],
+  "prompt": "Real numbers $x, y, z$ satisfy\n$$\n\\frac{1}{x} + \\frac{1}{y} + \\frac{1}{z} + x + y + z = 0\n$$\nand none of them lies in the open interval $(-1, 1)$. Find the maximum value of $x+y+z$.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "Let me denote $s = x + y + z$ and the condition is $\\frac{1}{x} + \\frac{1}{y} + \\frac{1}{z} + x + y + z = 0$.\n\nSo $\\frac{1}{x} + \\frac{1}{y} + \\frac{1}{z} = -s$.\n\nSince none of $x, y, z$ lies in $(-1, 1)$, we have $|x| \\geq 1$, $|y| \\geq 1$, $|z| \\geq 1$.\n\nNote that for $|t| \\geq 1$: $t + \\frac{1}{t} \\geq 2$ if $t \\geq 1$, and $t + \\frac{1}{t} \\leq -2$ if $t \\leq -1$.\n\nThe condition can be written as:\n$$\\left(x + \\frac{1}{x}\\right) + \\left(y + \\frac{1}{y}\\right) + \\left(z + \\frac{1}{z}\\right) = 0$$\n\nLet $f(t) = t + \\frac{1}{t}$. For $t \\geq 1$, $f(t) \\geq 2$. For $t \\leq -1$, $f(t) \\leq -2$.\n\nSo we need $f(x) + f(y) + f(z) = 0$. Since each term is either $\\geq 2$ or $\\leq -2$, we need some positive and some negative terms.\n\nTo maximize $s = x + y + z$, we want $x, y, z$ as large as possible. To have the sum of $f$ values equal zero, we need at least one negative term (i.e., at least one variable $\\leq -1$).\n\nTo maximize $s$, let's try two positive variables and one negative. Say $x, y \\geq 1$ and $z \\leq -1$.\n\nWe need $f(x) + f(y) + f(z) = 0$, so $f(x) + f(y) = -f(z) = |f(z)| \\geq 2$.\n\nTo maximize $x + y + z$, we want to maximize $x + y$ and minimize $|z|$ (i.e., $z$ close to $-1$).\n\nAs $z \\to -1^-$: $f(z) \\to -2$, so $f(x) + f(y) = 2$. Since $f(x) \\geq 2$ and $f(y) \\geq 2$, we need $f(x) = f(y) = 1$... but $f(x) \\geq 2$ for $x \\geq 1$. So $f(x) + f(y) \\geq 4 > 2$. Contradiction.\n\nSo we need $f(x) + f(y) \\geq 4$, meaning $-f(z) \\geq 4$, so $f(z) \\leq -4$, meaning $z + \\frac{1}{z} \\leq -4$.\n\nFor $z \\leq -1$: $z + \\frac{1}{z} = -4$ gives $z^2 + 4z + 1 = 0$, so $z = -2 \\pm \\sqrt{3}$. Since $z \\leq -1$: $z = -2 - \\sqrt{3}$.\n\nTo maximize $x + y + z$, with $f(x) + f(y) = -f(z)$ and $x, y \\geq 1$:\n\nFor fixed $f(x) + f(y) = C \\geq 4$, maximize $x + y$. Since $f$ is convex for $t \\geq 1$ and $x = f^{-1}$ is increasing, to maximize $x + y$ with $f(x) + f(y) = C$, we should make one as large as possible and the other at minimum. But actually, for fixed sum $f(x)+f(y)=C$, $x+y$ is maximized when one variable approaches $\\infty$ and the other approaches 1 (since $f(t) \\to \\infty$ as $t\\to\\infty$ and $f(1)=2$).\n\nSo let $y = 1$ (boundary), $f(y) = 2$, $f(x) = C - 2$, and $z$ satisfies $f(z) = -C$.\n\nMaximize $x + 1 + z$ where $x + \\frac{1}{x} = C-2$ (so $x = \\frac{(C-2)+\\sqrt{(C-2)^2-4}}{2}$) and $z = \\frac{-C - \\sqrt{C^2-4}}{2}$.\n\nLet $u = C - 2 \\geq 2$. Then $x = \\frac{u + \\sqrt{u^2-4}}{2}$, $z = \\frac{-(u+2)-\\sqrt{(u+2)^2-4}}{2}$.\n\n$s = x + 1 + z = \\frac{u+\\sqrt{u^2-4}}{2} + 1 - \\frac{(u+2)+\\sqrt{(u+2)^2-4}}{2}$\n\n$= \\frac{u + \\sqrt{u^2-4} - u - 2 - \\sqrt{u^2+4u}}{2} + 1 = \\frac{-2 + \\sqrt{u^2-4} - \\sqrt{u^2+4u}}{2} + 1$\n\n$= \\frac{\\sqrt{u^2-4} - \\sqrt{u^2+4u}}{2}$\n\nThis is negative for all $u \\geq 2$, and approaches 0 as $u \\to \\infty$. So maximum approaches 0 but never reaches it... \n\nWait, let me reconsider. Maybe all three variables negative gives a negative sum. Let me try one positive, two negative.\n\nWith $x \\geq 1$, $y, z \\leq -1$: $f(x) + f(y) + f(z) = 0$, $f(x) \\geq 2$, $f(y)+f(z) \\leq -4$. So $f(x) \\geq 4$.\n\nMaximize $x + y + z$. Set $y = z = -1$ (boundary, $f=-2$ each), then $f(x) = 4$, $x^2 - 4x + 1 = 0$, $x = 2+\\sqrt{3}$.\n\n$s = 2+\\sqrt{3} - 1 - 1 = \\sqrt{3}$.\n\nCan we do better? Let $y = z = t \\leq -1$, $f(x) = -2f(t)$.\n\n$s = x + 2t$. As $t \\to -\\infty$: $f(t) \\approx t$, $f(x) \\approx -2t$, $x \\approx -2t$, $s \\approx -2t + 2t = 0$. So $s \\to 0$.\n\nAt $t = -1$: $s = \\sqrt{3} \\approx 1.732$.\n\nCheck derivative: let $t$ vary from $-1$ downward. At $t=-1$, $s = \\sqrt{3}$. This seems to be the maximum.\n\nThe maximum value is $\\boxed{\\sqrt{3}}$.\n\nFinal answer: $\\sqrt{3}$",
+  "usage": {
+    "input_tokens": 127,
+    "output_tokens": 1906,
+    "thinking_tokens": 0
+  },
+  "latency_s": 26.85923833400011,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "symbolic",
+    "predicted": "$\\sqrt{3}$"
+  }
+}

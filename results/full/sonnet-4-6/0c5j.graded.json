@@ -1,0 +1,25 @@
+{
+  "id": "0c5j",
+  "country": "Romania",
+  "competition": "The DANUBE Mathematical Competition",
+  "gold_final_answer": "(x,y) = (0,0), (2,1), (-2,1)",
+  "topics_flat": [
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities",
+    "Number Theory > Divisibility / Factorization > Factorization techniques"
+  ],
+  "prompt": "Find the integer solutions of the equation\n$$\nx^2(x^2 + 1) = 21^y - 1.\n$$",
+  "model": "claude-sonnet-4-6",
+  "response_text": "We need to find integer solutions of $x^2(x^2+1) = 21^y - 1$.\n\n**Initial observations:**\n\nThe left side $x^2(x^2+1) \\geq 0$, so $21^y \\geq 1$, meaning $y \\geq 0$.\n\nIf $y = 0$: $x^2(x^2+1) = 0$, so $x = 0$. Check: $0 \\cdot 1 = 0 = 21^0 - 1 = 0$. ✓\n\nIf $y = 1$: $x^2(x^2+1) = 20$. We need $x^4 + x^2 - 20 = 0$. Let $u = x^2$: $u^2 + u - 20 = 0$, $u = \\frac{-1 \\pm 9}{2}$, so $u = 4$, giving $x = \\pm 2$. Check: $4 \\cdot 5 = 20 = 21 - 1$. ✓\n\n**For $y \\geq 2$:**\n\nWe need $x^2(x^2+1) = 21^y - 1$.\n\nNote that $x^2(x^2+1) = x^4 + x^2$. We can write this as $(x^2 + \\frac{1}{2})^2 - \\frac{1}{4}$, so $21^y - 1 + \\frac{1}{4} = (x^2 + \\frac{1}{2})^2$, meaning $(2x^2+1)^2 = 4 \\cdot 21^y - 3$.\n\nLet $m = 2x^2 + 1$ (odd, positive). Then $m^2 = 4 \\cdot 21^y - 3$.\n\nSo $m^2 + 3 = 4 \\cdot 21^y$, i.e., $m^2 \\equiv -3 \\pmod{4}$... wait: $m^2 + 3 \\equiv 0 \\pmod{4}$. Since $m$ is odd, $m^2 \\equiv 1 \\pmod{4}$, so $m^2 + 3 \\equiv 0 \\pmod{4}$. ✓\n\n**Modulo 7:** $21^y \\equiv 0 \\pmod{7}$ for $y \\geq 1$, so $m^2 \\equiv -3 \\equiv 4 \\pmod{7}$, giving $m \\equiv \\pm 2 \\pmod{7}$. This is consistent.\n\n**Modulo 3:** For $y \\geq 1$, $21^y \\equiv 0 \\pmod{3}$, so $m^2 \\equiv -3 \\equiv 0 \\pmod{3}$, meaning $3 \\mid m$. Write $m = 3k$: $9k^2 + 3 = 4 \\cdot 21^y$, so $3(3k^2+1) = 4 \\cdot 21^y$. Since $3 \\mid 21^y$, we get $3 \\mid 4(3k^2+1)$, so $3 \\mid (3k^2+1)$, meaning $3 \\mid 1$. Contradiction!\n\nWait, let me redo: $9k^2 + 3 = 4 \\cdot 21^y$. The left side has exactly one factor of 3 (since $3(3k^2+1)$ and $3 \\nmid 3k^2+1$). The right side: $4 \\cdot 21^y = 4 \\cdot 3^y \\cdot 7^y$ has $y$ factors of 3. So we need $y = 1$.\n\nThis means for $y \\geq 2$, there are no solutions!\n\n**Verification:** For $y \\geq 2$, $v_3(4 \\cdot 21^y) = y \\geq 2$, but $v_3(m^2 + 3) = v_3(9k^2 + 3) = 1$ (since $3 \\nmid 3k^2+1$). Contradiction. So no solutions for $y \\geq 2$.\n\n**Summary of solutions:**\n- $(x, y) = (0, 0)$\n- $(x, y) = (2, 1)$\n- $(x, y) = (-2, 1)$\n\nFinal answer: $(x, y) \\in \\{(0,\\, 0),\\, (2,\\, 1),\\, (-2,\\, 1)\\}$",
+  "usage": {
+    "input_tokens": 79,
+    "output_tokens": 1199,
+    "thinking_tokens": 0
+  },
+  "latency_s": 15.753160555032082,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "$(x, y) \\in \\{(0,\\, 0),\\, (2,\\, 1),\\, (-2,\\, 1)\\}$"
+  }
+}

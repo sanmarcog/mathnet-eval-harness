@@ -1,0 +1,19 @@
+{
+  "id": "0e1w",
+  "country": "Slovenia",
+  "competition": "National Math Olympiad",
+  "gold_final_answer": "1",
+  "topics_flat": [
+    "Algebra > Prealgebra / Basic Algebra > Simple Equations"
+  ],
+  "prompt": "For a real number $t$ and positive real numbers $a$ and $b$ we have\n$$\n2a^2 - 3abt + b^2 = 2a^2 + abt - b^2 = 0.\n$$\nFind $t$.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "From the two expressions equal to zero:\n1) $2a^2 - 3abt + b^2 = 0$\n2) $2a^2 + abt - b^2 = 0$\n\nSubtract equation 2 from equation 1:\n$-3abt - abt + b^2 + b^2 = 0$\n$-4abt + 2b^2 = 0$\n$2b^2 = 4abt$\n$t = \\frac{2b^2}{4ab} = \\frac{b}{2a}$\n\nNow substitute back into equation 2:\n$2a^2 + ab \\cdot \\frac{b}{2a} - b^2 = 0$\n$2a^2 + \\frac{b^2}{2} - b^2 = 0$\n$2a^2 - \\frac{b^2}{2} = 0$\n$b^2 = 4a^2$\n$b = 2a$ (since positive)\n\nTherefore $t = \\frac{b}{2a} = \\frac{2a}{2a} = 1$.\n\nFinal answer: $t = 1$",
+  "usage": {
+    "input_tokens": 110,
+    "output_tokens": 299,
+    "thinking_tokens": 0
+  },
+  "latency_s": 3.348735701991245,
+  "cached": false
+}

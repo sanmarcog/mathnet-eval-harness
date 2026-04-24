@@ -1,0 +1,24 @@
+{
+  "id": "0bqv",
+  "country": "Romania",
+  "competition": "67th NMO Shortlisted Problems",
+  "gold_final_answer": "x=1, y=2, z=3",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities > QM-AM-GM-HM / Power Mean"
+  ],
+  "prompt": "Find all positive reals $x, y, z$ so that\n$$\n\\begin{cases}\nxyz = 6 \\\\\n(x+1)(y+2)(z+3) = 48.\n\\end{cases}\n$$",
+  "model": "claude-sonnet-4-6",
+  "response_text": "We need to find positive reals x, y, z such that xyz = 6 and (x+1)(y+2)(z+3) = 48.\n\nBy AM-GM inequality:\n- x + 1 ≥ 2√x\n- y + 2 ≥ 2√(2y)\n- z + 3 ≥ 2√(3z)\n\nSo (x+1)(y+2)(z+3) ≥ 8√(6xyz) = 8√36 = 48.\n\nEquality holds when x = 1, y/2 = 2 (so y = 4... wait, let me redo this).\n\nFor AM-GM: x + 1 ≥ 2√x requires equality when x = 1.\nFor y + 2 ≥ 2√(2y): equality when y = 2.\nFor z + 3 ≥ 2√(3z): equality when z = 3.\n\nCheck: xyz = 1·2·3 = 6 ✓\n(x+1)(y+2)(z+3) = 2·4·6 = 48 ✓\n\nSince the AM-GM bound gives exactly 48, and we achieved it, the unique solution is x = 1, y = 2, z = 3.\n\nFinal answer: x = 1, y = 2, z = 3",
+  "usage": {
+    "input_tokens": 102,
+    "output_tokens": 346,
+    "thinking_tokens": 0
+  },
+  "latency_s": 4.82611184194684,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "x = 1, y = 2, z = 3"
+  }
+}

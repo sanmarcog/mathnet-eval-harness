@@ -1,0 +1,29 @@
+{
+  "id": "08ss",
+  "country": "Japan",
+  "competition": "Japan Mathematical Olympiad",
+  "gold_final_answer": "60°",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Triangles > Triangle centers: centroid, incenter, circumcenter, orthocenter, Euler line, nine-point circle",
+    "Geometry > Plane Geometry > Quadrilaterals > Cyclic quadrilaterals",
+    "Geometry > Plane Geometry > Transformations > Rotation",
+    "Geometry > Plane Geometry > Analytic / Coordinate Methods > Vectors",
+    "Geometry > Plane Geometry > Analytic / Coordinate Methods > Trigonometry",
+    "Geometry > Plane Geometry > Miscellaneous > Angle chasing"
+  ],
+  "prompt": "Let $O$ be the circumcenter of an acute triangle $ABC$. A circle passing through points $A, O$ intersects lines $AB$ and $AC$ at points $P, Q$ distinct from $A$, respectively. If the lengths of the line segments $PQ$ and $BC$ are equal, what is the magnitude of the angle formed by the lines $PQ$ and $BC$ and less than $90^\\circ$?",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let \\(\\angle BAC = 2A\\), and place coordinates with \\(A=(0,0)\\), \\(B=(b,0)\\), \\(C=(c\\cos 2A,c\\sin 2A)\\).  \nThe circumcenter \\(O\\) lies on the perpendicular bisector of \\(AB\\), and the circle through \\(A,O\\) meets \\(AB,AC\\) again at \\(P,Q\\).\n\nUsing the standard spiral similarity from \\(A\\), one finds that the condition\n\\[\nPQ = BC\n\\]\nforces the line \\(PQ\\) to be parallel to the internal angle bisector of \\(\\angle A\\). Hence the angle between \\(PQ\\) and \\(BC\\) is the angle between the internal bisector of \\(\\angle A\\) and side \\(BC\\), namely\n\\[\n\\frac{\\angle B+\\angle C}{2} = 90^\\circ - \\frac{\\angle A}{2}.\n\\]\nThe equality \\(PQ=BC\\) determines \\(\\angle A=60^\\circ\\), so this angle becomes\n\\[\n90^\\circ - 30^\\circ = 60^\\circ.\n\\]\n\nFinal answer: \\(60^\\circ\\)",
+  "usage": {
+    "input_tokens": 140,
+    "output_tokens": 262,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 2.324123988044448,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "\\(60^\\circ\\)"
+  }
+}

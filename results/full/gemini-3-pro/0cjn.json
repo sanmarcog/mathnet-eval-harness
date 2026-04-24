@@ -1,0 +1,20 @@
+{
+  "id": "0cjn",
+  "country": "Romania",
+  "competition": "75th Romanian Mathematical Olympiad",
+  "gold_final_answer": "2",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Sequences and Series > Recurrence relations",
+    "Algebra > Algebraic Expressions > Sequences and Series > Sums and products"
+  ],
+  "prompt": "Let $(a_n)_{n \\ge 1}$ be the sequence defined by $a_1 = 1$ and $a_{n+1} = \\frac{a_n}{1+\\sqrt{1+a_n}}$, for any $n \\in \\mathbb{N}^*$. Show that $\\lim_{n \\to \\infty} \\frac{a_n}{a_{n+1}} = \\lim_{n \\to \\infty} \\sum_{k=1}^{n} \\log_2(1+a_k) = 2$. Traian Tămâian",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find the limits, we first analyze the sequence $(a_n)_{n \\ge 1}$ defined by $a_1 = 1$ and \n$$a_{n+1} = \\frac{a_n}{1+\\sqrt{1+a_n}}$$\n\nSince $a_1 > 0$, it is clear by induction that $a_n > 0$ for all $n \\ge 1$. \nBecause $1+\\sqrt{1+a_n} > 2$, we have $a_{n+1} < \\frac{a_n}{2}$, which implies that $\\lim_{n \\to \\infty} a_n = 0$.\n\nFor the first limit, we can directly use the recursive formula:\n$$\\frac{a_n}{a_{n+1}} = 1+\\sqrt{1+a_n}$$\nTaking the limit as $n \\to \\infty$:\n$$\\lim_{n \\to \\infty} \\frac{a_n}{a_{n+1}} = \\lim_{n \\to \\infty} \\left(1+\\sqrt{1+a_n}\\right) = 1+\\sqrt{1+0} = 2$$\n\nFor the second limit, we rationalize the denominator of the recursive formula:\n$$a_{n+1} = \\frac{a_n(1-\\sqrt{1+a_n})}{(1+\\sqrt{1+a_n})(1-\\sqrt{1+a_n})} = \\frac{a_n(1-\\sqrt{1+a_n})}{1-(1+a_n)} = \\frac{a_n(1-\\sqrt{1+a_n})}{-a_n} = \\sqrt{1+a_n} - 1$$\nRearranging this gives:\n$$1+a_{n+1} = \\sqrt{1+a_n}$$\nSquaring both sides, we obtain:\n$$1+a_n = (1+a_{n+1})^2$$\nTaking the base-2 logarithm of both sides yields:\n$$\\log_2(1+a_n) = 2\\log_2(1+a_{n+1})$$\nThis means the sequence $b_n = \\log_2(1+a_n)$ is a geometric progression with a common ratio of $\\frac{1}{2}$. \nThe first term is $b_1 = \\log_2(1+a_1) = \\log_2(2) = 1$.\nThus, $b_k = \\left(\\frac{1}{2}\\right)^{k-1}$.\n\nNow we evaluate the sum:\n$$\\sum_{k=1}^{n} \\log_2(1+a_k) = \\sum_{k=1}^{n} \\left(\\frac{1}{2}\\right)^{k-1} = \\frac{1 - \\left(\\frac{1}{2}\\right)^n}{1 - \\frac{1}{2}} = 2\\left(1 - \\frac{1}{2^n}\\right)$$\nTaking the limit as $n \\to \\infty$:\n$$\\lim_{n \\to \\infty} \\sum_{k=1}^{n} \\log_2(1+a_k) = \\lim_{n \\to \\infty} 2\\left(1 - \\frac{1}{2^n}\\right) = 2$$\n\nBoth limits evaluate to 2.\n\nFinal answer: 2",
+  "usage": {
+    "input_tokens": 166,
+    "output_tokens": 764,
+    "thoughts_tokens": 846
+  },
+  "latency_s": 13.22542917006649,
+  "cached": false
+}

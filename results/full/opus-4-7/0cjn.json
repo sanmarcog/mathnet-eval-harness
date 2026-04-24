@@ -1,0 +1,20 @@
+{
+  "id": "0cjn",
+  "country": "Romania",
+  "competition": "75th Romanian Mathematical Olympiad",
+  "gold_final_answer": "2",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Sequences and Series > Recurrence relations",
+    "Algebra > Algebraic Expressions > Sequences and Series > Sums and products"
+  ],
+  "prompt": "Let $(a_n)_{n \\ge 1}$ be the sequence defined by $a_1 = 1$ and $a_{n+1} = \\frac{a_n}{1+\\sqrt{1+a_n}}$, for any $n \\in \\mathbb{N}^*$. Show that $\\lim_{n \\to \\infty} \\frac{a_n}{a_{n+1}} = \\lim_{n \\to \\infty} \\sum_{k=1}^{n} \\log_2(1+a_k) = 2$. Traian Tămâian",
+  "model": "claude-opus-4-7",
+  "response_text": "<think>\nWe need to show a_n → 0, ratio → 2, and sum of log2(1+a_k) → 2.\n\na_{n+1} = a_n/(1+√(1+a_n)). Let b_n = √(1+a_n), so b_n ≥ 1. Then a_n = b_n²-1 = (b_n-1)(b_n+1). So a_{n+1} = (b_n-1)(b_n+1)/(1+b_n) = b_n - 1.\n\nSo a_{n+1} = √(1+a_n) - 1. Then 1+a_{n+1} = √(1+a_n)... wait: a_{n+1}+1 = √(1+a_n). So b_{n+1}² = b_n, meaning b_{n+1} = b_n^{1/2}.\n\nWith b_1 = √2, so b_n = 2^{1/2^n}... let's check: b_1 = 2^{1/2}, b_2 = b_1^{1/2} = 2^{1/4}, b_n = 2^{1/2^n}.\n\nThen 1+a_n = 2^{1/2^{n-1}}... wait b_n = √(1+a_n), so 1+a_n = b_n² = 2^{1/2^{n-1}}.\n\nCheck n=1: 1+a_1 = 2 = 2^1 = 2^{1/2^0}. Yes.\n\nSo a_n = 2^{1/2^{n-1}} - 1.\n\nRatio a_n/a_{n+1} = (2^{1/2^{n-1}}-1)/(2^{1/2^n}-1). Let x = 2^{1/2^n}, then 2^{1/2^{n-1}} = x². So ratio = (x²-1)/(x-1) = x+1 → 1+1 = 2. ✓\n\nSum: log2(1+a_k) = 1/2^{k-1}. Sum from k=1 to n: 1/1 + 1/2 + ... + 1/2^{n-1} = 2 - 1/2^{n-1} → 2. ✓\n</think>\n\n**Solution.**\n\nSetting $b_n = \\sqrt{1+a_n}$, note that\n$$a_{n+1} = \\frac{a_n}{1+\\sqrt{1+a_n}} = \\frac{(b_n-1)(b_n+1)}{1+b_n} = b_n - 1 = \\sqrt{1+a_n}-1.$$\n\nTherefore $1+a_{n+1} = \\sqrt{1+a_n}$, i.e. $b_{n+1} = b_n^{1/2}$. Since $b_1=\\sqrt{2}=2^{1/2}$, induction gives\n$$b_n = 2^{1/2^n}, \\qquad 1+a_n = 2^{1/2^{n-1}}, \\qquad a_n = 2^{1/2^{n-1}}-1.$$\n\n**Limit of the ratio.** Let $x = 2^{1/2^n}$, so $2^{1/2^{n-1}} = x^2$. Then\n$$\\frac{a_n}{a_{n+1}} = \\frac{x^2-1}{x-1} = x+1 = 2^{1/2^n}+1 \\xrightarrow[n\\to\\infty]{} 1+1 = 2.$$\n\n**Limit of the sum.** We have\n$$\\log_2(1+a_k) = \\log_2\\!\\left(2^{1/2^{k-1}}\\right) = \\frac{1}{2^{k-1}}.$$\nHence\n$$\\sum_{k=1}^n \\log_2(1+a_k) = \\sum_{k=1}^n \\frac{1}{2^{k-1}} = 2 - \\frac{1}{2^{n-1}} \\xrightarrow[n\\to\\infty]{} 2.$$\n\nBoth limits equal $2$. $\\blacksquare$\n\nFinal answer: 2",
+  "usage": {
+    "input_tokens": 240,
+    "output_tokens": 1285,
+    "thinking_tokens": 0
+  },
+  "latency_s": 12.51526842894964,
+  "cached": false
+}

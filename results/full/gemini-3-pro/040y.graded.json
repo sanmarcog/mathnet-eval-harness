@@ -1,0 +1,24 @@
+{
+  "id": "040y",
+  "country": "China",
+  "competition": "China Mathematical Competition",
+  "gold_final_answer": "61/243",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Sequences and Series > Recurrence relations"
+  ],
+  "prompt": "An information station employs four different codes, $A$, $B$, $C$ and $D$, for communication, but each week uses only one of them. The code used in a definite week is randomly selected with equal chance among the three ones that have not been used in the last week. Suppose the code used in the first week is $A$. Then the probability that $A$ is also used in the seventh week is _______. (expressed as an irreducible fraction)",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find the probability that code $A$ is used in the seventh week, let $P_n$ be the probability that code $A$ is used in the $n$-th week. \n\nWe are given that code $A$ is used in the first week, so $P_1 = 1$.\nFor any subsequent week $n > 1$, the code is chosen uniformly at random from the 3 codes not used in week $n-1$. \n- If code $A$ was used in week $n-1$, the probability that $A$ is used in week $n$ is $0$.\n- If code $A$ was not used in week $n-1$ (which happens with probability $1 - P_{n-1}$), the probability that $A$ is used in week $n$ is $\\frac{1}{3}$.\n\nThis gives us the recurrence relation:\n$$P_n = 0 \\cdot P_{n-1} + \\frac{1}{3} (1 - P_{n-1}) = \\frac{1}{3} - \\frac{1}{3} P_{n-1}$$\n\nWe can solve this recurrence relation by finding its fixed point:\n$$P = \\frac{1}{3} - \\frac{1}{3}P \\implies \\frac{4}{3}P = \\frac{1}{3} \\implies P = \\frac{1}{4}$$\nSubtracting the fixed point from both sides of the recurrence relation gives:\n$$P_n - \\frac{1}{4} = -\\frac{1}{3} \\left(P_{n-1} - \\frac{1}{4}\\right)$$\nThis is a geometric sequence with common ratio $-\\frac{1}{3}$. Thus, the general formula for $P_n$ is:\n$$P_n - \\frac{1}{4} = \\left(-\\frac{1}{3}\\right)^{n-1} \\left(P_1 - \\frac{1}{4}\\right)$$\nSubstitute $P_1 = 1$:\n$$P_n = \\frac{1}{4} + \\left(-\\frac{1}{3}\\right)^{n-1} \\left(1 - \\frac{1}{4}\\right) = \\frac{1}{4} + \\frac{3}{4} \\left(-\\frac{1}{3}\\right)^{n-1}$$\n\nWe want to find the probability that code $A$ is used in the seventh week ($n = 7$):\n$$P_7 = \\frac{1}{4} + \\frac{3}{4} \\left(-\\frac{1}{3}\\right)^6$$\n$$P_7 = \\frac{1}{4} + \\frac{3}{4} \\left(\\frac{1}{729}\\right)$$\n$$P_7 = \\frac{1}{4} + \\frac{1}{972}$$\nTo add these fractions, find a common denominator, which is $972$:\n$$P_7 = \\frac{243}{972} + \\frac{1}{972} = \\frac{244}{972}$$\nSimplify the fraction by dividing the numerator and the denominator by $4$:\n$$P_7 = \\frac{61}{243}$$\n\nFinal answer: \\frac{61}{243}",
+  "usage": {
+    "input_tokens": 135,
+    "output_tokens": 741,
+    "thoughts_tokens": 1138
+  },
+  "latency_s": 13.95203936600592,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "symbolic",
+    "predicted": "\\frac{61}{243}"
+  }
+}

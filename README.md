@@ -4,31 +4,33 @@
 
 ## Headline results
 
-_Smoke-test row in; full 500-problem frontier comparison + QLoRA row land in Week 4._
+_Frontier comparison from Day-2 full run (2026-04-23). QLoRA row lands in Week 4._
 
-### Frontier model comparison (cumulative)
+### Frontier model comparison
 
-| Model | Params | MathNet accuracy | Cost / 1K problems | Run |
+| Model | N scored | **MathNet accuracy** | Eval cost | Notes |
 |---|---|---|---|---|
-| Claude Sonnet 4.6 *(smoke, n=20)* | — | 70.0% (14/20) | $0.50 total ($25/1K extrapolated) | [results/smoke/sonnet-4-6/](results/smoke/sonnet-4-6/) |
-| Claude Sonnet 4.6 *(n=500)* | — | _TBD_ | _TBD_ | _Day 2_ |
-| Claude Opus 4.7 *(n=500)* | — | _TBD_ | _TBD_ | _Day 2_ |
-| GPT-5 *(n=500)* | — | _TBD_ | _TBD_ | _Day 2_ |
-| Gemini 3 Pro *(n=500)* | — | _TBD_ | _TBD_ | _Day 2_ |
-| Qwen-2.5-1.5B-Instruct *(base)* | 1.5B | _TBD_ | — | _Day 3_ |
-| Qwen-2.5-1.5B-Instruct + QLoRA *(ours)* | 1.5B | _TBD_ | — | _Week 4_ |
+| **Claude Opus 4.7** | 100 | **84.0%** | $6.14 | Spot-check sample size |
+| **Gemini 3 Pro** | 239 / 300 | **73.2%** | $13.49 | `thinking_budget=4096`, fill-in pending |
+| **Claude Sonnet 4.6** | 500 | **65.0%** | $10.35 | |
+| **GPT-5.4** | 495 / 500 | **57.8%** | $9.52 | 5 OpenAI safety-filter rejections |
+| **GPT-5.4 Mini** | 498 / 500 | **36.7%** | $1.51 | 2 OpenAI safety-filter rejections |
+| Qwen-2.5-1.5B-Instruct *(base)* | — | _TBD_ | — | Week 3 |
+| Qwen-2.5-1.5B-Instruct + QLoRA *(ours)* | — | _TBD_ | — | Week 4 |
 
-### Grader path breakdown (Sonnet smoke, n=20)
+Full methodology + caveats: [results/full/NOTES.md](results/full/NOTES.md). Day-2 report: [docs/day2_report.md](docs/day2_report.md).
+
+### Grader path breakdown (Sonnet 4.6 full run, n=500)
 
 | Path | Count | Share |
 |---|---|---|
-| `exact` | 4 | 20% |
-| `normalized` | 2 | 10% |
-| `symbolic` (sympy) | 1 | 5% |
-| `judge` (LLM) | 7 | 35% |
-| `miss` | 6 | 30% |
+| `exact` | 87 | 17.4% |
+| `normalized` | 30 | 6.0% |
+| `symbolic` (sympy) | 16 | 3.2% |
+| `judge` (LLM) | 192 | 38.4% |
+| `miss` | 175 | 35.0% |
 
-7/14 = 50% of correct grades resolve on the objective layers (exact / normalized / sympy); the judge handles the rest. 1/6 misses was a `max_tokens` truncation (now fixed by bumping the default to 8192).
+133 / 325 = 40.9% of correct grades resolve on the objective (non-judge) layers. The LLM judge catches the other 59% — set-valued answers, notation synonyms, prose-wrapped solutions. Day-1 judge calibration on 9 accepted answers found 0 false positives.
 
 ## Key findings
 

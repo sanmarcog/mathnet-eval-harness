@@ -1,0 +1,20 @@
+{
+  "id": "00vn",
+  "country": "Balkan Mathematical Olympiad",
+  "competition": "Balkan Mathematical Olympiad Shortlisted Problems",
+  "gold_final_answer": "Yes",
+  "topics_flat": [
+    "Discrete Mathematics > Graph Theory > Matchings, Marriage Lemma, Tutte's theorem",
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments"
+  ],
+  "prompt": "A social network has $2025$ users. Two different users are either friends or not friends. A user is considered *lonely* if they have no friends. Initially, there are no lonely users, and two users Alice and Bob are not friends. A user may swap all their friends, meaning if they were friends with someone before the swap, they are no longer friends, and vice versa. Must there exist a way to arrange the $2025$ users in a sequence so that if, one-by-one in that sequence, each user swaps their friends, no user is ever lonely at any point during the process?",
+  "model": "gpt-5.4-mini",
+  "response_text": "Yes.\n\nLet the friendship graph be on \\(2025\\) vertices. “Swapping all friends” means taking the complement of that vertex’s adjacency: after a user swaps, they become friends with exactly those people they were not friends with before.\n\nWe want an ordering of the users so that when they swap one at a time, nobody ever becomes lonely.\n\n### Key idea\nA user becomes lonely right after their swap exactly when, just before swapping, they were friends with everyone except themselves. So we must avoid ever making a vertex isolated in the current graph.\n\nNow consider any two non-friends Alice and Bob. Since there are no lonely users initially, Alice has at least one friend and Bob has at least one friend.\n\nWe can build a sequence using the following observation:\n\n- If at some stage the current graph has no isolated vertices, then there is a user whose swap does **not** create a lonely user.\n- Indeed, if every user’s swap would create a lonely user, then every user would have been adjacent to all others except perhaps one, which is impossible here because Alice and Bob are non-friends.\n\nMore concretely, choose a user who is not adjacent to at least one other user but is also not the unique possible neighbor of anyone else; such a user exists because the graph is not complete (Alice and Bob are missing an edge). Swapping such a user cannot isolate anyone.\n\nRepeating this argument inductively, we can choose users one by one so that after each swap the graph still has no isolated vertices. Since the process only changes adjacencies by complementing one vertex, and the graph is finite, this yields a full ordering of all \\(2025\\) users with the desired property.\n\nSo such an arrangement must exist.\n\nFinal answer: Yes.",
+  "usage": {
+    "input_tokens": 174,
+    "output_tokens": 369,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.854445778997615,
+  "cached": false
+}

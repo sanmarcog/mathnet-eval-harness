@@ -1,0 +1,20 @@
+{
+  "id": "01x1",
+  "country": "Belarus",
+  "competition": "69th Belarusian Mathematical Olympiad",
+  "gold_final_answer": "Cn = (13 n^3 - n) / 12 for odd n, and Cn = (13 n^3 - 4 n) / 12 for even n.",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments",
+    "Algebra > Equations and Inequalities > Combinatorial optimization"
+  ],
+  "prompt": "Given a positive integer $n$, determine the maximal constant $C_n$ satisfying the following condition: for any partition of the set $\\{1, 2, \\dots, 2n\\}$ into two $n$-element subsets $A$ and $B$, there exist labellings $a_1, \\dots, a_n$ and $b_1, \\dots, b_n$ of $A$ and $B$, respectively, such that\n$$\n(a_1 - b_1)^2 + (a_2 - b_2)^2 + \\dots + (a_n - b_n)^2 \\ge C_n.\n$$",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let  \n\\[\nS=\\{1,2,\\dots,2n\\},\n\\]\nand split it into two \\(n\\)-element sets \\(A,B\\). We want the largest constant \\(C_n\\) such that some pairing of \\(A\\) with \\(B\\) always gives\n\\[\n\\sum_{i=1}^n (a_i-b_i)^2 \\ge C_n.\n\\]\n\n## Step 1: Rewrite the sum\nFor any labelling,\n\\[\n\\sum_{i=1}^n (a_i-b_i)^2\n=\\sum a_i^2+\\sum b_i^2-2\\sum a_i b_i.\n\\]\nThe first two sums are fixed, so to maximize the left side we must minimize \\(\\sum a_i b_i\\). By the rearrangement principle, this is achieved by pairing the smallest element of \\(A\\) with the largest of \\(B\\), etc.\n\nThus the problem becomes: for every partition \\(A,B\\), what is the minimum possible value of\n\\[\n\\sum_{i=1}^n a_i b_{\\pi(i)}?\n\\]\n\n## Step 2: A universal lower bound\nOrder the elements as\n\\[\na_1\\le \\cdots \\le a_n,\\qquad b_1\\le \\cdots \\le b_n,\n\\]\nand pair oppositely:\n\\[\n(a_1,b_n), (a_2,b_{n-1}),\\dots,(a_n,b_1).\n\\]\nThen\n\\[\n\\sum_{i=1}^n (a_i-b_{n+1-i})^2\n\\]\nis the maximum over all pairings.\n\nNow observe that for every partition of \\(\\{1,\\dots,2n\\}\\), one can always pair the numbers so that each difference is at least \\(n\\) in absolute value except possibly in a controlled way. The extremal partition is\n\\[\nA=\\{1,2,\\dots,n\\},\\qquad B=\\{n+1,\\dots,2n\\},\n\\]\nfor which the optimal pairing is\n\\[\n(1,2n),(2,2n-1),\\dots,(n,n+1),\n\\]\ngiving\n\\[\n\\sum_{i=1}^n (i-(2n+1-i))^2\n=\\sum_{i=1}^n (2i-(2n+1))^2.\n\\]\n\nThis simplifies to\n\\[\n\\sum_{i=1}^n (2i-2n-1)^2\n=4\\sum_{i=1}^n \\left(i-\\frac{2n+1}{2}\\right)^2.\n\\]\nUsing the standard variance identity,\n\\[\n\\sum_{i=1}^n \\left(i-\\frac{n+1}{2}\\right)^2=\\frac{n(n^2-1)}{12},\n\\]\nwe get\n\\[\n\\sum_{i=1}^n (a_i-b_i)^2\n\\ge \\frac{n(n^2-1)}{3}.\n\\]\n\n## Step 3: Sharpness\nFor the partition\n\\[\nA=\\{1,2,\\dots,n\\},\\qquad B=\\{n+1,\\dots,2n\\},\n\\]\nno pairing can do better than the opposite pairing above, so the bound is attained. Hence the constant is best possible.\n\nTherefore,\n\\[\nC_n=\\frac{n(n^2-1)}{3}.\n\\]\n\nFinal answer: \\(\\displaystyle C_n=\\frac{n(n^2-1)}{3}\\).",
+  "usage": {
+    "input_tokens": 185,
+    "output_tokens": 781,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 4.988356175948866,
+  "cached": false
+}

@@ -1,0 +1,25 @@
+{
+  "id": "01f8",
+  "country": "Baltic Way",
+  "competition": "Baltic Way 2019",
+  "gold_final_answer": "f(x) = 0 for all x; f(x) = x + 1 for all x",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Functional Equations > Existential quantifiers",
+    "Algebra > Algebraic Expressions > Functional Equations > Injectivity / surjectivity"
+  ],
+  "prompt": "Find all functions $f: \\mathbb{R} \\to \\mathbb{R}$ such that\n$$\nf(xf(y) - y^2) = (y + 1)f(x - y)\n$$\nholds for all $x, y \\in \\mathbb{R}$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "We seek all functions \\(f:\\mathbb R\\to\\mathbb R\\) satisfying\n\\[\nf(xf(y)-y^2)=(y+1)f(x-y)\\qquad \\forall x,y\\in\\mathbb R.\n\\]\n\nLet\n\\[\nP(x,y):\\quad f(xf(y)-y^2)=(y+1)f(x-y).\n\\]\n\n### 1) First easy substitutions\n\nSet \\(y=0\\):\n\\[\nf(xf(0))=f(x)\\qquad \\forall x.\n\\]\nSo \\(f\\) is invariant under multiplication of the input by \\(f(0)\\).\n\nSet \\(x=y\\):\n\\[\nf(yf(y)-y^2)=(y+1)f(0)\\qquad \\forall y.\n\\]\n\nNow set \\(x=0\\):\n\\[\nf(-y^2)=(y+1)f(-y)\\qquad \\forall y.\n\\]\nReplacing \\(y\\) by \\(-y\\),\n\\[\nf(-y^2)=(1-y)f(y).\n\\]\nHence\n\\[\n(y+1)f(-y)=(1-y)f(y)\\qquad \\forall y.\n\\]\nSo for \\(y\\neq -1\\),\n\\[\nf(-y)=\\frac{1-y}{y+1}f(y). \\tag{1}\n\\]\n\n### 2) Show \\(f(0)\\neq 1\\) and determine \\(f(0)\\)\n\nPut \\(y=1\\) in \\(P(x,y)\\):\n\\[\nf(xf(1)-1)=2f(x-1). \\tag{2}\n\\]\nPut \\(y=-1\\):\n\\[\nf(xf(-1)-1)=0. \\tag{3}\n\\]\nThus the image of \\(f\\) is constrained. In particular, from (3), if \\(f\\) is not constant, then the left side being identically \\(0\\) for all \\(x\\) forces strong restrictions.\n\nNow use \\(x=0\\) in \\(P\\):\n\\[\nf(-y^2)=(y+1)f(-y).\n\\]\nAt \\(y=-1\\), this gives\n\\[\nf(-1)=0. \\tag{4}\n\\]\nThen by (1) with \\(y=1\\),\n\\[\nf(-1)=0=\\frac{0}{2}f(1),\n\\]\nno new info.\n\nNow put \\(y=-1\\) into \\(P\\) and use \\(f(-1)=0\\):\n\\[\nf(-x-1)=0 \\qquad \\forall x,\n\\]\nso \\(f\\equiv 0\\) on all reals. Indeed, as \\(x\\) ranges over \\(\\mathbb R\\), \\(-x-1\\) ranges over all \\(\\mathbb R\\). Therefore\n\\[\nf(t)=0\\qquad \\forall t\\in\\mathbb R.\n\\]\n\n### 3) Check\n\nFor \\(f\\equiv 0\\),\n\\[\nf(xf(y)-y^2)=f(-y^2)=0,\\qquad (y+1)f(x-y)=0,\n\\]\nso the identity holds.\n\nHence the only solution is the zero function.\n\nFinal answer: \\(\\boxed{f(x)\\equiv 0\\text{ for all }x\\in\\mathbb R}\\).",
+  "usage": {
+    "input_tokens": 113,
+    "output_tokens": 738,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 4.9304607580415905,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "f(x)\\equiv 0\\text{ for all }x\\in\\mathbb R"
+  }
+}

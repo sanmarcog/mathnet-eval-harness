@@ -1,0 +1,20 @@
+{
+  "id": "0epo",
+  "country": "South Africa",
+  "competition": "South African Mathematics Olympiad",
+  "gold_final_answer": "20",
+  "topics_flat": [
+    "Algebra > Prealgebra / Basic Algebra > Simple Equations",
+    "Algebra > Prealgebra / Basic Algebra > Decimals"
+  ],
+  "prompt": "Steve was sorting $1\\,000$ eggs into sizes. He got paid $20$ cents for each egg that he sorted. For each egg that he broke while sorting he did not get paid and had to pay his employer $R1$. Steve was paid $R176$. How many eggs did Steve break?",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find the number of eggs Steve broke, we can set up a system of equations. \n\nLet $x$ be the number of eggs Steve sorted successfully, and let $y$ be the number of eggs he broke. \nWe know the total number of eggs is $1\\,000$, so:\n$x + y = 1\\,000$\n\nSteve gets paid $20$ cents (or $R0.20$) for each successfully sorted egg, and he loses $R1$ for each broken egg. His total pay was $R176$, so we can write the equation for his earnings as:\n$0.20x - 1y = 176$\n\nWe can solve for $x$ using the first equation:\n$x = 1\\,000 - y$\n\nNow, substitute this expression for $x$ into the second equation:\n$0.20(1\\,000 - y) - y = 176$\n$200 - 0.20y - y = 176$\n$200 - 1.20y = 176$\n\nSubtract $200$ from both sides:\n$-1.20y = -24$\n\nDivide by $-1.20$:\n$y = \\frac{24}{1.20}$\n$y = 20$\n\nSteve broke $20$ eggs. (We can check this: he sorted $980$ eggs successfully, earning $980 \\times 0.20 = R196$. He broke $20$ eggs, losing $20 \\times 1 = R20$. His total pay is $196 - 20 = R176$, which matches the problem).\n\nFinal answer: 20",
+  "usage": {
+    "input_tokens": 107,
+    "output_tokens": 403,
+    "thoughts_tokens": 468
+  },
+  "latency_s": 7.727302080951631,
+  "cached": false
+}

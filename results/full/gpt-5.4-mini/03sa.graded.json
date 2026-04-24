@@ -1,0 +1,24 @@
+{
+  "id": "03sa",
+  "country": "China",
+  "competition": "China Mathematical Competition (Jiangxi)",
+  "gold_final_answer": "4π/3",
+  "topics_flat": [
+    "Precalculus > Trigonometric functions"
+  ],
+  "prompt": "Assume that $\\alpha, \\beta, \\gamma$ satisfy $0 < \\alpha < \\beta < \\gamma < 2\\pi$. If\n$$\n\\cos(x + \\alpha) + \\cos(x + \\beta) + \\cos(x + \\gamma) = 0\n$$\nfor arbitrary $x \\in \\mathbb{R}$, then $\\gamma - \\alpha = \\underline{\\hspace{2cm}}$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "For the identity\n\\[\n\\cos(x+\\alpha)+\\cos(x+\\beta)+\\cos(x+\\gamma)=0\n\\quad \\text{for all }x,\n\\]\nwrite each cosine as the real part of an exponential:\n\\[\n\\Re\\left(e^{ix}(e^{i\\alpha}+e^{i\\beta}+e^{i\\gamma})\\right)=0\n\\quad \\text{for all }x.\n\\]\nSince this must hold for every \\(x\\), we must have\n\\[\ne^{i\\alpha}+e^{i\\beta}+e^{i\\gamma}=0.\n\\]\nThese are three unit vectors in the complex plane whose sum is zero, so they must be equally spaced by angles of \\(2\\pi/3\\). Hence\n\\[\n\\beta-\\alpha=\\gamma-\\beta=\\frac{2\\pi}{3},\n\\]\nand therefore\n\\[\n\\gamma-\\alpha=\\frac{4\\pi}{3}.\n\\]\n\nFinal answer: \\(\\frac{4\\pi}{3}\\)",
+  "usage": {
+    "input_tokens": 141,
+    "output_tokens": 229,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 2.027583554969169,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "\\(\\frac{4\\pi}{3}\\)"
+  }
+}

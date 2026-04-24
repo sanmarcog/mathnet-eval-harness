@@ -1,0 +1,26 @@
+{
+  "id": "08sk",
+  "country": "Japan",
+  "competition": "Japan Mathematical Olympiad",
+  "gold_final_answer": "2 + 4√2",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Triangles > Triangle trigonometry",
+    "Geometry > Plane Geometry > Analytic / Coordinate Methods > Trigonometry",
+    "Geometry > Plane Geometry > Miscellaneous > Constructions and loci"
+  ],
+  "prompt": "For a convex quadrilateral $ABCD$, the conditions $AB = BC = 2$, $CD = 2\\sqrt{3}$, $DA = 2\\sqrt{5}$ are satisfied. Also, if we let $M$, $N$ be the midpoint of $AC$ and $BD$, respectively, then $MN = \\sqrt{2}$. Determine the area of the quadrilateral $ABCD$. Here, by $XY$ we are representing the length of the line segment $XY$.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find the area of the convex quadrilateral $ABCD$, we can set up a coordinate system. Let $M$, the midpoint of $AC$, be the origin $(0,0)$. Let $AC$ lie on the x-axis, so $A = (-x/2, 0)$ and $C = (x/2, 0)$, where $x = AC$.\n\nSince $AB = BC = 2$, $\\triangle ABC$ is isosceles, and its median $BM$ is perpendicular to $AC$. Thus, $B$ lies on the y-axis: $B = (0, y_B)$. \nBy the Pythagorean theorem in $\\triangle ABM$:\n$y_B^2 + \\frac{x^2}{4} = 4 \\implies y_B^2 = 4 - \\frac{x^2}{4}$\n\nLet $D = (x_D, y_D)$. We are given $CD = 2\\sqrt{3}$ and $DA = 2\\sqrt{5}$. Using the distance formula:\n$AD^2 = \\left(x_D + \\frac{x}{2}\\right)^2 + y_D^2 = 20$\n$CD^2 = \\left(x_D - \\frac{x}{2}\\right)^2 + y_D^2 = 12$\nSubtracting the second equation from the first gives $2x_D x = 8 \\implies x_D = \\frac{4}{x}$.\nAdding the two equations and applying Apollonius's theorem gives the length of the median $DM$:\n$2\\left(x_D^2 + y_D^2 + \\frac{x^2}{4}\\right) = 32 \\implies x_D^2 + y_D^2 = 16 - \\frac{x^2}{4}$\n\nWe are given that the distance between the midpoints $M(0,0)$ and $N\\left(\\frac{x_D}{2}, \\frac{y_B + y_D}{2}\\right)$ is $\\sqrt{2}$.\n$MN^2 = \\frac{x_D^2}{4} + \\frac{y_B^2 + 2y_B y_D + y_D^2}{4} = 2 \\implies x_D^2 + y_D^2 + y_B^2 + 2y_B y_D = 8$\nSubstitute $x_D^2 + y_D^2 = 16 - \\frac{x^2}{4}$ and $y_B^2 = 4 - \\frac{x^2}{4}$:\n$\\left(16 - \\frac{x^2}{4}\\right) + \\left(4 - \\frac{x^2}{4}\\right) + 2y_B y_D = 8 \\implies 2y_B y_D = \\frac{x^2}{2} - 12$\n\nLet $u = \\frac{x^2}{4}$. Then $y_B^2 = 4 - u$ and $y_D^2 = 16 - u - \\frac{16}{x^2} = 16 - u - \\frac{4}{u}$.\nSquaring $2y_B y_D = 2u - 12$ gives:\n$4(4 - u)\\left(16 - u - \\frac{4}{u}\\right) = (2u - 12)^2$\n$4u^2 - 80u + 272 - \\frac{64}{u} = 4u^2 - 48u + 144$\n$32u - 128 + \\frac{64}{u} = 0 \\implies u^2 - 4u + 2 = 0$\nThe roots are $u = 2 \\pm \\sqrt{2}$. For $ABCD$ to be a convex quadrilateral, the intersection of the diagonals must lie strictly between the endpoints, which requires $u = 2 + \\sqrt{2}$.\n\nThe area of $ABCD$ is the sum of the areas of $\\triangle ABC$ and $\\triangle ADC$:\n$\\text{Area} = \\frac{1}{2} x y_B + \\frac{1}{2} x (-y_D) = \\frac{1}{2} x (y_B - y_D)$\nSquaring the area gives:\n$\\text{Area}^2 = \\frac{1}{4} x^2 (y_B^2 + y_D^2 - 2y_B y_D) = u \\left( (4 - u) + \\left(16 - u - \\frac{4}{u}\\right) - (2u - 12) \\right)$\n$\\text{Area}^2 = u \\left( 32 - 4u - \\frac{4}{u} \\right) = 32u - 4u^2 - 4$\nUsing $u^2 = 4u - 2$, we can simplify this to:\n$\\text{Area}^2 = 32u - 4(4u - 2) - 4 = 16u + 4$\nSubstitute $u = 2 + \\sqrt{2}$:\n$\\text{Area}^2 = 16(2 + \\sqrt{2}) + 4 = 36 + 16\\sqrt{2}$\nTaking the square root, we get:\n$\\text{Area} = \\sqrt{36 + 16\\sqrt{2}} = \\sqrt{32} + \\sqrt{4} = 4\\sqrt{2} + 2$\n\nFinal answer: 4\\sqrt{2} + 2",
+  "usage": {
+    "input_tokens": 139,
+    "output_tokens": 1288,
+    "thoughts_tokens": 5096
+  },
+  "latency_s": 48.15955865406431,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "4\\sqrt{2} + 2"
+  }
+}

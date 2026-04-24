@@ -1,0 +1,19 @@
+{
+  "id": "08rb",
+  "country": "Japan",
+  "competition": "The 16th Japanese Mathematical Olympiad - The First Round",
+  "gold_final_answer": "4√3",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Triangles > Triangle trigonometry"
+  ],
+  "prompt": "$P$ is a point inside an equilateral triangle. The length of the perpendiculars from $P$ towards three sides are $1$, $2$, and $3$. Answer the length of one edge of this triangle.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "The sum of the perpendicular distances from any interior point to the sides of an equilateral triangle equals the altitude of the triangle.\n\nSo the altitude h = 1 + 2 + 3 = 6.\n\nFor an equilateral triangle with side length a, the altitude is h = (√3/2)a.\n\nSo (√3/2)a = 6, giving a = 12/√3 = 4√3.\n\nFinal answer: 4√3",
+  "usage": {
+    "input_tokens": 98,
+    "output_tokens": 113,
+    "thinking_tokens": 0
+  },
+  "latency_s": 2.155249031027779,
+  "cached": false
+}

@@ -1,0 +1,25 @@
+{
+  "id": "00kf",
+  "country": "Austria",
+  "competition": "Austria 2014",
+  "gold_final_answer": "y < z < x",
+  "topics_flat": [
+    "Algebra > Equations and Inequalities",
+    "Algebra > Equations and Inequalities > Muirhead / majorization"
+  ],
+  "prompt": "Let $a$, $b$, $c$ and $d$ be real numbers with $a < b < c < d$.\nSort the numbers $x = a b + c d$, $y = b c + a d$ and $z = c a + b d$ in ascending order and prove the correctness of your result.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To determine the correct ascending order of $x$, $y$, and $z$, we can analyze the differences between pairs of these numbers.\n\nFirst, let's find the difference between $z$ and $y$:\n$$z - y = (ca + bd) - (bc + ad)$$\nGroup the terms to factor them:\n$$z - y = c(a - b) - d(a - b) = (c - d)(a - b)$$\nSince we are given $a < b < c < d$, we know that $a - b < 0$ and $c - d < 0$. The product of two negative numbers is positive, so:\n$$(c - d)(a - b) > 0 \\implies z - y > 0 \\implies y < z$$\n\nNext, let's find the difference between $x$ and $z$:\n$$x - z = (ab + cd) - (ca + bd)$$\nGroup the terms to factor them:\n$$x - z = a(b - c) - d(b - c) = (a - d)(b - c)$$\nAgain, from $a < b < c < d$, we know that $a - d < 0$ and $b - c < 0$. The product of two negative numbers is positive, so:\n$$(a - d)(b - c) > 0 \\implies x - z > 0 \\implies z < x$$\n\nCombining these two inequalities, we get:\n$$y < z < x$$\n\nFinal answer: y < z < x",
+  "usage": {
+    "input_tokens": 109,
+    "output_tokens": 341,
+    "thoughts_tokens": 910
+  },
+  "latency_s": 16.516181071987376,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "exact",
+    "predicted": "y < z < x"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "id": "09lh",
+  "country": "Mongolia",
+  "competition": "Mongolian Mathematical Olympiad",
+  "gold_final_answer": "90°",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Analytic / Coordinate Methods > Cartesian coordinates",
+    "Geometry > Plane Geometry > Analytic / Coordinate Methods > Vectors",
+    "Algebra > Equations and Inequalities > QM-AM-GM-HM / Power Mean"
+  ],
+  "prompt": "Consider the points $A(-1, 0)$ and $B(1, 0)$ on the coordinate plane. Find the maximum possible value of the angle $\\angle ACB$ where $C$ moves along the hyperbola with equation $2xy = 1$. Note that angles are measured in degrees and lie in the interval $[0^\\circ, 180^\\circ]$.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "## Setting Up the Problem\n\nWe need to find the maximum angle ∠ACB where A(-1,0), B(1,0), and C is on the hyperbola 2xy = 1.\n\nThe hyperbola 2xy = 1 can be written as xy = 1/2. This is a rectangular hyperbola rotated 45°.\n\n## Using the Tangent Formula\n\nLet C = (t, 1/(2t)) for t ≠ 0.\n\nVectors from C to A and C to B:\n- CA = (-1-t, -1/(2t))\n- CB = (1-t, -1/(2t))\n\nThe angle ∠ACB satisfies:\n$$\\tan(\\angle ACB) = \\left|\\frac{\\vec{CA} \\times \\vec{CB}}{\\vec{CA} \\cdot \\vec{CB}}\\right|$$\n\n**Cross product (z-component):**\n$$(-1-t)(-\\frac{1}{2t}) - (-\\frac{1}{2t})(1-t) = \\frac{1+t}{2t} + \\frac{1-t}{2t} = \\frac{2}{2t} = \\frac{1}{t}$$\n\n**Dot product:**\n$$(-1-t)(1-t) + (-\\frac{1}{2t})(-\\frac{1}{2t}) = -(1-t^2) + \\frac{1}{4t^2} = t^2 - 1 + \\frac{1}{4t^2}$$\n\nSo:\n$$\\tan(\\angle ACB) = \\frac{|1/t|}{|t^2 - 1 + \\frac{1}{4t^2}|}$$\n\nLet u = t² > 0. Then:\n$$\\tan(\\angle ACB) = \\frac{1/\\sqrt{u}}{|u - 1 + \\frac{1}{4u}|}$$\n\nTo maximize the angle, we maximize tan(θ) (when θ < 90°) or find when the denominator is zero (θ = 90°).\n\n**Check if denominator can be zero:**\n$$u - 1 + \\frac{1}{4u} = 0 \\implies 4u^2 - 4u + 1 = 0 \\implies (2u-1)^2 = 0 \\implies u = \\frac{1}{2}$$\n\nSo when t² = 1/2, i.e., t = ±1/√2, the denominator is zero, meaning ∠ACB = 90°!\n\n**Verify:** At t = 1/√2, C = (1/√2, 1/(2·1/√2)) = (1/√2, √2/2) = (1/√2, 1/√2).\n\nCheck: xy = (1/√2)(1/√2) = 1/2 ✓\n\nVectors:\n- CA = (-1 - 1/√2, -1/√2)\n- CB = (1 - 1/√2, -1/√2)\n\nDot product: (-1-1/√2)(1-1/√2) + (-1/√2)(-1/√2)\n= -(1-1/2) + 1/2... let me recalculate:\n= (-(1+1/√2))(1-1/√2) + 1/2\n= -(1 - 1/2) + 1/2\n= -1/2 + 1/2 = 0 ✓\n\nSo the angle is exactly 90°.\n\n**Can the angle exceed 90°?** For the angle to exceed 90°, we need the dot product to be negative. The dot product is:\n$$t^2 - 1 + \\frac{1}{4t^2}$$\n\nAt u = 1/2, this is zero. For u near 1/2, say u = 1/4: 1/4 - 1 + 1 = 1/4 > 0. For u = 1: 1 - 1 + 1/4 = 1/4 > 0.\n\nThe expression (2u-1)²/(4u) ≥ 0 always, so the dot product is always ≥ 0. This means the angle ∠ACB ≤ 90° always, with equality at t = ±1/√2.\n\nTherefore, the maximum angle is **90°**.\n\nFinal answer: 90",
+  "usage": {
+    "input_tokens": 133,
+    "output_tokens": 1110,
+    "thinking_tokens": 0
+  },
+  "latency_s": 14.971429383032955,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "90"
+  }
+}

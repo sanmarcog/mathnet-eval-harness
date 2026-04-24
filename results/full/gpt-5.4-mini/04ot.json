@@ -1,0 +1,19 @@
+{
+  "id": "04ot",
+  "country": "Croatia",
+  "competition": "Croatian Mathematical Society Competitions",
+  "gold_final_answer": "First player",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Games / greedy algorithms"
+  ],
+  "prompt": "42 pebbles are placed on a table. Two players take turns making moves. When making a move, a player has to take at least one pebble, but no more than half of the remaining pebbles. The player after whose move there is exactly one pebble left on the table, wins.\nWhich player can win regardless of how his opponent plays?\n(United Kingdom 2014)",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let \\(n\\) be the number of pebbles left.\n\nA move from \\(n\\) allows taking any \\(k\\) with\n\\[\n1 \\le k \\le \\left\\lfloor \\frac n2 \\right\\rfloor,\n\\]\nso the next position is \\(n-k\\), which is always at least \\(\\lceil n/2\\rceil\\).\n\nWe look for losing positions: positions from which every legal move gives a winning position to the next player.\n\n- \\(n=1\\): game is already over, so this is a terminal winning position for the previous player.\n- \\(n=2\\): only move is to \\(1\\), so \\(2\\) is losing.\n- \\(n=3\\): only move is to \\(2\\), which is losing, so \\(3\\) is winning.\n- \\(n=4\\): can move to \\(2\\), so winning.\n- \\(n=5\\): can move to \\(3\\), so winning.\n- \\(n=6\\): possible moves are to \\(3,4,5\\), all winning, so \\(6\\) is losing.\n\nThis suggests the losing positions are exactly the powers of \\(2\\): \\(2,4,8,16,32,\\dots\\)\n\nIndeed, if \\(n=2^m\\), then every legal move leaves a number in\n\\[\n2^{m-1} \\le n' \\le 2^m-1,\n\\]\nand the next power of 2 below \\(2^m\\) is \\(2^{m-1}\\), so any move from \\(2^m\\) can be mirrored into a winning position. More directly, the standard induction shows all powers of 2 are losing, and every non-power of 2 is winning by moving to the largest power of 2 less than it.\n\nNow \\(42\\) is not a power of 2, and the largest power of 2 less than \\(42\\) is \\(32\\). So the first player can take \\(10\\) pebbles and leave \\(32\\), a losing position for the second player.\n\nTherefore, the first player can force a win.\n\nFinal answer: First player.",
+  "usage": {
+    "input_tokens": 129,
+    "output_tokens": 472,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.2643956289393827,
+  "cached": false
+}

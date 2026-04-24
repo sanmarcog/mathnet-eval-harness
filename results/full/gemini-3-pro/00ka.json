@@ -1,0 +1,19 @@
+{
+  "id": "00ka",
+  "country": "Austria",
+  "competition": "Austria 2014",
+  "gold_final_answer": "(3, 5, 7, 9); (t, -t, t, -t) for any real t; (-9, 5, -5, 9); (3, -3, 7, -7)",
+  "topics_flat": [
+    "Algebra > Prealgebra / Basic Algebra > Simple Equations"
+  ],
+  "prompt": "Determine all quadruples $(a, b, c, d)$ of real numbers satisfying the following system of equations.\n$$\n\\begin{aligned}\n ab + ac &= 3b + 3c \\\\\n bc + bd &= 5c + 5d \\\\\n ac + cd &= 7a + 7d \\\\\n ad + bd &= 9a + 9b\n\\end{aligned}\n$$",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find all quadruples $(a, b, c, d)$ of real numbers satisfying the system of equations, we can rewrite each equation by factoring:\n1) $ab + ac = 3b + 3c \\implies a(b+c) - 3(b+c) = 0 \\implies (a-3)(b+c) = 0$\n2) $bc + bd = 5c + 5d \\implies b(c+d) - 5(c+d) = 0 \\implies (b-5)(c+d) = 0$\n3) $ac + cd = 7a + 7d \\implies c(a+d) - 7(a+d) = 0 \\implies (c-7)(a+d) = 0$\n4) $ad + bd = 9a + 9b \\implies d(a+b) - 9(a+b) = 0 \\implies (d-9)(a+b) = 0$\n\nFrom these factored equations, we have two choices for each equation to be satisfied:\n1) $a = 3$ or $b+c = 0$\n2) $b = 5$ or $c+d = 0$\n3) $c = 7$ or $a+d = 0$\n4) $d = 9$ or $a+b = 0$\n\nThis gives us $2^4 = 16$ possible cases to check. Let's evaluate the valid combinations:\n- **Case 1:** $a=3, b=5, c=7, d=9$. This satisfies all equations, giving the solution $(3, 5, 7, 9)$.\n- **Case 2:** $a=3, c+d=0, c=7, a+b=0$. From $c=7$, we get $d=-7$. From $a=3$, we get $b=-3$. This gives the solution $(3, -3, 7, -7)$.\n- **Case 3:** $b+c=0, b=5, a+d=0, d=9$. From $b=5$, we get $c=-5$. From $d=9$, we get $a=-9$. This gives the solution $(-9, 5, -5, 9)$.\n- **Case 4:** $b+c=0, c+d=0, a+d=0, a+b=0$. This implies $c = -b$, $d = -c = b$, and $a = -b$. Letting $b = t$ for any real number $t$, we get the parameterized solution $(-t, t, -t, t)$.\n\nAll other combinations lead to contradictions (e.g., $a=3$ and $b=5$ with $a+b=0$, which implies $8=0$). Note that the parameterized solution $(-t, t, -t, t)$ also covers the remaining consistent cases when $t$ takes specific values (like $t=-3$, $t=5$, etc.).\n\nFinal answer: (3, 5, 7, 9), (3, -3, 7, -7), (-9, 5, -5, 9), (-t, t, -t, t) \\text{ for } t \\in \\mathbb{R}",
+  "usage": {
+    "input_tokens": 129,
+    "output_tokens": 752,
+    "thoughts_tokens": 3479
+  },
+  "latency_s": 30.832267396966927,
+  "cached": false
+}

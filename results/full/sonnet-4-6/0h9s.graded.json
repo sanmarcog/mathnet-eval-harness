@@ -1,0 +1,24 @@
+{
+  "id": "0h9s",
+  "country": "Ukraine",
+  "competition": "58th Ukrainian National Mathematical Olympiad",
+  "gold_final_answer": "5, 6, 8",
+  "topics_flat": [
+    "Discrete Mathematics > Graph Theory"
+  ],
+  "prompt": "There are several gentlemen in the club.\nEvery two are either friends, or enemies. It is known that each of the gentlemen has exactly $4$ enemies. In addition, for each of them, the enemy of his friend is his enemy. How many gentlemen can be present at the club?",
+  "model": "claude-sonnet-4-6",
+  "response_text": "Let me denote the number of gentlemen as $n$.\n\n**Setting up the structure:**\n\nEach gentleman has exactly 4 enemies. The condition \"enemy of my friend is my enemy\" means: if A and B are friends, and B and C are enemies, then A and C are enemies.\n\n**Analyzing the friendship/enemy structure:**\n\nLet's think about what this condition implies. If A and B are friends, then A's enemy set = B's enemy set (since any enemy of B is an enemy of A, and by symmetry any enemy of A is an enemy of B).\n\nWait, let me be more careful. The condition says: enemy of friend is my enemy. So if B is A's friend and C is B's enemy, then C is A's enemy.\n\nThis means: friends of A have the same enemy set as A (since A's friends' enemies are A's enemies, and by symmetry applying the rule to B: enemies of A's friends = A's enemies).\n\nActually, let me think about the friendship relation. If A and B are friends, they share the same enemy set. This means the friendship relation partitions the gentlemen into cliques where everyone in a clique has the same set of enemies (which are exactly the members of the other cliques... wait, not necessarily).\n\n**Clique structure:**\n\nThe friendship relation is an equivalence relation (it's reflexive, symmetric, and transitive: if A~B and B~C are friends, then since C is a friend of B, and A is a friend of B, we need A and C to be friends — actually the condition only says enemy of friend is enemy, not friend of friend is friend).\n\nLet me check transitivity: If A-B friends, B-C friends. Is A-C friends? The condition doesn't directly say this. But if A-C were enemies, then since B-A are friends, C (enemy of A) would be enemy of B — but B-C are friends, contradiction. So yes, friendship is transitive!\n\nSo friendship is an equivalence relation, partitioning gentlemen into cliques $C_1, C_2, \\ldots, C_k$ where everyone within a clique is friends, and everyone between different cliques are enemies.\n\n**Counting enemies:**\n\nEach gentleman in clique $C_i$ has enemies = all gentlemen not in $C_i$. So the number of enemies = $n - |C_i| = 4$.\n\nThis means $|C_i| = n - 4$ for all $i$.\n\nSo all cliques have the same size $s = n - 4$, and there are $k$ cliques where $n = ks$.\n\nThus $n = k(n-4)$, giving $n = kn - 4k$, so $4k = kn - n = n(k-1)$, thus:\n$$n = \\frac{4k}{k-1} = 4 + \\frac{4}{k-1}$$\n\nFor $n$ to be a positive integer, $(k-1)$ must divide 4. So $k-1 \\in \\{1, 2, 4\\}$, giving $k \\in \\{2, 3, 5\\}$.\n\n- $k = 2$: $n = 4 + 4 = 8$, $s = 4$. Two cliques of 4. ✓\n- $k = 3$: $n = 4 + 2 = 6$, $s = 2$. Three cliques of 2. ✓  \n- $k = 5$: $n = 4 + 1 = 5$, $s = 1$. Five cliques of 1 (everyone is enemies with everyone). ✓\n\n**Verification:**\n- $n=5$, $k=5$, $s=1$: Each person has $5-1=4$ enemies. ✓\n- $n=6$, $k=3$, $s=2$: Each person has $6-2=4$ enemies. ✓\n- $n=8$, $k=2$, $s=4$: Each person has $8-4=4$ enemies. ✓\n\nWe also need $k \\geq 2$ (otherwise no enemies), and $s \\geq 1$, both satisfied.\n\n**The possible numbers of gentlemen are $5, 6,$ and $8$.**\n\nFinal answer: 5, 6, or 8",
+  "usage": {
+    "input_tokens": 109,
+    "output_tokens": 1039,
+    "thinking_tokens": 0
+  },
+  "latency_s": 17.482080654008314,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "5, 6, or 8"
+  }
+}

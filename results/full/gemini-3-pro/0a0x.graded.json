@@ -1,0 +1,25 @@
+{
+  "id": "0a0x",
+  "country": "Netherlands",
+  "competition": "Dutch Mathematical Olympiad",
+  "gold_final_answer": "Each vase contains the note equal to its own label; that is, for every k from 1 to 2023, vase k contains k.",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Functional equations",
+    "Discrete Mathematics > Combinatorics > Induction / smoothing"
+  ],
+  "prompt": "In a room there are $2023$ vases numbered from $1$ to $2023$. In each vase we want to put a note with a positive integer from $1, 2, \\ldots, 2023$ on it. The numbers on the notes do *not* necessarily have to be distinct. The following should now apply to each vase. Look at the note inside the vase, find the (not necessarily different) vase with the number written on the note, and look at the note inside this vase. Then the average of the numbers on the two notes must be exactly equal to the number of the first selected vase. For example, if we put a note with the number $5$ in vase $13$, then vase $5$ should contain a note with the number $21$ on it: after all, the average of $5$ and $21$ is $13$.\n\nDetermine all possible ways to provide each vase with a note.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "Let $f(i)$ be the number written on the note in vase $i$, where $i \\in \\{1, 2, \\ldots, 2023\\}$. The problem states that for any chosen vase $i$, the average of the number on its note, $f(i)$, and the number on the note in vase $f(i)$, which is $f(f(i))$, must be equal to $i$. \n\nThis gives us the equation:\n$$ \\frac{f(i) + f(f(i))}{2} = i \\implies f(f(i)) + f(i) - 2i = 0 $$\n\nFor any starting vase $i$, we can define a sequence $x_n$ by setting $x_0 = i$ and $x_{n+1} = f(x_n)$ for all $n \\ge 0$. The condition must hold for all vases, so it holds for $x_n$ as well. Substituting our sequence into the equation gives a linear recurrence relation:\n$$ x_{n+2} + x_{n+1} - 2x_n = 0 $$\n\nThe characteristic equation for this recurrence is:\n$$ r^2 + r - 2 = 0 $$\nwhich factors as $(r - 1)(r + 2) = 0$. The roots are $r = 1$ and $r = -2$. \n\nThe general solution to this recurrence relation is:\n$$ x_n = A(1)^n + B(-2)^n = A + B(-2)^n $$\nwhere $A$ and $B$ are constants determined by the initial values $x_0$ and $x_1$.\n\nSince the numbers on the notes must be chosen from the finite set $\\{1, 2, \\ldots, 2023\\}$, the sequence $x_n$ must be bounded. However, if $B \\neq 0$, the term $B(-2)^n$ will grow arbitrarily large in absolute value as $n$ increases, meaning $x_n$ will eventually become negative or exceed 2023, which is not allowed. \n\nTherefore, we must have $B = 0$. This implies that the sequence is constant:\n$$ x_n = A \\text{ for all } n \\ge 0 $$\n\nSince $x_0 = i$, we have $A = i$. Thus, $x_1 = f(i) = i$. \n\nThis means the only valid assignment is to put the note with the number $i$ in vase $i$ for every vase. We can easily verify this works: if $f(i) = i$, then $f(f(i)) = i$, and their average is $\\frac{i + i}{2} = i$, which satisfies the condition.\n\nFinal answer: f(i) = i \\text{ for all } i \\in \\{1, 2, \\ldots, 2023\\}",
+  "usage": {
+    "input_tokens": 246,
+    "output_tokens": 646,
+    "thoughts_tokens": 2020
+  },
+  "latency_s": 22.069956157007255,
+  "cached": false,
+  "grade": {
+    "correct": true,
+    "method": "judge",
+    "predicted": "f(i) = i \\text{ for all } i \\in \\{1, 2, \\ldots, 2023\\}"
+  }
+}

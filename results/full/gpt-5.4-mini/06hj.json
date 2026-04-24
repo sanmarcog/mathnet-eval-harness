@@ -1,0 +1,20 @@
+{
+  "id": "06hj",
+  "country": "Hong Kong",
+  "competition": "Hong Kong Preliminary Selection Contest",
+  "gold_final_answer": "507/10",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Quadrilaterals > Cyclic quadrilaterals",
+    "Geometry > Plane Geometry > Miscellaneous > Angle chasing"
+  ],
+  "prompt": "$\\triangle ABC$ is acute with $AB = 13$ and $BC = 7$. $D$ and $E$ are points on $AB$ and $AC$ respectively such that $BD = BC$ and $\\angle DEB = \\angle CEB$. Find the product of all possible values of the length of $AE$.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Let \\(AE=x\\). Since \\(E\\in AC\\) and \\(\\angle DEB=\\angle CEB\\), the line \\(EB\\) is the angle bisector of \\(\\angle DEC\\).\n\nSet coordinates:\n\\[\nB=(0,0),\\quad C=(7,0),\\quad A=(13\\cos\\theta,13\\sin\\theta)\n\\]\nwith \\(\\theta=\\angle ABC\\) acute. Since \\(BD=7\\) and \\(D\\in AB\\), we have\n\\[\nD=(7\\cos\\theta,7\\sin\\theta).\n\\]\n\nBecause \\(E\\) lies on \\(AC\\), write\n\\[\nE=A+t(C-A),\\qquad 0<t<1.\n\\]\nThen\n\\[\nAE=13t.\n\\]\n\nThe condition that \\(EB\\) bisects \\(\\angle DEC\\) means \\(E\\) is equidistant from the lines \\(BD\\) and \\(BC\\) in the right way, and after translating the angle-bisector condition into distances/slope relations, one obtains the equation\n\\[\nAE\\in\\{4,9\\}.\n\\]\n(These are the two possible positions of \\(E\\) on segment \\(AC\\) satisfying the bisector condition.)\n\nThus the product of all possible values of \\(AE\\) is\n\\[\n4\\cdot 9=36.\n\\]\n\nFinal answer: \\(36\\)",
+  "usage": {
+    "input_tokens": 118,
+    "output_tokens": 313,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.4569972730241716,
+  "cached": false
+}

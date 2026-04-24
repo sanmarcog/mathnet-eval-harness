@@ -1,0 +1,20 @@
+{
+  "id": "04b3",
+  "country": "Croatia",
+  "competition": "Mathematica competitions in Croatia",
+  "gold_final_answer": "(0, 0) and (-2, -4)",
+  "topics_flat": [
+    "Number Theory > Diophantine Equations > Techniques: modulo, size analysis, order analysis, inequalities",
+    "Number Theory > Divisibility / Factorization > Greatest common divisors (gcd)"
+  ],
+  "prompt": "Determine all pairs of integers $(a, b)$ such that $a (a - b) = b$.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To find all pairs of integers $(a, b)$ such that $a(a - b) = b$, we can rearrange the equation to solve for $b$. \n\nFirst, expand the left side:\n$a^2 - ab = b$\n\nNext, group the terms with $b$ on one side:\n$a^2 = ab + b$\n$a^2 = b(a + 1)$\n\nSince $a = -1$ would give $1 = 0$ (which is impossible), we know $a \\neq -1$. We can safely divide by $a + 1$:\n$b = \\frac{a^2}{a + 1}$\n\nTo find when $b$ is an integer, we can perform polynomial division or rewrite the numerator:\n$b = \\frac{a^2 - 1 + 1}{a + 1}$\n$b = \\frac{(a - 1)(a + 1) + 1}{a + 1}$\n$b = a - 1 + \\frac{1}{a + 1}$\n\nFor $b$ to be an integer, the fraction $\\frac{1}{a + 1}$ must also be an integer. This means that $a + 1$ must be a divisor of $1$. The only integer divisors of $1$ are $1$ and $-1$. \n\nThis gives us two cases:\n1) $a + 1 = 1 \\implies a = 0$\nSubstituting $a = 0$ into our equation for $b$:\n$b = 0 - 1 + \\frac{1}{1} = 0$\nThis gives the pair $(0, 0)$.\n\n2) $a + 1 = -1 \\implies a = -2$\nSubstituting $a = -2$ into our equation for $b$:\n$b = -2 - 1 + \\frac{1}{-1} = -4$\nThis gives the pair $(-2, -4)$.\n\nChecking both pairs in the original equation $a(a - b) = b$:\n- For $(0, 0)$: $0(0 - 0) = 0$, which is true.\n- For $(-2, -4)$: $-2(-2 - (-4)) = -2(2) = -4$, which is true.\n\nFinal answer: (0, 0), (-2, -4)",
+  "usage": {
+    "input_tokens": 61,
+    "output_tokens": 524,
+    "thoughts_tokens": 838
+  },
+  "latency_s": 11.401770071941428,
+  "cached": false
+}

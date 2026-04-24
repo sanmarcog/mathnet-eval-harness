@@ -1,0 +1,21 @@
+{
+  "id": "0gni",
+  "country": "Turkey",
+  "competition": "Team Selection Test for IMO",
+  "gold_final_answer": "1/3",
+  "topics_flat": [
+    "Algebra > Algebraic Expressions > Polynomials > Vieta's formulas",
+    "Algebra > Algebraic Expressions > Polynomials > Symmetric functions",
+    "Algebra > Equations and Inequalities > Cauchy-Schwarz"
+  ],
+  "prompt": "Find the minimum of\n$$\n\\frac{1+a+b+c}{3+2a+b} - \\frac{c}{b}\n$$\nwhere $a$, $b$, $c$ are real numbers such that all roots of the equation $x^3 - a x^2 + b x - c = 0$ are real positive numbers.",
+  "model": "claude-sonnet-4-6",
+  "response_text": "Let the three positive real roots be $p, q, r > 0$. Then:\n- $a = p + q + r$\n- $b = pq + pr + qr$\n- $c = pqr$\n\nThe expression becomes:\n$$f = \\frac{1 + (p+q+r) + (pq+pr+qr) + pqr}{3 + 2(p+q+r) + (pq+pr+qr)} - \\frac{pqr}{pq+pr+qr}$$\n\nNotice that:\n- Numerator of first fraction: $1 + p + q + r + pq + pr + qr + pqr = (1+p)(1+q)(1+r)$\n- Denominator of first fraction: $3 + 2(p+q+r) + (pq+pr+qr)$\n\nLet me check the denominator: $3 + 2(p+q+r) + pq+pr+qr$. Hmm, this doesn't factor as nicely. Let me try $p=q=r=t$.\n\nWith $p=q=r=t$:\n- $a = 3t$, $b = 3t^2$, $c = t^3$\n\n$$f = \\frac{(1+t)^3}{3 + 6t + 3t^2} - \\frac{t^3}{3t^2} = \\frac{(1+t)^3}{3(1+t)^2} - \\frac{t}{3} = \\frac{1+t}{3} - \\frac{t}{3} = \\frac{1}{3}$$\n\nSo at $p=q=r$, $f = 1/3$ regardless of $t$. Let me check if this is the minimum.\n\nTry $p=q=1, r \\to 0^+$:\n- $a = 2+r \\approx 2$, $b = 1+2r \\approx 1$, $c = r \\approx 0$\n\n$$f \\approx \\frac{1+2+1+0}{3+4+1} - \\frac{0}{1} = \\frac{4}{8} = \\frac{1}{2}$$\n\nTry $p=q=1, r \\to \\infty$:\n- $a \\approx r$, $b \\approx 2r$, $c \\approx r$\n\n$$f \\approx \\frac{r + 2r + r}{3 + 2r + 2r} - \\frac{r}{2r} = \\frac{4r}{4r} - \\frac{1}{2} = 1 - \\frac{1}{2} = \\frac{1}{2}$$\n\nTry $p=1, q=1, r=t$ and minimize over $t$:\n\n$$f(t) = \\frac{(1+t)(1+1)(1+1)}{3+2(2+t)+(1+2t)} - \\frac{t}{1+2t} = \\frac{4(1+t)}{3+4+2t+1+2t} - \\frac{t}{1+2t} = \\frac{4(1+t)}{8+4t} - \\frac{t}{1+2t}$$\n\n$$= \\frac{4(1+t)}{4(2+t)} - \\frac{t}{1+2t} = \\frac{1+t}{2+t} - \\frac{t}{1+2t}$$\n\n$$f'(t) = \\frac{(2+t)-(1+t)}{(2+t)^2} - \\frac{(1+2t)-2t}{(1+2t)^2} = \\frac{1}{(2+t)^2} - \\frac{1}{(1+2t)^2}$$\n\nSetting $f'(t) = 0$: $(2+t)^2 = (1+2t)^2$, so $2+t = 1+2t$ (taking positive root since both sides positive), giving $t=1$.\n\nAt $t=1$: $f = \\frac{2}{3} - \\frac{1}{3} = \\frac{1}{3}$.\n\nCheck second derivative or boundary behavior: as $t\\to 0^+$ or $t\\to\\infty$, $f \\to 1/2 > 1/3$.\n\nSo the minimum along this path is $1/3$ at $t=1$.\n\nGiven the symmetric case always gives $1/3$ and perturbations increase the value, the minimum is $\\boxed{\\dfrac{1}{3}}$.\n\nFinal answer: $\\dfrac{1}{3}$",
+  "usage": {
+    "input_tokens": 131,
+    "output_tokens": 1177,
+    "thinking_tokens": 0
+  },
+  "latency_s": 14.743144211010076,
+  "cached": false
+}

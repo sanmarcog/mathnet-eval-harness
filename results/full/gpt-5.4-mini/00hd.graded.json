@@ -1,0 +1,26 @@
+{
+  "id": "00hd",
+  "country": "Asia Pacific Mathematics Olympiad (APMO)",
+  "competition": "APMO 2016",
+  "gold_final_answer": "57",
+  "topics_flat": [
+    "Discrete Mathematics > Graph Theory",
+    "Discrete Mathematics > Combinatorics > Coloring schemes, extremal arguments",
+    "Discrete Mathematics > Combinatorics > Induction / smoothing"
+  ],
+  "prompt": "The country Dreamland consists of 2016 cities. The airline Starways wants to establish some one-way flights between pairs of cities in such a way that each city has exactly one flight out of it. Find the smallest positive integer $k$ such that no matter how Starways establishes its flights, the cities can always be partitioned into $k$ groups so that from any city it is not possible to reach another city in the same group by using at most 28 flights.",
+  "model": "gpt-5.4-mini",
+  "response_text": "Model the flights as a directed graph on 2016 vertices where every vertex has outdegree 1. From any city, repeated flights eventually enter a directed cycle, so the graph is a disjoint union of directed cycles with trees feeding into them.\n\nWe need a partition into as few groups as possible so that within each group, no city can reach another city in the same group using at most 28 flights. Equivalently, in each group, any two distinct cities must have directed distance at least 29 in the forward direction.\n\n### Key observation\nIf we consider the 29 sets\n\\[\nG_0,G_1,\\dots,G_{28},\n\\]\nwhere \\(G_i\\) consists of all vertices whose distance along the outgoing edges from some chosen reference level is congruent to \\(i \\pmod{29}\\), then any directed path of length at most 28 cannot start and end in the same \\(G_i\\), because the level changes by the path length mod 29.\n\nIn a functional digraph, this can be done component by component by coloring vertices according to their position along the unique forward path modulo 29. Since each edge advances the level by 1, vertices within the same color class cannot reach each other in at most 28 steps.\n\nSo \\(k\\le 29\\).\n\n### Why 29 is necessary\nConsider the case where the 2016 cities form one directed cycle of length 2016. Then from any city, moving forward 1,2,\\dots,28 steps reaches 28 distinct cities. If we used only 28 groups, by the pigeonhole principle some group would contain two cities whose positions on the cycle differ by at most 28 modulo 2016, hence one could reach the other in at most 28 flights. So 28 groups are not enough.\n\nThus the smallest guaranteed number is\n\nFinal answer: \\(29\\)",
+  "usage": {
+    "input_tokens": 145,
+    "output_tokens": 396,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.5349369569448754,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "\\(29\\)"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "id": "02dc",
+  "country": "Brazil",
+  "competition": "III OBM",
+  "gold_final_answer": "(1) Two solutions: k = ±√2. (2) Three solutions: k = ±1.",
+  "topics_flat": [
+    "Geometry > Plane Geometry > Analytic / Coordinate Methods > Cartesian coordinates",
+    "Algebra > Intermediate Algebra > Quadratic functions"
+  ],
+  "prompt": "For which $k$ does the system $x^2 - y^2 = 0$, $(x - k)^2 + y^2 = 1$ have exactly\n(1) two, (2) three real solutions?",
+  "model": "gpt-5.4-mini",
+  "response_text": "From  \n\\[\nx^2-y^2=0\n\\]\nwe get\n\\[\n(x-y)(x+y)=0,\n\\]\nso every real solution must lie on one of the lines \\(y=x\\) or \\(y=-x\\).\n\nNow intersect each line with\n\\[\n(x-k)^2+y^2=1.\n\\]\n\n## 1) On \\(y=x\\)\nSubstitute \\(y=x\\):\n\\[\n(x-k)^2+x^2=1\n\\]\n\\[\n2x^2-2kx+k^2-1=0.\n\\]\nThis quadratic has discriminant\n\\[\n\\Delta_1 = (-2k)^2-4\\cdot 2\\cdot (k^2-1)=8-4k^2=4(2-k^2).\n\\]\nSo it has:\n- 2 real points if \\(k^2<2\\),\n- 1 double point if \\(k^2=2\\),\n- 0 real points if \\(k^2>2\\).\n\n## 2) On \\(y=-x\\)\nSubstitute \\(y=-x\\):\n\\[\n(x-k)^2+x^2=1,\n\\]\nthe same equation, so the same conclusion holds.\n\nThus the total number of real solutions is:\n- 4 if \\(k^2<2\\), except when the two lines give the same points, which happens only at \\(x=0\\) or when the circle is tangent to both lines.\n- We need to check coincidences carefully.\n\nA point lies on both lines only if \\(x=y=0\\), which does **not** satisfy the second equation unless \\(k^2=1\\), and then \\((0,0)\\) is indeed a solution. But the total count is best obtained by direct geometry:\n\nThe circle \\((x-k)^2+y^2=1\\) intersects each line \\(y=\\pm x\\) in 0, 1, or 2 points. By symmetry, the number of distinct solutions is:\n- \\(4\\) if \\(0<|k|<1\\),\n- \\(3\\) if \\(|k|=1\\),\n- \\(2\\) if \\(1<|k|<\\sqrt2\\),\n- \\(1\\) if \\(|k|=\\sqrt2\\),\n- \\(0\\) if \\(|k|>\\sqrt2\\).\n\nLet’s verify the requested cases.\n\n### (1) Exactly two real solutions\nThis occurs when the circle is tangent to both lines, which happens at\n\\[\nk=\\pm \\sqrt2.\n\\]\nThen each line contributes the same single point:\n\\[\n\\left(\\frac{k}{2}, \\pm \\frac{k}{2}\\right),\n\\]\nbut at \\(k=\\pm\\sqrt2\\) these coincide in pairs, giving exactly 2 distinct real solutions.\n\nSo:\n\\[\n\\boxed{k=\\pm \\sqrt2}.\n\\]\n\n### (2) Exactly three real solutions\nThis happens when one line contributes 2 points and the other contributes 1 point, with one overlap. That occurs for\n\\[\nk=\\pm 1.\n\\]\nIndeed, then \\((0,0)\\) is a solution, and there are two additional distinct intersection points on the other line.\n\nSo:\n\\[\n\\boxed{k=\\pm 1}.\n\\]\n\nFinal answer: (1) \\(k=\\pm\\sqrt2\\), (2) \\(k=\\pm1\\).",
+  "usage": {
+    "input_tokens": 97,
+    "output_tokens": 731,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 5.369308314053342,
+  "cached": false
+}

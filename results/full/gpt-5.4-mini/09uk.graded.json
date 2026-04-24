@@ -1,0 +1,25 @@
+{
+  "id": "09uk",
+  "country": "Netherlands",
+  "competition": "First Round, January 2019",
+  "gold_final_answer": "B",
+  "topics_flat": [
+    "Discrete Mathematics > Combinatorics > Invariants / monovariants",
+    "Discrete Mathematics > Algorithms"
+  ],
+  "prompt": "There are $13$ distinct multiples of $7$ that consist of two digits. You want to create a longest possible chain consisting of these multiples, where two multiples can only be adjacent if the last digit of the left multiple equals the first digit of the right multiple. You can use each multiple at most once. For example, $21$ – $14$ – $49$ is an admissible chain of length $3$. What is the maximum length of an admissible chain?\nA) $6$  B) $7$  C) $8$  D) $9$  E) $10$",
+  "model": "gpt-5.4-mini",
+  "response_text": "List the two-digit multiples of 7:\n\n\\[\n14,\\ 21,\\ 28,\\ 35,\\ 42,\\ 49,\\ 56,\\ 63,\\ 70,\\ 77,\\ 84,\\ 91,\\ 98\n\\]\n\nWe make a directed graph where a multiple \\(ab\\) can go to \\(cd\\) if \\(b=c\\).\n\nNow check possible links:\n\n- \\(14 \\to 42\\)\n- \\(21 \\to 14\\)\n- \\(28 \\to 84\\)\n- \\(35 \\to 56\\)\n- \\(42 \\to 21\\)\n- \\(49 \\to 91\\)\n- \\(56 \\to 63\\)\n- \\(63 \\to 35\\)\n- \\(70 \\to 07\\) impossible\n- \\(77 \\to 77\\) but can’t reuse, so no useful move\n- \\(84 \\to 42\\)\n- \\(91 \\to 14\\)\n- \\(98 \\to 84\\)\n\nSo the usable chains are mostly small cycles or paths. The longest chain comes from the cycle\n\n\\[\n14 \\to 42 \\to 21\n\\]\n\nof length \\(3\\), and similarly\n\n\\[\n35 \\to 56 \\to 63\n\\]\n\nalso length \\(3\\). We can combine disjoint chains only by starting a new chain, since there is no link from one component to another.\n\nA longest admissible chain using distinct numbers is for example:\n\n\\[\n49 \\to 91 \\to 14 \\to 42 \\to 21\n\\]\n\nbut this fails because \\(91\\to14\\) and \\(14\\to42\\) are valid, and then \\(42\\to21\\) is valid, giving length \\(4\\). We can extend further by using the \\(84,98,28\\) component:\n\n\\[\n98 \\to 84 \\to 42 \\to 21 \\to 14\n\\]\n\nbut \\(21\\to14\\) is valid, while \\(14\\to42\\) would repeat \\(42\\), so the chain length is \\(4\\). Trying all components shows the maximum possible length is \\(6\\), for example:\n\n\\[\n49 \\to 91 \\to 14 \\to 42 \\to 21 \\to 13\n\\]\n\nexcept \\(13\\) is not a multiple of 7, so that does not work. The actual longest chain achievable is\n\n\\[\n49 \\to 91 \\to 14 \\to 42 \\to 21\n\\]\n\nof length \\(5\\), and no longer chain exists because the directed graph breaks into small components with no path covering more than 5 distinct vertices.\n\nHence the maximum length is\n\nFinal answer: A) 6",
+  "usage": {
+    "input_tokens": 175,
+    "output_tokens": 585,
+    "reasoning_tokens": 0
+  },
+  "latency_s": 3.7574464639183134,
+  "cached": false,
+  "grade": {
+    "correct": false,
+    "method": "miss",
+    "predicted": "A) 6"
+  }
+}
