@@ -37,7 +37,7 @@ that Week-4's fine-tuned Qwen-2.5-1.5B will be compared against.
 2. **Sonnet 4.6 beats GPT-5.4 by 7pp** (65.0% vs 57.8%) on a sample large enough that this is not noise. The Anthropic lineage outperforms the OpenAI lineage on MathNet-style olympiad problems in our setup.
 3. **GPT-5.4 Mini at 36.7%** is the critical baseline for the QLoRA-Qwen comparison: the real head-to-head for a fine-tuned 1.5B model isn't Opus, it's Mini. The bar is lower than I'd expected.
 4. **Gemini 3 Pro at 73.3% (N=240 of a 300 target)** with capped thinking. Ran with `thinking_budget=4096` to fit budget; would plausibly score 1–3 pp higher with default (unbounded) thinking. Caveat is prominent in methodology.
-5. **GPT-5 family has a large `miss` rate even with the LLM judge enabled** (209 and 315 misses respectively on the ~500-problem runs). Hypothesis: GPT's tendency to answer in prose without the `Final answer:` marker is causing the extractor to pull the wrong substring. Worth investigating before Week-4.
+5. **GPT-5 family has a large `miss` rate even with the LLM judge enabled** (209 and 315 misses respectively). **Investigated** via 40-sample manual categorization ([gpt-missrate-analysis.md](./gpt-missrate-analysis.md)): 85% of sampled misses are genuine model errors; only 10% are grader artifacts (`extractor_failure` or `judge_false_negative`), below the pre-registered 15% fix threshold. **Conclusion: numbers stand; Mini at 37% is the real Week-4 target, not a grader-inflated figure.**
 
 ## Methodology caveats (bullet form — prominent)
 
@@ -59,8 +59,8 @@ The full list of caveats lives in [results/full/NOTES.md](../results/full/NOTES.
 
 ## Follow-ups before Week 3 / 4
 
-- [ ] Fill in the 61 missing Gemini problems after its daily quota resets, re-grade Gemini
-- [ ] Investigate the GPT-5 high `miss` rate — sample ~20 of the "miss" responses and categorize: (a) genuine wrong, (b) judge-conservative false negative, (c) extractor failure
+- [ ] Fill in the remaining 60 Gemini problems after its daily quota resets, re-grade Gemini (optional — current N=240 is sufficient for the headline finding)
+- [x] ~~Investigate the GPT-5 high `miss` rate~~ — **done** ([gpt-missrate-analysis.md](./gpt-missrate-analysis.md)); 10% grader-artifact rate below threshold; numbers stand
 - [ ] Blog-post side observation: pattern-spot the 7 OpenAI-filtered problems (LaTeX? game-theoretic language? specific topics?)
 - [ ] **Week 3:** build per-topic-prefix accuracy breakdown from `topics_flat` (stratified analysis directive from project kickoff)
 - [ ] **Week 4:** run fine-tuned QLoRA Qwen-2.5-1.5B against same 500-problem eval; compare primarily to GPT-5.4 Mini (the cheapest comparable API tier), secondarily to the frontiers

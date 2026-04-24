@@ -48,7 +48,7 @@ Total eval spend: **$41.06**. Judge calls (Sonnet 4.6) are shared across models;
 - **Gemini 3 Pro second at 73% (partial)**. Even with capped thinking. Expect to stay second once the 61 remaining problems fill in.
 - **Sonnet 4.6 (65.0%) beats GPT-5.4 (57.8%)** by ~7pp — not within noise. That's genuinely interesting for the blog.
 - **GPT-5.4 Mini at 36.7%** is the critical datapoint for the QLoRA-Qwen comparison coming in Week 4. That's our real "small-model baseline" target, not Opus or any other flagship.
-- **GPT-5 family shows a strikingly high `miss` rate** (209 and 315 respectively) even after the LLM judge layer. Worth investigating whether this is a formatting issue (GPT produces answers the extractor can't parse), a grader-judge gap (judge is conservative on GPT outputs), or genuine errors. Hypothesis to check: GPT's tendency to wrap answers in prose rather than the `Final answer:` marker.
+- **GPT-5 family shows a strikingly high `miss` rate** (209 and 315 respectively) even after the LLM judge layer. **Manually investigated** via [docs/gpt-missrate-analysis.md](../../docs/gpt-missrate-analysis.md): 40-sample categorization found 34 `genuine_wrong`, 2 `extractor_failure`, 2 `judge_false_negative`, 2 `ambiguous`. Grader-artifact rate (E+J)/N = 10%, below the pre-registered 15% re-grade threshold. Day-2 numbers stand. Mini at 36.7% is a real-model-performance number, not a grader artifact.
 
 ## Operational notes / what surprised us
 
