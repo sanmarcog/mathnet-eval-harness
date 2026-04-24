@@ -82,12 +82,18 @@ def has_final_answer(fa: str | None) -> bool:
     return isinstance(fa, str) and fa.strip() != ""
 
 
-def apply_week1_filters(df: pd.DataFrame, *, verbose: bool = True) -> pd.DataFrame:
+def apply_week1_filters(df: pd.DataFrame, *, verbose: bool = True, english_only: bool = True) -> pd.DataFrame:
     """Apply the Week-1 scope filters and print the funnel.
 
-    Scope: English-only, text-only, has a non-empty `final_answer` (so we can
-    grade it). Rule for language is strict — 'English' case-insensitive only,
-    no bilingual rows like 'Chinese; English' — to keep the eval clean.
+    Scope: text-only + has `final_answer` (so we can grade it), optionally
+    English-only (default). With `english_only=False` the language filter is
+    dropped entirely — used to build the Run-2 multilingual training set
+    (~3.7x more data). Eval-split construction should always keep
+    `english_only=True` so the held-out eval stays language-consistent
+    with the Day-2 frontier-model numbers.
+
+    Rule for language is strict — 'English' case-insensitive only, no
+    bilingual rows like 'Chinese; English' — to keep the eval clean.
     """
     def _print(label: str, n: int) -> None:
         if verbose:
@@ -98,8 +104,11 @@ def apply_week1_filters(df: pd.DataFrame, *, verbose: bool = True) -> pd.DataFra
     df = df[df["images"].map(is_text_only)]
     _print("after text-only filter:", len(df))
 
-    df = df[df["language"].map(is_english)]
-    _print("after English-only filter:", len(df))
+    if english_only:
+        df = df[df["language"].map(is_english)]
+        _print("after English-only filter:", len(df))
+    else:
+        _print("(English filter disabled -- multilingual):", len(df))
 
     df = df[df["final_answer"].map(has_final_answer)]
     _print("after has-final-answer filter:", len(df))

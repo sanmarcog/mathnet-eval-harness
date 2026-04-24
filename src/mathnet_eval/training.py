@@ -81,6 +81,20 @@ class TrainConfig:
     # Reproducibility.
     seed: int = 0
 
+    # Run-2 additions.
+    # When True, wraps the dataset in DataCollatorForCompletionOnlyLM so the
+    # loss is only computed on assistant tokens (not system / user). Default
+    # off to preserve Run-1 behavior; Run-2 sbatch flips it via --completion-only.
+    completion_only_loss: bool = False
+    # Template that marks the start of the assistant turn, used by the
+    # completion-only collator to find where labels start being unmasked.
+    # Qwen 2.5 / Qwen 3 both use the same prefix.
+    response_template: str = "<|im_start|>assistant\n"
+    # Optional: disable thinking mode for Qwen3-family models. Ignored by
+    # Qwen 2.5 (tokenizer has no thinking mode). For Qwen3, False = direct
+    # response (matches our training data which has no <think> traces).
+    enable_thinking: bool = False
+
 
 def _format_messages(row: dict) -> list[dict]:
     """Row -> chat-format messages for SFT. Uses the first non-empty
@@ -104,10 +118,14 @@ def _format_messages(row: dict) -> list[dict]:
     ]
 
 
-def _load_and_filter_train(path: str | Path, tokenizer) -> Any:
+def _load_and_filter_train(path: str | Path, tokenizer, enable_thinking: bool = False) -> Any:
     """Load train.jsonl, drop rows with no usable solution, format to text
     via tokenizer.apply_chat_template, return a HF Dataset with a `text`
-    column (SFTTrainer expects this by default)."""
+    column (SFTTrainer expects this by default).
+
+    `enable_thinking` is forwarded to `apply_chat_template`; Qwen 3
+    respects it, Qwen 2.5's tokenizer ignores the kwarg (silently accepts).
+    """
     from datasets import Dataset
 
     rows = [json.loads(l) for l in Path(path).read_text().splitlines() if l.strip()]
@@ -123,7 +141,14 @@ def _load_and_filter_train(path: str | Path, tokenizer) -> Any:
         except ValueError:
             dropped += 1
             continue
-        text = tokenizer.apply_chat_template(msgs, tokenize=False, add_generation_prompt=False)
+        # Qwen 3 tokenizer supports enable_thinking kwarg; older ones may
+        # raise TypeError. Fall back on a template call without the kwarg.
+        try:
+            text = tokenizer.apply_chat_template(
+                msgs, tokenize=False, add_generation_prompt=False, enable_thinking=enable_thinking,
+            )
+        except TypeError:
+            text = tokenizer.apply_chat_template(msgs, tokenize=False, add_generation_prompt=False)
         kept.append({"text": text, "id": r["id"]})
     print(f"    train data: kept {len(kept)}, dropped {dropped} (no/empty solutions)")
     return Dataset.from_list(kept)
@@ -288,8 +313,8 @@ def train_qlora(cfg: TrainConfig | None = None) -> None:
     model = get_peft_model(model, lora_cfg)
     model.print_trainable_parameters()
 
-    print(f">>> loading + formatting train data: {cfg.train_jsonl}")
-    train_ds = _load_and_filter_train(cfg.train_jsonl, tokenizer)
+    print(f">>> loading + formatting train data: {cfg.train_jsonl}  (enable_thinking={cfg.enable_thinking})")
+    train_ds = _load_and_filter_train(cfg.train_jsonl, tokenizer, enable_thinking=cfg.enable_thinking)
 
     mid_subset = _sample_mid_eval_subset(cfg.eval_jsonl, cfg.mid_eval_n, cfg.seed)
     print(f">>> mid-training eval subset: {len(mid_subset)} problems sampled (seed={cfg.seed}) from {cfg.eval_jsonl}")
@@ -320,13 +345,44 @@ def train_qlora(cfg: TrainConfig | None = None) -> None:
         max_new_tokens=cfg.mid_eval_max_new_tokens,
     )
 
-    trainer = SFTTrainer(
+    trainer_kwargs = dict(
         model=model,
         args=sft_args,
         train_dataset=train_ds,
         tokenizer=tokenizer,
         callbacks=[mid_cb],
     )
+
+    if cfg.completion_only_loss:
+        from trl import DataCollatorForCompletionOnlyLM
+        print(f">>> enabling completion-only loss; response_template = {cfg.response_template!r}")
+        collator = DataCollatorForCompletionOnlyLM(
+            response_template=cfg.response_template,
+            tokenizer=tokenizer,
+        )
+        trainer_kwargs["data_collator"] = collator
+
+        # Verification: show the loss mask on a sample so we catch a mis-aligned
+        # template BEFORE a 10-hour training run.
+        try:
+            import torch as _torch
+            sample_texts = [train_ds[0]["text"]]
+            toks = tokenizer(sample_texts, return_tensors="pt", padding=False, truncation=True, max_length=cfg.max_seq_length)
+            batch = collator([{"input_ids": toks["input_ids"][0].tolist(), "attention_mask": toks["attention_mask"][0].tolist()}])
+            labels = batch["labels"][0]
+            n_masked = int((labels == -100).sum())
+            n_total = int(labels.numel())
+            n_learned = n_total - n_masked
+            decoded_learned = tokenizer.decode(batch["input_ids"][0][labels != -100])
+            print(f">>> completion-only mask check: {n_learned}/{n_total} tokens contribute to loss ({100*n_learned/n_total:.1f}%)")
+            print(f"    first 300 chars of learned-on text: {decoded_learned[:300]!r}")
+            if n_learned < 10 or n_learned == n_total:
+                print("    WARNING: mask looks wrong (too few or too many learned tokens). "
+                      "Check that response_template matches the tokenized chat template exactly.")
+        except Exception as e:
+            print(f"    (mask verification skipped: {type(e).__name__}: {e})")
+
+    trainer = SFTTrainer(**trainer_kwargs)
 
     print(">>> starting training")
     trainer.train()

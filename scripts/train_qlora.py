@@ -45,6 +45,14 @@ def parse_args() -> TrainConfig:
     p.add_argument("--max-seq-length", type=int)
     p.add_argument("--seed", type=int)
 
+    # Run-2 additions.
+    p.add_argument("--completion-only-loss", action="store_true", default=None,
+                   help="Wrap in DataCollatorForCompletionOnlyLM so loss masks system+user tokens.")
+    p.add_argument("--response-template",
+                   help="Exact token prefix that marks the assistant turn start. Default matches Qwen2.5 / Qwen3.")
+    p.add_argument("--enable-thinking", action="store_true", default=None,
+                   help="Qwen3 thinking mode in chat template. Default: OFF (matches direct-response training data).")
+
     args = p.parse_args()
 
     # Merge CLI overrides onto defaults.

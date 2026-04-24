@@ -14,7 +14,7 @@
 #SBATCH --cpus-per-task=4
 #SBATCH --mem=32G
 #SBATCH --gpus-per-node=2080ti:1
-#SBATCH --time=3:00:00
+#SBATCH --time=8:00:00
 #SBATCH --output=slurm-%j.out
 #SBATCH --error=slurm-%j.err
 #SBATCH --requeue
@@ -41,6 +41,7 @@ $PY -u scripts/eval_qwen_hf.py \
     --split data/splits/eval.jsonl \
     --out results/full/qwen-base \
     --model-alias qwen-2.5-1.5b-instruct \
+    --skip-existing \
     2>&1 | tee "$BASE_LOG"
 BASE_RC=${PIPESTATUS[0]}
 echo "[$(date)] base eval rc=$BASE_RC"
@@ -51,6 +52,7 @@ $PY -u scripts/eval_qwen_hf.py \
     --out results/full/qwen-mathnet-run1 \
     --adapter "$ADAPTER" \
     --model-alias qwen-mathnet-run1 \
+    --skip-existing \
     2>&1 | tee "$ADAPTER_LOG"
 ADAPTER_RC=${PIPESTATUS[0]}
 echo "[$(date)] adapter eval rc=$ADAPTER_RC"

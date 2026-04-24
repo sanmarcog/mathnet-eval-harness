@@ -41,6 +41,8 @@ PRICING_USD_PER_MTOK: dict[str, dict[str, float]] = {
     # so estimate_cost_usd returns 0.0 rather than None for these aliases.
     "qwen-2.5-1.5b-instruct": {"input": 0.0, "output": 0.0},
     "qwen-mathnet-run1":      {"input": 0.0, "output": 0.0},
+    "qwen3-1.7b-base":        {"input": 0.0, "output": 0.0},
+    "qwen3-mathnet-run2":     {"input": 0.0, "output": 0.0},
 }
 
 
