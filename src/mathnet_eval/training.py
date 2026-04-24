@@ -319,6 +319,7 @@ def train_qlora(cfg: TrainConfig | None = None) -> None:
     mid_subset = _sample_mid_eval_subset(cfg.eval_jsonl, cfg.mid_eval_n, cfg.seed)
     print(f">>> mid-training eval subset: {len(mid_subset)} problems sampled (seed={cfg.seed}) from {cfg.eval_jsonl}")
 
+    # trl 1.x renamed max_seq_length -> max_length, dropped some kwargs.
     sft_args = SFTConfig(
         output_dir=cfg.out_dir,
         num_train_epochs=cfg.num_train_epochs,
@@ -333,7 +334,7 @@ def train_qlora(cfg: TrainConfig | None = None) -> None:
         save_steps=cfg.save_steps,
         report_to="none",
         dataset_text_field="text",
-        max_seq_length=cfg.max_seq_length,
+        max_length=cfg.max_seq_length,
         seed=cfg.seed,
     )
 
@@ -345,44 +346,18 @@ def train_qlora(cfg: TrainConfig | None = None) -> None:
         max_new_tokens=cfg.mid_eval_max_new_tokens,
     )
 
-    trainer_kwargs = dict(
+    if cfg.completion_only_loss:
+        print(">>> enabling completion-only loss via SFTConfig.completion_only_loss=True (trl 1.x native)")
+        sft_args.completion_only_loss = True
+
+    # trl 1.x renamed `tokenizer` -> `processing_class`.
+    trainer = SFTTrainer(
         model=model,
         args=sft_args,
         train_dataset=train_ds,
-        tokenizer=tokenizer,
+        processing_class=tokenizer,
         callbacks=[mid_cb],
     )
-
-    if cfg.completion_only_loss:
-        from trl import DataCollatorForCompletionOnlyLM
-        print(f">>> enabling completion-only loss; response_template = {cfg.response_template!r}")
-        collator = DataCollatorForCompletionOnlyLM(
-            response_template=cfg.response_template,
-            tokenizer=tokenizer,
-        )
-        trainer_kwargs["data_collator"] = collator
-
-        # Verification: show the loss mask on a sample so we catch a mis-aligned
-        # template BEFORE a 10-hour training run.
-        try:
-            import torch as _torch
-            sample_texts = [train_ds[0]["text"]]
-            toks = tokenizer(sample_texts, return_tensors="pt", padding=False, truncation=True, max_length=cfg.max_seq_length)
-            batch = collator([{"input_ids": toks["input_ids"][0].tolist(), "attention_mask": toks["attention_mask"][0].tolist()}])
-            labels = batch["labels"][0]
-            n_masked = int((labels == -100).sum())
-            n_total = int(labels.numel())
-            n_learned = n_total - n_masked
-            decoded_learned = tokenizer.decode(batch["input_ids"][0][labels != -100])
-            print(f">>> completion-only mask check: {n_learned}/{n_total} tokens contribute to loss ({100*n_learned/n_total:.1f}%)")
-            print(f"    first 300 chars of learned-on text: {decoded_learned[:300]!r}")
-            if n_learned < 10 or n_learned == n_total:
-                print("    WARNING: mask looks wrong (too few or too many learned tokens). "
-                      "Check that response_template matches the tokenized chat template exactly.")
-        except Exception as e:
-            print(f"    (mask verification skipped: {type(e).__name__}: {e})")
-
-    trainer = SFTTrainer(**trainer_kwargs)
 
     print(">>> starting training")
     trainer.train()
