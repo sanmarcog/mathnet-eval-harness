@@ -53,7 +53,7 @@ class TrainConfig:
     mid_eval_n: int = 50
     mid_eval_fractions: tuple[float, ...] = (0.25, 0.5, 0.75)
     mid_eval_log_path: str = "./adapters/qwen-mathnet/mid_eval.jsonl"
-    mid_eval_max_new_tokens: int = 1024
+    mid_eval_max_new_tokens: int = 4096
 
     # LoRA (vanilla).
     lora_r: int = 16

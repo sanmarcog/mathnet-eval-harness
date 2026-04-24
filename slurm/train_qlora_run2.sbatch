@@ -31,6 +31,9 @@ OUT=$ADAPTERS_ROOT/qwen3-mathnet-run2
 
 export HF_HOME=/gscratch/scrubbed/sanmarco/hf_cache
 export PYTHONPATH="$REPO/src"
+export DO_NOT_TRACK=1
+export TRANSFORMERS_NO_ADVISORY_WARNINGS=1
+export HF_HUB_DISABLE_TELEMETRY=1
 
 cd "$REPO"
 mkdir -p logs "$ADAPTERS_ROOT"
@@ -63,4 +66,18 @@ $PY -u scripts/train_qlora.py \
 rc=${PIPESTATUS[0]}
 echo "[$(date)] Run-2 training rc=$rc"
 ls -la "$OUT" || true
+
+if [ "$rc" -eq 0 ]; then
+    MERGED="${OUT}-merged"
+    echo "[$(date)] merging LoRA adapter into base -> $MERGED"
+    $PY -u scripts/merge_adapter.py \
+        --base-model Qwen/Qwen3-1.7B \
+        --adapter-dir "$OUT" \
+        --out-dir "$MERGED" \
+        2>&1 | tee -a "$LOG"
+    merge_rc=${PIPESTATUS[0]}
+    echo "[$(date)] merge rc=$merge_rc"
+    ls -la "$MERGED" || true
+fi
+
 exit $rc
