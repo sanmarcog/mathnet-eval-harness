@@ -28,8 +28,11 @@ def parse_args() -> TrainConfig:
     p.add_argument("--out-dir")
 
     p.add_argument("--mid-eval-n", type=int)
-    p.add_argument("--mid-eval-every-steps", type=int)
     p.add_argument("--mid-eval-log-path")
+    p.add_argument(
+        "--mid-eval-fractions", type=float, nargs="+",
+        help="Mid-training eval triggers at these fractions of total steps (plus every epoch end). Default: 0.25 0.5 0.75",
+    )
 
     p.add_argument("--lora-r", type=int)
     p.add_argument("--lora-alpha", type=int)

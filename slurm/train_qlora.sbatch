@@ -17,6 +17,11 @@
 #SBATCH --mem=32G
 #SBATCH --gpus-per-node=2080ti:1
 #SBATCH --time=4:00:00
+#
+# If OOM on the 2080 Ti (11GB VRAM): drop per_device_train_batch_size to 1
+# and bump gradient_accumulation_steps to 16 to keep effective batch = 16.
+# (Pass via --per-device-train-batch-size 1 --gradient-accumulation-steps 16
+# on the train_qlora.py line below.)
 #SBATCH --output=slurm-%j.out
 #SBATCH --error=slurm-%j.err
 #SBATCH --requeue

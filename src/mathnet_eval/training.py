@@ -42,9 +42,14 @@ class TrainConfig:
     eval_jsonl: str = "data/splits/eval.jsonl"
     out_dir: str = "./adapters/qwen-mathnet"
 
-    # Mid-training eval — see NOTES.md / training-discipline memory.
+    # Mid-training eval fires at each of (fraction × total_steps) plus every
+    # epoch end plus training end. Quarter-fractions give us 4 data points
+    # across any training run for drawing a trend; epoch-end triggers let
+    # us compare "end of epoch 1" vs "end of epoch 2" for the
+    # overfitting-watch pattern (is eval acc still climbing in epoch 2, or
+    # has it plateaued/dropped while train loss continues to fall?).
     mid_eval_n: int = 50
-    mid_eval_every_steps: int = 50
+    mid_eval_fractions: tuple[float, ...] = (0.25, 0.5, 0.75)
     mid_eval_log_path: str = "./adapters/qwen-mathnet/mid_eval.jsonl"
     mid_eval_max_new_tokens: int = 1024
 
@@ -183,47 +188,67 @@ def _mid_eval_generate_and_grade(model, tokenizer, subset: list[dict], max_new_t
 
 
 class MidTrainEvalCallback:
-    """Transformers callback that runs `_mid_eval_generate_and_grade` every
-    `every_steps` steps (and at epoch end) and appends a JSONL line. Judge-
-    free; uses only the cheap grader layers.
+    """Transformers callback that runs `_mid_eval_generate_and_grade` at:
+      - each `fraction × max_steps` (quarter-fractions by default: 25/50/75%),
+      - every epoch boundary,
+      - training end.
+    Dedupes when triggers coincide (e.g. 50% and end-of-epoch-1 on a 2-epoch
+    run). Appends one JSONL line per eval. Judge-free — uses only the cheap
+    grader layers (exact + normalized + symbolic)."""
 
-    Implemented as a duck-typed transformers TrainerCallback to avoid
-    importing transformers at module load (keeps the import light for
-    unit tests)."""
-
-    def __init__(self, subset, tokenizer, every_steps: int, log_path: str, max_new_tokens: int = 1024):
+    def __init__(self, subset, tokenizer, log_path: str, eval_fractions=(0.25, 0.5, 0.75), max_new_tokens: int = 1024):
         self.subset = subset
         self.tokenizer = tokenizer
-        self.every_steps = every_steps
+        self.eval_fractions = tuple(eval_fractions)
         self.log_path = Path(log_path)
         self.log_path.parent.mkdir(parents=True, exist_ok=True)
         self.max_new_tokens = max_new_tokens
+        self._trigger_steps: set[int] = set()
+        self._last_eval_step = -1
 
-    def _run(self, state, model):
+    def on_train_begin(self, args, state, control, **kwargs):
+        # `state.max_steps` is populated after dataset + training args are
+        # resolved, which happens before on_train_begin. Safe to compute here.
+        max_steps = getattr(state, "max_steps", 0) or 0
+        self._trigger_steps = {int(max_steps * f) for f in self.eval_fractions if 0 < f < 1}
+        print(f"  [mid-eval] total training steps = {max_steps}; trigger steps = {sorted(self._trigger_steps)}")
+
+    def _maybe_run(self, state, model, reason: str):
+        if state.global_step == self._last_eval_step:
+            return
+        self._last_eval_step = state.global_step
         t0 = time.perf_counter()
         metrics = _mid_eval_generate_and_grade(model, self.tokenizer, self.subset, self.max_new_tokens)
         elapsed = time.perf_counter() - t0
+        # Best-effort grab of current train loss (if the Trainer populated it).
+        loss = None
+        if getattr(state, "log_history", None):
+            for entry in reversed(state.log_history):
+                if "loss" in entry:
+                    loss = entry["loss"]; break
         entry = {
             "step": state.global_step,
             "epoch": state.epoch,
+            "reason": reason,
+            "train_loss": loss,
             "elapsed_s": round(elapsed, 1),
             **metrics,
         }
         with self.log_path.open("a") as f:
             f.write(json.dumps(entry) + "\n")
-        print(f"  [mid-eval step {state.global_step}] acc={metrics['accuracy']:.1%} "
-              f"({metrics['n_correct']}/{metrics['n_total']})  "
-              f"breakdown={metrics['method_counts']}  {elapsed:.0f}s")
+        print(f"  [mid-eval {reason} step {state.global_step} epoch {state.epoch:.2f}] "
+              f"acc={metrics['accuracy']:.1%} ({metrics['n_correct']}/{metrics['n_total']})  "
+              f"train_loss={loss}  breakdown={metrics['method_counts']}  {elapsed:.0f}s")
 
     def on_step_end(self, args, state, control, **kwargs):
-        if state.global_step and state.global_step % self.every_steps == 0:
-            self._run(state, kwargs["model"])
+        if state.global_step in self._trigger_steps:
+            self._maybe_run(state, kwargs["model"], reason=f"fraction_step")
 
     def on_epoch_end(self, args, state, control, **kwargs):
-        self._run(state, kwargs["model"])
+        self._maybe_run(state, kwargs["model"], reason="epoch_end")
 
     def on_train_end(self, args, state, control, **kwargs):
-        self._run(state, kwargs["model"])
+        self._maybe_run(state, kwargs["model"], reason="train_end")
 
 
 def train_qlora(cfg: TrainConfig | None = None) -> None:
@@ -284,8 +309,8 @@ def train_qlora(cfg: TrainConfig | None = None) -> None:
     mid_cb = MidTrainEvalCallback(
         subset=mid_subset,
         tokenizer=tokenizer,
-        every_steps=cfg.mid_eval_every_steps,
         log_path=cfg.mid_eval_log_path,
+        eval_fractions=cfg.mid_eval_fractions,
         max_new_tokens=cfg.mid_eval_max_new_tokens,
     )
 
