@@ -22,6 +22,8 @@ from dataclasses import dataclass, field, asdict
 from pathlib import Path
 from typing import Any
 
+from transformers import TrainerCallback
+
 
 BASE_MODEL = "Qwen/Qwen2.5-1.5B-Instruct"
 
@@ -187,14 +189,18 @@ def _mid_eval_generate_and_grade(model, tokenizer, subset: list[dict], max_new_t
     }
 
 
-class MidTrainEvalCallback:
+class MidTrainEvalCallback(TrainerCallback):
     """Transformers callback that runs `_mid_eval_generate_and_grade` at:
       - each `fraction × max_steps` (quarter-fractions by default: 25/50/75%),
       - every epoch boundary,
       - training end.
     Dedupes when triggers coincide (e.g. 50% and end-of-epoch-1 on a 2-epoch
     run). Appends one JSONL line per eval. Judge-free — uses only the cheap
-    grader layers (exact + normalized + symbolic)."""
+    grader layers (exact + normalized + symbolic).
+
+    Inherits from `TrainerCallback` so every event the Trainer dispatches
+    (on_init_end, on_save, on_log, ...) has a no-op default — we only
+    override the hooks we care about."""
 
     def __init__(self, subset, tokenizer, log_path: str, eval_fractions=(0.25, 0.5, 0.75), max_new_tokens: int = 1024):
         self.subset = subset
