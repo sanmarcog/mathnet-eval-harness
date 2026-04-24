@@ -106,16 +106,17 @@ def main() -> int:
         "strata_col": args.strata_col,
         "filter_funnel": {
             "total_loaded": len(df),
-            "after_all_filters": len(filtered),
+            "after_all_filters_english_only": len(en_filtered),
         },
         "eval_size": len(eval_df),
-        "train_size": len(train_df),
+        "train_size_english": len(en_train_df),
         "eval_per_strata": dict(Counter(eval_df[args.strata_col]).most_common()),
-        "train_per_strata": dict(Counter(train_df[args.strata_col]).most_common()),
+        "train_per_strata_english": dict(Counter(en_train_df[args.strata_col]).most_common()),
         "problem_type_counts": {
             "eval":  dict(Counter(eval_df["problem_type"]).most_common()),
-            "train": dict(Counter(train_df["problem_type"]).most_common()),
+            "train_english": dict(Counter(en_train_df["problem_type"]).most_common()),
         },
+        "multilingual": args.multilingual,
         "columns_saved": EVAL_COLUMNS,
     }
     (args.out / "stats.json").write_text(json.dumps(stats, indent=2, ensure_ascii=False))
