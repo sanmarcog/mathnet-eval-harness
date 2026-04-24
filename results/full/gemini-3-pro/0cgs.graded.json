@@ -16,7 +16,7 @@
     "thoughts_tokens": 1923
   },
   "latency_s": 24.234457553946413,
-  "cached": false,
+  "cached": true,
   "grade": {
     "correct": true,
     "method": "judge",

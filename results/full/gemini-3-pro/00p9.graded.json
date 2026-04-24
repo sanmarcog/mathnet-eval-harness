@@ -17,7 +17,7 @@
     "thoughts_tokens": 2018
   },
   "latency_s": 20.624178385944106,
-  "cached": false,
+  "cached": true,
   "grade": {
     "correct": true,
     "method": "symbolic",

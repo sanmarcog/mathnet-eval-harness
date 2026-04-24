@@ -11,7 +11,7 @@ _Frontier comparison from Day-2 full run (2026-04-23). QLoRA row lands in Week 4
 | Model | N scored | **MathNet accuracy** | Eval cost | Notes |
 |---|---|---|---|---|
 | **Claude Opus 4.7** | 100 | **84.0%** | $6.14 | Spot-check sample size |
-| **Gemini 3 Pro** | 239 / 300 | **73.2%** | $13.49 | `thinking_budget=4096`, fill-in pending |
+| **Gemini 3 Pro** | 240 / 300 | **73.3%** | $13.55 | `thinking_budget=4096`, 60 problems deferred (daily quota cap) |
 | **Claude Sonnet 4.6** | 500 | **65.0%** | $10.35 | |
 | **GPT-5.4** | 495 / 500 | **57.8%** | $9.52 | 5 OpenAI safety-filter rejections |
 | **GPT-5.4 Mini** | 498 / 500 | **36.7%** | $1.51 | 2 OpenAI safety-filter rejections |

@@ -1,0 +1,19 @@
+{
+  "id": "04qx",
+  "country": "Czech Republic",
+  "competition": "Czech-Slovak-Polish Match",
+  "gold_final_answer": "x = y = z = ± sqrt(2)/2",
+  "topics_flat": [
+    "Algebra > Prealgebra / Basic Algebra > Simple Equations"
+  ],
+  "prompt": "Solve the system of equations\n$$\n\\frac{1}{xy} = \\frac{x}{z} + 1, \\quad \\frac{1}{yz} = \\frac{y}{x} + 1, \\quad \\frac{1}{zx} = \\frac{z}{y} + 1\n$$\nin the domain of the real numbers.",
+  "model": "gemini-3-pro-preview",
+  "response_text": "To solve the given system of equations:\n$$ \\frac{1}{xy} = \\frac{x}{z} + 1 $$\n$$ \\frac{1}{yz} = \\frac{y}{x} + 1 $$\n$$ \\frac{1}{zx} = \\frac{z}{y} + 1 $$\n\nFirst, we multiply each equation by $xyz$ (noting that $x, y, z \\neq 0$):\n1) $z = x^2y + xyz \\implies z - xyz = x^2y$\n2) $x = y^2z + xyz \\implies x - xyz = y^2z$\n3) $y = z^2x + xyz \\implies y - xyz = z^2x$\n\nLet $k = xyz$. The system becomes:\n$$ z - k = x^2y $$\n$$ x - k = y^2z $$\n$$ y - k = z^2x $$\n\nFirst, we can determine that $x, y,$ and $z$ must all have the same sign. \nIf exactly one variable is negative (e.g., $x > 0, y > 0, z < 0$), then $k = xyz < 0$. From the second equation, $x - k = y^2z$. The left side is strictly positive (since $x > 0$ and $k < 0$), but the right side is strictly negative (since $y^2 > 0$ and $z < 0$), which is a contradiction.\nIf exactly two variables are negative (e.g., $x < 0, y < 0, z > 0$), then $k = xyz > 0$. From the second equation, $x - k = y^2z$. The left side is strictly negative, but the right side is strictly positive, which is again a contradiction.\nThus, $x, y,$ and $z$ must all be positive or all be negative.\n\nAssume $x, y, z > 0$. Without loss of generality, because the system is cyclic, we can assume $x$ is the maximum of the three variables. \nIf $x \\ge y \\ge z > 0$, then $x - k \\ge y - k \\ge z - k$, which implies:\n$$ y^2z \\ge z^2x \\ge x^2y $$\nHowever, since $x \\ge y$ and $y \\ge z$, we also have $x^2 \\ge y^2$ and $y \\ge z$, meaning $x^2y \\ge y^2z$. \nFor both $y^2z \\ge x^2y$ and $x^2y \\ge y^2z$ to hold simultaneously, we must have $x^2y = y^2z$. This forces all inequalities to be equalities, yielding $x^2y = y^2z = z^2x$, which implies $x = y = z$.\n\nIf $x \\ge z \\ge y > 0$, then $x - k \\ge z - k \\ge y - k$, which implies:\n$$ y^2z \\ge x^2y \\ge z^2x $$\nFrom $y^2z \\ge x^2y$, we get $\\frac{z}{y} \\ge \\frac{x^2}{y^2}$. Since $x \\ge z$, we have $\\frac{x^2}{y^2} \\ge \\frac{z^2}{y^2}$. Thus, $\\frac{z}{y} \\ge \\frac{z^2}{y^2}$, which simplifies to $y \\ge z$. But we assumed $z \\ge y$, so we must have $y = z$. Substituting this back forces $x = y = z$.\n\nTherefore, in all cases, $x = y = z$. \nSubstituting $x = y = z$ into the first original equation gives:\n$$ \\frac{1}{x^2} = \\frac{x}{x} + 1 $$\n$$ \\frac{1}{x^2} = 2 \\implies x^2 = \\frac{1}{2} \\implies x = \\pm\\frac{1}{\\sqrt{2}} $$\n\nSince $x, y, z$ must have the same sign, the only solutions are when all three are $\\frac{1}{\\sqrt{2}}$ or all three are $-\\frac{1}{\\sqrt{2}}$.\n\nFinal answer: \\left(\\frac{1}{\\sqrt{2}}, \\frac{1}{\\sqrt{2}}, \\frac{1}{\\sqrt{2}}\\right), \\left(-\\frac{1}{\\sqrt{2}}, -\\frac{1}{\\sqrt{2}}, -\\frac{1}{\\sqrt{2}}\\right)",
+  "usage": {
+    "input_tokens": 118,
+    "output_tokens": 1041,
+    "thoughts_tokens": 3461
+  },
+  "latency_s": 37.39723611797672,
+  "cached": false
+}

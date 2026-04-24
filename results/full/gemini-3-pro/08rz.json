@@ -17,5 +17,5 @@
     "thoughts_tokens": 1758
   },
   "latency_s": 18.85712308692746,
-  "cached": false
+  "cached": true
 }

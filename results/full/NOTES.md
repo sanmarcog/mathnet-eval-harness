@@ -10,18 +10,18 @@
 | Model | N scored | **Accuracy** | exact | normalized | symbolic | judge | miss | Eval cost |
 |---|---|---|---|---|---|---|---|---|
 | **Opus 4.7** | 100 | **84.0%** | 20 | 5 | 3 | 56 | 16 | $6.14 |
-| **Gemini 3 Pro** *(partial)* | 239 | **73.2%** | 75 | 1 | 7 | 92 | 64 | $13.49 |
+| **Gemini 3 Pro** *(partial, final for Day-2)* | 240 | **73.3%** | 75 | 1 | 7 | 93 | 64 | $13.55 |
 | **Sonnet 4.6** | 500 | **65.0%** | 87 | 30 | 16 | 192 | 175 | $10.35 |
 | **GPT-5.4** | 495 | **57.8%** | 53 | 24 | 6 | 203 | 209 | $9.52 |
 | **GPT-5.4 Mini** | 498 | **36.7%** | 20 | 23 | 4 | 136 | 315 | $1.51 |
 
-Total eval spend: **$41.00**. Judge calls (Sonnet 4.6) are shared across models; rough estimate ~$5 not itemised here. Full run projected final: **~$50** under the $60 ceiling. *Numbers for Gemini will update once the 61-problem fill-in lands.*
+Total eval spend: **$41.06**. Judge calls (Sonnet 4.6) are shared across models; rough estimate ~$5 not itemised here. Full run final: **~$46** under the $60 ceiling.
 
 ## Methodology caveats — read before citing any number
 
 1. **Sample sizes differ by design and by incident.** The accuracy denominator is `n_scored`, not the nominal target (500 or 300 or 100).
     - Sonnet 4.6, GPT-5.4, GPT-5.4 Mini nominally targeted N=500. Actual `n_scored`: 500, 495, 498. Missing problems are OpenAI safety-filter rejections (see below).
-    - Gemini 3 Pro targeted N=300 (rescoped down from 500 during calibration to fit the $60 ceiling — see §"Gemini rescoping"). Actual `n_scored` as of this writing: **239** due to a preview-model daily quota cap. Fill-in of the remaining 61 is in flight; the Gemini row will update once that completes.
+    - Gemini 3 Pro targeted N=300 (rescoped down from 500 during calibration to fit the $60 ceiling — see §"Gemini rescoping"). Actual final `n_scored` for Day-2: **240**. The preview model enforces a 250 requests-per-day cap (rolling 24 hours) which we hit on the sbatch run (239) and an attempted fill-in window (1 more). Remaining **60 problems are deferred** until we have a reason to run Gemini again (Week 3 topic-stratified analysis is a natural re-run trigger). The 1-problem difference between 239 and 240 does not change any finding.
     - Opus 4.7 was always a **100-problem spot-check** — we deliberately did not run the full 500 because Opus 4.7 is ~5× the price of Sonnet 4.6 and the cross-model headline didn't need it at full N. Wider confidence interval on Opus is expected; treat it as indicative, not definitive.
 
 2. **OpenAI safety-filter rejections adjust the GPT denominators** (*"filter rate"* in the Day-1-reviewed sense):

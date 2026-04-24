@@ -23,20 +23,20 @@ that Week-4's fine-tuned Qwen-2.5-1.5B will be compared against.
 | Model | N scored | **Accuracy** | Eval cost |
 |---|---|---|---|
 | Opus 4.7 *(spot-check)* | 100 | **84.0%** | $6.14 |
-| Gemini 3 Pro *(partial)* | 239 / 300 | **73.2%** | $13.49 |
+| Gemini 3 Pro *(partial, final for Day-2)* | 240 / 300 | **73.3%** | $13.55 |
 | Sonnet 4.6 | 500 | **65.0%** | $10.35 |
 | GPT-5.4 | 495 / 500 | **57.8%** | $9.52 |
 | GPT-5.4 Mini | 498 / 500 | **36.7%** | $1.51 |
-| **Total eval spend** | | | **$41.00** |
+| **Total eval spend** | | | **$41.06** |
 
-*Denominator is `n_scored`; missing-from-500 problems on GPT are OpenAI safety-filter rejections (documented). Gemini number will update when the 61-problem fill-in completes.*
+*Denominator is `n_scored`; missing-from-500 problems on GPT are OpenAI safety-filter rejections (documented). Gemini finished at N=240 due to a preview-model daily quota cap; the remaining 60 are deferred to a future run.*
 
 ## Findings (preliminary)
 
 1. **Opus 4.7 is clearly the strongest**, but the spot-check-only sample (N=100) means a ~±8 pp 95% CI. Treat as indicative.
 2. **Sonnet 4.6 beats GPT-5.4 by 7pp** (65.0% vs 57.8%) on a sample large enough that this is not noise. The Anthropic lineage outperforms the OpenAI lineage on MathNet-style olympiad problems in our setup.
 3. **GPT-5.4 Mini at 36.7%** is the critical baseline for the QLoRA-Qwen comparison: the real head-to-head for a fine-tuned 1.5B model isn't Opus, it's Mini. The bar is lower than I'd expected.
-4. **Gemini 3 Pro at 73.2% (partial)** with capped thinking. Ran with `thinking_budget=4096` to fit budget; would plausibly score 1–3 pp higher with default (unbounded) thinking. Caveat is prominent in methodology.
+4. **Gemini 3 Pro at 73.3% (N=240 of a 300 target)** with capped thinking. Ran with `thinking_budget=4096` to fit budget; would plausibly score 1–3 pp higher with default (unbounded) thinking. Caveat is prominent in methodology.
 5. **GPT-5 family has a large `miss` rate even with the LLM judge enabled** (209 and 315 misses respectively on the ~500-problem runs). Hypothesis: GPT's tendency to answer in prose without the `Final answer:` marker is causing the extractor to pull the wrong substring. Worth investigating before Week-4.
 
 ## Methodology caveats (bullet form — prominent)
