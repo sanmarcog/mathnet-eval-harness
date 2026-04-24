@@ -33,14 +33,18 @@ mkdir -p logs results/full
 LOG=logs/qwen3_base_${SLURM_JOB_ID}.log
 echo "[$(date)] launching base Qwen3-1.7B eval; log -> $LOG"
 
+# Run Qwen3 in *non-thinking* mode after the thinking-mode attempt
+# showed Qwen3-1.7B unable to converge within 2048 tokens (runs away in
+# thinking without ever emitting the final answer). Direct-response mode
+# gives terminating, grader-friendly outputs comparable to our Qwen 2.5
+# baseline. Caveat goes in the writeup.
 $PY -u scripts/eval_qwen_hf.py \
     --base-model Qwen/Qwen3-1.7B \
     --split data/splits/eval.jsonl \
     --out results/full/qwen3-1.7b-base \
     --model-alias qwen3-1.7b-base \
     --prompt-format boxed \
-    --enable-thinking \
-    --sampling recommended \
+    --sampling greedy \
     --seed 0 \
     --precision bf16 \
     --max-new-tokens 2048 \
