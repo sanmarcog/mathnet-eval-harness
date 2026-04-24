@@ -37,6 +37,10 @@ PRICING_USD_PER_MTOK: dict[str, dict[str, float]] = {
     "gemini-3-pro":      {"input": 2.00, "output": 12.00},
     "gemini-3-pro-preview":   {"input": 2.00, "output": 12.00},
     "gemini-3.1-pro-preview": {"input": 2.00, "output": 12.00},
+    # Local HF models run on our GPU -- no per-token API cost. Kept here
+    # so estimate_cost_usd returns 0.0 rather than None for these aliases.
+    "qwen-2.5-1.5b-instruct": {"input": 0.0, "output": 0.0},
+    "qwen-mathnet-run1":      {"input": 0.0, "output": 0.0},
 }
 
 
