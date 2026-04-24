@@ -40,11 +40,24 @@ PRICING_USD_PER_MTOK: dict[str, dict[str, float]] = {
 }
 
 
-def estimate_cost_usd(provider_model_id: str | None, in_tokens: int, out_tokens: int) -> float | None:
+def estimate_cost_usd(
+    provider_model_id: str | None,
+    in_tokens: int,
+    out_tokens: int,
+    thinking_tokens: int = 0,
+) -> float | None:
+    """Cost from token totals. `thinking_tokens` (Gemini `thoughts_tokens` /
+    OpenAI `reasoning_tokens` / Anthropic `thinking_tokens`) is added to the
+    output side because every provider we use bills hidden reasoning at the
+    output rate. Omitting it used to under-count Gemini by ~6x."""
     p = PRICING_USD_PER_MTOK.get(provider_model_id or "")
     if not p:
         return None
-    return round(in_tokens * p["input"] / 1_000_000 + out_tokens * p["output"] / 1_000_000, 4)
+    billed_output = out_tokens + (thinking_tokens or 0)
+    return round(
+        in_tokens * p["input"] / 1_000_000 + billed_output * p["output"] / 1_000_000,
+        4,
+    )
 
 
 def parse_args() -> argparse.Namespace:
@@ -116,7 +129,16 @@ def main() -> int:
 
     in_tok = base.get("total_input_tokens", 0)
     out_tok = base.get("total_output_tokens", 0)
-    eval_cost = estimate_cost_usd(provider_model_id, in_tok, out_tok)
+    # Sum hidden-reasoning tokens across all responses -- run_eval.py does not
+    # aggregate these into its summary, so we do it here.
+    th_tok = 0
+    for f in response_files:
+        try:
+            u = (json.loads(f.read_text()).get("usage", {}) or {})
+        except Exception:
+            continue
+        th_tok += int(u.get("thoughts_tokens") or u.get("reasoning_tokens") or u.get("thinking_tokens") or 0)
+    eval_cost = estimate_cost_usd(provider_model_id, in_tok, out_tok, th_tok)
 
     n = sum(v for k, v in method_counts.items() if k != "no-gold") or 1
 
