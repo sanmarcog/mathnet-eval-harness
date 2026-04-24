@@ -20,6 +20,7 @@ from pathlib import Path
 
 from mathnet_eval.data import (
     EVAL_COLUMNS,
+    TRAIN_COLUMNS,
     apply_week1_filters,
     load_mathnet,
     stratified_split,
@@ -76,8 +77,9 @@ def main() -> int:
     print(f"    train: {len(train_df)} rows across {train_df[args.strata_col].nunique()} strata")
 
     args.out.mkdir(parents=True, exist_ok=True)
-    to_jsonl(eval_df, args.out / "eval.jsonl")
-    to_jsonl(train_df, args.out / "train.jsonl")
+    to_jsonl(eval_df, args.out / "eval.jsonl", columns=EVAL_COLUMNS)
+    # Train needs solutions_markdown for SFT; eval is kept lean.
+    to_jsonl(train_df, args.out / "train.jsonl", columns=TRAIN_COLUMNS)
 
     stats = {
         "seed": args.seed,

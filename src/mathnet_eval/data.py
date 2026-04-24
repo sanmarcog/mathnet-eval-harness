@@ -179,10 +179,14 @@ EVAL_COLUMNS = [
     "problem_markdown", "final_answer", "topics_flat",
 ]
 
+# Train split additionally carries `solutions_markdown` so SFT can condition
+# on gold solutions. Keep eval lean — eval only needs the problem text.
+TRAIN_COLUMNS = EVAL_COLUMNS + ["solutions_markdown"]
+
 
 def to_jsonl(df: pd.DataFrame, path: str | Path, columns: Iterable[str] = EVAL_COLUMNS) -> None:
-    """Write a subset of columns to JSONL at `path`. Lists (e.g. topics_flat)
-    are preserved as JSON arrays."""
+    """Write a subset of columns to JSONL at `path`. Lists (e.g. topics_flat,
+    solutions_markdown) are preserved as JSON arrays."""
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
     df[list(columns)].to_json(path, orient="records", lines=True, force_ascii=False)
