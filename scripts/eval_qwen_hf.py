@@ -59,6 +59,10 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--precision", choices=("4bit", "bf16"), default="4bit",
                    help="4bit: bnb NF4 (memory-optimal; slow for small models where memory is not bottleneck). "
                         "bf16: no quantization, full bf16 (much faster for <=2B on big GPUs).")
+    p.add_argument("--backend", choices=("hf", "vllm"), default="hf",
+                   help="hf: transformers.generate (slow, always works); vllm: batched high-throughput "
+                        "engine (3-5x faster for Qwen3 thinking-mode). vllm does not support adapters here "
+                        "-- use hf for fine-tuned evals.")
     p.add_argument("--skip-existing", action="store_true",
                    help="Skip problems that already have a {id}.json in --out dir (enables cheap restart).")
     return p.parse_args()
@@ -70,9 +74,121 @@ def _strip_thinking(text: str) -> str:
     return _THINK_RE.sub("", text).strip()
 
 
+def _main_vllm(args) -> int:
+    """vLLM path: batched generation, much higher throughput than HF generate
+    for Qwen3 thinking-mode (3-5x on A40 in our workload). No adapter
+    support here -- adapters still go through the HF path."""
+    import json as _json
+    import time as _time
+
+    from vllm import LLM, SamplingParams
+    from transformers import AutoTokenizer  # just to build chat prompts
+
+    tokenizer = AutoTokenizer.from_pretrained(args.base_model)
+    system_prompt = SYSTEM_PROMPT_BOXED if args.prompt_format == "boxed" else SYSTEM_PROMPT_FINAL_ANSWER
+    model_id = args.model_alias or args.base_model.split("/")[-1].lower()
+
+    if args.sampling == "recommended":
+        sp = SamplingParams(
+            temperature=0.6, top_p=0.95, top_k=20, min_p=0.0,
+            max_tokens=args.max_new_tokens, seed=args.seed,
+        )
+    else:
+        sp = SamplingParams(temperature=0.0, max_tokens=args.max_new_tokens, seed=args.seed)
+
+    print(f">>> [vLLM] loading {args.base_model}  prompt-format={args.prompt_format}  "
+          f"sampling={args.sampling}  enable_thinking={args.enable_thinking}  seed={args.seed}")
+    llm = LLM(model=args.base_model, dtype="bfloat16", trust_remote_code=True,
+              gpu_memory_utilization=0.9, max_model_len=max(args.max_new_tokens + 1024, 8192))
+
+    problems = [_json.loads(l) for l in args.split.read_text().splitlines() if l.strip()]
+    if args.n is not None:
+        problems = problems[: args.n]
+
+    to_run = []
+    for p in problems:
+        out_path = args.out / f"{p['id']}.json"
+        if args.skip_existing and out_path.exists():
+            try:
+                prev = _json.loads(out_path.read_text())
+                if prev.get("response_text") is not None:
+                    continue
+            except Exception:
+                pass
+        to_run.append(p)
+    print(f">>> {len(to_run)} problems to generate (skipped {len(problems) - len(to_run)})")
+
+    prompts = []
+    for p in to_run:
+        msgs = [
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": p["problem_markdown"].strip()},
+        ]
+        try:
+            prompt = tokenizer.apply_chat_template(
+                msgs, tokenize=False, add_generation_prompt=True, enable_thinking=args.enable_thinking,
+            )
+        except TypeError:
+            prompt = tokenizer.apply_chat_template(msgs, tokenize=False, add_generation_prompt=True)
+        prompts.append(prompt)
+
+    t0 = _time.perf_counter()
+    outputs = llm.generate(prompts, sp)
+    wall = _time.perf_counter() - t0
+    print(f">>> vLLM batched generation done in {wall/60:.1f}min for {len(prompts)} prompts ({wall/max(len(prompts),1):.1f}s/problem avg)")
+
+    total_in = total_out = 0
+    for p, out in zip(to_run, outputs):
+        pid = p["id"]
+        o = out.outputs[0]
+        raw_text = o.text
+        text = _strip_thinking(raw_text)
+        input_tokens = len(out.prompt_token_ids)
+        output_tokens = len(o.token_ids)
+        total_in += input_tokens; total_out += output_tokens
+        record = {
+            "id": pid,
+            "country": p.get("country"),
+            "competition": p.get("competition"),
+            "gold_final_answer": p.get("final_answer"),
+            "topics_flat": p.get("topics_flat"),
+            "prompt": p["problem_markdown"].strip(),
+            "model": model_id,
+            "response_text": text,
+            "raw_response_text": raw_text if raw_text != text else None,
+            "usage": {"input_tokens": input_tokens, "output_tokens": output_tokens},
+            "latency_s": None,  # vLLM batches; per-problem latency not meaningful
+            "cached": False,
+        }
+        (args.out / f"{pid}.json").write_text(_json.dumps(record, ensure_ascii=False, indent=2))
+
+    summary = {
+        "model": model_id,
+        "base_model": args.base_model,
+        "adapter": None,
+        "prompt_format": args.prompt_format,
+        "sampling": args.sampling,
+        "enable_thinking": args.enable_thinking,
+        "seed": args.seed,
+        "backend": "vllm",
+        "split": str(args.split),
+        "n_problems": len(problems),
+        "n_scored_fresh": len(to_run),
+        "total_input_tokens": total_in,
+        "total_output_tokens": total_out,
+        "elapsed_s": wall,
+        "errors": [],
+    }
+    (args.out / "summary.json").write_text(_json.dumps(summary, indent=2, ensure_ascii=False))
+    print(f">>> done: {len(to_run)} fresh + {len(problems) - len(to_run)} skipped. tokens in={total_in} out={total_out}")
+    return 0
+
+
 def main() -> int:
     args = parse_args()
     args.out.mkdir(parents=True, exist_ok=True)
+    if args.backend == "vllm":
+        return _main_vllm(args)
 
     import torch
     from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
