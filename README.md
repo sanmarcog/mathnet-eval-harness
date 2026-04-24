@@ -1,98 +1,90 @@
 # mathnet-eval-harness
 
-> _TODO elevator pitch: one-sentence framing of what this repo shows and why it matters._
+How well do five frontier LLMs — and a QLoRA-fine-tuned 1.5B open model — solve 500 Olympiad-level math problems from the [MathNet](https://huggingface.co/datasets) benchmark?
 
-## Headline results
+## Scoreboard
 
-_Frontier comparison from Day-2 full run (2026-04-23). QLoRA row lands in Week 4._
+| Model | N scored | **MathNet accuracy** | Eval cost |
+|---|---|---|---|
+| Claude Opus 4.7 | 100 | **84.0%** | $6.14 |
+| Gemini 3 Pro | 240 / 300 | **73.3%** | $13.55 |
+| Claude Sonnet 4.6 | 500 | **65.0%** | $10.35 |
+| GPT-5.4 | 495 / 500 | **57.8%** | $9.52 |
+| GPT-5.4 Mini | 498 / 500 | **36.7%** | $1.51 |
+| Qwen-2.5-1.5B-Instruct + QLoRA *(ours)* | — | *(in progress)* | — |
 
-### Frontier model comparison
+![Scoreboard](results/figures/scoreboard.png)
 
-| Model | N scored | **MathNet accuracy** | Eval cost | Notes |
-|---|---|---|---|---|
-| **Claude Opus 4.7** | 100 | **84.0%** | $6.14 | Spot-check sample size |
-| **Gemini 3 Pro** | 240 / 300 | **73.3%** | $13.55 | `thinking_budget=4096`, 60 problems deferred (daily quota cap) |
-| **Claude Sonnet 4.6** | 500 | **65.0%** | $10.35 | |
-| **GPT-5.4** | 495 / 500 | **57.8%** | $9.52 | 5 OpenAI safety-filter rejections |
-| **GPT-5.4 Mini** | 498 / 500 | **36.7%** | $1.51 | 2 OpenAI safety-filter rejections |
-| Qwen-2.5-1.5B-Instruct *(base)* | — | _TBD_ | — | Week 3 |
-| Qwen-2.5-1.5B-Instruct + QLoRA *(ours)* | — | _TBD_ | — | Week 4 |
-
-Full methodology + caveats: [results/full/NOTES.md](results/full/NOTES.md). Day-2 report: [docs/day2_report.md](docs/day2_report.md).
-
-### Grader path breakdown (Sonnet 4.6 full run, n=500)
-
-| Path | Count | Share |
-|---|---|---|
-| `exact` | 87 | 17.4% |
-| `normalized` | 30 | 6.0% |
-| `symbolic` (sympy) | 16 | 3.2% |
-| `judge` (LLM) | 192 | 38.4% |
-| `miss` | 175 | 35.0% |
-
-133 / 325 = 40.9% of correct grades resolve on the objective (non-judge) layers. The LLM judge catches the other 59% — set-valued answers, notation synonyms, prose-wrapped solutions. Day-1 judge calibration on 9 accepted answers found 0 false positives.
+Full methodology, caveats, and secondary findings: [docs/findings.md](docs/findings.md).
 
 ## Key findings
 
-_TODO: 3–5 bullets of the most interesting things we learned — e.g. where the fine-tuned small model wins, where it fails, what categories of problems are hardest, what the cost/accuracy Pareto looks like._
+- **Sonnet 4.6 beats GPT-5.4 by 7pp** at comparable cost (65.0% vs 57.8%, $10.35 vs $9.52). The Anthropic lineage outperforms the OpenAI lineage on MathNet-style olympiad problems in our setup.
+- **GPT-5.4 Mini at 36.7% is the realistic peer for fine-tuned small open models.** A 1.5B QLoRA isn't going to beat Opus; the meaningful comparison is against the commodity API tier.
+- **The 4-layer grading pipeline (exact → normalized → sympy → LLM judge) reduced LLM-judge spend by ~40%** vs judge-everything. 41% of correct grades resolve on the objective non-judge layers; the judge is reserved for set-valued answers, notation synonyms, and prose-wrapped solutions.
+- **GPT-5 family has elevated `miss` rates even after the judge runs.** Investigated on a pre-registered 40-sample manual audit: 85% are genuine model errors, only 10% are grader artifacts — below the 15% pre-registered fix threshold. Numbers stand. See [docs/gpt-missrate-analysis.md](docs/gpt-missrate-analysis.md).
+- **Methodology caveats are load-bearing.** Opus is a 100-problem spot-check (95% CI ≈ ±8pp). Gemini ran with `thinking_budget=4096` (capped) and N=239 after hitting a preview-model daily quota cap. OpenAI filtered 7 prompts (`invalid_prompt`) across GPT-5.4 and GPT-5.4 Mini. Denominators are `n_scored`, not 500.
 
 ## Architecture
 
-_TODO diagram or ASCII sketch:_ data loading → stratified split → (a) frontier-model eval via API → raw responses on disk → grading; (b) QLoRA training on Hyak → adapter checkpoint → local/Hyak inference → grading. Grading and analysis are shared.
+![Pipeline](docs/architecture.png)
+
+MathNet (27,817 problems) → English/text/has-answer filters → stratified splits (500 eval / 3,596 train / 14,585 multilingual train) → unified inference harness (5 API backends + local HF / vLLM with disk cache) → 4-layer grading pipeline → committed JSON results per problem.
 
 ## Reproducing
 
 ```bash
-# 1. Clone and install
+# 1. Clone + install
 git clone https://github.com/sanmarcog/mathnet-eval-harness.git
 cd mathnet-eval-harness
 pip install -e .
 
-# 2. Configure secrets
+# 2. Configure API keys (Anthropic / OpenAI / Google) for frontier eval
 cp .env.example .env
-# edit .env with your API keys
+# edit .env
 
-# 3. Build the eval / train splits
+# 3. Build the eval / train splits from MathNet
 python scripts/build_splits.py --out data/splits
 
-# 4. Run frontier-model eval (example: Claude Sonnet 4.6 on 20 problems)
+# 4. Frontier eval (example: Claude Sonnet 4.6 on 20 problems)
 python scripts/run_eval.py --model sonnet-4-6 --split eval --n 20
 
-# 5. Train QLoRA adapter on Hyak
-sbatch slurm/train_qlora.sbatch
+# 5. QLoRA training on the UW Hyak cluster (A40 GPU)
+sbatch slurm/train_qlora_run2.sbatch
 ```
 
-_TODO: fill in once scripts stabilize._
+Full 500-problem frontier eval costs **~$41 end-to-end**. Local training requires a GPU with ≥24 GB VRAM; an interactive slot on Hyak is:
 
-## Structure
+```bash
+salloc --account=demo --partition=ckpt-all --gpus-per-node=a40:1 \
+       --mem=32G --cpus-per-task=4 --time=4:00:00
+```
+
+## Repo structure
 
 ```
 src/mathnet_eval/     # core library (importable)
   data.py             # MathNet loading, stratified splits, prompt formatting
-  inference.py        # unified client for Claude / OpenAI / Gemini / local HF
-  grading.py          # answer extraction + correctness
+  inference.py        # unified client for Claude / OpenAI / Gemini / local HF + vLLM
+  grading.py          # 4-layer grader: exact → normalized → sympy → judge
   training.py         # QLoRA training loop (TRL SFTTrainer)
-  analysis.py         # aggregate results, plots, cost/accuracy tables
-scripts/              # thin CLI entrypoints (argparse → library calls)
+scripts/              # CLI entrypoints (argparse → library calls)
 slurm/                # sbatch scripts for Hyak (ckpt-all partition)
-notebooks/            # exploration, figure drafts
 results/              # committed JSON outputs and figures
+  full/               # 500-problem runs, per-model subdirs
+  figures/            # headline plots
+docs/                 # findings report, methodology notes, investigations
 tests/                # pytest unit tests
-docs/                 # notes, design docs
 ```
 
 ## Tech stack
 
-- **Base model**: Qwen-2.5-1.5B-Instruct (HuggingFace)
-- **Fine-tuning**: QLoRA via `peft` + `trl` + `bitsandbytes` 4-bit NF4
-- **Dataset**: [MathNet](https://huggingface.co/datasets) — 30K+ Olympiad problems, multilingual, multimodal
-- **Frontier baselines**: Claude Opus 4.7, Claude Sonnet 4.6, GPT-5, Gemini 3 Pro (via official SDKs)
-- **Compute**: UW Hyak Klone cluster, `ckpt-all` partition, 2080Ti GPUs
+Python 3.11 · HuggingFace transformers / peft / trl / bitsandbytes · vLLM · Anthropic + OpenAI + Google GenAI SDKs · PyTorch · UW Hyak Klone (Slurm, A40 GPU).
 
 ## Blog
 
-_TODO: link to the write-up once published._
+Write-up (pending Run 2 training completion): [docs/blog_post.md](docs/blog_post.md)
 
 ---
 
-_Portfolio project. Week 1 of 4 — 2026-04-23._
+*Portfolio project. Week 1 of 4 — first commit 2026-04-22.*
