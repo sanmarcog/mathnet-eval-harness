@@ -41,6 +41,18 @@ mkdir -p logs "$ADAPTERS_ROOT"
 LOG=logs/qlora_run2_${SLURM_JOB_ID}.log
 echo "[$(date)] launching Run-2 training; log -> $LOG"
 
+# Pre-flight: verify the completion_only_loss response template aligns
+# with this (model, tokenizer, dataset) triple. Silent-fail mode if not.
+echo "[$(date)] pre-flight: verify response template alignment"
+$PY -u scripts/verify_response_template.py \
+    --base-model Qwen/Qwen3-1.7B \
+    --train-jsonl data/splits/train_multilingual.jsonl \
+    --n 16 \
+    2>&1 | tee -a "$LOG"
+rc_verify=${PIPESTATUS[0]}
+echo "[$(date)] verify rc=$rc_verify"
+[ "$rc_verify" -eq 0 ] || { echo "ABORTING: response template misaligned"; exit $rc_verify; }
+
 # Run 2 hyperparameters:
 #   base model: Qwen3-1.7B (up from Qwen2.5-1.5B)
 #   LoRA r=64 alpha=128 (up from 16/32; math-recipe standard)
