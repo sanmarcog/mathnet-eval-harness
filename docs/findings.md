@@ -235,6 +235,152 @@ running this experiment doesn't repeat them.
    under 500-sequence batching). Without this step, fine-tuned eval
    would fall back to HF generate at ~30 tok/s, i.e. a 10+ hour run.
 
+## Why our first QLoRA attempts regressed: a recipe story
+
+The fine-tune side of this project did not work on the first few attempts.
+We're documenting the journey explicitly because it surfaces a useful
+lesson for anyone fine-tuning small instruction-tuned models on math.
+
+### Run 1 — Qwen 2.5-1.5B-Instruct, default hyperparams
+
+First attempt was a sensible starting point from common QLoRA tutorials:
+
+- Base: `Qwen/Qwen2.5-1.5B-Instruct`
+- LoRA r=16, alpha=32, all 7 target modules (q/k/v/o + gate/up/down)
+- Effective batch 16, learning rate **2e-4**, 2 epochs
+- Loss: standard SFT loss over the full sequence (no `completion_only_loss`)
+- Training data: 3,596 English MathNet rows
+
+**Result on n=150 paired vs base on the same IDs:**
+
+| | Correct | Accuracy |
+|---|---|---|
+| Qwen2.5-1.5B-Instruct (base) | 24/150 | 16.0% |
+| + Run 1 LoRA adapter | 15/150 | 10.0% |
+| Delta | | **-6.0 pp** |
+
+13 problems regressed (base ✓ → adapter ✗), 4 improved (base ✗ → adapter ✓).
+McNemar exact two-sided **p = 0.049**. The fine-tune was meaningfully
+*worse* than the base.
+
+### Run B — single-variable: enable `completion_only_loss`
+
+Hypothesis: Run 1's loss was being computed on the full sequence including
+the system prompt and user problem, so ~20% of gradient was wasted
+reproducing the prompt instead of the answer. We enabled
+`completion_only_loss=True` (mask system + user tokens) and held everything
+else identical.
+
+Pre-flight, we also wrote
+[scripts/verify_response_template.py](../scripts/verify_response_template.py)
+to ensure the response template `<|im_start|>assistant\n` actually appears
+as a contiguous subsequence in the tokenized data — TRL's collator
+silently fails to mask if it doesn't, and we wanted to rule that failure
+mode out before launching a 5-hour training run. Verification passed.
+
+**Result on n=150 paired vs base:**
+
+| | Correct | Accuracy |
+|---|---|---|
+| Qwen2.5-1.5B-Instruct (base) | 24/150 | 16.0% |
+| + Run B (= Run 1 + completion_only_loss) | 12/150 | 8.0% |
+| Delta vs base | | **-8.0 pp** (p = 0.008) |
+| Delta vs Run 1 | | -2 pp (p = 0.58, not significant) |
+
+Run B was *not* better than Run 1. Loss-masking was not the load-bearing
+fix. The regression came from somewhere else.
+
+### Run D-LR — cancelled mid-flight
+
+Next single-variable hypothesis was that the **2e-4 learning rate was too
+aggressive** for an instruction-tuned base on a small dataset, causing
+catastrophic forgetting. We submitted Run D-LR identical to Run B with
+LR cut to 5e-5 (a midpoint) and started training.
+
+We cancelled it 1h15m in. The mid-eval callback (50 problems × up to
+4096 output tokens via 4-bit + LoRA HF generate, on the slow inference
+path with the unmerged adapter) was running at ~2.5 minutes per problem,
+so a single mid-eval callback was projected at 2 hours. With four
+callbacks per training run plus the actual training, total wall time
+exceeded our 6-hour walltime allocation. The job would have been
+slurm-killed before producing the held-out accuracy signal we wanted.
+
+What we kept from D-LR: the training loss curve over the first ~25% of
+training (380 steps total, got to 94). Loss dropped 1.15 → ~0.80 then
+stabilized around 0.83-0.85. Confirms training at LR=5e-5 was numerically
+stable; no held-out accuracy signal collected.
+
+### Deep dive into the literature
+
+After Run B failed to recover and D-LR was cancelled, we paused to read
+what works empirically for math fine-tuning at this scale. The most
+informative source was Alibaba's own
+[Qwen2.5-Math Technical Report](https://arxiv.org/html/2409.12122v1) —
+the only known successful math fine-tune of this model family at this
+size. Their published recipe for the 1.5B model:
+
+| | Alibaba's Qwen2.5-Math 1.5B | Our Run 1 / B |
+|---|---|---|
+| **Learning rate** | **2 × 10⁻⁵** (decays to 7×10⁻⁷) | 2 × 10⁻⁴ |
+| **Effective batch** | **128** | 16 |
+| Epochs | 3 | 2 |
+| Seq length | 4,096 | 2,048 |
+| Data scale | 2.5M CoT problems, RM-curated | ~3.6K problems |
+| Base | Qwen2.5-1.5B (the *base*, not Instruct) | Qwen2.5-1.5B-**Instruct** |
+
+We were **10× too high on LR**, **8× too small on batch**, **700× too
+small on data**, and on the wrong base variant. Each contributes; together
+they explain the regression. Other sources converge on the same range:
+math fine-tuning lives at 10⁻⁵ to 10⁻⁴, with instruction-tuned bases at
+the low end.
+
+The
+[catastrophic forgetting literature](https://arxiv.org/html/2512.13706)
+documents the failure mode directly: Flan-T5-Base loses 64.5pp on NLI
+within 1,000 steps of math-only fine-tuning. LoRA mitigates relative to
+full fine-tuning but does not eliminate the problem; aggressive LR on a
+narrow domain still degrades general abilities the model needed to solve
+the problem.
+
+### Decision: skip the LR ablation, adopt the published recipe
+
+We did *not* run a learning-rate sweep to triangulate the right value.
+The literature converged on 2e-5 for this exact model family at this size.
+Adopting that directly was a faster path to a working result than
+re-deriving it experimentally. The blog-post framing: *we deferred to
+published expertise rather than re-running the ablation that produced it.*
+
+### Run 2 — recipe-matched
+
+Run 2's training sbatch
+([slurm/train_qlora_run2.sbatch](../slurm/train_qlora_run2.sbatch))
+matches the published recipe on every numerical hyperparameter:
+
+- Learning rate **2e-5**
+- Effective batch **128** (per-device 4 × grad-accum 32)
+- **3 epochs**
+- Sequence length **4,096**
+
+Plus our additions: QLoRA r=64 / alpha=128 (the parameter-efficient
+wrapper around the recipe; we have ~10K rows vs Alibaba's 2.5M, and rank
+gives the adapter capacity to compensate); `completion_only_loss=True`;
+`enable_thinking=False` in the chat template (training data has no
+`<think>` traces); base `Qwen/Qwen3-1.7B` (paired with the 36.8% baseline
+that anchors the headline).
+
+We also filtered the multilingual training data
+([scripts/filter_train_by_solution_length.py](../scripts/filter_train_by_solution_length.py))
+to drop the 13.7% of rows with empty `solutions_markdown` and the 6.5%
+with sub-100-token completions — those rows train the model to "after
+this prompt, emit boxed answer" with zero reasoning content. Filtered set
+is 11,648 rows, well above the 8K floor we'd set for the
+filter-or-keep-unfiltered call.
+
+The post-training eval is split into a separate sbatch
+([slurm/eval_qwen3_run2.sbatch](../slurm/eval_qwen3_run2.sbatch)) so
+train+merge fits comfortably in one walltime window and the n=500
+thinking-on 16K-token eval runs separately.
+
 ## Links
 
 - Per-model raw + graded JSONs: [results/full/](../results/full/)

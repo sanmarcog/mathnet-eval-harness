@@ -95,6 +95,21 @@ will. Get ahead of it.
   cage
 - The vLLM-doesn't-load-adapters discovery and the merge-step fix that
   unblocked fast post-fine-tune eval
+- **The Run 1 → Run B → cancelled D-LR sequence and what we learned.**
+  Run 1 (default 2e-4) regressed -6pp vs base; Run B (single-variable
+  completion-only-loss) didn't recover; the literature deep-dive
+  surfaced Alibaba's published Qwen2.5-Math 1.5B recipe (LR 2e-5,
+  batch 128, 3 epochs). We started a midpoint-LR ablation (D-LR at
+  5e-5) but cancelled it once we noticed (a) it was going to exceed
+  walltime due to the 4096-token mid-eval pause cost, and (b) the
+  diagnostic value was marginal — we were going to adopt 2e-5 in
+  Run 2 either way, and 5e-5 vs 2e-5 are close enough that
+  interpolating from a 5e-5 point doesn't change the decision. So
+  we skipped the LR ablation and went directly to the published
+  recipe. Worth saying explicitly in the post: *we did not run an LR
+  sweep; we adopted the literature recipe.* Hiring readers value
+  knowing when an experimentalist chooses to defer to published
+  expertise rather than re-derive it.
 
 These belong in the post — they make it more credible, not less.
 
