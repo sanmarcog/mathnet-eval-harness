@@ -43,10 +43,12 @@ echo "[$(date)] launching Run-2 training; log -> $LOG"
 
 # Pre-flight: verify the completion_only_loss response template aligns
 # with this (model, tokenizer, dataset) triple. Silent-fail mode if not.
+# Uses the solution-length-filtered multilingual train (>=100 tokens of
+# solution text) so near-zero-signal rows are excluded.
 echo "[$(date)] pre-flight: verify response template alignment"
 $PY -u scripts/verify_response_template.py \
     --base-model Qwen/Qwen3-1.7B \
-    --train-jsonl data/splits/train_multilingual.jsonl \
+    --train-jsonl data/splits/train_multilingual_filtered.jsonl \
     --n 16 \
     2>&1 | tee -a "$LOG"
 rc_verify=${PIPESTATUS[0]}
@@ -64,7 +66,7 @@ echo "[$(date)] verify rc=$rc_verify"
 $PY -u scripts/train_qlora.py \
     --base-model Qwen/Qwen3-1.7B \
     --out-dir "$OUT" \
-    --train-jsonl data/splits/train_multilingual.jsonl \
+    --train-jsonl data/splits/train_multilingual_filtered.jsonl \
     --eval-jsonl  data/splits/eval.jsonl \
     --mid-eval-log-path "$OUT/mid_eval.jsonl" \
     --lora-r 64 \
