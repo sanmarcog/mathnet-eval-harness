@@ -85,6 +85,18 @@ might point this out. Be clear in the post:
 Hiring managers won't care about this distinction; thoughtful readers
 will. Get ahead of it.
 
+## Three framings the post must lock in
+
+These came out of the s1+GRPO synthesis + manager review on 2026-04-25.
+
+**Data scale is a feature, not an apology.** Our 11,648 filtered multilingual rows is well within the small-curated regime that's been published to work. [s1 used 1,000 examples](https://arxiv.org/abs/2501.19393) and beat o1-preview at 32B. The relevant comparison is *not* Alibaba's 2.5M (frontier-scale); it's the small-curated end. If Run 2's lift is modest, the framing is "consistent with small-scale SFT literature," not "we didn't have enough data." This is also why distillation from Sonnet (which would balloon "data" via stronger CoT traces) is deferred — at our scale it wouldn't tell us whether QLoRA helped, only whether *better data* helped (which is uninteresting).
+
+**Recipe-scaling caveat.** The SFT → RFT → GRPO pipeline is what DeepSeek-R1 and Qwen3-Math used, but at 7B+ with much more compute. Whether the recipe transfers to 1.7B at our compute is empirical and *part of what the project tests.* Don't write "this is the established recipe at small scale" — write "this is the playbook from larger models; we're testing whether it scales down."
+
+**Week 2-4 sequencing changed.** Original plan had Week 2 = RAG + reranking. The literature pass made the continuous SFT → BoN → RFT story noticeably stronger than the SFT-then-pivot-to-RAG story. **Locked sequence:** Week 2 = best-of-N (in Week 1 if Run 2 lands acceptably) + RFT (Week 2 main project), Week 3 = RAG, Week 4 = GRPO **or** distillation as the "maximum-impact layer-on-top." Week 2 is locked regardless of Week 1's final number — it's about demonstrating closed-loop self-improvement, not chasing a specific delta.
+
+**Important caveat for the test-time-scaling table.** Qwen3-1.7B base scored 36.8% at thinking-on, 16K tokens — that already *is* a form of test-time compute scaling. Adding best-of-N or budget forcing on top asks "does sampling diversity (or extended reasoning) help on a model that's already thinking hard?" That's a legitimate question, but it's not "test-time scaling vs no test-time scaling." The post should phrase the eval table as "additional test-time techniques on an already-thinking-on baseline," not as discovery of test-time scaling.
+
 ## What's evidence of process to keep visible
 
 - The Qwen 2.5 first attempt and the pivot to Qwen3
