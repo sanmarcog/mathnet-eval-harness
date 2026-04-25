@@ -1,8 +1,26 @@
 #!/bin/bash
-# Run 2: QLoRA fine-tune of Qwen3-1.7B on multilingual MathNet with
-# completion-only loss masking. A40 GPU for the VRAM headroom needed
-# by r=64 / alpha=128 / max_seq_length=4096. Training with thinking
-# disabled in the chat template (our training data has no <think> traces).
+# Run 2: QLoRA fine-tune of Qwen3-1.7B on multilingual MathNet, recipe
+# matched to Alibaba's published Qwen2.5-Math 1.5B SFT (the only known
+# successful math fine-tune of this model family at this size).
+# Reference: https://arxiv.org/html/2409.12122v1
+#
+# Hyperparameters per their report:
+#   learning_rate = 2e-5  (decay to 7e-7)
+#   batch_size    = 128 effective
+#   epochs        = 3
+#   seq_length    = 4096
+#
+# Our additions on top of the recipe:
+#   QLoRA r=64 / alpha=128 (we have ~10K rows, much less than their 2.5M;
+#                           rank gives the adapter capacity to compensate)
+#   completion_only_loss   (mask system+user tokens)
+#   enable_thinking=False in chat template (training data has no <think>)
+#
+# Pipeline:
+#   0. verify response template alignment (pre-flight)
+#   1. train  -> adapters/qwen3-mathnet-run2/
+#   2. merge  -> adapters/qwen3-mathnet-run2-merged/
+#   3. eval n=500 thinking-on 16K via vLLM, paired with Qwen3 base 36.8%
 #
 # Submit:
 #     sbatch slurm/train_qlora_run2.sbatch
@@ -15,7 +33,7 @@
 #SBATCH --cpus-per-task=4
 #SBATCH --mem=64G
 #SBATCH --gpus-per-node=a40:1
-#SBATCH --time=10:00:00
+#SBATCH --time=14:00:00
 #SBATCH --output=slurm-%j.out
 #SBATCH --error=slurm-%j.err
 #SBATCH --requeue
@@ -28,6 +46,8 @@ REPO=/gscratch/scrubbed/sanmarco/mathnet-eval-harness
 PY=/gscratch/scrubbed/sanmarco/conda/envs/qlora/bin/python
 ADAPTERS_ROOT=/gscratch/scrubbed/sanmarco/adapters
 OUT=$ADAPTERS_ROOT/qwen3-mathnet-run2
+MERGED=${OUT}-merged
+EVAL_OUT=$REPO/results/full/qwen3-1.7b-run2
 
 export HF_HOME=/gscratch/scrubbed/sanmarco/hf_cache
 export PYTHONPATH="$REPO/src"
@@ -36,16 +56,13 @@ export TRANSFORMERS_NO_ADVISORY_WARNINGS=1
 export HF_HUB_DISABLE_TELEMETRY=1
 
 cd "$REPO"
-mkdir -p logs "$ADAPTERS_ROOT"
+mkdir -p logs "$ADAPTERS_ROOT" "$EVAL_OUT"
 
 LOG=logs/qlora_run2_${SLURM_JOB_ID}.log
-echo "[$(date)] launching Run-2 training; log -> $LOG"
+echo "[$(date)] launching Run-2 (recipe-matched); log -> $LOG"
 
-# Pre-flight: verify the completion_only_loss response template aligns
-# with this (model, tokenizer, dataset) triple. Silent-fail mode if not.
-# Uses the solution-length-filtered multilingual train (>=100 tokens of
-# solution text) so near-zero-signal rows are excluded.
-echo "[$(date)] pre-flight: verify response template alignment"
+# === Stage 0: verify response template alignment ===
+echo "[$(date)] stage 0: verify response template alignment"
 $PY -u scripts/verify_response_template.py \
     --base-model Qwen/Qwen3-1.7B \
     --train-jsonl data/splits/train_multilingual_filtered.jsonl \
@@ -55,14 +72,8 @@ rc_verify=${PIPESTATUS[0]}
 echo "[$(date)] verify rc=$rc_verify"
 [ "$rc_verify" -eq 0 ] || { echo "ABORTING: response template misaligned"; exit $rc_verify; }
 
-# Run 2 hyperparameters:
-#   base model: Qwen3-1.7B (up from Qwen2.5-1.5B)
-#   LoRA r=64 alpha=128 (up from 16/32; math-recipe standard)
-#   max_seq_length=4096 (up from 2048; captures long proofs)
-#   train on data/splits/train_multilingual.jsonl (~13K rows vs ~3K English-only)
-#   completion-only loss (mask system + user tokens)
-#   enable_thinking=False in chat template (no <think> content in training data)
-#   batch 4 / grad accum 4 -> effective batch 16 (A40 has the VRAM to go wider)
+# === Stage 1: train (Alibaba recipe + our QLoRA wrapper) ===
+echo "[$(date)] stage 1: train, lr=2e-5, 3 epochs, effective batch 128"
 $PY -u scripts/train_qlora.py \
     --base-model Qwen/Qwen3-1.7B \
     --out-dir "$OUT" \
@@ -72,26 +83,46 @@ $PY -u scripts/train_qlora.py \
     --lora-r 64 \
     --lora-alpha 128 \
     --max-seq-length 4096 \
+    --num-train-epochs 3 \
+    --learning-rate 2e-5 \
     --per-device-train-batch-size 4 \
-    --gradient-accumulation-steps 4 \
+    --gradient-accumulation-steps 32 \
     --completion-only-loss \
-    2>&1 | tee "$LOG"
-
-rc=${PIPESTATUS[0]}
-echo "[$(date)] Run-2 training rc=$rc"
+    2>&1 | tee -a "$LOG"
+rc_train=${PIPESTATUS[0]}
+echo "[$(date)] train rc=$rc_train"
+[ "$rc_train" -eq 0 ] || exit $rc_train
 ls -la "$OUT" || true
 
-if [ "$rc" -eq 0 ]; then
-    MERGED="${OUT}-merged"
-    echo "[$(date)] merging LoRA adapter into base -> $MERGED"
-    $PY -u scripts/merge_adapter.py \
-        --base-model Qwen/Qwen3-1.7B \
-        --adapter-dir "$OUT" \
-        --out-dir "$MERGED" \
-        2>&1 | tee -a "$LOG"
-    merge_rc=${PIPESTATUS[0]}
-    echo "[$(date)] merge rc=$merge_rc"
-    ls -la "$MERGED" || true
-fi
+# === Stage 2: merge LoRA into bf16 base ===
+echo "[$(date)] stage 2: merge LoRA adapter into base -> $MERGED"
+$PY -u scripts/merge_adapter.py \
+    --base-model Qwen/Qwen3-1.7B \
+    --adapter-dir "$OUT" \
+    --out-dir "$MERGED" \
+    2>&1 | tee -a "$LOG"
+rc_merge=${PIPESTATUS[0]}
+echo "[$(date)] merge rc=$rc_merge"
+[ "$rc_merge" -eq 0 ] || exit $rc_merge
+ls -la "$MERGED" || true
 
-exit $rc
+# === Stage 3: eval merged, n=500 thinking-on 16K via vLLM ===
+# Same config as the Qwen3 base eval so the comparison is direct.
+echo "[$(date)] stage 3: eval merged via vLLM, n=500 thinking-on 16K"
+$PY -u scripts/eval_qwen_hf.py \
+    --base-model "$MERGED" \
+    --split data/splits/eval.jsonl \
+    --out "$EVAL_OUT" \
+    --model-alias qwen3-1.7b-run2 \
+    --backend vllm \
+    --prompt-format boxed \
+    --enable-thinking \
+    --sampling recommended \
+    --seed 0 \
+    --max-new-tokens 16384 \
+    2>&1 | tee -a "$LOG"
+rc_eval=${PIPESTATUS[0]}
+echo "[$(date)] eval rc=$rc_eval"
+
+ls -la "$EVAL_OUT" || true
+exit $rc_eval
