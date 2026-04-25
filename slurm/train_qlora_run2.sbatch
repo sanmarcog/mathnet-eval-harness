@@ -20,7 +20,8 @@
 #   0. verify response template alignment (pre-flight)
 #   1. train  -> adapters/qwen3-mathnet-run2/
 #   2. merge  -> adapters/qwen3-mathnet-run2-merged/
-#   3. eval n=500 thinking-on 16K via vLLM, paired with Qwen3 base 36.8%
+# (eval is in a separate sbatch slurm/eval_qwen3_run2.sbatch so the
+#  train+merge fits comfortably in a single ckpt-all walltime window)
 #
 # Submit:
 #     sbatch slurm/train_qlora_run2.sbatch
@@ -33,7 +34,7 @@
 #SBATCH --cpus-per-task=4
 #SBATCH --mem=64G
 #SBATCH --gpus-per-node=a40:1
-#SBATCH --time=14:00:00
+#SBATCH --time=8:00:00
 #SBATCH --output=slurm-%j.out
 #SBATCH --error=slurm-%j.err
 #SBATCH --requeue
@@ -88,6 +89,7 @@ $PY -u scripts/train_qlora.py \
     --per-device-train-batch-size 4 \
     --gradient-accumulation-steps 32 \
     --completion-only-loss \
+    --mid-eval-n 10 \
     2>&1 | tee -a "$LOG"
 rc_train=${PIPESTATUS[0]}
 echo "[$(date)] train rc=$rc_train"
@@ -106,23 +108,5 @@ echo "[$(date)] merge rc=$rc_merge"
 [ "$rc_merge" -eq 0 ] || exit $rc_merge
 ls -la "$MERGED" || true
 
-# === Stage 3: eval merged, n=500 thinking-on 16K via vLLM ===
-# Same config as the Qwen3 base eval so the comparison is direct.
-echo "[$(date)] stage 3: eval merged via vLLM, n=500 thinking-on 16K"
-$PY -u scripts/eval_qwen_hf.py \
-    --base-model "$MERGED" \
-    --split data/splits/eval.jsonl \
-    --out "$EVAL_OUT" \
-    --model-alias qwen3-1.7b-run2 \
-    --backend vllm \
-    --prompt-format boxed \
-    --enable-thinking \
-    --sampling recommended \
-    --seed 0 \
-    --max-new-tokens 16384 \
-    2>&1 | tee -a "$LOG"
-rc_eval=${PIPESTATUS[0]}
-echo "[$(date)] eval rc=$rc_eval"
-
-ls -la "$EVAL_OUT" || true
-exit $rc_eval
+echo "[$(date)] train+merge complete. Submit slurm/eval_qwen3_run2.sbatch next."
+exit 0
