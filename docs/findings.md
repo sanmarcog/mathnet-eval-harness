@@ -136,6 +136,29 @@ disproportionately reduce convergence-failure misses, not wrong-answer
 misses.** If the run lifts accuracy, expect the lift to come mostly from
 the saturation-driven half of the miss bucket.
 
+## Where Qwen3-1.7B base is strongest and weakest
+
+Stratifying by `topics_flat` top-level prefix
+([full breakdown](./qwen3_base_topic_breakdown.md)):
+
+| Topic | n | accuracy |
+|---|---|---|
+| Geometry | 56 | **44.6%** |
+| Algebra | 275 | 41.1% |
+| Number Theory | 177 | 35.0% |
+| Discrete Mathematics | 155 | **23.9%** |
+
+A problem can be tagged with multiple top-level prefixes, so the n's sum
+to more than 500.
+
+The ~20pp gap between Geometry/Algebra and Discrete Mathematics is real
+signal. Within Discrete Mathematics, **Graph Theory** is the model's hard
+floor: **1/18 = 5.6%**. Within Algebra, by contrast, prealgebra runs at
+46.6% and equations/inequalities at 42.9%. So the open-base 1.7B does
+well on procedural/computational topics and worse on topics requiring
+combinatorial case analysis. This is a useful baseline pattern to track
+through Run 2.
+
 ## Findings
 
 1. **Opus 4.7 is clearly the strongest**, but the spot-check sample size
