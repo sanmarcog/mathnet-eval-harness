@@ -46,8 +46,12 @@ MODEL_ORDER = [
     ("gemini-3-pro", "Gemini 3 Pro"),
     ("sonnet-4-6", "Claude Sonnet 4.6"),
     ("gpt-5.4", "GPT-5.4"),
+    ("qwen3-1.7b-base", "Qwen3-1.7B base  (open, thinking-on)"),
     ("gpt-5.4-mini", "GPT-5.4 Mini"),
 ]
+# slugs in MODEL_ORDER that are open-weights (rendered in forest green to
+# distinguish from the rust frontier-API rows)
+OPEN_SLUGS = {"qwen3-1.7b-base"}
 
 
 def base_style() -> None:
@@ -86,13 +90,13 @@ def scoreboard() -> None:
     accs = [data[s]["accuracy"] * 100 for s, _ in MODEL_ORDER]
     ns = [data[s]["n_scored"] for s, _ in MODEL_ORDER]
 
-    labels = labels + ["Qwen-2.5-1.5B QLoRA  (ours)"]
+    labels = labels + ["Qwen3-1.7B + QLoRA  (ours, Run 2)"]
     accs = accs + [0]
     ns = ns + [None]
     ys = np.arange(len(labels))[::-1]
 
-    fig, ax = plt.subplots(figsize=(10, 6.2))
-    bar_colors = [RUST] * 5 + [GRID]
+    fig, ax = plt.subplots(figsize=(10, 6.6))
+    bar_colors = [FOREST if s in OPEN_SLUGS else RUST for s, _ in MODEL_ORDER] + [GRID]
     bars = ax.barh(ys, accs, color=bar_colors, edgecolor=INK, linewidth=0.8, height=0.72)
 
     for i, (bar, acc, n) in enumerate(zip(bars, accs, ns)):
@@ -112,11 +116,12 @@ def scoreboard() -> None:
     ax.set_xticks([0, 20, 40, 60, 80, 100])
     ax.xaxis.grid(True)
     ax.set_axisbelow(True)
-    ax.set_title("Frontier models on 500 MathNet problems", fontsize=14, pad=14, loc="left")
+    ax.set_title("MathNet scoreboard  (500 problems, judged)",
+                 fontsize=14, pad=14, loc="left")
 
     fig.text(0.01, 0.03,
              "Opus on N=100 spot-check; Gemini with thinking_budget=4096 on partial N=240; "
-             "denominators are n_scored.",
+             "Qwen3 base in green = open-weights, thinking-on at 16K; denominators are n_scored.",
              fontsize=8.5, color=INK, alpha=0.75)
 
     plt.tight_layout(rect=(0, 0.05, 1, 1))

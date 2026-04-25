@@ -1,6 +1,6 @@
 # mathnet-eval-harness
 
-How well do five frontier LLMs — and a QLoRA-fine-tuned 1.5B open model — solve 500 Olympiad-level math problems from the [MathNet](https://huggingface.co/datasets) benchmark?
+Five frontier LLMs and an open-weights 1.7B base — with a QLoRA fine-tune on top — measured against 500 Olympiad-level problems from the [MathNet](https://huggingface.co/datasets) benchmark. Where does fine-tuning still add value when the open base already matches the cheap commercial tier?
 
 ## Scoreboard
 
@@ -10,8 +10,9 @@ How well do five frontier LLMs — and a QLoRA-fine-tuned 1.5B open model — so
 | Gemini 3 Pro | 240 / 300 | **73.3%** | $13.55 |
 | Claude Sonnet 4.6 | 500 | **65.0%** | $10.35 |
 | GPT-5.4 | 495 / 500 | **57.8%** | $9.52 |
+| **Qwen3-1.7B base**  *(open, thinking-on, vLLM, 16K)* | 500 | **36.8%** | — |
 | GPT-5.4 Mini | 498 / 500 | **36.7%** | $1.51 |
-| Qwen-2.5-1.5B-Instruct + QLoRA *(ours)* | — | *(in progress)* | — |
+| Qwen3-1.7B + QLoRA *(ours, Run 2)* | — | *(in progress)* | — |
 
 ![Scoreboard](results/figures/scoreboard.png)
 
@@ -19,11 +20,14 @@ Full methodology, caveats, and secondary findings: [docs/findings.md](docs/findi
 
 ## Key findings
 
+- **A current-gen 1.7B open-weights base already matches GPT-5.4 Mini.** Qwen3-1.7B with thinking-on, served via vLLM at 16K-token budget, scores **36.8%** vs Mini's **36.7%** on the same 500-problem split. No fine-tuning. This re-anchors the project: we initially targeted Mini at 36.7% as the bar a 1.5B QLoRA needed to clear, but the open base already clears it. The new question is **where fine-tuning still adds value on top of an already-competitive open base.**
+- **The 36.8% / 36.7% parity is not apples-to-apples.** Both models run "in their preferred inference mode" (Qwen3 thinking-on at 16K via vLLM; Mini with OpenAI's default reasoning settings). Identical-constraint comparisons would land somewhere different.
 - **Sonnet 4.6 beats GPT-5.4 by 7pp** at comparable cost (65.0% vs 57.8%, $10.35 vs $9.52). The Anthropic lineage outperforms the OpenAI lineage on MathNet-style olympiad problems in our setup.
-- **GPT-5.4 Mini at 36.7% is the realistic peer for fine-tuned small open models.** A 1.5B QLoRA isn't going to beat Opus; the meaningful comparison is against the commodity API tier.
-- **The 4-layer grading pipeline (exact → normalized → sympy → LLM judge) reduced LLM-judge spend by ~40%** vs judge-everything. 41% of correct grades resolve on the objective non-judge layers; the judge is reserved for set-valued answers, notation synonyms, and prose-wrapped solutions.
+- **The 4-layer grading pipeline (exact → normalized → sympy → LLM judge) reduces LLM-judge spend by ~40%** vs judge-everything. 41% of correct grades resolve on the objective non-judge layers.
 - **GPT-5 family has elevated `miss` rates even after the judge runs.** Investigated on a pre-registered 40-sample manual audit: 85% are genuine model errors, only 10% are grader artifacts — below the 15% pre-registered fix threshold. Numbers stand. See [docs/gpt-missrate-analysis.md](docs/gpt-missrate-analysis.md).
-- **Methodology caveats are load-bearing.** Opus is a 100-problem spot-check (95% CI ≈ ±8pp). Gemini ran with `thinking_budget=4096` (capped) and N=239 after hitting a preview-model daily quota cap. OpenAI filtered 7 prompts (`invalid_prompt`) across GPT-5.4 and GPT-5.4 Mini. Denominators are `n_scored`, not 500.
+- **Same 63% miss rate on Qwen3 base and GPT-5.4 Mini, different causes.** Mini misses are mostly genuine wrong answers (Day-3 categorization). Qwen3 misses are dominated by **convergence failure** — 35% of Qwen3 outputs hit the 16K token ceiling without emitting a final answer. Fine-tuning on solution+answer training data should target this specifically.
+
+![Grader paths](results/figures/grader_paths.png)
 
 ## Architecture
 
@@ -49,7 +53,10 @@ python scripts/build_splits.py --out data/splits
 # 4. Frontier eval (example: Claude Sonnet 4.6 on 20 problems)
 python scripts/run_eval.py --model sonnet-4-6 --split eval --n 20
 
-# 5. QLoRA training on the UW Hyak cluster (A40 GPU)
+# 5. Open-base eval (Qwen3-1.7B via vLLM, thinking-on, 16K)
+sbatch slurm/eval_qwen3_base.sbatch
+
+# 6. QLoRA training on the UW Hyak cluster (A40 GPU)
 sbatch slurm/train_qlora_run2.sbatch
 ```
 
@@ -69,6 +76,8 @@ src/mathnet_eval/     # core library (importable)
   grading.py          # 4-layer grader: exact → normalized → sympy → judge
   training.py         # QLoRA training loop (TRL SFTTrainer)
 scripts/              # CLI entrypoints (argparse → library calls)
+  merge_adapter.py    # post-training PEFT merge into bf16 weights for vLLM serving
+  make_figures.py     # headline figure generation
 slurm/                # sbatch scripts for Hyak (ckpt-all partition)
 results/              # committed JSON outputs and figures
   full/               # 500-problem runs, per-model subdirs

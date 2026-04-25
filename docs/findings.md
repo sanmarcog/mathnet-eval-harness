@@ -1,9 +1,11 @@
-# Findings — five frontier models on 500 MathNet problems
+# Findings — frontier APIs and an open-weights base on 500 MathNet problems
 
-This document is the public methodology + results writeup for the Day-2
-frontier-model evaluation. It complements the [scoreboard in the README](../README.md#scoreboard)
-with full caveats, the five primary findings, and the operational lessons
-from running the full eval.
+This document is the public methodology + results writeup. It complements
+the [scoreboard in the README](../README.md#scoreboard) with the full
+caveats, the primary findings, and the operational lessons from running
+the evaluation. Day-2 covered the five frontier APIs; Day-3 added the
+open-weights Qwen3-1.7B base for context, which produced the project's
+narrative pivot (see [Re-anchoring the project](#re-anchoring-the-project)).
 
 ## Scoreboard
 
@@ -13,12 +15,38 @@ from running the full eval.
 | Gemini 3 Pro *(partial)* | 240 / 300 | **73.3%** | $13.55 |
 | Claude Sonnet 4.6 | 500 | **65.0%** | $10.35 |
 | GPT-5.4 | 495 / 500 | **57.8%** | $9.52 |
+| **Qwen3-1.7B base** *(open, thinking-on, vLLM, 16K)* | 500 | **36.8%** | — |
 | GPT-5.4 Mini | 498 / 500 | **36.7%** | $1.51 |
-| **Total spend** |  |  | **$41.06** |
+| **API total spend** |  |  | **$41.06** |
 
 Denominator is `n_scored`; missing problems on GPT are OpenAI safety-filter
 rejections (documented below). Gemini finished at N=240 due to a preview-model
-daily quota cap.
+daily quota cap. Qwen3 cost is the academic-cluster compute on a single A40
+GPU (no API billing).
+
+## Re-anchoring the project
+
+The project was originally framed as: *can a fine-tuned 1.5B open model push
+past GPT-5.4 Mini at 36.7%?* That bar was set on Day-2 with the API
+scoreboard.
+
+On Day-3 we added Qwen3-1.7B as the open-weights baseline. **It scored 36.8%
+out of the box, with no fine-tuning** — at parity with the same Mini target.
+
+We've kept that fact in the headline rather than rewriting history. The
+re-framed question is more current and more interesting: with the open
+ecosystem already at the cheap-commercial-tier waterline, **where does
+fine-tuning still add value?** The remaining `miss`-rate analysis (below)
+gives a concrete hypothesis for what QLoRA on solution+answer training data
+should target.
+
+The original Run 1 attempt was on Qwen2.5-1.5B-Instruct with a smaller LoRA
+(r=16) and English-only training data. Mid-training eval reported 2%, which
+turned out to be a measurement artifact (1024-token cap was under 10% of
+median convergent length on this benchmark — see
+[mid-eval token bump methodology note](#methodology-notes)). Run 2 picks
+up Qwen3-1.7B with the kitchen-sink config: r=64, multilingual training data
+(14,585 rows), `completion_only_loss`, and `max_seq_length=4096`.
 
 ## Grader path breakdown (Sonnet 4.6, n=500)
 
@@ -66,6 +94,47 @@ things with vs. without them.
   equivalence, not problem-solving; a 9-problem Day-1 calibration found 0
   false positives. Same family as the #3 model on the scoreboard, so a
   second-judge cross-check would be a reasonable follow-up.
+- **Qwen3 vs Mini are not constraint-matched.** The 36.8% / 36.7% near-tie
+  is "both models in their preferred inference mode": Qwen3 thinking-on at
+  16K tokens via vLLM, Mini with OpenAI's default reasoning configuration.
+  Identical-constraint comparisons (e.g. capping Qwen3 to a comparable
+  reasoning budget) would land somewhere different. The headline finding
+  isn't "these are identical models" — it's "the open ecosystem has
+  caught up enough that the *useful inference mode* of a 1.7B base ties
+  the *useful inference mode* of the cheap commercial tier."
+
+## The 63% miss rate: same number, different causes
+
+GPT-5.4 Mini and Qwen3-1.7B base both `miss` on 63% of problems. Looks
+similar; isn't.
+
+**Mini misses are mostly genuine wrong answers.** From the Day-3
+[40-sample manual audit](./gpt-missrate-analysis.md): 85% of sampled GPT-5
+misses were genuine model errors, only 10% grader artifacts. The model
+commits to an answer; the answer is just wrong.
+
+**Qwen3-1.7B base misses are dominated by convergence failure.** From the
+50-problem 16K-pilot:
+
+- 35% of outputs hit the 16K-token ceiling
+- 65% emit `\boxed{...}` somewhere in the output
+- 33% saturate **and** never emit `\boxed{...}` — the model thinks itself
+  out without ever committing
+
+So Qwen3's 63% miss rate decomposes (roughly) into ~half "thought-loop
+failed to converge" and ~half "wrong but committed answer." The two
+failure modes need different fixes:
+
+- *Wrong-but-committed* needs better reasoning (more parameters, more
+  training, or both — not what QLoRA targets directly).
+- *Failure to converge* needs the model to learn to wrap up and emit a
+  final answer — exactly what fine-tuning on solution+answer pairs (with
+  clean `\boxed{...}` conclusions) teaches.
+
+This is the explicit hypothesis for Run 2: **QLoRA on MathNet should
+disproportionately reduce convergence-failure misses, not wrong-answer
+misses.** If the run lifts accuracy, expect the lift to come mostly from
+the saturation-driven half of the miss bucket.
 
 ## Findings
 
@@ -76,10 +145,13 @@ things with vs. without them.
    enough that this is not noise. The Anthropic lineage outperforms the
    OpenAI lineage on MathNet-style olympiad problems in our setup, and at
    comparable eval cost ($10.35 vs $9.52).
-3. **GPT-5.4 Mini at 36.7% is the realistic peer for fine-tuned small open
-   models.** The bar a 1.5B QLoRA needs to clear isn't Opus; it's Mini.
-   This reframes "is the fine-tune good?" from an almost-impossible
-   comparison to a meaningful one.
+3. **The current-gen open ecosystem is at the cheap-commercial waterline.**
+   Qwen3-1.7B in its preferred inference mode (thinking-on, 16K, vLLM)
+   scores 36.8%, statistically tied with GPT-5.4 Mini at 36.7%. This is
+   the project's narrative pivot: the original target ("can a 1.5B
+   fine-tune beat the cheap commercial tier?") is already met by the open
+   base. The new question is **what value-add fine-tuning still
+   provides** — see the miss-rate decomposition above.
 4. **Gemini 3 Pro at 73.3% (N=240 of 300 target) with capped thinking.** Ran
    with `thinking_budget=4096` to fit budget; would plausibly score 1-3 pp
    higher with default (unbounded) thinking.
@@ -122,12 +194,46 @@ the next person doesn't repeat them.
 
 ## Infrastructure
 
-The evaluation ran from a single sbatch on the UW Hyak Klone cluster
-(`ckpt-all` partition, CPU-only, 4 cpus / 8 GB / 2h54m wall, all API calls).
+The frontier evaluation ran from a single sbatch on the UW Hyak Klone
+cluster (`ckpt-all` partition, CPU-only, 4 cpus / 8 GB / 2h54m wall, all
+API calls). The Qwen3 base evaluation ran on the same cluster on a single
+A40 GPU via vLLM (3h25m wall, 6.2M output tokens generated).
 Pre-launch readiness: preflight gate that hits each provider with one
-smoke problem; `tenacity` retry (4 attempts, exponential backoff on 429/5xx);
-per-problem JSON writes to disk + SHA-256-keyed inference cache so preemption
-or interruption is survivable; per-model log files for independent tailing.
+smoke problem; `tenacity` retry (4 attempts, exponential backoff on
+429/5xx); per-problem JSON writes to disk + SHA-256-keyed inference cache
+so preemption or interruption is survivable; per-model log files for
+independent tailing.
+
+## Methodology notes
+
+A few things we got wrong on the first attempt and fixed in flight.
+Documenting them so the trajectory is honest and so the next person
+running this experiment doesn't repeat them.
+
+1. **Mid-training eval was too narrow on Run 1.** The QLoRA training loop
+   logs a held-out 50-problem accuracy at 25%/50%/75% of training plus
+   each epoch boundary. Run 1 was capped at 1024 output tokens with
+   greedy decoding and the cheap-grader-only path — no LLM judge. All
+   four checkpoints reported 1/50 = 2%, which read as "training is
+   broken." It wasn't. 1024 tokens is under 10% of the median convergent
+   output length on this benchmark; the model hadn't yet emitted a
+   `\boxed{...}` by the time the cap hit, so `extract_answer` returned
+   `None` on 49/50. **Fixed for Run 2:** mid-eval token cap bumped to
+   4096 in `src/mathnet_eval/training.py`; default still no judge in mid-eval
+   to avoid runaway API spend during long training jobs.
+2. **Pre-registered ranges turned out to be too pessimistic on Qwen3
+   base.** Range was 14-22% (anchored to Qwen 2.5 numbers). Actual
+   landed at 36.8%, well outside. We're treating pre-registration the
+   way it's meant to be treated — **as a flag for when reality differs
+   from your prior, not as a target to defend.** When the prior misses,
+   document the miss and update the model.
+3. **vLLM does not load PEFT adapters in our eval-script wiring.** Post
+   Run 2 training, we merge the LoRA adapter into bf16 base weights
+   ([scripts/merge_adapter.py](../scripts/merge_adapter.py)) and serve
+   the merged checkpoint via vLLM, which keeps the post-fine-tune eval
+   on the same fast inference path the base used (≈500 tok/s aggregate
+   under 500-sequence batching). Without this step, fine-tuned eval
+   would fall back to HF generate at ~30 tok/s, i.e. a 10+ hour run.
 
 ## Links
 
