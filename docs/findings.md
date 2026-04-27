@@ -17,6 +17,7 @@ narrative pivot (see [Re-anchoring the project](#re-anchoring-the-project)).
 | GPT-5.4 | 495 / 500 | **57.8%** | $9.52 |
 | **Qwen3-1.7B base** *(open, thinking-on, vLLM, 16K)* | 500 | **36.8%** | — |
 | GPT-5.4 Mini | 498 / 500 | **36.7%** | $1.51 |
+| Qwen3-1.7B + Run 4 self-distill *(ours)* | 500 | _TBD — pending eval_ | — |
 | **API total spend** |  |  | **$41.06** |
 
 Denominator is `n_scored`; missing problems on GPT are OpenAI safety-filter
@@ -403,6 +404,83 @@ The post-training eval is split into a separate sbatch
 ([slurm/eval_qwen3_run2.sbatch](../slurm/eval_qwen3_run2.sbatch)) so
 train+merge fits comfortably in one walltime window and the n=500
 thinking-on 16K-token eval runs separately.
+
+### Run 3 — adding boxed-answer augmentation
+
+Hypothesis: Run 2's regression was due to MathNet's `solutions_markdown`
+field containing `\boxed{}` in only ~1.5% of rows. The QLoRA fine-tune
+unlearned the boxed-answer convention from the base because it was almost
+absent from training data.
+
+Single change vs Run 2: each training row's solution gets an explicit
+`\n\nTherefore, the final answer is $\\boxed{<final_answer>}$` appended.
+A pre-launch safeguard
+([scripts/verify_boxed_augmentation.py](../scripts/verify_boxed_augmentation.py))
+verified the augmented text round-trips through `apply_chat_template`
+and `extract_answer` on 8 sampled rows.
+
+Result: **19/500 = 3.8%, paired delta -33.0 pp vs base, p < 10⁻⁴.**
+
+Diagnosis post-mortem on Run 3's outputs: the augmentation *did* teach
+the boxing convention back — 41.8% of Run 3 responses emit `\boxed{}`
+(close to base's 65%). But the *content* inside the boxes is wrong
+nearly every time (~9% correct-among-boxed vs base's ~57%). So the
+fine-tune restored format but damaged math. Naive SFT on raw MathNet
+solutions degrades reasoning faster than format augmentation can rescue.
+
+### Run 4 — self-distillation from base's own correct answers
+
+Hypothesis (per [LIMO 2502.03387](https://arxiv.org/abs/2502.03387) /
+[STaR 2203.14465](https://arxiv.org/abs/2203.14465) /
+[RFT 2308.01825](https://arxiv.org/abs/2308.01825)): training on the
+*model's own* correct reasoning may elicit latent capability without
+the noise of MathNet's heterogeneous gold answers. The Run 2/3
+training data had MathNet's prose-form gold (e.g. *"All n that are
+multiples of 4"*) inside a `\boxed{}` — confusing supervision. Run 4
+replaces that with traces the base actually generated and got right.
+
+Critical caveat from [Why Does Self-Distillation Degrade Reasoning
+(arxiv 2603.24472)](https://arxiv.org/html/2603.24472), which
+specifically observes -40% on Qwen3-1.7B with naive SFT when training
+data has shorter reasoning than the model's natural depth: we preserve
+full `<think>...</think>` traces in the training targets, train with
+`enable_thinking=True` in the chat template (matches inference),
+`max_seq_length=8192` to fit the long traces, conservative LR `1e-5`
+and 1-2 epochs.
+
+Pipeline:
+1. Run base Qwen3-1.7B on ~430 train problems via vLLM, thinking-on, 16K
+2. Filter for rows where `extract_answer` matches gold (cheap grader)
+3. Save those as a self-distilled training set (~150 expected correct)
+4. SFT same base on the distilled set (LR 1e-5, eff batch 4, 2 epochs,
+   ~75 opt steps)
+5. Merge → eval n=500 thinking-on 16K, paired vs base 36.8%
+
+**Pre-registered interpretations** (locked before launch):
+
+| Run 4 result | Interpretation | Writeup direction |
+|---|---|---|
+| ≥ 36.8% (≥ base) | Self-distillation works at our scale | "Curated correctness teaches without damage" |
+| 30-36% | Capability preserved; no improvement | "We can preserve, can't add — needs RL or stronger teacher" |
+| 10-30% | Partial collapse despite trace preservation | "Documents Qwen3-1.7B-specific failure mode" |
+| ≤ 10% | Full collapse like Run 2/3 | "Strongest possible negative; literature-backed via 2603.24472" |
+
+Result: _TBD — pending eval_.
+
+### Summary of fine-tune attempts
+
+| Run | Base | Recipe / single change | Train data | Eval acc (paired Δ vs base) |
+|---|---|---|---|---|
+| **Base** | Qwen3-1.7B | (no fine-tune) | — | **36.8% (anchor)** |
+| Run 1 | Qwen2.5-1.5B-Instruct | default LR 2e-4, no completion-only-loss | English MathNet (3,596) | 10.0% (-6 pp paired n=150 vs Qwen2.5 base 16%) |
+| Run B | Qwen2.5-1.5B-Instruct | + `completion_only_loss=True` | (same as Run 1) | 8.0% (-8 pp paired) |
+| Run 2 | Qwen3-1.7B | recipe-match Alibaba's Qwen2.5-Math 1.5B (LR 2e-5, 3 epochs, eff batch 128, multilingual filtered) | 11,648 rows | **3.0% (-33.8 pp)** |
+| Run 3 | Qwen3-1.7B | + boxed-answer augmentation (every row gets `\\boxed{X}` appended) | 11,648 rows | **3.8% (-33.0 pp)** |
+| Run 4 | Qwen3-1.7B | + self-distilled training data (base's own correct outputs, traces preserved) | ~150 rows | _TBD_ |
+
+D-LR (LR=5e-5 midpoint ablation) was started and cancelled mid-flight
+when mid-eval pause cost was projected to exceed walltime; no held-out
+accuracy. Loss curve was numerically stable.
 
 ## Links
 

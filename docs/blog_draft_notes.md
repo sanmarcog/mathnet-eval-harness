@@ -4,6 +4,72 @@ These are notes-to-self for the eventual blog post. Not the post itself,
 not a public document, but a place to keep the *thinking* coherent so that
 future-me doesn't have to reconstruct it from commits and chat logs.
 
+## Pre-staged closing paragraphs for the four Run 4 outcomes
+
+When Run 4's number lands, paste the matching block into the writeup's
+"What we found" section. Pre-registered before launch — locked.
+
+### If Run 4 ≥ 36.8% (≥ base) — positive outcome
+
+> Self-distillation worked at this scale. Training on the base's own
+> correct reasoning traces — with full `<think>` blocks preserved per the
+> [reasoning-collapse cautionary literature](https://arxiv.org/html/2603.24472)
+> — produced a fine-tune that meets or exceeds the post-trained base.
+> Three earlier QLoRA configurations on raw MathNet solutions all
+> regressed by 30+ pp; the difference here is that the supervision
+> signal is *correct by construction* and *format-aligned by
+> construction*. The lesson generalizes: at small-model scale, what you
+> train on must already be correct in the model's own preferred output
+> distribution. External data, even with augmentation, doesn't transfer.
+
+### If Run 4 = 30-36% (preserved, no improvement)
+
+> Self-distillation preserved the model's capability without adding new
+> reasoning. This isn't surprising in retrospect — the [LIMO
+> hypothesis](https://arxiv.org/abs/2502.03387) requires sufficient
+> latent capability in the foundation model, and at 1.7B that latent
+> ceiling appears to be roughly where the post-trained base already
+> sits. Useful as a methodological finding: the right setup *can* avoid
+> the catastrophic regressions of Runs 2/3, but improving on a
+> well-post-trained small model requires either much larger reasoning
+> corpora (Llemma's 55B math tokens) or a stronger external teacher
+> (distillation from Sonnet/R1) or RL (rStar-Math, GRPO). For
+> practitioners, the takeaway is that QLoRA on free olympiad data isn't
+> the cheap lever it might look like.
+
+### If Run 4 = 10-30% (partial collapse)
+
+> Even with traces preserved and conservative training, fine-tuning at
+> this scale degrades reasoning. We avoided the worst failure mode
+> ([reasoning-depth collapse from short supervision targets](https://arxiv.org/html/2603.24472)),
+> but the model still lost ground. This documents a real, persistent
+> challenge with small-model SFT for math — the post-trained base
+> appears to be at or near a local optimum that's hard to disturb
+> without breaking it. Future work should consider RL approaches like
+> [GRPO](https://arxiv.org/abs/2402.03300) which avoid the
+> supervision-length problem entirely, or larger-scale curated
+> distillation pipelines like [rStar-Math](https://arxiv.org/abs/2501.04519).
+
+### If Run 4 ≤ 10% (full collapse, ≥ -25 pp)
+
+> Self-distillation also failed. Across five QLoRA configurations
+> spanning every obvious knob (base model, recipe, rank, data scale,
+> loss masking, augmentation, self-distillation), every fine-tune
+> degraded math reasoning by 25+ pp. This aligns with [arxiv
+> 2603.24472](https://arxiv.org/html/2603.24472), which specifically
+> documents up to -40 pp on Qwen3-1.7B with naive SFT, and with the
+> [LIMO scaling table](https://arxiv.org/abs/2502.03387) showing the
+> "less is more" principle requires foundation-model scale (32B+) to
+> hold. **The actionable finding: at 1.7B, the post-trained open base
+> appears to be at or above its capability ceiling, and the SFT-only
+> path doesn't move it.** Improving on the open base at this size
+> requires methods structurally different from any of what we tested
+> here — most obviously RL (rStar-Math approach) or distillation from a
+> much stronger teacher. The QLoRA-on-MathNet path that this project
+> set out to test is, empirically, a dead end at this size.
+
+---
+
 ## The new headline
 
 > **Current-gen 1.7B open-weights models match the cheap commercial tier
