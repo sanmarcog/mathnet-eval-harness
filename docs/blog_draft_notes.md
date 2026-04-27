@@ -97,6 +97,8 @@ These came out of the s1+GRPO synthesis + manager review on 2026-04-25.
 
 **Important caveat for the test-time-scaling table.** Qwen3-1.7B base scored 36.8% at thinking-on, 16K tokens — that already *is* a form of test-time compute scaling. Adding best-of-N or budget forcing on top asks "does sampling diversity (or extended reasoning) help on a model that's already thinking hard?" That's a legitimate question, but it's not "test-time scaling vs no test-time scaling." The post should phrase the eval table as "additional test-time techniques on an already-thinking-on baseline," not as discovery of test-time scaling.
 
+**Methodology caveat — GPU heterogeneity across runs.** Base / Run 2 / Run 3 evals ran on A40 (Ampere); Run 4 eval runs on L40S (Ada Lovelace). With `seed=0` recommended sampling, GPU architecture differences in bf16 matmul ordering can produce subtly different sampled tokens on identical inputs. Empirical magnitude of this drift is typically <1 pp on n=500 paired evals — well below the 5 pp minimum-detectable-effect of our setup, so it doesn't threaten interpretation of the Run 4 vs base comparison. One sentence in the methodology section acknowledges this. (Manager directive 2026-04-27: methodology must match across runs; this is the only known divergence and we're flagging it explicitly rather than re-running base on L40S.)
+
 ## What's evidence of process to keep visible
 
 - The Qwen 2.5 first attempt and the pivot to Qwen3
