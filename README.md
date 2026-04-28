@@ -29,6 +29,43 @@ Full methodology, caveats, and secondary findings: [docs/findings.md](docs/findi
 
 ![Grader paths](results/figures/grader_paths.png)
 
+## Why none of our fine-tunes beat the base
+
+Across four QLoRA configurations spanning every sensible knob (base model, recipe, LoRA rank, data scale, loss masking, augmentation, self-distillation), **every fine-tune ended below the 36.8% post-trained Qwen3-1.7B base.** Run 4 — our cleanest attempt, training only on the base's *own* correct reasoning traces — closed the gap from -34 pp (Runs 2/3) to **-8 pp**, but couldn't push past base.
+
+![Fine-tune progression](results/figures/finetune_progression.png)
+
+**The mechanism, diagnosed cleanly from the eval data:** fine-tuning *amplified* the convergence-failure mode the base was already prone to. Run 4 has *more* saturation than base (198 vs 157 outputs hit the 16K-token cap), and 53% of its misses are *saturated AND no `\boxed{}`* — the model thinks past the budget without ever committing to a final answer.
+
+The reason is mechanical. Base produces long reasoning traces (median ~14K tokens with `<think>` blocks). Run 4 trained on those long traces — so the resulting model thinks *longer*. On problems Run 4 can solve, this is fine. On problems it can't, the model spirals into recomputation loops past the 16K ceiling without converging.
+
+### A concrete illustration: problem `0ai2`
+
+> *2014 lines are given in a plane, arranged in three groups of pairwise parallel lines. What is the greatest possible number of triangles formed by the lines?* (gold answer: **302561952**)
+
+**Qwen3-1.7B base solved this in 5,271 tokens.** Clean reasoning: maximize $a \cdot b \cdot c$ subject to $a + b + c = 2014$ → pick $(671, 671, 672)$ → compute $671 \cdot 671 \cdot 672 = 302{,}561{,}952$ → `\boxed{302561952}`. Done.
+
+**Run 4 saturated at 16,384 tokens with no answer.** It picked the wrong distribution (672, 672, 670 — slightly off) and got 302,561,280 (wrong by 672). Then second-guessed itself — *"Wait, earlier I had 755,728,512..."* — and spent the remaining ~10,000 tokens re-factoring the expression in different ways:
+
+> *"Total = 672 × [672 × 670 + (672 × 671 + 671 × 670 + 670 × 669)/2]<br>
+> Which is what I had before, leading to 672 × 1,124,596 ="*
+
+— and runs out of tokens mid-arithmetic, never committing to a final answer.
+
+This is the failure mode generalized: the fine-tune produced a model that *can* arrive at correct intermediate values, but lost the base's discipline of **picking one approach and finishing**. Trained on long-trace data, it learned to *keep thinking* past the point where the base would have boxed an answer and stopped.
+
+### The bigger framing
+
+At 1.7B, the post-trained Qwen3 base appears to sit at a local optimum hard to disturb without breaking. Self-distillation reduced the *damage* of fine-tuning (Runs 2/3 = -34 pp; Run 4 = -8 pp), but didn't push above. **Surpassing the open base at this size likely requires methods structurally different from any we tested:**
+
+- **RL** ([GRPO](https://arxiv.org/abs/2402.03300) / [rStar-Math](https://arxiv.org/abs/2501.04519)) — avoids the supervision-length problem entirely
+- **Distillation from a stronger teacher** (e.g., Sonnet 4.6 / DeepSeek-R1 traces) — relabels the supervision target with cleaner, more decisive reasoning
+- **Continued pretraining on a larger math corpus** (Llemma's Proof-Pile-2 at 55B tokens) — different scale entirely
+
+These are documented as Week 2-4 follow-on work. None are addressable in Week 1.
+
+Full per-run journey, methodology caveats, and the literature backing this interpretation: [docs/findings.md](docs/findings.md).
+
 ## Architecture
 
 ![Pipeline](docs/architecture.png)

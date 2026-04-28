@@ -65,16 +65,25 @@ rc3=$?
 echo "[$(date)] compare rc=$rc3"
 
 echo
-echo '=== stage 4: regenerate figures ==='
+echo '=== stage 4: regenerate headline figures ==='
 $PY scripts/make_figures.py
 rc4=$?
 echo "[$(date)] figures rc=$rc4"
 
 echo
-echo "[$(date)] postprocess complete (grade=$rc1 analyze=$rc2 compare=$rc3 figures=$rc4)"
+echo '=== stage 5: diagnostic figures (miss-mode, transition, per-competition) ==='
+$PY scripts/make_diagnostic_figures.py
+rc5=$?
+echo "[$(date)] diagnostic figures rc=$rc5"
+
+echo
+echo "[$(date)] postprocess complete (grade=$rc1 analyze=$rc2 compare=$rc3 figures=$rc4 diag=$rc5)"
 echo "[$(date)] outputs ready:"
 echo "  - docs/run4_analysis.md (paired Run 4 vs base)"
 echo "  - docs/run4_full_comparison.md (4-way table)"
 echo "  - results/figures/finetune_progression.png (updated)"
+echo "  - results/figures/miss_mode_decomposition.png (figure A — central diagnostic)"
+echo "  - results/figures/transition_matrix_run4_vs_base.png (figure B)"
+echo "  - results/figures/per_competition_delta_run4.png (figure C)"
 echo "  - results/full/qwen3-1.7b-run4/*.graded.json + summary.json"
 exit 0
