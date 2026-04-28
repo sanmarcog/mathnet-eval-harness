@@ -23,9 +23,9 @@ Denominator is `n_scored`; missing problems on GPT are OpenAI safety-filter reje
 
 ## The headline: open-weights parity at the cheap-commercial waterline
 
-The project was originally framed as: *can a fine-tuned 1.5B open model push past GPT-5.4 Mini at 36.7%?* That bar was set on Day-2 with the API scoreboard.
+The project was originally framed as: *can a fine-tuned 1.5B open model push past GPT-5.4 Mini at 36.7%?* That bar was set by the API scoreboard.
 
-On Day-3 we added Qwen3-1.7B as the open-weights baseline. **It scored 36.8% out of the box, with no fine-tuning** — at parity with the same Mini target.
+We then added Qwen3-1.7B as the open-weights baseline. **It scored 36.8% out of the box, with no fine-tuning** — at parity with the same Mini target.
 
 We've kept that fact in the headline rather than rewriting history. The re-framed question is more current and more interesting: with the open ecosystem already at the cheap-commercial-tier waterline, **where does fine-tuning still add value?**
 
@@ -52,7 +52,7 @@ The headline finding isn't *"these are identical models"* (the per-problem disag
 
 GPT-5.4 Mini and Qwen3-1.7B base both `miss` on 63% of problems. Looks similar; isn't.
 
-**Mini misses are mostly genuine wrong answers.** From the Day-3 [40-sample manual audit](./gpt-missrate-analysis.md): 85% of sampled GPT-5 misses were genuine model errors, only 10% grader artifacts. The model commits to an answer; the answer is just wrong.
+**Mini misses are mostly genuine wrong answers.** From the [40-sample manual audit](./gpt-missrate-analysis.md): 85% of sampled GPT-5 misses were genuine model errors, only 10% grader artifacts. The model commits to an answer; the answer is just wrong.
 
 **Qwen3-1.7B base misses are dominated by convergence failure.** From the 50-problem 16K-pilot:
 
@@ -224,7 +224,7 @@ McNemar exact two-sided p ≈ 0.0001 — the discordant-pair imbalance is well p
 
 ## Summary of fine-tune attempts
 
-The runs split into two distinct experiment families with **different base models**, so the deltas are NOT directly comparable across the dividing line. Run 1 / Run B used **Qwen2.5-1.5B-Instruct** (the original Day-2 anchor), n=150 paired vs Qwen2.5-1.5B base. Runs 2/3/4 use **Qwen3-1.7B** (the post-Day-3 anchor after the parity finding pivoted the project), n=500 paired vs Qwen3-1.7B base. The two halves of the table are connected only by methodology lessons (LR ablation, completion-only-loss, recipe-matching), not by a shared baseline.
+The runs split into two distinct experiment families with **different base models**, so the deltas are NOT directly comparable across the dividing line. Run 1 / Run B used **Qwen2.5-1.5B-Instruct** (the original API-scoreboard anchor), n=150 paired vs Qwen2.5-1.5B base. Runs 2/3/4 use **Qwen3-1.7B** (the open-base anchor after the parity finding pivoted the project), n=500 paired vs Qwen3-1.7B base. The two halves of the table are connected only by methodology lessons (LR ablation, completion-only-loss, recipe-matching), not by a shared baseline.
 
 **Early experiments — Qwen2.5-1.5B-Instruct base, n=150 paired:**
 
@@ -248,12 +248,10 @@ D-LR (LR=5e-5 midpoint ablation under the early-experiment family) was started a
 
 At 1.7B, the Qwen3 base appears to sit at a local optimum hard to disturb without breaking — and that optimum was reached via the Qwen team's own SFT + GRPO pipeline ([2505.09388](https://arxiv.org/abs/2505.09388)). Self-distillation reduced the *damage* of fine-tuning (Runs 2/3 = -34 pp; Run 4 = -8 pp), but didn't push above. **Surpassing the open base at this size likely requires methods structurally different from any we tested.** Four candidates:
 
-1. **Bias-corrected RL on a base that hasn't already absorbed GRPO.** The naive answer would be *"do GRPO."* Two problems with that. (a) Vanilla GRPO has its own length-amplification pathology — exactly the failure mode that bit Run 4 — documented in [Dr. GRPO (Liu et al., 2503.20783)](https://arxiv.org/abs/2503.20783): *"optimization bias in GRPO ... artificially increases response length, especially for incorrect outputs."* (b) Qwen3-1.7B was already trained with GRPO by the Qwen team during their Reasoning RL stage; applying vanilla GRPO again has no public reproduction at this size. The clean Week-2 experiment is **[Dr. GRPO](https://arxiv.org/abs/2503.20783) (bias-corrected) applied to [Qwen2.5-Math-1.5B base](https://arxiv.org/abs/2409.12122)** — math-specialized, hasn't absorbed RL. The Dr. GRPO paper reports at 1.5B scale: AIME24 16.7% → 20.0%, MATH500 61.8% → 74.2%, OlympiadBench 28.4% (post-GRPO not stated), average ~36% → ~42%. [SimpleRL-Zoo (2503.18892)](https://arxiv.org/abs/2503.18892) and [Open-R1](https://github.com/huggingface/open-r1) both publish ready recipes for this base.
+1. **Bias-corrected RL on a base that hasn't already absorbed GRPO.** The naive answer would be *"do GRPO."* Two problems with that. (a) Vanilla GRPO has its own length-amplification pathology — exactly the failure mode that bit Run 4 — documented in [Dr. GRPO (Liu et al., 2503.20783)](https://arxiv.org/abs/2503.20783): *"optimization bias in GRPO ... artificially increases response length, especially for incorrect outputs."* (b) Qwen3-1.7B was already trained with GRPO by the Qwen team during their Reasoning RL stage; applying vanilla GRPO again has no public reproduction at this size. The structurally cleaner approach is **[Dr. GRPO](https://arxiv.org/abs/2503.20783) (bias-corrected) applied to [Qwen2.5-Math-1.5B base](https://arxiv.org/abs/2409.12122)** — math-specialized, hasn't absorbed RL. The Dr. GRPO paper reports at 1.5B scale: AIME24 16.7% → 20.0%, MATH500 61.8% → 74.2%, OlympiadBench 28.4% (post-GRPO not stated), average ~36% → ~42%. [SimpleRL-Zoo (2503.18892)](https://arxiv.org/abs/2503.18892) and [Open-R1](https://github.com/huggingface/open-r1) both publish ready recipes for this base.
 2. **Test-time MCTS search with self-evolved data — [rStar-Math](https://arxiv.org/abs/2501.04519).** Distinct mechanism from GRPO: Monte Carlo Tree Search at inference plus a process preference model trained on self-evolved traces. Reports Qwen2.5-Math-7B 58.8% → 90.0% on MATH and Phi3-mini-3.8B 41.4% → 86.4%; demonstrated only at 7B and 3.8B scales — not 1.7B — so transfer to our setting is open.
 3. **Distillation from a stronger external teacher.** Sonnet 4.6 emits decisive ~5K-7K-token solutions on these same problems; the base emits noisy ~14K-token solutions. Training on Sonnet's trace distribution (or DeepSeek-R1's) would relabel the supervision target with cleaner, more decisive reasoning — addressing exactly the "trained to think longer" mechanism. Cost-prohibitive for the project budget but the most direct fix.
 4. **Continued pretraining on a larger math corpus** (e.g. [Llemma](https://arxiv.org/abs/2310.10631) and its Proof-Pile-2 dataset of scientific papers, math web data, and mathematical code). Different scale entirely. Useful as an upstream step *before* any of the above; not a replacement for them.
-
-These are documented as Week 2-4 follow-on work. None are addressable in Week 1.
 
 ## Frontier-tier findings
 
@@ -285,7 +283,7 @@ These are prominent on purpose — the headline numbers mean very different thin
 - **Gemini 3 Pro ran with `thinking_budget=4096`**, other models ran with default reasoning settings. Cost-control decision based on a 15-problem calibration showing median 5,454 thoughts / max 15,730 per problem under default thinking. A default-thinking run would plausibly score 1-3 pp higher.
 - **Gemini 3 Pro is N=300 by design** (rescoped from 500 during calibration to fit budget) and currently N=239 in practice due to a preview-model daily quota cap. The remaining 61 are deferred to a future run.
 - **OpenAI filtered 5 / 500 GPT-5.4 and 2 / 500 GPT-5.4 Mini prompts** with `invalid_prompt` 400s. Accuracy denominators are `n_scored` (495 and 498) rather than 500 for those two models. See [results/full/openai-flagged-problems.md](../results/full/openai-flagged-problems.md).
-- **Judge model = Claude Sonnet 4.6.** The judge's job is pairwise equivalence, not problem-solving; a 9-problem Day-1 calibration found **0 false positives on the 9 accepted answers tested** — false negatives were not assessed in that calibration, and the later 40-sample GPT miss-rate audit did surface 2 judge false negatives ([docs/gpt-missrate-analysis.md](./gpt-missrate-analysis.md)). So the calibration bounds the false-positive risk, not the false-negative risk; a second-judge cross-check would be a reasonable follow-up. Same family as the #3 model on the scoreboard, which is its own caveat.
+- **Judge model = Claude Sonnet 4.6.** The judge's job is pairwise equivalence, not problem-solving; the initial 9-problem calibration found **0 false positives on the 9 accepted answers tested** — false negatives were not assessed in that calibration, and the later 40-sample GPT miss-rate audit did surface 2 judge false negatives ([docs/gpt-missrate-analysis.md](./gpt-missrate-analysis.md)). So the calibration bounds the false-positive risk, not the false-negative risk; a second-judge cross-check would be a reasonable follow-up. Same family as the #3 model on the scoreboard, which is its own caveat.
 - **Saturation cutoff is identical across all four Qwen3-1.7B runs.** All four sbatches (`eval_qwen3_base.sbatch`, `eval_qwen3_run2.sbatch`, `eval_qwen3_run3.sbatch`, `eval_qwen3_run4.sbatch`) pass `--max-new-tokens 16384` to the same eval script with `temperature=0` on the same vLLM backend. The single source of truth for the analysis-side definition is `mathnet_eval.SATURATION_CUTOFF` in [src/mathnet_eval/__init__.py](../src/mathnet_eval/__init__.py); both `scripts/make_diagnostic_figures.py` and `scripts/analyze_finetune_vs_base.py` import it. If anyone re-runs at a different cap, update the constant and the sbatches together — figure A's saturated-vs-not labels would silently disagree otherwise.
 - **Single-seed runs.** All Qwen3 evals run at `temperature=0` (greedy), and all training runs use `--seed 0`. Greedy generation is deterministic so the eval-side seed is moot for the base run, but the QLoRA-trained adapters depend on training-data shuffle order, and Run 4 specifically picked a *single* sample of 146 base-correct rows (no resampling). The paired McNemar tests we report are valid for the comparison as run; they don't bound the variance over alternative training-data samples.
 - **Run 4 self-distill data is N=146.** That is small enough that a different sample of base-correct rows could plausibly produce a meaningfully different result. The McNemar test catches that the difference vs base is real (p ≈ 10⁻⁴), but does not bound the *direction* under resampling. A robust follow-up would resample the distillation set 3-5 times and report distribution of paired deltas.
@@ -302,7 +300,7 @@ Correctness is assigned by a 4-layer grading pipeline that tries cheap, determin
 | `judge` (LLM) | 192 | 38.4% |
 | `miss` | 175 | 35.0% |
 
-133 / 325 = **40.9% of correctly-graded outputs resolve on the objective (non-judge) layers** (the cheap layers run first; if any returns equal, the judge isn't called). The LLM judge catches the other 59% — set-valued answers, notation synonyms, prose-wrapped solutions. Day-1 judge calibration on 9 accepted answers found 0 false positives; the calibration's scope was false-positive only (false negatives weren't assessed in those 9 — the later 40-sample audit found 2 judge false negatives, see [docs/gpt-missrate-analysis.md](./gpt-missrate-analysis.md)). See [results/figures/grader_paths.png](../results/figures/grader_paths.png) for the per-model distribution.
+133 / 325 = **40.9% of correctly-graded outputs resolve on the objective (non-judge) layers** (the cheap layers run first; if any returns equal, the judge isn't called). The LLM judge catches the other 59% — set-valued answers, notation synonyms, prose-wrapped solutions. The initial judge calibration on 9 accepted answers found 0 false positives; the calibration's scope was false-positive only (false negatives weren't assessed in those 9 — the later 40-sample audit found 2 judge false negatives, see [docs/gpt-missrate-analysis.md](./gpt-missrate-analysis.md)). See [results/figures/grader_paths.png](../results/figures/grader_paths.png) for the per-model distribution.
 
 ## Operational findings
 
@@ -333,6 +331,6 @@ The frontier evaluation ran from a single sbatch on the UW Hyak Klone cluster (`
 - Consolidated NOTES: [results/full/NOTES.md](../results/full/NOTES.md)
 - OpenAI filter artifact: [results/full/openai-flagged-problems.md](../results/full/openai-flagged-problems.md)
 - GPT-5 miss-rate investigation: [docs/gpt-missrate-analysis.md](./gpt-missrate-analysis.md) (pre-registration: [docs/gpt-missrate-preregistration.md](./gpt-missrate-preregistration.md))
-- Day-1 smoke + judge-review report: [day1_report.md](./day1_report.md)
+- Smoke + judge-review report: [day1_report.md](./day1_report.md)
 - Run 4 paired analysis: [docs/run4_analysis.md](./run4_analysis.md)
 - Multi-config comparison: [docs/run4_full_comparison.md](./run4_full_comparison.md)
