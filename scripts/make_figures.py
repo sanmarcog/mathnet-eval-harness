@@ -337,86 +337,6 @@ def data_funnel() -> None:
     print(f"wrote {out}")
 
 
-FINETUNE_RUN_ORDER = [
-    ("qwen3-1.7b-base",  "Qwen3-1.7B base",                    "anchor"),
-    ("qwen3-1.7b-run2",  "Run 2: recipe-match, raw MathNet",   "fail"),
-    ("qwen3-1.7b-run3",  "Run 3: + boxed augmentation",        "fail"),
-    ("qwen3-1.7b-run4",  "Run 4: self-distilled, traces kept", "result"),
-]
-
-
-def finetune_progression() -> None:
-    """Horizontal bar chart of the fine-tune journey on Qwen3-1.7B.
-    Reads results/full/<slug>/summary.json for each run that has one;
-    missing runs render as a gray placeholder."""
-    fig, ax = plt.subplots(figsize=(10, 4.5))
-
-    rows = []
-    for slug, label, kind in FINETUNE_RUN_ORDER:
-        path = RESULTS / "full" / slug / "summary.json"
-        if path.exists():
-            try:
-                d = json.loads(path.read_text())
-                acc = d.get("accuracy")
-                n   = d.get("n_scored")
-                if acc is None and n is not None:
-                    acc = (d.get("n_correct", 0) or 0) / max(n, 1)
-                rows.append((label, kind, (acc or 0) * 100, n))
-            except Exception:
-                rows.append((label, kind, None, None))
-        else:
-            rows.append((label, kind, None, None))
-
-    ys = np.arange(len(rows))[::-1]
-    color_for = {"anchor": FOREST, "fail": RUST, "result": SLATE}
-    bar_colors = []
-    accs = []
-    for (_, kind, acc, _) in rows:
-        if acc is None:
-            bar_colors.append(GRID)
-            accs.append(0)
-        else:
-            bar_colors.append(color_for.get(kind, RUST))
-            accs.append(acc)
-
-    bars = ax.barh(ys, accs, color=bar_colors, edgecolor=INK,
-                   linewidth=0.8, height=0.65)
-
-    for bar, (label, kind, acc, n) in zip(bars, rows):
-        if acc is None:
-            ax.text(1.5, bar.get_y() + bar.get_height() / 2,
-                    "  pending", va="center", ha="left",
-                    color=INK, fontsize=10, fontstyle="italic")
-        else:
-            ax.text(acc + 1.0, bar.get_y() + bar.get_height() / 2,
-                    f"{acc:.1f}%   (N={n})",
-                    va="center", ha="left", color=INK, fontsize=10)
-
-    ax.set_yticks(ys)
-    ax.set_yticklabels([label for (label, _, _, _) in rows], fontsize=10.5)
-    ax.set_xlim(0, 50)
-    ax.set_xlabel("MathNet accuracy (%)", fontsize=11)
-    ax.set_xticks([0, 10, 20, 30, 40, 50])
-    ax.xaxis.grid(True)
-    ax.set_axisbelow(True)
-    ax.set_title("Fine-tune attempts on Qwen3-1.7B  —  the journey",
-                 fontsize=14, pad=14, loc="left")
-    ax.axvline(36.8, color=FOREST, linestyle="--", linewidth=1.2, alpha=0.5)
-    ax.text(36.8, len(rows) + 0.1, "  base", color=FOREST, fontsize=9,
-            va="bottom", alpha=0.8)
-
-    fig.text(0.01, 0.04,
-             "All runs use the same eval config: thinking-on, vLLM, 16K tokens, "
-             "Sonnet 4.6 LLM judge as 4th grader layer. Paired vs base on n=500.",
-             fontsize=8.5, color=INK, alpha=0.75)
-
-    plt.tight_layout(rect=(0, 0.07, 1, 1))
-    out = FIGURES / "finetune_progression.png"
-    fig.savefig(out, dpi=150, bbox_inches="tight")
-    plt.close(fig)
-    print(f"wrote {out}")
-
-
 def main() -> int:
     FIGURES.mkdir(parents=True, exist_ok=True)
     DOCS.mkdir(parents=True, exist_ok=True)
@@ -425,7 +345,6 @@ def main() -> int:
     grader_paths()
     architecture()
     data_funnel()
-    finetune_progression()
     return 0
 
 

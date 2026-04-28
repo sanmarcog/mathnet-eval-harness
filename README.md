@@ -36,8 +36,6 @@ Full methodology, caveats, and secondary findings: [docs/findings.md](docs/findi
 
 Across four QLoRA configurations spanning every sensible knob (base model, recipe, LoRA rank, data scale, loss masking, augmentation, self-distillation), **every fine-tune ended below the 36.8% post-trained Qwen3-1.7B base.** Our cleanest attempt, Run 4 (training only on the base's *own* correct reasoning traces) closed the gap from -34 pp (Runs 2/3) to **-8 pp**, but couldn't push past base.
 
-![Fine-tune progression](results/figures/finetune_progression.png)
-
 **The mechanism, diagnosed cleanly from the eval data:** fine-tuning *amplified* the convergence-failure mode the base was already prone to. Run 4 has *more* saturation than base (198 vs 157 outputs hit the 16K-token cap), and 53% of its misses are *saturated AND no `\boxed{}`*. The model thinks past the budget without ever committing to a final answer.
 
 ![Outcome decomposition: correct / wrong-but-committed / saturated-without-answer across base + Run 2/3/4](results/figures/miss_mode_decomposition.png)
