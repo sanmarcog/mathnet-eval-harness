@@ -121,7 +121,7 @@ def main() -> int:
     top_5 = [r for r in comp_rows if r[1] >= 2][-5:][::-1]
 
     lines: list[str] = []
-    lines.append(f"# Run 2 vs base — paired analysis (n={n})\n")
+    lines.append(f"# `{args.finetune_dir.name}` vs `{args.base_dir.name}` — paired analysis (n={n})\n")
     lines.append(f"Compared: `{args.finetune_dir.name}` vs `{args.base_dir.name}`\n")
 
     lines.append("## Headline\n")
@@ -164,13 +164,13 @@ def main() -> int:
                  f"{base_sat_no_boxed} saturated-and-no-boxed.")
     lines.append("")
 
-    lines.append("## Where Run 2 helped most (top 5 competitions, n≥2)\n")
+    lines.append("## Where the fine-tune helped most (top 5 competitions, n≥2)\n")
     lines.append("| Competition | n | base | ft | delta |")
     lines.append("|---|---|---|---|---|")
     for c, nn, bb, ff, d in top_5:
         lines.append(f"| {c[:60]} | {nn} | {bb} | {ff} | {d:+d} |")
     lines.append("")
-    lines.append("## Where Run 2 regressed most (bottom 5 competitions, n≥2)\n")
+    lines.append("## Where the fine-tune regressed most (bottom 5 competitions, n≥2)\n")
     lines.append("| Competition | n | base | ft | delta |")
     lines.append("|---|---|---|---|---|")
     for c, nn, bb, ff, d in bottom_5:

@@ -17,7 +17,7 @@ narrative pivot (see [Re-anchoring the project](#re-anchoring-the-project)).
 | GPT-5.4 | 495 / 500 | **57.8%** | $9.52 |
 | **Qwen3-1.7B base** *(open, thinking-on, vLLM, 16K)* | 500 | **36.8%** | — |
 | GPT-5.4 Mini | 498 / 500 | **36.7%** | $1.51 |
-| Qwen3-1.7B + Run 4 self-distill *(ours)* | 500 | _TBD — pending eval_ | — |
+| Qwen3-1.7B + Run 4 self-distill *(ours)* | 500 | **28.8%** | — |
 | **API total spend** |  |  | **$41.06** |
 
 Denominator is `n_scored`; missing problems on GPT are OpenAI safety-filter
@@ -465,7 +465,13 @@ Pipeline:
 | 10-30% | Partial collapse despite trace preservation | "Documents Qwen3-1.7B-specific failure mode" |
 | ≤ 10% | Full collapse like Run 2/3 | "Strongest possible negative; literature-backed via 2603.24472" |
 
-Result: _TBD — pending eval_.
+**Result: 144/500 = 28.8% (paired delta -8.0 pp vs Qwen3 base, McNemar exact two-sided p = 0.0001).**
+
+Self-distillation produced a *much milder* regression than Runs 2 and 3 (which sat at -33 to -34 pp), but the fine-tune still ended up below the post-trained base. Per-problem transition: 30 problems went `base ✗ → ft ✓` (improvements), 70 went `base ✓ → ft ✗` (regressions). Net regression of 40 problems, with discordant pair imbalance well past the p < 0.001 threshold.
+
+The miss decomposition reveals the failure mechanism: Run 4 has *more* saturation than base (198 ≥16K-token outputs vs 157), and 53% of its misses are "saturated AND no `\boxed{}`" — the model thinks past the 16K cap without ever committing to a final answer. Self-distillation was supposed to preserve reasoning depth and avoid the supervision-length collapse documented in [arxiv 2603.24472](https://arxiv.org/html/2603.24472), and it largely did avoid the catastrophic collapse seen in Runs 2/3 — but it amplified the convergence-failure mode the base model was already prone to.
+
+**Interpretation:** at 1.7B, the post-trained Qwen3 base appears to be at or near a local optimum that's hard to disturb without breaking it. Self-distillation reduces the damage of fine-tuning (huge step from -34 pp to -8 pp) but doesn't surpass the base. Improving on the open base at this size requires methods structurally different from any of what we tested — most plausibly RL ([rStar-Math](https://arxiv.org/abs/2501.04519), GRPO) which avoids the supervision-length problem entirely, or distillation from a much stronger external teacher.
 
 ### Summary of fine-tune attempts
 
@@ -476,7 +482,7 @@ Result: _TBD — pending eval_.
 | Run B | Qwen2.5-1.5B-Instruct | + `completion_only_loss=True` | (same as Run 1) | 8.0% (-8 pp paired) |
 | Run 2 | Qwen3-1.7B | recipe-match Alibaba's Qwen2.5-Math 1.5B (LR 2e-5, 3 epochs, eff batch 128, multilingual filtered) | 11,648 rows | **3.0% (-33.8 pp)** |
 | Run 3 | Qwen3-1.7B | + boxed-answer augmentation (every row gets `\\boxed{X}` appended) | 11,648 rows | **3.8% (-33.0 pp)** |
-| Run 4 | Qwen3-1.7B | + self-distilled training data (base's own correct outputs, traces preserved) | ~150 rows | _TBD_ |
+| Run 4 | Qwen3-1.7B | + self-distilled training data (base's own correct outputs, traces preserved) | 146 rows | **28.8% (-8.0 pp paired, p < 10⁻³)** |
 
 D-LR (LR=5e-5 midpoint ablation) was started and cancelled mid-flight
 when mid-eval pause cost was projected to exceed walltime; no held-out

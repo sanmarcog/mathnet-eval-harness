@@ -12,7 +12,7 @@ Five frontier LLMs and an open-weights 1.7B base — with a QLoRA fine-tune on t
 | GPT-5.4 | 495 / 500 | **57.8%** | $9.52 |
 | **Qwen3-1.7B base**  *(open, thinking-on, vLLM, 16K)* | 500 | **36.8%** | — |
 | GPT-5.4 Mini | 498 / 500 | **36.7%** | $1.51 |
-| Qwen3-1.7B + Run 4 self-distill *(ours)* | — | *(pending Run 4 eval)* | — |
+| Qwen3-1.7B + Run 4 self-distill *(ours)* | 500 | **28.8%** | — |
 
 ![Scoreboard](results/figures/scoreboard.png)
 
