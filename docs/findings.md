@@ -224,16 +224,25 @@ McNemar exact two-sided p ≈ 0.0001 — the discordant-pair imbalance is well p
 
 ## Summary of fine-tune attempts
 
-| Run | Base | Recipe / single change | Train data | Eval acc (paired Δ vs base) |
+The runs split into two distinct experiment families with **different base models**, so the deltas are NOT directly comparable across the dividing line. Run 1 / Run B used **Qwen2.5-1.5B-Instruct** (the original Day-2 anchor), n=150 paired vs Qwen2.5-1.5B base. Runs 2/3/4 use **Qwen3-1.7B** (the post-Day-3 anchor after the parity finding pivoted the project), n=500 paired vs Qwen3-1.7B base. The two halves of the table are connected only by methodology lessons (LR ablation, completion-only-loss, recipe-matching), not by a shared baseline.
+
+**Early experiments — Qwen2.5-1.5B-Instruct base, n=150 paired:**
+
+| Run | Recipe / single change | Train data | Eval acc (paired Δ vs Qwen2.5 base) |
+|---|---|---|---|
+| Run 1 | default LR 2e-4, no completion-only-loss | English MathNet (3,596) | 10.0% (-6 pp paired vs Qwen2.5 base 16%, p=0.049) |
+| Run B | + `completion_only_loss=True` | (same as Run 1) | 8.0% (-8 pp paired, p=0.008) |
+
+**Project anchor runs — Qwen3-1.7B base, n=500 paired:**
+
+| Run | Base | Recipe / single change | Train data | Eval acc (paired Δ vs Qwen3 base 36.8%) |
 |---|---|---|---|---|
 | **Base** | Qwen3-1.7B | (no fine-tune) | — | **36.8% (anchor)** |
-| Run 1 | Qwen2.5-1.5B-Instruct | default LR 2e-4, no completion-only-loss | English MathNet (3,596) | 10.0% (-6 pp paired n=150 vs Qwen2.5 base 16%) |
-| Run B | Qwen2.5-1.5B-Instruct | + `completion_only_loss=True` | (same as Run 1) | 8.0% (-8 pp paired) |
 | Run 2 | Qwen3-1.7B | recipe-match Alibaba's Qwen2.5-Math 1.5B (LR 2e-5, 3 epochs, eff batch 128, multilingual filtered) | 11,648 rows | **3.0% (-33.8 pp)** |
 | Run 3 | Qwen3-1.7B | + boxed-answer augmentation (every row gets `\\boxed{X}` appended) | 11,648 rows | **3.8% (-33.0 pp)** |
 | Run 4 | Qwen3-1.7B | + self-distilled training data (base's own correct outputs, traces preserved) | 146 rows | **28.8% (-8.0 pp paired, p < 10⁻³)** |
 
-D-LR (LR=5e-5 midpoint ablation) was started and cancelled mid-flight when mid-eval pause cost was projected to exceed walltime; no held-out accuracy. Loss curve was numerically stable.
+D-LR (LR=5e-5 midpoint ablation under the early-experiment family) was started and cancelled mid-flight when mid-eval pause cost was projected to exceed walltime; no held-out accuracy. Loss curve was numerically stable.
 
 ## What it would take to actually beat the open base
 
@@ -249,7 +258,7 @@ These are documented as Week 2-4 follow-on work. None are addressable in Week 1.
 ## Frontier-tier findings
 
 1. **Opus 4.7 is clearly the strongest**, but the spot-check sample size means we treat the 84% as indicative of the ceiling, not as a precise number.
-2. **Sonnet 4.6 beats GPT-5.4 by 7 pp** (65.0% vs 57.8%) on a sample large enough that this is not noise. The Anthropic lineage outperforms the OpenAI lineage on MathNet-style olympiad problems in our setup, and at comparable eval cost ($10.35 vs $9.52).
+2. **Sonnet 4.6 beats GPT-5.4 by 7 pp.** Aggregate: 65.0% vs 57.8%. **Paired McNemar on the n=495 intersection: 324 vs 286 correct, exact two-sided p = 0.0019** (144 discordant pairs, 91 Sonnet-only vs 53 GPT-only). The Anthropic lineage outperforms the OpenAI lineage on MathNet-style olympiad problems in our setup, by an effect well past noise, at comparable eval cost ($10.35 vs $9.52). Reproducible via [`scripts/compute_parity_mcnemar.py`](../scripts/compute_parity_mcnemar.py).
 3. **Gemini 3 Pro at 73.3% (N=240 of 300 target) with capped thinking.** Ran with `thinking_budget=4096` to fit budget; would plausibly score 1-3 pp higher with default (unbounded) thinking.
 4. **The GPT-5 family has a large `miss` rate even with the LLM judge enabled** (209 and 315 misses across GPT-5.4 / Mini). Investigated on a pre-registered 40-sample manual audit: [docs/gpt-missrate-analysis.md](./gpt-missrate-analysis.md). 85% of sampled misses are genuine model errors; only 10% are grader artifacts (`extractor_failure` or `judge_false_negative`), below the [pre-registered 15% fix threshold](./gpt-missrate-preregistration.md). **Conclusion: numbers stand; Mini at 37% is the real peer-tier target, not a grader-inflated figure.**
 
@@ -276,8 +285,10 @@ These are prominent on purpose — the headline numbers mean very different thin
 - **Gemini 3 Pro ran with `thinking_budget=4096`**, other models ran with default reasoning settings. Cost-control decision based on a 15-problem calibration showing median 5,454 thoughts / max 15,730 per problem under default thinking. A default-thinking run would plausibly score 1-3 pp higher.
 - **Gemini 3 Pro is N=300 by design** (rescoped from 500 during calibration to fit budget) and currently N=239 in practice due to a preview-model daily quota cap. The remaining 61 are deferred to a future run.
 - **OpenAI filtered 5 / 500 GPT-5.4 and 2 / 500 GPT-5.4 Mini prompts** with `invalid_prompt` 400s. Accuracy denominators are `n_scored` (495 and 498) rather than 500 for those two models. See [results/full/openai-flagged-problems.md](../results/full/openai-flagged-problems.md).
-- **Judge model = Claude Sonnet 4.6.** The judge's job is pairwise equivalence, not problem-solving; a 9-problem Day-1 calibration found 0 false positives. Same family as the #3 model on the scoreboard, so a second-judge cross-check would be a reasonable follow-up.
-- **Saturation cutoff is identical across all four Qwen3-1.7B runs.** All four sbatches (`eval_qwen3_base.sbatch`, `eval_qwen3_run2.sbatch`, `eval_qwen3_run3.sbatch`, `eval_qwen3_run4.sbatch`) pass `--max-new-tokens 16384` to the same eval script with `temperature=0` on the same vLLM backend. The figure A "saturated" comparison is uncontaminated.
+- **Judge model = Claude Sonnet 4.6.** The judge's job is pairwise equivalence, not problem-solving; a 9-problem Day-1 calibration found **0 false positives on the 9 accepted answers tested** — false negatives were not assessed in that calibration, and the later 40-sample GPT miss-rate audit did surface 2 judge false negatives ([docs/gpt-missrate-analysis.md](./gpt-missrate-analysis.md)). So the calibration bounds the false-positive risk, not the false-negative risk; a second-judge cross-check would be a reasonable follow-up. Same family as the #3 model on the scoreboard, which is its own caveat.
+- **Saturation cutoff is identical across all four Qwen3-1.7B runs.** All four sbatches (`eval_qwen3_base.sbatch`, `eval_qwen3_run2.sbatch`, `eval_qwen3_run3.sbatch`, `eval_qwen3_run4.sbatch`) pass `--max-new-tokens 16384` to the same eval script with `temperature=0` on the same vLLM backend. The single source of truth for the analysis-side definition is `mathnet_eval.SATURATION_CUTOFF` in [src/mathnet_eval/__init__.py](../src/mathnet_eval/__init__.py); both `scripts/make_diagnostic_figures.py` and `scripts/analyze_finetune_vs_base.py` import it. If anyone re-runs at a different cap, update the constant and the sbatches together — figure A's saturated-vs-not labels would silently disagree otherwise.
+- **Single-seed runs.** All Qwen3 evals run at `temperature=0` (greedy), and all training runs use `--seed 0`. Greedy generation is deterministic so the eval-side seed is moot for the base run, but the QLoRA-trained adapters depend on training-data shuffle order, and Run 4 specifically picked a *single* sample of 146 base-correct rows (no resampling). The paired McNemar tests we report are valid for the comparison as run; they don't bound the variance over alternative training-data samples.
+- **Run 4 self-distill data is N=146.** That is small enough that a different sample of base-correct rows could plausibly produce a meaningfully different result. The McNemar test catches that the difference vs base is real (p ≈ 10⁻⁴), but does not bound the *direction* under resampling. A robust follow-up would resample the distillation set 3-5 times and report distribution of paired deltas.
 
 ### Grader path breakdown (Sonnet 4.6, n=500)
 
@@ -291,7 +302,7 @@ Correctness is assigned by a 4-layer grading pipeline that tries cheap, determin
 | `judge` (LLM) | 192 | 38.4% |
 | `miss` | 175 | 35.0% |
 
-133 / 325 = **40.9% of correct grades resolve on the objective (non-judge) layers**. The LLM judge catches the other 59% — set-valued answers, notation synonyms, prose-wrapped solutions. Day-1 judge calibration on 9 accepted answers found 0 false positives. See [results/figures/grader_paths.png](../results/figures/grader_paths.png) for the per-model distribution.
+133 / 325 = **40.9% of correctly-graded outputs resolve on the objective (non-judge) layers** (the cheap layers run first; if any returns equal, the judge isn't called). The LLM judge catches the other 59% — set-valued answers, notation synonyms, prose-wrapped solutions. Day-1 judge calibration on 9 accepted answers found 0 false positives; the calibration's scope was false-positive only (false negatives weren't assessed in those 9 — the later 40-sample audit found 2 judge false negatives, see [docs/gpt-missrate-analysis.md](./gpt-missrate-analysis.md)). See [results/figures/grader_paths.png](../results/figures/grader_paths.png) for the per-model distribution.
 
 ## Operational findings
 
@@ -308,7 +319,7 @@ Things we did not expect, and which cost us time. Documenting them here so the n
 
 A few things we got wrong on the first attempt and fixed in flight.
 
-1. **Mid-training eval was too narrow on Run 1.** The QLoRA training loop logs a held-out 50-problem accuracy at 25%/50%/75% of training plus each epoch boundary. Run 1 was capped at 1024 output tokens with greedy decoding and the cheap-grader-only path — no LLM judge. All four checkpoints reported 1/50 = 2%, which read as "training is broken." It wasn't. 1024 tokens is under 10% of the median convergent output length on this benchmark; the model hadn't yet emitted a `\boxed{...}` by the time the cap hit, so `extract_answer` returned `None` on 49/50. **Fixed for Run 2:** mid-eval token cap bumped to 4096 in `src/mathnet_eval/training.py`; default still no judge in mid-eval to avoid runaway API spend during long training jobs.
+1. **Mid-training eval was too narrow on Run 1.** The QLoRA training loop logs a held-out 50-problem accuracy at 25%/50%/75% of training plus each epoch boundary. Run 1 was capped at 1024 output tokens with greedy decoding and the cheap-grader-only path — no LLM judge. All four checkpoints reported 1/50 = 2%, which read as "training is broken." It wasn't. 1024 tokens is under 10% of the median convergent output length on this benchmark; the model hadn't yet emitted a `\boxed{...}` by the time the cap hit, so `extract_answer` returned `None` on 49/50. **Bumped for Run 2:** mid-eval token cap raised to 4096 in `src/mathnet_eval/training.py`. **But that is still too small to give a meaningful Qwen3 accuracy signal** — Qwen3-1.7B's median final-answer length is ~14K tokens with thinking-on. Treat mid-eval at 4096 as a *training-loop sanity check* (is the model still emitting parseable output at all, has it numerically diverged?), not as an accuracy estimate. The real Run 2/3/4 accuracy signal comes from the post-training n=500 vLLM-served eval at the full 16K cap.
 2. **Pre-registered ranges turned out to be too pessimistic on Qwen3 base.** Range was 14-22% (anchored to Qwen 2.5 numbers). Actual landed at 36.8%, well outside. We're treating pre-registration the way it's meant to be treated — **as a flag for when reality differs from your prior, not as a target to defend.** When the prior misses, document the miss and update the model.
 3. **vLLM does not load PEFT adapters in our eval-script wiring.** Post Run 2 training, we merge the LoRA adapter into bf16 base weights ([scripts/merge_adapter.py](../scripts/merge_adapter.py)) and serve the merged checkpoint via vLLM, which keeps the post-fine-tune eval on the same fast inference path the base used (≈500 tok/s aggregate under 500-sequence batching). Without this step, fine-tuned eval would fall back to HF generate at ~30 tok/s, i.e. a 10+ hour run.
 

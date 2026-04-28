@@ -22,6 +22,8 @@ from collections import defaultdict
 from math import comb
 from pathlib import Path
 
+from mathnet_eval import SATURATION_CUTOFF
+
 
 def load_graded(d: Path) -> dict:
     out = {}
@@ -60,8 +62,9 @@ def main() -> int:
     p.add_argument("--base-dir", required=True, type=Path)
     p.add_argument("--out", required=True, type=Path,
                    help="Markdown report path")
-    p.add_argument("--saturation-threshold", type=int, default=16384,
-                   help="output_tokens >= this is treated as ceiling-hit")
+    p.add_argument("--saturation-threshold", type=int, default=SATURATION_CUTOFF,
+                   help="output_tokens >= this is treated as ceiling-hit "
+                        "(default from mathnet_eval.SATURATION_CUTOFF)")
     args = p.parse_args()
 
     ft = load_graded(args.finetune_dir)

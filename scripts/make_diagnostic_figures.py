@@ -30,6 +30,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.patches import Rectangle
 
+from mathnet_eval import SATURATION_CUTOFF
+
 REPO = Path(__file__).resolve().parent.parent
 RESULTS = REPO / "results"
 FIGURES = RESULTS / "figures"
@@ -44,7 +46,7 @@ GRID = "#D4C6A8"
 SAND = "#E8D4A8"
 DEEP_RED = "#8B2E1F"
 
-SAT_CUTOFF = 16384
+SAT_CUTOFF = SATURATION_CUTOFF
 
 RUNS = [
     ("qwen3-1.7b-base", "Qwen3-1.7B base"),
