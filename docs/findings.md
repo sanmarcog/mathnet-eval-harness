@@ -29,11 +29,24 @@ On Day-3 we added Qwen3-1.7B as the open-weights baseline. **It scored 36.8% out
 
 We've kept that fact in the headline rather than rewriting history. The re-framed question is more current and more interesting: with the open ecosystem already at the cheap-commercial-tier waterline, **where does fine-tuning still add value?**
 
+### Paired McNemar test on the n=498 intersection
+
+The aggregate accuracy gap (36.8% vs 36.7%) is one problem in absolute terms; the headline framing should be defended with a proper paired test. On the 498-problem intersection:
+
+| | Correct | Accuracy on n=498 |
+|---|---|---|
+| Qwen3-1.7B base | 184 | 36.9% |
+| GPT-5.4 Mini    | 183 | 36.7% |
+
+Transition matrix: 111 both correct, 73 Qwen3-only, 72 Mini-only, 242 neither. **McNemar exact two-sided p = 1.0000** (145 discordant pairs, smaller side 72). The discordant pairs are near-perfectly balanced 73 / 72 — the data is fully consistent with the two models being at the same expected accuracy.
+
+But: the **parity is in aggregate, not per-problem.** They disagree on 145 / 498 problems, which is 29% of the eval — they reach the same headline rate by solving substantially different problem subsets. Reproducible via [`scripts/compute_parity_mcnemar.py`](../scripts/compute_parity_mcnemar.py).
+
 ### Caveat: not a constraint-matched comparison
 
-The 36.8% / 36.7% near-tie is "both models in their preferred inference mode": Qwen3 thinking-on at 16K tokens via vLLM, Mini with OpenAI's default reasoning configuration. Identical-constraint comparisons (e.g. capping Qwen3 to a comparable reasoning budget) would land somewhere different.
+The near-tie is "both models in their preferred inference mode": Qwen3 thinking-on at 16K tokens via vLLM, Mini with OpenAI's default reasoning configuration. Identical-constraint comparisons (e.g. capping Qwen3 to a comparable reasoning budget) would land somewhere different.
 
-The headline finding isn't *"these are identical models"* — it's *"the open ecosystem has caught up enough that the useful inference mode of a 1.7B base ties the useful inference mode of the cheap commercial tier."*
+The headline finding isn't *"these are identical models"* (the per-problem disagreement rate of 29% rules that out) — it's *"the open ecosystem has caught up enough that the useful inference mode of a 1.7B base ties the useful inference mode of the cheap commercial tier in mean accuracy."*
 
 ### Same 63% miss rate, different causes
 
