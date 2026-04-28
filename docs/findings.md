@@ -105,7 +105,7 @@ After Run B failed to recover and a learning-rate ablation (D-LR, LR=5e-5) was c
 
 We were **10× too high on LR**, **8× too small on batch**, **700× too small on data**, and on the wrong base variant. Each contributes; together they explain the regression.
 
-The [catastrophic forgetting literature](https://arxiv.org/html/2512.13706) documents the failure mode directly: Flan-T5-Base loses 64.5pp on NLI within 1,000 steps of math-only fine-tuning. LoRA mitigates relative to full fine-tuning but does not eliminate the problem; aggressive LR on a narrow domain still degrades general abilities the model needed to solve the problem.
+The [catastrophic forgetting literature](https://arxiv.org/abs/2512.13706) (Reynolds 2025) documents the failure mode directly: Flan-T5-Base loses 64.5 pp on NLI within 1,000 steps of math-only fine-tuning. The paper does not test LoRA specifically, but the mechanism it documents — aggressive narrow-domain training degrading general abilities the model needs — is what we observed in Runs 2 and 3.
 
 We did *not* run an LR sweep to triangulate the right value. The literature converged on 2e-5 for this exact model family at this size. Adopting that directly was a faster path to a working result than re-deriving it experimentally.
 
@@ -140,7 +140,7 @@ Diagnosis post-mortem on Run 3's outputs: the augmentation *did* teach the boxin
 
 Hypothesis (per [LIMO 2502.03387](https://arxiv.org/abs/2502.03387) / [STaR 2203.14465](https://arxiv.org/abs/2203.14465) / [RFT 2308.01825](https://arxiv.org/abs/2308.01825)): training on the *model's own* correct reasoning may elicit latent capability without the noise of MathNet's heterogeneous gold answers. The Run 2/3 training data had MathNet's prose-form gold (e.g. *"All n that are multiples of 4"*) inside a `\boxed{}` — confusing supervision. Run 4 replaces that with traces the base actually generated and got right.
 
-Critical caveat from [Why Does Self-Distillation Degrade Reasoning (2603.24472)](https://arxiv.org/html/2603.24472), which specifically observes -40% on Qwen3-1.7B with naive SFT when training data has shorter reasoning than the model's natural depth: we preserve full `<think>...</think>` traces in the training targets, train with `enable_thinking=True` in the chat template (matches inference), `max_seq_length=8192` to fit the long traces, conservative LR `1e-5` and 1-2 epochs.
+Critical caveat from [Why Does Self-Distillation (Sometimes) Degrade Reasoning](https://arxiv.org/abs/2603.24472) (Kim et al., 2603.24472), which reports up to -40% reasoning regression on Qwen3-**8B**, DeepSeek-Distill-Qwen-7B, and Olmo3-7B-Instruct (the paper does not test Qwen3-1.7B): self-distillation can hurt generalization. To minimize that risk we preserve full `<think>...</think>` traces in the training targets, train with `enable_thinking=True` in the chat template (matches inference), `max_seq_length=8192` to fit the long traces, and use conservative LR `1e-5` with 1-2 epochs.
 
 Pipeline:
 
@@ -180,7 +180,7 @@ The deep-red segment grows from base to Run 4. The fine-tune trained the model t
 
 The mechanism is mechanical. Base produces long reasoning traces (median ~14K tokens with `<think>` blocks). Run 4 trained on those long traces — so the resulting model thinks *longer*. On problems Run 4 can solve, this is fine. On problems it can't, the model spirals into recomputation loops past the 16K ceiling without converging.
 
-Self-distillation was supposed to preserve reasoning depth and avoid the supervision-length collapse documented in [arxiv 2603.24472](https://arxiv.org/html/2603.24472). It largely did avoid the catastrophic collapse seen in Runs 2/3 — but it amplified the convergence-failure mode the base model was already prone to. The base was at a precarious equilibrium between useful long thinking and runaway thinking; even a soft, faithful retraining tipped it past the cliff.
+The mechanism we observed is not the one [Kim et al. (2603.24472)](https://arxiv.org/abs/2603.24472) document for self-distillation degradation in larger Qwen3 / DeepSeek / Olmo models — they identify "conditioning the teacher on rich information suppresses uncertainty expression, hurting OOD." Our failure mode is different and is our own diagnosis from the eval data: training on base's long reasoning traces taught the model to *think longer*, amplifying the convergence-failure mode the base was already prone to. The base sat at a precarious equilibrium between useful long thinking and runaway thinking; even a soft, faithful retraining tipped it past the cliff.
 
 ### A concrete illustration: problem `0ai2`
 
@@ -226,7 +226,7 @@ At 1.7B, the post-trained Qwen3 base appears to sit at a local optimum hard to d
 
 1. **RL — [GRPO](https://arxiv.org/abs/2402.03300) / [rStar-Math](https://arxiv.org/abs/2501.04519).** Avoids the supervision-length problem entirely. The model generates its own traces and the reward is on the final answer, so there is no teacher distribution biasing trace length upward. The 16K saturation issue fundamentally goes away because there is no demonstration to imitate.
 2. **Distillation from a stronger external teacher.** Sonnet 4.6 emits decisive ~5K-7K-token solutions on these same problems; the base emits noisy ~14K-token solutions. Training on Sonnet's trace distribution (or DeepSeek-R1's) would relabel the supervision target with cleaner, more decisive reasoning — addressing exactly the "trained to think longer" mechanism. Cost-prohibitive for the project budget but the most direct fix.
-3. **Continued pretraining on a larger math corpus** (e.g. [Llemma's Proof-Pile-2](https://arxiv.org/abs/2310.10631) at 55B tokens). Different scale entirely. Useful as an upstream step *before* any of the above; not a replacement for them.
+3. **Continued pretraining on a larger math corpus** (e.g. [Llemma](https://arxiv.org/abs/2310.10631) and its Proof-Pile-2 dataset of scientific papers, math web data, and mathematical code). Different scale entirely. Useful as an upstream step *before* any of the above; not a replacement for them.
 
 These are documented as Week 2-4 follow-on work. None are addressable in Week 1.
 

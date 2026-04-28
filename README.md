@@ -60,11 +60,50 @@ At 1.7B, the post-trained Qwen3 base appears to sit at a local optimum hard to d
 
 - **RL** ([GRPO](https://arxiv.org/abs/2402.03300) / [rStar-Math](https://arxiv.org/abs/2501.04519)) — avoids the supervision-length problem entirely
 - **Distillation from a stronger teacher** (e.g., Sonnet 4.6 / DeepSeek-R1 traces) — relabels the supervision target with cleaner, more decisive reasoning
-- **Continued pretraining on a larger math corpus** (Llemma's Proof-Pile-2 at 55B tokens) — different scale entirely
+- **Continued pretraining on a larger math corpus** ([Llemma](https://arxiv.org/abs/2310.10631) and its Proof-Pile-2 dataset) — different scale entirely
 
 These are documented as Week 2-4 follow-on work. None are addressable in Week 1.
 
 Full per-run journey, methodology caveats, and the literature backing this interpretation: [docs/findings.md](docs/findings.md).
+
+## Run-by-run methodology and references
+
+For each fine-tune attempt: the precise training-script spec, the prior work that justified trying it, and the literature (or own diagnosis) explaining why it didn't beat the base. Citations are marked **✓ verified** (paper exists and the cited claim checks out), **⚠ corrected** (paper exists but an earlier draft of this writeup misattributed something to it), or **📊 own diagnosis** (no peer-reviewed source — derived from our own eval data).
+
+### Run 2 — recipe-match Alibaba's Qwen2.5-Math 1.5B
+
+**What it does** ([slurm/train_qlora_run2.sbatch](slurm/train_qlora_run2.sbatch)): QLoRA on Qwen3-1.7B (4-bit NF4), `r=64 / alpha=128` on q/k/v/o + gate/up/down. LR `2e-5`, effective batch **128** (per-device 4 × grad-accum 32), **3 epochs**, `max_seq_length=4096`, `completion_only_loss=True`, thinking-OFF chat template. Training data: 11,648 multilingual MathNet rows, filtered to drop empty/<100-token solutions.
+
+**Prior work — why we tried it:**
+- ✓ **Qwen2.5-Math Technical Report** ([arxiv 2409.12122](https://arxiv.org/abs/2409.12122), Yang et al. 2024) — the only known successful math fine-tune in this family at this size. Their published 1.5B recipe is exactly LR 2×10⁻⁵, batch 128, 3 epochs, seq 4,096. We matched all four numerical knobs.
+
+**Why it didn't work — at -33.8 pp paired:**
+- ✓ **Catastrophic forgetting at small scale** ([arxiv 2512.13706](https://arxiv.org/abs/2512.13706), Reynolds 2025) — Flan-T5-Base loses 64.5 pp on NLI within 1,000 steps of math-only fine-tuning. Aggressive narrow-domain training degrades general abilities the model needs.
+- 📊 **Data-scale gap** — Alibaba trained on 2.5M RM-curated CoT problems; we trained on 11,648 raw MathNet rows. ~200× less data, uncurated. The recipe was tuned for a data scale we couldn't match.
+
+### Run 3 — Run 2 + boxed-answer augmentation
+
+**What it does** ([slurm/train_qlora_run3.sbatch](slurm/train_qlora_run3.sbatch)): identical to Run 2, except every training row's solution gets `\n\nTherefore, the final answer is $\boxed{<final_answer>}$` appended.
+
+**Prior work — why we tried it:**
+- 📊 **No specific peer-reviewed precedent.** Format augmentation in math fine-tuning is engineering folklore. The internal hypothesis was: if base emits `\boxed{}` 65% of the time and MathNet rows contain it 1.5%, the fine-tune may have unlearned the convention. Run 3 was a single-variable test of that.
+
+**Why it didn't work — at -33.0 pp paired:**
+- 📊 **Format restored, math broken** (own diagnosis from Run 3 outputs): 41.8% of Run 3 outputs emit `\boxed{}` (close to base's 65%) — the augmentation worked. But the *content* inside the boxes is wrong nearly every time (~9% correct-among-boxed vs base's 57%). Format and capability are independent.
+- ✓ **Same catastrophic-forgetting mechanism as Run 2** ([arxiv 2512.13706](https://arxiv.org/abs/2512.13706)). Adding format supervision doesn't reverse the underlying capability damage from aggressive SFT on a narrow domain.
+
+### Run 4 — self-distillation on base's own correct outputs
+
+**What it does** ([slurm/train_qlora_run4_n150.sbatch](slurm/train_qlora_run4_n150.sbatch)): QLoRA on Qwen3-1.7B with **thinking-ON** chat template. LR `1e-5` (half of Run 2/3), effective batch **4** (per-device 1 × grad-accum 4), **2 epochs**, `max_seq_length=8192` (doubled to fit long traces), `completion_only_loss=True`. Training data: 146 rows where base Qwen3-1.7B solved a training problem and `extract_answer` matched gold; full `<think>...</think>` traces preserved verbatim.
+
+**Prior work — why we tried it (three direct precedents):**
+- ✓ **STaR** ([arxiv 2203.14465](https://arxiv.org/abs/2203.14465), Zelikman et al. 2022) — the original self-taught-reasoner loop: generate rationales, keep the ones that yield correct answers, fine-tune on those, repeat.
+- ✓ **RFT** ([arxiv 2308.01825](https://arxiv.org/abs/2308.01825), Yuan et al. 2023, "Scaling Relationship on Learning Mathematical Reasoning") — defines rejection-sampling fine-tuning explicitly; reports LLaMA-7B 35.9% → 49.3% on GSM8K.
+- ✓ **LIMO** ([arxiv 2502.03387](https://arxiv.org/abs/2502.03387), Ye et al. 2025) — sophisticated reasoning emerges from a few well-chosen examples in models with strong foundations; justifies trying with only ~150 rows.
+
+**Why it didn't work — at -8 pp paired (p ≈ 10⁻⁴):**
+- ⚠ **Self-distillation degradation IS documented** ([arxiv 2603.24472](https://arxiv.org/abs/2603.24472), Kim et al., "Why Does Self-Distillation (Sometimes) Degrade the Reasoning Capability of LLMs?") — up to **40% reasoning regression** across Qwen3-**8B**, DeepSeek-Distill-Qwen-7B, and Olmo3-7B-Instruct. **Caveat:** the paper does **not** test Qwen3-1.7B, and the mechanism it identifies (conditioning the teacher on rich information suppresses uncertainty expression, hurting OOD performance) is **not the same** as what we observed. So this paper supports "self-distillation can hurt" generically; it does not explain our specific failure.
+- 📊 **Our specific failure mechanism is own diagnosis** (from eval data, not literature): training on base's long reasoning traces (median ~14K tokens with `<think>` blocks) taught the model to *think longer*, amplifying the convergence-failure mode the base was already prone to. Run 4 saturated 198 outputs at 16K vs base's 157; **53% of Run 4's misses are saturated AND never boxed.** Concrete illustration: problem `0ai2` (base solved in 5,271 tokens with `\boxed{302561952}`; Run 4 saturated at 16,384 tokens with no answer) — see the section above.
 
 ## Architecture
 
