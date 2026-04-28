@@ -65,17 +65,16 @@ This is the failure mode generalized: the fine-tune produced a model that *can* 
 
 The paired n=500 picture: regressions outnumber improvements roughly 2:1. Run 4 is not "uniformly weaker", it shifts the distribution, breaking more than it fixes. McNemar exact two-sided p ≈ 0.0001.
 
-### The bigger framing
+### What it would actually take
 
-At 1.7B, the Qwen3 base appears to sit at a local optimum hard to disturb without breaking — and that optimum was inherited via distillation from a Qwen team flagship that received the full SFT + GRPO pipeline. Self-distillation reduced the *damage* of fine-tuning (Runs 2/3 = -34 pp; Run 4 = -8 pp), but didn't push above. **Surpassing the open base at this size likely requires methods structurally different from any we tested:**
+The Qwen3-1.7B base seems to sit at a local optimum that's hard to disturb without breaking, inherited via distillation from a Qwen team flagship that received the full SFT + GRPO pipeline ([Qwen3 tech report 2505.09388](https://arxiv.org/abs/2505.09388)). So the 36.8% baseline is post-distillation-from-RL, not direct RL. That recontextualizes the negative result: SFT was being asked to perturb a local optimum reached by a heavily optimized teacher, in the same direction (longer traces) that already wasn't working.
 
-- **Bias-corrected RL (Dr. GRPO).** Vanilla GRPO has a documented length-amplification bias — exactly the failure mode that bit Run 4 in SFT, per [Dr. GRPO (Liu et al., 2503.20783)](https://arxiv.org/abs/2503.20783): *"optimization bias in GRPO ... artificially increases response length, especially for incorrect outputs."* The bias-corrected variant fixes this and is the right tool for the failure mode we measured. Two reasonable base choices:
-    - **Qwen3-1.7B** — distilled from a flagship that received SFT + GRPO per [2505.09388](https://arxiv.org/abs/2505.09388). Distillation transfers a lot of the flagship's RL signal but is not identical to direct training, so direct RL on a distilled base is open territory — could either extract real lift (the model has never been directly optimized via GRPO) or hit the same saturation-amplification fragility we observed in SFT. Preserves the paired comparison against the existing n=500 eval.
-    - **[Qwen2.5-Math-1.5B base](https://arxiv.org/abs/2409.12122)** — math-specialized, hasn't absorbed RL. Dr. GRPO reports AIME24 16.7% → 20.0%, MATH500 61.8% → 74.2%, average ~36% → ~42% at 1.5B. Higher expected magnitude on a new baseline (no longer paired with the writeup's existing eval).
-    Trade-off: paired-comparison continuity vs. expected-magnitude.
-- **Test-time MCTS search with self-evolved data** ([rStar-Math](https://arxiv.org/abs/2501.04519)), different mechanism from GRPO: Monte Carlo Tree Search at inference plus a process preference model trained on self-evolved traces. Reports Qwen2.5-Math-7B 58.8% → 90.0% on MATH; demonstrated only on 7B and 3.8B, not 1.7B.
-- **Distillation from a stronger external teacher** (e.g., Sonnet 4.6 / DeepSeek-R1 traces), relabels the supervision target with cleaner, more decisive reasoning. Cost-prohibitive for the project budget but the most direct fix for our specific saturation-amplification mechanism.
-- **Continued pretraining on a larger math corpus** ([Llemma](https://arxiv.org/abs/2310.10631) and its Proof-Pile-2 dataset), different scale.
+The structurally right next move is GRPO but with one specific modification: Dr. GRPO. Vanilla GRPO has a documented length-amplification bias, exactly the failure mode that bit Run 4 in SFT. [Liu et al. (2503.20783)](https://arxiv.org/abs/2503.20783) documents it directly: *"optimization bias in GRPO ... artificially increases response length, especially for incorrect outputs."* The bias-corrected variant addresses this and has potential to be the right tool for the failure mode we measured.
+
+Two further options worth considering:
+
+- Test-time MCTS search with self-evolved data ([rStar-Math](https://arxiv.org/abs/2501.04519)) — distinct mechanism from GRPO. Demonstrated at 7B and 3.8B; 1.7B transfer is open.
+- Distillation from a stronger external teacher (Sonnet 4.6 or DeepSeek-R1 traces). The base emits noisy ~14K-token solutions; Sonnet emits decisive ~5-7K-token solutions on the same problems. Training on Sonnet's distribution would relabel the supervision target with cleaner reasoning, addressing the "trained to think longer" mechanism directly.
 
 Full per-run journey, methodology caveats, and the literature backing this interpretation: [docs/findings.md](docs/findings.md).
 
