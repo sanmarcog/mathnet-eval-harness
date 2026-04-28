@@ -34,7 +34,9 @@ Full methodology, caveats, and secondary findings: [docs/findings.md](docs/findi
 
 ## Why none of our fine-tunes beat the base
 
-Across four QLoRA configurations spanning every sensible knob (base model, recipe, LoRA rank, data scale, loss masking, augmentation, self-distillation), **every fine-tune ended below the 36.8% post-trained Qwen3-1.7B base.** Our cleanest attempt, Run 4 (training only on the base's *own* correct reasoning traces) closed the gap from -34 pp (Runs 2/3) to **-8 pp**, but couldn't push past base.
+Across four QLoRA configurations spanning every sensible knob (base model, recipe, LoRA rank, data scale, loss masking, augmentation, self-distillation), **every fine-tune ended below the 36.8% Qwen3-1.7B base.** Worth noting upfront: *this base is itself the product of both SFT and GRPO* — per the [Qwen3 technical report (2505.09388)](https://arxiv.org/abs/2505.09388), the Qwen team applied a "Reasoning RL stage" (3,995 query-verifier pairs trained with GRPO) before release. So the 36.8% anchor is post-RL, not just post-SFT. That makes it harder to surpass and reframes what "fine-tune past it" would actually require.
+
+Our cleanest attempt, Run 4 (training only on the base's *own* correct reasoning traces) closed the gap from -34 pp (Runs 2/3) to **-8 pp**, but couldn't push past base.
 
 **The mechanism, diagnosed cleanly from the eval data:** fine-tuning *amplified* the convergence-failure mode the base was already prone to. Run 4 has *more* saturation than base (198 vs 157 outputs hit the 16K-token cap), and 53% of its misses are *saturated AND no `\boxed{}`*. The model thinks past the budget without ever committing to a final answer.
 
@@ -65,9 +67,9 @@ The paired n=500 picture: regressions outnumber improvements roughly 2:1. Run 4 
 
 ### The bigger framing
 
-At 1.7B, the post-trained Qwen3 base appears to sit at a local optimum hard to disturb without breaking. Self-distillation reduced the *damage* of fine-tuning (Runs 2/3 = -34 pp; Run 4 = -8 pp), but didn't push above. **Surpassing the open base at this size likely requires methods structurally different from any we tested:**
+At 1.7B, the Qwen3 base appears to sit at a local optimum hard to disturb without breaking — and that optimum was reached via the Qwen team's own SFT + GRPO pipeline. Self-distillation reduced the *damage* of fine-tuning (Runs 2/3 = -34 pp; Run 4 = -8 pp), but didn't push above. **Surpassing the open base at this size likely requires methods structurally different from any we tested:**
 
-- **Policy-gradient RL** ([GRPO](https://arxiv.org/abs/2402.03300), DeepSeekMath), avoids the supervision-length problem entirely. The model generates its own traces and the reward is on the final answer, so no teacher distribution biases trace length upward.
+- **Bias-corrected RL on a base that hasn't already absorbed GRPO.** The obvious naive answer is *"do GRPO."* Two problems with that. First, vanilla GRPO has its own length-amplification pathology, exactly the failure mode that bit Run 4, documented in [Dr. GRPO (Liu et al., 2503.20783)](https://arxiv.org/abs/2503.20783): *"optimization bias in GRPO ... artificially increases response length, especially for incorrect outputs."* Second, **Qwen3-1.7B was already trained with GRPO** by the Qwen team (per [Qwen3 tech report 2505.09388](https://arxiv.org/abs/2505.09388)), so applying vanilla GRPO on top has no public reproduction at this size. The right Week-2 candidate is **[Dr. GRPO](https://arxiv.org/abs/2503.20783) (the bias-corrected variant) on Qwen2.5-Math-1.5B base**, math-specialized, hasn't absorbed RL. Dr. GRPO reports AIME24 16.7% → 20.0%, MATH500 61.8% → 74.2%, average ~36% → ~42% at 1.5B.
 - **Test-time MCTS search with self-evolved data** ([rStar-Math](https://arxiv.org/abs/2501.04519)), different mechanism from GRPO: Monte Carlo Tree Search at inference plus a process preference model trained on self-evolved traces. Reports Qwen2.5-Math-7B 58.8% → 90.0% on MATH; demonstrated only on 7B and 3.8B, not 1.7B.
 - **Distillation from a stronger external teacher** (e.g., Sonnet 4.6 / DeepSeek-R1 traces), relabels the supervision target with cleaner, more decisive reasoning. Cost-prohibitive for the project budget but the most direct fix for our specific saturation-amplification mechanism.
 - **Continued pretraining on a larger math corpus** ([Llemma](https://arxiv.org/abs/2310.10631) and its Proof-Pile-2 dataset), different scale.

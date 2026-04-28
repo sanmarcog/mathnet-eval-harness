@@ -2,7 +2,7 @@
 
 This document is the public methodology + results writeup. It complements the [scoreboard in the README](../README.md#scoreboard) with the full caveats, the headline parity finding, the negative result on QLoRA fine-tuning at 1.7B, and the operational lessons from running the evaluation.
 
-The lead is the parity finding (Qwen3-1.7B ≈ GPT-5.4 Mini at 36.8% / 36.7%). The intellectual contribution is the negative-result diagnosis: across four QLoRA configurations spanning every sensible knob, none surpassed the post-trained base, and we have a clean mechanistic explanation for why.
+The lead is the parity finding (Qwen3-1.7B ≈ GPT-5.4 Mini at 36.8% / 36.7%). The intellectual contribution is the negative-result diagnosis: across four QLoRA configurations spanning every sensible knob, none surpassed the Qwen3-1.7B base — which is itself the product of the Qwen team's full SFT + GRPO pipeline (per the [Qwen3 technical report 2505.09388](https://arxiv.org/abs/2505.09388), 3,995 query-verifier pairs were used in their Reasoning RL stage before release). So "the base" here is post-RL, not just post-SFT, which both raises the bar and reframes what "fine-tune past it" would actually require.
 
 ## Scoreboard
 
@@ -64,7 +64,7 @@ So Qwen3's 63% miss rate decomposes (roughly) into ~half "thought-loop failed to
 
 It didn't. The fine-tuning attempts amplified the convergence-failure mode rather than reducing it. Why is the rest of this document.
 
-## The negative finding: across four QLoRA configurations, none surpassed the post-trained base
+## The negative finding: across four QLoRA configurations, none surpassed the SFT+GRPO-trained Qwen3-1.7B base
 
 We're documenting the journey explicitly because it surfaces a useful research finding for anyone fine-tuning small instruction-tuned models on math.
 
@@ -176,7 +176,7 @@ Pipeline:
 
 **Result: 144/500 = 28.8% (paired delta -8.0 pp vs base, McNemar exact two-sided p = 0.0001).** Lands in the "partial collapse despite trace preservation" bucket.
 
-Self-distillation produced a *much milder* regression than Runs 2 and 3 (which sat at -33 to -34 pp), but the fine-tune still ended up below the post-trained base.
+Self-distillation produced a *much milder* regression than Runs 2 and 3 (which sat at -33 to -34 pp), but the fine-tune still ended up below the Qwen3-1.7B base.
 
 ## Figure A: the diagnostic
 
@@ -246,9 +246,9 @@ D-LR (LR=5e-5 midpoint ablation under the early-experiment family) was started a
 
 ## What it would take to actually beat the open base
 
-At 1.7B, the post-trained Qwen3 base appears to sit at a local optimum hard to disturb without breaking. Self-distillation reduced the *damage* of fine-tuning (Runs 2/3 = -34 pp; Run 4 = -8 pp), but didn't push above. **Surpassing the open base at this size likely requires methods structurally different from any we tested.** Three candidates, ordered by how directly they address the convergence-failure mechanism:
+At 1.7B, the Qwen3 base appears to sit at a local optimum hard to disturb without breaking — and that optimum was reached via the Qwen team's own SFT + GRPO pipeline ([2505.09388](https://arxiv.org/abs/2505.09388)). Self-distillation reduced the *damage* of fine-tuning (Runs 2/3 = -34 pp; Run 4 = -8 pp), but didn't push above. **Surpassing the open base at this size likely requires methods structurally different from any we tested.** Four candidates:
 
-1. **Policy-gradient RL — [GRPO](https://arxiv.org/abs/2402.03300) (DeepSeekMath).** Avoids the supervision-length problem entirely. The model generates its own traces and the reward is on the final answer, so there is no teacher distribution biasing trace length upward. The 16K saturation issue fundamentally goes away because there is no demonstration to imitate.
+1. **Bias-corrected RL on a base that hasn't already absorbed GRPO.** The naive answer would be *"do GRPO."* Two problems with that. (a) Vanilla GRPO has its own length-amplification pathology — exactly the failure mode that bit Run 4 — documented in [Dr. GRPO (Liu et al., 2503.20783)](https://arxiv.org/abs/2503.20783): *"optimization bias in GRPO ... artificially increases response length, especially for incorrect outputs."* (b) Qwen3-1.7B was already trained with GRPO by the Qwen team during their Reasoning RL stage; applying vanilla GRPO again has no public reproduction at this size. The clean Week-2 experiment is **[Dr. GRPO](https://arxiv.org/abs/2503.20783) (bias-corrected) applied to [Qwen2.5-Math-1.5B base](https://arxiv.org/abs/2409.12122)** — math-specialized, hasn't absorbed RL. The Dr. GRPO paper reports at 1.5B scale: AIME24 16.7% → 20.0%, MATH500 61.8% → 74.2%, OlympiadBench 28.4% (post-GRPO not stated), average ~36% → ~42%. [SimpleRL-Zoo (2503.18892)](https://arxiv.org/abs/2503.18892) and [Open-R1](https://github.com/huggingface/open-r1) both publish ready recipes for this base.
 2. **Test-time MCTS search with self-evolved data — [rStar-Math](https://arxiv.org/abs/2501.04519).** Distinct mechanism from GRPO: Monte Carlo Tree Search at inference plus a process preference model trained on self-evolved traces. Reports Qwen2.5-Math-7B 58.8% → 90.0% on MATH and Phi3-mini-3.8B 41.4% → 86.4%; demonstrated only at 7B and 3.8B scales — not 1.7B — so transfer to our setting is open.
 3. **Distillation from a stronger external teacher.** Sonnet 4.6 emits decisive ~5K-7K-token solutions on these same problems; the base emits noisy ~14K-token solutions. Training on Sonnet's trace distribution (or DeepSeek-R1's) would relabel the supervision target with cleaner, more decisive reasoning — addressing exactly the "trained to think longer" mechanism. Cost-prohibitive for the project budget but the most direct fix.
 4. **Continued pretraining on a larger math corpus** (e.g. [Llemma](https://arxiv.org/abs/2310.10631) and its Proof-Pile-2 dataset of scientific papers, math web data, and mathematical code). Different scale entirely. Useful as an upstream step *before* any of the above; not a replacement for them.
