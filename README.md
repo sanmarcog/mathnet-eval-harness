@@ -37,6 +37,10 @@ Across four QLoRA configurations spanning every sensible knob (base model, recip
 
 **The mechanism, diagnosed cleanly from the eval data:** fine-tuning *amplified* the convergence-failure mode the base was already prone to. Run 4 has *more* saturation than base (198 vs 157 outputs hit the 16K-token cap), and 53% of its misses are *saturated AND no `\boxed{}`* — the model thinks past the budget without ever committing to a final answer.
 
+![Outcome decomposition: correct / wrong-but-committed / saturated-without-answer across base + Run 2/3/4](results/figures/miss_mode_decomposition.png)
+
+The deep-red segment — saturated outputs that never emit a final answer — grows from base to Run 4. All four runs share the same 16K-token cap, same vLLM backend, same `temperature=0`; the comparison is uncontaminated.
+
 The reason is mechanical. Base produces long reasoning traces (median ~14K tokens with `<think>` blocks). Run 4 trained on those long traces — so the resulting model thinks *longer*. On problems Run 4 can solve, this is fine. On problems it can't, the model spirals into recomputation loops past the 16K ceiling without converging.
 
 ### A concrete illustration: problem `0ai2`
@@ -53,6 +57,10 @@ The reason is mechanical. Base produces long reasoning traces (median ~14K token
 — and runs out of tokens mid-arithmetic, never committing to a final answer.
 
 This is the failure mode generalized: the fine-tune produced a model that *can* arrive at correct intermediate values, but lost the base's discipline of **picking one approach and finishing**. Trained on long-trace data, it learned to *keep thinking* past the point where the base would have boxed an answer and stopped.
+
+![Paired transition matrix — Run 4 vs base on the 500 evaluation problems](results/figures/transition_matrix_run4_vs_base.png)
+
+The paired n=500 picture: regressions outnumber improvements roughly 2:1. Run 4 is not "uniformly weaker" — it shifts the distribution, breaking more than it fixes. McNemar exact two-sided p ≈ 0.0001.
 
 ### The bigger framing
 
