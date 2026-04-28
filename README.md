@@ -14,6 +14,8 @@ Five frontier LLMs and an open-weights 1.7B base — with a QLoRA fine-tune on t
 | GPT-5.4 Mini | 498 / 500 | **36.7%** | $1.51 |
 | Qwen3-1.7B + Run 4 self-distill *(ours)* | 500 | **28.8%** | — |
 
+*Eval cost is generation-side only — it excludes the Sonnet-4.6 LLM-judge API spend, which runs on every problem the cheap grader layers don't resolve (typically 30-40% of problems per model). True total spend is ~10-20% higher than the per-row figures shown. Tracking the judge spend per-call is on the followup list. Opus N=100 spot-check by budget; Gemini N=240 of 300 target due to a preview-model daily cap; GPT-5.4 / Mini denominators are `n_scored` after OpenAI safety-filter rejections (5 / 500 and 2 / 500).*
+
 ![Scoreboard](results/figures/scoreboard.png)
 
 Full methodology, caveats, and secondary findings: [docs/findings.md](docs/findings.md).
@@ -66,8 +68,9 @@ The paired n=500 picture: regressions outnumber improvements roughly 2:1. Run 4 
 
 At 1.7B, the post-trained Qwen3 base appears to sit at a local optimum hard to disturb without breaking. Self-distillation reduced the *damage* of fine-tuning (Runs 2/3 = -34 pp; Run 4 = -8 pp), but didn't push above. **Surpassing the open base at this size likely requires methods structurally different from any we tested:**
 
-- **RL** ([GRPO](https://arxiv.org/abs/2402.03300) / [rStar-Math](https://arxiv.org/abs/2501.04519)) — avoids the supervision-length problem entirely
-- **Distillation from a stronger teacher** (e.g., Sonnet 4.6 / DeepSeek-R1 traces) — relabels the supervision target with cleaner, more decisive reasoning
+- **Policy-gradient RL** ([GRPO](https://arxiv.org/abs/2402.03300), DeepSeekMath) — avoids the supervision-length problem entirely. The model generates its own traces and the reward is on the final answer, so no teacher distribution biases trace length upward.
+- **Test-time MCTS search with self-evolved data** ([rStar-Math](https://arxiv.org/abs/2501.04519)) — different mechanism from GRPO: Monte Carlo Tree Search at inference plus a process preference model trained on self-evolved traces. Reports Qwen2.5-Math-7B 58.8% → 90.0% on MATH; demonstrated only on 7B and 3.8B, not 1.7B.
+- **Distillation from a stronger external teacher** (e.g., Sonnet 4.6 / DeepSeek-R1 traces) — relabels the supervision target with cleaner, more decisive reasoning. Cost-prohibitive for the project budget but the most direct fix for our specific saturation-amplification mechanism.
 - **Continued pretraining on a larger math corpus** ([Llemma](https://arxiv.org/abs/2310.10631) and its Proof-Pile-2 dataset) — different scale entirely
 
 These are documented as Week 2-4 follow-on work. None are addressable in Week 1.
@@ -107,10 +110,10 @@ For each fine-tune attempt: the precise training-script spec, the prior work tha
 **Prior work — why we tried it (three direct precedents):**
 - ✓ **STaR** ([arxiv 2203.14465](https://arxiv.org/abs/2203.14465), Zelikman et al. 2022) — the original self-taught-reasoner loop: generate rationales, keep the ones that yield correct answers, fine-tune on those, repeat.
 - ✓ **RFT** ([arxiv 2308.01825](https://arxiv.org/abs/2308.01825), Yuan et al. 2023, "Scaling Relationship on Learning Mathematical Reasoning") — defines rejection-sampling fine-tuning explicitly; reports LLaMA-7B 35.9% → 49.3% on GSM8K.
-- ✓ **LIMO** ([arxiv 2502.03387](https://arxiv.org/abs/2502.03387), Ye et al. 2025) — sophisticated reasoning emerges from a few well-chosen examples in models with strong foundations; justifies trying with only ~150 rows.
+- ⚠ **LIMO** ([arxiv 2502.03387](https://arxiv.org/abs/2502.03387), Ye et al. 2025) — sophisticated reasoning emerges from a few well-chosen examples in models with strong foundations; offers loose precedent for trying with ~150 rows. **Caveat:** LIMO operates at 32B; the follow-up [LIMR (arxiv 2502.11886)](https://arxiv.org/abs/2502.11886) explicitly reports LIMO "significantly underperforms at 7B-scale through SFT." Our use at 1.7B inherits that limitation, so this citation justifies attempting the recipe but does not predict success at our scale.
 
 **Why it didn't work — at -8 pp paired (p ≈ 10⁻⁴):**
-- ⚠ **Self-distillation degradation IS documented** ([arxiv 2603.24472](https://arxiv.org/abs/2603.24472), Kim et al., "Why Does Self-Distillation (Sometimes) Degrade the Reasoning Capability of LLMs?") — up to **40% reasoning regression** across Qwen3-**8B**, DeepSeek-Distill-Qwen-7B, and Olmo3-7B-Instruct. **Caveat:** the paper does **not** test Qwen3-1.7B, and the mechanism it identifies (conditioning the teacher on rich information suppresses uncertainty expression, hurting OOD performance) is **not the same** as what we observed. So this paper supports "self-distillation can hurt" generically; it does not explain our specific failure.
+- ✓ **Self-distillation degradation on Qwen3-1.7B is directly documented** ([arxiv 2603.24472](https://arxiv.org/abs/2603.24472), Kim et al., "Why Does Self-Distillation (Sometimes) Degrade the Reasoning Capability of LLMs?"). Appendix F.2 reports **-45.9% degradation on Qwen3-1.7B with thinking mode ON** — our exact base and inference setting. **But the method differs:** Kim et al. study off-policy SFT where the teacher conditions on the gold solution, plus on-policy SDPO; Run 4 is rejection-sampled SFT where the teacher generates without seeing gold. Their identified mechanism — "conditioning the teacher on rich information suppresses uncertainty expression, hurting OOD" — is structurally absent from our setup, which is why our -8 pp paired delta is a fraction of their -45.9%. The literature predicts severe collapse for solution-conditioned distillation at this scale; the gentler regression we measured is consistent with avoiding that mechanism, but a different mechanism (📊 below) bit us anyway.
 - 📊 **Our specific failure mechanism is own diagnosis** (from eval data, not literature): training on base's long reasoning traces (median ~14K tokens with `<think>` blocks) taught the model to *think longer*, amplifying the convergence-failure mode the base was already prone to. Run 4 saturated 198 outputs at 16K vs base's 157; **53% of Run 4's misses are saturated AND never boxed.** Concrete illustration: problem `0ai2` (base solved in 5,271 tokens with `\boxed{302561952}`; Run 4 saturated at 16,384 tokens with no answer) — see the section above.
 
 ## Architecture
@@ -122,10 +125,13 @@ MathNet (27,817 problems) → English/text/has-answer filters → stratified spl
 ## Reproducing
 
 ```bash
-# 1. Clone + install
+# 1. Clone + install (frontier-API-only path)
 git clone https://github.com/sanmarcog/mathnet-eval-harness.git
 cd mathnet-eval-harness
 pip install -e .
+
+# 1b. Add GPU extras if you also want to run training or vLLM-served local evals
+pip install -e ".[gpu]"     # adds bitsandbytes, vllm
 
 # 2. Configure API keys (Anthropic / OpenAI / Google) for frontier eval
 cp .env.example .env
@@ -144,12 +150,27 @@ sbatch slurm/eval_qwen3_base.sbatch
 sbatch slurm/train_qlora_run2.sbatch
 ```
 
-Full 500-problem frontier eval costs **~$41 end-to-end**. Local training requires a GPU with ≥24 GB VRAM; an interactive slot on Hyak is:
+Full 500-problem frontier eval costs **~$41 end-to-end** (generation-side; excludes LLM-judge spend per the scoreboard footnote). Local training requires a GPU with ≥24 GB VRAM; an interactive slot on Hyak is:
 
 ```bash
 salloc --account=demo --partition=ckpt-all --gpus-per-node=a40:1 \
        --mem=32G --cpus-per-task=4 --time=4:00:00
 ```
+
+### Cluster portability
+
+The sbatch scripts in `slurm/` are written for **UW Hyak Klone** specifically. Adapting them to another Slurm cluster requires editing the following hardcoded paths/flags in each sbatch (most live in the first ~50 lines):
+
+| What | Hyak default | Where it lives |
+|---|---|---|
+| `--account` | `demo` | sbatch `#SBATCH --account=...` |
+| `--partition` | `ckpt-all` | sbatch `#SBATCH --partition=...` |
+| `REPO` | `/gscratch/scrubbed/sanmarco/mathnet-eval-harness` | sbatch body |
+| `PY` (interpreter) | `/gscratch/scrubbed/sanmarco/conda/envs/qlora/bin/python` | sbatch body |
+| `ADAPTERS_ROOT` | `/gscratch/scrubbed/sanmarco/adapters` | training sbatches |
+| `HF_HOME` | `/gscratch/scrubbed/sanmarco/hf_cache` | sbatch body |
+
+The CLI scripts under `scripts/` (e.g. `run_eval.py`, `eval_qwen_hf.py`, `grade_results.py`, `make_figures.py`, `make_diagnostic_figures.py`) are cluster-agnostic and run anywhere with the install path above plus optional `[gpu]` extras.
 
 ## Repo structure
 
@@ -173,10 +194,6 @@ tests/                # pytest unit tests
 ## Tech stack
 
 Python 3.11 · HuggingFace transformers / peft / trl / bitsandbytes · vLLM · Anthropic + OpenAI + Google GenAI SDKs · PyTorch · UW Hyak Klone (Slurm, A40 GPU).
-
-## Blog
-
-Write-up (pending Run 2 training completion): [docs/blog_post.md](docs/blog_post.md)
 
 ---
 

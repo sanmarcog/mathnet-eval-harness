@@ -5,10 +5,60 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "mathnet-eval"
 version = "0.1.0"
-description = "Evaluation harness + QLoRA fine-tuning pipeline for Qwen-2.5-1.5B-Instruct on MathNet."
+description = "Evaluation harness + QLoRA fine-tuning pipeline for frontier APIs and Qwen3-1.7B on the MathNet benchmark."
 readme = "README.md"
 requires-python = ">=3.10"
 authors = [{ name = "sanmarcog" }]
+
+dependencies = [
+    # Core ML / inference stack
+    "torch>=2.4,<3",
+    "transformers>=4.46,<5",
+    "peft>=0.13,<1",
+    "trl>=0.11,<1",
+    "datasets>=3.0,<4",
+    "accelerate>=0.34,<1",
+    "huggingface-hub>=0.25",
+    "sentencepiece",
+    "protobuf",
+
+    # Frontier-model API clients
+    "anthropic>=0.39",
+    "openai>=1.54",
+    "google-genai>=0.3",
+
+    # Config / env
+    "python-dotenv>=1.0.1",
+    "pydantic>=2.9",
+
+    # Analysis & plotting
+    "numpy>=1.26",
+    "pandas>=2.2",
+    "matplotlib>=3.9",
+    "seaborn>=0.13",
+
+    # Symbolic math (used by grading pipeline)
+    "sympy>=1.13",
+
+    # Utilities
+    "tqdm>=4.66",
+    "tenacity>=9.0",
+    "rich>=13.8",
+]
+
+[project.optional-dependencies]
+# Local-GPU training + serving. Only needed if you run the QLoRA training or
+# vLLM-served evals. Off the critical path for frontier-API-only use.
+gpu = [
+    "bitsandbytes>=0.44",
+    "vllm>=0.6",
+]
+
+# Test + notebook tooling.
+dev = [
+    "pytest>=8.3",
+    "jupyter>=1.1",
+]
 
 [tool.setuptools.packages.find]
 where = ["src"]

@@ -1,16 +1,23 @@
-"""Run a local Qwen-2.5-1.5B model (base or with LoRA adapter) across an
+"""Run a local Qwen3 / Qwen2.5 model (base or with LoRA adapter) across an
 eval split and save per-problem JSONs in the same format as the frontier
-API runs, so `grade_results.py` can process them uniformly.
+API runs, so `grade_results.py` can process them uniformly. Project anchor
+is Qwen3-1.7B (Runs 2/3/4); Run 1 used Qwen2.5-1.5B-Instruct.
+
+Backends: vLLM (default — fast, batched, used for all 500-problem evals)
+or HuggingFace generate (`--backend hf` — slow path, used for ad-hoc
+debugging or unmerged-adapter inference).
 
 Usage (inside GPU sbatch):
-    # Base model
+    # Qwen3-1.7B base, vLLM, thinking-on, 16K context
     python scripts/eval_qwen_hf.py --split data/splits/eval.jsonl \
-        --out results/full/qwen-base
+        --base-model Qwen/Qwen3-1.7B --enable-thinking \
+        --max-new-tokens 16384 --out results/full/qwen3-1.7b-base
 
-    # With adapter
+    # Run 4 merged adapter, same eval config
     python scripts/eval_qwen_hf.py --split data/splits/eval.jsonl \
-        --out results/full/qwen-mathnet-run1 \
-        --adapter /gscratch/scrubbed/sanmarco/adapters/qwen-mathnet-run1
+        --base-model "$ADAPTERS_ROOT/qwen3-mathnet-run4-merged" \
+        --enable-thinking --max-new-tokens 16384 \
+        --out results/full/qwen3-1.7b-run4
 """
 
 from __future__ import annotations
