@@ -77,34 +77,36 @@ def base_style() -> None:
 
 
 def load_summaries() -> dict[str, dict]:
+    """Read each model's summary.json; skip and warn if a slug is missing.
+    Lets the script run on partial checkouts (e.g. cluster sparse checkouts
+    that don't carry the API-side artifacts)."""
     out: dict[str, dict] = {}
     for slug, _ in MODEL_ORDER:
         p = RESULTS / "full" / slug / "summary.json"
+        if not p.exists():
+            print(f"  [warn] missing {p} — skipping {slug}")
+            continue
         out[slug] = json.loads(p.read_text())
     return out
 
 
 def scoreboard() -> None:
     data = load_summaries()
-    labels = [name for _, name in MODEL_ORDER]
-    accs = [data[s]["accuracy"] * 100 for s, _ in MODEL_ORDER]
-    ns = [data[s]["n_scored"] for s, _ in MODEL_ORDER]
+    if not data:
+        print("  [skip] scoreboard: no summaries loaded")
+        return
+    present = [(s, n) for s, n in MODEL_ORDER if s in data]
+    labels = [name for _, name in present]
+    accs = [data[s]["accuracy"] * 100 for s, _ in present]
+    ns = [data[s]["n_scored"] for s, _ in present]
 
-    labels = labels + ["Qwen3-1.7B + QLoRA  (ours, Run 2)"]
-    accs = accs + [0]
-    ns = ns + [None]
     ys = np.arange(len(labels))[::-1]
 
     fig, ax = plt.subplots(figsize=(10, 6.6))
-    bar_colors = [FOREST if s in OPEN_SLUGS else RUST for s, _ in MODEL_ORDER] + [GRID]
+    bar_colors = [FOREST if s in OPEN_SLUGS else RUST for s, _ in present]
     bars = ax.barh(ys, accs, color=bar_colors, edgecolor=INK, linewidth=0.8, height=0.72)
 
-    for i, (bar, acc, n) in enumerate(zip(bars, accs, ns)):
-        if n is None:
-            ax.text(1.0, bar.get_y() + bar.get_height() / 2,
-                    "  pending Run 2",
-                    va="center", ha="left", color=INK, fontsize=10, fontstyle="italic")
-            continue
+    for bar, acc, n in zip(bars, accs, ns):
         ax.text(acc + 1.0, bar.get_y() + bar.get_height() / 2,
                 f"{acc:.1f}%   (N={n})",
                 va="center", ha="left", color=INK, fontsize=10)
@@ -133,10 +135,14 @@ def scoreboard() -> None:
 
 def grader_paths() -> None:
     data = load_summaries()
+    if not data:
+        print("  [skip] grader_paths: no summaries loaded")
+        return
+    present = [(s, n) for s, n in MODEL_ORDER if s in data]
     paths = ["exact", "normalized", "symbolic", "judge", "miss"]
-    labels = [name for _, name in MODEL_ORDER]
+    labels = [name for _, name in present]
     matrix = []
-    for slug, _ in MODEL_ORDER:
+    for slug, _ in present:
         mc = data[slug]["method_counts"]
         n = data[slug]["n_scored"]
         row = [mc.get(p, 0) / n * 100 for p in paths]
