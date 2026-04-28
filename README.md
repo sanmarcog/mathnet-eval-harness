@@ -192,6 +192,4 @@ tests/                # pytest unit tests
 
 Python 3.11 · HuggingFace transformers / peft / trl / bitsandbytes · vLLM · Anthropic + OpenAI + Google GenAI SDKs · PyTorch · UW Hyak Klone (Slurm, A40 GPU).
 
----
 
-*Portfolio project. Week 1 of 4 — first commit 2026-04-22.*
