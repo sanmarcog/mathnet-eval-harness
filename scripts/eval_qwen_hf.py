@@ -77,8 +77,14 @@ def _strip_thinking(text: str) -> str:
 def _main_vllm(args) -> int:
     """vLLM path: batched generation, much higher throughput than HF generate
     for Qwen3 thinking-mode (3-5x on A40 in our workload). No adapter
-    support here -- adapters still go through the HF path."""
+    support here -- adapters still go through the HF path.
+
+    Generation is chunked (default 50 prompts per chunk; override with
+    VLLM_CHUNK_SIZE env var) so per-problem JSONs land on disk after each
+    chunk. With --skip-existing, preempt-and-restart picks up exactly
+    where the previous attempt stopped instead of redoing 100% of work."""
     import json as _json
+    import os as _os
     import time as _time
 
     from vllm import LLM, SamplingParams
@@ -132,35 +138,51 @@ def _main_vllm(args) -> int:
             prompt = tokenizer.apply_chat_template(msgs, tokenize=False, add_generation_prompt=True)
         prompts.append(prompt)
 
-    t0 = _time.perf_counter()
-    outputs = llm.generate(prompts, sp)
-    wall = _time.perf_counter() - t0
-    print(f">>> vLLM batched generation done in {wall/60:.1f}min for {len(prompts)} prompts ({wall/max(len(prompts),1):.1f}s/problem avg)")
+    # Chunked vLLM generation: write per-problem JSONs after each chunk so
+    # preemptions on ckpt-all only lose ~1 chunk of work, not the entire run.
+    # Combined with --skip-existing, restarts pick up from where we stopped.
+    chunk_size = int(_os.environ.get("VLLM_CHUNK_SIZE", "50"))
+    n_chunks = (len(prompts) + chunk_size - 1) // max(chunk_size, 1)
+    print(f">>> vLLM chunked generation: {len(prompts)} prompts in {n_chunks} chunks of {chunk_size}")
 
+    t0 = _time.perf_counter()
     total_in = total_out = 0
-    for p, out in zip(to_run, outputs):
-        pid = p["id"]
-        o = out.outputs[0]
-        raw_text = o.text
-        text = _strip_thinking(raw_text)
-        input_tokens = len(out.prompt_token_ids)
-        output_tokens = len(o.token_ids)
-        total_in += input_tokens; total_out += output_tokens
-        record = {
-            "id": pid,
-            "country": p.get("country"),
-            "competition": p.get("competition"),
-            "gold_final_answer": p.get("final_answer"),
-            "topics_flat": p.get("topics_flat"),
-            "prompt": p["problem_markdown"].strip(),
-            "model": model_id,
-            "response_text": text,
-            "raw_response_text": raw_text if raw_text != text else None,
-            "usage": {"input_tokens": input_tokens, "output_tokens": output_tokens},
-            "latency_s": None,  # vLLM batches; per-problem latency not meaningful
-            "cached": False,
-        }
-        (args.out / f"{pid}.json").write_text(_json.dumps(record, ensure_ascii=False, indent=2))
+    for ci in range(n_chunks):
+        c0 = ci * chunk_size
+        c1 = min(c0 + chunk_size, len(prompts))
+        chunk_prompts = prompts[c0:c1]
+        chunk_to_run = to_run[c0:c1]
+        tc0 = _time.perf_counter()
+        chunk_outputs = llm.generate(chunk_prompts, sp)
+        for p, out in zip(chunk_to_run, chunk_outputs):
+            pid = p["id"]
+            o = out.outputs[0]
+            raw_text = o.text
+            text = _strip_thinking(raw_text)
+            input_tokens = len(out.prompt_token_ids)
+            output_tokens = len(o.token_ids)
+            total_in += input_tokens; total_out += output_tokens
+            record = {
+                "id": pid,
+                "country": p.get("country"),
+                "competition": p.get("competition"),
+                "gold_final_answer": p.get("final_answer"),
+                "topics_flat": p.get("topics_flat"),
+                "prompt": p["problem_markdown"].strip(),
+                "model": model_id,
+                "response_text": text,
+                "raw_response_text": raw_text if raw_text != text else None,
+                "usage": {"input_tokens": input_tokens, "output_tokens": output_tokens},
+                "latency_s": None,
+                "cached": False,
+            }
+            (args.out / f"{pid}.json").write_text(_json.dumps(record, ensure_ascii=False, indent=2))
+        chunk_wall = _time.perf_counter() - tc0
+        print(f">>> chunk {ci+1}/{n_chunks} done: {len(chunk_prompts)} prompts in "
+              f"{chunk_wall/60:.1f}min ({chunk_wall/max(len(chunk_prompts),1):.1f}s/problem). "
+              f"cumulative: {c1}/{len(prompts)}")
+    wall = _time.perf_counter() - t0
+    print(f">>> vLLM total wall: {wall/60:.1f}min for {len(prompts)} fresh prompts")
 
     summary = {
         "model": model_id,
