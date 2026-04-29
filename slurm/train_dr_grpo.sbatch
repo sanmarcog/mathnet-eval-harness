@@ -54,6 +54,9 @@ export MASTER_ADDR=127.0.0.1
 # jobs on shared nodes (29500 is the common default and frequently busy).
 export MASTER_PORT=$((20000 + (SLURM_JOB_ID % 10000)))
 
+# Reduce CUDA memory fragmentation (helps with OOM at long max_completion)
+export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
+
 cd "$REPO"
 mkdir -p logs "$ADAPTERS_ROOT"
 
@@ -68,7 +71,7 @@ $PY -u scripts/train_dr_grpo.py \
     --base-model Qwen/Qwen3-1.7B \
     --out-dir "$OUT" \
     --max-steps 200 \
-    --num-generations 4 \
+    --num-generations 2 \
     --max-completion-length 12000 \
     --learning-rate 1e-6 \
     --beta 0.0 \

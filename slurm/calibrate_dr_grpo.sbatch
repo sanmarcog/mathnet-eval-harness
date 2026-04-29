@@ -50,6 +50,9 @@ export MASTER_ADDR=127.0.0.1
 # jobs on shared nodes (29500 is the common default and frequently busy).
 export MASTER_PORT=$((20000 + (SLURM_JOB_ID % 10000)))
 
+# Reduce CUDA memory fragmentation (PyTorch suggests this when OOM hits)
+export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
+
 cd "$REPO"
 mkdir -p logs
 
@@ -62,7 +65,7 @@ $PY -u scripts/train_dr_grpo.py \
     --out-dir /tmp/dr_grpo_calib \
     --max-rows 50 \
     --max-steps 5 \
-    --num-generations 4 \
+    --num-generations 2 \
     --max-completion-length 12000 \
     --gradient-accumulation-steps 4 \
     --logging-steps 1 \
