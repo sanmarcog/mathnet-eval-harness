@@ -63,7 +63,7 @@ $PY -u scripts/train_dr_grpo.py \
     --max-rows 50 \
     --max-steps 5 \
     --num-generations 4 \
-    --max-completion-length 3000 \
+    --max-completion-length 12000 \
     --gradient-accumulation-steps 4 \
     --logging-steps 1 \
     --save-steps 100 \

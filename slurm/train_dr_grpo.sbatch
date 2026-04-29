@@ -69,7 +69,7 @@ $PY -u scripts/train_dr_grpo.py \
     --out-dir "$OUT" \
     --max-steps 200 \
     --num-generations 4 \
-    --max-completion-length 3000 \
+    --max-completion-length 12000 \
     --learning-rate 1e-6 \
     --beta 0.0 \
     --per-device-train-batch-size 1 \
