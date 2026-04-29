@@ -246,6 +246,10 @@ def main() -> int:
         report_to="none",
         use_vllm=not args.smoke,       # smoke = HF generate, no vLLM
         vllm_mode="colocate",
+        # Tell vLLM the max sequence length explicitly so it sizes
+        # max_num_batched_tokens correctly. Default is too small for
+        # max_completion_length=12000 + max_prompt_length=1024.
+        vllm_max_model_length=args.max_prompt_length + args.max_completion_length + 256,
         remove_unused_columns=False,    # keep `gold` column for reward fn
         # Non-reentrant gradient checkpointing avoids the
         # "parameter marked ready twice" error that reentrant
