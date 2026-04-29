@@ -246,6 +246,7 @@ def main() -> int:
         report_to="none",
         use_vllm=not args.smoke,       # smoke = HF generate, no vLLM
         vllm_mode="colocate",
+        generation_kwargs={},          # empty dict; TRL 0.19 crashes if None
         remove_unused_columns=False,    # keep `gold` column for reward fn
         # Non-reentrant gradient checkpointing avoids the
         # "parameter marked ready twice" error that reentrant
