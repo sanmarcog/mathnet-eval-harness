@@ -134,8 +134,10 @@ def main() -> int:
     p.add_argument("--learning-rate", type=float, default=1e-6)
     p.add_argument("--per-device-train-batch-size", type=int, default=1)
     p.add_argument("--gradient-accumulation-steps", type=int, default=4)
-    p.add_argument("--beta", type=float, default=0.04,
-                   help="KL coefficient against reference model")
+    p.add_argument("--beta", type=float, default=0.0,
+                   help="KL coefficient against reference model. Default 0.0 "
+                        "matches Dr. GRPO / R1-Zero / DAPO common practice; "
+                        "set to 0.04 for a conservative KL-regularized run.")
 
     # LoRA
     p.add_argument("--lora-r", type=int, default=64)
@@ -189,6 +191,12 @@ def main() -> int:
         task_type="CAUSAL_LM",
     )
 
+    # Dr. GRPO has TWO bias corrections vs. vanilla GRPO:
+    #   (a) loss normalization by constant (max_completion_length) instead
+    #       of 1/|o_i| — applied via loss_type="dr_grpo".
+    #   (b) advantage scaling that does NOT divide by std(group rewards) —
+    #       applied via scale_rewards=False. Without this flag, half of
+    #       Dr. GRPO is missing.
     grpo_cfg = GRPOConfig(
         output_dir=str(args.out_dir),
         learning_rate=args.learning_rate,
@@ -199,7 +207,8 @@ def main() -> int:
         max_prompt_length=args.max_prompt_length,
         max_completion_length=args.max_completion_length,
         beta=args.beta,
-        loss_type="dr_grpo",          # bias-corrected variant
+        loss_type="dr_grpo",          # Dr. GRPO loss-normalization fix
+        scale_rewards=False,           # Dr. GRPO advantage-scaling fix
         logging_steps=args.logging_steps,
         save_steps=args.save_steps,
         bf16=True,

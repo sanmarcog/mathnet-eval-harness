@@ -60,7 +60,7 @@ $PY -u scripts/train_dr_grpo.py \
     --num-generations 4 \
     --max-completion-length 3000 \
     --learning-rate 1e-6 \
-    --beta 0.04 \
+    --beta 0.0 \
     --per-device-train-batch-size 1 \
     --gradient-accumulation-steps 4 \
     --lora-r 64 \

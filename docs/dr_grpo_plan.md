@@ -11,13 +11,17 @@ This is a direct test of the diagnosis from the Run 4 writeup. It is not a predi
 ## Recipe (locked before run)
 
 - **Base**: `Qwen/Qwen3-1.7B` (same as Run 4; preserves paired comparison vs. existing n=500 eval).
-- **Method**: Dr. GRPO via TRL `GRPOConfig(loss_type="dr_grpo")`, LoRA wrapper.
+- **Method**: Dr. GRPO via TRL `GRPOConfig`, LoRA wrapper. Both Dr. GRPO bias corrections are applied explicitly:
+  - `loss_type="dr_grpo"` — divides loss by a constant (`max_completion_length`) instead of `1/|o_i|`. Removes the response-length bias documented in Liu et al. 2503.20783.
+  - `scale_rewards=False` — does NOT divide group advantages by `std(rewards)`. Removes the question-level difficulty bias also documented in the same paper. Without this flag, only half of Dr. GRPO is applied.
 - **LoRA**: r=64, alpha=128, target = q/k/v/o + gate/up/down.
-- **Optimization**: LR `1e-6`, KL `beta=0.04`, group size `num_generations=4` (cut from default 8 for 48GB feasibility), `max_completion_length=3000` during training (smaller than the 16K eval cap to fit memory), per-device batch 1 × grad-accum 4.
+- **Optimization**: LR `1e-6`, KL `beta=0.0` (matches Dr. GRPO / R1-Zero / DAPO common practice; recent literature treats the KL term as non-essential for GRPO), group size `num_generations=4` (cut from default 8 for 48GB feasibility), `max_completion_length=3000` during training (smaller than the 16K eval cap to fit memory), per-device batch 1 × grad-accum 4.
 - **Steps**: 200 (target). Save every 25.
 - **Reward**: cheap-grader correctness only — `1.0` if `extract_answer(rollout)` matches gold (normalized), else `0.0`. No LLM judge during training (judge is for post-training eval, same as the SFT runs).
 - **Prompts**: `data/splits/train_english.jsonl` (3,596 problems). On-policy: model generates rollouts on these; reward signal comes from gold-answer match.
 - **Inference at eval time**: identical to base + Run 2/3/4 evals — vLLM, thinking-on, `max_new_tokens=16384`, `temperature=0` (greedy). Paired n=500 vs base.
+
+**Note on the base's training:** Qwen3-1.7B inherits behavior (via distillation from a flagship) from a model trained with **vanilla GRPO** — explicitly, per the Qwen3 tech report Section 4.2: *"employed GRPO (deepseekmath) to update the model parameters."* No mention of length-bias correction. So the base carries the documented vanilla-GRPO length-amplification bias, and Dr. GRPO is the variant that addresses exactly that bias. The chain of custody from "diagnosed length-amplification in Run 4 SFT" to "applying the bias-corrected RL variant" is direct.
 
 ## Pre-flight gate
 
