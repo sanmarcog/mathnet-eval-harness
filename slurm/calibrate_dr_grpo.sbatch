@@ -39,6 +39,15 @@ export DO_NOT_TRACK=1
 export TRANSFORMERS_NO_ADVISORY_WARNINGS=1
 export HF_HUB_DISABLE_TELEMETRY=1
 
+# Distributed env vars required even for single-GPU when vLLM colocate
+# is enabled in TRL's GRPOTrainer (it instantiates vLLM's uniproc executor
+# which reads RANK / WORLD_SIZE from env).
+export RANK=0
+export LOCAL_RANK=0
+export WORLD_SIZE=1
+export MASTER_ADDR=127.0.0.1
+export MASTER_PORT=29500
+
 cd "$REPO"
 mkdir -p logs
 

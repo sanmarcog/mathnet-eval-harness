@@ -102,17 +102,23 @@ def reward_fn(completions, **kwargs):
 
 def load_prompts(jsonl_path: Path, max_rows: int | None) -> Dataset:
     rows = []
+    first_keys = None
     with open(jsonl_path) as f:
         for i, line in enumerate(f):
             if max_rows is not None and i >= max_rows:
                 break
             d = json.loads(line)
-            problem = d.get("problem") or d.get("question") or d.get("prompt")
+            if first_keys is None:
+                first_keys = list(d.keys())
+            problem = (d.get("problem_markdown") or d.get("problem")
+                       or d.get("question") or d.get("prompt"))
             gold = d.get("final_answer") or d.get("answer") or d.get("gold")
             if not problem or gold is None:
                 continue
             rows.append({"prompt": problem, "gold": str(gold)})
     print(f"loaded {len(rows)} prompt/gold pairs from {jsonl_path}")
+    if not rows and first_keys:
+        print(f"WARN: 0 rows. first-record keys were: {first_keys}")
     return Dataset.from_list(rows)
 
 
