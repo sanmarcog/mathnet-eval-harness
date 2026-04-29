@@ -46,7 +46,9 @@ export RANK=0
 export LOCAL_RANK=0
 export WORLD_SIZE=1
 export MASTER_ADDR=127.0.0.1
-export MASTER_PORT=29500
+# Pick a port derived from the job ID to avoid collisions with other
+# jobs on shared nodes (29500 is the common default and frequently busy).
+export MASTER_PORT=$((20000 + (SLURM_JOB_ID % 10000)))
 
 cd "$REPO"
 mkdir -p logs
