@@ -155,7 +155,26 @@ def main() -> int:
     p.add_argument("--logging-steps", type=int, default=1)
     p.add_argument("--save-steps", type=int, default=50)
     p.add_argument("--seed", type=int, default=0)
+
+    # Smoke flag: run end-to-end on CPU with a tiny model, catches code
+    # bugs in seconds without burning a queue slot. Use this on the klone
+    # login node before submitting the real sbatch.
+    p.add_argument("--smoke", action="store_true",
+                   help="CPU smoke test: tiny model, no vLLM, no bf16, no "
+                        "gradient checkpointing, 1 step. Use to catch code "
+                        "bugs without sbatch.")
     args = p.parse_args()
+
+    if args.smoke:
+        print("[smoke] CPU smoke test mode — tiny model, no GPU features")
+        args.base_model = "Qwen/Qwen2.5-0.5B"
+        args.max_rows = 4
+        args.max_steps = 1
+        args.num_generations = 2
+        args.max_completion_length = 64
+        args.max_prompt_length = 256
+        args.gradient_accumulation_steps = 1
+        args.save_steps = 100  # don't save
 
     args.out_dir.mkdir(parents=True, exist_ok=True)
 
@@ -217,11 +236,11 @@ def main() -> int:
         scale_rewards=False,           # Dr. GRPO advantage-scaling fix
         logging_steps=args.logging_steps,
         save_steps=args.save_steps,
-        bf16=True,
-        gradient_checkpointing=True,
+        bf16=not args.smoke,           # smoke = CPU, no bf16
+        gradient_checkpointing=not args.smoke,  # smoke = small model, no need
         seed=args.seed,
         report_to="none",
-        use_vllm=True,                 # colocate vLLM for fast rollouts
+        use_vllm=not args.smoke,       # smoke = HF generate, no vLLM
         vllm_mode="colocate",
         remove_unused_columns=False,    # keep `gold` column for reward fn
         # Non-reentrant gradient checkpointing avoids the
