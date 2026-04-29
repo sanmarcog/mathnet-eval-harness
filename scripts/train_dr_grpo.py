@@ -40,7 +40,7 @@ from peft import LoraConfig
 from transformers import AutoTokenizer
 
 REPO = Path(__file__).resolve().parent.parent
-DEFAULT_TRAIN_FILE = REPO / "data" / "splits" / "train_english.jsonl"
+DEFAULT_TRAIN_FILE = REPO / "data" / "splits" / "train.jsonl"
 
 
 # Same answer extractor used in the grader. Kept inline rather than
