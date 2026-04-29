@@ -224,6 +224,10 @@ def main() -> int:
         use_vllm=True,                 # colocate vLLM for fast rollouts
         vllm_mode="colocate",
         remove_unused_columns=False,    # keep `gold` column for reward fn
+        # Non-reentrant gradient checkpointing avoids the
+        # "parameter marked ready twice" error that reentrant
+        # checkpointing throws when wrapped around LoRA layers.
+        gradient_checkpointing_kwargs={"use_reentrant": False},
     )
 
     trainer = GRPOTrainer(
