@@ -168,11 +168,15 @@ def main() -> int:
     if args.smoke:
         print("[smoke] CPU smoke test mode — tiny model, no GPU features")
         args.base_model = "Qwen/Qwen2.5-0.5B"
-        args.max_rows = 4
+        args.max_rows = 8
         args.max_steps = 1
         args.num_generations = 2
         args.max_completion_length = 64
         args.max_prompt_length = 256
+        # GRPO requires per_device_batch * grad_accum * world_size to be
+        # evenly divisible by num_generations. With num_generations=2,
+        # set per-device batch to 2 and grad_accum to 1.
+        args.per_device_train_batch_size = 2
         args.gradient_accumulation_steps = 1
         args.save_steps = 100  # don't save
 
