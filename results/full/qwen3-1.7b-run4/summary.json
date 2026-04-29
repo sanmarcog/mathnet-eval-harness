@@ -1,0 +1,6 @@
+{
+    "model": "qwen3-1.7b-run4",
+    "n_scored": 500,
+    "n_correct": 144,
+    "accuracy": 0.288
+}

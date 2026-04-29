@@ -48,10 +48,12 @@ MODEL_ORDER = [
     ("gpt-5.4", "GPT-5.4"),
     ("qwen3-1.7b-base", "Qwen3-1.7B base  (open, thinking-on)"),
     ("gpt-5.4-mini", "GPT-5.4 Mini"),
+    ("qwen3-1.7b-run4", "Qwen3-1.7B + Run 4 self-distill  (ours)"),
 ]
-# slugs in MODEL_ORDER that are open-weights (rendered in forest green to
-# distinguish from the rust frontier-API rows)
+# slugs that are open-weights (forest green) and project-internal results
+# (slate). Everything else is a rust frontier-API row.
 OPEN_SLUGS = {"qwen3-1.7b-base"}
+OURS_SLUGS = {"qwen3-1.7b-run4"}
 
 
 def base_style() -> None:
@@ -103,7 +105,10 @@ def scoreboard() -> None:
     ys = np.arange(len(labels))[::-1]
 
     fig, ax = plt.subplots(figsize=(10, 6.6))
-    bar_colors = [FOREST if s in OPEN_SLUGS else RUST for s, _ in present]
+    bar_colors = [
+        SLATE if s in OURS_SLUGS else (FOREST if s in OPEN_SLUGS else RUST)
+        for s, _ in present
+    ]
     bars = ax.barh(ys, accs, color=bar_colors, edgecolor=INK, linewidth=0.8, height=0.72)
 
     for bar, acc, n in zip(bars, accs, ns):
@@ -121,11 +126,6 @@ def scoreboard() -> None:
     ax.set_title("MathNet scoreboard  (500 problems, judged)",
                  fontsize=14, pad=14, loc="left")
 
-    fig.text(0.01, 0.03,
-             "Opus on N=100 spot-check; Gemini with thinking_budget=4096 on partial N=240; "
-             "Qwen3 base in green = open-weights, thinking-on at 16K; denominators are n_scored.",
-             fontsize=8.5, color=INK, alpha=0.75)
-
     plt.tight_layout(rect=(0, 0.05, 1, 1))
     out = FIGURES / "scoreboard.png"
     fig.savefig(out, dpi=150, bbox_inches="tight")
@@ -138,7 +138,9 @@ def grader_paths() -> None:
     if not data:
         print("  [skip] grader_paths: no summaries loaded")
         return
-    present = [(s, n) for s, n in MODEL_ORDER if s in data]
+    # filter to slugs that actually carry per-method counts
+    present = [(s, n) for s, n in MODEL_ORDER
+               if s in data and "method_counts" in data[s]]
     paths = ["exact", "normalized", "symbolic", "judge", "miss"]
     labels = [name for _, name in present]
     matrix = []
