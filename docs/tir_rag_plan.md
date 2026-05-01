@@ -49,7 +49,7 @@ So the eval set is the **Week-1 stratified random sample (n=500)**, already comm
 
 **Chat template:** model default. We do not add `<think>` blocks (the math-specialist Instruct is not a long-thinking model).
 
-**Tool sandbox:** subprocess sandbox (per the 2026-04-30 correction above) — `subprocess.run([sys.executable, "-c", code], timeout=10, capture_output=True)`. Per-call timeout 10s; tool output truncated to 2000 chars before being fed back. Subprocess-isolated, not E2B. No OS-level network/filesystem sandboxing — relies on the model not emitting destructive code plus the 10s timeout. Allowed-import discipline (`sympy, numpy, math, fractions, itertools, functools, re`) is convention-only, not enforced; for stronger guarantees swap to E2B.
+**Tool sandbox:** subprocess sandbox (per the 2026-04-30 correction above) — `subprocess.run([sys.executable, "-c", code], timeout=60, capture_output=True)`. Per-call timeout 60s (originally 10s; bumped 2026-04-30 after the Klone smoke gate caught that NFS-cold-start `import sympy` alone is ~10s, so every call timed out before its first print). Tool output truncated to 2000 chars before being fed back. Subprocess-isolated, not E2B. No OS-level network/filesystem sandboxing — relies on the model not emitting destructive code plus the 60s timeout. Allowed-import discipline (`sympy, numpy, math, fractions, itertools, functools, re`) is convention-only, not enforced; for stronger guarantees swap to E2B.
 
 ## Reference anchors on the same 500
 

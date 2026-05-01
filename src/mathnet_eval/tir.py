@@ -64,9 +64,18 @@ class PythonSandbox:
     def __init__(
         self,
         python_bin: str | None = None,
-        per_call_timeout_s: float = 10.0,
+        per_call_timeout_s: float = 60.0,
         max_output_chars: int = 2000,
     ) -> None:
+        # Note on the timeout: the pre-reg originally specified 10s. That
+        # is too tight on shared filesystems — on Hyak's NFS-mounted conda
+        # env, a cold-start `import sympy` alone takes ~10s, so EVERY
+        # subprocess call timed out before reaching its print(). Bumped to
+        # 60s as a defensible cold-start-safe ceiling. For genuinely
+        # runaway code, 60s is still bounded; for typical TIR snippets
+        # that just call into already-loaded sympy/numpy in the
+        # subprocess-startup path, the wall-clock cost is dominated by
+        # python interpreter startup + sympy import.
         self.python_bin = python_bin or sys.executable
         self.per_call_timeout_s = per_call_timeout_s
         self.max_output_chars = max_output_chars
