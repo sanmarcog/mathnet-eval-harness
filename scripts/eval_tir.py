@@ -131,11 +131,17 @@ def make_hf_backend(model_name: str, device: str = "cpu"):
     return generate_fn, tokenizer
 
 
-def make_vllm_backend(model_name: str, max_model_len: int = 8192):
+def make_vllm_backend(model_name: str, max_model_len: int = 4096):
     """vLLM backend for production. One-prompt-at-a-time semantics so the
     TIR loop can iterate per-problem; vLLM's scheduling overhead on a
     warm engine is small enough that this is acceptable for the n=500
-    eval. Batched per-step generation is a follow-up optimization."""
+    eval. Batched per-step generation is a follow-up optimization.
+
+    Default max_model_len=4096 matches Qwen2.5-Math-1.5B-Instruct's
+    native max_position_embeddings (verified from config.json).
+    Larger values raise `User-specified max_model_len greater than
+    derived` from vLLM. If a future base model has a longer context
+    (or YARN-scaled), bump this explicitly via the call site."""
     from transformers import AutoTokenizer  # type: ignore
     from vllm import LLM, SamplingParams  # type: ignore
 
