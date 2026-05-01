@@ -35,7 +35,13 @@ import sys
 import time
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
+# Add repo root + src/ to sys.path (same rationale as
+# build_tir_exemplar_bank.py): `python scripts/<file>.py` only puts
+# `scripts/` on sys.path, so `from scripts.eval_tir import ...` fails
+# unless we explicitly add the repo root.
+_REPO = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(_REPO))
+sys.path.insert(0, str(_REPO / "src"))
 
 from mathnet_eval.grading import grade  # noqa: E402
 from mathnet_eval.tir import extract_boxed_answer  # noqa: E402

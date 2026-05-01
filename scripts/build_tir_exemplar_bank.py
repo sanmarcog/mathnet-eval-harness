@@ -30,7 +30,13 @@ import sys
 import time
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
+# Add repo root + src/ to sys.path so we can import both `scripts.eval_tir`
+# (for the backend factories) and `mathnet_eval.*` (the library modules).
+# `python scripts/<file>.py` only adds `scripts/` itself, so `scripts.X`
+# imports would otherwise fail with ModuleNotFoundError.
+_REPO = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(_REPO))
+sys.path.insert(0, str(_REPO / "src"))
 
 from mathnet_eval.grading import grade  # noqa: E402
 from mathnet_eval.tir import (  # noqa: E402
