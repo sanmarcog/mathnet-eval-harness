@@ -54,6 +54,15 @@ gpu = [
     "vllm>=0.6",
 ]
 
+# Retrieval-augmented eval (Week-2 TIR-RAG path). Required for the dense
+# retriever cells of the 18-cell ablation (`scripts/run_retrieval_ablation.py`)
+# and for the BM25 path (otherwise the BM25Retriever falls back to a TF-overlap
+# proxy, which is fine for smoke but not for production numbers).
+rag = [
+    "sentence-transformers>=3.0",
+    "rank-bm25>=0.2.2",
+]
+
 # Test + notebook tooling.
 dev = [
     "pytest>=8.3",

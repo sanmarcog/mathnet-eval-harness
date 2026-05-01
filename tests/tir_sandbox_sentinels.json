@@ -1,0 +1,35 @@
+{
+  "_doc": "Hand-graded TIR-sandbox sentinels. Smoke test runs each `code` through the sandbox and asserts the captured stdout, after stripping trailing whitespace, equals `expected_stdout`. Catches future smolagents/sympy/numpy version bumps that silently break sandbox semantics. Do not edit `expected_stdout` to make a failing test pass — fix the sandbox or pin a new version.",
+  "sentinels": [
+    {
+      "id": "sentinel_sympy_solve_quadratic",
+      "lib": "sympy",
+      "code": "import sympy as sp\nx = sp.Symbol('x')\nroots = sp.solve(x**2 - 5*x + 6, x)\nprint(sorted(int(r) for r in roots))",
+      "expected_stdout": "[2, 3]"
+    },
+    {
+      "id": "sentinel_sympy_factorial_gcd",
+      "lib": "sympy",
+      "code": "from sympy import factorial, gcd\nprint(gcd(factorial(10), factorial(7)))",
+      "expected_stdout": "5040"
+    },
+    {
+      "id": "sentinel_sympy_polynomial_eval",
+      "lib": "sympy",
+      "code": "from sympy import symbols, Poly\nx = symbols('x')\np = Poly(x**3 - 2*x + 1, x)\nprint(p.eval(3))",
+      "expected_stdout": "22"
+    },
+    {
+      "id": "sentinel_numpy_dot",
+      "lib": "numpy",
+      "code": "import numpy as np\na = np.array([1, 2, 3])\nb = np.array([4, 5, 6])\nprint(int(np.dot(a, b)))",
+      "expected_stdout": "32"
+    },
+    {
+      "id": "sentinel_itertools_combinations",
+      "lib": "itertools",
+      "code": "from itertools import combinations\nprint(sum(1 for _ in combinations(range(8), 3)))",
+      "expected_stdout": "56"
+    }
+  ]
+}
