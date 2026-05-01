@@ -200,8 +200,13 @@ def real_bank_build(args) -> int:
     summary_path.write_text(json.dumps(summary, ensure_ascii=False, indent=2))
     print(f"[summary] {summary}  -> {out_path}", flush=True)
 
-    if args.smoke_real and n_kept > 0:
+    if args.smoke_real:
+        # Same rationale as build_tir_exemplar_bank.py: --smoke-real
+        # validates the pipeline; n_kept may be 0 with 0.5B on 8 olympiad
+        # problems. Sentinel writes regardless so bank-build sbatch can
+        # launch on a fresh commit.
         write_smoke_real_sentinel()
+        return 0
 
     return 0 if n_kept > 0 else 1
 

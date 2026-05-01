@@ -211,10 +211,15 @@ def real_bank_build(args) -> int:
     summary_path.write_text(json.dumps(summary, ensure_ascii=False, indent=2))
     print(f"[summary] {summary}  -> {out_path}", flush=True)
 
-    if args.smoke_real and n_kept > 0:
-        # Only --smoke-real writes the sentinel; full production runs do not
-        # (they are downstream of the sentinel, not generators of it).
+    if args.smoke_real:
+        # Path-validation only: write sentinel as long as the loop completed
+        # without exception. n_kept may be 0 with the 0.5B stand-in model on
+        # N=8 olympiad problems — that is fine, the goal is to catch
+        # import/sandbox/chat-template/JSONL-write bugs, not produce a
+        # usable bank. Production full runs are downstream of the sentinel
+        # and never write it.
         write_smoke_real_sentinel()
+        return 0
 
     return 0 if n_kept > 0 else 1
 
