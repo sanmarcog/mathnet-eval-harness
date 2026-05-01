@@ -54,12 +54,35 @@ _ANSWER_PATTERNS = [
 ]
 
 
+def _find_boxed_balanced(text):
+    out, i = None, 0
+    needle = "\\boxed{"
+    while True:
+        i = text.find(needle, i)
+        if i < 0:
+            return out
+        depth, j = 1, i + len(needle)
+        start = j
+        while j < len(text) and depth:
+            c = text[j]
+            if c == "{":
+                depth += 1
+            elif c == "}":
+                depth -= 1
+            j += 1
+        if depth == 0:
+            out = text[start:j-1]
+            i = j
+        else:
+            return out
+
+
 def extract_answer(text: str) -> str | None:
     if not text:
         return None
-    boxed = _BOXED_RE.findall(text)
+    boxed = _find_boxed_balanced(text)
     if boxed:
-        return boxed[-1].strip()
+        return boxed.strip()
     for pat in _ANSWER_PATTERNS:
         m = pat.search(text)
         if m:
@@ -73,33 +96,29 @@ def normalize(s: str) -> str:
     return s.lower()
 
 
+_FORMAT_CREDIT = False  # set in main() from --format-credit flag
+
+
 def reward_fn(completions, **kwargs):
-    """Reward = 1.0 if extracted answer matches gold (normalized), else 0.0.
-
-    Cheap-grader-only — no LLM judge during training. The post-training
-    n=500 eval still uses the full 4-layer grader for the paired
-    comparison.
-
-    The trainer passes per-example fields via kwargs as parallel lists.
-    Gold is the `gold` column we attach when building the dataset.
-    """
+    """Two modes: binary (1.0/0.0) or format-credit (0.2 boxed + 0.8 correct)."""
     golds = kwargs.get("gold", [None] * len(completions))
     rewards = []
     for completion, gold in zip(completions, golds):
-        # GRPOTrainer passes completions as a list of message dicts when
-        # using chat templates; flatten to text for our purposes.
         if isinstance(completion, list):
             text = "".join(m.get("content", "") for m in completion)
         else:
             text = str(completion)
         pred = extract_answer(text)
-        if pred is None or gold is None:
-            rewards.append(0.0)
-            continue
-        rewards.append(1.0 if normalize(pred) == normalize(str(gold)) else 0.0)
+        correct = (pred is not None and gold is not None
+                   and normalize(pred) == normalize(str(gold)))
+        if _FORMAT_CREDIT:
+            r = 0.2 if pred is not None else 0.0
+            if correct:
+                r += 0.8
+            rewards.append(r)
+        else:
+            rewards.append(1.0 if correct else 0.0)
     return rewards
-
-
 def load_prompts(jsonl_path: Path, max_rows: int | None) -> Dataset:
     rows = []
     first_keys = None
@@ -163,6 +182,8 @@ def main() -> int:
                    help="CPU smoke test: tiny model, no vLLM, no bf16, no "
                         "gradient checkpointing, 1 step. Use to catch code "
                         "bugs without sbatch.")
+    p.add_argument("--format-credit", action="store_true",
+                   help="0.2 boxed + 0.8 correct. Increases reward variance.")
     args = p.parse_args()
 
     if args.smoke:
@@ -180,6 +201,8 @@ def main() -> int:
         args.gradient_accumulation_steps = 1
         args.save_steps = 100  # don't save
 
+    global _FORMAT_CREDIT
+    _FORMAT_CREDIT = args.format_credit
     args.out_dir.mkdir(parents=True, exist_ok=True)
 
     # TRL import is deferred so the --help path doesn't pull in heavy deps.
@@ -210,6 +233,16 @@ def main() -> int:
     tokenizer = AutoTokenizer.from_pretrained(args.base_model, trust_remote_code=True)
     if tokenizer.pad_token is None:
         tokenizer.pad_token = tokenizer.eos_token
+
+    def _fmt(ex):
+        ex["prompt"] = tokenizer.apply_chat_template(
+            [{"role": "user", "content": ex["prompt"]}],
+            tokenize=False,
+            add_generation_prompt=True,
+            enable_thinking=False,
+        )
+        return ex
+    train_ds = train_ds.map(_fmt)
 
     peft_config = None if args.no_lora else LoraConfig(
         r=args.lora_r,

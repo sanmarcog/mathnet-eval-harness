@@ -1,0 +1,19 @@
+{
+  "id": "0ep7",
+  "country": "South Africa",
+  "competition": "South African Mathematics Olympiad",
+  "gold_final_answer": "C",
+  "topics_flat": [
+    "Algebra > Prealgebra / Basic Algebra > Other"
+  ],
+  "prompt": "Human hair grows at a rate of about $1$ centimetre per month. This is equivalent to about how many millimetres every ten years?\n(A) $12$\n(B) $120$\n(C) $1\\,200$\n(D) $12\\,000$\n(E) $120\\,000$",
+  "model": "qwen3-1.7b-drgrpo",
+  "response_text": "To determine how many millimetres human hair grows in ten years, we start by converting the given rate from centimeters per month to millimetres per month.\n\n---\n\n### Step 1: Convert Centimeters to Millimetres\n\nWe know:\n$$\n1 \\text{ cm} = 10 \\text{ mm}\n$$\nSo, if hair grows at a rate of **1 cm per month**, then:\n$$\n1 \\text{ cm/month} = 10 \\text{ mm/month}\n$$\n\n---\n\n### Step 2: Calculate the Number of Months in 10 Years\n\nThere are:\n$$\n12 \\text{ months/year} \\times 10 \\text{ years} = 120 \\text{ months}\n$$\n\n---\n\n### Step 3: Multiply Growth Rate by Time\n\nNow, multiply the rate in millimetres per month by the number of months:\n$$\n10 \\text{ mm/month} \\times 120 \\text{ months} = 1200 \\text{ mm}\n$$\n\n---\n\n### Final Answer\n\nThe total growth of human hair in ten years is:\n$$\n\\boxed{1200}\n$$\n\nThis corresponds to **Option C**.",
+  "raw_response_text": "<think>\nOkay, let's see. The problem is about converting the growth rate of human hair from centimeters per month to millimeters every ten years. The given rate is 1 centimeter per month. The options are from 12 up to 120,000. Alright, let me break this down step by step.\n\nFirst, I need to figure out how many millimeters are in a centimeter. I remember that 1 centimeter is equal to 10 millimeters. So, if the hair grows 1 cm each month, that's 10 mm per month. Got that part.\n\nNow, the question is about ten years. So I need to find out how many months are in ten years. Let me calculate that. There are 12 months in a year, so 10 years would be 12 multiplied by 10. Let me do that math: 12 * 10 = 120 months. So, there are 120 months in ten years.\n\nSince the hair grows 10 mm each month, over 120 months, the total growth would be 10 mm/month * 120 months. Let me compute that. 10 * 120 is 1200. So, the total growth is 1200 millimeters every ten years. \n\nWait, let me check again. 1 cm per month is 10 mm per month. 10 months would be 100 mm, right? So, 120 months would be 120 * 10 = 1200 mm. Yes, that seems right. So 1200 millimeters every ten years. \n\nLooking at the options, option C is 1200. So the answer should be C. Let me just make sure I didn't make any mistakes in the conversions. \n\nStarting again: 1 cm = 10 mm. 1 month = 1 cm. 10 years = 10 * 12 = 120 months. 120 months * 10 mm/month = 1200 mm. Yep, that's consistent. \n\nI don't think I made any errors here. The answer is C, 1200 millimetres every ten years. So the correct choice is C.\n</think>\n\nTo determine how many millimetres human hair grows in ten years, we start by converting the given rate from centimeters per month to millimetres per month.\n\n---\n\n### Step 1: Convert Centimeters to Millimetres\n\nWe know:\n$$\n1 \\text{ cm} = 10 \\text{ mm}\n$$\nSo, if hair grows at a rate of **1 cm per month**, then:\n$$\n1 \\text{ cm/month} = 10 \\text{ mm/month}\n$$\n\n---\n\n### Step 2: Calculate the Number of Months in 10 Years\n\nThere are:\n$$\n12 \\text{ months/year} \\times 10 \\text{ years} = 120 \\text{ months}\n$$\n\n---\n\n### Step 3: Multiply Growth Rate by Time\n\nNow, multiply the rate in millimetres per month by the number of months:\n$$\n10 \\text{ mm/month} \\times 120 \\text{ months} = 1200 \\text{ mm}\n$$\n\n---\n\n### Final Answer\n\nThe total growth of human hair in ten years is:\n$$\n\\boxed{1200}\n$$\n\nThis corresponds to **Option C**.",
+  "usage": {
+    "input_tokens": 120,
+    "output_tokens": 764
+  },
+  "latency_s": null,
+  "cached": false
+}

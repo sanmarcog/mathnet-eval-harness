@@ -65,7 +65,7 @@ $PY -u scripts/train_dr_grpo.py \
     --out-dir /tmp/dr_grpo_calib \
     --max-rows 50 \
     --max-steps 5 \
-    --num-generations 2 \
+    --num-generations 4 \
     --max-completion-length 12000 \
     --gradient-accumulation-steps 4 \
     --logging-steps 1 \
@@ -88,6 +88,6 @@ if [ "$rc" -eq 0 ]; then
     echo "         then submit slurm/train_dr_grpo.sbatch."
 else
     echo "[$(date)] CALIB FAILED rc=$rc — check log for OOM or config error."
-    echo "         If OOM: try --num-generations 2 or move to 2x48GB or 1x80GB."
+    echo "         If OOM: try --num-generations 4 or move to 2x48GB or 1x80GB."
 fi
 exit $rc

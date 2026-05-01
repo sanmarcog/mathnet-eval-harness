@@ -53,6 +53,7 @@ RUNS = [
     ("qwen3-1.7b-run2", "Run 2"),
     ("qwen3-1.7b-run3", "Run 3"),
     ("qwen3-1.7b-run4", "Run 4"),
+    ("qwen3-1.7b-drgrpo", "Dr. GRPO"),
 ]
 
 

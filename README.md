@@ -12,6 +12,7 @@ Five frontier LLMs and an open-weights 1.7B base (with a QLoRA fine-tune on top)
 | GPT-5.4 | 495 / 500 | **57.8%** | $9.52 |
 | **Qwen3-1.7B base**  *(open, thinking-on, vLLM, 16K)* | 500 | **36.8%** | — |
 | GPT-5.4 Mini | 498 / 500 | **36.7%** | $1.51 |
+| Qwen3-1.7B + Dr. GRPO *(ours)* | 500 | **32.6%** | — |
 | Qwen3-1.7B + Run 4 self-distill *(ours)* | 500 | **28.8%** | — |
 
 *Eval cost is generation-side only: it excludes the Sonnet-4.6 LLM-judge API spend, which runs on every problem the cheap grader layers don't resolve (typically 30-40% of problems per model). True total spend is ~10-20% higher than the per-row figures shown. Tracking the judge spend per-call is on the followup list. Opus N=100 spot-check by budget; Gemini N=240 of 300 target due to a preview-model daily cap; GPT-5.4 / Mini denominators are `n_scored` after OpenAI safety-filter rejections (5 / 500 and 2 / 500).*
@@ -69,9 +70,15 @@ The paired n=500 picture: regressions outnumber improvements roughly 2:1. Run 4 
 
 The Qwen3-1.7B base seems to sit at a local optimum that's hard to disturb without breaking, inherited via distillation from a Qwen team flagship that received the full SFT + GRPO pipeline ([Qwen3 tech report 2505.09388](https://arxiv.org/abs/2505.09388)). So the 36.8% baseline is post-distillation-from-RL, not direct RL. That recontextualizes the negative result: SFT was being asked to perturb a local optimum reached by a heavily optimized teacher, in the same direction (longer traces) that already wasn't working.
 
-The structurally right next move is GRPO but with one specific modification: Dr. GRPO. Vanilla GRPO has a documented length-amplification bias, exactly the failure mode that bit Run 4 in SFT. [Liu et al. (2503.20783)](https://arxiv.org/abs/2503.20783) documents it directly: *"optimization bias in GRPO ... artificially increases response length, especially for incorrect outputs."* The bias-corrected variant addresses this and has potential to be the right tool for the failure mode we measured.
+### Run 5: Dr. GRPO — the bias-corrected RL variant ([writeup](docs/drgrpo_writeup.md))
 
-Two further options worth considering:
+Pre-registered in [docs/dr_grpo_plan.md](docs/dr_grpo_plan.md): vanilla GRPO has a documented length-amplification bias ([Liu et al. 2503.20783](https://arxiv.org/abs/2503.20783)) — exactly the failure mode that bit Run 4 in SFT. Dr. GRPO is the bias-corrected variant.
+
+**Result: 32.6% on n=500, paired delta -4.2 pp vs base, McNemar p = 0.024.** Statistically significant regression — Dr. GRPO does not reach parity. Lands in the pre-registered "no transfer" bucket. **But Dr. GRPO is the best of all four trained runs**, recovering +3.8 pp vs Run 4 (p = 0.0558, borderline-significant) and cutting the saturation rate of misses from 56% (Run 4) to 45% (Dr. GRPO, vs base's 50%). The bias correction *did* address the diagnosed length-amplification mechanism — just not enough to push past base. Dr. GRPO trades **saturated-without-answer** failures for **wrong-but-committed** failures: the model is more decisive but its confident answers are wrong on 50 problems where base was confidently right.
+
+**The chapter conclusion**: bias-corrected RL alone, on a saturation-prone base that wasn't properly cold-started, reaches the right *direction* but undersized *magnitude*. The post-hoc literature check confirms what was missing — both the [DeepSeek-R1 recipe](https://arxiv.org/abs/2501.12948) and the [Qwen3 official recipe](https://arxiv.org/abs/2505.09388) chain *cold-start SFT → GRPO*; they don't skip cold-start. Our SFT runs (2/3/4) used the *wrong* kind of cold-start data (long teacher traces, which amplify the failure mode); Dr. GRPO inherited a partially-amplified base and did what it could. The natural follow-on, supported by both the literature and the diagnostic data, is a *short-trace, in-distribution* cold-start (rejection-sampled fine-tuning, RFT) — the Week 2 chapter — followed by a second Dr. GRPO pass on top.
+
+Two further options worth considering for future work:
 
 - Test-time MCTS search with self-evolved data ([rStar-Math](https://arxiv.org/abs/2501.04519)) — distinct mechanism from GRPO. Demonstrated at 7B and 3.8B; 1.7B transfer is open.
 - Distillation from a stronger external teacher (Sonnet 4.6 or DeepSeek-R1 traces). The base emits noisy ~14K-token solutions; Sonnet emits decisive ~5-7K-token solutions on the same problems. Training on Sonnet's distribution would relabel the supervision target with cleaner reasoning, addressing the "trained to think longer" mechanism directly.
@@ -116,6 +123,19 @@ For each fine-tune attempt, we describe the precise training-script spec, the pr
 **Why it didn't work at -8 pp paired (p ≈ 10⁻⁴):**
 - ✓ **Self-distillation degradation on Qwen3-1.7B is directly documented** ([arxiv 2603.24472](https://arxiv.org/abs/2603.24472), Kim et al., "Why Does Self-Distillation (Sometimes) Degrade the Reasoning Capability of LLMs?"). Appendix F.2 reports **-45.9% degradation on Qwen3-1.7B with thinking mode ON**, our exact base and inference setting. **But the method differs:** Kim et al. study off-policy SFT where the teacher conditions on the gold solution, plus on-policy SDPO; Run 4 is rejection-sampled SFT where the teacher generates without seeing gold. Their identified mechanism "conditioning the teacher on rich information suppresses uncertainty expression, hurting OOD" is structurally absent from our setup, which is why our -8 pp paired delta is a fraction of their -45.9%. The literature predicts severe collapse for solution-conditioned distillation at this scale; the gentler regression we measured is consistent with avoiding that mechanism, but a different mechanism (📊 below) bit us anyway.
 - 📊 **Our specific failure mechanism** (from eval data, not literature): training on base's long reasoning traces (median ~14K tokens with `<think>` blocks) taught the model to *think longer*, amplifying the convergence-failure mode the base was already prone to. Run 4 saturated 198 outputs at 16K vs base's 157; **53% of Run 4's misses are saturated AND never boxed.** Concrete illustration: problem `0ai2` (base solved in 5,271 tokens with `\boxed{302561952}`; Run 4 saturated at 16,384 tokens with no answer), see the section above.
+
+### Run 5: Dr. GRPO — bias-corrected RL on the diagnosed failure mode
+
+**What it does** ([scripts/train_dr_grpo.py](scripts/train_dr_grpo.py), [slurm/train_dr_grpo.sbatch](slurm/train_dr_grpo.sbatch)): Dr. GRPO via TRL `GRPOConfig` with `loss_type="dr_grpo"` and `scale_rewards=False` — both bias corrections applied. LoRA `r=64 / alpha=128`. LR `1e-6`, KL `beta=0.0`, group size `num_generations=4`, `max_completion_length=12000` during training, per-device batch 1 × grad-accum 4. 200 steps. Reward = `1.0` if cheap-grader-extracted answer matches gold (normalized), else `0.0`. Pre-registered in [docs/dr_grpo_plan.md](docs/dr_grpo_plan.md), full chapter writeup in [docs/drgrpo_writeup.md](docs/drgrpo_writeup.md).
+
+**Prior work and why we tried it:**
+- ✓ **Dr. GRPO** ([arxiv 2503.20783](https://arxiv.org/abs/2503.20783), Liu et al. 2025): defines the bias-corrected variant of GRPO, addressing the documented length-amplification optimization bias. The bias is *structurally identical* to the failure mode our Run 4 SFT eval diagnosed, making this the most directly motivated next attempt.
+- ✓ **Qwen3 tech report** ([arxiv 2505.09388](https://arxiv.org/abs/2505.09388)) Section 4.2: Qwen3 flagships "employed GRPO (deepseekmath) to update the model parameters." Our base inherits behavior via distillation from such a flagship. Dr. GRPO is the bias-corrected variant of exactly the algorithm whose bias the base inherited.
+
+**Why it didn't reach parity at -4.2 pp paired (p = 0.024):**
+- 📊 **Bias correction was real but undersized** (own diagnosis from eval data): Dr. GRPO cut the saturation rate of misses from 56% (Run 4) to 45% (vs base's 50%). The bias-correction mechanism worked. But the model traded *saturated-without-answer* failures for *wrong-but-committed* failures (337 misses vs base's 316; transition matrix shows 50 problems lost vs 29 gained). More decisive, more often wrong.
+- ✓ **Cold-start SFT is the missing step the canonical recipes don't skip** (literature, post-hoc): both [DeepSeek-R1 (2501.12948)](https://arxiv.org/abs/2501.12948) and the [Qwen3 official RL recipe (2505.09388)](https://arxiv.org/abs/2505.09388) chain *short-trace, curated cold-start SFT → GRPO*. [Red Hat's small-model R1 reproduction](https://developers.redhat.com/articles/2025/02/25/lessons-reproducing-r1-reasoning-small-llms) reports "no major improvement" from SFT-then-GRPO on small Llama/Granite — small-model GRPO is fragile without proper cold-start. Our Run 2/3/4 SFT used the *wrong* kind of cold-start data (long teacher traces); Dr. GRPO inherited a partially-amplified base.
+- 📊 **Dr. GRPO is still the best of all four trained runs** and recovers +3.8 pp vs Run 4 (p = 0.0558). Direction matches the diagnosis; magnitude doesn't reach parity. Natural follow-on: Week 2 RFT (the right kind of cold-start) → Dr. GRPO.
 
 ## Architecture
 

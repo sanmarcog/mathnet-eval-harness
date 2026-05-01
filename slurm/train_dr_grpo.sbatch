@@ -71,7 +71,7 @@ $PY -u scripts/train_dr_grpo.py \
     --base-model Qwen/Qwen3-1.7B \
     --out-dir "$OUT" \
     --max-steps 200 \
-    --num-generations 2 \
+    --num-generations 4 \
     --max-completion-length 12000 \
     --learning-rate 1e-6 \
     --beta 0.0 \
