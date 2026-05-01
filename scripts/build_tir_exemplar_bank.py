@@ -30,12 +30,13 @@ import sys
 import time
 from pathlib import Path
 
-# Add repo root + src/ to sys.path so we can import both `scripts.eval_tir`
-# (for the backend factories) and `mathnet_eval.*` (the library modules).
-# `python scripts/<file>.py` only adds `scripts/` itself, so `scripts.X`
-# imports would otherwise fail with ModuleNotFoundError.
+# Put scripts/ + src/ on sys.path so we can import the backend factories
+# from eval_tir.py and the library modules. Cannot use `from scripts.X`
+# because the qlora env has an unrelated `scripts` package shadowing
+# our directory at site-packages (regular packages outrank namespace
+# packages regardless of sys.path order). Mirrors the ablation runner.
 _REPO = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(_REPO))
+sys.path.insert(0, str(_REPO / "scripts"))
 sys.path.insert(0, str(_REPO / "src"))
 
 from mathnet_eval.grading import grade  # noqa: E402
@@ -108,10 +109,10 @@ def real_bank_build(args) -> int:
     (GPU, vLLM, full train set)."""
     # Backend
     if args.backend == "hf":
-        from scripts.eval_tir import make_hf_backend  # type: ignore
+        from eval_tir import make_hf_backend  # type: ignore
         generate_fn, tokenizer = make_hf_backend(args.model, device=args.device)
     elif args.backend == "vllm":
-        from scripts.eval_tir import make_vllm_backend  # type: ignore
+        from eval_tir import make_vllm_backend  # type: ignore
         generate_fn, tokenizer = make_vllm_backend(args.model)
     else:
         raise ValueError(args.backend)
