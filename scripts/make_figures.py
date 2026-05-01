@@ -48,12 +48,13 @@ MODEL_ORDER = [
     ("gpt-5.4", "GPT-5.4"),
     ("qwen3-1.7b-base", "Qwen3-1.7B base  (open, thinking-on)"),
     ("gpt-5.4-mini", "GPT-5.4 Mini"),
+    ("qwen3-1.7b-drgrpo", "Qwen3-1.7B + Dr. GRPO  (ours)"),
     ("qwen3-1.7b-run4", "Qwen3-1.7B + Run 4 self-distill  (ours)"),
 ]
 # slugs that are open-weights (forest green) and project-internal results
 # (slate). Everything else is a rust frontier-API row.
 OPEN_SLUGS = {"qwen3-1.7b-base"}
-OURS_SLUGS = {"qwen3-1.7b-run4"}
+OURS_SLUGS = {"qwen3-1.7b-run4", "qwen3-1.7b-drgrpo"}
 
 
 def base_style() -> None:
