@@ -149,12 +149,33 @@ def real_bank_build(args) -> int:
     out_path = Path(args.out)
     out_path.parent.mkdir(parents=True, exist_ok=True)
 
-    n_kept = 0
+    # Resume safety on ckpt-all preemption (mirror of build_tir_exemplar_bank).
+    # Lost 23 rows / 3h of work in 2026-05-01 because Python's write buffer
+    # never flushed before SIGTERM.
+    import os as _os
+    already_kept_ids: set[str] = set()
+    if out_path.exists():
+        with open(out_path) as f:
+            for line in f:
+                line = line.strip()
+                if not line:
+                    continue
+                try:
+                    already_kept_ids.add(json.loads(line)["id"])
+                except Exception:
+                    pass
+    if already_kept_ids:
+        n_before = len(rows)
+        rows = [r for r in rows if r["id"] not in already_kept_ids]
+        print(f"[resume] {len(already_kept_ids)} rows already in {out_path}; "
+              f"skipping those, {len(rows)} remaining of {n_before}", flush=True)
+
+    n_kept = len(already_kept_ids)
     n_no_answer = 0
     n_no_reasoning = 0
     n_wrong = 0
     t_start = time.time()
-    with open(out_path, "w") as out_f:
+    with open(out_path, "a") as out_f:
         for i, row in enumerate(rows):
             problem = row["problem_markdown"].strip()
             gold = (row.get("final_answer") or "").strip()
@@ -188,6 +209,8 @@ def real_bank_build(args) -> int:
                 "competition": row.get("competition"),
             }
             out_f.write(json.dumps(exemplar, ensure_ascii=False) + "\n")
+            out_f.flush()
+            _os.fsync(out_f.fileno())
             n_kept += 1
             print(f"[{i+1}/{len(rows)}] id={row['id']} kept (reasoning_chars={len(reasoning)})", flush=True)
 
