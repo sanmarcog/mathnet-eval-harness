@@ -67,7 +67,7 @@ echo "[$(date)] log -> $LOG"
 
 $PY -u scripts/build_tir_exemplar_bank.py \
     --train-jsonl data/splits/train.jsonl \
-    --model Qwen/Qwen2.5-Math-7B-Instruct \
+    --model Qwen/Qwen2.5-Math-1.5B-Instruct \
     --backend vllm \
     --max-new-tokens 4096 \
     --max-tool-calls 4 \
