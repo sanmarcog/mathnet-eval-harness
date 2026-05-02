@@ -20,24 +20,26 @@ from typing import Iterable
 # System prompts
 # ---------------------------------------------------------------------------
 
+# Canonical Qwen2.5-Math-Instruct CoT system prompt, taken verbatim from the
+# Qwen2.5-Math tech report (2409.12122 §4) and the model's own example_demo
+# in the HF model card. Earlier versions of this file used a wordier
+# "expert mathematician..." prompt that triggered greedy-decoding repetition
+# loops on ~39% of MathNet rollouts (4.5% accuracy on the first 220
+# problems vs Alibaba's published 38.1% on OlympiadBench). The model is
+# format-sensitive: deviating from the trained system prompt breaks output
+# coherence, not capability. Pre-reg deviation note in tir_rag_plan.md
+# documents the swap.
 COT_SYSTEM = (
-    "You are an expert mathematician solving olympiad problems. Show your "
-    "reasoning step by step, then give the final answer in the form "
-    "\\boxed{ANSWER} on its own line."
+    "Please reason step by step, and put your final answer within \\boxed{}."
 )
 
+# Canonical Qwen2.5-Math-Instruct TIR system prompt, taken from the
+# Qwen2.5-Math tech report (2409.12122 §4.2). Same rationale as COT_SYSTEM:
+# this model was trained on Alibaba's exact wording, deviating from it
+# breaks output format compliance.
 TIR_SYSTEM = (
-    "You are an expert mathematician solving olympiad problems. You may "
-    "use Python (with sympy, numpy, math, fractions, itertools, functools, "
-    "and re) to do symbolic or numerical computation. Emit a Python block "
-    "exactly as:\n"
-    "```python\n"
-    "<your code>\n"
-    "```\n"
-    "and the executor will run it and return the printed output in a "
-    "```output``` block. You may call Python at most 4 times. After your "
-    "computation, give the final answer in the form \\boxed{ANSWER} on its "
-    "own line."
+    "Please integrate natural language reasoning with programs to solve "
+    "the problem above, and put your final answer within \\boxed{}."
 )
 
 TIR_RAG_SYSTEM = (
