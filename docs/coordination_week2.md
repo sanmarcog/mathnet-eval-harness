@@ -99,6 +99,60 @@ All 5 items from Tab A's hand-off executed.
 
 **Tab A handoff back:** monitoring is yours from here per your 08:25 note ("Tab A staying available to monitor cluster state"). I'll wake on user invocation or if a TIR-RAG-specific issue surfaces (e.g. ablation cell-format issue, tir_rag chain breaks because orchestrator dies).
 
+### 2026-05-04 14:25 PDT — Tab B — answered Tab A urgent review; ablation patched+resubmitted at 7B
+
+**Q1 (ablation model):** Confirmed bug. `slurm/run_retrieval_ablation.sbatch` hardcoded 1.5B + l40s + 5h. Cell rankings would NOT reliably transfer cross-model — 1.5B saturates and may favor smaller k to preserve context budget; 7B has more context headroom and may favor richer k. Ablation must run on the deployment model.
+- Patched in commit `d55ad8e`: `--model 1.5B → 7B`, `--gpus-per-node l40s → h200`, `--mem 48G → 64G`, `--time 5h → 12h` (7B slower per problem; 1800 dev generations could push 8-10h worst-case).
+- Cancelled `35024821` (the 1.5B ablation Tab A submitted).
+- Resubmitted as `35025478` (7B/h200).
+
+**Q2 (orchestrator tir_rag uses 7B):** Confirmed correct. `scripts/hedge_orchestrator.sh:86` calls `MODE=tir_rag sbatch ... slurm/eval_tir.sbatch`. The sbatch hardcodes 7B + h200 + `${MODE}_7b` output dir per my 08:35 commit. tir_rag will land in `results/tir/tir_rag_7b/`. Verified by reading code.
+- Since I cancelled+resubmitted ablation manually (orchestrator was dead), I also submitted tir_rag manually with `--dependency=afterok:35025478`. Jobid `35025479`.
+
+**Q3 (resume bug in build_cot_exemplar_bank.py):** Confirmed. The `already_kept_ids` set only tracks SUCCESSFUL rows. Failed rows get retried on resume, and with greedy decoding (`temperature=0`) the failures are deterministic — every restart re-processes the same failed prefix forever. Bank-cot is moot now (58 rows accepted), but for future bank builds the fix is ~10 lines: also track attempted-failed IDs to a sidecar `.failed_ids` file, skip them on resume too. Not patching now (bank-cot is done) — flagging for the writeup's "lessons learned" section.
+
+**Cleanup actions:**
+- Cancelled `35018779` (cot_headline loser; `35024646` is the running winner on a40).
+- Killed both orchestrators (`1465721`, `1475624`) and started a single fresh one (`1562597`) with stripped-down GROUP map = `tir_headline` only. Bank groups + cot_headline removed (terminal). New orchestrator can't trip the hard-fail-on-bank-CANCELLED branch since those groups aren't being polled anymore.
+- Watcher v3 (`622277`) still alive from earlier.
+
+**Current queue (14:25 PDT):**
+- `35024646` RUNNING — cot 7B headline (a40, 45min in, 8:19 left)
+- `35018780` PENDING — tir 7B headline (h200) [hedge w/ 35024647]
+- `35024647` PENDING — tir 7B headline hedge (a40)
+- `35025478` PENDING — ablation 7B (h200)
+- `35025479` PENDING — tir_rag 7B (h200, dep on 35025478)
+
+**Tab A handoff back:** monitoring is yours per usual. The orchestrator is now lightweight (only watches tir_headline group for hedge-loser-cancel). If anything in the chain breaks, I'm reachable. The most likely TIR-RAG-specific issue: ablation completes but writes to `results/tir/ablation/ablation_summary.json` with cells that don't pass the locked tie-break sanity check (e.g. all dev-100 cells at 0% accuracy if 7B can't handle the dev split well). I'll wake on that.
+
+### 2026-05-04 14:10 PDT — Tab A — bank-cot was stuck in resume loop; broke the deadlock, submitted ablation, restarted orchestrator. URGENT REVIEW REQUEST FOR TAB B.
+
+User came back, asked what was happening, was frustrated by lack of progress. I dug in. Diagnosis:
+
+**Bank-cot was deterministically stuck.** First run (Sat) processed problems 1-1349 of 3476, kept 38 rows, was preempted at problem 1349. The May 4 re-run started from problem 1 again because the resume logic only tracks *kept* IDs, not *failed* ones. With T=0 greedy decoding, re-processing the failed prefix produces identical failures. 6+ hours of GPU time produced zero new rows. Each preemption + restart = stuck near problem 1349 forever.
+
+**Actions I took (rule 8: troubleshoot autonomously):**
+1. `scancel 34994521` — bank-cot, was making zero progress per restart
+2. `scancel 35024673` — auto-resubmit of bank-cot
+3. `sbatch slurm/run_retrieval_ablation.sbatch` → jobid 35024821 (orchestrator was dead, ablation never queued)
+4. Restarted orchestrator (PID 1475624). Noted there's also a `1465721 hedge_orchestrator.sh` alive — unclear who started it, file-based state should make double-running safe but Tab B should clean this up if not.
+
+**Live state right now (14:10 PDT):**
+- 35024646 RUNNING — cot 7B headline (mode=cot, model=Qwen2.5-Math-7B-Instruct, output=results/tir/cot_7b/), 8 min elapsed, just finished vLLM init
+- 35024821 PENDING — ablation (1.5B per current sbatch, runs on dev N=100)
+- 35024647 PENDING — eval-tir hedge
+- 35018780 PENDING — original tir 7B headline
+- AssocMaxJobsLimit means these run one-at-a-time
+
+**Bank state (final, won't grow further):** TIR 86 rows, CoT 58 rows. Both clear locked rule 1 (≥40). Topic skew documented per rule 2.
+
+**REVIEW REQUESTS for Tab B (your specialty):**
+1. **Is the ablation correctly configured for the 7B pivot?** The current `slurm/run_retrieval_ablation.sbatch` loads Qwen2.5-Math-1.5B-Instruct at the top of `scripts/run_retrieval_ablation.py`. Should the ablation also be running at 7B to match the headlines, or is the cell-selection on dev-100 expected to transfer cross-model? You wrote this code; you'd know.
+2. **Verify the orchestrator submits tir_rag at 7B post-ablation.** When ablation finishes and the orchestrator picks the winner cell, does it submit `MODE=tir_rag sbatch slurm/eval_tir.sbatch` which now points at 7B per your 08:35 commit? Confirm by reading `scripts/hedge_orchestrator.sh` for the tir_rag submission command. If it hardcodes 1.5B somewhere, fix it.
+3. **The resume bug in `scripts/build_cot_exemplar_bank.py`** — only kept-IDs are tracked, not failed-IDs. With greedy decoding this means restarts re-do the failed prefix deterministically. Bank-cot is moot now (we accepted 58 rows), but worth flagging for any future bank build that uses greedy + resume. ~10 line fix: also write attempted-failed IDs to a sidecar file, skip them on resume too.
+
+**Tab A status post-action:** I'll keep monitoring via cron (resumes since Mac is awake again). User is back online and can adjudicate. Tab B needs to be invoked to address (1)-(2) above before tir_rag headline launches, otherwise we'll get a 1.5B winner cell selected for a 7B headline, which is methodologically muddy.
+
 ### 2026-05-04 08:25 PDT — Tab A — user decided Option B: pivot headlines to 7B. HAND-OFF to Tab B.
 
 User reviewed the 1.5B headline results (CoT 4.6% / TIR 1.2% / 96% saturation) and decided **the 1.5B headline distribution is too noisy for any meaningful TIR-RAG-vs-CoT comparison.** The pre-reg locked 1.5B but the comparison can't be defended at that accuracy band (Wilson 95% CI ±1.8 pp on 4.6%; cell-to-cell deltas would all be in noise).
