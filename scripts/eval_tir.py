@@ -376,6 +376,29 @@ def main() -> int:
         rows = rows[: args.n]
     print(f"[data] loaded {len(rows)} eval rows from {args.eval_jsonl}", flush=True)
 
+    # Resume safety: skip problems whose per-problem JSON already exists in
+    # out_dir (preempted-then-requeued jobs would otherwise restart from
+    # row 1). Mirrors the bank-builder skip-existing pattern. Also filters
+    # out empty/malformed prior outputs so a corrupt JSON doesn't get
+    # treated as completed.
+    if not args.smoke:
+        already_done: set[str] = set()
+        for f in out_dir.glob("*.json"):
+            if f.name == "summary.json":
+                continue
+            try:
+                with f.open() as fh:
+                    d = json.load(fh)
+                if isinstance(d, dict) and d.get("id") and d.get("response_text") is not None:
+                    already_done.add(d["id"])
+            except Exception:
+                continue
+        if already_done:
+            n_before = len(rows)
+            rows = [r for r in rows if r["id"] not in already_done]
+            print(f"[resume] {len(already_done)} problems already in {out_dir}; "
+                  f"skipping those, {len(rows)} remaining of {n_before}", flush=True)
+
     # ---- Backend ----
     if args.backend == "hf":
         generate_fn, tokenizer = make_hf_backend(args.model, device=args.device)
@@ -465,6 +488,42 @@ def main() -> int:
         )
 
     out_summary["elapsed_s"] = round(time.time() - t_start, 2)
+
+    # Resume-aware summary: re-aggregate over ALL per-problem JSONs in
+    # out_dir, not just the ones this invocation processed. Without this,
+    # a requeued job's summary.json would only count the resumed-portion's
+    # results and undercount the carryover. The in-loop counters above
+    # remain useful for the per-invocation log line, but the persisted
+    # summary needs to reflect all-time-disk state.
+    if not args.smoke:
+        all_methods: dict[str, int] = {}
+        all_correct = 0
+        all_scored = 0
+        all_saturated = 0
+        all_tool_calls = 0
+        for f in out_dir.glob("*.json"):
+            if f.name == "summary.json":
+                continue
+            try:
+                with f.open() as fh:
+                    d = json.load(fh)
+                g = d.get("grade", {})
+                method = g.get("method", "miss")
+                all_methods[method] = all_methods.get(method, 0) + 1
+                all_scored += 1
+                if g.get("correct"):
+                    all_correct += 1
+                if d.get("saturated"):
+                    all_saturated += 1
+                all_tool_calls += d.get("n_tool_calls", 0)
+            except Exception:
+                continue
+        out_summary["n_scored"] = all_scored
+        out_summary["n_correct"] = all_correct
+        out_summary["method_counts"] = all_methods
+        out_summary["n_saturated"] = all_saturated
+        out_summary["n_tool_calls_total"] = all_tool_calls
+
     out_summary["accuracy"] = (
         out_summary["n_correct"] / out_summary["n_scored"]
         if out_summary["n_scored"] else 0.0

@@ -63,7 +63,7 @@
 #SBATCH --cpus-per-task=4
 #SBATCH --mem=64G
 #SBATCH --gpus-per-node=h200:1
-#SBATCH --time=8:00:00
+#SBATCH --time=14:00:00
 #SBATCH --output=slurm-%j.out
 #SBATCH --error=slurm-%j.err
 #SBATCH --requeue
