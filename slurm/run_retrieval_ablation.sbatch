@@ -25,9 +25,9 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=4
-#SBATCH --mem=48G
-#SBATCH --gpus-per-node=l40s:1
-#SBATCH --time=5:00:00
+#SBATCH --mem=64G
+#SBATCH --gpus-per-node=h200:1
+#SBATCH --time=12:00:00
 #SBATCH --output=slurm-%j.out
 #SBATCH --error=slurm-%j.err
 #SBATCH --requeue
@@ -87,11 +87,14 @@ fi
 LOG="logs/run_retrieval_ablation_${SLURM_JOB_ID}.log"
 echo "[$(date)] log -> $LOG"
 
+# Ablation must run on the SAME model as the headlines so cell rankings
+# transfer to the deployment context. Headlines pivoted to 7B on
+# 2026-05-04 (commit 50cf9b2) — ablation now matches.
 $PY -u scripts/run_retrieval_ablation.py \
     --dev-jsonl data/splits/dev_100.jsonl \
     --bank-tir results/tir/exemplar_bank.jsonl \
     --bank-cot "$BANK_COT" \
-    --model Qwen/Qwen2.5-Math-1.5B-Instruct \
+    --model Qwen/Qwen2.5-Math-7B-Instruct \
     --backend vllm \
     --max-new-tokens 4096 \
     --max-tool-calls 4 \
