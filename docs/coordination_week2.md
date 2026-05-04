@@ -66,6 +66,60 @@ These were agreed with the user before they went offline. Either tab follows the
 
 ## Audit log (append-only, newest at top)
 
+### 2026-05-04 08:35 PDT — Tab B — executed Tab A 08:25 hand-off (1.5B → 7B headline pivot)
+
+All 5 items from Tab A's hand-off executed.
+
+**Code changes (commit `50cf9b2` pushed to main):**
+- `slurm/eval_tir.sbatch`:
+  - `--gpus-per-node=l40s:1` → `h200:1`
+  - `--mem=48G` → `64G`
+  - `--model Qwen/Qwen2.5-Math-1.5B-Instruct` → `Qwen/Qwen2.5-Math-7B-Instruct`
+  - `OUT="results/tir/${MODE}"` → `OUT="results/tir/${MODE}_7b"` (preserves 1.5B results per item 4)
+- `docs/tir_rag_plan.md`: added 2026-05-04 correction block — explains the pivot, notes it reverts the 2026-05-02 "in-context distillation" framing back to the originally-pre-registered "self-help via retrieval" since both bank construction and inference now run on the same model. The 1.5B headlines are documented as a noisy-baseline reference.
+
+**Submitted (Klone, commit `50cf9b2` pulled, sentinel touched):**
+- `35018779` — MODE=cot 7B headline (PENDING, AssocMaxJobsLimit)
+- `35018780` — MODE=tir 7B headline (PENDING, AssocMaxJobsLimit)
+- No hedges this round — h200 has been hitting the queue reliably, single-job-per-stage acceptable, and submitting fewer jobs respects the 1-running-job cap.
+
+**tir_rag chain:** orchestrator (PID 622145) auto-submits `MODE=tir_rag sbatch ... slurm/eval_tir.sbatch` after ablation completes. Since the sbatch now defaults to 7B + `${MODE}_7b` output dir, the tir_rag run will land in `results/tir/tir_rag_7b/` automatically. Verified by reading the sbatch — no orchestrator update needed.
+
+**Expected serial wall-clock (Hyak MaxJobs=1, FIFO modulo dependency):**
+- bank-cot finishes ~14:30 PDT today (currently 3:11 elapsed, 5:53 left)
+- cot 7B starts ~14:30, finishes ~20:30 (6h estimate, 7B is ~3-4× slower than 1.5B)
+- tir 7B starts ~20:30, finishes ~02:30 May 5
+- Ablation submitted by orchestrator ~14:30 (when bank-cot done + clearance set), enters queue ~02:30 May 5, finishes ~07:30 May 5
+- tir_rag 7B starts ~07:30 May 5, finishes ~13:30 May 5
+- **All-done estimate: Tuesday May 5 ~13:30 PDT.**
+
+**Not changed:**
+- Orchestrator GROUP map still references old 1.5B headline jobids (34985530-33). Harmless — those are terminal states (COMPLETED or CANCELLED), orchestrator polls them, marks DONE/FAILED, takes no further action. Adding 35018779/35018780 to GROUP would only matter if we'd submitted hedges (we didn't), since GROUP is just for scancel-the-losers-when-winner-runs.
+- Watcher v3 will pick up the new 7B headlines automatically when they enter R; its checks are state-driven not jobid-driven.
+
+**Tab A handoff back:** monitoring is yours from here per your 08:25 note ("Tab A staying available to monitor cluster state"). I'll wake on user invocation or if a TIR-RAG-specific issue surfaces (e.g. ablation cell-format issue, tir_rag chain breaks because orchestrator dies).
+
+### 2026-05-04 08:25 PDT — Tab A — user decided Option B: pivot headlines to 7B. HAND-OFF to Tab B.
+
+User reviewed the 1.5B headline results (CoT 4.6% / TIR 1.2% / 96% saturation) and decided **the 1.5B headline distribution is too noisy for any meaningful TIR-RAG-vs-CoT comparison.** The pre-reg locked 1.5B but the comparison can't be defended at that accuracy band (Wilson 95% CI ±1.8 pp on 4.6%; cell-to-cell deltas would all be in noise).
+
+**Decision: rerun cot/tir/tir_rag headlines on Qwen2.5-Math-7B-Instruct** (the same model that built the bank). Pre-reg deviation, documented in writeup the same way the Dr. GRPO chapter handled its `max_completion_length` and chat-template deviations. The 1.5B results stay as a "reference baseline" that we report alongside, not as the headline.
+
+**Hand-off to Tab B (your specialty: sbatches, orchestrator, the eval pipeline):**
+
+1. Update `slurm/eval_tir.sbatch` (or whatever the parametric model arg is) to point at `Qwen/Qwen2.5-Math-7B-Instruct` instead of `Qwen/Qwen2.5-Math-1.5B-Instruct`. The cot/tir/tir_rag headlines should all use 7B going forward.
+2. Bump GPU resource request as needed for 7B + vLLM KV cache. h200 preferred (you've validated 7B fits there during bank-builds); l40s/a40 likely tight depending on context budget.
+3. Once bank-cot completes and ablation finishes, the orchestrator should auto-submit tir_rag at 7B; verify the model arg propagates through the dependency chain.
+4. **DO NOT cancel the 1.5B 34985531 / 34985533 results** — those are preserved as the noisy-baseline reference. Just run new 7B headlines under different result-dir names so postprocess can pick them up separately.
+5. Documentation: add a deviation note to `docs/tir_rag_plan.md` under a "2026-05-04 corrections" block. The 1.5B → 7B headline switch is the deviation; the rationale is the noise floor at 1.5B (4.6% with ±1.8 pp Wilson CI) is below the magnitude of any plausible cell-to-cell ablation effect.
+
+**My current understanding of pipeline state:**
+- bank-cot 7B: RUNNING ~2h 39m, expected finish today
+- ablation: gated on bank-cot completion; orchestrator (PID 622145, fresh 24h budget) will pick it up
+- new 7B headlines: pending Tab B's sbatch update + queue submission
+
+User is back online; can adjudicate if anything ambiguous comes up. Tab A staying available to monitor cluster state and write up findings; Tab B owns the pipeline-config side.
+
 ### 2026-05-04 08:18 PDT — Tab B — recovered from 36h offline-window failure; ran headlines flagged with audit-trigger
 
 User invoked me with "you didn't do anything." Correct from my perspective (was dormant per protocol). Tab A's automation also did not fire any audit entries during the 36h window. Reconstruction from sacct + log files on klone:
