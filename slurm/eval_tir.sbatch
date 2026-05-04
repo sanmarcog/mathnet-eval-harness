@@ -61,8 +61,8 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=4
-#SBATCH --mem=48G
-#SBATCH --gpus-per-node=l40s:1
+#SBATCH --mem=64G
+#SBATCH --gpus-per-node=h200:1
 #SBATCH --time=8:00:00
 #SBATCH --output=slurm-%j.out
 #SBATCH --error=slurm-%j.err
@@ -96,9 +96,14 @@ if [ ! -f "$SENTINEL" ]; then
 fi
 echo "[$(date)] smoke sentinel found: $SENTINEL"
 
-LOG="logs/eval_tir_${MODE}_${SLURM_JOB_ID}.log"
-OUT="results/tir/${MODE}"
-echo "[$(date)] mode=$MODE  out=$OUT  log=$LOG"
+# Output dir suffix _7b preserves the prior 1.5B headline results
+# (results/tir/{cot,tir}/) as a noisy-baseline reference. Per the
+# 2026-05-04 user decision: 1.5B accuracy 4.6%/1.2% with Wilson 95% CI
+# ±1.8 pp made cell-to-cell ablation deltas noise-bound; 7B should land
+# in a band where deltas are interpretable.
+LOG="logs/eval_tir_${MODE}_7b_${SLURM_JOB_ID}.log"
+OUT="results/tir/${MODE}_7b"
+echo "[$(date)] mode=$MODE  model=7B  out=$OUT  log=$LOG"
 
 EXTRA_ARGS=()
 if [ "$MODE" = "tir_rag" ]; then
@@ -113,7 +118,7 @@ fi
 $PY -u scripts/eval_tir.py \
     --mode "$MODE" \
     --eval-jsonl data/splits/eval.jsonl \
-    --model Qwen/Qwen2.5-Math-1.5B-Instruct \
+    --model Qwen/Qwen2.5-Math-7B-Instruct \
     --backend vllm \
     --max-new-tokens 4096 \
     --max-tool-calls 4 \
