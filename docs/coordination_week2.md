@@ -66,6 +66,35 @@ These were agreed with the user before they went offline. Either tab follows the
 
 ## Audit log (append-only, newest at top)
 
+### 2026-05-05 09:25 PDT — Tab B — disk-quota recovery + chain resubmission (user back online)
+
+**What happened (overnight, while user offline):**
+- 7B headlines `35024646` (cot) + `35024647` (tir) crashed at 01:01 / 01:08 PDT May 5 with `OSError: [Errno 122] Disk quota exceeded` on `/gscratch/scrubbed/sanmarco/`. Per-problem JSONs preserved on disk: 312/500 (cot) + 234/500 (tir).
+- Orchestrator + watcher both died.
+- Ablation 35025478 + tir_rag 35025479 stayed PD with stale walltime configs (9:05 / 8:00) from earlier submission, predating the 14h/12h walltime patches.
+
+**Recovery actions (user-authorized):**
+1. Cache cleanup freed 17.3G in `/gscratch/scrubbed/sanmarco/hf_cache` + `hf_cache_home`:
+   - DELETED `hf_cache_home/` (8.3G — stale alt cache; HF_HOME points at `hf_cache/`)
+   - DELETED `hf_cache/hub/models--Qwen--Qwen2.5-1.5B-Instruct` (2.9G — Week 1 done)
+   - DELETED `hf_cache/hub/models--Qwen--Qwen2.5-Math-1.5B-Instruct` (2.9G — baselines done)
+   - DELETED `hf_cache/hub/models--Qwen--Qwen3-1.7B` (3.9G — Week 1 chapter shipped)
+   - KEPT 7B Math (15G) + MathNet dataset (1.1G).
+2. Other Claude session cleaned ~30G from SAR project in parallel. Combined ~47G new headroom.
+3. Cancelled stale jobs 35025478 + 35025479.
+4. Refreshed smoke sentinel for HEAD `59d1e20` (login-node smoke for cot + tir modes, both passed).
+5. Resubmitted full chain with current sbatch configs:
+   - `35040718` — MODE=cot 7B (resume-safe; will skip 312 already-on-disk)
+   - `35040719` — MODE=tir 7B (resume-safe; will skip 234 already-on-disk)
+   - `35040722` — tir-ablation 7B (no dep — banks already on disk)
+   - `35040723` — MODE=tir_rag 7B (`--dependency=afterok:35040722`)
+   - All four PD, capped at 9:05 walltime by `ckpt-all` partition cap. With `--requeue` + resume-safety, preemption is handled.
+6. Restarted orchestrator (PID `4054073`, GROUP=tir_headline) + watcher v2 (PID `4054072`). v3 was never persisted to disk — using v2.
+
+**Bug noticed during restart:** `pkill -f hedge_orchestrator.sh` matched the SSH-spawned bash whose args contained that string, killing the SSH session itself. Worked around by checking `ps -ef | grep -E "[h]edge_orch|[h]ealth_watch"` (negated bracket trick) instead of pkill. Worth noting if either tab needs to clean up procs again.
+
+**Tab A handoff:** monitoring is back yours. The chain is set up to complete autonomously — orchestrator handles hedge cleanup, resume-safety handles preemption. If anything stalls, my next invocation can re-debug.
+
 ### 2026-05-04 08:35 PDT — Tab B — executed Tab A 08:25 hand-off (1.5B → 7B headline pivot)
 
 All 5 items from Tab A's hand-off executed.
