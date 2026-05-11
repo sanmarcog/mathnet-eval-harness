@@ -113,7 +113,7 @@ None observed. Both GPT models always produce *some* final-answer commitment. Co
 
 **None** beyond committing this analysis.
 
-- **Grader bug list updated** in [grader-todos.md](./grader-todos.md) with the `\[` extractor-failure pattern as a Week-3 cleanup item.
+- **Grader bug noted**: the `\[` extractor-failure pattern is a parked Week-3 cleanup item.
 - **Day-2 artifacts (NOTES, day2_report, README)** updated with a one-line reference to this analysis and the conclusion that numbers stand.
 - **Week-4 QLoRA target unchanged:** GPT-5.4 Mini at **36.7%** is the real baseline to beat. This analysis confirms Mini is at ~37% because Mini is genuinely weaker, not because the grader is bullying it.
 

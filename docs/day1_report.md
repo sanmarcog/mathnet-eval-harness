@@ -45,7 +45,7 @@ Manually eyeballed all 9 judge-accepted answers (before normalizer fixes) agains
 1. **OpenAI (GPT-5) and Google (Gemini 3 Pro) backends** in [inference.py](../src/mathnet_eval/inference.py) — stubs are already wired into the `MODELS` registry.
 2. **Budget estimate for 500 × 4 models** — will present to user before the green-light (well above the $5 auto-confirm threshold).
 3. **Track judge API cost** through the grade pipeline so [summary.json](../results/smoke/sonnet-4-6/summary.json) reflects true total cost.
-4. **Parser-level grader improvements** are noted in [grader-todos.md](./grader-todos.md) but parked until we have 500-problem data to see how often each pattern shows up.
+4. **Parser-level grader improvements** were noted during Day-1 judge review (LaTeX normalization, tuple-set comparison, variable-prefix stripping) and parked until 500-problem data revealed how often each pattern shows up.
 
 ## Links
 
@@ -53,5 +53,3 @@ Manually eyeballed all 9 judge-accepted answers (before normalizer fixes) agains
 - Consolidated summary: [summary.json](../results/smoke/sonnet-4-6/summary.json)
 - Manual judge review: [judge_review.md](../results/smoke/sonnet-4-6/judge_review.md)
 - Day-1 NOTES: [NOTES.md](../results/smoke/sonnet-4-6/NOTES.md)
-- Grader TODOs: [grader-todos.md](./grader-todos.md)
-- Day-0 QLoRA spike preserved at [docs/spikes/day0_toy.py](./spikes/day0_toy.py)
